@@ -5,69 +5,63 @@ title: "R & RStudio"
 ## R vs. RStudio
 
 - **R** is the programming language and runtime.  
-- **RStudio** (now Posit IDE) is the graphical environment where you write code, manage files, and render documents. Think “language” vs “editor.” :contentReference[oaicite:0]{index=0}
+- **RStudio** (Posit IDE) is the graphical environment where you write code, manage files, and render documents.
 
 ---
 
 ## The RStudio interface (four panes)
 
-The IDE has four main panes by default:
-
-1) **Source** (top-left): where you edit scripts and `.qmd` files  
-2) **Console** (bottom-left): where code runs interactively  
-3) **Environment / History / …** (top-right): objects, history, connections, etc.  
-4) **Files / Plots / Packages / Help / Viewer** (bottom-right)  
-
-You can rearrange or maximize panes as needed. :contentReference[oaicite:1]{index=1}
+1) **Source** (top-left): edit scripts and `.qmd` files  
+2) **Console** (bottom-left): run code interactively  
+3) **Environment / History** (top-right): objects, history, etc.  
+4) **Files / Plots / Packages / Help / Viewer** (bottom-right)
 
 ---
 
 ## Projects: your #1 best practice
 
-Work **inside an RStudio Project** (one folder per class/research project). A Project keeps its own working directory, history, and settings—much less path chaos, far more reproducibility. Create one via **File → New Project → New Directory → New Project**. :contentReference[oaicite:2]{index=2}
+Work **inside an RStudio Project** (one folder per class/research project). A Project keeps its own working directory, history, and settings—fewer path problems, more reproducibility. Create one via **File → New Project → New Directory → New Project**.
 
-**Clean-session habit:** Set RStudio to **never save/restore `.RData`** (Preferences → General). Start fresh each session; don’t rely on hidden objects from last time. This is the core of the “project-oriented workflow.” :contentReference[oaicite:3]{index=3}
+**Clean-session habit:** set RStudio to **never save/restore `.RData`** (Preferences → General).
 
 ---
 
 ## Console vs. Script (and Quarto)
 
 - Use the **Console** for quick experiments.  
-- Put anything you want to keep into a **script** (`.R`) or a **Quarto document** (`.qmd`) and save it. Render `.qmd` from the IDE with the **Render** button or `quarto render`. :contentReference[oaicite:4]{index=4}
+- Put anything you want to keep into a **script** (`.R`) or **Quarto** document (`.qmd`) and save it. Render `.qmd` with the **Render** button or `quarto render`.
 
-**Running code from the Source pane:**  
-- Run current line/selection: **Ctrl+Enter** (Windows/Linux) or **Cmd+Return** (macOS)  
-- Insert code chunk (useful in `.qmd`): **Ctrl+Alt+I** (Win/Linux) or **Option+Cmd+I** (macOS)  
-- See **Tools → Keyboard Shortcuts Help** for a full list. :contentReference[oaicite:5]{index=5}
+**Handy keys from the Source pane:**  
+- Run line/selection: **Ctrl+Enter** (Win/Linux) or **Cmd+Return** (macOS)  
+- Insert code chunk in `.qmd`: **Ctrl+Alt+I** (Win/Linux) or **Option+Cmd+I** (macOS)  
+- Full list: **Tools → Keyboard Shortcuts Help**
 
 ---
 
 ## Files and paths (keep them relative)
 
-Inside a Project, file paths are **relative to the project root**—so `data/myfile.csv` works on any machine that has the same project structure. Avoid `setwd()` in scripts; the Project sets your working directory when you open it. :contentReference[oaicite:6]{index=6}
+Inside a Project, paths are **relative to the project root**—so `data/myfile.csv` works on any machine with the same structure. Avoid `setwd()` in scripts; the Project sets the working directory when you open it.
 
 ---
 
-## Git integration (where you’ll commit and push)
+## Git integration
 
-When Git is enabled for your Project, you’ll see a **Git** tab. Use it to **Stage → Commit → Push** your work to GitHub. If you don’t see the tab, enable Git under **Tools → Project Options → Git/SVN** or create the Project from Version Control. :contentReference[oaicite:7]{index=7}
+When Git is enabled for your Project, you’ll see a **Git** tab. Use it to **Stage → Commit → Push** your work to GitHub. If you don’t see the tab, enable Git under **Tools → Project Options → Git/SVN** or create the Project from Version Control.
 
 ---
 
 ## Handy shortcuts
 
-- **Command Palette**: search commands quickly — **Ctrl/Cmd+Shift+P**  
-- **Keyboard Shortcuts Help**: **Alt/Option+Shift+K** (or Tools menu)  
-- **Comment/Uncomment**: **Ctrl+Shift+C** / **Cmd+Shift+C**  
-(See the RStudio IDE cheat sheet for more.) :contentReference[oaicite:8]{index=8}
+- **Command Palette**: **Ctrl/Cmd+Shift+P**  
+- **Keyboard Shortcuts Help**: **Alt/Option+Shift+K**  
+- **Comment/Uncomment**: **Ctrl+Shift+C** / **Cmd+Shift+C**
 
 ---
 
 ## Default settings to adopt (once)
 
-- **Never** save/restore `.RData` on exit/start (clean sessions)  
-- Keep your course Project in a simple path (e.g., `Documents/MC451`)  
-These two alone eliminate many “it worked yesterday” mysteries. :contentReference[oaicite:9]{index=9}
+- Don’t save/restore `.RData` on exit/start (clean sessions).  
+- Keep your course Project in a simple path (e.g., `Documents/MC451`).
 
 ---
 

@@ -4,72 +4,75 @@ title: "Git & GitHub"
 
 ## Why version control?
 
-Git keeps a complete history of your work, lets you roll back mistakes, and makes sharing/submitting changes straightforward. In Git, you **stage** changes, then **commit** them as a snapshot; later you **push** those commits to GitHub to back them up and collaborate. :contentReference[oaicite:0]{index=0}
+Git keeps a complete history of your work, lets you roll back mistakes, and makes sharing/submitting changes straightforward. In Git you **stage** changes, then **commit** them as a snapshot; later you **push** those commits to GitHub to back them up and collaborate.
 
 ---
 
 ## Install & enable Git in RStudio (one time)
 
-1. **Install Git** (if you haven’t yet): <https://git-scm.com/downloads>  
+1. **Install Git**: https://git-scm.com/downloads  
 2. In **RStudio**: **Tools → Global Options → Git/SVN**  
    - Check **Enable version control interface for RStudio projects**  
    - Ensure the Git executable path is detected (set it if blank)  
-   - Optional (advanced): generate or add an SSH key here. :contentReference[oaicite:1]{index=1}
+   - Optional (advanced): generate or add an SSH key here.
 
-> Tip: The presence of the **Git** pane in RStudio indicates your Project is under Git. If not, convert it via **Tools → Project Options → Git/SVN → Version control system: Git** (or run `git init` in the project folder). :contentReference[oaicite:2]{index=2}
+Tip: The presence of the **Git** pane in RStudio indicates your Project is under Git. If not, convert it via **Tools → Project Options → Git/SVN → Version control system: Git** (or run `git init` in the project folder).
 
 ---
 
-## Authenticate to GitHub (modern options)
+## Authenticate to GitHub
 
-GitHub no longer accepts account passwords for Git operations. Use **HTTPS + token** (recommended) or **SSH keys**. :contentReference[oaicite:3]{index=3}
+GitHub no longer accepts account passwords for Git over HTTPS. Use **HTTPS + Personal Access Token (PAT)** or **SSH keys**.
 
-- **HTTPS + Personal Access Token (PAT)**  
-  Create a **fine-grained PAT** and grant it access to the repo(s) you’ll use. Some features still require a classic PAT; if something fails, check token scopes/limitations. Cache credentials with **Git Credential Manager (GCM)** so you aren’t prompted every push. :contentReference[oaicite:4]{index=4}
+- **HTTPS + PAT (recommended)**  
+  Create a fine-grained PAT, grant it access to your repo(s), and let Git Credential Manager cache it so you aren’t prompted every push.  
+  Docs: https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token  
+  Git Credential Manager: https://github.com/GitCredentialManager/git-credential-manager
 
-- **SSH** (optional)  
-  You can create an SSH key in RStudio (Git/SVN pane) and add the **public key** to your GitHub account under **Settings → SSH and GPG keys**. :contentReference[oaicite:5]{index=5}
-
-On Windows, **Git Credential Manager** comes with recent Git installs and securely stores your GitHub credentials (supports MFA). :contentReference[oaicite:6]{index=6}
+- **SSH (alternative)**  
+  Generate an SSH key and add the **public key** in **GitHub → Settings → SSH and GPG keys**.  
+  Docs: https://docs.github.com/authentication/connecting-to-github-with-ssh
 
 ---
 
 ## Create a GitHub repo & connect your RStudio Project
 
-You have two clean paths—pick one:
+You have two clean paths—pick one.
 
 ### A) Start local, then create the GitHub repo
 1. In your RStudio **Project** (already has files), ensure it’s a Git repo.  
-2. Create the GitHub repo and connect it:
-   - **R helper (usethis):**
-     ```r
-     # in the Project
-     install.packages("usethis")
-     usethis::use_git()       # initialize git (if needed)
-     usethis::use_github()    # creates repo on GitHub, adds 'origin', pushes
-     ```
-     `use_github()` checks your project, makes the GitHub repo, sets the `origin` remote, and does the first push. :contentReference[oaicite:7]{index=7}
-   - **Manual (shell):**
-     ```bash
-     git init
-     git add -A
-     git commit -m "Initial commit"
-     git branch -M main
-     git remote add origin https://github.com/<YOUR-ORG>/<REPO>.git
-     git push -u origin main
-     ```
+2. Create/connect the GitHub repo:
+
+**R helper (usethis):**
+```r
+install.packages("usethis")
+usethis::use_git()       # initialize git (if needed)
+usethis::use_github()    # creates repo on GitHub, adds 'origin', pushes
+````
+
+**Manual (shell):**
+
+```bash
+git init
+git add -A
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/<YOUR-ORG>/<REPO>.git
+git push -u origin main
+```
 
 ### B) Start from GitHub, then clone into RStudio
-- On GitHub, click **New** repository → create it (with a README if you want).  
-- In RStudio: **File → New Project → Version Control → Git**, paste the repo URL, choose a local folder, **Create Project**. (Now you have a synced local copy.) :contentReference[oaicite:8]{index=8}
+
+* On GitHub, click **New** repository → create it (with a README if you want).
+* In RStudio: **File → New Project → Version Control → Git**, paste the repo URL, choose a local folder, **Create Project**.
 
 ---
 
 ## Daily workflow (RStudio Git pane)
 
-1. **Pull** (get changes from GitHub)  
-2. **Stage** the files you changed  
-3. **Commit** with a short message  
+1. **Pull** (get changes from GitHub)
+2. **Stage** the files you changed
+3. **Commit** with a short message
 4. **Push** to GitHub
 
 Command line equivalents:
@@ -79,23 +82,17 @@ git pull
 git add -A
 git commit -m "Brief, meaningful message"
 git push
-````
-
-A commit records the current contents of your staged files as a new snapshot in history. ([Git][1])
+```
 
 ---
 
 ## Good habits
 
 * Commit small, logical units of work with clear messages.
-* Pull before you start; pull again if a push is rejected (then resolve and re-push).
-* Keep secrets and large raw data out of the repo (use `.gitignore`). See below.
+* Pull before you start; pull again if a push is rejected.
+* Keep secrets and large raw data out of the repo (use `.gitignore`).
 
----
-
-## Recommended `.gitignore` (for this course repo)
-
-Add a `.gitignore` at your Project root with lines like:
+**Recommended `.gitignore` for this course repo**
 
 ```
 .Rhistory
@@ -108,31 +105,18 @@ docs/
 *.env
 ```
 
-This prevents committing local history, RStudio state, and built site output (our GitHub Actions workflow publishes the website without needing those artifacts in the repo). ([use this][2])
-
 ---
 
 ## Troubleshooting
 
-* **RStudio doesn’t show the Git pane**
-  Enable Git for the Project (Project Options → Git/SVN) or initialize with `usethis::use_git()`. ([happygitwithr.com][3])
-
-* **Push asks for a password**
-  Use a **PAT** for HTTPS; when Git prompts for a password, paste your token. Consider enabling **Git Credential Manager** to remember it. ([GitHub Docs][4])
-
-* **Org blocks tokens / needs approval**
-  Your organization can restrict PAT usage. If a fine-grained token request needs approval, ask an org admin or use an approved method (e.g., SSH). ([GitHub Docs][5])
-
-* **“Rejected – fetch first”**
-  Someone pushed ahead of you. Run `git pull`, resolve any merge conflicts, then commit and push.
+* **RStudio doesn’t show the Git pane** → Enable Git for the Project (Project Options → Git/SVN) or initialize with `usethis::use_git()`.
+* **Push asks for a password** → Use a **PAT** for HTTPS; when Git prompts for a password, paste your token. Enable Git Credential Manager to remember it.
+* **“Rejected – fetch first”** → Someone pushed ahead of you. Run `git pull`, resolve any merge conflicts, then commit and push.
 
 ---
 
-## Where this fits in our package
+## Further reading
 
-You’ll use Git/GitHub to version your work and to publish the **documentation site** (Quarto builds; GitHub Pages serves). The rest of this site explains R/RStudio basics, Quarto rendering, and our package functions so you can move confidently between writing, rendering, committing, and pushing.
-
-```
-
-This page cites authoritative docs for RStudio’s Git setup, Git/GitHub authentication, commit semantics, credential caching, and `usethis::use_github()` behavior, so students have trustworthy pointers if they want to go deeper. :contentReference[oaicite:14]{index=14}
-::contentReference[oaicite:15]{index=15}
+* RStudio + Git guide: [https://happygitwithr.com](https://happygitwithr.com)
+* Git basics (Pro Git book): [https://git-scm.com/book](https://git-scm.com/book)
+* GitHub authentication overview: [https://docs.github.com/authentication](https://docs.github.com/authentication)

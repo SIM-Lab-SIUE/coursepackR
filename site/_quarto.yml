@@ -51,6 +51,8 @@ format:
     toc: true
     smooth-scroll: true
     css: styles.css
+    link-external-icon: true
+    link-external-newwindow: true
 
 # keep the site static; enable eval per-page later if needed
 execute:

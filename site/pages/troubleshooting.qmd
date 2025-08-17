@@ -8,46 +8,36 @@ This page is a grab-bag of quick fixes and diagnostic commands for the tools use
 
 ## Quarto isn’t found / Render button doesn’t work for `.qmd`
 
-**Symptoms:** RStudio can’t render `.qmd`, or Terminal says `quarto: command not found`.
-
 **Fix:**
-1. Install Quarto from the official site, then restart RStudio.
-2. Verify from a terminal:
+1. Install Quarto: https://quarto.org/docs/get-started/  
+2. Restart RStudio.  
+3. Verify:
    ```bash
    quarto check
    quarto --version
 ````
 
-If those commands work, Quarto is installed correctly. ([docs.posit.co][1], [quarto-tdg.org][2])
-
 ---
 
 ## PDF render fails (“No TeX installation detected”, missing LaTeX package)
 
-**Fix (fastest path):**
+**Fix (fastest):**
 
-1. Let Quarto install TinyTeX (a lightweight LaTeX) for you:
+```bash
+quarto install tinytex
+```
 
-   ```bash
-   quarto install tinytex
-   ```
-2. Verify from R (optional):
+Optionally verify from R:
 
-   ```r
-   if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
-   ```
-
-   Quarto needs a TeX engine for PDFs; TinyTeX satisfies this and is easy to install/update. ([Quarto][3], [Rdrr.io][4])
-
-**If it still fails:** Open the Quarto Troubleshooting page and follow the PDF/LaTeX guidance there. ([Quarto][5])
+```r
+if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
+```
 
 ---
 
 ## Quarto tries to render the whole repo
 
-**Symptom:** `quarto preview`/`render` picks up files outside the docs site.
-
-**Fix:** Limit rendering to the website files with a `project.render` whitelist in your website’s `_quarto.yml`:
+Limit rendering to the website files with a whitelist in `site/_quarto.yml`:
 
 ```yaml
 project:
@@ -58,36 +48,26 @@ project:
     - pages/**/*.qmd
 ```
 
-This tells Quarto to render only those files (not everything in the repository). ([Quarto][6])
-
 ---
 
 ## “Files didn’t appear” after running package commands
 
-**Symptom:** You ran a function (e.g., copying template files) but don’t see new files.
-
-**Fixes to try:**
-
-* Confirm you’re inside your course **Project** and check the working directory:
+* Confirm you’re inside your course **Project**, then:
 
   ```r
   getwd()
   ```
-* Refresh the **Files** pane or click into the expected subfolder.
-* Re-run the command and watch for messages/errors.
-
-Working within an RStudio **Project** keeps paths consistent and avoids `setwd()` pitfalls. ([MartinCTC][7])
+* Refresh the **Files** pane or click into the expected folder.
+* Re-run the command and check messages/errors.
 
 ---
 
 ## RStudio doesn’t show the **Git** tab
 
-**Fix:** Enable Git for the Project.
+Enable Git for the Project:
+**Tools → Project Options → Git/SVN** (or create the Project from Version Control).
 
-* **Tools → Project Options → Git/SVN** → set **Version control system: Git** (or create the Project from **Version Control**).
-* Global setting: **Tools → Global Options → Git/SVN** to confirm the Git executable is detected. ([docs.posit.co][1])
-
-**Verify Git is on your PATH:**
+Verify Git is on your PATH:
 
 ```bash
 git --version
@@ -97,30 +77,28 @@ git --version
 
 ## Git push fails (password prompts, auth errors)
 
-GitHub **does not accept account passwords** for Git over HTTPS. Use a **Personal Access Token (PAT)** or **SSH**.
+Use **HTTPS + Personal Access Token (PAT)** or **SSH**.
 
-**HTTPS + PAT (recommended):**
+* PAT: create a token and use it when Git asks for a password. Install Git Credential Manager to cache it.
+  Token docs: [https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+  GCM: [https://github.com/GitCredentialManager/git-credential-manager](https://github.com/GitCredentialManager/git-credential-manager)
 
-* Create a PAT and use it when Git prompts for a password. Cache credentials with **Git Credential Manager (GCM)** so you’re not asked every time. ([The GitHub Blog][8], [GitHub Docs][9])
-
-**SSH (alternative):**
-
-* Generate an SSH key and add the public key to your GitHub account (**Settings → SSH and GPG keys**). ([GitHub Docs][9])
-
-> Note: Classic “Git Credential Manager for Windows” has been superseded by the cross-platform GCM Core; current Git for Windows includes GCM by default. ([GitHub][10])
+* SSH: add your public key in GitHub → Settings → **SSH and GPG keys**.
+  Docs: [https://docs.github.com/authentication/connecting-to-github-with-ssh](https://docs.github.com/authentication/connecting-to-github-with-ssh)
 
 ---
 
 ## Website didn’t update on GitHub Pages
 
-**If you publish via GitHub Actions (recommended):**
+**Using GitHub Actions (recommended):**
 
-1. Check **Actions** → your Pages workflow. Ensure it **uploads** the site as an artifact (e.g., with `actions/upload-pages-artifact`) and then **deploys** it (with `actions/deploy-pages`). ([GitHub][11])
-2. In **Settings → Pages**, confirm **Source: GitHub Actions** is selected. ([GitHub Docs][12])
+* Check **Actions → Quarto Pages**: it should render, upload the artifact, and deploy.
+* Repo **Settings → Pages**: set **Source = GitHub Actions**.
 
-**If you publish from a branch (e.g., `main` + `/docs`):**
+**Using branch deployment (`/docs`):**
 
-* In **Settings → Pages**, set **Source: Deploy from a branch**, choose the correct **branch** and **folder** (`/docs`). The source must exist before it appears in the dropdown. ([GitHub Docs][13])
+* Build locally to `docs/` and commit.
+* Repo **Settings → Pages**: set **Source = main /docs**.
 
 ---
 
@@ -140,23 +118,4 @@ system("git --version")
 if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
 ```
 
-If you ask for help, include:
-
-* What you ran (copy/paste code),
-* The **full** error message,
-* Your OS + R + RStudio versions,
-* Output of the diagnostic block above.
-
----
-
-## Still stuck?
-
-* Quarto Troubleshooting (common render/engine issues). ([Quarto][5])
-* Quarto PDF engines (TinyTeX install & options). ([Quarto][3])
-* RStudio Git/Version Control guide (enable Git for your Project). ([docs.posit.co][1])
-* GitHub authentication (use PAT for HTTPS; cache with GCM). ([GitHub Docs][9])
-
-```
-
-This version gives students precise steps and copy-paste commands, while grounding the solutions in official Quarto, RStudio/Posit, and GitHub docs.
-::contentReference[oaicite:16]{index=16}
+When asking for help, include the output above, your OS, R, and RStudio versions, and the exact error message.

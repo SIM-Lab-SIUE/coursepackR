@@ -8,7 +8,7 @@ title: "Package Reference"
 > library(mccoursepack)
 > ```
 
-This page documents the functions students actually use. All commands assume you’re working inside an RStudio **Project** (so relative paths behave). For why we push Projects so hard, see the “project-oriented workflow” guidance. :contentReference[oaicite:0]{index=0}
+This page documents the functions students actually use. All commands assume you’re working inside an RStudio **Project**.
 
 ---
 
@@ -21,169 +21,89 @@ This page documents the functions students actually use. All commands assume you
 | `download_week(course, week, dest=".")` | Creates **`week_XX/`** under `dest` and copies that week’s files there. |
 | `open_week(week, dest=".")` | Opens the local `week_XX/` folder in your file browser. |
 | `mccourse_setup(ask = TRUE, pkgs = c(...))` | One-time helper: installs Quarto, TinyTeX (for PDF), and core CRAN packages if missing. |
-| `mccourse_self_test()` | Prints what courses/weeks the package can see (sanity check). |
-| `mccourse_update()` | Convenience to update **mccoursepack** to the latest GitHub build (wrapper around your chosen installer). |
-
-> Note on where templates live: in R packages, everything under `inst/` is available after install and can be found via `system.file(...)`. That’s how the package locates course/week templates. :contentReference[oaicite:1]{index=1}
+| `mccourse_self_test()` | Prints the courses and weeks the package can see (sanity check). |
+| `mccourse_update()` | Convenience to update **mccoursepack** to the latest GitHub build. |
 
 ---
 
 ## `list_courses()`
 
-**Usage**
 ```r
 list_courses()
 ````
 
-**Returns**
-A character vector of course IDs (e.g., `"mc451"`, `"mc501"`). Empty vector if none are installed.
-
-**Notes**
-
-* Courses are detected under the package’s installed `courses/` folder.
+Returns a character vector of course IDs (e.g., `"mc451"`, `"mc501"`). Empty if none are installed.
 
 ---
 
 ## `list_weeks(course = NULL)`
 
-**Usage**
-
 ```r
-list_weeks()           # aggregate across all installed courses
-list_weeks("mc451")    # weeks for a specific course
+list_weeks()           # across all installed courses
+list_weeks("mc451")    # for a specific course
 ```
 
-**Returns**
-Character vector of folder names like `"week_01"`, `"week_02"`, … (empty if none).
-
-**Notes**
-
-* With `course = NULL`, the function looks across all installed courses and returns the unique set of week directories.
+Returns folder names like `"week_01"`, `"week_02"`, … (empty if none).
 
 ---
 
 ## `download_week(course, week, dest = ".")`
 
-**Usage**
-
 ```r
 download_week("mc451", 1, dest = ".")   # also accepts "01" or "week_01"
 ```
 
-**Behavior**
-
 * Creates `dest/week_01/` (or `week_XX/`) and copies that week’s files **into** the folder.
-* Preserves any internal subfolders.
-* If a week template is intentionally empty (e.g., break/holiday), it still creates the `week_XX/` folder but copies no files.
+* Preserves subfolders.
+* Empty templates (e.g., breaks) still create the folder but copy no files.
 
-**Returns (invisibly)**
-A list: `list(dest = <path>, course = <chr>, week = <"01">, n_copied = <int>)`.
-
-**Gotchas**
-
-* Keep your course Project path short on Windows to avoid long-path issues.
-* If you don’t pass `course` and more than one course is installed, the function will ask you to be explicit.
+Returns (invisibly) a list: `list(dest, course, week, n_copied)`.
 
 ---
 
 ## `open_week(week, dest = ".")`
 
-**Usage**
-
 ```r
 open_week(1, dest = ".")
 ```
 
-**Behavior**
-Opens the folder `dest/week_01/` in your system file browser (via `utils::browseURL()`).
-
-**Returns**
-Invisibly, the path it opened.
+Opens `dest/week_01/` in your system file browser.
 
 ---
 
 ## `mccourse_setup(ask = TRUE, pkgs = c(...))`
 
-**Usage**
-
 ```r
-mccourse_setup()   # safe to re-run; installs only what's missing
+mccourse_setup()   # installs only what's missing
 ```
 
-**What it does**
-
-* Ensures **Quarto** is installed (the engine that renders `.qmd` files).
-* Ensures **TinyTeX** (LaTeX) is available for **PDF** output. Quarto needs a TeX engine to render PDFs. ([Quarto][1])
-* Installs/updates a small set of **core CRAN packages** used across course materials.
-
-**Arguments**
-
-* `ask` — whether to prompt before big installs (default `TRUE`).
-* `pkgs` — vector of CRAN package names to ensure are installed.
-
-**Verification**
-
-```r
-# Quarto present?
-system("quarto --version")
-# TinyTeX present?
-if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
-```
+* Ensures **Quarto** is installed (engine for `.qmd`).
+* Ensures **TinyTeX** (LaTeX) for **PDF** output.
+* Installs a small set of **core CRAN packages** used across course materials.
 
 ---
 
 ## `mccourse_self_test()`
 
-**Usage**
-
 ```r
 mccourse_self_test()
 ```
 
-**What it does**
-Prints the courses found and the weeks available for each. Returns `TRUE` invisibly if templates are discoverable.
+Prints the courses found and the weeks available for each.
 
 ---
 
 ## `mccourse_update()`
 
-**Usage**
-
 ```r
 mccourse_update()
 ```
 
-**What it does**
-Updates **mccoursepack** to the latest version from GitHub using your configured installer (e.g., `pak` or “remotes”). If you prefer to do this manually:
-
-```r
-install.packages("pak")
-pak::pak("SIM-Lab-SIUE/mccoursepack")
-# or:
-# remotes::install_github("SIM-Lab-SIUE/mccoursepack", upgrade = "always", force = TRUE)
-```
+Updates **mccoursepack** to the latest version from GitHub (or use `pak::pak("SIM-Lab-SIUE/mccoursepack")` manually).
 
 ---
 
 ## Common patterns
 
-### Work inside a Project
-
-Open the `.Rproj`, then run package commands. Projects keep working directories stable and path-safe. ([tidyverse.org][2])
-
-### Render to PDF (templates default to PDF-first)
-
-Open a `.qmd` in the `week_XX/` folder and click **Render**. If you see a “No TeX installation detected” error, install TinyTeX (or re-run `mccourse_setup()`); Quarto needs LaTeX for PDF. ([Quarto][1])
-
----
-
-## Further reading
-
-* **Quarto projects** (how we keep the docs site confined to `site/` and control what renders). Use the `project.render` whitelist in `_quarto.yml`. ([Quarto][3])
-* **Installed files in R packages** (`inst/` → `system.file(...)`). ([r-pkgs.org][4])
-* **Why Projects matter** (less path chaos, more reproducibility). ([tidyverse.org][2])
-
-```
-
-**Citations explain the general claims**: Quarto’s PDF → LaTeX requirement, how Quarto projects constrain what renders, and how R packages expose `inst/` files. The function-specific behavior is based on your package code.
-::contentReference[oaicite:8]{index=8}
+* Open the **Project**, then run package commands.
+* Render `.qmd` to PDF/HTML via Quarto. If PDF fails, run `mccourse_setup()` to install TinyTeX.
