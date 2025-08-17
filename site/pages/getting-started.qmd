@@ -2,28 +2,44 @@
 title: "Getting Started"
 ---
 
-## What you need
-- R + RStudio (installed already)
-- Git (Windows: Git for Windows; macOS: `xcode-select --install`)
-- Quarto (download from quarto.org)
+Welcome! Follow these steps once to set up your computer and confirm everything works with **mccoursepack**.
 
-## Make your course folder
-Create a folder on your computer:
-- Windows: `Documents\\MC451`
-- macOS: `Documents/MC451`
+---
 
-## Create an RStudio Project
-**File → New Project → New Directory → New Project**.  
-Name it `MC451` and create it in your Documents folder.
+## 1) Prerequisites (already installed or quick installs)
 
-## Install the course package
+- **R + RStudio** — you’ve got these.
+- **Git** — download & install (Windows: “Git for Windows”; macOS: use Xcode Command Line Tools or Homebrew).  
+  - Help: <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>
+- **Quarto** — installs the `quarto` command used to render `.qmd`.  
+  - Download: <https://quarto.org/docs/get-started/>
+
+> You can also let `mccourse_setup()` (below) install Quarto and TinyTeX automatically if they’re missing.
+
+---
+
+## 2) Make a course folder + RStudio Project (one time)
+
+1. Create a folder for this course, e.g.:
+   - Windows: `Documents\MC451`
+   - macOS: `Documents/MC451`
+2. In **RStudio**: **File → New Project → New Directory → New Project**, name it **MC451**, and create it in your Documents folder.  
+   Projects keep files, working directory, and history together — far fewer path headaches.
+
+---
+
+## 3) Install and load the course package
+
+In the **RStudio Console**:
+
 ```r
 install.packages("pak")
 pak::pak("SIM-Lab-SIUE/mccoursepack")
-library(mccoursepack)
+library(mccoursepack)   # load it each new R session
+packageVersion("mccoursepack")
 ````
 
-If `pak` isn’t available:
+Fallback if `pak` can’t run:
 
 ```r
 install.packages("remotes")
@@ -31,10 +47,82 @@ remotes::install_github("SIM-Lab-SIUE/mccoursepack", upgrade = "always", force =
 library(mccoursepack)
 ```
 
-## One-time setup (Quarto + TinyTeX + core packages)
+---
+
+## 4) One-time setup: Quarto, TinyTeX (for PDFs), and core R packages
 
 ```r
-mccourse_setup()
+mccourse_setup()   # answers Yes to prompts if you want this automated
 ```
 
-You’ll be prompted to install Quarto and TinyTeX if missing. Say yes.
+* **Quarto** is the engine that renders `.qmd`.
+* **TinyTeX** is a small LaTeX distribution used for **PDF** rendering.
+
+You can re-run `mccourse_setup()` any time; it only installs what’s missing.
+
+---
+
+## 5) Verify your toolchain
+
+Run these in the Console:
+
+```r
+# Confirm Git is on your PATH
+system("git --version")
+
+# RStudio sees version control (GUI)
+# Tools -> Global Options -> Git/SVN (no code; just check the box & path)
+
+# Quarto works?
+system("quarto --version")  # prints a version if installed
+
+# TinyTeX present?
+if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
+```
+
+If any step fails:
+
+* Re-run `mccourse_setup()`.
+* See **Troubleshooting** in the sidebar.
+
+---
+
+## 6) Explore what the package can do
+
+```r
+# What courses are installed?
+list_courses()
+# What week folders exist for a course?
+list_weeks("mc451")
+```
+
+To copy materials into your Project folder (this creates `week_XX/` in your current directory):
+
+```r
+download_week("mc451", 1, dest = ".")   # use any available week number
+```
+
+Open the new `week_XX/` folder in the Files pane, open a `.qmd`, and click **Render**. Our templates default to **PDF first**; HTML is available too.
+
+---
+
+## 7) Optional: basic Git/GitHub setup
+
+* In RStudio: **Tools → Global Options → Git/SVN**: ensure Git is detected.
+* Sign in to GitHub in your browser. When you later create a repository for your journal/work, you’ll use the **Git** pane (Stage → Commit → Push) to submit updates.
+
+---
+
+## Quick fixes
+
+* **Quarto not found** → install Quarto or run `mccourse_setup()`, then restart RStudio.
+* **PDF render fails** → run `mccourse_setup()` to install TinyTeX.
+* **Files didn’t appear** → ensure you’re inside your Project (check `getwd()`), then re-run `download_week(...)`.
+* **Git push fails** → confirm Git is installed and enabled in RStudio’s **Git/SVN** settings.
+
+You’re ready. Keep this page handy; everything else in the sidebar builds on these steps.
+
+```
+
+**References used for the guidance above:** official Quarto “Get Started” (install & basics), RStudio/Posit docs on Projects and Git integration, and Git’s installation docs, plus TinyTeX install details for PDF rendering. :contentReference[oaicite:0]{index=0}
+::contentReference[oaicite:1]{index=1}

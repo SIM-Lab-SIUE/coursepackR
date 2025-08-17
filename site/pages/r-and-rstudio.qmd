@@ -2,13 +2,75 @@
 title: "R & RStudio"
 ---
 
-### R vs. RStudio
-- **R** is the language.
-- **RStudio** is the IDE that makes R pleasant.
+## R vs. RStudio
 
-### Projects
-Always work inside an RStudio **Project** for this course. It keeps paths sane.
+- **R** is the programming language and runtime.  
+- **RStudio** (now Posit IDE) is the graphical environment where you write code, manage files, and render documents. Think “language” vs “editor.” :contentReference[oaicite:0]{index=0}
 
-### Console and Script
-- Use the Console for quick commands.
-- Put code you want to keep in a `.qmd` or `.R` script and save it.
+---
+
+## The RStudio interface (four panes)
+
+The IDE has four main panes by default:
+
+1) **Source** (top-left): where you edit scripts and `.qmd` files  
+2) **Console** (bottom-left): where code runs interactively  
+3) **Environment / History / …** (top-right): objects, history, connections, etc.  
+4) **Files / Plots / Packages / Help / Viewer** (bottom-right)  
+
+You can rearrange or maximize panes as needed. :contentReference[oaicite:1]{index=1}
+
+---
+
+## Projects: your #1 best practice
+
+Work **inside an RStudio Project** (one folder per class/research project). A Project keeps its own working directory, history, and settings—much less path chaos, far more reproducibility. Create one via **File → New Project → New Directory → New Project**. :contentReference[oaicite:2]{index=2}
+
+**Clean-session habit:** Set RStudio to **never save/restore `.RData`** (Preferences → General). Start fresh each session; don’t rely on hidden objects from last time. This is the core of the “project-oriented workflow.” :contentReference[oaicite:3]{index=3}
+
+---
+
+## Console vs. Script (and Quarto)
+
+- Use the **Console** for quick experiments.  
+- Put anything you want to keep into a **script** (`.R`) or a **Quarto document** (`.qmd`) and save it. Render `.qmd` from the IDE with the **Render** button or `quarto render`. :contentReference[oaicite:4]{index=4}
+
+**Running code from the Source pane:**  
+- Run current line/selection: **Ctrl+Enter** (Windows/Linux) or **Cmd+Return** (macOS)  
+- Insert code chunk (useful in `.qmd`): **Ctrl+Alt+I** (Win/Linux) or **Option+Cmd+I** (macOS)  
+- See **Tools → Keyboard Shortcuts Help** for a full list. :contentReference[oaicite:5]{index=5}
+
+---
+
+## Files and paths (keep them relative)
+
+Inside a Project, file paths are **relative to the project root**—so `data/myfile.csv` works on any machine that has the same project structure. Avoid `setwd()` in scripts; the Project sets your working directory when you open it. :contentReference[oaicite:6]{index=6}
+
+---
+
+## Git integration (where you’ll commit and push)
+
+When Git is enabled for your Project, you’ll see a **Git** tab. Use it to **Stage → Commit → Push** your work to GitHub. If you don’t see the tab, enable Git under **Tools → Project Options → Git/SVN** or create the Project from Version Control. :contentReference[oaicite:7]{index=7}
+
+---
+
+## Handy shortcuts
+
+- **Command Palette**: search commands quickly — **Ctrl/Cmd+Shift+P**  
+- **Keyboard Shortcuts Help**: **Alt/Option+Shift+K** (or Tools menu)  
+- **Comment/Uncomment**: **Ctrl+Shift+C** / **Cmd+Shift+C**  
+(See the RStudio IDE cheat sheet for more.) :contentReference[oaicite:8]{index=8}
+
+---
+
+## Default settings to adopt (once)
+
+- **Never** save/restore `.RData` on exit/start (clean sessions)  
+- Keep your course Project in a simple path (e.g., `Documents/MC451`)  
+These two alone eliminate many “it worked yesterday” mysteries. :contentReference[oaicite:9]{index=9}
+
+---
+
+## Where this fits with the package
+
+Everything you’ll do with **mccoursepack**—listing weeks, copying materials, rendering `.qmd`—assumes you’re inside a Project. Open the Project, run `library(mccoursepack)`, and you’re set.

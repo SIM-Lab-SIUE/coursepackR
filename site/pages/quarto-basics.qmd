@@ -2,12 +2,172 @@
 title: "Quarto Basics"
 ---
 
-### What is Quarto?
-A tool that turns `.qmd` files into **HTML** or **PDF**.
+## What is Quarto?
 
-### Render
-Open a `.qmd` and click **Render**.
+Quarto is a publishing system for scientific/technical docs. You write a `.qmd` file (Markdown + optional code), and Quarto renders it to **HTML**, **PDF**, Word, slides, websites, and more. By default Quarto renders to **HTML** unless you specify another format. :contentReference[oaicite:0]{index=0}
 
-### Formats
-- This website uses **HTML**.
-- Your course templates default to **PDF first** (as set in each week’s `_quarto.yml`).
+---
+
+## Install & verify
+
+- Install Quarto from the official site. Then verify in a terminal:
+  ```bash
+  quarto check
+  quarto --version
+````
+
+You should see green checks and a version number. ([Quarto][1])
+
+* PDF requires a TeX engine (e.g., TinyTeX). If you don’t have one:
+
+  ```bash
+  quarto install tinytex
+  ```
+
+  This installs a minimal LaTeX distribution suitable for PDF rendering. ([Quarto][2])
+
+If something fails, see Quarto’s troubleshooting guide (it includes where to find log files). ([Quarto][3])
+
+---
+
+## Your first document
+
+Make a file `report.qmd`:
+
+```markdown
+---
+title: "My Report"
+format: html   # default is html if omitted
+---
+
+# Hello, Quarto
+
+This is **Markdown**. Add text, lists, images, and code blocks.
+```
+
+Render to HTML:
+
+```bash
+quarto render report.qmd --to html
+```
+
+You’ll get `report.html` (plus a `_files` folder for assets).
+
+---
+
+## PDF first (recommended course default)
+
+To make **PDF** the default for a document, set `format: pdf` in the YAML:
+
+```markdown
+---
+title: "PDF-first example"
+format: pdf
+---
+```
+
+Or, set format-specific options:
+
+```markdown
+---
+title: "PDF-first with options"
+format:
+  pdf:
+    toc: true
+    number-sections: true
+  html:
+    toc: true
+---
+```
+
+Here, **PDF is the default** because you explicitly set `format: pdf`; HTML is an additional target. Remember: PDF requires a LaTeX installation (TinyTeX recommended). ([Quarto][2])
+
+Useful PDF references: PDF basics (KOMA classes), PDF options (e.g., `documentclass`, `geometry`, `keep-tex`). ([Quarto][4])
+
+---
+
+## Render from RStudio or VS Code
+
+* **RStudio**: open a `.qmd` and click **Render**; it uses the format(s) in the YAML.
+* **VS Code**: install the Quarto extension; use **Quarto: Render** or run `quarto render` in the integrated terminal. Authoring tutorials show render + multi-format examples. ([Quarto][2])
+
+---
+
+## Multiple outputs & links between them
+
+You can render multiple formats in one go by listing them under `format:`. To show links to other formats on the HTML page (e.g., “Download PDF”), use `format-links` in HTML options:
+
+```yaml
+format:
+  html:
+    format-links: [pdf]
+  pdf: default
+```
+
+See HTML format options for details. ([Quarto][5])
+
+---
+
+## Project basics (so you don’t render the whole repo)
+
+Quarto **projects** let you render a folder of documents with shared settings and control *which* files render:
+
+```yaml
+# _quarto.yml (project config)
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - pages/**/*.qmd    # whitelist only docs in /pages
+```
+
+This prevents Quarto from roaming the entire repository—only the listed paths are rendered. See project options and project overview. ([Quarto][6])
+
+---
+
+## Execution control: cache & freeze
+
+Long-running code? Two strategies:
+
+* **Cache**: store chunk results so they aren’t recomputed every render. (Quarto integrates with **knitr** cache for R and Jupyter cache for Python.) ([Quarto][7])
+
+* **Freeze** (projects): reuse previously rendered results during project renders:
+
+  ```yaml
+  execute:
+    freeze: auto   # only re-render if source changed
+  ```
+
+  Freezing is designed for project-level renders to speed up docs/sites; single-file renders always execute code. ([Quarto][8])
+
+---
+
+## Common options you’ll actually use
+
+* **Table of contents** (both HTML and PDF):
+
+  ```yaml
+  toc: true
+  ```
+* **HTML-specific** niceties (examples: `code-fold`, `toc-expand`, etc.). See the HTML options reference. ([Quarto][5])
+* **PDF-specific**: `geometry`, `documentclass`, `keep-tex`, `include-in-header` for LaTeX tweaks. ([Quarto][9])
+
+For YAML syntax tips and where to set options (document vs project), see these guides. ([quarto-tdg.org][10])
+
+---
+
+## Troubleshooting quick hits
+
+* **“No TeX installation detected”** → run `quarto install tinytex`, or install TeX Live/MiKTeX; then re-render. ([Quarto][2])
+* **Renders the whole repo** → add `project.render` in your project’s `_quarto.yml` to whitelist files (see Project basics above). ([Quarto][6])
+* **Something still fails** → check Quarto logs; the Troubleshooting page lists log locations for each OS. ([Quarto][3])
+
+---
+
+## Where this fits with the package
+
+Our templates are set up with **PDF-first** YAML, and the docs website itself is a Quarto **project** that deliberately renders only the pages in `site/`. That keeps student work clean and predictable while giving you a consistent render experience across HTML and PDF. ([Quarto][6])
+
+```
+::contentReference[oaicite:19]{index=19}

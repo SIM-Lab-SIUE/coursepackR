@@ -2,18 +2,113 @@
 title: "Weekly Workflows"
 ---
 
-### Every Monday
-- Update the package:
+This page shows the rhythm you’ll use all term: update tools, pull materials, render, and commit/push. It’s intentionally week-neutral—no assignment details here, just mechanics.
+
+---
+
+## 0) Open your Project
+
+Start inside your course **RStudio Project** (open the `.Rproj`). Projects keep paths stable and make everything else behave. :contentReference[oaicite:0]{index=0}
+
+---
+
+## 1) Update the package (and your toolchain)
+
+Do this at the top of the week (or whenever something looks out of date):
+
 ```r
-pak::pak("SIM-Lab-SIUE/mccoursepack")
+install.packages("pak")                              # once per machine
+pak::pak("SIM-Lab-SIUE/mccoursepack")               # update to latest
+library(mccoursepack)                                # load this session
+
+# If you haven't already done the one-time setup (or PDFs fail), run:
+mccourse_setup()                                     # Quarto + TinyTeX + core pkgs
 ````
 
-* Pull the new week:
+* `pak::pak()` installs from CRAN and GitHub quickly and reproducibly. ([R for Pakistan][1])
+* **PDF rendering** requires a LaTeX engine; `mccourse_setup()` installs TinyTeX for you if needed. ([Quarto][2])
+
+---
+
+## 2) See what’s available
 
 ```r
-download_week("mc451", 2, dest = ".")  # example for Week 2
+list_courses()               # e.g., "mc451", "mc501"
+list_weeks("mc451")          # returns "week_01", "week_02", ...
 ```
 
-### Journaling
+You’ll copy one of these week folders into your Project in the next step.
 
-Keep a repo like `mc451-journal`. Add a new `.qmd` each week and render to HTML or PDF before pushing.
+---
+
+## 3) Copy materials into your Project
+
+```r
+# Replace N with the week number you need (e.g., 1, 2, 3, ...)
+download_week("mc451", N, dest = ".")   # creates ./week_0N/ and copies files
+open_week(N, dest = ".")                # (optional) opens the folder in your file browser
+```
+
+Open the `.qmd` inside `week_0N/` and click **Render**. Our templates default to **PDF first**; HTML is available too. Quarto builds the document according to the YAML at the top of the file. ([Quarto][3])
+
+---
+
+## 4) Version your work with Git (RStudio Git pane)
+
+Typical loop:
+
+1. **Pull** (get changes from GitHub)
+2. **Stage** the files you changed
+3. **Commit** with a short message
+4. **Push** to GitHub
+
+If you prefer the command line:
+
+```bash
+git pull
+git add -A
+git commit -m "Update journal and render outputs"
+git push
+```
+
+That “stage → commit → push” sequence is the canonical Git workflow, and RStudio mirrors it in the Git pane. ([GitHub Resources][4], [r-bio.github.io][5])
+
+---
+
+## 5) Keep the docs site up to date (maintainers only)
+
+If you’re editing the Quarto **website** under `site/`, the flow is:
+
+```bash
+# from repo root in VS Code or a terminal
+quarto preview site     # local live preview
+# edit .qmd files...
+git add -A
+git commit -m "docs: expand troubleshooting & reference"
+git push
+```
+
+A GitHub Actions workflow renders the site and publishes it to Pages automatically; you set this once and it runs on every push. ([Quarto][6], [GitHub][7])
+
+---
+
+## Quick checklist (each week)
+
+* [ ] Open the **Project** (paths correct) ([Tidyverse][8])
+* [ ] `pak::pak("SIM-Lab-SIUE/mccoursepack")` (updated tools) ([R for Pakistan][1])
+* [ ] `download_week("mc451", N, dest = ".")` (materials in place)
+* [ ] Render `.qmd` (PDF/HTML via Quarto) ([Quarto][3])
+* [ ] Stage → Commit → Push (history saved online) ([GitHub Resources][4])
+
+---
+
+## Common speed bumps
+
+* **PDF errors** → run `mccourse_setup()` to install TinyTeX (LaTeX). ([Quarto][2])
+* **Git pane missing** → enable Git for the Project (Project Options → Git/SVN). ([GitHub Resources][4])
+* **Website renders too much** → scope the Quarto project with a `project.render` whitelist under `site/_quarto.yml`. ([Quarto][6])
+
+```
+
+**Why these references?** Project-oriented work keeps paths sane; `pak` is the recommended fast installer (including GitHub); Quarto’s PDF output depends on a TeX engine; RStudio’s Git pane implements the standard stage→commit→push flow; and Quarto + GitHub Pages via Actions is the supported publishing path. :contentReference[oaicite:13]{index=13}
+::contentReference[oaicite:14]{index=14}

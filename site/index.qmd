@@ -4,16 +4,109 @@ title: "Welcome"
 
 # mccoursepack
 
-This site is your baby-steps guide to the MC 451/501 toolchain:
-- R & RStudio
-- Git & GitHub
-- Quarto
-- The `mccoursepack` R package (how you get your weekly scaffolds)
+A beginner-friendly guide to the tools we use in MC 451/501 and how to work with the **mccoursepack** R package. If you’re brand new, read this page once, then hop to **Getting Started** in the sidebar.
 
-Use the left sidebar to navigate. If you’re brand new, start with [Getting Started](pages/getting-started.qmd).
+---
 
-> **TL;DR for Week 1**  
-> 1) Make an RStudio Project (`MC451/`).  
-> 2) Install and load the course package.  
-> 3) Pull _week 1_ with `download_week("mc451", 1, dest = ".")`.  
-> 4) Open the `.qmd` and Render (PDF/HTML).
+## What this site covers
+
+- **R & RStudio** basics (how to work inside a Project)
+- **Git & GitHub** (saving, versioning, pushing your work)
+- **Quarto** (rendering `.qmd` to PDF/HTML)
+- The **mccoursepack** functions you’ll use every week
+
+Each topic has a short, task-oriented page. No assignment details live here—this is your *reference manual*.
+
+---
+
+## Quick start: 5 steps
+
+1. **Open RStudio** and create (or open) a Project for this course (e.g., `Documents/MC451`).
+2. **Install and load** the course package:
+   ```r
+   install.packages("pak")
+   pak::pak("SIM-Lab-SIUE/mccoursepack")
+   library(mccoursepack)
+````
+
+3. **Run the one-time setup** (Quarto, TinyTeX for PDFs, and core R packages):
+
+   ```r
+   mccourse_setup()
+   ```
+4. **See what’s available**:
+
+   ```r
+   list_courses()            # e.g., "mc451", "mc501"
+   list_weeks("mc451")       # e.g., "week_01", "week_02", ...
+   ```
+5. **Copy a week’s scaffold** into your Project folder (creates `week_XX/`):
+
+   ```r
+   download_week("mc451", 1, dest = ".")  # pick any available week
+   ```
+
+   Open the `.qmd` inside that `week_XX/` folder and **Render**. (Our templates default to **PDF first**; HTML is available too.)
+
+---
+
+## Core commands (cheat sheet)
+
+```r
+# Load the package each new R session
+library(mccoursepack)
+
+# Discover what you can pull
+list_courses()
+list_weeks("mc451")          # replace with your course id
+
+# Copy materials into your Project
+download_week("mc451", 1, dest = ".")
+
+# Open the local folder for a given week in your file browser
+open_week(1, dest = ".")
+
+# One-time environment setup (Quarto, TinyTeX, core pkgs)
+mccourse_setup()
+
+# Sanity check: what does the package see installed?
+mccourse_self_test()
+```
+
+---
+
+## How this site is organized
+
+* **Getting Started** — first-time install + Project setup
+* **R & RStudio** — the everyday workflow inside a Project
+* **Git & GitHub** — commit/push without drama
+* **Quarto** — render `.qmd` to PDF/HTML and fix common hiccups
+* **Workflows** — repeatable patterns (update package, pull new materials, render, commit)
+* **Troubleshooting** — fast fixes for the usual suspects
+* **Reference** — short docs for each exported function
+
+Use the search box in the sidebar to jump straight to what you need.
+
+---
+
+## System notes (read once)
+
+* Work **inside an RStudio Project** so file paths “just work.”
+* **Quarto** renders `.qmd` files. **PDF output** requires a LaTeX engine; `mccourse_setup()` offers to install **TinyTeX** if you don’t have one.
+* Keep your course folder path short (especially on Windows) to avoid path-length issues.
+
+---
+
+## When you’re stuck
+
+Open **Troubleshooting** in the sidebar and try the top fixes. If you’re still blocked, include in your help request:
+
+* your OS, R, and RStudio versions,
+* the exact code you ran,
+* the full error message, and
+* a quick screenshot of your folder layout if paths might be involved.
+
+```
+
+**Sources used for wording and behavior of tools:** Quarto website configuration & rendering (website projects, `output-dir`, and `render` controls) :contentReference[oaicite:0]{index=0}; Quarto PDF output requires a TeX engine (TinyTeX/TeX Live) :contentReference[oaicite:1]{index=1}; `pak` for installing packages from GitHub and CRAN :contentReference[oaicite:2]{index=2}; RStudio Projects concept and benefits :contentReference[oaicite:3]{index=3}; publishing Quarto sites to GitHub Pages via Actions (for your docs site) :contentReference[oaicite:4]{index=4}.
+::contentReference[oaicite:5]{index=5}
