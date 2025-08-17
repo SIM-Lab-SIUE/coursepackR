@@ -25,7 +25,7 @@ website:
       - text: "Troubleshooting"
         file: pages/troubleshooting.qmd
       - text: "Reference"
-        file: pages/reference.qmd
+        file: pages/references.qmd
   sidebar:
     style: floating
     search: true
@@ -43,7 +43,7 @@ website:
           - pages/troubleshooting.qmd
       - section: "Package"
         contents:
-          - pages/reference.qmd
+          - pages/references.qmd
 
 format:
   html:
