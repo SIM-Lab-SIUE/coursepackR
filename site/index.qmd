@@ -10,7 +10,7 @@ This site is your baby-steps guide to the MC 451/501 toolchain:
 - Quarto
 - The `mccoursepack` R package (how you get your weekly scaffolds)
 
-Use the left sidebar to navigate. If you’re brand new, start with [Getting Started](pages/getting-started.qmd), then do [Week 1](pages/week-1.qmd).
+Use the left sidebar to navigate. If you’re brand new, start with [Getting Started](pages/getting-started.qmd).
 
 > **TL;DR for Week 1**  
 > 1) Make an RStudio Project (`MC451/`).  
