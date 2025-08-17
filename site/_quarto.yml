@@ -1,6 +1,9 @@
 project:
   type: website
-  output-dir: docs  # GitHub Pages will serve from /docs on the main branch
+  output-dir: _site          # local build dir (not committed)
+  render:                    # ← whitelist; Quarto won't roam outside these
+    - index.qmd
+    - pages/**/*.qmd
 
 website:
   title: "mccoursepack"
@@ -17,8 +20,6 @@ website:
         file: pages/git-and-github.qmd
       - text: "Quarto"
         file: pages/quarto-basics.qmd
-      - text: "Week 1"
-        file: pages/week-1.qmd
       - text: "Workflows"
         file: pages/workflows.qmd
       - text: "Troubleshooting"
@@ -26,7 +27,7 @@ website:
       - text: "Reference"
         file: pages/reference.qmd
   sidebar:
-    style: "floating"
+    style: floating
     search: true
     contents:
       - index.qmd
@@ -38,7 +39,6 @@ website:
           - pages/quarto-basics.qmd
       - section: "Course Workflow"
         contents:
-          - pages/week-1.qmd
           - pages/workflows.qmd
           - pages/troubleshooting.qmd
       - section: "Package"
@@ -52,11 +52,8 @@ format:
     smooth-scroll: true
     css: styles.css
 
-# Keep the docs build super-stable at first: don’t execute code blocks globally.
+# keep the site static; enable eval per-page later if needed
 execute:
   eval: false
-  echo: true
   warning: false
   message: false
-
-editor: visual

@@ -38,22 +38,3 @@ mccourse_setup()
 ```
 
 You’ll be prompted to install Quarto and TinyTeX if missing. Say yes.
-
-````
-
-## pages/r-and-rstudio.qmd
-```markdown
----
-title: "R & RStudio"
----
-
-### R vs. RStudio
-- **R** is the language.
-- **RStudio** is the IDE that makes R pleasant.
-
-### Projects
-Always work inside an RStudio **Project** for this course. It keeps paths sane.
-
-### Console and Script
-- Use the Console for quick commands.
-- Put code you want to keep in a `.qmd` or `.R` script and save it.

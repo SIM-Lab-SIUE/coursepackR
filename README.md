@@ -1,3 +1,5 @@
+[![Website](https://img.shields.io/badge/docs-mccoursepack-blue)](https://sim-lab-siue.github.io/mccoursepack)
+
 # mccoursepack
 
 Course materials for **MC 451 (Undergraduate)** and **MC 501 (Graduate)** delivered as an R package. Install or update the package each week, then use its helper functions to pull your week’s scaffold (Quarto docs, instructions, and any starter files) into your local folders. ([GitHub][1])
