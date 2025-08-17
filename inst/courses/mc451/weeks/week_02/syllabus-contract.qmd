@@ -1,0 +1,65 @@
+---
+title: "Syllabus Contract"
+subtitle: "MC 451"
+author: "{{< meta params.student_name >}}"
+format:
+  pdf:
+    toc: false
+    number-sections: false
+    geometry:
+      - margin=1in
+fontsize: 11pt
+
+# ---- Fill these out before rendering ----
+params:
+  student_name: "Type your full name"
+  date_signed: "YYYY-MM-DD"
+  signature_image: "signature.png"   # e.g., "img/signature.jpg" (relative path)
+  course: "MC 451"
+  term: "Fall 2025"
+  instructor: "Dr. AP Leith"
+---
+
+```{=html}
+<!--
+INSTRUCTIONS (delete these lines after filling in params above)
+
+1) Replace the values under 'params:' with your information.
+2) Put an image of your handwritten signature (PNG/JPG) in this folder (or a subfolder)
+   and set 'signature_image' to that file path (e.g., "img/signature.jpg").
+3) Click "Render" to create a PDF. If PDF fails, run mccourse_setup() once to install TinyTeX.
+-->
+```
+
+# Agreement
+
+By signing this contract, I, {{< meta params.student_name >}}, acknowledge that I have received and read the syllabus for {{< meta params.course >}} **(**{{< meta params.term >}}**)**, taught by {{< meta params.instructor >}}. I agree to the following:
+
+1.  **Syllabus compliance.** I will follow all policies, schedules, grading rules, and expectations stated in the syllabus and posted course materials.
+2.  **Academic integrity.** I will complete my work honestly and follow the university’s standards regarding plagiarism and collaboration.
+3.  **Deadlines and submissions.** I understand due dates and submission procedures and accept responsibility for managing my time.
+4.  **Communication.** I will check the course announcements and my university email regularly and contact the instructor with questions in a timely manner.
+5.  **Technology.** I will maintain access to the required tools (R, RStudio, Quarto, Git/GitHub, and any additional software listed in the syllabus) and keep backups of my work.
+6.  **Accessibility and conduct.** I will engage respectfully with classmates and the instructor and request accommodations as needed through the appropriate university channels.
+
+By signing below, I affirm that I understand the syllabus and agree to its terms.
+
+{{< pagebreak >}}
+
+# Signature
+
+| Student Name                     | Date                            |
+|----------------------------------|---------------------------------|
+| {{< meta params.student_name >}} | {{< meta params.date_signed >}} |
+
+**Signature image** (place your signature file at the path set in `params.signature_image`):
+
+![](%7B%7B%3C%20meta%20params.signature_image%20%3E%7D%7D){width="2in"}
+
+I acknowledge that inserting my signature image here constitutes my signature for the purposes of this course.
+
+------------------------------------------------------------------------
+
+**Optional note from student (if needed):**
+
+> *Add any brief clarification or accommodation note here (optional).*

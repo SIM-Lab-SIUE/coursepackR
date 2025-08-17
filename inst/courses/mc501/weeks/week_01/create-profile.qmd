@@ -1,0 +1,109 @@
+---
+title: "Set Up Your GitHub Profile README (plus Profile Photo)"
+---
+
+This guide shows a brand-new GitHub user how to (1) create the special **profile README** that appears at the top of their profile page and (2) set a **profile photo** (avatar). Everything happens in the web browser—no command line required.
+
+---
+
+## 0) Before you start
+
+- Create a GitHub account: <https://github.com/join>  
+- Sign in at <https://github.com>
+
+If you’re new to Markdown (the simple formatting used on GitHub), skim:  
+**Basic writing and formatting** → <https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax>
+
+---
+
+## 1) Make the special “profile” repository
+
+GitHub shows a README on your profile **when you create a public repository whose name exactly matches your GitHub username**.
+
+1. Click the **+** button (top-right) → **New repository**.  
+2. **Repository name**: type your exact GitHub username (e.g., if your username is `octocat`, then the repo name must be `octocat`).  
+3. Choose **Public**.  
+4. Check **Add a README file**.  
+5. Click **Create repository**.
+
+> If the README doesn’t appear on your profile later, double-check: the repo name matches your username exactly, it’s **public**, and the file is named **`README.md`** at the **root** of that repo.
+
+---
+
+## 2) Edit your README in the browser
+
+1. In your new repo, click **README.md**.  
+2. Click the **pencil** icon (**Edit this file**).  
+3. Paste this starter content and customize:
+
+```md
+# Welcome — I'm YOUR NAME 👋
+
+- 🎓 Program / Role:
+- 📍 Location:
+- 📫 Contact: EMAIL or LINKS
+- 🌱 I’m learning / interested in: TOPICS
+
+## About Me
+
+Write a brief bio in 3–4 sentences. Add a few bullets for highlights.
+
+## Links
+
+- Website/Portfolio: https://example.com
+- LinkedIn: https://linkedin.com/in/yourhandle
+- Twitter/X: https://x.com/yourhandle
+````
+
+4. At the bottom, write a short message like **Add profile README** and click **Commit changes**.
+5. Visit your profile page: `https://github.com/<your-username>` — your README should now appear at the top.
+
+---
+
+## 3) Set your GitHub **profile photo** (avatar)
+
+This is the round picture shown next to your name across GitHub.
+
+1. Go to **Settings**: click your avatar (top-right) → **Settings**.
+2. Under **Public profile**, click **Edit** next to **Profile picture**.
+3. Click **Upload a photo…**, choose a picture, and **Upload**.
+4. Use the crop tool if needed, then click **Set new profile picture**.
+
+> Tip: You can change it any time from the same page. If your email is linked to **Gravatar**, the **Revert** option may show “Revert to Gravatar.”
+
+---
+
+## 4) Polish your README (optional)
+
+Common sections people add:
+
+* **About Me** — short bio in plain English
+* **What I’m working on / learning** — 2–4 bullets
+* **Links** — website, LinkedIn, etc.
+* **Contact** — best way to reach you
+
+Use the **Preview** tab while editing to see how your Markdown will render.
+
+---
+
+## 5) Troubleshooting
+
+* **My README isn’t showing on my profile**
+
+  * The repository name must exactly match your **username**, and it must be **public**.
+  * The file must be named **`README.md`** and live in the **root** of that repo.
+  * Give the page a quick refresh after committing.
+
+* **My profile photo didn’t update**
+
+  * Make sure you clicked **Set new profile picture** after cropping. Refresh your profile page; caching can delay updates for a minute.
+
+---
+
+## Handy links
+
+* Create/manage a **Profile README**: [https://docs.github.com/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme](https://docs.github.com/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)
+* **About your profile** and where the README appears: [https://docs.github.com/articles/about-your-profile](https://docs.github.com/articles/about-your-profile)
+* **Change your profile picture** (avatar): [https://docs.github.com/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/personalizing-your-profile](https://docs.github.com/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/personalizing-your-profile)
+* **Edit files in the browser**: [https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
+* **Markdown basics**: [https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
