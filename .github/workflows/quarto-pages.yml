@@ -20,25 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Install Quarto (no version pin => stable release)
+      # Install Quarto CLI (stable)
       - uses: quarto-dev/quarto-actions/setup@v2
-        # with:
-        #   version: ""   # DON'T set "latest" (it generates a bad URL)
 
-      # If your docs render any R code blocks, keep these two steps.
-      # If the site is pure markdown, you can remove them.
-      - uses: r-lib/actions/setup-r@v2
+      # Render the website in the site/ subproject
+      - name: Render site
+        run: quarto render site
 
-      - name: Install R deps for site render
-        run: |
-          Rscript -e 'install.packages("pak", repos="https://cloud.r-project.org")'
-          Rscript -e 'pak::pak(".", dependencies = TRUE)'
-        working-directory: site
-
-      - name: Render website
-        run: quarto render
-        working-directory: site
-
+      # Upload rendered site as Pages artifact
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
