@@ -1,7 +1,3 @@
-project:
-  type: website
-  output-dir: _site
-
 format:
   pdf:
     toc: true

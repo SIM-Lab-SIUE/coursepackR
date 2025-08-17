@@ -69,6 +69,9 @@ This class uses various software to collect, analyze, and visualize data. The so
 -   RStudio: An integrated development environment (IDE) for R and Python. RStudio runs on the desktop (Windows, Mac, and Linux).
     -   Windows 10 or newer
     -   macOS 13 (Ventura) or newer, Mac M1/M2 requires Rosetta 2
+-   GitHub Desktop
+-   Git
+-   Quarto
 
 ***Hardware***
 
@@ -224,27 +227,33 @@ A = 1000-900; B = 899-800; C = 799-700; D = 699-600; F = \< 599
 
 ## Grading Deadline
 
-Unless otherwise stated, the deadline for all assignments is Friday by the end of the day (11:59 p.m.).
-
-## Grading Rubric\[s\]
-
-Grading rubrics are very minimal. They are mostly presented as checklists. You will start at full credit and then lose full or partial points for each incorrect item. The checklist will ask you to complete specific tasks and explain how you accomplished them. You are also welcome to contact me with any point disputes. In special cases, you can also address mistakes for partial credit.
+You have two deadlines in this course. Weekly Journals are due Monday by the end of the day (23:59). Other assignments are due Friday by the end of the day (23:59).
 
 ## Feedback and Grading Timeline
 
-I hope to post grades with itemized feedback by the Monday following the due date. You can find your grade by clicking the My Grades link on the left menu of the Blackboard course. The itemized feedback is intended to point you to the erred point. Please contact me for any additional clarity.
+I hope to post grades with itemized feedback by the Monday following the due date. You can find your grade by clicking the My Grades link on the left menu of the Blackboard course. The itemized feedback is intended to point you to the erred point. Please get in touch with me for any additional clarity.
 
 ## Late or Missed Assignments
 
 Late submissions (after Friday at 11:59 pm) will be docked 10% of the assignment grade per business day late. Non-emergency extensions must be requested prior to the deadline.
 
-## Resubmissions
+## Resubmission
 
-You may resubmit assignments up to one week following the initial date. Your initial grade and your resubmission grade will be averaged for your new assignment score. For example, an initial grade of 60% and a regrade of 80% will result in a 70% for that assignment.
+You may revise and resubmit any assignment worth 50 points or more for a new grade, averaged with your original. This must occur within one week of the original due date.
+
+·         Assignments turned in late (after Friday at 11:59 pm) but before the following Monday (or Tuesday, if a holiday) will receive a maximum grade of 75%.
+
+·         Assignments submitted more than one weekday late without prior approval will receive a 0.
+
+·         All writing assignments can be resubmitted up to one week after the initial due date for an average of your two grades. Below are two examples:
+
+o   An initial grade of 60% and a resubmission of 80% will result in a grade of 70%.
+
+o   An initial submission of 0% and a resubmission of 100% will result in a grade of 50%.
 
 ## Participation
 
-This course works best with the respectful exchange of ideas, including being sensitive to the views and beliefs expressed during online discussions. Success in this course is closely linked to attendance and participation (e.g., asking questions, participating in activities). I also recommend self-study to ensure the retention of these new skills. Attendance will be taken every class and may attribute to minor extra credit to address borderline grade disputes. Please contact me in case of absences.
+This course works best with the respectful exchange of ideas, including being sensitive to the views and beliefs expressed during online discussions. Success in this course is closely linked to attendance and participation (e.g., asking questions, participating in activities). I also recommend self-study to ensure the retention of these new skills.
 
 ## Regular and Substantive Interaction
 

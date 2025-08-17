@@ -1,6 +1,6 @@
 ---
 title: "Week 02 - MC 451 Reading Journal"
-format: html
+format: pdf
 editor: visual
 ---
 

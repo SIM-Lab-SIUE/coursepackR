@@ -1,55 +1,48 @@
 #' One-time setup for MC course tools
 #'
-#' Checks for Quarto, TinyTeX (for PDF), and installs core R packages if missing.
-#' Designed to be safe on lab machines: asks before any big install unless
-#' `ask = FALSE`.
+#' Installs Quarto (for rendering), TinyTeX (for PDF), and core CRAN packages
+#' if they are missing. Safe to re-run; it only installs what's missing.
 #'
-#' @param ask If TRUE (default), prompts before installing Quarto/TinyTeX.
+#' @param ask Prompt before large installs (default TRUE).
 #' @param pkgs Character vector of CRAN packages to ensure are installed.
-#' @return Invisibly TRUE when done.
+#' @return Invisibly TRUE.
 #' @examples
 #' \dontrun{
-#' mccourse_setup()  # run once
+#' mccourse_setup()
 #' }
 #' @export
 mccourse_setup <- function(
   ask  = TRUE,
-  pkgs = c(
-    "tidyverse","janitor","here",
-    "readr","dplyr","ggplot2","stringr","lubridate",
-    "knitr","rmarkdown"
-  )
+  pkgs = c("tidyverse","janitor","here","readr","dplyr","ggplot2",
+           "stringr","lubridate","knitr","rmarkdown")
 ) {
-  # 1) Ensure CRAN packages
-  missing <- pkgs[!pkgs %in% rownames(installed.packages())]
-  if (length(missing)) utils::install.packages(missing)
+  # 1) core CRAN pkgs
+  miss <- pkgs[!pkgs %in% rownames(installed.packages())]
+  if (length(miss)) utils::install.packages(miss)
 
-  # 2) Ensure Quarto CLI
-  have_quarto <- .mcp_have_quarto()
-  if (!have_quarto) {
-    if (ask && interactive()) {
-      message("Quarto not found. It is required to render PDF/HTML.")
-      resp <- readline("Install Quarto now? [Y/n]: ")
-      if (nzchar(resp) && tolower(substr(resp, 1, 1)) == "n") return(invisible(FALSE))
-    }
-    .mcp_install_quarto()
+  # 2) Quarto CLI
+  if (!.mcp_have_quarto()) {
+    if (!ask || !interactive() || .mcp_yesno("Quarto not found. Install now? [Y/n]: ")) {
+      .mcp_install_quarto()
+    } else return(invisible(FALSE))
   }
 
-  # 3) Ensure TinyTeX (LaTeX) for PDF
-  have_tinytex <- .mcp_have_tinytex()
-  if (!have_tinytex) {
-    if (ask && interactive()) {
-      message("TinyTeX (LaTeX) not found. It is required for PDF rendering.")
-      resp <- readline("Install TinyTeX now? (This is ~200–300MB) [Y/n]: ")
-      if (nzchar(resp) && tolower(substr(resp, 1, 1)) == "n") return(invisible(FALSE))
-    }
-    .mcp_install_tinytex()
+  # 3) TinyTeX for PDF
+  if (!.mcp_have_tinytex()) {
+    if (!ask || !interactive() || .mcp_yesno("TinyTeX not found (~200–300MB). Install now? [Y/n]: ")) {
+      .mcp_install_tinytex()
+    } else return(invisible(FALSE))
   }
 
   invisible(TRUE)
 }
 
-# --- internal helpers (no :: to avoid check warnings) ---
+# --- internals ---
+
+.mcp_yesno <- function(prompt) {
+  ans <- readline(prompt)
+  !(nzchar(ans) && tolower(substr(ans, 1, 1)) == "n")
+}
 
 .mcp_have_quarto <- function() {
   if (!requireNamespace("quarto", quietly = TRUE)) return(FALSE)

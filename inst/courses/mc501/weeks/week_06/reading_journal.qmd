@@ -1,6 +1,6 @@
 ---
 title: "Week 06 - MC 501 Reading Journal"
-format: html
+format: pdf
 editor: visual
 ---
 

@@ -15,12 +15,13 @@ pass only \code{week} as the first argument if exactly one course is installed.}
 \item{dest}{Destination directory (created if needed). Defaults to current dir.}
 }
 \value{
-(invisibly) a list with \code{dest}, \code{course}, \code{week}, and \code{n_copied}.
+(invisibly) a list with \code{dest} (the created week folder), \code{course},
+\code{week}, and \code{n_copied}.
 }
 \description{
-Copies the installed files for a given \code{course} and \code{week} into \code{dest}.
-If the week template is empty (e.g., holiday weeks), this succeeds quietly
-and copies nothing.
+Copies the installed files for a given \code{course} and \code{week} into a
+subfolder named \code{week_XX} inside \code{dest}. If the week template is empty
+(e.g., holiday weeks), it still creates the \code{week_XX} folder and copies nothing.
 }
 \details{
 Backward compatibility: if you call \code{download_week(1, dest)}, it assumes there
@@ -31,6 +32,6 @@ supply the \code{course} argument.
 \dontrun{
 # Use a temporary folder in examples/checks (portable on Windows)
 d <- tempdir()
-download_week("mc451", 1, dest = d)
+download_week("mc451", 1, dest = d)  # creates d/week_01/...
 }
 }
