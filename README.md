@@ -2,316 +2,135 @@
 
 # mccoursepack
 
-Course materials for **MC 451 (Undergraduate)** and **MC 501 (Graduate)** delivered as an R package. Install or update the package each week, then use its helper functions to pull your week’s scaffold (Quarto docs, instructions, and any starter files) into your local folders. ([GitHub][1])
+Course materials for **MC 451 (Undergraduate)** and **MC 501 (Graduate)** delivered as an R package. Install/update the package, then use helper functions to copy a week’s scaffold (Quarto docs and any starter files) into your local project folder.
 
 ---
 
-## What you’ll do with this package
-
-* Install/update the package.
-* List available weeks for your course.
-* Download the scaffold for a specific week into a folder on your computer.
-* Open the Quarto (`.qmd`) files, complete the work, render to HTML/PDF as needed, and submit by pushing to GitHub.
-
-> Some weeks are intentionally empty (e.g., holidays). Downloading those weeks will succeed but copy no files—that’s normal.
-
----
-
-## Prerequisites (one‑time)
-
-1. **Accounts & software**
-
-* A GitHub account (use your SIUE email).
-* R (current version) and RStudio Desktop.
-* Quarto (needed to render `.qmd` files): [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
-* Git (so RStudio can push/pull):
-
-  * Windows: install Git for Windows.
-  * macOS: install Xcode Command Line Tools (`xcode-select --install`) or Git.
-
-2. **R packages you’ll need at some point**
-
-* `pak` or `remotes` (to install this course package from GitHub).
-* `tidyverse` (typical data wrangling/plotting).
-* `withr`, `testthat` (used internally; you may not need to load them yourself).
-
-3. **Optional for PDF output**
-
-* TinyTeX: run `quarto install tinytex` in the RStudio Terminal if you need to render to PDF and don’t already have LaTeX.
-
----
-
-## Install (first time)
-
-Pick **one** method.
-
-**Using pak (recommended):**
+## 🚀 Quick start
 
 ```r
+# 1) Install/update the package
 install.packages("pak")
 pak::pak("SIM-Lab-SIUE/mccoursepack")
-```
 
-**Using remotes:**
-
-```r
-install.packages("remotes")
-remotes::install_github("SIM-Lab-SIUE/mccoursepack", upgrade = "never")
-```
-
-Verify:
-
-```r
+# 2) Load it each new R session
 library(mccoursepack)
-packageVersion("mccoursepack")
-```
+
+# 3) One-time setup (Quarto, TinyTeX for PDFs, core packages)
+mccourse_setup()
+
+# 4) See what you can pull
+list_courses()
+list_weeks("mc451")       # or "mc501"
+
+# 5) Copy a week’s scaffold into the current folder (creates ./week_XX/)
+download_week("mc451", 1, dest = ".")
+````
+
+> Templates are **PDF-first** by default; HTML works too. If PDF rendering fails the first time, run `mccourse_setup()` again to install TinyTeX.
 
 ---
 
-## Update (every week)
+## 📚 Documentation (start here)
 
-Each Monday, update to get the latest materials:
-
-**pak:**
-
-```r
-pak::pak("SIM-Lab-SIUE/mccoursepack")
-```
-
-**remotes:**
-
-```r
-remotes::install_github("SIM-Lab-SIUE/mccoursepack", upgrade = "always", force = TRUE)
-```
+* **Getting Started:** environment setup & first render
+  [https://sim-lab-siue.github.io/mccoursepack/pages/getting-started.html](https://sim-lab-siue.github.io/mccoursepack/pages/getting-started.html)
+* **R & RStudio:** projects, panes, paths, shortcuts
+  [https://sim-lab-siue.github.io/mccoursepack/pages/r-and-rstudio.html](https://sim-lab-siue.github.io/mccoursepack/pages/r-and-rstudio.html)
+* **Git & GitHub:** enable Git in RStudio; stage → commit → push
+  [https://sim-lab-siue.github.io/mccoursepack/pages/git-and-github.html](https://sim-lab-siue.github.io/mccoursepack/pages/git-and-github.html)
+* **Quarto Basics:** render to PDF/HTML; project scoping
+  [https://sim-lab-siue.github.io/mccoursepack/pages/quarto-basics.html](https://sim-lab-siue.github.io/mccoursepack/pages/quarto-basics.html)
+* **Weekly Workflows:** repeatable rhythm for the term
+  [https://sim-lab-siue.github.io/mccoursepack/pages/workflows.html](https://sim-lab-siue.github.io/mccoursepack/pages/workflows.html)
+* **Troubleshooting:** quick fixes & diagnostics
+  [https://sim-lab-siue.github.io/mccoursepack/pages/troubleshooting.html](https://sim-lab-siue.github.io/mccoursepack/pages/troubleshooting.html)
+* **Package Reference:** all exported functions with examples
+  [https://sim-lab-siue.github.io/mccoursepack/pages/reference.html](https://sim-lab-siue.github.io/mccoursepack/pages/reference.html)
+* **(Optional) Create your GitHub Profile README:**
+  [https://sim-lab-siue.github.io/mccoursepack/pages/github-profile-readme.html](https://sim-lab-siue.github.io/mccoursepack/pages/github-profile-readme.html)
 
 ---
 
-## Recommended folder setup (local)
+## 🧰 What this package gives you
 
-Create a top‑level folder per course on your computer, for example:
+* **Discover** what’s available: `list_courses()`, `list_weeks(course)`
+* **Copy** a week’s scaffold to your computer: `download_week(course, week, dest)`
+* **Open** a local week folder: `open_week(week, dest)`
+* **Set up** tools the easy way: `mccourse_setup()` (Quarto, TinyTeX, core CRAN pkgs)
+* **Check** your environment: `mccourse_self_test()`
+* **Update** to the latest build: `mccourse_update()`
+
+---
+
+## ✅ Prerequisites (one-time per computer)
+
+* **R** and **RStudio Desktop**
+* **Git** (so you can commit & push from RStudio)
+* **Quarto** (renders `.qmd` to PDF/HTML)
+* **TinyTeX** (only if you need PDF and don’t already have LaTeX) — `mccourse_setup()` can install this for you
+
+See **Getting Started** for links, screenshots, and checks.
+
+---
+
+## 🗂️ Recommended local folder setup
+
+Create a top-level folder per course:
 
 ```
 ~/Documents/MC451/
 ~/Documents/MC501/
 ```
 
-Inside those, each week you’ll have a `week_01`, `week_02`, … folder. Your journals and assignments live inside the week’s folder and are pushed to GitHub.
+Open the `.Rproj` inside that folder each time you work. Each week you’ll have a `week_01`, `week_02`, … subfolder with the documents you render and submit.
 
 ---
 
-## First‑week course “preflight” (one‑time)
+## 🔁 Weekly workflow (short version)
 
-1. **GitHub Profile README (intro assignment)**
+1. Open your **RStudio Project** (`.Rproj`)
+2. Update the package: `pak::pak("SIM-Lab-SIUE/mccoursepack")`
+3. `library(mccoursepack)`
+4. `download_week("mc451", N, dest = ".")`
+5. Open the week’s `.qmd` → **Render** (PDF/HTML)
+6. **Git pane:** Stage → Commit → Push
 
-   * On GitHub, create a **public** repository named **exactly** your username (e.g., `apleith`).
-   * Add a `README.md` with a short intro.
-   * Upload a profile picture on your GitHub profile page.
-
-2. **Journal repository**
-
-   * Create a **new repository** named `mc451-journal` (or `mc501-journal`).
-   * Clone it to your computer via RStudio (**File → New Project → Version Control → Git**).
-   * You’ll add a journal `.qmd` or `.md` each week and push it to this repo.
-
-(Your course site/Blackboard will specify exact submission links and any naming conventions.)
+Detailed walkthrough: **Weekly Workflows** page (link above).
 
 ---
 
-## Core workflow each week
+## 🛠️ Troubleshooting (fast fixes)
 
-> The package exposes helper functions to list available weeks and download that week’s scaffold to your machine. The current repo README shows examples like `list_weeks("mc451")` followed by `download_week("mc451", 1)`. ([GitHub][1])
+* **Quarto not found:** Install Quarto; restart RStudio; or run `mccourse_setup()`
+* **PDF render fails:** `mccourse_setup()` to install TinyTeX
+* **Files didn’t appear:** check you’re in the right Project (`getwd()`), then re-run `download_week(...)`
+* **Git push failed:** enable Git in RStudio and authenticate to GitHub
 
-1. **Open RStudio** and set your working directory to your course folder (e.g., `~/Documents/MC451`).
+More fixes on the **Troubleshooting** page.
 
-2. **List available weeks (by course):**
+---
+
+## 📦 Install / Update (details)
+
+**Install (first time)**
 
 ```r
+install.packages("pak")
+pak::pak("SIM-Lab-SIUE/mccoursepack")
 library(mccoursepack)
-list_weeks("mc451")   # or list_weeks("mc501")
 ```
 
-3. **Download a week’s scaffold:**
+**Update (weekly)**
 
 ```r
-# Example: download Week 1 of MC 451 into a new local folder
-download_week("mc451", 1, dest = ".")
-# Typically creates ./week_01 with a Quarto scaffold and any starter files
+pak::pak("SIM-Lab-SIUE/mccoursepack")
 ```
 
-* If the week is a holiday (empty template), the call will succeed but no files will be created. That’s expected.
-
-4. **Open the week in RStudio**
-
-   * File pane → navigate to `week_01` (or your week) → open the `.qmd` file(s).
-   * Read the top instructions in the file. They describe the specific tasks.
-
-5. **Write and render**
-
-   * Add your responses (e.g., 250–300 words for a journal) and any required code/plots.
-   * Render to HTML: click **Render** in the RStudio editor (or run `quarto render` in the Terminal).
-
-6. **Commit & push to GitHub**
-
-   * **Git** pane → **Stage** changed files → **Commit** with a clear message → **Push**.
-   * Submit the GitHub link per the course instructions.
+(You can also use `remotes::install_github(...)` if you prefer.)
 
 ---
 
-## Journal workflow details
+## License
 
-* Keep one journal repository all term (`mc451-journal` or `mc501-journal`).
-* Each week, either:
-
-  * Add a new file `journal_week_01.qmd`, `journal_week_02.qmd`, etc., **or**
-  * Append to a single cumulative `journal.qmd` with weekly sections.
-* Render to HTML and commit both the source (`.qmd`) and the rendered output (HTML or PDF as required).
-* Push the repo and share the link as instructed.
-
----
-
-## Assignment workflow details
-
-* The weekly scaffold typically includes an assignment `.qmd` with instructions and a checklist.
-* Complete the checklist at the bottom of the file (where present) explaining how you met each requirement.
-* Render, commit, and push before the deadline.
-
----
-
-## Verifying you’re on the correct week/version
-
-* Check the package version:
-
-  ```r
-  packageVersion("mccoursepack")
-  ```
-* Re‑run:
-
-  ```r
-  list_weeks("mc451")
-  ```
-
-  to confirm the week you need is present.
-* If a week isn’t listed yet, update the package (see **Update**).
-
----
-
-## Common tasks & examples
-
-* **Download a later week to a named folder:**
-
-  ```r
-  dir.create("Week05")     # optional custom folder name
-  download_week("mc451", 5, dest = "Week05")
-  ```
-* **Re-download (overwrite) an existing week scaffold:**
-
-  * Delete or rename the existing folder, then re-run `download_week(...)`.
-
----
-
-## Troubleshooting
-
-**“Quarto not found”**
-
-* Install Quarto from the official site and restart RStudio. If on Windows, ensure the installer added Quarto to PATH.
-
-**Render won’t produce PDF**
-
-* Use HTML unless the assignment requires PDF.
-* If PDF is required, run `quarto install tinytex` in the Terminal and re-render.
-
-**I don’t see my week in `list_weeks()`**
-
-* Update the package, restart R, and try again:
-
-  ```r
-  pak::pak("SIM-Lab-SIUE/mccoursepack")
-  # or
-  remotes::install_github("SIM-Lab-SIUE/mccoursepack", upgrade = "always", force = TRUE)
-  ```
-
-**`download_week()` runs but no files appear**
-
-* You might have downloaded a holiday/empty week (normal).
-* Confirm your working directory (top of the Console: `getwd()`).
-* Check that you passed the correct course label (`"mc451"` or `"mc501"`) and a valid week number.
-
-**Git push fails**
-
-* Configure Git user/email in RStudio: **Tools → Global Options → Git/SVN**.
-* Ensure you’ve authenticated GitHub in RStudio (via the **Git** pane or **Tools → Global Options → Git/SVN → Create New Token**).
-* Try again after restarting RStudio.
-
-**Windows path issues**
-
-* Keep your course folder path short (e.g., `C:/Users/you/Documents/MC451`) to avoid the Windows path length limit.
-
-**I rendered but GitHub only shows the `.qmd`**
-
-* Commit and push the rendered HTML (`.html`) as well.
-* If using GitHub Pages, make sure your repo is configured for Pages (only if instructed).
-
----
-
-## Where this package puts things
-
-* Course templates live inside the installed package and are copied out when you call `download_week(...)`.
-* You work in your local folders (e.g., `~/Documents/MC451/week_03/`), not inside the package library.
-
----
-
-## Getting help
-
-* Re‑read the week’s `.qmd` instructions at the top.
-* Check this README for setup and update steps.
-* If you’re stuck, open a question on the course discussion space (or follow your instructor’s posted support process). Include:
-
-  * Your OS (Windows/macOS), R and RStudio versions
-  * The **exact** code you ran
-  * The **full** error message
-  * A screenshot of your folder structure (if relevant)
-
----
-
-## Quick reference
-
-```r
-# Install or update
-install.packages("pak"); pak::pak("SIM-Lab-SIUE/mccoursepack")
-
-# Load
-library(mccoursepack)
-
-# See what weeks exist for your course
-list_weeks("mc451")    # or list_weeks("mc501")
-
-# Pull a specific week into the current folder
-download_week("mc451", 1, dest = ".")
-
-# Check your version
-packageVersion("mccoursepack")
-```
-
----
-
-## Notes for the curious
-
-The repository’s minimal README shows the same basic usage:
-
-```r
-library(mccoursepack)
-list_weeks("mc451")
-download_week("mc451", 1)  # writes ./week_01 with minimal QMD scaffold
-```
-
-This README expands those steps with student‑facing setup, workflows, and troubleshooting. ([GitHub][1])
-
----
-
-**License:** MIT
-
-**Repository:** SIM-Lab-SIUE/mccoursepack ([GitHub][1])
-
----
-
-[1]: https://github.com/SIM-Lab-SIUE/mccoursepack "GitHub - SIM-Lab-SIUE/mccoursepack: This is the coursework material for MC 451 + 501."
+MIT © SIM Lab @ SIUE
