@@ -1,0 +1,13 @@
+---
+title: "Git & GitHub"
+---
+
+### Why version control?
+It tracks changes, enables backups, and makes submissions easy.
+
+### Setup in RStudio
+- **Tools → Global Options → Git/SVN**: confirm Git is detected.
+- Sign in to GitHub in your browser; you’ll create repos for your journal and (later) your portfolio.
+
+### The basic flow
+- **Stage → Commit → Push** in the Git pane.

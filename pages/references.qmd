@@ -1,0 +1,13 @@
+---
+title: "Package Reference"
+---
+
+> Tip: Load the package each R session: `library(mccoursepack)`
+
+### Functions (high-level)
+- `list_courses()` — list installed course IDs (e.g., `mc451`, `mc501`).
+- `list_weeks(course)` — list week folders (`week_01`, …) for a course.
+- `download_week(course, week, dest=".")` — create `week_XX/` and copy that week’s files.
+- `open_week(week, dest=".")` — open the local `week_XX/` folder in your file browser.
+- `mccourse_setup()` — one-time install of Quarto, TinyTeX, and core CRAN packages.
+- `mccourse_self_test()` — print the courses and weeks the package can see.

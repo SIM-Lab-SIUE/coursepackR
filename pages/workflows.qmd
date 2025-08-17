@@ -1,0 +1,19 @@
+---
+title: "Weekly Workflows"
+---
+
+### Every Monday
+- Update the package:
+```r
+pak::pak("SIM-Lab-SIUE/mccoursepack")
+````
+
+* Pull the new week:
+
+```r
+download_week("mc451", 2, dest = ".")  # example for Week 2
+```
+
+### Journaling
+
+Keep a repo like `mc451-journal`. Add a new `.qmd` each week and render to HTML or PDF before pushing.

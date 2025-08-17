@@ -1,0 +1,13 @@
+---
+title: "Quarto Basics"
+---
+
+### What is Quarto?
+A tool that turns `.qmd` files into **HTML** or **PDF**.
+
+### Render
+Open a `.qmd` and click **Render**.
+
+### Formats
+- This website uses **HTML**.
+- Your course templates default to **PDF first** (as set in each week’s `_quarto.yml`).

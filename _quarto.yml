@@ -1,0 +1,62 @@
+project:
+  type: website
+  output-dir: docs  # GitHub Pages will serve from /docs on the main branch
+
+website:
+  title: "mccoursepack"
+  site-url: https://sim-lab-siue.github.io/mccoursepack
+  repo-url: https://github.com/SIM-Lab-SIUE/mccoursepack
+  repo-actions: [edit, issue]
+  navbar:
+    left:
+      - text: "Getting Started"
+        file: pages/getting-started.qmd
+      - text: "R & RStudio"
+        file: pages/r-and-rstudio.qmd
+      - text: "Git & GitHub"
+        file: pages/git-and-github.qmd
+      - text: "Quarto"
+        file: pages/quarto-basics.qmd
+      - text: "Week 1"
+        file: pages/week-1.qmd
+      - text: "Workflows"
+        file: pages/workflows.qmd
+      - text: "Troubleshooting"
+        file: pages/troubleshooting.qmd
+      - text: "Reference"
+        file: pages/reference.qmd
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
+      - index.qmd
+      - section: "Start Here"
+        contents:
+          - pages/getting-started.qmd
+          - pages/r-and-rstudio.qmd
+          - pages/git-and-github.qmd
+          - pages/quarto-basics.qmd
+      - section: "Course Workflow"
+        contents:
+          - pages/week-1.qmd
+          - pages/workflows.qmd
+          - pages/troubleshooting.qmd
+      - section: "Package"
+        contents:
+          - pages/reference.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    smooth-scroll: true
+    css: styles.css
+
+# Keep the docs build super-stable at first: don’t execute code blocks globally.
+execute:
+  eval: false
+  echo: true
+  warning: false
+  message: false
+
+editor: visual

@@ -1,0 +1,15 @@
+---
+title: "Troubleshooting"
+---
+
+**Quarto not found**  
+Install Quarto (or run `mccourse_setup()`).
+
+**PDF failed to render**  
+Run `mccourse_setup()` to install TinyTeX.
+
+**Files didn’t appear**  
+Check you’re inside your Project folder (`getwd()`), then re-run `download_week("mc451", 1, dest = ".")`.
+
+**Git push failed**  
+Set up Git in RStudio (**Tools → Global Options → Git/SVN**) and authenticate with GitHub.

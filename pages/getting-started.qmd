@@ -1,0 +1,59 @@
+---
+title: "Getting Started"
+---
+
+## What you need
+- R + RStudio (installed already)
+- Git (Windows: Git for Windows; macOS: `xcode-select --install`)
+- Quarto (download from quarto.org)
+
+## Make your course folder
+Create a folder on your computer:
+- Windows: `Documents\\MC451`
+- macOS: `Documents/MC451`
+
+## Create an RStudio Project
+**File → New Project → New Directory → New Project**.  
+Name it `MC451` and create it in your Documents folder.
+
+## Install the course package
+```r
+install.packages("pak")
+pak::pak("SIM-Lab-SIUE/mccoursepack")
+library(mccoursepack)
+````
+
+If `pak` isn’t available:
+
+```r
+install.packages("remotes")
+remotes::install_github("SIM-Lab-SIUE/mccoursepack", upgrade = "always", force = TRUE)
+library(mccoursepack)
+```
+
+## One-time setup (Quarto + TinyTeX + core packages)
+
+```r
+mccourse_setup()
+```
+
+You’ll be prompted to install Quarto and TinyTeX if missing. Say yes.
+
+````
+
+## pages/r-and-rstudio.qmd
+```markdown
+---
+title: "R & RStudio"
+---
+
+### R vs. RStudio
+- **R** is the language.
+- **RStudio** is the IDE that makes R pleasant.
+
+### Projects
+Always work inside an RStudio **Project** for this course. It keeps paths sane.
+
+### Console and Script
+- Use the Console for quick commands.
+- Put code you want to keep in a `.qmd` or `.R` script and save it.
