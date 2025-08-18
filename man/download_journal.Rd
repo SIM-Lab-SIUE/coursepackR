@@ -4,23 +4,23 @@
 \alias{download_journal}
 \title{Download a course's journal scaffold to a local folder}
 \usage{
-download_journal(course, dest = ".")
+download_journal(course, dest = ".", package = "mccoursepack")
 }
 \arguments{
-\item{course}{Character scalar. Course identifier, e.g., "mc451" or "mc501".}
+\item{course}{Character scalar. e.g., "mc451" or "mc501".}
 
-\item{dest}{Character path to a local folder to receive the files. Defaults to ".".}
+\item{dest}{Destination directory (default "." = current working dir).}
+
+\item{package}{Package name that contains the scaffolds (default "mccoursepack").}
 }
 \value{
-(Invisibly) a character vector of file paths written.
+(invisibly) a character vector of written file paths.
 }
 \description{
-Copies the entire \verb{inst/extdata/courses/<course>/journal/} directory
-into \code{dest}, preserving subfolders. Defaults to the current working directory.
-}
-\examples{
-\dontrun{
-download_journal("mc451")
-download_journal("mc501", dest = "my-journal")
+Copies the journal scaffold for \code{course} into \code{dest}, preserving subfolders.
+Supports both package layouts:
+\itemize{
+\item inst/courses/\if{html}{\out{<course>}}/journal/
+\item inst/extdata/courses/\if{html}{\out{<course>}}/journal/
 }
 }

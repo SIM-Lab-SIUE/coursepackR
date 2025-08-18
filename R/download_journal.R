@@ -1,67 +1,106 @@
 #' Download a course's journal scaffold to a local folder
 #'
-#' Copies the entire `inst/extdata/courses/<course>/journal/` directory
-#' into `dest`, preserving subfolders. Defaults to the current working directory.
+#' Copies the journal scaffold for `course` into `dest`, preserving subfolders.
+#' Supports both package layouts:
+#'   - inst/courses/<course>/journal/
+#'   - inst/extdata/courses/<course>/journal/
 #'
-#' @param course Character scalar. Course identifier, e.g., "mc451" or "mc501".
-#' @param dest Character path to a local folder to receive the files. Defaults to ".".
-#' @return (Invisibly) a character vector of file paths written.
+#' @param course Character scalar. e.g., "mc451" or "mc501".
+#' @param dest   Destination directory (default "." = current working dir).
+#' @param package Package name that contains the scaffolds (default "mccoursepack").
+#' @return (invisibly) a character vector of written file paths.
 #' @export
-#' @examples
-#' \dontrun{
-#' download_journal("mc451")
-#' download_journal("mc501", dest = "my-journal")
-#' }
-download_journal <- function(course, dest = ".") {
-	# basic checks
-	if (missing(course) || !is.character(course) || length(course) != 1L || nchar(course) == 0L) {
-		stop("`course` must be a non-empty character scalar like \"mc451\".", call. = FALSE)
-	}
-	if (!is.character(dest) || length(dest) != 1L || nchar(dest) == 0L) {
-		stop("`dest` must be a non-empty character path.", call. = FALSE)
-	}
+download_journal <- function(course, dest = ".", package = "mccoursepack") {
+  # ---- checks ----
+  if (missing(course) || !is.character(course) || length(course) != 1L || !nzchar(course)) {
+    stop('`course` must be a non-empty character scalar like "mc451".', call. = FALSE)
+  }
+  if (!is.character(dest) || length(dest) != 1L || !nzchar(dest)) {
+    stop("`dest` must be a non-empty character path.", call. = FALSE)
+  }
 
-	# locate the journal scaffold inside the installed package
-	src <- system.file("extdata", "courses", course, "journal", package = utils::packageName())
-	if (is.null(src) || identical(src, "")) {
-		stop(sprintf("No journal scaffold found for course \"%s\". Expected under inst/extdata/courses/%s/journal/.",
-			course, course), call. = FALSE)
-	}
+  # ---- locate scaffold roots (installed first, then dev-tree fallbacks) ----
+  candidates <- character(0)
 
-	# ensure dest exists
-	if (!dir.exists(dest)) {
-		ok <- dir.create(dest, recursive = TRUE, showWarnings = FALSE)
-		if (!ok) stop(sprintf("Could not create destination directory: %s", dest), call. = FALSE)
-	}
+  # Installed package: inst/courses/...
+  p1 <- system.file("courses", package = package)
+  if (nzchar(p1)) candidates <- c(candidates, p1)
 
-	# collect files to copy (recursive) and create subdirs at dest
-	all_paths <- list.files(src, recursive = TRUE, all.files = TRUE, full.names = TRUE, include.dirs = TRUE, no.. = TRUE)
+  # Installed package: inst/extdata/courses/...
+  p2 <- system.file("extdata", "courses", package = package)
+  if (nzchar(p2)) candidates <- c(candidates, p2)
 
-	# Create directories first
-	dir_paths <- all_paths[dir.exists(all_paths)]
-	file_paths <- setdiff(all_paths, dir_paths)
+  # Dev tree root
+  pkg_path <- tryCatch(getNamespaceInfo(package, "path"), error = function(e) NULL)
+  if (!is.null(pkg_path)) {
+    # Dev: <pkg>/inst/courses
+    p3 <- file.path(pkg_path, "inst", "courses")
+    if (dir.exists(p3)) candidates <- c(candidates, p3)
 
-	rel_dir <- function(p) substr(p, nchar(src) + 2L, nchar(p)) # relative path inside journal/
-	dest_dir_paths <- file.path(dest, vapply(dir_paths, rel_dir, character(1L)))
-	dest_file_paths <- file.path(dest, vapply(file_paths, rel_dir, character(1L)))
+    # Dev: <pkg>/inst/extdata/courses
+    p4 <- file.path(pkg_path, "inst", "extdata", "courses")
+    if (dir.exists(p4)) candidates <- c(candidates, p4)
+  }
 
-	for (d in dest_dir_paths) {
-		if (!dir.exists(d)) dir.create(d, recursive = TRUE, showWarnings = FALSE)
-	}
+  # pick the first root that contains <course>/journal
+  src <- NULL
+  for (root in candidates) {
+    cand <- file.path(root, course, "journal")
+    if (dir.exists(cand)) { src <- cand; break }
+  }
 
-	# Copy files
-	copied <- logical(length(file_paths))
-	if (length(file_paths)) {
-		for (i in seq_along(file_paths)) {
-			from <- file_paths[i]
-			to <- dest_file_paths[i]
-			# create parent just in case (idempotent)
-			parent <- dirname(to)
-			if (!dir.exists(parent)) dir.create(parent, recursive = TRUE, showWarnings = FALSE)
-			copied[i] <- file.copy(from = from, to = to, overwrite = TRUE, copy.mode = TRUE, copy.date = TRUE)
-		}
-	}
+  if (is.null(src)) {
+    # Build helpful message
+    seen_courses <- unique(unlist(lapply(candidates, function(root) {
+      if (dir.exists(root)) {
+        b <- list.dirs(root, full.names = FALSE, recursive = FALSE)
+        b[nzchar(b)]
+      } else character(0)
+    })))
+    stop(sprintf(
+      paste0(
+        "No journal scaffold found for course \"%s\".\n",
+        "I looked under these roots:\n - %s\n",
+        "Expected subpath: <root>/%s/journal/\n",
+        "Available courses seen: %s"
+      ),
+      course,
+      if (length(candidates)) paste(candidates, collapse = "\n - ") else "(none)",
+      course,
+      if (length(seen_courses)) paste(seen_courses, collapse = ", ") else "(none)"
+    ), call. = FALSE)
+  }
 
-	# return invisibly the files that were written
-	invisible(dest_file_paths[copied])
+  # ---- ensure dest exists ----
+  if (!dir.exists(dest)) {
+    ok <- dir.create(dest, recursive = TRUE, showWarnings = FALSE)
+    if (!ok) stop(sprintf("Could not create destination directory: %s", dest), call. = FALSE)
+  }
+
+  # ---- copy recursively ----
+  all_paths <- list.files(src, recursive = TRUE, all.files = TRUE, full.names = TRUE,
+                          include.dirs = TRUE, no.. = TRUE)
+  dir_paths  <- all_paths[dir.exists(all_paths)]
+  file_paths <- setdiff(all_paths, dir_paths)
+
+  rel <- function(p) substring(p, first = nchar(src) + 2L)
+
+  # create directories first
+  for (d in file.path(dest, vapply(dir_paths, rel, character(1L)))) {
+    if (!dir.exists(d)) dir.create(d, recursive = TRUE, showWarnings = FALSE)
+  }
+
+  dest_files <- character(0)
+  if (length(file_paths)) {
+    dest_files <- file.path(dest, vapply(file_paths, rel, character(1L)))
+    for (i in seq_along(file_paths)) {
+      parent <- dirname(dest_files[i])
+      if (!dir.exists(parent)) dir.create(parent, recursive = TRUE, showWarnings = FALSE)
+      ok <- file.copy(from = file_paths[i], to = dest_files[i],
+                      overwrite = TRUE, copy.mode = TRUE, copy.date = TRUE)
+      if (!ok) stop(sprintf("Failed to copy: %s -> %s", file_paths[i], dest_files[i]), call. = FALSE)
+    }
+  }
+
+  invisible(dest_files)
 }
