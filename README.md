@@ -1,5 +1,4 @@
 [![Website](https://img.shields.io/badge/docs-mccoursepack-blue)](https://sim-lab-siue.github.io/mccoursepack)
-[![Reference](https://img.shields.io/badge/reference-index-blueviolet)](https://sim-lab-siue.github.io/mccoursepack/reference/index.html)
 [![GitHub](https://img.shields.io/badge/source-GitHub-black)](https://github.com/sim-lab-siue/mccoursepack)
 
 # mccoursepack
