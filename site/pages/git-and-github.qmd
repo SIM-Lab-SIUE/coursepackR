@@ -1,5 +1,6 @@
 ---
 title: "Git & GitHub"
+freeze: auto
 ---
 
 ## Why version control?
@@ -10,11 +11,11 @@ Git keeps a complete history of your work, lets you roll back mistakes, and make
 
 ## Install & enable Git in RStudio (one time)
 
-1. **Install Git**: https://git-scm.com/downloads  
-2. In **RStudio**: **Tools → Global Options → Git/SVN**  
-   - Check **Enable version control interface for RStudio projects**  
-   - Ensure the Git executable path is detected (set it if blank)  
-   - Optional (advanced): generate or add an SSH key here.
+1. **Install Git:** <https://git-scm.com/downloads>  
+2. In **RStudio**: **Tools → Global Options → Git/SVN**
+   - Check **Enable version control interface for RStudio projects**
+   - Ensure the Git executable path is detected (set it if blank)
+   - Optional (advanced): generate or add an SSH key here
 
 Tip: The presence of the **Git** pane in RStudio indicates your Project is under Git. If not, convert it via **Tools → Project Options → Git/SVN → Version control system: Git** (or run `git init` in the project folder).
 
@@ -24,14 +25,25 @@ Tip: The presence of the **Git** pane in RStudio indicates your Project is under
 
 GitHub no longer accepts account passwords for Git over HTTPS. Use **HTTPS + Personal Access Token (PAT)** or **SSH keys**.
 
-- **HTTPS + PAT (recommended)**  
-  Create a fine-grained PAT, grant it access to your repo(s), and let Git Credential Manager cache it so you aren’t prompted every push.  
-  Docs: https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token  
-  Git Credential Manager: https://github.com/GitCredentialManager/git-credential-manager
+### HTTPS + PAT (recommended)
 
-- **SSH (alternative)**  
-  Generate an SSH key and add the **public key** in **GitHub → Settings → SSH and GPG keys**.  
-  Docs: https://docs.github.com/authentication/connecting-to-github-with-ssh
+1. Create a token (scopes: `repo` at minimum).  
+   Docs: <https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token>
+
+2. Store the token so Git remembers it:
+
+```{r}
+install.packages(c("usethis", "gitcreds"))
+usethis::create_github_token()  # opens the token page in your browser
+gitcreds::gitcreds_set()        # paste the token at the prompt
+````
+
+Git Credential Manager (optional helper): [https://github.com/GitCredentialManager/git-credential-manager](https://github.com/GitCredentialManager/git-credential-manager)
+
+### SSH (alternative)
+
+Generate an SSH key and add the **public key** in **GitHub → Settings → SSH and GPG keys**.
+Docs: [https://docs.github.com/authentication/connecting-to-github-with-ssh](https://docs.github.com/authentication/connecting-to-github-with-ssh)
 
 ---
 
@@ -40,15 +52,15 @@ GitHub no longer accepts account passwords for Git over HTTPS. Use **HTTPS + Per
 You have two clean paths—pick one.
 
 ### A) Start local, then create the GitHub repo
-1. In your RStudio **Project** (already has files), ensure it’s a Git repo.  
+
+1. In your RStudio **Project** (already has files), ensure it’s a Git repo.
 2. Create/connect the GitHub repo:
 
-**R helper (usethis):**
-```r
+```{r}
 install.packages("usethis")
 usethis::use_git()       # initialize git (if needed)
 usethis::use_github()    # creates repo on GitHub, adds 'origin', pushes
-````
+```
 
 **Manual (shell):**
 
@@ -86,21 +98,42 @@ git push
 
 ---
 
+## Journal-specific notes (important)
+
+The journal is a **Quarto book** in `journal/`. When you add a chapter via the script, two files change:
+
+* `journal/entries/YYYY-MM-DD.qmd`
+* `journal/_quarto.yml`  *(auto-updated to include the new chapter)*
+
+Always **stage and commit both** files together, then push. If `_quarto.yml` is not committed, the new chapter won’t appear on another machine or after a fresh clone.
+
+Rendered outputs live in `journal/_book/` (HTML/PDF/EPUB). You generally **do not commit** `_book/`—it’s re-rendered as needed.
+
+---
+
 ## Good habits
 
 * Commit small, logical units of work with clear messages.
 * Pull before you start; pull again if a push is rejected.
 * Keep secrets and large raw data out of the repo (use `.gitignore`).
+* For the journal, render locally and push **sources** (chapters + `_quarto.yml`), not the `_book/` output.
 
-**Recommended `.gitignore` for this course repo**
+**Recommended `.gitignore` for this course**
 
 ```
 .Rhistory
 .Rproj.user/
 .RData
 .DS_Store
-site/_site/
+
+# Quarto outputs
+*_cache/
+*_files/
+*/_site/
 docs/
+journal/_book/
+
+# Misc environment/config
 *.local.*
 *.env
 ```
@@ -110,8 +143,9 @@ docs/
 ## Troubleshooting
 
 * **RStudio doesn’t show the Git pane** → Enable Git for the Project (Project Options → Git/SVN) or initialize with `usethis::use_git()`.
-* **Push asks for a password** → Use a **PAT** for HTTPS; when Git prompts for a password, paste your token. Enable Git Credential Manager to remember it.
+* **Push asks for a password** → Use a **PAT** for HTTPS; when Git prompts for a password, paste your token. Store it with `gitcreds::gitcreds_set()`.
 * **“Rejected – fetch first”** → Someone pushed ahead of you. Run `git pull`, resolve any merge conflicts, then commit and push.
+* **New journal chapter not showing** → Commit both the new `entries/*.qmd` and the updated `journal/_quarto.yml`, then re-render.
 
 ---
 

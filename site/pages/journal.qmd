@@ -1,0 +1,165 @@
+---
+title: "Journal"
+freeze: auto
+---
+
+Your **course journal** is a Quarto **book**. Each **week** has its own **chapter** with **three prompts**—you answer **one**.  
+Word ranges are enforced during render:
+
+- **MC 451:** **250–300** words  
+- **MC 501:** **450–500** words
+
+---
+
+## What you get after download
+
+Run:
+
+```r
+download_journal("mc451", dest = ".")   # or "mc501"
+````
+
+This creates:
+
+```
+journal/
+  _quarto.yml
+  index.qmd
+  entry_template.qmd
+  entries/
+  scripts/
+    new_journal_entry.R
+    update_chapters.R
+  prompts_mc451.csv   # or prompts_mc501.csv
+  assets/
+```
+
+* **`entries/`** holds your week chapters: `week_02.qmd`, `week_03.qmd`, …
+* **`scripts/new_journal_entry.R`** creates a week chapter, injects the **three prompts for that week**, sets word-range based on your course, and updates `_quarto.yml`.
+* **`_quarto.yml`** is the book’s table of contents. Do **not** edit the `# BEGIN AUTO … # END AUTO` block—scripts manage it.
+
+> Prompts are stored in a CSV **by week** (no randomness). Exactly **three** prompts per week must be present.
+
+---
+
+## Add a week chapter
+
+From inside the `journal/` folder:
+
+```r
+source("scripts/new_journal_entry.R")
+```
+
+You’ll be prompted for a **week number** (e.g., 2–14). The script will:
+
+1. Create `entries/week_XX.qmd` from `entry_template.qmd`.
+2. Inject the **three prompts for that week**.
+3. Set the correct **word range** for your course (MC 451 or MC 501).
+4. Update `journal/_quarto.yml`.
+
+Open the new file and write your **single** response in the **Response** section.
+
+---
+
+## Write the entry
+
+Open `entries/week_XX.qmd` and scroll to **Response**.
+Answer **one** prompt. Keep it within your range:
+
+* MC 451: 250–300 words
+* MC 501: 450–500 words
+
+The word counter appears when you render. It counts text **only** inside the Response block—don’t add extra sections outside it.
+
+---
+
+## Render the journal (book)
+
+From inside `journal/`:
+
+```bash
+quarto render
+```
+
+Outputs are written to `journal/_book/`:
+
+* HTML book (always)
+* PDF/EPUB if enabled and TinyTeX is installed
+
+If PDF fails:
+
+```bash
+quarto install tinytex
+```
+
+(or run `mccourse_setup()` in R).
+
+---
+
+## Submit & version your work
+
+When you add a chapter, **two files change**:
+
+1. `journal/entries/week_XX.qmd`
+2. `journal/_quarto.yml`
+
+Use the **Git** pane (or command line) to **Stage → Commit → Push** **both** files.
+If `_quarto.yml` isn’t committed, the new chapter won’t appear on other machines.
+
+---
+
+## At a glance (diagram)
+
+```{mermaid}
+flowchart TD
+  A["Inside journal/"] --> B["source('scripts/new_journal_entry.R')<br/>enter week number (2–14)"]
+  B --> C["Edit entries/week_XX.qmd<br/>Response → answer one prompt"]
+  C --> D["Render book<br/>quarto render"]
+  D --> E["Stage → Commit → Push<br/>entries/week_XX.qmd + _quarto.yml"]
+```
+
+---
+
+## Prompts CSV (for maintainers)
+
+Prompts live in `prompts_mc451.csv` or `prompts_mc501.csv` (same folder as `scripts/`).
+
+**Required columns (no category column):**
+
+```csv
+week,prompt_id,prompt
+2,1,"Prompt text A for Week 2"
+2,2,"Prompt text B for Week 2"
+2,3,"Prompt text C for Week 2"
+3,1,"Prompt text A for Week 3"
+3,2,"Prompt text B for Week 3"
+3,3,"Prompt text C for Week 3"
+```
+
+* Provide **exactly three** rows per week (`prompt_id` usually 1,2,3).
+* The script **fails loudly** if a week does not have exactly three prompts.
+
+---
+
+## FAQ (journal-specific)
+
+**Where do prompts come from?**
+From the course CSV (`prompts_mc451.csv` or `prompts_mc501.csv`) with **three prompts per week**.
+
+**My word count says “Out of range.”**
+Trim/extend your Response to fit your course range (MC 451: 250–300; MC 501: 450–500).
+
+**The new week chapter doesn’t show in the book.**
+Commit and push **both** `entries/week_XX.qmd` **and** `_quarto.yml`, then re‑render.
+
+**Can I revise a chapter later?**
+Yes—edit `entries/week_XX.qmd` and commit the changes. No need to rerun the script for the same week.
+
+---
+
+## Summary
+
+* Journal = **Quarto book** under `journal/`
+* Each week = **one chapter** with **three prompts** → answer **one**
+* Word ranges enforced per course
+* Always **commit both** the new chapter and `_quarto.yml`

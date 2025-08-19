@@ -1,12 +1,12 @@
 ---
-title: "YYYY-MM-DD"
+title: "WEEK_NN"    # <-- replaced by script with "Week 02", "Week 03", ...
 format:
   html: default
   pdf: default
 params:
-  course: "mc451"         # "mc451" or "mc501" (injected by script)
-  word_min: 250           # injected by script
-  word_max: 300           # injected by script
+  course: "mc451"   # injected by script: "mc451" or "mc501"
+  word_min: 250     # injected by script
+  word_max: 300     # injected by script
   p1: ""
   p2: ""
   p3: ""
@@ -37,7 +37,6 @@ params:
 #| message: false
 #| warning: false
 get_response_text <- function() {
-  # read the current input file and extract text between RESPONSE markers
   f <- knitr::current_input()
   if (is.null(f) || !file.exists(f)) return("")
   x <- readLines(f, warn = FALSE)
@@ -46,26 +45,21 @@ get_response_text <- function() {
   if (!length(s) || !length(e) || e <= s) return("")
   paste(x[(s + 1L):(e - 1L)], collapse = "\n")
 }
-
 count_words <- function(txt) {
-  # strip code fences and markdown punctuation, then count tokens
   txt <- gsub("```[\\s\\S]*?```", " ", txt, perl = TRUE)
   txt <- gsub("`[^`]*`", " ", txt, perl = TRUE)
-  txt <- gsub("[^\\p{L}\\p{N}\\s'-]", " ", txt, perl = TRUE) # letters/numbers/space/hyphen/apostrophe
+  txt <- gsub("[^\\p{L}\\p{N}\\s'-]", " ", txt, perl = TRUE)
   words <- unlist(strsplit(txt, "\\s+", perl = TRUE))
   words <- words[nzchar(words)]
   length(words)
 }
-
 txt <- get_response_text()
 n <- count_words(txt)
 minw <- as.integer(params$word_min)
 maxw <- as.integer(params$word_max)
 in_range <- n >= minw && n <= maxw
-
 cat(sprintf("**Word count:** %d  \n", n))
 cat(sprintf("**Required range (%s):** %d–%d words  \n",
             toupper(params$course), minw, maxw))
 cat(if (in_range) "**Status:** ✅ In range\n" else "**Status:** ❌ Out of range\n")
 ````
-

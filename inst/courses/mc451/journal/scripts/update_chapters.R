@@ -1,4 +1,6 @@
-# Rewrites the "chapters" section of _quarto.yml to include entries/ in date order.
+# Rewrites the "chapters" section of _quarto.yml to include entries/ in order.
+# If files are named like week_02.qmd, week_03.qmd, they are sorted numerically by week.
+# Otherwise, falls back to alphabetical.
 update_chapters <- function(qyml = "_quarto.yml") {
   if (!file.exists(qyml)) stop("Cannot find _quarto.yml", call. = FALSE)
   y <- readLines(qyml, warn = FALSE)
@@ -11,7 +13,16 @@ update_chapters <- function(qyml = "_quarto.yml") {
 
   files <- list.files("entries", pattern = "\\.qmd$", full.names = TRUE)
   if (length(files)) {
-    rel <- file.path("entries", basename(sort(files)))
+    base <- basename(files)
+    # try to parse week numbers from "week_XX.qmd"
+    wk <- suppressWarnings(as.integer(sub("^week_([0-9]+)\\.qmd$", "\\1", tolower(base))))
+    if (all(!is.na(wk))) {
+      ord <- order(wk)
+      base <- base[ord]
+    } else {
+      base <- sort(base)
+    }
+    rel <- file.path("entries", base)
     lines <- paste0("    - ", rel)
   } else {
     rel <- character()

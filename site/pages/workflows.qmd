@@ -1,90 +1,129 @@
 ---
 title: "Weekly Workflows"
+freeze: auto
 ---
 
-This page shows the rhythm you’ll use all term: update tools, pull materials, render, and commit/push. It’s intentionally week-neutral—no assignment details here, just mechanics.
+This page shows the **every-week rhythm**: update tools, pull materials, complete your work, render, and commit/push.\
+Unlike [Getting Started](getting_started.qmd), nothing here is one-time—it’s your repeating cycle.
 
----
+------------------------------------------------------------------------
+
+## At a glance (diagram)
+
+```{mermaid}
+flowchart TD
+  A["Open RStudio Project<br/>(.Rproj)"] --> B["Update package<br/>pak::pak('SIM-Lab-SIUE/mccoursepack')"]
+  B --> C["Download week N<br/>download_week('mc451', N, '.')"]
+  C --> D["Do the work<br/>edit week_0N/.qmd → Render"]
+  D --> E["Add journal entry<br/>source('journal/scripts/new_journal_entry.R')"]
+  E --> F["Render journal book<br/>quarto render"]
+  F --> G["Stage → Commit → Push<br/>(Git/GitHub)"]
+  style A fill:#eef,stroke:#99f
+  style G fill:#efe,stroke:#2a2
+```
+
+------------------------------------------------------------------------
 
 ## 0) Open your Project
 
-Start inside your course **RStudio Project** (open the `.Rproj`). Projects keep paths stable and make everything else behave.
+Always begin inside your course **RStudio Project** (open the `.Rproj`). Projects keep paths stable and reproducible.
 
----
+------------------------------------------------------------------------
 
-## 1) Update the package (and your toolchain)
+## 1) Update the package each week
 
-```r
-install.packages("pak")                              # once per machine
-pak::pak("SIM-Lab-SIUE/mccoursepack")               # update to latest
-library(mccoursepack)                                # load this session
+pak::pak("SIM-Lab-SIUE/mccoursepack") \# get latest version library(mccoursepack) \# load for this session
 
-# If you haven't already done the one-time setup (or PDFs fail), run:
-mccourse_setup()                                     # Quarto + TinyTeX + core pkgs
-````
+```         
 
----
+If a render fails with Quarto/TinyTeX errors, you can re-run:
 
-## 2) See what’s available
-
-```r
-list_courses()               # e.g., "mc451", "mc501"
-list_weeks("mc451")          # "week_01", "week_02", ...
+``` r
+mccourse_setup()   # safe anytime; only installs missing pieces
 ```
 
----
+------------------------------------------------------------------------
 
-## 3) Copy materials into your Project
+## 2) Pull this week’s scaffold
 
-```r
-# Replace N with the week number you need (e.g., 1, 2, 3, ...)
-download_week("mc451", N, dest = ".")   # creates ./week_0N/ and copies files
-open_week(N, dest = ".")                # optional: opens the folder
+``` r
+list_weeks("mc451")          # or "mc501" to see available weeks
+download_week("mc451", N, dest = ".")   # replace N with week number
+open_week(N, dest = ".")                # optional: opens folder
 ```
 
-Open the `.qmd` inside `week_0N/` and click **Render**. Our templates default to **PDF first**; HTML is available too.
+This creates `./week_0N/`. Open the `.qmd` inside and click **Render** (PDF or HTML).
 
----
+------------------------------------------------------------------------
 
-## 4) Version your work with Git (RStudio Git pane)
+## 3) Write your journal entry
 
-1. **Pull** (get changes from GitHub)
-2. **Stage** the files you changed
-3. **Commit** with a short message
-4. **Push** to GitHub
+At the end of each week, add a dated chapter to your **journal book**:
+
+``` r
+setwd("journal")                   # go inside journal folder
+source("scripts/new_journal_entry.R")
+```
+
+This creates `entries/YYYY-MM-DD.qmd` with three prompts. **Answer exactly one**, staying in your word range:
+
+-   **MC 451:** 250–300 words
+-   **MC 501:** 450–500 words
+
+Then render the journal:
+
+``` bash
+quarto render
+```
+
+Outputs appear under `journal/_book/`.
+
+------------------------------------------------------------------------
+
+## 4) Submit your work (GitHub)
+
+Use RStudio’s **Git pane** or the command line. Each week:
+
+1.  **Pull** to sync with GitHub
+2.  **Stage** the files you changed
+3.  **Commit** with a short message
+4.  **Push** to GitHub
 
 Command line:
 
-```bash
+``` bash
 git pull
 git add -A
-git commit -m "Update journal and render outputs"
+git commit -m "Week N journal + assignment"
 git push
 ```
 
----
+> 🔑 **Journal note:** when you add a new entry, commit **both** the new chapter file and `journal/_quarto.yml`.
 
-## 5) Keep the docs site up to date (maintainers only)
+------------------------------------------------------------------------
 
-If you’re editing the Quarto **website** under `site/`:
+## Quick checklist (each week)
 
-```bash
-# from repo root
-quarto preview site     # local live preview
-# edit .qmd files...
+-   [ ] Open the **Project**
+-   [ ] Update package (`pak::pak("SIM-Lab-SIUE/mccoursepack")`)
+-   [ ] `download_week("mc451", N, dest = ".")`
+-   [ ] Do the assignment + add journal entry
+-   [ ] Render to PDF/HTML (and render the journal book)
+-   [ ] Stage → Commit → Push to GitHub
+
+------------------------------------------------------------------------
+
+::: callout-note
+## Maintainers only
+
+If you’re editing the documentation site (`site/`):
+
+``` bash
+quarto preview site     # live preview
 git add -A
 git commit -m "docs: expand troubleshooting & reference"
 git push
 ```
 
-A GitHub Actions workflow renders the site and publishes it to Pages automatically.
-
----
-
-## Quick checklist (each week)
-
-* [ ] Open the **Project**
-* [ ] `pak::pak("SIM-Lab-SIUE/mccoursepack")`
-* [ ] `download_week("mc451", N, dest = ".")`
-* [ ] Render `.qmd` (PDF/HTML via Quarto)
-* [ ] Stage → Commit → Push
+GitHub Actions will render and deploy to Pages automatically. :::
+:::

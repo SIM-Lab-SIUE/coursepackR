@@ -1,35 +1,39 @@
 ---
 title: "Quarto Basics"
+freeze: auto
 ---
 
 ## What is Quarto?
 
-Quarto is a publishing system for technical docs. You write a `.qmd` file (Markdown + optional code), and Quarto renders it to **HTML**, **PDF**, slides, and more. By default it renders to **HTML** unless you specify another format.
+Quarto is a publishing system for technical docs. You write a `.qmd` file (Markdown + optional code), and Quarto renders it to **HTML**, **PDF**, slides, and more. By default it renders to **HTML** unless you specify otherwise.
 
----
+------------------------------------------------------------------------
 
 ## Install & verify
 
-- Install Quarto: https://quarto.org/docs/get-started/  
-- Verify in a terminal:
-  ```bash
-  quarto check
-  quarto --version
-````
+-   Install Quarto: <https://quarto.org/docs/get-started/>
+-   Verify in a terminal:
 
-* PDF requires a TeX engine (e.g., TinyTeX). To install:
+``` bash
+quarto check
+quarto --version
+```
 
-  ```bash
-  quarto install tinytex
-  ```
+**PDF note:** PDF output requires a TeX engine. The easiest path is TinyTeX.
 
----
+``` bash
+quarto install tinytex
+```
+
+(Or run `mccourse_setup()` in R to install prerequisites automatically.)
+
+------------------------------------------------------------------------
 
 ## Your first document
 
-Make `report.qmd`:
+Create `report.qmd`:
 
-```markdown
+``` markdown
 ---
 title: "My Report"
 format: html   # default is html if omitted
@@ -42,54 +46,108 @@ This is **Markdown**. Add text, lists, images, and code blocks.
 
 Render to HTML:
 
-```bash
+``` bash
 quarto render report.qmd --to html
 ```
 
----
+------------------------------------------------------------------------
 
-## PDF first (our default in course templates)
+## Course patterns: Documents vs. Book
 
-Set `format: pdf` in the YAML:
+In this course you’ll use Quarto in two modes:
 
-```markdown
+1.  **Weekly documents** (one file → one output)
+
+-   Lives under folders like `week_01/`
+-   You open a `.qmd` and render it directly
+
+2.  **Journal as a Quarto book** (many chapters → one book)
+
+-   Lives in `journal/`
+-   Each entry is a chapter in `journal/entries/`
+-   The book’s table of contents is defined in `journal/_quarto.yml`
+
+### Minimal book `_quarto.yml` (journal)
+
+``` yaml
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Course Journal"
+  author: "YOUR NAME"
+  date: today
+  downloads: [pdf, epub]
+  chapters:
+    - index.qmd
+    # --- auto-managed: do not edit below ---
+    # BEGIN AUTO
+    # END AUTO
+    # --- end auto-managed ---
+
+format:
+  html:
+    toc: true
+    number-sections: true
+  pdf:
+    toc: true
+    number-sections: true
+```
+
+> The `scripts/update_chapters.R` script rewrites the lines between `BEGIN AUTO` and `END AUTO` to include all dated files under `entries/` (sorted by filename). Don’t edit that block manually.
+
+Render the whole journal book from inside `journal/`:
+
+``` bash
+quarto render
+```
+
+Outputs appear in `journal/_book/`.
+
+------------------------------------------------------------------------
+
+## PDF-first and multi-format options
+
+You can request specific formats in the document YAML:
+
+``` markdown
 ---
 title: "PDF-first example"
 format: pdf
 ---
 ```
 
-Or set options for multiple formats:
+Or enable multiple formats with options:
 
-```markdown
+``` markdown
 ---
-title: "PDF-first with options"
+title: "PDF & HTML"
 format:
   pdf:
     toc: true
     number-sections: true
   html:
     toc: true
+    code-fold: true
 ---
 ```
 
-PDF needs LaTeX (TinyTeX is the easiest option).
-
----
+------------------------------------------------------------------------
 
 ## Render from RStudio or VS Code
 
-* **RStudio**: open a `.qmd` and click **Render**.
-* **VS Code**: install the Quarto extension; use **Quarto: Render** or run `quarto render` in the integrated terminal.
+-   **RStudio**: open a `.qmd` and click **Render**.
+-   **VS Code**: install the Quarto extension; use **Quarto: Render** or run `quarto render` in the integrated terminal.
 
----
+------------------------------------------------------------------------
 
 ## Project basics (render only what you intend)
 
 Quarto projects let you render a folder of documents with shared settings and control *which* files render:
 
-```yaml
-# site/_quarto.yml (this website)
+``` yaml
+# site/_quarto.yml (example for a website/docs project)
 project:
   type: website
   output-dir: _site
@@ -98,32 +156,49 @@ project:
     - pages/**/*.qmd
 ```
 
-That whitelist prevents Quarto from roaming the entire repository.
+That whitelist prevents Quarto from scanning and rendering the entire repository.
 
----
+------------------------------------------------------------------------
 
 ## Execution control: cache & freeze (optional)
 
-* **Cache**: store chunk results so long computations aren’t re-run.
-* **Freeze** (project-level): reuse previously rendered results during project renders:
+-   **Cache** stores chunk results so long computations aren’t re-run.
+-   **Freeze** reuses previously rendered results during project renders:
 
-  ```yaml
-  execute:
-    freeze: auto
-  ```
+``` yaml
+execute:
+  freeze: auto
+```
 
----
+Add this to the project’s `_quarto.yml` (site or book) to stabilize outputs until sources change.
+
+------------------------------------------------------------------------
+
+## Journal chapter template (prompt-only)
+
+Each journal chapter is created from `entry_template.qmd` and contains **three prompts** plus a **Response** section. Students answer **one** prompt only. The template includes an **automatic word count**:
+
+-   **MC 451:** 250–300 words
+-   **MC 501:** 450–500 words
+
+Rendering the chapter shows the current count and whether it’s in range.
+
+> New chapters are created by running `source("scripts/new_journal_entry.R")` inside `journal/`. The script injects prompts and updates `_quarto.yml`.
+
+------------------------------------------------------------------------
 
 ## Common options
 
-* **Table of contents**: `toc: true`
-* **HTML niceties**: `code-fold`, `toc-expand`, etc.
-* **PDF**: `geometry`, `documentclass`, `keep-tex`, `include-in-header` for LaTeX tweaks.
+-   **Table of contents**: `toc: true`
+-   **Code folding** (HTML): `code-fold: true`
+-   **Section numbering**: `number-sections: true`
+-   **PDF fine-tuning**: `geometry`, `documentclass`, `keep-tex`, `include-in-header`, etc.
 
----
+------------------------------------------------------------------------
 
 ## Troubleshooting quick hits
 
-* **“No TeX installation detected”** → run `quarto install tinytex` or re-run `mccourse_setup()`.
-* **Renders the whole repo** → add `project.render` (see above).
-* **Still stuck** → check the Quarto Troubleshooting page: [https://quarto.org/docs/troubleshooting/](https://quarto.org/docs/troubleshooting/)
+-   **“No TeX installation detected”** → run `quarto install tinytex` or `mccourse_setup()`.
+-   **Whole repo renders unintentionally** → set `project.render` (see above).
+-   **New journal chapter not appearing** → commit both the new `entries/YYYY-MM-DD.qmd` **and** `journal/_quarto.yml`, then re-render.
+-   **Word count out of range** → ensure only the **Response** section contains your text; target the correct range for your course.

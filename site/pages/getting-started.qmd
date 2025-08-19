@@ -1,33 +1,40 @@
 ---
 title: "Getting Started"
+freeze: auto
 ---
 
-Welcome! Follow these steps once to set up your computer and confirm everything works with **mccoursepack**.
-
----
-
-## 1) Prerequisites (quick installs)
-
-- **R + RStudio** — already installed.  
-  - R: [CRAN](https://cran.r-project.org/)  
-  - RStudio Desktop: [Posit downloads](https://posit.co/download/rstudio-desktop/)
-- **Git** — install Git so you can commit and push work.  
-  - Windows: [Git for Windows](https://gitforwindows.org/)  
-  - macOS: [Xcode Command Line Tools](https://developer.apple.com/xcode/resources/) or [Homebrew](https://brew.sh/) (`brew install git`)
-- **Quarto** — the engine that renders `.qmd` files.  
-  - Install: [Quarto Get Started](https://quarto.org/docs/get-started/)
-
-> Prefer automation? Step 4’s `mccourse_setup()` can install **Quarto** and **TinyTeX** (LaTeX for PDFs) for you.
+Welcome! Follow these steps **once** to prepare your computer and confirm everything works with **mccoursepack**.  
+After this, your weekly rhythm lives on the [Workflows](workflows.qmd) page.
 
 ---
 
-## 2) Make a course folder + RStudio Project (one time)
+## 1) Install prerequisites
 
-1. Create a folder for this course, e.g.:
-   - Windows: `Documents\MC451`
-   - macOS: `Documents/MC451`
-2. In **RStudio**: **File → New Project → New Directory → New Project**, name it **MC451**, and create it in your Documents folder.  
-   Working inside a Project keeps paths sane and reproducible.
+- **R + RStudio**
+  - R: <https://cran.r-project.org/>
+  - RStudio Desktop: <https://posit.co/download/rstudio-desktop/>
+- **Git** (to commit/push from RStudio)
+  - Windows: <https://gitforwindows.org/>
+  - macOS: install Xcode Command Line Tools or use Homebrew →  
+    ```bash
+    brew install git
+    ```
+- **Quarto** (renders `.qmd` files): <https://quarto.org/docs/get-started/>
+
+> Prefer automation? Step 4’s `mccourse_setup()` can install **Quarto** and **TinyTeX** automatically.
+
+---
+
+## 2) Create your course folder + RStudio Project
+
+1. Make a folder, e.g.  
+   - Windows: `Documents\MC451` or `Documents\MC501`  
+   - macOS: `Documents/MC451` or `Documents/MC501`
+2. In **RStudio**:  
+   **File → New Project → New Directory → New Project**  
+   Name it `MC451` (or `MC501`) and place it in Documents.
+
+Projects keep paths stable and reproducible.
 
 ---
 
@@ -36,9 +43,9 @@ Welcome! Follow these steps once to set up your computer and confirm everything 
 In the **RStudio Console**:
 
 ```r
-install.packages("pak")                            # one time per machine
+install.packages("pak")                              # once per machine
 pak::pak("SIM-Lab-SIUE/mccoursepack")
-library(mccoursepack)                               # load each new R session
+library(mccoursepack)                                # load each session
 packageVersion("mccoursepack")
 ````
 
@@ -52,71 +59,115 @@ library(mccoursepack)
 
 ---
 
-## 4) One-time setup: Quarto, TinyTeX (PDF), and core R packages
+## 4) Run the one-time setup helper
 
 ```r
-mccourse_setup()   # safe to re-run; only installs what's missing
+mccourse_setup()   # safe to re-run; installs only what’s missing
 ```
 
-* **Quarto** renders `.qmd` files.
-* **TinyTeX** supplies LaTeX for **PDF** output (our templates default to PDF first).
-* Installs a small set of core CRAN packages used across materials.
+This ensures:
+
+* **Quarto** is installed (engine for `.qmd`)
+* **TinyTeX** is installed (LaTeX for PDF)
+* Core CRAN packages are available
 
 ---
 
-## 5) Verify your toolchain
-
-Run these checks:
+## 5) Verify the toolchain
 
 ```r
-# Quarto available?
-system("quarto --version")
-
-# Git available?
-system("git --version")
-
-# TinyTeX installed? (optional check)
-if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
+system("quarto --version")     # Quarto?
+system("git --version")        # Git?
+if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()  # TinyTeX?
 ```
 
-If something is missing or errors, run `mccourse_setup()` again and/or restart RStudio.
+If anything is missing, re-run `mccourse_setup()` and restart RStudio.
 
 ---
 
-## 6) Explore what the package can do
+## 6) Pull your first week scaffold (sanity check)
 
 ```r
-# What courses are installed?
-list_courses()
-
-# What week folders exist for a course?
-list_weeks("mc451")  # replace with your course id
+list_courses()                          # installed courses
+list_weeks("mc451")                     # week folders
+download_week("mc451", week = 1, dest = ".")
 ```
 
-Copy a week’s scaffold into your Project (this creates `week_XX/` in your current directory):
-
-```r
-download_week("mc451", 1, dest = ".")  # example: week 1
-```
-
-Open the new `week_XX/` folder in the Files pane, open a `.qmd`, and click **Render**. Templates are configured so **PDF** is the first option; HTML is also available.
-
-> Tip: You can open a week folder from R with `open_week(1, dest = ".")`.
+Open `week_01/`, edit the `.qmd`, and click **Render** (PDF or HTML).
+This confirms the package + Quarto toolchain work.
 
 ---
 
-## 7) Optional: basic Git/GitHub setup
+## 7) Pull the Journal (Quarto book)
 
-* In RStudio: **Tools → Global Options → Git/SVN** → ensure Git is detected.
-* Sign in to GitHub: [github.com](https://github.com/).
-* When you later create a repository for your journal/work, use the **Git** pane (Stage → Commit → Push) to submit updates.
-  Helpful guide: [Happy Git and GitHub for the useR](https://happygitwithr.com/)
+```r
+download_journal("mc451", dest = ".")   # or "mc501"
+```
+
+This creates a `journal/` folder with:
+
+```
+journal/
+  _quarto.yml
+  index.qmd
+  entry_template.qmd
+  entries/
+  scripts/
+  prompts_mc451.csv
+  assets/
+```
+
+* **MC 451 entries:** 250–300 words
+* **MC 501 entries:** 450–500 words
+* Each chapter shows 3 prompts → **answer exactly one**
+* Word counter (when rendered) checks your range
+
+---
+
+## 8) Add your first journal entry
+
+From inside `journal/`:
+
+```r
+source("scripts/new_journal_entry.R")
+```
+
+This creates `entries/YYYY-MM-DD.qmd`, inserts prompts, sets the word-count range, and updates `_quarto.yml`.
+Open it, write your response, and render.
+
+---
+
+## 9) Render outputs
+
+* **Week files:** open `.qmd` inside `week_XX/` → **Render**
+* **Journal book:** open `journal/` → **Render**, or run:
+
+```bash
+quarto render
+```
+
+Output is written to `journal/_book/`.
+
+---
+
+## 10) Optional: connect Git/GitHub
+
+* In RStudio: **Tools → Global Options → Git/SVN** → check Git detection
+* Sign in at [https://github.com/](https://github.com/)
+* Use the **Git** pane: Stage → Commit → Push
+
+> Journal note: when you add a chapter, commit **both** the new file and `journal/_quarto.yml`.
 
 ---
 
 ## Quick fixes
 
-* **Quarto not found** → install Quarto or run `mccourse_setup()`, then restart RStudio.
-* **PDF render fails** → run `mccourse_setup()` to install TinyTeX.
-* **Files didn’t appear** → ensure you’re inside your Project (`getwd()`), then re-run `download_week(...)`.
-* **Git push fails** → confirm Git is installed and enabled in RStudio’s Git/SVN settings.
+* **Quarto not found** → install Quarto or run `mccourse_setup()`, then restart
+* **PDF render fails** → `mccourse_setup()` to install TinyTeX
+* **Files missing** → confirm you’re inside the Project (`getwd()`), re-run `download_week()`/`download_journal()`
+* **New journal entry not listed** → commit the updated `_quarto.yml` and re-render
+* **Word count out of range** → check MC 451 (250–300) vs MC 501 (450–500); only the **Response** is counted
+
+---
+
+✅ After this page, move on to [Weekly Workflows](workflows.qmd) for your **every-week routine**.

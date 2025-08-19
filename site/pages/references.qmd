@@ -1,28 +1,31 @@
 ---
 title: "Package Reference"
+freeze: auto
 ---
 
-> Tip: Load the package each R session:
+> **Tip**  
+> Load the package each R session:
 >
 > ```r
 > library(mccoursepack)
 > ```
 
-This page documents the functions students actually use. All commands assume you’re working inside an RStudio **Project**.
+This page documents the functions students actually use.  
+All commands assume you are working inside an RStudio **Project**.
 
 ---
 
 ## At a glance
 
 | Function | What it does |
-|---|---|
+|----------|--------------|
 | `list_courses()` | Lists installed course IDs (e.g., `"mc451"`, `"mc501"`). |
-| `list_weeks(course = NULL)` | Lists available week folders (e.g., `"week_01"`) for a course; if `NULL`, aggregates across courses. |
-| `download_week(course, week, dest=".")` | Creates **`week_XX/`** under `dest` and copies that week’s files there. |
-| `open_week(week, dest=".")` | Opens the local `week_XX/` folder in your file browser. |
+| `list_weeks(course = NULL)` | Lists available week folders (e.g., `"week_01"`) for a course. If `NULL`, aggregates across all installed courses. |
+| `download_week(course, week, dest = ".")` | Creates **`week_XX/`** under `dest` and copies that week’s files there. |
+| `open_week(week, dest = ".")` | Opens the local `week_XX/` folder in your system’s file browser. |
 | `mccourse_setup(ask = TRUE, pkgs = c(...))` | One-time helper: installs Quarto, TinyTeX (for PDF), and core CRAN packages if missing. |
 | `mccourse_self_test()` | Prints the courses and weeks the package can see (sanity check). |
-| `mccourse_update()` | Convenience to update **mccoursepack** to the latest GitHub build. |
+| `mccourse_update()` | Updates **mccoursepack** to the latest GitHub build. |
 
 ---
 
@@ -32,32 +35,39 @@ This page documents the functions students actually use. All commands assume you
 list_courses()
 ````
 
-Returns a character vector of course IDs (e.g., `"mc451"`, `"mc501"`). Empty if none are installed.
+Returns a character vector of course IDs (e.g., `"mc451"`, `"mc501"`).
+If no courses are installed, returns an empty vector.
 
 ---
 
 ## `list_weeks(course = NULL)`
 
 ```r
-list_weeks()           # across all installed courses
-list_weeks("mc451")    # for a specific course
+list_weeks()         # across all installed courses
+list_weeks("mc451")  # for a specific course
 ```
 
-Returns folder names like `"week_01"`, `"week_02"`, … (empty if none).
+Returns folder names like `"week_01"`, `"week_02"`, …
+Empty if no weeks are installed for that course.
 
 ---
 
 ## `download_week(course, week, dest = ".")`
 
 ```r
-download_week("mc451", 1, dest = ".")   # also accepts "01" or "week_01"
+download_week("mc451", 1, dest = ".")   # accepts 1, "01", or "week_01"
 ```
 
-* Creates `dest/week_01/` (or `week_XX/`) and copies that week’s files **into** the folder.
-* Preserves subfolders.
-* Empty templates (e.g., breaks) still create the folder but copy no files.
+* Creates `dest/week_01/` (or another `week_XX/`)
+* Copies that week’s files **into** the folder
+* Preserves subfolders
+* Empty templates (e.g., holidays) still create the folder but copy no files
 
-Returns (invisibly) a list: `list(dest, course, week, n_copied)`.
+Returns (invisibly) a list:
+
+```r
+list(dest, course, week, n_copied)
+```
 
 ---
 
@@ -74,12 +84,14 @@ Opens `dest/week_01/` in your system file browser.
 ## `mccourse_setup(ask = TRUE, pkgs = c(...))`
 
 ```r
-mccourse_setup()   # installs only what's missing
+mccourse_setup()   # safe to re-run; installs only what’s missing
 ```
 
-* Ensures **Quarto** is installed (engine for `.qmd`).
-* Ensures **TinyTeX** (LaTeX) for **PDF** output.
-* Installs a small set of **core CRAN packages** used across course materials.
+Ensures that:
+
+* **Quarto** is installed (for rendering `.qmd`)
+* **TinyTeX** (LaTeX) is available for **PDF** output
+* A small set of **core CRAN packages** are installed
 
 ---
 
@@ -89,7 +101,7 @@ mccourse_setup()   # installs only what's missing
 mccourse_self_test()
 ```
 
-Prints the courses found and the weeks available for each.
+Runs a basic sanity check: prints which courses are installed and which weeks are available.
 
 ---
 
@@ -99,11 +111,19 @@ Prints the courses found and the weeks available for each.
 mccourse_update()
 ```
 
-Updates **mccoursepack** to the latest version from GitHub (or use `pak::pak("SIM-Lab-SIUE/mccoursepack")` manually).
+Updates **mccoursepack** to the latest GitHub version.
+(Equivalent to running `pak::pak("SIM-Lab-SIUE/mccoursepack")` manually.)
 
 ---
 
 ## Common patterns
 
-* Open the **Project**, then run package commands.
-* Render `.qmd` to PDF/HTML via Quarto. If PDF fails, run `mccourse_setup()` to install TinyTeX.
+* Always open your **RStudio Project** before using package commands.
+* Render `.qmd` files to **PDF** (default) or **HTML** with Quarto.
+* If PDF rendering fails, run:
+
+```r
+mccourse_setup()
+```
+
+to install TinyTeX and other dependencies.
