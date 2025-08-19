@@ -3,7 +3,7 @@
 
 # mccoursepack
 
-Course materials for **MC 451 (Undergraduate)** and **MC 501 (Graduate)** delivered as an R package.  
+Course materials for **MC 451 (Undergraduate)** and **MC 501 (Graduate)** delivered as an R package.
 Install or update the package each week, then use its helper functions to pull your course scaffolds (Quarto docs, instructions, and any starter files) into your local folders.
 
 ---
@@ -11,6 +11,8 @@ Install or update the package each week, then use its helper functions to pull y
 ## 🚀 Quick start
 
 ```r
+# Windows users: install Rtools first (see Prerequisites below)
+
 # 1) Install/update the package
 install.packages("pak")
 pak::pak("SIM-Lab-SIUE/mccoursepack")
@@ -30,7 +32,7 @@ download_week("mc451", week = 1, dest = ".")
 
 # 6) Copy the course journal scaffold once per course
 download_journal("mc451", dest = ".")
-````
+```
 
 > Templates are **PDF-first** by default; HTML works too.
 > If PDF rendering fails the first time, run `mccourse_setup()` again to install TinyTeX.
@@ -71,6 +73,17 @@ Specific functions:
 * **Git** (so you can commit & push from RStudio)
 * **Quarto** (renders `.qmd` to PDF/HTML)
 * **TinyTeX** (only if you need PDF and don’t already have LaTeX) — `mccourse_setup()` can install this for you
+* **Windows only:** [**Rtools**](https://cran.rstudio.com/bin/windows/Rtools/) (required to build packages from source).
+
+  * Install the version matching your R (e.g. R 4.5 → Rtools 4.5).
+  * Restart RStudio after installation.
+  * Verify with:
+
+    ```r
+    pkgbuild::check_build_tools(debug = TRUE)
+    ```
+
+  If it prints `TRUE`, you’re set.
 
 See **Getting Started** for links, screenshots, and checks.
 
@@ -108,6 +121,7 @@ Each week you’ll have `week_01`, `week_02`, … subfolders and one `journal/` 
 * **PDF render fails:** `mccourse_setup()` to install TinyTeX.
 * **Files didn’t appear:** check `getwd()`, then re-run `download_week(...)` or `download_journal(...)`.
 * **Git push failed:** enable Git in RStudio and authenticate to GitHub.
+* **Windows build error:** “Could not find tools necessary to compile a package” → install [Rtools](https://cran.rstudio.com/bin/windows/Rtools/) as described above.
 
 More fixes on the [Troubleshooting page](https://sim-lab-siue.github.io/mccoursepack/pages/troubleshooting.html).
 
