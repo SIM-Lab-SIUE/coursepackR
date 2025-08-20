@@ -1,15 +1,16 @@
 ---
-title: "YYYY-MM-DD"    # replaced by script with the actual date
+# The header is ignored and rebuilt by scripts/new_journal_entry.R
+title: "WEEK_NN"
 format:
   html: default
   pdf: default
 params:
-  course: "mc451"      # replaced by script: "mc451" or "mc501"
-  word_min: 250        # replaced by script
-  word_max: 300        # replaced by script
-  p1: ""               # replaced by script
-  p2: ""               # replaced by script
-  p3: ""               # replaced by script
+  course: "mc451"
+  word_min: 250
+  word_max: 300
+  p1: ""
+  p2: ""
+  p3: ""
 ---
 
 ## Choose **one** prompt to answer
@@ -63,4 +64,3 @@ cat(sprintf("**Required range (%s):** %d–%d words  \n",
             toupper(params$course), minw, maxw))
 cat(if (in_range) "**Status:** ✅ In range\n" else "**Status:** ❌ Out of range\n")
 ```
-
