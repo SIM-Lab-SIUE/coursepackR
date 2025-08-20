@@ -16,6 +16,8 @@ website:
         file: pages/getting-started.qmd
       - text: "R & RStudio"
         file: pages/r-and-rstudio.qmd
+      - text: "Weekly Journal"
+        file: pages/journal.qmd
       - text: "Git & GitHub"
         file: pages/git-and-github.qmd
       - text: "Quarto"
@@ -35,6 +37,7 @@ website:
         contents:
           - pages/getting-started.qmd
           - pages/r-and-rstudio.qmd
+          - pages/journal.qmd
           - pages/git-and-github.qmd
           - pages/quarto-basics.qmd
       - section: "Course Workflow"

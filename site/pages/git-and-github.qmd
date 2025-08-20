@@ -36,7 +36,7 @@ GitHub no longer accepts account passwords for Git over HTTPS. Use **HTTPS + Per
 install.packages(c("usethis", "gitcreds"))
 usethis::create_github_token()  # opens the token page in your browser
 gitcreds::gitcreds_set()        # paste the token at the prompt
-````
+```
 
 Git Credential Manager (optional helper): [https://github.com/GitCredentialManager/git-credential-manager](https://github.com/GitCredentialManager/git-credential-manager)
 
