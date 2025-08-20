@@ -7,7 +7,7 @@ format:
 
 This journal renders as a **book**. Each dated entry is a chapter.
 
-- **MC 501 entries:** 450–500 words
+- **MC 451 entries:** 250–300 words
 - At the **end of each chapter** you’ll see **three prompts**. **Answer only one**.
 - Write your answer in the **Response** box; the page shows an **automatic word count** and whether you’re in range.
 

@@ -1,15 +1,15 @@
 ---
-title: "WEEK_NN"    # <-- replaced by script with "Week 02", "Week 03", ...
+title: "YYYY-MM-DD"    # replaced by script with the actual date
 format:
   html: default
   pdf: default
 params:
-  course: "mc451"   # injected by script: "mc451" or "mc501"
-  word_min: 250     # injected by script
-  word_max: 300     # injected by script
-  p1: ""
-  p2: ""
-  p3: ""
+  course: "mc451"      # replaced by script: "mc451" or "mc501"
+  word_min: 250        # replaced by script
+  word_max: 300        # replaced by script
+  p1: ""               # replaced by script
+  p2: ""               # replaced by script
+  p3: ""               # replaced by script
 ---
 
 ## Choose **one** prompt to answer

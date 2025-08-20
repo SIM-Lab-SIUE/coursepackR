@@ -1,76 +1,112 @@
-new_journal_entry <- function(date = Sys.Date(),
-                              template = "entry_template.qmd",
-                              prompts_file = NULL,
-                              pick = FALSE) {
-  # Determine course and word range from prompts file or folder name
-  if (is.null(prompts_file)) {
-    if (file.exists("prompts_mc451.csv")) prompts_file <- "prompts_mc451.csv"
-    if (file.exists("prompts_mc501.csv")) prompts_file <- "prompts_mc501.csv"
-  }
-  if (is.null(prompts_file) || !file.exists(prompts_file)) {
-    stop("Could not locate prompts file (prompts_mc451.csv or prompts_mc501.csv).", call. = FALSE)
-  }
+new_journal_entry <- function(week,
+															date = Sys.Date(),
+															template = "entry_template.qmd",
+															prompts_file = NULL) {
+	# 1) Locate prompts file if not supplied
+	if (is.null(prompts_file)) {
+		if (file.exists("prompts_mc451.csv")) prompts_file <- "prompts_mc451.csv"
+		if (file.exists("prompts_mc501.csv")) prompts_file <- "prompts_mc501.csv"
+	}
+	if (is.null(prompts_file) || !file.exists(prompts_file)) {
+		stop("Could not locate prompts file (prompts_mc451.csv or prompts_mc501.csv).", call. = FALSE)
+	}
 
-  course <- if (grepl("mc501", basename(prompts_file), ignore.case = TRUE)) "mc501" else "mc451"
-  word_min <- if (course == "mc501") 450L else 250L
-  word_max <- if (course == "mc501") 500L else 300L
+	# 2) Determine course + word ranges from file name
+	course <- if (grepl("mc501", basename(prompts_file), ignore.case = TRUE)) "mc501" else "mc451"
+	word_min <- if (course == "mc501") 450L else 250L
+	word_max <- if (course == "mc501") 500L else 300L
 
-  if (!file.exists(template)) stop("Cannot find entry_template.qmd in this folder.", call. = FALSE)
-  if (!dir.exists("entries")) dir.create("entries", recursive = TRUE)
+	# 3) Check template + entries folder
+	if (!file.exists(template)) stop("Cannot find entry_template.qmd in this folder.", call. = FALSE)
+	if (!dir.exists("entries")) dir.create("entries", recursive = TRUE)
 
-  # Load prompts, pick three (optionally let user choose)
-  pdat <- tryCatch(read.csv(prompts_file, stringsAsFactors = FALSE), error = function(e) NULL)
-  if (is.null(pdat) || nrow(pdat) < 3) {
-    stop("Prompts file must contain at least 3 prompts.", call. = FALSE)
-  }
+	# 4) Load prompts
+	pdat <- tryCatch(utils::read.csv(prompts_file, stringsAsFactors = FALSE),
+									 error = function(e) NULL)
+	if (is.null(pdat)) stop(sprintf("Failed to read %s", prompts_file), call. = FALSE)
+	if (!("week" %in% names(pdat)) || !("prompt" %in% names(pdat))) {
+		stop("Prompts file must have at least columns: week, prompt", call. = FALSE)
+	}
 
-  picks <- if (pick) {
-    cat("\nAvailable prompts:\n")
-    for (i in seq_len(nrow(pdat))) cat(sprintf("[%d] (%s) %s\n", i, pdat$category[i], pdat$prompt[i]))
-    sel <- readline("Enter THREE prompt numbers separated by commas (e.g., 1,5,8): ")
-    idx <- suppressWarnings(as.integer(strsplit(sel, ",")[[1]]))
-    idx <- idx[!is.na(idx)]
-    if (length(idx) != 3 || any(idx < 1 | idx > nrow(pdat))) {
-      stop("You must select exactly three valid prompt numbers.", call. = FALSE)
-    }
-    idx
-  } else {
-    sample.int(nrow(pdat), 3L)
-  }
+	# 5) Filter for this week (base R; avoid tidy-eval)
+	week <- as.integer(week)
+	week_prompts <- pdat[pdat$week == week, , drop = FALSE]
+	if (nrow(week_prompts) != 3) {
+		stop(sprintf("Week %d must have exactly 3 prompts in %s (found %d).",
+								 week, prompts_file, nrow(week_prompts)), call. = FALSE)
+	}
 
-  p1 <- pdat$prompt[picks[1]]
-  p2 <- pdat$prompt[picks[2]]
-  p3 <- pdat$prompt[picks[3]]
+	# 6) Assign prompts (as character)
+	p1 <- as.character(week_prompts$prompt[1])
+	p2 <- as.character(week_prompts$prompt[2])
+	p3 <- as.character(week_prompts$prompt[3])
 
-  # Build output file name
-  day <- as.character(as.Date(date))
-  out <- file.path("entries", paste0(day, ".qmd"))
+	# --- YAML-safe quoting helper: wrap in single quotes and escape single quotes by doubling ---
+	yaml_single_quoted <- function(x) {
+		x <- gsub("\r", "", x, fixed = TRUE)
+		x <- gsub("'", "''", x, fixed = TRUE)   # YAML rule: escape ' by doubling
+		paste0("'", x, "'")
+	}
 
-  # Read template and inject params (course, word bounds, prompts, title)
-  txt <- readLines(template, warn = FALSE)
-  txt <- sub('^title: "YYYY-MM-DD"', paste0('title: "', day, '"'), txt)
-  # course + word range
-  txt <- gsub('params:\\s*\\n\\s*course: "mc451"\\s*\\n\\s*word_min: 250\\s*\\n\\s*word_max: 300',
-              paste0('params:\n  course: "', course, '"\n  word_min: ', word_min, '\n  word_max: ', word_max),
-              txt, perl = TRUE)
-  # prompts
-  txt <- gsub('p1: ""', paste0('p1: "', gsub('"', '\\"', p1, fixed = TRUE), '"'), txt, fixed = TRUE)
-  txt <- gsub('p2: ""', paste0('p2: "', gsub('"', '\\"', p2, fixed = TRUE), '"'), txt, fixed = TRUE)
-  txt <- gsub('p3: ""', paste0('p3: "', gsub('"', '\\"', p3, fixed = TRUE), '"'), txt, fixed = TRUE)
+	# 7) Build output file path
+	day <- as.character(as.Date(date))
+	out <- file.path("entries", paste0(day, ".qmd"))
 
-  writeLines(txt, out)
-  message("Created: ", out)
+	# 8) Read + inject template
+	txt <- readLines(template, warn = FALSE)
 
-  # Update the book chapters to include the new entry
-  source(file.path("scripts", "update_chapters.R"))
-  update_chapters("_quarto.yml")
+	# 8a) Replace title line (match anything after title:)
+	txt <- gsub('^title:\\s*".*"', paste0('title: "', day, '"'), txt, perl = TRUE)
 
-  invisible(out)
+	# 8b) Replace params block (course + word ranges)
+	params_pattern <- 'params:\\s*\\n\\s*course:\\s*".*?"\\s*\\n\\s*word_min:\\s*\\d+\\s*\\n\\s*word_max:\\s*\\d+'
+	params_replacement <- paste0(
+		'params:\n',
+		'  course: "', course, '"\n',
+		'  word_min: ', word_min, '\n',
+		'  word_max: ', word_max
+	)
+	txt <- gsub(params_pattern, params_replacement, txt, perl = TRUE)
+
+	# 8c) Inject prompts using YAML-safe single-quoted scalars
+	txt <- gsub('p1:\\s*""', paste0('p1: ', yaml_single_quoted(p1)), txt, perl = TRUE)
+	txt <- gsub('p2:\\s*""', paste0('p2: ', yaml_single_quoted(p2)), txt, perl = TRUE)
+	txt <- gsub('p3:\\s*""', paste0('p3: ', yaml_single_quoted(p3)), txt, perl = TRUE)
+
+	# 9) Write the new chapter file
+	writeLines(txt, out)
+	message("Created: ", out)
+
+	# 10) Update the book structure
+	updater <- file.path("scripts", "update_chapters.R")
+	if (file.exists(updater)) {
+		source(updater)
+		if (exists("update_chapters", mode = "function")) {
+			update_chapters("_quarto.yml")
+		} else {
+			warning("update_chapters() not found after sourcing update_chapters.R; skipping TOC update.", call. = FALSE)
+		}
+	} else {
+		warning("scripts/update_chapters.R not found; skipping TOC update.", call. = FALSE)
+	}
+
+	invisible(out)
 }
 
-# If sourced directly (e.g., source("scripts/new_journal_entry.R")):
+# Run directly: prompt for week when sourced interactively
 if (sys.nframe() == 0L) {
-  pf <- if (file.exists("prompts_mc451.csv")) "prompts_mc451.csv" else
-        if (file.exists("prompts_mc501.csv")) "prompts_mc501.csv" else NULL
-  new_journal_entry(prompts_file = pf, pick = interactive())
+	pf <- if (file.exists("prompts_mc451.csv")) {
+		"prompts_mc451.csv"
+	} else if (file.exists("prompts_mc501.csv")) {
+		"prompts_mc501.csv"
+	} else {
+		NULL
+	}
+	if (is.null(pf)) stop("Could not find prompts_mc451.csv or prompts_mc501.csv in the current folder.", call. = FALSE)
+
+	cat("Enter the week number (2–14): ")
+	wk <- suppressWarnings(as.integer(readLines(con = stdin(), n = 1L)))
+	if (is.na(wk)) stop("Invalid week number.", call. = FALSE)
+
+	new_journal_entry(week = wk, prompts_file = pf)
 }
