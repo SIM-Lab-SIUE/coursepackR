@@ -62,4 +62,5 @@ cat(sprintf("**Word count:** %d  \n", n))
 cat(sprintf("**Required range (%s):** %d–%d words  \n",
             toupper(params$course), minw, maxw))
 cat(if (in_range) "**Status:** ✅ In range\n" else "**Status:** ❌ Out of range\n")
-````
+```
+

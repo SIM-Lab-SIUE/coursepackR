@@ -36,15 +36,26 @@ new_journal_entry <- function(week,
 								 week, prompts_file, nrow(week_prompts)), call. = FALSE)
 	}
 
-	# 6) Assign prompts (as character)
-	p1 <- as.character(week_prompts$prompt[1])
-	p2 <- as.character(week_prompts$prompt[2])
-	p3 <- as.character(week_prompts$prompt[3])
+	# 6) Clean & assign prompts
+	trim <- function(x) sub("\\s+$", "", sub("^\\s+", "", x))
+	trim_outer_quotes <- function(x) {
+		x <- trim(x)
+		# remove ONE matching pair of outer quotes if present: "..." or '...'
+		if ((startsWith(x, "\"") && endsWith(x, "\"")) ||
+				(startsWith(x, "“") && endsWith(x, "”")) ||
+				(startsWith(x, "'") && endsWith(x, "'"))) {
+			x <- substring(x, 2L, nchar(x) - 1L)
+		}
+		x
+	}
+	p1 <- trim_outer_quotes(as.character(week_prompts$prompt[1]))
+	p2 <- trim_outer_quotes(as.character(week_prompts$prompt[2]))
+	p3 <- trim_outer_quotes(as.character(week_prompts$prompt[3]))
 
-	# --- YAML-safe quoting helper: wrap in single quotes and escape single quotes by doubling ---
+	# --- YAML-safe quoting: single quotes, escape internal single quotes by doubling ---
 	yaml_single_quoted <- function(x) {
 		x <- gsub("\r", "", x, fixed = TRUE)
-		x <- gsub("'", "''", x, fixed = TRUE)   # YAML rule: escape ' by doubling
+		x <- gsub("'", "''", x, fixed = TRUE)
 		paste0("'", x, "'")
 	}
 
@@ -55,7 +66,7 @@ new_journal_entry <- function(week,
 	# 8) Read + inject template
 	txt <- readLines(template, warn = FALSE)
 
-	# 8a) Replace title line (match anything after title:)
+	# 8a) Replace ANY existing title with the actual date
 	txt <- gsub('^title:\\s*".*"', paste0('title: "', day, '"'), txt, perl = TRUE)
 
 	# 8b) Replace params block (course + word ranges)
@@ -99,14 +110,10 @@ if (sys.nframe() == 0L) {
 		"prompts_mc451.csv"
 	} else if (file.exists("prompts_mc501.csv")) {
 		"prompts_mc501.csv"
-	} else {
-		NULL
-	}
+	} else NULL
 	if (is.null(pf)) stop("Could not find prompts_mc451.csv or prompts_mc501.csv in the current folder.", call. = FALSE)
-
 	cat("Enter the week number (2–14): ")
 	wk <- suppressWarnings(as.integer(readLines(con = stdin(), n = 1L)))
 	if (is.na(wk)) stop("Invalid week number.", call. = FALSE)
-
 	new_journal_entry(week = wk, prompts_file = pf)
 }
