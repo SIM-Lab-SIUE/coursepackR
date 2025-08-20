@@ -41,8 +41,8 @@ get_response_text <- function() {
   f <- knitr::current_input()
   if (is.null(f) || !file.exists(f)) return("")
   x <- readLines(f, warn = FALSE)
-  s <- grep("<!-- RESPONSE-START -->", x, fixed = TRUE)
-  e <- grep("<!-- RESPONSE-END -->", x, fixed = TRUE)
+  s <- grep("^$", x)
+  e <- grep("^$", x)
   if (!length(s) || !length(e) || e <= s) return("")
   paste(x[(s + 1L):(e - 1L)], collapse = "\n")
 }
