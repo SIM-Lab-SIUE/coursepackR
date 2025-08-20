@@ -41,15 +41,19 @@ get_response_text <- function() {
   f <- knitr::current_input()
   if (is.null(f) || !file.exists(f)) return("")
   x <- readLines(f, warn = FALSE)
-  s <- grep("^$", x)
-  e <- grep("^$", x)
-  if (!length(s) || !length(e) || e <= s) return("")
+  # Find the lines that EXACTLY match the start/end markers
+  s <- grep("^<!-- RESPONSE-START -->$", x)
+  e <- grep("^<!-- RESPONSE-END -->$", x)
+  if (length(s) != 1 || length(e) != 1 || e <= s) return("")
   paste(x[(s + 1L):(e - 1L)], collapse = "\n")
 }
 count_words <- function(txt) {
+  # Remove code blocks and inline code before counting
   txt <- gsub("```[\\s\\S]*?```", " ", txt, perl = TRUE)
   txt <- gsub("`[^`]*`", " ", txt, perl = TRUE)
+  # Keep letters, numbers, spaces, hyphens, and apostrophes
   txt <- gsub("[^\\p{L}\\p{N}\\s'-]", " ", txt, perl = TRUE)
+  # Split by whitespace and count non-empty words
   words <- unlist(strsplit(txt, "\\s+", perl = TRUE))
   words <- words[nzchar(words)]
   length(words)
