@@ -1,10 +1,49 @@
 ---
 title: "GitHub Verification Process"
 sidebar: git
+format: html
 ---
 
-*This page was converted from the original PDF: `GitHub Verification Process.pdf`. Formatting and images may differ from the original. The original file is preserved for reference in* `assets/pdfs/GitHub Verification Process.pdf`.
+# GitHub Verification Process
 
-## Page 1
+To verify student status on GitHub, you must ensure your **GitHub profile information** (username, email, full name) matches your provided academic documents.  
+Always use your **school-issued academic email**, provide **legible photos** of your student ID or enrollment documents, and **disable any VPNs**. If a VPN is required, try applying from your university’s Wi-Fi or campus network [[1](https://github.com/orgs/community/discussions/51130)].
 
-(PDF not found)
+---
+
+## Before Applying
+
+- **Match Profile Information**  
+  Make sure the full name and email on your GitHub profile exactly match the information on the academic document you plan to submit [[1](https://github.com/orgs/community/discussions/51130), [7](https://github.com/orgs/community/discussions/58584)].
+
+- **Use an Academic Email**  
+  Apply using your official, school-issued email address. This is GitHub’s preferred method for verification [[3](https://github.com/orgs/community/discussions/68909), [7](https://github.com/orgs/community/discussions/58584)].
+
+- **Disable VPNs**  
+  Turn off VPN services, since they can cause location-based verification to fail. If you must use a VPN, try applying from campus instead [[4](https://github.com/orgs/community/discussions/63651), [8](https://github.com/orgs/community/discussions/50385#:~:text=samus%2Daran%20on%20Mar%2023%2C%202023%20Maintainer%20If,a%20distance%20learning%20student%20when%20you%20reapply.)].
+
+---
+
+## During the Application
+
+- **Submit Clear Photos**  
+  Use your device’s camera to capture your documents. Make sure your **full name, school name, and current date** are clearly legible [[2](https://github.com/orgs/community/discussions/56401), [5](https://github.com/orgs/community/discussions/152862)].
+
+- **Use School Wi-Fi**  
+  Apply from your university’s Wi-Fi or network if possible—this helps verify your location [[6](https://www.reddit.com/r/github/comments/1lkdamh/cant_verify_student_status_for_github_education/#:~:text=I%20can't%20help%20you%20about%20the%20photo,and%20it%20worked.%20Maybe%20try%20that%20?)].
+
+- **Check for System Errors**  
+  If you encounter a general system error, wait and try again later. If the problem persists, contact GitHub Education Support [[1](https://github.com/orgs/community/discussions/51130), [4](https://github.com/orgs/community/discussions/63651)].
+
+---
+
+## If the Application is Rejected
+
+- **Try Alternative Documents**  
+  If one document type fails, try another—such as an official transcript or enrollment letter [[7](https://github.com/orgs/community/discussions/58584), [9](https://github.com/orgs/community/discussions/19025)].
+
+- **Contact Support**  
+  If you repeatedly face issues or believe there is incorrect information in the system, submit a support ticket to **GitHub Education** [[4](https://github.com/orgs/community/discussions/63651)].
+
+---
+

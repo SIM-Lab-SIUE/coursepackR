@@ -1,20 +1,108 @@
 ---
 title: "Quick Setup"
 sidebar: getting-started
+format: html
 ---
 
-## Create an RStudio Project
-1. **RStudio → File → New Project → New Directory → New Project**
-2. Choose a location (e.g., `Documents/MC451/`) and a name (e.g., `journal_project`).
+# Quick Setup
 
-## Install the course package
+Follow these steps to get your system ready with the **latest course package** and two dedicated RStudio projects—one for your **weekly class tasks** and one for your **weekly journal**.
+
+---
+
+## Step 1 — Install or Update the Course Package
+
+The course package `mccoursepack` is hosted on GitHub. Use the `remotes` package to install or update it.
+
 ```r
-# install.packages("remotes")
+# Install remotes if not already installed
+install.packages("remotes")
+
+# Install or update the course package
 remotes::install_github("SIM-Lab-SIUE/mccoursepack")
+
+# Load the package
 library(mccoursepack)
+````
+
+\::: tip
+Run the `remotes::install_github()` command at the start of the semester and again whenever updates are announced.
+\:::
+
+---
+
+## Step 2 — Create Two RStudio Projects
+
+Projects keep everything organized. You’ll create **two**:
+
+1. A **Tasks Project** for weekly assignments.
+2. A **Journal Project** for your course journal.
+
+### Create the Tasks Project
+
+1. In RStudio: **File → New Project → New Directory → New Project**.
+2. Choose a location, e.g., `Documents/MC451/`.
+3. Name the folder: `tasks_project`.
+4. Click **Create Project**.
+
+### Create the Journal Project
+
+1. Again: **File → New Project → New Directory → New Project**.
+2. Same parent folder (`Documents/MC451/`).
+3. Name the folder: `journal_project`.
+4. Click **Create Project**.
+
+You now have two separate projects: one for all weekly tasks, one for your running journal.
+
+---
+
+## Step 3 — Set Up the Journal Project
+
+1. Open the **journal\_project** in RStudio.
+2. In the Console, run:
+
+```r
+download_journal("mc451")   # or "mc501" if in the graduate course
 ```
 
-## Pull your starter files
+This creates the `journal/` folder structure with an `entries/` directory, a template, and scripts for adding new entries.
+
+---
+
+## Step 4 — Set Up the Tasks Project
+
+1. Open the **tasks\_project** in RStudio.
+2. Use the helper function to download the starter files for your first week:
+
 ```r
-download_journal("mc451")   # or "mc501"
+download_week("mc451", week = 1)
 ```
+
+(or substitute `"mc501"` for the graduate course).
+
+Repeat each week: change the `week` number to get that week’s scaffold.
+
+---
+
+## Step 5 — Confirm Everything Works
+
+* Open the **journal\_project** → render the index file:
+
+  ```bash
+  quarto render
+  ```
+
+  This should build a unified journal book.
+
+* Open the **tasks\_project** → render a week’s scaffold.
+  Check that Quarto builds the `.qmd` file into HTML/PDF.
+
+If both projects render without errors, you’re fully set up.
+
+---
+
+## Mental Model
+
+* **Journal project**: long-running notebook, one entry per week.
+* **Tasks project**: fresh scaffolds each week for assignments, labs, and exercises.
+* **mccoursepack package**: the engine that fetches and organizes everything for you.

@@ -1,10 +1,93 @@
 ---
-title: "RStudio Older Macs"
+title: "RStudio on Older Macs"
 sidebar: troubleshooting
+format: html
 ---
 
-*This page was converted from the original PDF: `RStudio-Older-Macs.pdf`. Formatting and images may differ from the original. The original file is preserved for reference in* `assets/pdfs/RStudio-Older-Macs.pdf`.
+# RStudio + R Troubleshooting Cheat-Sheet
 
-## Page 1
+This guide is for students running **older macOS versions** who run into crashes or compatibility problems when using RStudio.
 
-(PDF not found)
+---
+
+## Step 1 — Identify Your macOS Version
+
+Click the Apple menu → **About This Mac**, and note your **macOS version** (e.g., 10.15, 11, 12).
+
+---
+
+## Step 2 — Use the Correct RStudio for Your macOS
+
+| macOS Version | Recommended RStudio Version |
+|---------------|-----------------------------|
+| 12 (Ventura) or newer | RStudio **2024.09.1+394** or later ([Posit Docs](https://docs.posit.co/supported-versions/rstudio.html?utm_source=chatgpt.com)) |
+| 11 (Big Sur) | RStudio **2023.09.1+494** ([Posit Docs](https://docs.posit.co/supported-versions/rstudio.html?utm_source=chatgpt.com)) |
+| 10.15 (Catalina) | RStudio **2022.07.2+576** ([Posit Docs](https://docs.posit.co/supported-versions/rstudio.html?utm_source=chatgpt.com)) |
+
+👉 Download older builds from [Posit’s “previous versions” page](https://docs.posit.co/supported-versions/rstudio.html?utm_source=chatgpt.com).
+
+---
+
+## Step 3 — Install a Supported R Version
+
+Older Macs often **crash with R 4.5.x inside RStudio**. Choose a more stable option:
+
+- **R 4.5.0** (released April 11, 2025): *may* be safe if needed ([CRAN download](https://cran.r-project.org/bin/macosx/?utm_source=chatgpt.com)).  
+- **R 4.4.3 or 4.4.1**: **safest bets**. Both are available in CRAN’s macOS directory.  
+
+**Where to find them:**
+
+- [CRAN macOS binaries](https://cran.r-project.org/bin/macosx/?utm_source=chatgpt.com)  
+- [Big Sur ARM64/Intel builds](https://cran.r-project.org/bin/macosx/big-sur-arm64/base/?utm_source=chatgpt.com)  
+- [Helpful Stack Overflow thread](https://stackoverflow.com/questions/78093295/downloading-an-old-version-of-r-on-mac?utm_source=chatgpt.com)  
+
+---
+
+## Step 4 — Do the 60-Second Console Check
+
+Open **Terminal**, type:
+
+```bash
+R
+1+1
+````
+
+* If it prints `2`, R is working fine.
+* Next, open RStudio and try again.
+* If RStudio crashes immediately or while typing → it’s a **compatibility issue between R and RStudio**.
+
+---
+
+## Step 5 — If it Still Crashes
+
+* Downgrade R to **4.4.3** or **4.4.1**.
+* If you must keep R 4.5.x, use an **older RStudio version** (see table above).
+* Still stuck?
+
+  * Clear RStudio’s user state (e.g., delete `~/.config/rstudio`).
+  * Disable GPU rendering under **Preferences → General → Advanced**.
+
+---
+
+## Quick Download Links
+
+*(replace `<arch>` with `arm64` or `x86_64` depending on your Mac chip)*
+
+* **R 4.5.0** – [Direct CRAN link](https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.5.0-arm64.pkg)
+* **R 4.4.3** – [Direct CRAN link](https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.4.3-arm64.pkg)
+* **R 4.4.1** – [Direct CRAN link](https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.4.1-arm64.pkg)
+
+---
+
+## TL;DR: Nerdy Survival Guide
+
+\::: tip
+
+1. Check your macOS → map it to an RStudio version.
+2. Install a stable R (4.4.x is safest).
+3. Test in Terminal. If it works there but not in RStudio → compatibility bug.
+4. Downgrade R or RStudio if needed.
+5. Clean RStudio’s settings or turn off GPU if stubborn.
+   \:::
+
+💡 Translation: **“R works, RStudio doesn’t? Time-travel one version back—either R or RStudio.”**

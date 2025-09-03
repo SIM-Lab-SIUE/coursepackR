@@ -1,10 +1,125 @@
 ---
 title: "Build Your GitHub Landing Page"
 sidebar: git
+format: html
 ---
 
-*This page was converted from the original PDF: `Build Your GitHub Landing Page.pdf`. Formatting and images may differ from the original. The original file is preserved for reference in* `assets/pdfs/Build Your GitHub Landing Page.pdf`.
+# Build Your GitHub Landing Page (Profile README)
 
-## Page 1
+Your GitHub profile can show a custom **landing page**—a `README.md` that lives in a special repository named **exactly** like your username. No code needed; it’s all point-and-click in the browser.
 
-(PDF not found)
+---
+
+## What You’ll Make
+
+- A **public repo** named your GitHub username  
+- A `README.md` inside it  
+- A profile page that displays that README to visitors  
+
+---
+
+## Step 1 — Confirm Your Username
+
+1. Sign in at [GitHub.com](https://github.com).  
+2. Click your avatar (top-right) → **Your profile**.  
+3. Note your **username** (the text after `github.com/` in the URL).  
+
+*Example:* `github.com/alexleith` → username is `alexleith`.  
+
+Use the username exactly as shown. Repo names are case-insensitive, but matching avoids confusion.
+
+---
+
+## Step 2 — Create the Special Repository
+
+1. Click the **+** (top-right) → **New repository**.  
+2. **Repository name:** type your exact username (e.g., `alexleith`).  
+3. Set visibility to **Public** (required).  
+4. Check **Initialize this repository with a README**.  
+5. Click **Create repository**.  
+
+You now have a repo at:  
+```
+
+github.com/<username>/<username>
+
+````
+
+This is your profile repo.
+
+---
+
+## Step 3 — Edit Your README
+
+1. In the new repo, click **README.md**.  
+2. Click the **pencil** icon (Edit).  
+3. Replace the placeholder text with something short and welcoming (see template below).  
+4. Scroll down, add a brief commit message (e.g., “Create profile README”), and click **Commit changes**.  
+
+Visit your profile: click your avatar → **Your profile**. You should see your README content at the top.
+
+---
+
+## A Copy-Paste Template (Customize Freely)
+
+```markdown
+# Hi, I'm YOUR NAME 👋
+
+Welcome to my GitHub profile! I’m a [your major/role] at [your university/organization].
+
+This semester I’m working on projects in R/RStudio and documenting progress in my weekly journal.
+
+## What I’m learning this term
+- R, RStudio, and Quarto for data analysis & reporting
+- Git + GitHub for version control and collaboration
+- Research methods and reproducible workflows
+
+## Find me
+- Email: [your email or university email, optional]
+- Website/Portfolio: [link, optional]
+- LinkedIn: [link, optional]
+
+## Current tools
+- **Languages:** R, Markdown
+- **Tools:** RStudio, Quarto, GitHub
+
+> ⚠️ Privacy note: keep personal info minimal; use links you’re comfortable sharing publicly.
+````
+
+Tips:
+
+* Keep it **short** and **professional**.
+* Use headings (`#`, `##`) to organize.
+* Add **alt text** to any images, e.g., `![Alt text](path/to/image.png)`.
+
+---
+
+## Optional Polish (Fast Wins)
+
+* **Profile bio & links:** Avatar → **Settings** → **Public profile**. Add a display name, bio, location, pronouns, website, and choose a **Public email** (or keep hidden).
+* **Pinned repositories:** On your profile, click **Customize your pins** to feature key projects (e.g., your journal repo).
+* **Appearance:** Avatar → **Settings** → **Appearance** to pick a theme.
+
+---
+
+## Troubleshooting
+
+* **README not showing?**
+
+  * Repo **must** be named exactly your username.
+  * Repo must be **Public**.
+  * File name must be `README.md` at the **root** of the repo (not in a folder).
+  * Refresh your profile page.
+
+* **Can’t find “New repository”?** Click the **+** in the top-right → **New repository**.
+
+* **Changes not showing?** Make sure you clicked **Commit changes**, then refresh.
+
+---
+
+## Updating Later
+
+You can edit `README.md` anytime:
+
+* **In the browser:** open the file → pencil → edit → **Commit changes**.
+* **From RStudio or Git:** `pull → edit → commit → push` (handy once you’re using Git locally).

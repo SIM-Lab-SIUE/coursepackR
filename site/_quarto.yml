@@ -3,16 +3,16 @@ project:
   output-dir: _site
   resources:
     - assets/pdfs/**
+    - images/**
 
 website:
   title: "mccoursepack"
+  search: true
   navbar:
     background: light
     left:
       - text: "Getting Started"
         href: getting-started/index.qmd
-      - text: "R & RStudio"
-        href: getting-started/r-and-rstudio.qmd
       - text: "Weekly Journal"
         href: journal/index.qmd
       - text: "Quarto Basics"
@@ -26,62 +26,64 @@ website:
       - text: "Reference"
         href: reference/index.qmd
 
+  # Per-section sidebars (only pages from the active section appear on the left)
   sidebar:
     - id: getting-started
-      style: "docked"
       title: "Getting Started"
+      style: docked
       contents:
         - getting-started/index.qmd
-        - getting-started/getting-started.qmd
+        - getting-started/getting-started.qmd         # Quick Setup (expanded)
         - getting-started/r-and-rstudio.qmd
-        - getting-started/rstudio-four-panes.qmd
-        - getting-started/rstudio-global-options.qmd
-        - getting-started/r-rstudio-intro-legacy.qmd
+        - getting-started/rstudio-four-panes.qmd      # from Four Panes.pdf
+        - getting-started/rstudio-global-options.qmd  # from Global Options.pdf
+        - getting-started/r-rstudio-intro-legacy.qmd  # from R_RStudio_Intro_Old.pdf
 
     - id: journal
-      style: "docked"
       title: "Weekly Journal"
+      style: docked
       contents:
         - journal/index.qmd
         - journal/journal-student-guide.qmd
 
     - id: quarto
-      style: "docked"
       title: "Quarto Basics"
+      style: docked
       contents:
         - quarto/index.qmd
         - quarto/quarto-basics.qmd
 
     - id: workflow
-      style: "docked"
       title: "Course Workflow"
+      style: docked
       contents:
         - workflow/index.qmd
         - workflow/weekly-workflows.qmd
 
     - id: git
-      style: "docked"
       title: "Git & GitHub"
+      style: docked
       contents:
         - git/index.qmd
         - git/git-and-github.qmd
-        - git/github-landing-page.qmd
-        - git/github-verification.qmd
+        - git/github-landing-page.qmd        # from Build Your GitHub Landing Page.pdf
+        - git/github-verification.qmd        # from GitHub Verification Process.pdf
 
     - id: troubleshooting
-      style: "docked"
       title: "Troubleshooting"
+      style: docked
       contents:
         - troubleshooting/index.qmd
         - troubleshooting/troubleshooting.qmd
-        - troubleshooting/rstudio-older-macs.qmd
+        - troubleshooting/rstudio-older-macs.qmd      # from RStudio-Older-Macs.pdf
 
     - id: reference
-      style: "docked"
       title: "Reference"
+      style: docked
       contents:
         - reference/index.qmd
-        - reference/package-reference.qmd
+        - reference/package-reference.qmd     # quick, student-facing index
+        - reference/package-functions.qmd     # deep-dive function docs
         - reference/references.qmd
 
 format:

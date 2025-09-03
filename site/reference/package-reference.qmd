@@ -1,6 +1,30 @@
 ---
 title: "Package Reference"
 sidebar: reference
+format: html
 ---
 
-Function index and examples.
+# Package Reference
+
+> **Tip**  
+> Load the package each R session:
+> ```r
+> library(mccoursepack)
+> ```
+
+This page lists the main functions students will use in this course.  
+For more detail, see [Function Details](package-functions.qmd).
+
+---
+
+## At a Glance
+
+| Function | What it does |
+|----------|--------------|
+| `list_courses()` | Lists installed course IDs (e.g., `"mc451"`, `"mc501"`) |
+| `list_weeks(course = NULL)` | Shows which week folders are available |
+| `download_week(course, week, dest = ".")` | Copies a week’s files into your project |
+| `open_week(week, dest = ".")` | Opens a week folder in your system file browser |
+| `mccourse_setup()` | Installs Quarto, TinyTeX, and core packages if missing |
+| `mccourse_self_test()` | Checks which courses/weeks are available |
+| `mccourse_update()` | Updates the package to the latest GitHub version |

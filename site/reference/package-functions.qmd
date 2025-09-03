@@ -1,0 +1,110 @@
+---
+title: "Function Details"
+sidebar: reference
+format: html
+---
+
+# Function Details
+
+All commands assume you are working inside an RStudio **Project**.
+
+---
+
+## `list_courses()`
+
+```r
+list_courses()
+````
+
+Returns a character vector of course IDs (e.g., `"mc451"`, `"mc501"`).
+If no courses are installed, returns an empty vector.
+
+---
+
+## `list_weeks(course = NULL)`
+
+```r
+list_weeks()         # all installed courses
+list_weeks("mc451")  # a specific course
+```
+
+Returns folder names like `"week_01"`, `"week_02"`, …
+Empty if no weeks are installed for that course.
+
+---
+
+## `download_week(course, week, dest = ".")`
+
+```r
+download_week("mc451", 1, dest = ".")   # accepts 1, "01", or "week_01"
+```
+
+* Creates `dest/week_01/`
+* Copies that week’s files into the folder
+* Preserves subfolders
+* Empty templates still create the folder but copy no files
+
+Returns (invisibly) a list:
+
+```r
+list(dest, course, week, n_copied)
+```
+
+---
+
+## `open_week(week, dest = ".")`
+
+```r
+open_week(1, dest = ".")
+```
+
+Opens `dest/week_01/` in your system file browser.
+
+---
+
+## `mccourse_setup(ask = TRUE, pkgs = c(...))`
+
+```r
+mccourse_setup()   # safe to re-run
+```
+
+Ensures that:
+
+* **Quarto** is installed
+* **TinyTeX** (LaTeX) is available for PDF output
+* Core **CRAN packages** are installed
+
+---
+
+## `mccourse_self_test()`
+
+```r
+mccourse_self_test()
+```
+
+Runs a basic check: prints which courses are installed and which weeks are available.
+
+---
+
+## `mccourse_update()`
+
+```r
+mccourse_update()
+```
+
+Updates **mccoursepack** to the latest GitHub build
+(Equivalent to running `pak::pak("SIM-Lab-SIUE/mccoursepack")`).
+
+---
+
+## Common Patterns
+
+* Always open your **RStudio Project** before using package commands.
+* Render `.qmd` files to **PDF** (default) or **HTML** with Quarto.
+* If PDF rendering fails, run:
+
+```r
+mccourse_setup()
+```
+
+to install TinyTeX and other dependencies.

@@ -1,10 +1,98 @@
 ---
-title: "Global Options"
+title: "RStudio Global Options"
 sidebar: getting-started
+format: html
 ---
 
-*This page was converted from the original PDF: `Global Options.pdf`. Formatting and images may differ from the original. The original file is preserved for reference in* `assets/pdfs/Global Options.pdf`.
+# RStudio Global Options — Your Configuration Command Center
 
-## Page 1
+Think of this window as your **personal cockpit**. Every slider, checkbox, and dropdown lets you fine-tune RStudio’s behavior, appearance, and workflow. Below is a guide to the most-used tabs—so when you’re ready to tweak, you’re not poking around in the dark.
 
-(PDF not found)
+![Global Options](../images/global-options.png){width="100%"}
+
+---
+
+## 1. General
+
+- **R Sessions**: Pick which R installation runs inside RStudio (handy if you have multiple versions installed).  
+- **Default working directory**: Sets where files open and save by default when you’re *not* inside a project.  
+- **Workspace**:  
+  - *Restore .RData into workspace at startup*: leave unchecked for a clean slate every session.  
+  - *Save workspace to .RData on exit*: set to **Never** to avoid saving random objects (recommended for reproducibility).  
+- **History**: Options to automatically save command history—even across sessions—and to remove duplicates.  
+- **Other**: Miscellaneous options, like wrapping text when switching tabs or whether crash reports are auto-submitted.  
+
+---
+
+## 2. Code
+
+Controls how code is displayed and edited.  
+Common options: **soft wrapping**, **tabs vs. spaces**, **auto indentation**, and diagnostics for languages like C/C++ or HTML/CSS.  
+
+---
+
+## 3. Appearance
+
+Customize how RStudio looks:  
+
+- **Theme** (dark, light, solarized, etc.)  
+- **Zoom level** for text  
+- **Editor font and size**  
+- **Syntax highlighting themes** (with a live preview)  
+
+This is where you soften glare or crank the contrast—so your code reads like a poem instead of eye strain.
+
+---
+
+## 4. Pane Layout
+
+Your four-pane structure can become your **personal artboard**:
+
+- Choose which pane (Source, Console, Environment, Output) goes where.  
+- Reassign tabs (Help, Files, Packages, Plots, etc.).  
+- Add extra Source columns to work on multiple scripts side-by-side.  
+
+Often adjusted just once, this can make RStudio feel like it moves *with* your brain, not against it.
+
+---
+
+## 5. Packages
+
+Appears only if you’ve installed or used packages. Options include:  
+
+- Default **CRAN mirror**  
+- Whether the **Packages** pane is shown  
+- Integration with **devtools**  
+- Build settings and auto-navigation when building or checking packages  
+
+This is especially useful if you start writing or maintaining your own packages.
+
+---
+
+## 6. Other Tabs (Power-User Settings)
+
+- **R Markdown**: configure editing, visual mode, citations, outline visibility.  
+- **Git/SVN**: set up version control, authentication, and commit preferences.  
+- **Terminal**: pick your shell, scrollback buffer, and startup commands.  
+- **Accessibility**: adjust screen reader, motion reduction, and focus control.  
+
+---
+
+## Why It Matters
+
+::: tip
+If RStudio keeps reopening everything you worked on—even forgotten objects—your “Save workspace” option is probably still set to **Always**. Change it to **Never** for a fresh start every time.
+:::
+
+::: info
+Tired of tiny fonts or glaring white backgrounds at 2 a.m.? Head to **Appearance** and make RStudio your cozy digital notebook.
+:::
+
+::: tip
+Want RStudio to feel like an extension of your thought process? Adjust the **Pane Layout**—it’s surprisingly transformative.
+:::
+
+---
+
+RStudio stops being “just another program” when you shape it to fit your workflow. Every layout tweak, every bolded code line, every choice to suppress auto-loads—they all help you think and work more clearly.
+
