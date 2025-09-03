@@ -1,66 +1,99 @@
 project:
   type: website
-  output-dir: _site          # local build dir (not committed)
-  render:                    # ← whitelist; Quarto won't roam outside these
-    - index.qmd
-    - pages/**/*.qmd
+  output-dir: _site
+  resources:
+    - assets/pdfs/**
 
 website:
   title: "mccoursepack"
-  site-url: https://sim-lab-siue.github.io/mccoursepack
-  repo-url: https://github.com/SIM-Lab-SIUE/mccoursepack
-  repo-actions: [edit, issue]
   navbar:
+    background: light
     left:
       - text: "Getting Started"
-        file: pages/getting-started.qmd
+        href: getting-started/index.qmd
       - text: "R & RStudio"
-        file: pages/r-and-rstudio.qmd
+        href: getting-started/r-and-rstudio.qmd
       - text: "Weekly Journal"
-        file: pages/journal.qmd
+        href: journal/index.qmd
+      - text: "Quarto Basics"
+        href: quarto/index.qmd
+      - text: "Course Workflow"
+        href: workflow/index.qmd
       - text: "Git & GitHub"
-        file: pages/git-and-github.qmd
-      - text: "Quarto"
-        file: pages/quarto-basics.qmd
-      - text: "Workflows"
-        file: pages/workflows.qmd
+        href: git/index.qmd
       - text: "Troubleshooting"
-        file: pages/troubleshooting.qmd
+        href: troubleshooting/index.qmd
       - text: "Reference"
-        file: pages/references.qmd
-  sidebar:
-    style: floating
-    search: true
-    contents:
-      - index.qmd
-      - section: "Start Here"
-        contents:
-          - pages/getting-started.qmd
-          - pages/r-and-rstudio.qmd
-          - pages/journal.qmd
-          - pages/git-and-github.qmd
-          - pages/quarto-basics.qmd
-      - section: "Course Workflow"
-        contents:
-          - pages/workflows.qmd
-          - pages/troubleshooting.qmd
-      - section: "Package"
-        contents:
-          - pages/references.qmd
+        href: reference/index.qmd
 
-filters:
-  - mermaid
+  sidebar:
+    - id: getting-started
+      style: "docked"
+      title: "Getting Started"
+      contents:
+        - getting-started/index.qmd
+        - getting-started/getting-started.qmd
+        - getting-started/r-and-rstudio.qmd
+        - getting-started/rstudio-four-panes.qmd
+        - getting-started/rstudio-global-options.qmd
+        - getting-started/r-rstudio-intro-legacy.qmd
+
+    - id: journal
+      style: "docked"
+      title: "Weekly Journal"
+      contents:
+        - journal/index.qmd
+        - journal/journal-student-guide.qmd
+
+    - id: quarto
+      style: "docked"
+      title: "Quarto Basics"
+      contents:
+        - quarto/index.qmd
+        - quarto/quarto-basics.qmd
+
+    - id: workflow
+      style: "docked"
+      title: "Course Workflow"
+      contents:
+        - workflow/index.qmd
+        - workflow/weekly-workflows.qmd
+
+    - id: git
+      style: "docked"
+      title: "Git & GitHub"
+      contents:
+        - git/index.qmd
+        - git/git-and-github.qmd
+        - git/github-landing-page.qmd
+        - git/github-verification.qmd
+
+    - id: troubleshooting
+      style: "docked"
+      title: "Troubleshooting"
+      contents:
+        - troubleshooting/index.qmd
+        - troubleshooting/troubleshooting.qmd
+        - troubleshooting/rstudio-older-macs.qmd
+
+    - id: reference
+      style: "docked"
+      title: "Reference"
+      contents:
+        - reference/index.qmd
+        - reference/package-reference.qmd
+        - reference/references.qmd
+
 format:
   html:
     theme: cosmo
     toc: true
-    smooth-scroll: true
-    css: styles.css
-    link-external-icon: true
+    page-navigation: true
+    code-copy: true
+    df-print: paged
     link-external-newwindow: true
 
-# keep the site static; enable eval per-page later if needed
 execute:
-  eval: false
+  echo: false
   warning: false
-  message: false
+  freeze: auto

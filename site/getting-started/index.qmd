@@ -1,0 +1,6 @@
+---
+title: "Start Here"
+sidebar: getting-started
+---
+
+Welcome to **mccoursepack**. This guide helps you install tools, open your first project, and render your first journal.

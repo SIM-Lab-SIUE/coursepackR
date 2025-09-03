@@ -1,0 +1,6 @@
+---
+title: "Using Git with RStudio"
+sidebar: git
+---
+
+Connect your local project to GitHub and push changes.

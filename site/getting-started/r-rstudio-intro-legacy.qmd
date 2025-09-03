@@ -1,0 +1,10 @@
+---
+title: "R RStudio Intro Old"
+sidebar: getting-started
+---
+
+*This page was converted from the original PDF: `R_RStudio_Intro_Old.pdf`. Formatting and images may differ from the original. The original file is preserved for reference in* `assets/pdfs/R_RStudio_Intro_Old.pdf`.
+
+## Page 1
+
+(PDF not found)

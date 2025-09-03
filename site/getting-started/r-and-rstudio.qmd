@@ -1,0 +1,6 @@
+---
+title: "R & RStudio"
+sidebar: getting-started
+---
+
+R is the language; **RStudio** is the IDE. Install R from CRAN, then install RStudio Desktop.

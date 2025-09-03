@@ -1,0 +1,6 @@
+---
+title: "Authoring in Quarto"
+sidebar: quarto
+---
+
+Basics of headings, code chunks, params, and rendering.

@@ -1,0 +1,6 @@
+---
+title: "Package Reference"
+sidebar: reference
+---
+
+Function index and examples.

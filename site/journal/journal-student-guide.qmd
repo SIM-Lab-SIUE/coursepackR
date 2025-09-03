@@ -1,0 +1,16 @@
+---
+title: "Journal (Student Guide)"
+sidebar: journal
+---
+
+Your **course journal** is a Quarto **book**. Each entry is a **chapter** with **three prompts**—answer **one**.
+
+**Word ranges (enforced on render)**
+- **MC 451:** 250–300
+- **MC 501:** 450–500
+
+### Render the entire journal (unified output)
+From the journal folder:
+```bash
+quarto render
+```

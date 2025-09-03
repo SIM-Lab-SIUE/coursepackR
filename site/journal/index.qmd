@@ -1,0 +1,6 @@
+---
+title: "Weekly Journal"
+sidebar: journal
+---
+
+Start with the **Student Guide** below.

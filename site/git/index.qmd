@@ -1,0 +1,6 @@
+---
+title: "Git & GitHub"
+sidebar: git
+---
+
+Version control, branches, and submissions.

@@ -1,0 +1,20 @@
+---
+title: "Quick Setup"
+sidebar: getting-started
+---
+
+## Create an RStudio Project
+1. **RStudio → File → New Project → New Directory → New Project**
+2. Choose a location (e.g., `Documents/MC451/`) and a name (e.g., `journal_project`).
+
+## Install the course package
+```r
+# install.packages("remotes")
+remotes::install_github("SIM-Lab-SIUE/mccoursepack")
+library(mccoursepack)
+```
+
+## Pull your starter files
+```r
+download_journal("mc451")   # or "mc501"
+```

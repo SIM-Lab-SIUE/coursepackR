@@ -1,0 +1,6 @@
+---
+title: "Troubleshooting"
+sidebar: troubleshooting
+---
+
+Common problems and fixes.

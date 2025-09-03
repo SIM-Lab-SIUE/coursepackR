@@ -1,0 +1,6 @@
+---
+title: "Common Issues"
+sidebar: troubleshooting
+---
+
+A living list of known issues and their solutions.

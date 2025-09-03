@@ -1,0 +1,6 @@
+---
+title: "Reference"
+sidebar: reference
+---
+
+Package reference and bibliography.

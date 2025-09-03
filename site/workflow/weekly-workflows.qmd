@@ -1,0 +1,6 @@
+---
+title: "Weekly Workflows"
+sidebar: workflow
+---
+
+Checklist for each week and submission flow.
