@@ -1,6 +1,137 @@
 ---
-title: "Common Issues"
-sidebar: troubleshooting
+title: "Troubleshooting"
+freeze: auto
 ---
 
-A living list of known issues and their solutions.
+This page collects quick fixes and diagnostic commands for the tools used in this course.
+
+---
+
+## Quarto isn’t found / Render button doesn’t work
+
+**Fix:**
+1. Install Quarto: <https://quarto.org/docs/get-started/>  
+2. Restart RStudio  
+3. Verify in a terminal:
+
+```bash
+quarto check
+quarto --version
+````
+
+---
+
+## PDF render fails (“No TeX installation detected”, missing LaTeX package)
+
+**Fix (fastest):**
+
+```bash
+quarto install tinytex
+```
+
+Verify from R:
+
+```r
+if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
+```
+
+---
+
+## Quarto tries to render the whole repo
+
+Whitelist only the intended files in `site/_quarto.yml`:
+
+```yaml
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - pages/**/*.qmd
+```
+
+---
+
+## “Files didn’t appear” after running package commands
+
+1. Confirm you are inside your course **Project**:
+
+   ```r
+   getwd()
+   ```
+
+2. Refresh the **Files** pane in RStudio.
+
+3. Check the expected folder manually.
+
+4. Re-run the command and review any error messages.
+
+---
+
+## RStudio doesn’t show the Git tab
+
+Enable Git for the Project:
+**Tools → Project Options → Git/SVN** (or create the Project from Version Control).
+
+Verify Git is installed and on your PATH:
+
+```bash
+git --version
+```
+
+---
+
+## Git push fails (password prompts, auth errors)
+
+Use **HTTPS + Personal Access Token (PAT)** or **SSH**.
+
+* **PAT (recommended)**
+  Create a PAT and paste it when Git asks for a password. Install Git Credential Manager to cache it.
+
+  * Token docs: [https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+  * Git Credential Manager: [https://github.com/GitCredentialManager/git-credential-manager](https://github.com/GitCredentialManager/git-credential-manager)
+
+* **SSH (alternative)**
+  Add your public key in **GitHub → Settings → SSH and GPG keys**.
+  Docs: [https://docs.github.com/authentication/connecting-to-github-with-ssh](https://docs.github.com/authentication/connecting-to-github-with-ssh)
+
+---
+
+## Website didn’t update on GitHub Pages
+
+* **Using GitHub Actions (recommended)**
+
+  * Check **Actions → Quarto Pages**: it should render, upload the artifact, and deploy.
+  * Repo **Settings → Pages**: set **Source = GitHub Actions**.
+
+* **Using branch deployment (`/docs`)**
+
+  * Render locally to `docs/` and commit.
+  * Repo **Settings → Pages**: set **Source = main /docs**.
+
+---
+
+## Quick diagnostic block
+
+Paste into your **Console** or **Terminal** when something breaks:
+
+```r
+# R session info
+sessionInfo()
+
+# Package + environment checks
+library(mccoursepack)
+mccourse_self_test()
+
+# Quarto + Git + LaTeX checks
+system("quarto --version")
+system("git --version")
+if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
+```
+
+When asking for help, include the output above, along with:
+
+* Your operating system
+* R and RStudio versions
+* The exact error message
+
