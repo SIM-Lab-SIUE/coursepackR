@@ -138,12 +138,12 @@ quarto install tinytex
 mccourse_setup()
 ```
 
-👉 *Image: Files pane showing `journal/_book/` with `index.html` and the chapter pages.*
+**FIGURE**
+![Files pane showing `journal/_book/` with `index.html` and the chapter pages.](images/book-files.png "Files Pane with Book Files"){width=75%; fig-align="center"}
 
 > **Tip:** Rendering a single chapter file will **not** produce the unified journal. Always render **`index.qmd`** (or run `quarto render`) to build the whole book.
 
-**FIGURE**
-![Files pane showing `journal/_book/` with `index.html` and the chapter pages.](images/book-files.png "Files Pane with Book Files"){width=75%; fig-align="center"}
+
 
 ---
 
