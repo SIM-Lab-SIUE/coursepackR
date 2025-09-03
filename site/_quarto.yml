@@ -48,6 +48,8 @@ website:
         contents:
           - pages/references.qmd
 
+filters:
+  - mermaid
 format:
   html:
     theme: cosmo

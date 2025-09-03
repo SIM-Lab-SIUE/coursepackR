@@ -1,5 +1,5 @@
 ---
-title: "Journal (Student Guide)"
+title: "Weekly Journal"
 freeze: auto
 ---
 
