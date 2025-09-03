@@ -34,6 +34,8 @@ The Belmont Report of 1979 distilled the complex history of ethical debate into 
 
 The principle of respect for persons is twofold. First, it requires that individuals be treated as autonomous agents. This means recognizing that individuals are capable of deliberation and of making their own choices about their personal goals and actions. The primary application of this principle in research is the requirement of **informed consent**. Researchers must provide potential participants with a full and clear account of the research so that they can make a voluntary and considered decision about whether or not to participate. There can be no coercion or undue influence.
 
+![Informed Consent](images/informed-consent.jpg){width="100%"}
+
 Second, the principle of respect for persons requires that those with diminished autonomy are entitled to special protection. This acknowledges that not all individuals are capable of complete self-determination. Vulnerable populations, such as children, individuals with cognitive impairments, or prisoners, may not be able to fully comprehend the risks and benefits of research or may be in situations that compromise their ability to make a truly voluntary choice. For these populations, the ethical obligation is heightened, often requiring additional safeguards, such as obtaining consent from a legal guardian in addition to the assent of the participant.
 
 ### Beneficence {.unnumbered}
@@ -56,7 +58,9 @@ The abstract principles of the Belmont Report are translated into concrete pract
 
 Before a researcher can begin collecting any data from human participants, they must submit a detailed proposal to their institution's IRB. This proposal is a comprehensive document that describes the study's purpose, procedures, potential risks and benefits, and, most importantly, the specific steps the researcher will take to protect the rights and welfare of the participants. The IRB carefully reviews this proposal to determine if the study meets the ethical standards mandated by federal policy.
 
-The IRB assigns each project to one of three levels of review, based on the level of risk it poses to participants 1:
+[![Research with Human Subjects](images/human-subject-research.jpg){width="100%"}](https://www.siue.edu/compliance/human-subjects)
+
+The IRB assigns each project to one of three levels of review, based on the level of risk it poses to participants:
 
 -   **Exempt Review:** This is the lowest level of review, reserved for research that poses no more than minimal risk to subjects and fits into one of several specific exempt categories defined by federal regulations. Examples include research involving the analysis of existing, publicly available data where individuals cannot be identified; research conducted in established educational settings involving everyday educational practices; and research involving anonymous surveys on non-sensitive topics.
 
