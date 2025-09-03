@@ -13,6 +13,8 @@ website:
     left:
       - text: "Getting Started"
         href: getting-started/index.qmd
+      - text: "R & RStudio"
+        href: r-and-rstudio/index.qmd
       - text: "Weekly Journal"
         href: journal/index.qmd
       - text: "Quarto Basics"
@@ -26,18 +28,23 @@ website:
       - text: "Reference"
         href: reference/index.qmd
 
-  # Per-section sidebars (only pages from the active section appear on the left)
   sidebar:
     - id: getting-started
       title: "Getting Started"
       style: docked
       contents:
         - getting-started/index.qmd
-        - getting-started/getting-started.qmd         # Quick Setup (expanded)
-        - getting-started/r-and-rstudio.qmd
-        - getting-started/rstudio-four-panes.qmd      # from Four Panes.pdf
-        - getting-started/rstudio-global-options.qmd  # from Global Options.pdf
-        - getting-started/r-rstudio-intro-legacy.qmd  # from R_RStudio_Intro_Old.pdf
+        - getting-started/getting-started.qmd     # Quick Setup (expanded)
+
+    - id: r-and-rstudio
+      title: "R & RStudio"
+      style: docked
+      contents:
+        - r-and-rstudio/index.qmd
+        - r-and-rstudio/r-and-rstudio.qmd
+        - r-and-rstudio/rstudio-four-panes.qmd
+        - r-and-rstudio/rstudio-global-options.qmd
+        - r-and-rstudio/r-rstudio-intro-legacy.qmd
 
     - id: journal
       title: "Weekly Journal"
@@ -66,8 +73,8 @@ website:
       contents:
         - git/index.qmd
         - git/git-and-github.qmd
-        - git/github-landing-page.qmd        # from Build Your GitHub Landing Page.pdf
-        - git/github-verification.qmd        # from GitHub Verification Process.pdf
+        - git/github-landing-page.qmd
+        - git/github-verification.qmd
 
     - id: troubleshooting
       title: "Troubleshooting"
@@ -75,15 +82,15 @@ website:
       contents:
         - troubleshooting/index.qmd
         - troubleshooting/troubleshooting.qmd
-        - troubleshooting/rstudio-older-macs.qmd      # from RStudio-Older-Macs.pdf
+        - troubleshooting/rstudio-older-macs.qmd
 
     - id: reference
       title: "Reference"
       style: docked
       contents:
         - reference/index.qmd
-        - reference/package-reference.qmd     # quick, student-facing index
-        - reference/package-functions.qmd     # deep-dive function docs
+        - reference/package-reference.qmd
+        - reference/package-functions.qmd
         - reference/references.qmd
 
 format:
