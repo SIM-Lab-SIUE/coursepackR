@@ -1,3 +1,8 @@
+Perfect — here’s a cleaned-up version of the documentation written **only for students**. I’ve removed the maintainer/CSV material and kept the workflow very step-by-step, with clear points where images should go.
+
+---
+
+````markdown
 ---
 title: "Journal"
 freeze: auto
@@ -11,15 +16,41 @@ Word ranges are enforced during render:
 
 ---
 
-## What you get after download
+## Step 1. Create a new RStudio Project
+
+1. Open RStudio.
+2. Go to **File → New Project → New Directory → New Project**.
+3. Pick a folder location (for example: `Documents/MC451/`).
+4. Give the project a name (for example: `journal_project`).
+
+👉 *Image: screenshot of the “New Project” dialog in RStudio.*
+
+---
+
+## Step 2. Install and load the course package
+
+In the **Console**, run:
+
+```r
+pak::pak("SIM-Lab-SIUE/mccoursepack")
+library(mccoursepack)
+````
+
+👉 *Image: Console showing successful installation and `library(mccoursepack)` loaded.*
+
+---
+
+## Step 3. Download your starter journal
 
 Run:
 
 ```r
 download_journal("mc451", dest = ".")   # or "mc501"
-````
+```
 
-This creates:
+This creates a folder called `journal/` with everything you need.
+
+Inside you’ll see:
 
 ```
 journal/
@@ -34,132 +65,129 @@ journal/
   assets/
 ```
 
-* **`entries/`** holds your week chapters: `week_02.qmd`, `week_03.qmd`, …
-* **`scripts/new_journal_entry.R`** creates a week chapter, injects the **three prompts for that week**, sets word-range based on your course, and updates `_quarto.yml`.
-* **`_quarto.yml`** is the book’s table of contents. Do **not** edit the `# BEGIN AUTO … # END AUTO` block—scripts manage it.
-
-> Prompts are stored in a CSV **by week** (no randomness). Exactly **three** prompts per week must be present.
+👉 *Image: RStudio Files pane showing the new `journal/` directory.*
 
 ---
 
-## Add a week chapter
+## Step 4. Add a new week chapter
 
-From inside the `journal/` folder:
+From inside the `journal/` folder, run:
 
 ```r
 source("scripts/new_journal_entry.R")
 ```
 
-You’ll be prompted for a **week number** (e.g., 2–14). The script will:
+You’ll be asked for a **week number** (2–14).
 
-1. Create `entries/week_XX.qmd` from `entry_template.qmd`.
-2. Inject the **three prompts for that week**.
-3. Set the correct **word range** for your course (MC 451 or MC 501).
-4. Update `journal/_quarto.yml`.
+The script will:
 
-Open the new file and write your **single** response in the **Response** section.
+1. Create a new file in `entries/` (for example: `week_02.qmd`).
+2. Add the **three prompts for that week**.
+3. Set the correct word range for your course.
+4. Update the table of contents so your chapter shows in the book.
+
+👉 *Image: Console showing the script prompting for a week number.*
 
 ---
 
-## Write the entry
+## Step 5. Write your response
 
-Open `entries/week_XX.qmd` and scroll to **Response**.
-Answer **one** prompt. Keep it within your range:
+1. Open the new file (e.g., `entries/week_02.qmd`).
+2. Scroll to the **Response** section.
+3. Choose **one** of the three prompts and delete the other two.
+4. Write your answer in that section.
+
+Stay in range:
 
 * MC 451: 250–300 words
 * MC 501: 450–500 words
 
-The word counter appears when you render. It counts text **only** inside the Response block—don’t add extra sections outside it.
+👉 *Image: RStudio editor with the “Response” section highlighted.*
 
 ---
 
-## Render the journal (book)
+## Step 6. Render your journal
 
-From inside `journal/`:
+From inside the `journal/` folder, run:
 
 ```bash
 quarto render
 ```
 
-Outputs are written to `journal/_book/`:
+This builds your journal into the folder `journal/_book/`.
 
-* HTML book (always)
-* PDF/EPUB if enabled and TinyTeX is installed
+You’ll get:
 
-If PDF fails:
+* An HTML version (always)
+* A PDF/EPUB version if TinyTeX is installed
 
-```bash
+If PDF doesn’t work, run:
+
+```r
 quarto install tinytex
 ```
 
-(or run `mccourse_setup()` in R).
+(or just rerun `mccourse_setup()` in R).
+
+👉 *Image: File explorer showing `_book/` with HTML output.*
 
 ---
 
-## Submit & version your work
+## Step 7. Submit your work to GitHub
 
-When you add a chapter, **two files change**:
+When you add a new entry, **two files change**:
 
 1. `journal/entries/week_XX.qmd`
 2. `journal/_quarto.yml`
 
-Use the **Git** pane (or command line) to **Stage → Commit → Push** **both** files.
-If `_quarto.yml` isn’t committed, the new chapter won’t appear on other machines.
+In RStudio:
+
+1. Open the **Git pane**.
+2. **Stage** both changed files.
+3. Write a **commit message** (e.g., “Week 2 journal entry”).
+4. **Push** to GitHub.
+
+👉 *Image: RStudio Git pane with files staged and commit message typed in.*
+
+If you forget `_quarto.yml`, your new chapter won’t appear when viewed elsewhere.
 
 ---
 
-## At a glance (diagram)
+## Visual Workflow
 
 ```{mermaid}
 flowchart TD
-  A["Inside journal/"] --> B["source('scripts/new_journal_entry.R')<br/>enter week number (2–14)"]
-  B --> C["Edit entries/week_XX.qmd<br/>Response → answer one prompt"]
-  C --> D["Render book<br/>quarto render"]
-  D --> E["Stage → Commit → Push<br/>entries/week_XX.qmd + _quarto.yml"]
+  A["New RStudio Project"] --> B["Install & load mccoursepack"]
+  B --> C["download_journal('mc451')"]
+  C --> D["source('scripts/new_journal_entry.R') → enter week number"]
+  D --> E["Open entries/week_XX.qmd → Response → answer one prompt"]
+  E --> F["Render journal → quarto render"]
+  F --> G["Stage + Commit + Push → entries/week_XX.qmd + _quarto.yml"]
 ```
 
 ---
 
-## Prompts CSV (for maintainers)
+## FAQ
 
-Prompts live in `prompts_mc451.csv` or `prompts_mc501.csv` (same folder as `scripts/`).
-
-**Required columns (no category column):**
-
-```csv
-week,prompt_id,prompt
-2,1,"Prompt text A for Week 2"
-2,2,"Prompt text B for Week 2"
-2,3,"Prompt text C for Week 2"
-3,1,"Prompt text A for Week 3"
-3,2,"Prompt text B for Week 3"
-3,3,"Prompt text C for Week 3"
-```
-
-* Provide **exactly three** rows per week (`prompt_id` usually 1,2,3).
-* The script **fails loudly** if a week does not have exactly three prompts.
-
----
-
-## FAQ (journal-specific)
-
-**Where do prompts come from?**
-From the course CSV (`prompts_mc451.csv` or `prompts_mc501.csv`) with **three prompts per week**.
+**Do I answer all three prompts?**
+No—choose **one** prompt each week. Delete the others.
 
 **My word count says “Out of range.”**
-Trim/extend your Response to fit your course range (MC 451: 250–300; MC 501: 450–500).
+Revise until you are inside the required range.
 
-**The new week chapter doesn’t show in the book.**
-Commit and push **both** `entries/week_XX.qmd` **and** `_quarto.yml`, then re‑render.
+**My new week doesn’t show in the book.**
+Make sure you committed and pushed both `week_XX.qmd` **and** `_quarto.yml`.
 
-**Can I revise a chapter later?**
-Yes—edit `entries/week_XX.qmd` and commit the changes. No need to rerun the script for the same week.
+**Can I go back and revise later?**
+Yes—just open the file again, edit, and commit the changes.
 
 ---
 
 ## Summary
 
-* Journal = **Quarto book** under `journal/`
-* Each week = **one chapter** with **three prompts** → answer **one**
-* Word ranges enforced per course
-* Always **commit both** the new chapter and `_quarto.yml`
+* Your journal is a **Quarto book** inside `journal/`.
+* Each week = one chapter with three prompts → you answer **one**.
+* Word range is checked when you render.
+* Always commit and push **both** your new entry and `_quarto.yml`.
+
+```
