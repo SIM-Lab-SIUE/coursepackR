@@ -1,8 +1,3 @@
-Perfect — here’s a cleaned-up version of the documentation written **only for students**. I’ve removed the maintainer/CSV material and kept the workflow very step-by-step, with clear points where images should go.
-
----
-
-````markdown
 ---
 title: "Journal"
 freeze: auto
