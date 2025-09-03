@@ -2,33 +2,58 @@ name: Quarto Publish
 
 on:
   push:
-    branches: [main]   # or master, depending on your repo
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Setup Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          version: latest
-
-      - name: Install R
+      # 1) Install R for {r} code chunks
+      - name: Setup R
         uses: r-lib/actions/setup-r@v2
 
-      - name: Install dependencies
-        run: |
-          Rscript -e 'install.packages("remotes")'
-          Rscript -e 'remotes::install_deps(dependencies=TRUE)'
-
-      - name: Render site
-        run: quarto render
-
-      - name: Publish to GitHub Pages
-        uses: quarto-dev/quarto-actions/publish@v2
+      # 2) Install R package deps used during render
+      #    - If you have a DESCRIPTION/lockfile, this will read it automatically.
+      #    - Otherwise, list extras explicitly.
+      - name: Install R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          extra-packages: >
+            any::remotes,
+            github::SIM-Lab-SIUE/mccoursepack
+          needs: check
+
+      # 3) Install Quarto CLI (stable)
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      # 4) Render the website located in the site/ subproject
+      - name: Render site
+        run: quarto render site
+
+      # 5) Upload rendered site as Pages artifact
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/_site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
