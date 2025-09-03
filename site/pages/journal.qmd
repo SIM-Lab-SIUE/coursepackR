@@ -17,7 +17,7 @@ Word ranges are enforced when you render:
 2. Choose a location (e.g., `Documents/MC451/`) and name it (e.g., `journal_project`).
 
 **FIGURE**
-![Screenshot of the “New Project” dialog in RStudio.](images/new-project.png "New Project Dialog in RStudio"){width=75%; fig-align="center"}
+![Screenshot of the “New Project” dialog in RStudio.](images/new-project.png "New Project Dialog in RStudio"){width=50%; fig-align="center"}
 
 ---
 
@@ -33,7 +33,7 @@ library(mccoursepack)
 If prompted, restart R after installation.
 
 **FIGURE**
-![Console showing successful installation and `library(mccoursepack)` loaded.](images/load-package.png "Loading mccoursepack"){width=75%; fig-align="center"}
+![Console showing successful installation and `library(mccoursepack)` loaded.](images/load-package.png "Loading mccoursepack"){width=50%; fig-align="center"}
 
 ---
 
@@ -48,7 +48,7 @@ download_journal("mc451", dest = ".")   # or "mc501"
 This creates a folder `journal/` with everything you need.
 
 **FIGURE**
-![RStudio Files pane showing the new `journal/` directory.](images/files-pane.png "RStudio Files pane"){width=75%; fig-align="center"}
+![RStudio Files pane showing the new `journal/` directory.](images/files-pane.png "RStudio Files pane"){width=50%; fig-align="center"}
 
 ---
 
@@ -70,7 +70,7 @@ What happens:
 
 
 **FIGURE**
-![Console showing `new_journal_entry(week = 3)` and “Created: entries/YYYY-MM-DD.qmd.](images/journal-week.png "Choosing Week for Journal"){width=75%; fig-align="center"}
+![Console showing `new_journal_entry(week = 3)` and “Created: entries/YYYY-MM-DD.qmd.](images/journal-week.png "Choosing Week for Journal"){width=50%; fig-align="center"}
 
 > **Troubleshooting:** If you run the command twice **on the same day**, the file will be overwritten (same date name). If you need to keep both, rename the first file (e.g., `2025-09-03b.qmd`) before running again.
 
@@ -102,7 +102,7 @@ Stay in range:
 * **MC 501:** 450–500 words
 
 **FIGURE**
-![Editor with the *Choose one prompt* block highlighted above the *Response* block.](images/choose-prompt.png "Choosing the Journal Week"){width=75%; fig-align="center"}
+![Editor with the *Choose one prompt* block highlighted above the *Response* block.](images/choose-prompt.png "Choosing the Journal Week"){width=50%; fig-align="center"}
 
 ---
 
@@ -139,7 +139,7 @@ mccourse_setup()
 ```
 
 **FIGURE**
-![Files pane showing `journal/_book/` with `index.html` and the chapter pages.](images/book-files.png "Files Pane with Book Files"){width=75%; fig-align="center"}
+![Files pane showing `journal/_book/` with `index.html` and the chapter pages.](images/book-files.png "Files Pane with Book Files"){width=50%; fig-align="center"}
 
 > **Tip:** Rendering a single chapter file will **not** produce the unified journal. Always render **`index.qmd`** (or run `quarto render`) to build the whole book.
 
