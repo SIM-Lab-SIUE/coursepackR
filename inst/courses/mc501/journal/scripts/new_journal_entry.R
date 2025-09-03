@@ -106,13 +106,13 @@ new_journal_entry <- function(
 }
 
 # Run directly: prompt when sourced interactively
-if (sys.nframe() == 0L) {
-	pf <- if (file.exists("prompts_mc451.csv")) "prompts_mc451.csv"
-	else if (file.exists("prompts_mc501.csv")) "prompts_mc501.csv"
-	else NULL
-	if (is.null(pf)) stop("Could not find prompts_mc451.csv or prompts_mc501.csv in the current folder.", call. = FALSE)
-	cat("Enter the week number (2–14): ")
-	wk <- suppressWarnings(as.integer(readLines(con = stdin(), n = 1L)))
-	if (is.na(wk)) stop("Invalid week number.", call. = FALSE)
-	new_journal_entry(week = wk, prompts_file = pf)
+if (interactive() && (sys.nframe() <= 1L || identical(parent.frame(), globalenv()))) {
+  pf <- if (file.exists("prompts_mc451.csv")) "prompts_mc451.csv"
+  else if (file.exists("prompts_mc501.csv")) "prompts_mc501.csv"
+  else NULL
+  if (is.null(pf)) stop("Could not find prompts_mc451.csv or prompts_mc501.csv in the current folder.", call. = FALSE)
+  cat("Enter the week number (2–14): ")
+  wk <- suppressWarnings(as.integer(readLines(con = stdin(), n = 1L)))
+  if (is.na(wk)) stop("Invalid week number.", call. = FALSE)
+  new_journal_entry(week = wk, prompts_file = pf)
 }

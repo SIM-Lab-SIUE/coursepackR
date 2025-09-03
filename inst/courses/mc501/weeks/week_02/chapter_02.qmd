@@ -6,6 +6,8 @@ Imagine scrolling through your social media feed and stumbling upon a heated arg
 
 That moment of wondering is the starting point of research. Research begins with **curiosity**—something catches your attention, and you want to understand it better. But curiosity alone isn’t enough to reach a trustworthy conclusion. You need a process that takes you from “I’m wondering…” to “Here is my evidence-based answer.” In the world of communication studies, that process is called the **research workflow**.
 
+![Zora Neale Hurston curiosity quote.](images/curiosity-quote.jpg){width="100%"}
+
 The research workflow is like a recipe for building knowledge. If your curiosity is the raw ingredient, the workflow is the set of instructions that transforms it into a final dish: a credible, verifiable conclusion. It takes you step-by-step from having a general interest to producing an argument that other people can check, test, and trust. Without this process, we're left guessing, relying on personal opinions, random examples, or unreliable sources. With it, you can produce work that is seen as **credible**—something that could stand up in a professional meeting, a court case, or an academic journal. This credibility isn't just about being "right"; it's about showing your work in a way that allows others to see *how* you arrived at your answer.
 
 This chapter will walk you through both the workflow itself—the practical steps that take you from question to answer—and the **scientific approach**, which is the set of guiding ideas that helps researchers keep their work fair, systematic, and open to scrutiny. To fully appreciate why this structured approach is so vital, let's first examine the common shortcuts we all use to make sense of the world.
@@ -26,6 +28,8 @@ Before we dive into the formal process of research, it’s worth noticing how pe
 
 -   **The Limit:** Common sense is notoriously contradictory (e.g., "birds of a feather flock together" vs. "opposites attract") and is often shaped by our limited, personal view of the world. For an isolated senior, texting might be a vital lifeline that strengthens their relationships, contradicting the "obvious" truth that it's an inferior form of communication. What's "common sense" in one culture can be nonsense in another.
 
+![Plato's Cave.](images/platos-cave.jpg){width="100%"}
+
 **Intuition** is that "gut feeling" or sudden insight that something is true. It’s a quick, non-analytical feeling that you can’t always explain logically. You might have an intuitive sense that a political candidate is trustworthy or that a new ad campaign will be a hit.
 
 -   **The Limit:** Intuition is heavily influenced by our emotions and unconscious biases. That "gut feeling" about a politician might be a reaction to their appearance or speaking style, not their policies. While intuition can be a great starting point for developing a hypothesis, it’s a terrible endpoint for concluding. It's a hunch to be tested, not a fact to be trusted.
@@ -36,19 +40,21 @@ These shortcuts aren't inherently bad—we need them to navigate countless daily
 
 To overcome the limits of everyday knowing, researchers in mass communication and other social sciences often adopt the **scientific approach**. This isn't about wearing a lab coat; it's a mindset and a framework for building knowledge that actively tries to minimize bias and error. It rests on four foundational principles.
 
-### Empiricism  {.unnumbered}
+### Empiricism {.unnumbered}
 
 At its core, empiricism insists that knowledge must be based on **observable, tangible evidence**. It’s the principle of "show me the data." Instead of accepting a claim based on tradition or authority, an empiricist seeks to measure, see, or document it. For example, instead of just arguing about whether negative political ads work, a researcher would conduct a study. They might show one group of participants a negative ad and another group a neutral ad, and then measure each group's voting intentions. The resulting data—the numbers and responses—constitute **empirical evidence**. Empiricism moves us from "I believe..." to "My data show..."
 
-### Objectivity  {.unnumbered}
+### Objectivity {.unnumbered}
 
 Objectivity is the goal of removing personal biases, feelings, and beliefs from the research process. It's important to understand that no researcher is perfectly objective—we all have perspectives. However, the scientific approach uses procedures to minimize the influence of those perspectives. For instance, a researcher studying the effects of a new teaching method they invented might have a **double-blind** study, where neither the students nor the person grading the final exam knows who received the new method versus the old one. This prevents the researcher's hopes from influencing the results. The ultimate goal is **intersubjectivity**: a study so transparently and carefully designed that another objective researcher could repeat it and get a similar outcome.
 
-### Determinism  {.unnumbered}
+![Subjectivity of perspective.](images/perspective.jpg){width="100%"}
+
+### Determinism {.unnumbered}
 
 This is the idea that events and behaviors are not random; they are caused by identifiable factors and follow predictable patterns. In communication, we operate on the assumption that the way a message is crafted, the channel through which it is sent, and the characteristics of the audience all systematically affect the outcome. This is usually **probabilistic determinism**—we don't claim that X will *always* cause Y, but that the presence of X *increases the probability* of Y occurring. For example, research might find that using more visuals in a health campaign increases the likelihood that teenagers will remember the message, even if it doesn't work for every single teenager. Without determinism, research would be pointless; if everything were random, there would be no patterns to discover.
 
-### Control  {.unnumbered}
+### Control {.unnumbered}
 
 Control is the practice of isolating the factor you are studying. To confidently say that one thing causes another, you must rule out other possible explanations. Imagine you want to test if a new website design increases user engagement. If you launch the new design at the same time you launch a massive advertising campaign, you won't know if increased engagement is due to the design or the ads. A controlled study would change *only* the website design for a test group and keep the old design for a control group, while keeping all other conditions (like advertising) the same for both. Control is what allows us to move from simply observing a relationship (**correlation**) to establishing a cause-and-effect link (**causation**).
 
@@ -78,9 +84,11 @@ The scientific method provides the logic, but the **research workflow** provides
 
 -   **Qualitative Analysis:** If you collected non-numerical data (e.g., from interviews or focus groups), you will look for recurring themes, interpretations, and narratives. You might find a common theme where participants said the fact-check label made them "stop and think" before sharing.
 
-**5. Communication** The final stage is to share what you've learned with the world. Research that sits on a hard drive is useless. Communication can take many forms: a final paper for a class, a presentation at an academic conference, a published article in a scholarly journal, or even a blog post or report for a non-academic audience. Effective communication involves telling the whole story of your research: not just *what* you found, but *how* you found it. This transparency is crucial because it allows others to critically evaluate your work and build upon it.
+**5. Communication** The final stage is to share what you've learned with the world. Research that sits on a hard drive is useless. Communication can take many forms: a final paper for a class, a presentation at an academic conference, a published article in a scholarly journal, or even a blog post or report for a non-academic audience. Effective communication involves telling the whole story of your research: not just *what* you found, but *how* you found it. This transparency is crucial because it allows others to evaluate your work and build upon it critically.
 
-Crucially, these stages are not always linear. Insights from your data analysis might send you back to the literature to refine your concepts. A pilot test of your data collection method might reveal a flaw in your design, forcing you to revise it. Research is an iterative, and sometimes messy, process.
+![Published manuscripts.](images/manuscript.jpg){width="100%"}
+
+Crucially, these stages are not always linear. Insights from your data analysis might send you back to the literature to refine your concepts. A pilot test of your data collection method might reveal a flaw in your design, forcing you to revise it. Research is an iterative and sometimes messy process.
 
 ## Tool-Agnostic Principles {.unnumbered}
 
