@@ -9,8 +9,6 @@ execute:
   echo: true
 ---
 
-# Introduction to R and RStudio
-
 R is a free, open-source language for **data manipulation, analysis, and visualization**. RStudio is the **IDE** (workbench) that makes R friendlier and faster. Together they give you a modern workflow for **reproducible research** in mass communication.
 
 ::: tip
