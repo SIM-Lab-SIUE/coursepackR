@@ -197,17 +197,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#step-1-create-a-new-rstudio-project" id="toc-step-1-create-a-new-rstudio-project" class="nav-link active" data-scroll-target="#step-1-create-a-new-rstudio-project">Step 1 — Create a new RStudio Project</a></li>
-  <li><a href="#step-2-install-and-load-the-course-package" id="toc-step-2-install-and-load-the-course-package" class="nav-link" data-scroll-target="#step-2-install-and-load-the-course-package">Step 2 — Install and load the course package</a></li>
-  <li><a href="#step-3-download-your-starter-journal" id="toc-step-3-download-your-starter-journal" class="nav-link" data-scroll-target="#step-3-download-your-starter-journal">Step 3 — Download your starter journal</a></li>
-  <li><a href="#step-4-add-a-new-week-chapter" id="toc-step-4-add-a-new-week-chapter" class="nav-link" data-scroll-target="#step-4-add-a-new-week-chapter">Step 4 — Add a new week chapter</a></li>
-  <li><a href="#step-5-choose-your-prompt-then-write" id="toc-step-5-choose-your-prompt-then-write" class="nav-link" data-scroll-target="#step-5-choose-your-prompt-then-write">Step 5 — Choose your prompt, then write</a>
+  <li><a href="#step-1-create-a-new-rstudio-project" id="toc-step-1-create-a-new-rstudio-project" class="nav-link active" data-scroll-target="#step-1-create-a-new-rstudio-project">Step 1 – Create a new RStudio Project</a></li>
+  <li><a href="#step-2-install-and-load-the-course-package" id="toc-step-2-install-and-load-the-course-package" class="nav-link" data-scroll-target="#step-2-install-and-load-the-course-package">Step 2 – Install and load the course package</a></li>
+  <li><a href="#step-3-download-your-starter-journal" id="toc-step-3-download-your-starter-journal" class="nav-link" data-scroll-target="#step-3-download-your-starter-journal">Step 3 – Download your starter journal</a></li>
+  <li><a href="#step-4-load-the-journal-helper-function" id="toc-step-4-load-the-journal-helper-function" class="nav-link" data-scroll-target="#step-4-load-the-journal-helper-function">Step 4 – Load the Journal Helper Function</a></li>
+  <li><a href="#step-5-add-a-new-week-chapter" id="toc-step-5-add-a-new-week-chapter" class="nav-link" data-scroll-target="#step-5-add-a-new-week-chapter">Step 5 – Add a new week chapter</a></li>
+  <li><a href="#step-6-handling-multiple-entries-on-the-same-day" id="toc-step-6-handling-multiple-entries-on-the-same-day" class="nav-link" data-scroll-target="#step-6-handling-multiple-entries-on-the-same-day">Step 6 – Handling Multiple Entries on the Same Day</a></li>
+  <li><a href="#step-7-choose-your-prompt-then-write" id="toc-step-7-choose-your-prompt-then-write" class="nav-link" data-scroll-target="#step-7-choose-your-prompt-then-write">Step 7 – Choose your prompt, then write</a>
   <ul class="collapse">
   <li><a href="#choose-one-prompt-to-answer" id="toc-choose-one-prompt-to-answer" class="nav-link" data-scroll-target="#choose-one-prompt-to-answer">Choose <strong>one</strong> prompt to answer</a></li>
   <li><a href="#response" id="toc-response" class="nav-link" data-scroll-target="#response">Response</a></li>
   </ul></li>
-  <li><a href="#step-6-render-the-entire-journal-unified-output" id="toc-step-6-render-the-entire-journal-unified-output" class="nav-link" data-scroll-target="#step-6-render-the-entire-journal-unified-output">Step 6 — Render the <strong>entire</strong> journal (unified output)</a></li>
-  <li><a href="#step-7-submit-via-github" id="toc-step-7-submit-via-github" class="nav-link" data-scroll-target="#step-7-submit-via-github">Step 7 — Submit via GitHub</a></li>
+  <li><a href="#step-8-render-the-entire-journal-unified-output" id="toc-step-8-render-the-entire-journal-unified-output" class="nav-link" data-scroll-target="#step-8-render-the-entire-journal-unified-output">Step 8 – Render the <strong>entire</strong> journal (unified output)</a></li>
+  <li><a href="#step-9-submit-via-github" id="toc-step-9-submit-via-github" class="nav-link" data-scroll-target="#step-9-submit-via-github">Step 9 — Submit via GitHub</a></li>
   <li><a href="#visual-workflow" id="toc-visual-workflow" class="nav-link" data-scroll-target="#visual-workflow">Visual Workflow</a></li>
   <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq">FAQ</a></li>
   <li><a href="#weekly-checklist-quick-self-audit" id="toc-weekly-checklist-quick-self-audit" class="nav-link" data-scroll-target="#weekly-checklist-quick-self-audit">Weekly checklist (quick self-audit)</a></li>
@@ -237,18 +239,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Start with the <strong>Student Guide</strong> below.</p>
-<p>Your <strong>course journal</strong> is a Quarto <strong>book</strong>. Each <strong>week</strong> has a chapter with <strong>three prompts</strong>—you answer <strong>one</strong>.<br>
+<p>Your <strong>course journal</strong> is a Quarto <strong>book</strong>. Each <strong>week</strong> has a chapter with <strong>three prompts</strong>–you answer <strong>one</strong>.<br>
 Word ranges are enforced when you render:</p>
 <ul>
-<li><strong>MC 451:</strong> <strong>250–300</strong> words<br>
+<li><strong>MC 451:</strong> <strong>250-300</strong> words<br>
 </li>
-<li><strong>MC 501:</strong> <strong>450–500</strong> words</li>
+<li><strong>MC 501:</strong> <strong>450-500</strong> words</li>
 </ul>
 <hr>
 <section id="step-1-create-a-new-rstudio-project" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-create-a-new-rstudio-project">Step 1 — Create a new RStudio Project</h2>
+<h2 class="anchored" data-anchor-id="step-1-create-a-new-rstudio-project">Step 1 – Create a new RStudio Project</h2>
 <ol type="1">
-<li>Open <strong>RStudio</strong> → <strong>File → New Project → New Directory → New Project</strong>.<br>
+<li>Open <strong>RStudio</strong> -&gt; <strong>File -&gt; New Project -&gt; New Directory -&gt; New Project</strong>.<br>
 </li>
 <li>Choose a location (e.g., <code>Documents/MC451/</code>) and name it (e.g., <code>journal_project</code>).</li>
 </ol>
@@ -256,30 +258,38 @@ Word ranges are enforced when you render:</p>
 <hr>
 </section>
 <section id="step-2-install-and-load-the-course-package" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-install-and-load-the-course-package">Step 2 — Install and load the course package</h2>
+<h2 class="anchored" data-anchor-id="step-2-install-and-load-the-course-package">Step 2 – Install and load the course package</h2>
 <p>In the <strong>Console</strong>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"SIM-Lab-SIUE/mccoursepack"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mccoursepack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"SIM-Lab-SIUE/mccoursepack"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mccoursepack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If prompted, restart R after installation.</p>
 <p><strong>FIGURE</strong> <img src="../images/load-package.png" title="Loading mccoursepack" class="img-fluid quarto-figure quarto-figure-center" alt="Console showing successful installation and library(mccoursepack) loaded."></p>
 <hr>
 </section>
 <section id="step-3-download-your-starter-journal" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-download-your-starter-journal">Step 3 — Download your starter journal</h2>
+<h2 class="anchored" data-anchor-id="step-3-download-your-starter-journal">Step 3 – Download your starter journal</h2>
 <p>Run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download_journal</span>(<span class="st">"mc451"</span>, <span class="at">dest =</span> <span class="st">"."</span>)   <span class="co"># or "mc501"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download_journal</span>(<span class="st">"mc451"</span>, <span class="at">dest =</span> <span class="st">"."</span>)   <span class="co"># or "mc501"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This populates your project’s main folder with the complete journal structure.</p>
 <p><strong>FIGURE</strong> <img src="../images/files-pane.png" title="RStudio Files pane" class="img-fluid quarto-figure quarto-figure-center" alt="RStudio Files pane showing the populated journal project directory."></p>
 <hr>
 </section>
-<section id="step-4-add-a-new-week-chapter" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-add-a-new-week-chapter">Step 4 — Add a new week chapter</h2>
+<section id="step-4-load-the-journal-helper-function" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-load-the-journal-helper-function">Step 4 – Load the Journal Helper Function</h2>
+<p>Before you can add a new entry, you need to load the helper function that creates the file for you.</p>
+<ol type="1">
+<li>In the <strong>Files</strong> pane (bottom-right), navigate into the <code>scripts</code> folder.</li>
+<li>Click on the file <code>new_journal_entry.R</code> to open it in the editor.</li>
+<li>Click the <strong>Source</strong> button in the top-right corner of the editor pane.</li>
+</ol>
+<p>This loads the <code>new_journal_entry()</code> function into your R environment for the current session.</p>
+<hr>
+</section>
+<section id="step-5-add-a-new-week-chapter" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-add-a-new-week-chapter">Step 5 – Add a new week chapter</h2>
 <p>In the <strong>Console</strong> pane at the bottom-left, run:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick your week number (2–14). Example:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">new_journal_entry</span>(<span class="at">week =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick your week number (2-14). Example:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">new_journal_entry</span>(<span class="at">week =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>What happens:</p>
 <ol type="1">
 <li>A new chapter is created and named with <strong>today’s date</strong>: <code>entries/YYYY-MM-DD.qmd</code>.</li>
@@ -293,8 +303,15 @@ Word ranges are enforced when you render:</p>
 </blockquote>
 <hr>
 </section>
-<section id="step-5-choose-your-prompt-then-write" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-choose-your-prompt-then-write">Step 5 — Choose your prompt, then write</h2>
+<section id="step-6-handling-multiple-entries-on-the-same-day" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-handling-multiple-entries-on-the-same-day">Step 6 – Handling Multiple Entries on the Same Day</h2>
+<p>The <code>new_journal_entry()</code> function names files by date (e.g., <code>2025-09-04.qmd</code>). If you want to write a second entry on the same day for a different week’s prompt, you should rename the first file to something more descriptive before creating the new one.</p>
+<p>For example, you could rename <code>entries/2025-09-04.qmd</code> to <code>entries/2025-09-04-week3.qmd</code>.</p>
+<p>The good news is that you <strong>do not need to manually edit <code>_quarto.yml</code></strong>. The journal is set up to automatically find all <code>.qmd</code> files in the <code>entries/</code> directory every time you render it. This means you can add, remove, or rename your entry files, and the book will always build correctly.</p>
+<hr>
+</section>
+<section id="step-7-choose-your-prompt-then-write" class="level2">
+<h2 class="anchored" data-anchor-id="step-7-choose-your-prompt-then-write">Step 7 – Choose your prompt, then write</h2>
 <p>Open the new file (e.g., <code>entries/2025-09-03.qmd</code>). You’ll see <strong>Choose one prompt</strong> first, then <strong>Response</strong>.</p>
 <p><strong>Keep ONE prompt and delete the other two</strong> in the <em>Choose one prompt</em> section. Then write your answer <strong>only</strong> inside the <strong>Response</strong> block.</p>
 <section id="choose-one-prompt-to-answer" class="level3">
@@ -310,15 +327,15 @@ Word ranges are enforced when you render:</p>
 <!-- RESPONSE-END -->
 <p>Stay in range:</p>
 <ul>
-<li><strong>MC 451:</strong> 250–300 words</li>
-<li><strong>MC 501:</strong> 450–500 words</li>
+<li><strong>MC 451:</strong> 250-300 words</li>
+<li><strong>MC 501:</strong> 450-500 words</li>
 </ul>
 <p><strong>FIGURE</strong> <img src="../images/choose-prompt.png" title="Choosing the Journal Week" class="img-fluid quarto-figure quarto-figure-center" alt="Editor with the Choose one prompt block highlighted above the Response block."></p>
 <hr>
 </section>
 </section>
-<section id="step-6-render-the-entire-journal-unified-output" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-render-the-entire-journal-unified-output">Step 6 — Render the <strong>entire</strong> journal (unified output)</h2>
+<section id="step-8-render-the-entire-journal-unified-output" class="level2">
+<h2 class="anchored" data-anchor-id="step-8-render-the-entire-journal-unified-output">Step 8 – Render the <strong>entire</strong> journal (unified output)</h2>
 <p>You have two equivalent options. Use <strong>one</strong> of them:</p>
 <p><strong>A) Click Render on <code>index.qmd</code></strong></p>
 <ul>
@@ -334,22 +351,21 @@ Word ranges are enforced when you render:</p>
 <li><strong>PDF/EPUB</strong> if you have TinyTeX installed.</li>
 </ul>
 <p>If a PDF fails to build, run:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>quarto install tinytex</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mccourse_setup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quarto install tinytex</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mccourse_setup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>FIGURE</strong> <img src="../images/book-files.png" title="Files Pane with Book Files" class="img-fluid quarto-figure quarto-figure-center" alt="Files pane showing _book/ with index.html and the chapter pages."></p>
 <blockquote class="blockquote">
 <p><strong>Tip:</strong> Rendering a single chapter file will <strong>not</strong> produce the unified journal. Always render <strong><code>index.qmd</code></strong> (or run <code>quarto render</code>) to build the whole book.</p>
 </blockquote>
 <hr>
 </section>
-<section id="step-7-submit-via-github" class="level2">
-<h2 class="anchored" data-anchor-id="step-7-submit-via-github">Step 7 — Submit via GitHub</h2>
+<section id="step-9-submit-via-github" class="level2">
+<h2 class="anchored" data-anchor-id="step-9-submit-via-github">Step 9 — Submit via GitHub</h2>
 <p>When you add or edit a chapter, <strong>two files are modified</strong>:</p>
 <ol type="1">
 <li>The new chapter file: <code>entries/YYYY-MM-DD.qmd</code></li>
-<li>The book’s table of contents: <code>_quarto.yml</code> (updated automatically)</li>
+<li>The book’s table of contents: <code>_quarto.yml</code> (updated automatically by the pre-render script)</li>
 </ol>
 <p>In RStudio:</p>
 <ol type="1">
@@ -373,10 +389,12 @@ Word ranges are enforced when you render:</p>
 <pre class="mermaid mermaid-js">flowchart TD
   A["New RStudio Project"] --&gt; B["Install &amp; load mccoursepack"]
   B --&gt; C["download_journal('mc451' | 'mc501')"]
-  C --&gt; D["new_journal_entry(week = N)"]
-  D --&gt; E["Open entries/YYYY-MM-DD.qmd → keep ONE prompt → write in Response"]
-  E --&gt; F["Render WHOLE book → Render index.qmd OR `quarto render`"]
-  F --&gt; G["Stage + Commit + Push → `entries/YYYY-MM-DD.qmd` + `_quarto.yml`"]
+  C --&gt; D["Source scripts/new_journal_entry.R"]
+  D --&gt; E["new_journal_entry(week = N)"]
+  E --&gt; F["(Optional) Rename entry file for clarity"]
+  F --&gt; G["Open .qmd → keep ONE prompt → write in Response"]
+  G --&gt; H["Render WHOLE book (auto-updates chapters)"]
+  H --&gt; I["Stage + Commit + Push"]
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -389,7 +407,7 @@ Word ranges are enforced when you render:</p>
 <h2 class="anchored" data-anchor-id="faq">FAQ</h2>
 <p><strong>It didn’t ask me for the week number. Is that okay?</strong> Yes. In RStudio you usually call the function directly: <code>new_journal_entry(week = 5)</code>.</p>
 <p><strong>My word count says “Out of range.”</strong> Edit until you are within the range for your course.</p>
-<p><strong>The new chapter doesn’t appear in the rendered book.</strong> Be sure you rendered the <strong>whole book</strong> (Render <code>index.qmd</code> or run <code>quarto render</code> from the project root) and committed <strong>both</strong> the new entry file and the automatically updated <code>_quarto.yml</code>.</p>
+<p><strong>The new chapter doesn’t appear in the rendered book.</strong> Be sure you rendered the <strong>whole book</strong> (Render <code>index.qmd</code> or run <code>quarto render</code> from the project root). The pre-render script automatically updates the chapter list, but only when the entire book is rendered. Also, make sure you have committed <strong>both</strong> the new entry file and the automatically modified <code>_quarto.yml</code>.</p>
 <p><strong>Can I revise later?</strong> Yes. Edit the same <code>entries/YYYY-MM-DD.qmd</code>, then commit and push again.</p>
 <hr>
 </section>
@@ -397,11 +415,12 @@ Word ranges are enforced when you render:</p>
 <h2 class="anchored" data-anchor-id="weekly-checklist-quick-self-audit">Weekly checklist (quick self-audit)</h2>
 <ul class="task-list">
 <li><label><input type="checkbox">I created/updated a chapter for <strong>this week</strong> using <code>new_journal_entry(week = N)</code>.</label></li>
+<li><label><input type="checkbox">I sourced the <code>new_journal_entry.R</code> script first.</label></li>
 <li><label><input type="checkbox">I kept <strong>one</strong> prompt and deleted the other <strong>two</strong>.</label></li>
 <li><label><input type="checkbox">I wrote my answer <strong>inside the Response block</strong> only.</label></li>
 <li><label><input type="checkbox">My word count is <strong>in range</strong>.</label></li>
 <li><label><input type="checkbox">I <strong>rendered the whole book</strong> by rendering <code>index.qmd</code> (or running <code>quarto render</code>).</label></li>
-<li><label><input type="checkbox">I <strong>staged, committed, and pushed</strong> <code>entries/YYYY-MM-DD.qmd</code> <strong>and</strong> the modified <code>_quarto.yml</code>.</label></li>
+<li><label><input type="checkbox">I <strong>staged, committed, and pushed</strong> my new/modified entry file(s) and the updated <code>_quarto.yml</code>.</label></li>
 </ul>
 
 

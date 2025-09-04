@@ -1,9 +1,21 @@
 ---
 title: "Connecting RStudio, Git, and GitHub"
 freeze: auto
+execute:
+  eval: false
 ---
 
 This guide provides a detailed, beginner-friendly workflow for connecting RStudio to Git and GitHub. We will use the `usethis` R package to handle most of the complex steps automatically.
+
+### Prerequisites: Install Helper Packages
+
+We will use the `usethis` and `gitcreds` packages to simplify the setup. Run this code in the RStudio Console to install and load them.
+
+```r
+install.packages(c("usethis", "gitcreds"))
+library(usethis)
+library(gitcreds)
+```
 
 ### Part 1: One-Time Setup
 
@@ -22,15 +34,11 @@ Git is a separate program from R and RStudio. You must install it first.
 Open the RStudio **Console** and run the following two lines of code, replacing the example text with your actual GitHub username and email. This is how your commits will be identified.
 
 ```r
-#| eval: false
-install.packages("usethis")
-library(usethis)
-
 # Replace with your info
 edit_git_config() 
 ```
 
-This will open a text file. Add the following lines, save the file, and close it.
+This will open a text file for Git's global configuration. Add the following lines, save the file, and close it.
 
 ```
 [user]
@@ -46,7 +54,6 @@ GitHub requires a special password called a Personal Access Token (PAT) to conne
 1.  **Generate the Token:** In the RStudio Console, run this command. It will open a new tab in your web browser, taking you to the "New personal access token" page on GitHub.
 
     ```r
-    #| eval: false
     create_github_token()
     ```
 
@@ -61,9 +68,6 @@ GitHub requires a special password called a Personal Access Token (PAT) to conne
 4.  **Save the Token in RStudio:** Go back to RStudio and run the following command in the Console. It will prompt you to paste your token. Paste it and press Enter.
 
     ```r
-    #| eval: false
-    install.packages("gitcreds")
-    library(gitcreds)
     gitcreds_set()
     ```
 
@@ -85,18 +89,18 @@ First, create a new, empty RStudio Project. **Do not initialize it as a Git repo
 In the RStudio Console, run this command:
 
 ```r
-#| eval: false
 use_git()
 ```
 
 This will initialize a Git repository in your project folder. RStudio will ask to restart. Click "Yes." When it reopens, you will see a **Git** tab in the top-right pane.
+
+![Git Pane](../images/git-pane.png){width="100%"}
 
 #### Step 3: Create a GitHub Repository and Connect It
 
 Now, tell `usethis` to create a repository on GitHub and connect your local project to it.
 
 ```r
-#| eval: false
 use_github()
 ```
 
@@ -109,18 +113,34 @@ When it's done, it will open a new browser tab showing you your new repository o
 
 ### Part 3: The Daily Workflow (Pull, Stage, Commit, Push)
 
-Now that your project is connected, here is the simple, day-to-day workflow for saving your work.
+Now that your project is connected, here is the simple, day-to-day workflow for saving your work. This is a cycle you will repeat many times.
 
-1.  **Pull:** Before you start working, click the blue **Pull** arrow in the Git pane. This gets the latest changes from GitHub. (This is crucial if you work on multiple computers).
-2.  **Do Your Work:** Edit your files, write your journal entries, etc.
+1.  **Pull:** Before you start working, click the blue **Pull** arrow in the Git pane. This downloads the latest changes from your GitHub repository. This is crucial if you work on multiple computers or collaborate with others.
+2.  **Do Your Work:** Edit your files, write your journal entries, analyze data, etc. Save your files as you normally would.
 3.  **Stage Your Changes:**
-    *   Go to the **Git** pane. You will see a list of all the files you've modified.
-    *   Check the boxes under the "Staged" column for all the files you want to save.
+    *   Go to the **Git** pane. You will see a list of all the files you've modified since your last commit.
+    *   Check the boxes under the "Staged" column for all the files you want to include in your next save point. "Staging" files is like putting them in a box to get them ready to ship.
+
+    ![RStudio Stage Window](../images/stage-window.png){width="100%"}
+
 4.  **Commit Your Changes:**
     *   Click the **Commit** button.
-    *   A new window will open. In the "Commit message" box, write a short, descriptive message about what you changed (e.g., "Completed Week 3 journal entry").
-    *   Click **Commit**.
-5.  **Push to GitHub:**
-    *   Click the green **Push** arrow. This sends your committed changes up to your GitHub repository.
+    *   A new window will open. In the "Commit message" box, write a short, descriptive message about what you changed (e.g., "Completed Week 3 journal entry"). This message is a log for your future self.
+    *   Click **Commit**. This creates a "save point" (a commit) on your local computer. Your changes are not on GitHub yet.
 
-That's it! You have successfully saved your work to GitHub.
+    ![RStudio Commit Window](../images/commit-window.png){width="100%"}
+
+5.  **Push to GitHub:**
+    *   Click the green **Push** arrow. This sends your committed changes from your local computer up to your GitHub repository, making them available online.
+
+That's it! You have successfully saved and backed up your work to GitHub.
+
+### Troubleshooting
+
+Here are a few common issues you might encounter.
+
+*   **`use_github()` fails:** If this command fails, it might be because a repository with that name already exists on GitHub. Make sure the name is unique. It could also fail if your PAT is incorrect. You can re-run `gitcreds_set()` to enter it again.
+
+*   **Accidentally committed a large file:** Git is not designed for large data files (e.g., >100MB). If you accidentally commit one and the push fails, you will need to remove it from the repository's history. The easiest way is to use the `r-lib/bfg-manager` package or follow GitHub's official guide. The best practice is to add the paths to large files or data folders to a `.gitignore` file *before* you commit them.
+
+*   **Merge Conflicts:** If you `Pull` and get a "merge conflict," it means you and a collaborator (or you on another computer) edited the same lines in the same file. RStudio will show you the conflicting sections in the file. You must manually edit the file to resolve the differences, save it, and then commit the resolved file.

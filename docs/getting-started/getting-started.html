@@ -203,15 +203,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#quick-setup" id="toc-quick-setup" class="nav-link active" data-scroll-target="#quick-setup">Quick Setup</a>
   <ul class="collapse">
-  <li><a href="#step-1-install-or-update-the-course-package" id="toc-step-1-install-or-update-the-course-package" class="nav-link" data-scroll-target="#step-1-install-or-update-the-course-package">Step 1 — Install or Update the Course Package</a></li>
-  <li><a href="#step-2-create-two-rstudio-projects" id="toc-step-2-create-two-rstudio-projects" class="nav-link" data-scroll-target="#step-2-create-two-rstudio-projects">Step 2 — Create Two RStudio Projects</a>
+  <li><a href="#step-1-install-or-update-the-course-package" id="toc-step-1-install-or-update-the-course-package" class="nav-link" data-scroll-target="#step-1-install-or-update-the-course-package">Step 1 – Install or Update the Course Package</a></li>
+  <li><a href="#step-2-create-two-rstudio-projects" id="toc-step-2-create-two-rstudio-projects" class="nav-link" data-scroll-target="#step-2-create-two-rstudio-projects">Step 2 – Create Two RStudio Projects</a>
   <ul class="collapse">
   <li><a href="#create-the-tasks-project" id="toc-create-the-tasks-project" class="nav-link" data-scroll-target="#create-the-tasks-project">Create the Tasks Project</a></li>
   <li><a href="#create-the-journal-project" id="toc-create-the-journal-project" class="nav-link" data-scroll-target="#create-the-journal-project">Create the Journal Project</a></li>
   </ul></li>
-  <li><a href="#step-3-set-up-the-journal-project" id="toc-step-3-set-up-the-journal-project" class="nav-link" data-scroll-target="#step-3-set-up-the-journal-project">Step 3 — Set Up the Journal Project</a></li>
-  <li><a href="#step-4-set-up-the-tasks-project" id="toc-step-4-set-up-the-tasks-project" class="nav-link" data-scroll-target="#step-4-set-up-the-tasks-project">Step 4 — Set Up the Tasks Project</a></li>
-  <li><a href="#step-5-confirm-everything-works" id="toc-step-5-confirm-everything-works" class="nav-link" data-scroll-target="#step-5-confirm-everything-works">Step 5 — Confirm Everything Works</a></li>
+  <li><a href="#step-3-set-up-the-journal-project" id="toc-step-3-set-up-the-journal-project" class="nav-link" data-scroll-target="#step-3-set-up-the-journal-project">Step 3 – Set Up the Journal Project</a></li>
+  <li><a href="#step-4-set-up-the-tasks-project" id="toc-step-4-set-up-the-tasks-project" class="nav-link" data-scroll-target="#step-4-set-up-the-tasks-project">Step 4 – Set Up the Tasks Project</a></li>
+  <li><a href="#step-5-confirm-everything-works" id="toc-step-5-confirm-everything-works" class="nav-link" data-scroll-target="#step-5-confirm-everything-works">Step 5 – Confirm Everything Works</a></li>
   <li><a href="#mental-model" id="toc-mental-model" class="nav-link" data-scroll-target="#mental-model">Mental Model</a></li>
   </ul></li>
   </ul>
@@ -242,27 +242,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Welcome to <strong>mccoursepack</strong>. This guide helps you install tools, open your first project, and render your first journal.</p>
 <section id="quick-setup" class="level1">
 <h1>Quick Setup</h1>
-<p>Follow these steps to get your system ready with the <strong>latest course package</strong> and two dedicated RStudio projects—one for your <strong>weekly class tasks</strong> and one for your <strong>weekly journal</strong>.</p>
+<p>Follow these steps to get your system ready with the <strong>latest course package</strong> and two dedicated RStudio projects–one for your <strong>weekly class tasks</strong> and one for your <strong>weekly journal</strong>.</p>
 <hr>
 <section id="step-1-install-or-update-the-course-package" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-install-or-update-the-course-package">Step 1 — Install or Update the Course Package</h2>
+<h2 class="anchored" data-anchor-id="step-1-install-or-update-the-course-package">Step 1 – Install or Update the Course Package</h2>
 <p>The course package <code>mccoursepack</code> is hosted on GitHub. Use the <code>remotes</code> package to install or update it.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Install remotes if not already installed</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Install or update the course package</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"SIM-Lab-SIUE/mccoursepack"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mccoursepack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install remotes if not already installed</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install or update the course package</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"SIM-Lab-SIUE/mccoursepack"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mccoursepack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="tip">
 <p>Run the <code>remotes::install_github()</code> command at the start of the semester and again whenever updates are announced.</p>
 </div>
 <hr>
 </section>
 <section id="step-2-create-two-rstudio-projects" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-create-two-rstudio-projects">Step 2 — Create Two RStudio Projects</h2>
+<h2 class="anchored" data-anchor-id="step-2-create-two-rstudio-projects">Step 2 – Create Two RStudio Projects</h2>
 <p>Projects keep everything organized. You’ll create <strong>two</strong>:</p>
 <ol type="1">
 <li>A <strong>Tasks Project</strong> for weekly assignments.</li>
@@ -271,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="create-the-tasks-project" class="level3">
 <h3 class="anchored" data-anchor-id="create-the-tasks-project">Create the Tasks Project</h3>
 <ol type="1">
-<li>In RStudio: <strong>File → New Project → New Directory → New Project</strong>.</li>
+<li>In RStudio: <strong>File -&gt; New Project -&gt; New Directory -&gt; New Project</strong>.</li>
 <li>Choose a location, e.g., <code>Documents/MC451/</code>.</li>
 <li>Name the folder: <code>tasks_project</code>.</li>
 <li>Click <strong>Create Project</strong>.</li>
@@ -280,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="create-the-journal-project" class="level3">
 <h3 class="anchored" data-anchor-id="create-the-journal-project">Create the Journal Project</h3>
 <ol type="1">
-<li>Again: <strong>File → New Project → New Directory → New Project</strong>.</li>
+<li>Again: <strong>File -&gt; New Project -&gt; New Directory -&gt; New Project</strong>.</li>
 <li>Same parent folder (<code>Documents/MC451/</code>).</li>
 <li>Name the folder: <code>journal_project</code>.</li>
 <li>Click <strong>Create Project</strong>.</li>
@@ -290,35 +289,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="step-3-set-up-the-journal-project" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-set-up-the-journal-project">Step 3 — Set Up the Journal Project</h2>
+<h2 class="anchored" data-anchor-id="step-3-set-up-the-journal-project">Step 3 – Set Up the Journal Project</h2>
 <ol type="1">
 <li>Open the <strong>journal_project</strong> in RStudio.</li>
 <li>In the Console, run:</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download_journal</span>(<span class="st">"mc451"</span>)   <span class="co"># or "mc501" if in the graduate course</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download_journal</span>(<span class="st">"mc451"</span>)   <span class="co"># or "mc501" if in the graduate course</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This creates the <code>journal/</code> folder structure with an <code>entries/</code> directory, a template, and scripts for adding new entries.</p>
 <hr>
 </section>
 <section id="step-4-set-up-the-tasks-project" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-set-up-the-tasks-project">Step 4 — Set Up the Tasks Project</h2>
+<h2 class="anchored" data-anchor-id="step-4-set-up-the-tasks-project">Step 4 – Set Up the Tasks Project</h2>
 <ol type="1">
 <li>Open the <strong>tasks_project</strong> in RStudio.</li>
 <li>Use the helper function to download the starter files for your first week:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download_week</span>(<span class="st">"mc451"</span>, <span class="at">week =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download_week</span>(<span class="st">"mc451"</span>, <span class="at">week =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(or substitute <code>"mc501"</code> for the graduate course).</p>
 <p>Repeat each week: change the <code>week</code> number to get that week’s scaffold.</p>
 <hr>
 </section>
 <section id="step-5-confirm-everything-works" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-confirm-everything-works">Step 5 — Confirm Everything Works</h2>
+<h2 class="anchored" data-anchor-id="step-5-confirm-everything-works">Step 5 – Confirm Everything Works</h2>
 <ul>
-<li><p>Open the <strong>journal_project</strong> → render the index file:</p>
+<li><p>Open the <strong>journal_project</strong> -&gt; render the index file:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This should build a unified journal book.</p></li>
-<li><p>Open the <strong>tasks_project</strong> → render a week’s scaffold. Check that Quarto builds the <code>.qmd</code> file into HTML/PDF.</p></li>
+<li><p>Open the <strong>tasks_project</strong> -&gt; render a week’s scaffold. Check that Quarto builds the <code>.qmd</code> file into HTML/PDF.</p></li>
 </ul>
 <p>If both projects render without errors, you’re fully set up.</p>
 <hr>

@@ -3,9 +3,52 @@ project:
   output-dir: ../docs
   resources:
     - assets/pdfs/**
-    - images/**
-
-website:
+    - imagformat:
+  htmformatformatformatformatformat:
+  html:
+    theme: cosmo
+    toc: true
+    page-navigation: true
+    code-copy: true
+    df-print: paged
+    embed-resources: true:
+    theme: cosmo
+    toc: true
+    page-navigation: true
+    code-copy: true
+    df-print: paged
+    embed-resources: true:
+    theme: cosmo
+    toc: true
+    page-navigation: true
+    code-copy: true
+    df-print: paged
+    embed-resources: true:
+    theme: cosmo
+    toc: true
+    page-navigation: true
+    code-copy: true
+    df-print: paged
+    embed-resources: true:
+    theme: cosmo
+    toc: true
+    page-navigation: true
+    code-copy: true
+    df-print: paged
+    embed-resources: trueheme: cosmo
+    toc: true
+    page-navigation: true
+    code-copy: true
+    df-print: paged
+    embed-resources: true
+    link-external-newwindow: true
+    include-after-body:
+      - text: |
+          <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+          <script src="../site_libs/quarto-search/quarto-search.js"></script>
+          <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+          <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+          <script src="../site_libs/quarto-html/quarto-html.js"></script>ebsite:
   title: "mccoursepack"
   search: true
   navbar:
@@ -96,7 +139,13 @@ format:
     page-navigation: true
     code-copy: true
     df-print: paged
-    link-external-newwindow: true
+    link-external-newwindow: false
+    include-after-body:
+      - href: "../site_libs/quarto-nav/quarto-nav.js"
+      - href: "../site_libs/quarto-search/quarto-search.js"
+      - href: "../site_libs/quarto-search/autocomplete.umd.js"
+      - href: "../site_libs/bootstrap/bootstrap.min.js"
+      - href: "../site_libs/quarto-html/quarto-html.js"
 
 execute:
   echo: false

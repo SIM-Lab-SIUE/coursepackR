@@ -1,6 +1,8 @@
 ---
 title: "Troubleshooting"
 freeze: auto
+execute:
+  eval: false
 ---
 
 Common problems and fixes.
@@ -121,7 +123,6 @@ When you encounter a problem, providing good diagnostic information is the faste
 2.  **Include the exact error message.** Copy and paste it.
 3.  **Provide your system information.** Run the following command in the RStudio Console and include the output:
     ```r
-    #| eval: false
     sessionInfo()
     ```
 4.  **Provide your tool versions.** Run these commands in the RStudio **Terminal** and include the output:

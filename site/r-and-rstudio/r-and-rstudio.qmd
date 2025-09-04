@@ -1,6 +1,8 @@
 ---
 title: "R & RStudio"
 freeze: auto
+execute:
+  eval: false
 ---
 
 This section covers installing R/RStudio and tuning the IDE.
@@ -90,7 +92,6 @@ If the Git tab is missing:
 or run:
 
 ```r
-#| eval: false
 usethis::use_git()
 ```
 
@@ -119,7 +120,6 @@ Everything in **mccoursepack**—listing weeks, downloading scaffolds, rendering
 Workflow reminder:
 
 ```r
-#| eval: false
 library(mccoursepack)
 
 # list weeks

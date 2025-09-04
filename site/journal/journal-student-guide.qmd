@@ -28,7 +28,6 @@ Word ranges are enforced when you render:
 In the **Console**:
 
 ```r
-#| eval: false
 pak::pak("SIM-Lab-SIUE/mccoursepack")
 library(mccoursepack)
 ````
@@ -45,7 +44,6 @@ If prompted, restart R after installation.
 Run:
 
 ```r
-#| eval: false
 download_journal("mc451", dest = ".")   # or "mc501"
 ```
 
@@ -56,12 +54,23 @@ This populates your project's main folder with the complete journal structure.
 
 ---
 
-## Step 4 -- Add a new week chapter
+## Step 4 -- Load the Journal Helper Function
+
+Before you can add a new entry, you need to load the helper function that creates the file for you.
+
+1.  In the **Files** pane (bottom-right), navigate into the `scripts` folder.
+2.  Click on the file `new_journal_entry.R` to open it in the editor.
+3.  Click the **Source** button in the top-right corner of the editor pane.
+
+This loads the `new_journal_entry()` function into your R environment for the current session.
+
+---
+
+## Step 5 -- Add a new week chapter
 
 In the **Console** pane at the bottom-left, run:
 
 ```r
-#| eval: false
 # Pick your week number (2-14). Example:
 new_journal_entry(week = 3)
 ```
@@ -81,7 +90,17 @@ What happens:
 
 ---
 
-## Step 5 -- Choose your prompt, then write
+## Step 6 -- Handling Multiple Entries on the Same Day
+
+The `new_journal_entry()` function names files by date (e.g., `2025-09-04.qmd`). If you want to write a second entry on the same day for a different week's prompt, you should rename the first file to something more descriptive before creating the new one.
+
+For example, you could rename `entries/2025-09-04.qmd` to `entries/2025-09-04-week3.qmd`.
+
+The good news is that you **do not need to manually edit `_quarto.yml`**. The journal is set up to automatically find all `.qmd` files in the `entries/` directory every time you render it. This means you can add, remove, or rename your entry files, and the book will always build correctly.
+
+---
+
+## Step 7 -- Choose your prompt, then write
 
 Open the new file (e.g., `entries/2025-09-03.qmd`). You'll see **Choose one prompt** first, then **Response**.
 
@@ -111,7 +130,7 @@ Stay in range:
 
 ---
 
-## Step 6 -- Render the **entire** journal (unified output)
+## Step 8 -- Render the **entire** journal (unified output)
 
 You have two equivalent options. Use **one** of them:
 
@@ -135,7 +154,6 @@ Outputs are in the `_book/` directory:
 If a PDF fails to build, run:
 
 ```r
-#| eval: false
 quarto install tinytex
 # or
 mccourse_setup()
@@ -150,12 +168,12 @@ mccourse_setup()
 
 ---
 
-## Step 7 — Submit via GitHub
+## Step 9 — Submit via GitHub
 
 When you add or edit a chapter, **two files are modified**:
 
 1. The new chapter file: `entries/YYYY-MM-DD.qmd`
-2. The book's table of contents: `_quarto.yml` (updated automatically)
+2. The book's table of contents: `_quarto.yml` (updated automatically by the pre-render script)
 
 In RStudio:
 
@@ -174,10 +192,12 @@ In RStudio:
 flowchart TD
   A["New RStudio Project"] --> B["Install & load mccoursepack"]
   B --> C["download_journal('mc451' | 'mc501')"]
-  C --> D["new_journal_entry(week = N)"]
-  D --> E["Open entries/YYYY-MM-DD.qmd → keep ONE prompt → write in Response"]
-  E --> F["Render WHOLE book → Render index.qmd OR `quarto render`"]
-  F --> G["Stage + Commit + Push → `entries/YYYY-MM-DD.qmd` + `_quarto.yml`"]
+  C --> D["Source scripts/new_journal_entry.R"]
+  D --> E["new_journal_entry(week = N)"]
+  E --> F["(Optional) Rename entry file for clarity"]
+  F --> G["Open .qmd → keep ONE prompt → write in Response"]
+  G --> H["Render WHOLE book (auto-updates chapters)"]
+  H --> I["Stage + Commit + Push"]
 ```
 
 ---
@@ -191,7 +211,7 @@ Yes. In RStudio you usually call the function directly: `new_journal_entry(week 
 Edit until you are within the range for your course.
 
 **The new chapter doesn’t appear in the rendered book.**
-Be sure you rendered the **whole book** (Render `index.qmd` or run `quarto render` from the project root) and committed **both** the new entry file and the automatically updated `_quarto.yml`.
+Be sure you rendered the **whole book** (Render `index.qmd` or run `quarto render` from the project root). The pre-render script automatically updates the chapter list, but only when the entire book is rendered. Also, make sure you have committed **both** the new entry file and the automatically modified `_quarto.yml`.
 
 **Can I revise later?**
 Yes. Edit the same `entries/YYYY-MM-DD.qmd`, then commit and push again.
@@ -201,8 +221,9 @@ Yes. Edit the same `entries/YYYY-MM-DD.qmd`, then commit and push again.
 ## Weekly checklist (quick self-audit)
 
 * [ ] I created/updated a chapter for **this week** using `new_journal_entry(week = N)`.
+* [ ] I sourced the `new_journal_entry.R` script first.
 * [ ] I kept **one** prompt and deleted the other **two**.
 * [ ] I wrote my answer **inside the Response block** only.
 * [ ] My word count is **in range**.
 * [ ] I **rendered the whole book** by rendering `index.qmd` (or running `quarto render`).
-* [ ] I **staged, committed, and pushed** `entries/YYYY-MM-DD.qmd` **and** the modified `_quarto.yml`.
+* [ ] I **staged, committed, and pushed** my new/modified entry file(s) and the updated `_quarto.yml`.

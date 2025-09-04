@@ -1,6 +1,8 @@
 ---
 title: "Course Workflow"
 freeze: auto
+execute:
+  eval: false
 ---
 
 Week-by-week rhythm of the course.
@@ -32,7 +34,6 @@ Always begin inside your course **RStudio Project** (open the `.Rproj`). Project
 ## 1) Update the package each week
 
 ```r
-#| eval: false
 pak::pak("SIM-Lab-SIUE/mccoursepack") # get latest version
 library(mccoursepack) # load for this session
 ```
@@ -40,7 +41,6 @@ library(mccoursepack) # load for this session
 If a render fails with Quarto/TinyTeX errors, you can re-run:
 
 ``` r
-#| eval: false
 mccourse_setup()   # safe anytime; only installs missing pieces
 ```
 
@@ -49,7 +49,6 @@ mccourse_setup()   # safe anytime; only installs missing pieces
 ## 2) Pull this week's scaffold
 
 ``` r
-#| eval: false
 list_weeks("mc451")          # or "mc501" to see available weeks
 download_week("mc451", N, dest = ".")   # replace N with week number
 open_week(N, dest = ".")                # optional: opens folder
@@ -64,7 +63,6 @@ This creates `./week_0N/`. Open the `.qmd` inside and click **Render** (PDF or H
 At the end of each week, add a dated chapter to your **journal book**:
 
 ``` r
-#| eval: false
 setwd("journal")                   # go inside journal folder
 source("scripts/new_journal_entry.R")
 ```

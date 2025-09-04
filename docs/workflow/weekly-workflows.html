@@ -238,16 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
-<pre class="mermaid mermaid-js">flowchart TD
-  A["Open RStudio Project&lt;br/&gt;(.Rproj)"] --&gt; B["Update package&lt;br/&gt;pak::pak('SIM-Lab-SIUE/mccoursepack')"]
-  B --&gt; C["Download week N&lt;br/&gt;download_week('mc451', N, '.')"]
-  C --&gt; D["Do the work&lt;br/&gt;edit week_0N/.qmd → Render"]
-  D --&gt; E["Add journal entry&lt;br/&gt;source('journal/scripts/new_journal_entry.R')"]
-  E --&gt; F["Render journal book&lt;br/&gt;quarto render"]
-  F --&gt; G["Stage → Commit → Push&lt;br/&gt;(Git/GitHub)"]
-  style A fill:#eef,stroke:#99f
-  style G fill:#efe,stroke:#2a2
-</pre>
+
 </div>
 <p></p></figure><p></p>
 </div>
@@ -262,33 +253,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="update-the-package-each-week" class="level2">
 <h2 class="anchored" data-anchor-id="update-the-package-each-week">1) Update the package each week</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"SIM-Lab-SIUE/mccoursepack"</span>) <span class="co"># get latest version</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mccoursepack) <span class="co"># load for this session</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"SIM-Lab-SIUE/mccoursepack"</span>) <span class="co"># get latest version</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mccoursepack) <span class="co"># load for this session</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If a render fails with Quarto/TinyTeX errors, you can re-run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mccourse_setup</span>()   <span class="co"># safe anytime; only installs missing pieces</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mccourse_setup</span>()   <span class="co"># safe anytime; only installs missing pieces</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="pull-this-weeks-scaffold" class="level2">
 <h2 class="anchored" data-anchor-id="pull-this-weeks-scaffold">2) Pull this week’s scaffold</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">list_weeks</span>(<span class="st">"mc451"</span>)          <span class="co"># or "mc501" to see available weeks</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">download_week</span>(<span class="st">"mc451"</span>, N, <span class="at">dest =</span> <span class="st">"."</span>)   <span class="co"># replace N with week number</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">open_week</span>(N, <span class="at">dest =</span> <span class="st">"."</span>)                <span class="co"># optional: opens folder</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list_weeks</span>(<span class="st">"mc451"</span>)          <span class="co"># or "mc501" to see available weeks</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download_week</span>(<span class="st">"mc451"</span>, N, <span class="at">dest =</span> <span class="st">"."</span>)   <span class="co"># replace N with week number</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">open_week</span>(N, <span class="at">dest =</span> <span class="st">"."</span>)                <span class="co"># optional: opens folder</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This creates <code>./week_0N/</code>. Open the <code>.qmd</code> inside and click <strong>Render</strong> (PDF or HTML).</p>
 <hr>
 </section>
 <section id="write-your-journal-entry" class="level2">
 <h2 class="anchored" data-anchor-id="write-your-journal-entry">3) Write your journal entry</h2>
 <p>At the end of each week, add a dated chapter to your <strong>journal book</strong>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"journal"</span>)                   <span class="co"># go inside journal folder</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/new_journal_entry.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"journal"</span>)                   <span class="co"># go inside journal folder</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/new_journal_entry.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This creates <code>entries/YYYY-MM-DD.qmd</code> with three prompts. <strong>Answer exactly one</strong>, staying in your word range:</p>
 <ul>
-<li><strong>MC 451:</strong> 250–300 words</li>
-<li><strong>MC 501:</strong> 450–500 words</li>
+<li><strong>MC 451:</strong> 250-300 words</li>
+<li><strong>MC 501:</strong> 450-500 words</li>
 </ul>
 <p>Then render the journal:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

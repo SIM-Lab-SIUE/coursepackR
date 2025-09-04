@@ -14,7 +14,7 @@
     "href": "workflow/weekly-workflows.html#at-a-glance-diagram",
     "title": "Course Workflow",
     "section": "At a glance (diagram)",
-    "text": "At a glance (diagram)\n\n\n\n\n\nflowchart TD\n  A[\"Open RStudio Project&lt;br/&gt;(.Rproj)\"] --&gt; B[\"Update package&lt;br/&gt;pak::pak('SIM-Lab-SIUE/mccoursepack')\"]\n  B --&gt; C[\"Download week N&lt;br/&gt;download_week('mc451', N, '.')\"]\n  C --&gt; D[\"Do the work&lt;br/&gt;edit week_0N/.qmd → Render\"]\n  D --&gt; E[\"Add journal entry&lt;br/&gt;source('journal/scripts/new_journal_entry.R')\"]\n  E --&gt; F[\"Render journal book&lt;br/&gt;quarto render\"]\n  F --&gt; G[\"Stage → Commit → Push&lt;br/&gt;(Git/GitHub)\"]\n  style A fill:#eef,stroke:#99f\n  style G fill:#efe,stroke:#2a2",
+    "text": "At a glance (diagram)",
     "crumbs": [
       "Course Workflow"
     ]
@@ -34,7 +34,7 @@
     "href": "workflow/weekly-workflows.html#update-the-package-each-week",
     "title": "Course Workflow",
     "section": "1) Update the package each week",
-    "text": "1) Update the package each week\n#| eval: false\npak::pak(\"SIM-Lab-SIUE/mccoursepack\") # get latest version\nlibrary(mccoursepack) # load for this session\nIf a render fails with Quarto/TinyTeX errors, you can re-run:\n#| eval: false\nmccourse_setup()   # safe anytime; only installs missing pieces",
+    "text": "1) Update the package each week\npak::pak(\"SIM-Lab-SIUE/mccoursepack\") # get latest version\nlibrary(mccoursepack) # load for this session\nIf a render fails with Quarto/TinyTeX errors, you can re-run:\nmccourse_setup()   # safe anytime; only installs missing pieces",
     "crumbs": [
       "Course Workflow"
     ]
@@ -44,7 +44,7 @@
     "href": "workflow/weekly-workflows.html#pull-this-weeks-scaffold",
     "title": "Course Workflow",
     "section": "2) Pull this week’s scaffold",
-    "text": "2) Pull this week’s scaffold\n#| eval: false\nlist_weeks(\"mc451\")          # or \"mc501\" to see available weeks\ndownload_week(\"mc451\", N, dest = \".\")   # replace N with week number\nopen_week(N, dest = \".\")                # optional: opens folder\nThis creates ./week_0N/. Open the .qmd inside and click Render (PDF or HTML).",
+    "text": "2) Pull this week’s scaffold\nlist_weeks(\"mc451\")          # or \"mc501\" to see available weeks\ndownload_week(\"mc451\", N, dest = \".\")   # replace N with week number\nopen_week(N, dest = \".\")                # optional: opens folder\nThis creates ./week_0N/. Open the .qmd inside and click Render (PDF or HTML).",
     "crumbs": [
       "Course Workflow"
     ]
@@ -54,7 +54,7 @@
     "href": "workflow/weekly-workflows.html#write-your-journal-entry",
     "title": "Course Workflow",
     "section": "3) Write your journal entry",
-    "text": "3) Write your journal entry\nAt the end of each week, add a dated chapter to your journal book:\n#| eval: false\nsetwd(\"journal\")                   # go inside journal folder\nsource(\"scripts/new_journal_entry.R\")\nThis creates entries/YYYY-MM-DD.qmd with three prompts. Answer exactly one, staying in your word range:\n\nMC 451: 250–300 words\nMC 501: 450–500 words\n\nThen render the journal:\nquarto render\nOutputs appear under journal/_book/.",
+    "text": "3) Write your journal entry\nAt the end of each week, add a dated chapter to your journal book:\nsetwd(\"journal\")                   # go inside journal folder\nsource(\"scripts/new_journal_entry.R\")\nThis creates entries/YYYY-MM-DD.qmd with three prompts. Answer exactly one, staying in your word range:\n\nMC 451: 250-300 words\nMC 501: 450-500 words\n\nThen render the journal:\nquarto render\nOutputs appear under journal/_book/.",
     "crumbs": [
       "Course Workflow"
     ]
@@ -84,7 +84,7 @@
     "href": "troubleshooting/rstudio-older-macs.html",
     "title": "RStudio on Older Macs",
     "section": "",
-    "text": "This guide is for students running older macOS versions who run into crashes or compatibility problems when using RStudio.\n\n\n\nClick the Apple menu → About This Mac, and note your macOS version (e.g., 10.15, 11, 12).\n\n\n\n\n\n\n\nmacOS Version\nRecommended RStudio Version\n\n\n\n\n12 (Ventura) or newer\nRStudio 2024.09.1+394 or later (Posit Docs)\n\n\n11 (Big Sur)\nRStudio 2023.09.1+494 (Posit Docs)\n\n\n10.15 (Catalina)\nRStudio 2022.07.2+576 (Posit Docs)\n\n\n\n👉 Download older builds from Posit’s “previous versions” page.\n\n\n\n\nOlder Macs often crash with R 4.5.x inside RStudio. Choose a more stable option:\n\nR 4.5.0 (released April 11, 2025): may be safe if needed (CRAN download).\n\nR 4.4.3 or 4.4.1: safest bets. Both are available in CRAN’s macOS directory.\n\nWhere to find them:\n\nCRAN macOS binaries\n\nBig Sur ARM64/Intel builds\n\nHelpful Stack Overflow thread\n\n\n\n\n\nOpen Terminal, type:\nR\n1+1\n\nIf it prints 2, R is working fine.\nNext, open RStudio and try again.\nIf RStudio crashes immediately or while typing → it’s a compatibility issue between R and RStudio.\n\n\n\n\n\n\nDowngrade R to 4.4.3 or 4.4.1.\nIf you must keep R 4.5.x, use an older RStudio version (see table above).\nStill stuck?\n\nClear RStudio’s user state (e.g., delete ~/.config/rstudio).\nDisable GPU rendering under Preferences → General → Advanced.\n\n\n\n\n\n\n(replace &lt;arch&gt; with arm64 or x86_64 depending on your Mac chip)\n\nR 4.5.0 – Direct CRAN link\nR 4.4.3 – Direct CRAN link\nR 4.4.1 – Direct CRAN link\n\n\n\n\n\n\n\nCheck your macOS → map it to an RStudio version.\nInstall a stable R (4.4.x is safest).\nTest in Terminal. If it works there but not in RStudio → compatibility bug.\nDowngrade R or RStudio if needed.\nClean RStudio’s settings or turn off GPU if stubborn.\n\n\n💡 Translation: “R works, RStudio doesn’t? Time-travel one version back—either R or RStudio.”",
+    "text": "This guide is for students running older macOS versions who run into crashes or compatibility problems when using RStudio.",
     "crumbs": [
       "Getting Started",
       "RStudio on Older Macs"
@@ -94,8 +94,8 @@
     "objectID": "troubleshooting/rstudio-older-macs.html#step-1-identify-your-macos-version",
     "href": "troubleshooting/rstudio-older-macs.html#step-1-identify-your-macos-version",
     "title": "RStudio on Older Macs",
-    "section": "",
-    "text": "Click the Apple menu → About This Mac, and note your macOS version (e.g., 10.15, 11, 12).",
+    "section": "Step 1 — Identify Your macOS Version",
+    "text": "Step 1 — Identify Your macOS Version\nClick the Apple menu → About This Mac, and note your macOS version (e.g., 10.15, 11, 12).",
     "crumbs": [
       "Getting Started",
       "RStudio on Older Macs"
@@ -105,8 +105,8 @@
     "objectID": "troubleshooting/rstudio-older-macs.html#step-2-use-the-correct-rstudio-for-your-macos",
     "href": "troubleshooting/rstudio-older-macs.html#step-2-use-the-correct-rstudio-for-your-macos",
     "title": "RStudio on Older Macs",
-    "section": "",
-    "text": "macOS Version\nRecommended RStudio Version\n\n\n\n\n12 (Ventura) or newer\nRStudio 2024.09.1+394 or later (Posit Docs)\n\n\n11 (Big Sur)\nRStudio 2023.09.1+494 (Posit Docs)\n\n\n10.15 (Catalina)\nRStudio 2022.07.2+576 (Posit Docs)\n\n\n\n👉 Download older builds from Posit’s “previous versions” page.",
+    "section": "Step 2 — Use the Correct RStudio for Your macOS",
+    "text": "Step 2 — Use the Correct RStudio for Your macOS\n\n\n\nmacOS Version\nRecommended RStudio Version\n\n\n\n\n12 (Ventura) or newer\nRStudio 2024.09.1+394 or later (Posit Docs)\n\n\n11 (Big Sur)\nRStudio 2023.09.1+494 (Posit Docs)\n\n\n10.15 (Catalina)\nRStudio 2022.07.2+576 (Posit Docs)\n\n\n\n👉 Download older builds from Posit’s “previous versions” page.",
     "crumbs": [
       "Getting Started",
       "RStudio on Older Macs"
@@ -116,8 +116,8 @@
     "objectID": "troubleshooting/rstudio-older-macs.html#step-3-install-a-supported-r-version",
     "href": "troubleshooting/rstudio-older-macs.html#step-3-install-a-supported-r-version",
     "title": "RStudio on Older Macs",
-    "section": "",
-    "text": "Older Macs often crash with R 4.5.x inside RStudio. Choose a more stable option:\n\nR 4.5.0 (released April 11, 2025): may be safe if needed (CRAN download).\n\nR 4.4.3 or 4.4.1: safest bets. Both are available in CRAN’s macOS directory.\n\nWhere to find them:\n\nCRAN macOS binaries\n\nBig Sur ARM64/Intel builds\n\nHelpful Stack Overflow thread",
+    "section": "Step 3 — Install a Supported R Version",
+    "text": "Step 3 — Install a Supported R Version\nOlder Macs often crash with R 4.5.x inside RStudio. Choose a more stable option:\n\nR 4.5.0 (released April 11, 2025): may be safe if needed (CRAN download).\n\nR 4.4.3 or 4.4.1: safest bets. Both are available in CRAN’s macOS directory.\n\nWhere to find them:\n\nCRAN macOS binaries\n\nBig Sur ARM64/Intel builds\n\nHelpful Stack Overflow thread",
     "crumbs": [
       "Getting Started",
       "RStudio on Older Macs"
@@ -127,8 +127,8 @@
     "objectID": "troubleshooting/rstudio-older-macs.html#step-4-do-the-60-second-console-check",
     "href": "troubleshooting/rstudio-older-macs.html#step-4-do-the-60-second-console-check",
     "title": "RStudio on Older Macs",
-    "section": "",
-    "text": "Open Terminal, type:\nR\n1+1\n\nIf it prints 2, R is working fine.\nNext, open RStudio and try again.\nIf RStudio crashes immediately or while typing → it’s a compatibility issue between R and RStudio.",
+    "section": "Step 4 — Do the 60-Second Console Check",
+    "text": "Step 4 — Do the 60-Second Console Check\nOpen Terminal, type:\nR\n1+1\n\nIf it prints 2, R is working fine.\nNext, open RStudio and try again.\nIf RStudio crashes immediately or while typing → it’s a compatibility issue between R and RStudio.",
     "crumbs": [
       "Getting Started",
       "RStudio on Older Macs"
@@ -138,8 +138,8 @@
     "objectID": "troubleshooting/rstudio-older-macs.html#step-5-if-it-still-crashes",
     "href": "troubleshooting/rstudio-older-macs.html#step-5-if-it-still-crashes",
     "title": "RStudio on Older Macs",
-    "section": "",
-    "text": "Downgrade R to 4.4.3 or 4.4.1.\nIf you must keep R 4.5.x, use an older RStudio version (see table above).\nStill stuck?\n\nClear RStudio’s user state (e.g., delete ~/.config/rstudio).\nDisable GPU rendering under Preferences → General → Advanced.",
+    "section": "Step 5 — If it Still Crashes",
+    "text": "Step 5 — If it Still Crashes\n\nDowngrade R to 4.4.3 or 4.4.1.\nIf you must keep R 4.5.x, use an older RStudio version (see table above).\nStill stuck?\n\nClear RStudio’s user state (e.g., delete ~/.config/rstudio).\nDisable GPU rendering under Preferences → General → Advanced.",
     "crumbs": [
       "Getting Started",
       "RStudio on Older Macs"
@@ -149,8 +149,8 @@
     "objectID": "troubleshooting/rstudio-older-macs.html#quick-download-links",
     "href": "troubleshooting/rstudio-older-macs.html#quick-download-links",
     "title": "RStudio on Older Macs",
-    "section": "",
-    "text": "(replace &lt;arch&gt; with arm64 or x86_64 depending on your Mac chip)\n\nR 4.5.0 – Direct CRAN link\nR 4.4.3 – Direct CRAN link\nR 4.4.1 – Direct CRAN link",
+    "section": "Quick Download Links",
+    "text": "Quick Download Links\n(replace &lt;arch&gt; with arm64 or x86_64 depending on your Mac chip)\n\nR 4.5.0 – Direct CRAN link\nR 4.4.3 – Direct CRAN link\nR 4.4.1 – Direct CRAN link",
     "crumbs": [
       "Getting Started",
       "RStudio on Older Macs"
@@ -160,8 +160,8 @@
     "objectID": "troubleshooting/rstudio-older-macs.html#tldr-nerdy-survival-guide",
     "href": "troubleshooting/rstudio-older-macs.html#tldr-nerdy-survival-guide",
     "title": "RStudio on Older Macs",
-    "section": "",
-    "text": "Check your macOS → map it to an RStudio version.\nInstall a stable R (4.4.x is safest).\nTest in Terminal. If it works there but not in RStudio → compatibility bug.\nDowngrade R or RStudio if needed.\nClean RStudio’s settings or turn off GPU if stubborn.\n\n\n💡 Translation: “R works, RStudio doesn’t? Time-travel one version back—either R or RStudio.”",
+    "section": "TL;DR: Nerdy Survival Guide",
+    "text": "TL;DR: Nerdy Survival Guide\n\n\nCheck your macOS → map it to an RStudio version.\nInstall a stable R (4.4.x is safest).\nTest in Terminal. If it works there but not in RStudio → compatibility bug.\nDowngrade R or RStudio if needed.\nClean RStudio’s settings or turn off GPU if stubborn.\n\n\n💡 Translation: “R works, RStudio doesn’t? Time-travel one version back—either R or RStudio.”",
     "crumbs": [
       "Getting Started",
       "RStudio on Older Macs"
@@ -172,7 +172,7 @@
     "href": "reference/package-reference.html",
     "title": "Package Reference",
     "section": "",
-    "text": "Package reference and bibliography.",
+    "text": "Tip\nLoad the package each R session:\nlibrary(mccoursepack)\nThis page lists the main functions students will use in this course.\nFor more detail, see Function Details.",
     "crumbs": [
       "Getting Started",
       "Package Reference"
@@ -194,147 +194,147 @@
     "href": "r-and-rstudio/rstudio-global-options.html",
     "title": "RStudio Global Options",
     "section": "",
-    "text": "Think of this window as your personal cockpit. Every slider, checkbox, and dropdown lets you fine-tune RStudio’s behavior, appearance, and workflow. Below is a guide to the most-used tabs—so when you’re ready to tweak, you’re not poking around in the dark.\n\n\n\nGlobal Options\n\n\n\n\n\n\nR Sessions: Pick which R installation runs inside RStudio (handy if you have multiple versions installed).\n\nDefault working directory: Sets where files open and save by default when you’re not inside a project.\n\nWorkspace:\n\nRestore .RData into workspace at startup: leave unchecked for a clean slate every session.\n\nSave workspace to .RData on exit: set to Never to avoid saving random objects (recommended for reproducibility).\n\n\nHistory: Options to automatically save command history—even across sessions—and to remove duplicates.\n\nOther: Miscellaneous options, like wrapping text when switching tabs or whether crash reports are auto-submitted.\n\n\n\n\n\nControls how code is displayed and edited.\nCommon options: soft wrapping, tabs vs. spaces, auto indentation, and diagnostics for languages like C/C++ or HTML/CSS.\n\n\n\n\nCustomize how RStudio looks:\n\nTheme (dark, light, solarized, etc.)\n\nZoom level for text\n\nEditor font and size\n\nSyntax highlighting themes (with a live preview)\n\nThis is where you soften glare or crank the contrast—so your code reads like a poem instead of eye strain.\n\n\n\n\nYour four-pane structure can become your personal artboard:\n\nChoose which pane (Source, Console, Environment, Output) goes where.\n\nReassign tabs (Help, Files, Packages, Plots, etc.).\n\nAdd extra Source columns to work on multiple scripts side-by-side.\n\nOften adjusted just once, this can make RStudio feel like it moves with your brain, not against it.\n\n\n\n\nAppears only if you’ve installed or used packages. Options include:\n\nDefault CRAN mirror\n\nWhether the Packages pane is shown\n\nIntegration with devtools\n\nBuild settings and auto-navigation when building or checking packages\n\nThis is especially useful if you start writing or maintaining your own packages.\n\n\n\n\n\nR Markdown: configure editing, visual mode, citations, outline visibility.\n\nGit/SVN: set up version control, authentication, and commit preferences.\n\nTerminal: pick your shell, scrollback buffer, and startup commands.\n\nAccessibility: adjust screen reader, motion reduction, and focus control.\n\n\n\n\n\n\nIf RStudio keeps reopening everything you worked on—even forgotten objects—your “Save workspace” option is probably still set to Always. Change it to Never for a fresh start every time.\n\n\nTired of tiny fonts or glaring white backgrounds at 2 a.m.? Head to Appearance and make RStudio your cozy digital notebook.\n\n\nWant RStudio to feel like an extension of your thought process? Adjust the Pane Layout—it’s surprisingly transformative.\n\n\nRStudio stops being “just another program” when you shape it to fit your workflow. Every layout tweak, every bolded code line, every choice to suppress auto-loads—they all help you think and work more clearly."
+    "text": "Think of this window as your personal cockpit. Every slider, checkbox, and dropdown lets you fine-tune RStudio’s behavior, appearance, and workflow. Below is a guide to the most-used tabs—so when you’re ready to tweak, you’re not poking around in the dark."
   },
   {
     "objectID": "r-and-rstudio/rstudio-global-options.html#general",
     "href": "r-and-rstudio/rstudio-global-options.html#general",
     "title": "RStudio Global Options",
-    "section": "",
-    "text": "R Sessions: Pick which R installation runs inside RStudio (handy if you have multiple versions installed).\n\nDefault working directory: Sets where files open and save by default when you’re not inside a project.\n\nWorkspace:\n\nRestore .RData into workspace at startup: leave unchecked for a clean slate every session.\n\nSave workspace to .RData on exit: set to Never to avoid saving random objects (recommended for reproducibility).\n\n\nHistory: Options to automatically save command history—even across sessions—and to remove duplicates.\n\nOther: Miscellaneous options, like wrapping text when switching tabs or whether crash reports are auto-submitted."
+    "section": "1. General",
+    "text": "1. General\n\nR Sessions: Pick which R installation runs inside RStudio (handy if you have multiple versions installed).\n\nDefault working directory: Sets where files open and save by default when you’re not inside a project.\n\nWorkspace:\n\nRestore .RData into workspace at startup: leave unchecked for a clean slate every session.\n\nSave workspace to .RData on exit: set to Never to avoid saving random objects (recommended for reproducibility).\n\n\nHistory: Options to automatically save command history—even across sessions—and to remove duplicates.\n\nOther: Miscellaneous options, like wrapping text when switching tabs or whether crash reports are auto-submitted."
   },
   {
     "objectID": "r-and-rstudio/rstudio-global-options.html#code",
     "href": "r-and-rstudio/rstudio-global-options.html#code",
     "title": "RStudio Global Options",
-    "section": "",
-    "text": "Controls how code is displayed and edited.\nCommon options: soft wrapping, tabs vs. spaces, auto indentation, and diagnostics for languages like C/C++ or HTML/CSS."
+    "section": "2. Code",
+    "text": "2. Code\nControls how code is displayed and edited.\nCommon options: soft wrapping, tabs vs. spaces, auto indentation, and diagnostics for languages like C/C++ or HTML/CSS."
   },
   {
     "objectID": "r-and-rstudio/rstudio-global-options.html#appearance",
     "href": "r-and-rstudio/rstudio-global-options.html#appearance",
     "title": "RStudio Global Options",
-    "section": "",
-    "text": "Customize how RStudio looks:\n\nTheme (dark, light, solarized, etc.)\n\nZoom level for text\n\nEditor font and size\n\nSyntax highlighting themes (with a live preview)\n\nThis is where you soften glare or crank the contrast—so your code reads like a poem instead of eye strain."
+    "section": "3. Appearance",
+    "text": "3. Appearance\nCustomize how RStudio looks:\n\nTheme (dark, light, solarized, etc.)\n\nZoom level for text\n\nEditor font and size\n\nSyntax highlighting themes (with a live preview)\n\nThis is where you soften glare or crank the contrast—so your code reads like a poem instead of eye strain."
   },
   {
     "objectID": "r-and-rstudio/rstudio-global-options.html#pane-layout",
     "href": "r-and-rstudio/rstudio-global-options.html#pane-layout",
     "title": "RStudio Global Options",
-    "section": "",
-    "text": "Your four-pane structure can become your personal artboard:\n\nChoose which pane (Source, Console, Environment, Output) goes where.\n\nReassign tabs (Help, Files, Packages, Plots, etc.).\n\nAdd extra Source columns to work on multiple scripts side-by-side.\n\nOften adjusted just once, this can make RStudio feel like it moves with your brain, not against it."
+    "section": "4. Pane Layout",
+    "text": "4. Pane Layout\nYour four-pane structure can become your personal artboard:\n\nChoose which pane (Source, Console, Environment, Output) goes where.\n\nReassign tabs (Help, Files, Packages, Plots, etc.).\n\nAdd extra Source columns to work on multiple scripts side-by-side.\n\nOften adjusted just once, this can make RStudio feel like it moves with your brain, not against it."
   },
   {
     "objectID": "r-and-rstudio/rstudio-global-options.html#packages",
     "href": "r-and-rstudio/rstudio-global-options.html#packages",
     "title": "RStudio Global Options",
-    "section": "",
-    "text": "Appears only if you’ve installed or used packages. Options include:\n\nDefault CRAN mirror\n\nWhether the Packages pane is shown\n\nIntegration with devtools\n\nBuild settings and auto-navigation when building or checking packages\n\nThis is especially useful if you start writing or maintaining your own packages."
+    "section": "5. Packages",
+    "text": "5. Packages\nAppears only if you’ve installed or used packages. Options include:\n\nDefault CRAN mirror\n\nWhether the Packages pane is shown\n\nIntegration with devtools\n\nBuild settings and auto-navigation when building or checking packages\n\nThis is especially useful if you start writing or maintaining your own packages."
   },
   {
     "objectID": "r-and-rstudio/rstudio-global-options.html#other-tabs-power-user-settings",
     "href": "r-and-rstudio/rstudio-global-options.html#other-tabs-power-user-settings",
     "title": "RStudio Global Options",
-    "section": "",
-    "text": "R Markdown: configure editing, visual mode, citations, outline visibility.\n\nGit/SVN: set up version control, authentication, and commit preferences.\n\nTerminal: pick your shell, scrollback buffer, and startup commands.\n\nAccessibility: adjust screen reader, motion reduction, and focus control."
+    "section": "6. Other Tabs (Power-User Settings)",
+    "text": "6. Other Tabs (Power-User Settings)\n\nR Markdown: configure editing, visual mode, citations, outline visibility.\n\nGit/SVN: set up version control, authentication, and commit preferences.\n\nTerminal: pick your shell, scrollback buffer, and startup commands.\n\nAccessibility: adjust screen reader, motion reduction, and focus control."
   },
   {
     "objectID": "r-and-rstudio/rstudio-global-options.html#why-it-matters",
     "href": "r-and-rstudio/rstudio-global-options.html#why-it-matters",
     "title": "RStudio Global Options",
-    "section": "",
-    "text": "If RStudio keeps reopening everything you worked on—even forgotten objects—your “Save workspace” option is probably still set to Always. Change it to Never for a fresh start every time.\n\n\nTired of tiny fonts or glaring white backgrounds at 2 a.m.? Head to Appearance and make RStudio your cozy digital notebook.\n\n\nWant RStudio to feel like an extension of your thought process? Adjust the Pane Layout—it’s surprisingly transformative.\n\n\nRStudio stops being “just another program” when you shape it to fit your workflow. Every layout tweak, every bolded code line, every choice to suppress auto-loads—they all help you think and work more clearly."
+    "section": "Why It Matters",
+    "text": "Why It Matters\n\nIf RStudio keeps reopening everything you worked on—even forgotten objects—your “Save workspace” option is probably still set to Always. Change it to Never for a fresh start every time.\n\n\nTired of tiny fonts or glaring white backgrounds at 2 a.m.? Head to Appearance and make RStudio your cozy digital notebook.\n\n\nWant RStudio to feel like an extension of your thought process? Adjust the Pane Layout—it’s surprisingly transformative.\n\n\nRStudio stops being “just another program” when you shape it to fit your workflow. Every layout tweak, every bolded code line, every choice to suppress auto-loads—they all help you think and work more clearly."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html",
     "title": "Introduction to R and RStudio",
     "section": "",
-    "text": "R is a free, open-source language for data manipulation, analysis, and visualization. RStudio is the IDE (workbench) that makes R friendlier and faster. Together they give you a modern workflow for reproducible research in mass communication.\n\nUse R for the statistics and graphics; use RStudio to write code, render reports, manage files, and keep projects organized.\n\n\n\n\n\nA programming language for statistics and data work (from simple summaries to machine learning).\nScript-based: you write code that documents exactly what you did—great for transparency and reuse.\nSuperpowers via packages (e.g., tidyverse for wrangling, ggplot2 for visualization).\n\nWhy it matters here: You’ll analyze surveys, scrape or analyze social media, and make publication-quality figures—repeatably.\n\n\n\n\nRStudio (by Posit) is the integrated development environment for R:\n\nSource editor with syntax highlighting and autocomplete\nConsole for running code\nEnvironment to inspect objects/datasets\nFiles/Plots/Packages/Help/Viewer to manage outputs and docs\nTight integration with Quarto (dynamic documents) and Git\n\nOutcome: faster iteration, cleaner organization, and easier collaboration.\n\n\n\n\n\n\nFree to install and extend. A huge community keeps adding new methods without license fees.\n\n\n\nFrom descriptive stats to regression and beyond in one place; ggplot2 produces clear, customizable graphics.\n\n\n\nQuarto documents combine text + code + output in one file. Re-render to update everything automatically.\n\n\n\nReproducibility Spectrum\n\n\n\n\n\nThousands of packages for text analysis, social media data, networks, etc. Write your own functions when needed.\n\n\n\n\n\n\n\n\nGo to https://cran.r-project.org/\nChoose your OS (Windows / macOS / Linux) and install.\n\n\n\n\n\nGo to https://posit.co/download/rstudio-desktop/\nDownload RStudio Desktop (free) for your OS and install.\n\n\nInstall R first, then RStudio. RStudio detects your R installation at launch.\n\n\n\n\n\n\n\nSource (top-left): write/edit scripts (.R) and Quarto files (.qmd).\nConsole (bottom-left): run code interactively; see results/errors.\nEnvironment (top-right): objects in memory (data frames, models, etc.).\nOutput (bottom-right): Files, Plots, Packages, Help, Viewer (for HTML/Shiny/Quarto previews).\n\n\nFor a deeper tour, see RStudio’s Four Panes in this section.\n\n\n\n\n\nProjects keep everything for one assignment/research task in one folder.\n\nFile → New Project…\nChoose New Directory → New Project (or link an existing folder).\nName it and create.\n\nBenefits: consistent working directory, clean file paths, and fewer “where did that file go?” moments. Git can be enabled during setup for version control.\n\n\n\n\n\n\n\nR Script (.R): pure code; great for fast analysis.\nQuarto (.qmd): prose + code + output → renders to HTML/PDF/Word for reports.\n\n# R Script example\nsummary(cars)\nplot(cars)\n\n# Quarto example chunk (runs when you render the doc)\nlibrary(ggplot2)\nggplot(cars, aes(speed, dist)) + geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\nPrefer CSV for clean, durable data.\nUse Excel only when collaborators require it or you genuinely need multiple sheets.\n\n\n\n\ndata/     # raw and cleaned datasets\nscripts/  # R scripts\nreports/  # .qmd / rendered outputs\noutput/   # figures, tables, exports\n\n\n\n\n\n\n\ninstall.packages(\"ggplot2\")  # once\nlibrary(ggplot2)             # each new R session\n\n\n\n\ntidyverse: wrangling + plotting\nggplot2: visualization\ndplyr: data manipulation\nquanteda / tm: text analysis\nrtweet: Twitter/X data (when permitted)\n\nUpdate periodically:\nupdate.packages(ask = FALSE)\n\n\n\n\n\n\n\n5 + 3     # 8\n5 - 3     # 2\n5 * 3     # 15\n5 / 3     # 1.6667\n5 ^ 3     # 125\n5 %% 3    # 2 (modulus)\n\n\n\nx &lt;- 10          # preferred assignment in R\ny = 20           # also works\nname &lt;- \"Alex\"\n\n\n\nsum(1, 2, 3)            # 6\nmean(c(1, 2, 3, 4))     # 2.5\nsqrt(16)                # 4\n\n\n\n\n\n\n\n# This is a comment for humans\nage &lt;- c(18, 23, 21, 30)   # vector of ages\n\n\n\n# =========================\n# Section: Data Preparation\n# =========================\nIn Quarto, use markdown headings to structure your narrative:\n## Data Preparation\n\nHere we clean variables and handle missing values.\n\nKeep code tidy: consistent indentation, small steps, and meaningful names. Your future self (and collaborators) will thank you.\n\n\n\n\n\n\nprint(\"Hello, World!\")\nOpen a Quarto file and add a code chunk:\n\n::: {.cell}\n\n```{.r .cell-code}\nprint(\"Hello, World from Quarto!\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Hello, World from Quarto!\"\n```\n\n\n:::\n:::\n\nRender the document to see executable output embedded in your report.\n\n\n\n\n\nInstall the course package and pull your Journal scaffold.\nRead RStudio’s Four Panes and Global Options pages to customize your workspace.\nCommit your project to GitHub and set your Profile README."
+    "text": "R is a free, open-source language for data manipulation, analysis, and visualization. RStudio is the IDE (workbench) that makes R friendlier and faster. Together they give you a modern workflow for reproducible research in mass communication."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-r",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-r",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "A programming language for statistics and data work (from simple summaries to machine learning).\nScript-based: you write code that documents exactly what you did—great for transparency and reuse.\nSuperpowers via packages (e.g., tidyverse for wrangling, ggplot2 for visualization).\n\nWhy it matters here: You’ll analyze surveys, scrape or analyze social media, and make publication-quality figures—repeatably."
+    "section": "What is R?",
+    "text": "What is R?\n\nA programming language for statistics and data work (from simple summaries to machine learning).\nScript-based: you write code that documents exactly what you did—great for transparency and reuse.\nSuperpowers via packages (e.g., tidyverse for wrangling, ggplot2 for visualization).\n\nWhy it matters here: You’ll analyze surveys, scrape or analyze social media, and make publication-quality figures—repeatably."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-rstudio",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-rstudio",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "RStudio (by Posit) is the integrated development environment for R:\n\nSource editor with syntax highlighting and autocomplete\nConsole for running code\nEnvironment to inspect objects/datasets\nFiles/Plots/Packages/Help/Viewer to manage outputs and docs\nTight integration with Quarto (dynamic documents) and Git\n\nOutcome: faster iteration, cleaner organization, and easier collaboration."
+    "section": "What is RStudio?",
+    "text": "What is RStudio?\nRStudio (by Posit) is the integrated development environment for R:\n\nSource editor with syntax highlighting and autocomplete\nConsole for running code\nEnvironment to inspect objects/datasets\nFiles/Plots/Packages/Help/Viewer to manage outputs and docs\nTight integration with Quarto (dynamic documents) and Git\n\nOutcome: faster iteration, cleaner organization, and easier collaboration."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#why-use-r-rstudio",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#why-use-r-rstudio",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "Free to install and extend. A huge community keeps adding new methods without license fees.\n\n\n\nFrom descriptive stats to regression and beyond in one place; ggplot2 produces clear, customizable graphics.\n\n\n\nQuarto documents combine text + code + output in one file. Re-render to update everything automatically.\n\n\n\nReproducibility Spectrum\n\n\n\n\n\nThousands of packages for text analysis, social media data, networks, etc. Write your own functions when needed."
+    "section": "Why Use R + RStudio?",
+    "text": "Why Use R + RStudio?\n\nOpen Source\nFree to install and extend. A huge community keeps adding new methods without license fees.\n\n\nAnalysis & Visualization\nFrom descriptive stats to regression and beyond in one place; ggplot2 produces clear, customizable graphics.\n\n\nReproducible Research\nQuarto documents combine text + code + output in one file. Re-render to update everything automatically.\n\n\n\nReproducibility Spectrum\n\n\n\n\nFlexible & Extensible\nThousands of packages for text analysis, social media data, networks, etc. Write your own functions when needed."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#install-r-and-rstudio",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#install-r-and-rstudio",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "Go to https://cran.r-project.org/\nChoose your OS (Windows / macOS / Linux) and install.\n\n\n\n\n\nGo to https://posit.co/download/rstudio-desktop/\nDownload RStudio Desktop (free) for your OS and install.\n\n\nInstall R first, then RStudio. RStudio detects your R installation at launch."
+    "section": "Install R and RStudio",
+    "text": "Install R and RStudio\n\n1) Install R\n\nGo to https://cran.r-project.org/\nChoose your OS (Windows / macOS / Linux) and install.\n\n\n\n2) Install RStudio\n\nGo to https://posit.co/download/rstudio-desktop/\nDownload RStudio Desktop (free) for your OS and install.\n\n\nInstall R first, then RStudio. RStudio detects your R installation at launch."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#meet-the-rstudio-interface-four-panes",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#meet-the-rstudio-interface-four-panes",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "Source (top-left): write/edit scripts (.R) and Quarto files (.qmd).\nConsole (bottom-left): run code interactively; see results/errors.\nEnvironment (top-right): objects in memory (data frames, models, etc.).\nOutput (bottom-right): Files, Plots, Packages, Help, Viewer (for HTML/Shiny/Quarto previews).\n\n\nFor a deeper tour, see RStudio’s Four Panes in this section."
+    "section": "Meet the RStudio Interface (Four Panes)",
+    "text": "Meet the RStudio Interface (Four Panes)\n\nSource (top-left): write/edit scripts (.R) and Quarto files (.qmd).\nConsole (bottom-left): run code interactively; see results/errors.\nEnvironment (top-right): objects in memory (data frames, models, etc.).\nOutput (bottom-right): Files, Plots, Packages, Help, Viewer (for HTML/Shiny/Quarto previews).\n\n\nFor a deeper tour, see RStudio’s Four Panes in this section."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#start-a-new-project",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#start-a-new-project",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "Projects keep everything for one assignment/research task in one folder.\n\nFile → New Project…\nChoose New Directory → New Project (or link an existing folder).\nName it and create.\n\nBenefits: consistent working directory, clean file paths, and fewer “where did that file go?” moments. Git can be enabled during setup for version control."
+    "section": "Start a New Project",
+    "text": "Start a New Project\nProjects keep everything for one assignment/research task in one folder.\n\nFile → New Project…\nChoose New Directory → New Project (or link an existing folder).\nName it and create.\n\nBenefits: consistent working directory, clean file paths, and fewer “where did that file go?” moments. Git can be enabled during setup for version control."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#file-management-essentials",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#file-management-essentials",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "R Script (.R): pure code; great for fast analysis.\nQuarto (.qmd): prose + code + output → renders to HTML/PDF/Word for reports.\n\n# R Script example\nsummary(cars)\nplot(cars)\n\n# Quarto example chunk (runs when you render the doc)\nlibrary(ggplot2)\nggplot(cars, aes(speed, dist)) + geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\nPrefer CSV for clean, durable data.\nUse Excel only when collaborators require it or you genuinely need multiple sheets.\n\n\n\n\ndata/     # raw and cleaned datasets\nscripts/  # R scripts\nreports/  # .qmd / rendered outputs\noutput/   # figures, tables, exports"
+    "section": "File Management Essentials",
+    "text": "File Management Essentials\n\nR Script vs. R Markdown / Quarto\n\nR Script (.R): pure code; great for fast analysis.\nQuarto (.qmd): prose + code + output → renders to HTML/PDF/Word for reports.\n\n# R Script example\nsummary(cars)\nplot(cars)\n\n# Quarto example chunk (runs when you render the doc)\nlibrary(ggplot2)\nggplot(cars, aes(speed, dist)) + geom_point()\n\n\n\n\n\n\n\n\n\n\nCSV vs. Excel\n\nPrefer CSV for clean, durable data.\nUse Excel only when collaborators require it or you genuinely need multiple sheets.\n\n\n\nSuggested subfolders\ndata/     # raw and cleaned datasets\nscripts/  # R scripts\nreports/  # .qmd / rendered outputs\noutput/   # figures, tables, exports"
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#package-management",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#package-management",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "install.packages(\"ggplot2\")  # once\nlibrary(ggplot2)             # each new R session\n\n\n\n\ntidyverse: wrangling + plotting\nggplot2: visualization\ndplyr: data manipulation\nquanteda / tm: text analysis\nrtweet: Twitter/X data (when permitted)\n\nUpdate periodically:\nupdate.packages(ask = FALSE)"
+    "section": "Package Management",
+    "text": "Package Management\n\nInstall once, load each session\ninstall.packages(\"ggplot2\")  # once\nlibrary(ggplot2)             # each new R session\n\n\nCommon packages for this course\n\ntidyverse: wrangling + plotting\nggplot2: visualization\ndplyr: data manipulation\nquanteda / tm: text analysis\nrtweet: Twitter/X data (when permitted)\n\nUpdate periodically:\nupdate.packages(ask = FALSE)"
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#basics-of-r-quick-start",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#basics-of-r-quick-start",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "5 + 3     # 8\n5 - 3     # 2\n5 * 3     # 15\n5 / 3     # 1.6667\n5 ^ 3     # 125\n5 %% 3    # 2 (modulus)\n\n\n\nx &lt;- 10          # preferred assignment in R\ny = 20           # also works\nname &lt;- \"Alex\"\n\n\n\nsum(1, 2, 3)            # 6\nmean(c(1, 2, 3, 4))     # 2.5\nsqrt(16)                # 4"
+    "section": "Basics of R (Quick Start)",
+    "text": "Basics of R (Quick Start)\n\nArithmetic\n5 + 3     # 8\n5 - 3     # 2\n5 * 3     # 15\n5 / 3     # 1.6667\n5 ^ 3     # 125\n5 %% 3    # 2 (modulus)\n\n\nVariables\nx &lt;- 10          # preferred assignment in R\ny = 20           # also works\nname &lt;- \"Alex\"\n\n\nFunctions\nsum(1, 2, 3)            # 6\nmean(c(1, 2, 3, 4))     # 2.5\nsqrt(16)                # 4"
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#commenting-organizing-code",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#commenting-organizing-code",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "# This is a comment for humans\nage &lt;- c(18, 23, 21, 30)   # vector of ages\n\n\n\n# =========================\n# Section: Data Preparation\n# =========================\nIn Quarto, use markdown headings to structure your narrative:\n## Data Preparation\n\nHere we clean variables and handle missing values.\n\nKeep code tidy: consistent indentation, small steps, and meaningful names. Your future self (and collaborators) will thank you."
+    "section": "Commenting & Organizing Code",
+    "text": "Commenting & Organizing Code\n\nComments\n# This is a comment for humans\nage &lt;- c(18, 23, 21, 30)   # vector of ages\n\n\nSections\n# =========================\n# Section: Data Preparation\n# =========================\nIn Quarto, use markdown headings to structure your narrative:\n## Data Preparation\n\nHere we clean variables and handle missing values.\n\nKeep code tidy: consistent indentation, small steps, and meaningful names. Your future self (and collaborators) will thank you."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#first-run-your-hello-world",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#first-run-your-hello-world",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "print(\"Hello, World!\")\nOpen a Quarto file and add a code chunk:\n\n::: {.cell}\n\n```{.r .cell-code}\nprint(\"Hello, World from Quarto!\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Hello, World from Quarto!\"\n```\n\n\n:::\n:::\n\nRender the document to see executable output embedded in your report."
+    "section": "First Run: Your Hello World",
+    "text": "First Run: Your Hello World\nprint(\"Hello, World!\")\nOpen a Quarto file and add a code chunk:\n\n::: {.cell}\n\n```{.r .cell-code}\nprint(\"Hello, World from Quarto!\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Hello, World from Quarto!\"\n```\n\n\n:::\n:::\n\nRender the document to see executable output embedded in your report."
   },
   {
     "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#next-steps",
     "href": "r-and-rstudio/r-rstudio-intro-legacy.html#next-steps",
     "title": "Introduction to R and RStudio",
-    "section": "",
-    "text": "Install the course package and pull your Journal scaffold.\nRead RStudio’s Four Panes and Global Options pages to customize your workspace.\nCommit your project to GitHub and set your Profile README."
+    "section": "Next Steps",
+    "text": "Next Steps\n\nInstall the course package and pull your Journal scaffold.\nRead RStudio’s Four Panes and Global Options pages to customize your workspace.\nCommit your project to GitHub and set your Profile README."
   },
   {
     "objectID": "quarto/quarto-basics.html",
@@ -468,7 +468,7 @@
     "href": "git/github-landing-page.html",
     "title": "Build Your GitHub Landing Page",
     "section": "",
-    "text": "Your GitHub profile can show a custom landing page—a README.md that lives in a special repository named exactly like your username. No code needed; it’s all point-and-click in the browser.\n\n\n\n\nA public repo named your GitHub username\n\nA README.md inside it\n\nA profile page that displays that README to visitors\n\n\n\n\n\n\nSign in at GitHub.com.\n\nClick your avatar (top-right) → Your profile.\n\nNote your username (the text after github.com/ in the URL).\n\nExample: github.com/alexleith → username is alexleith.\nUse the username exactly as shown. Repo names are case-insensitive, but matching avoids confusion.\n\n\n\n\n\nClick the + (top-right) → New repository.\n\nRepository name: type your exact username (e.g., alexleith).\n\nSet visibility to Public (required).\n\nCheck Initialize this repository with a README.\n\nClick Create repository.\n\nYou now have a repo at:\n\ngithub.com/&lt;username&gt;/&lt;username&gt;\n\nThis is your profile repo.\n\n\n\n\n\nIn the new repo, click README.md.\n\nClick the pencil icon (Edit).\n\nReplace the placeholder text with something short and welcoming (see template below).\n\nScroll down, add a brief commit message (e.g., “Create profile README”), and click Commit changes.\n\nVisit your profile: click your avatar → Your profile. You should see your README content at the top.\n\n\n\n\n# Hi, I'm YOUR NAME 👋\n\nWelcome to my GitHub profile! I’m a [your major/role] at [your university/organization].\n\nThis semester I’m working on projects in R/RStudio and documenting progress in my weekly journal.\n\n## What I’m learning this term\n- R, RStudio, and Quarto for data analysis & reporting\n- Git + GitHub for version control and collaboration\n- Research methods and reproducible workflows\n\n## Find me\n- Email: [your email or university email, optional]\n- Website/Portfolio: [link, optional]\n- LinkedIn: [link, optional]\n\n## Current tools\n- **Languages:** R, Markdown\n- **Tools:** RStudio, Quarto, GitHub\n\n&gt; ⚠️ Privacy note: keep personal info minimal; use links you’re comfortable sharing publicly.\nTips:\n\nKeep it short and professional.\nUse headings (#, ##) to organize.\nAdd alt text to any images, e.g., ![Alt text](path/to/image.png).\n\n\n\n\n\n\nProfile bio & links: Avatar → Settings → Public profile. Add a display name, bio, location, pronouns, website, and choose a Public email (or keep hidden).\nPinned repositories: On your profile, click Customize your pins to feature key projects (e.g., your journal repo).\nAppearance: Avatar → Settings → Appearance to pick a theme.\n\n\n\n\n\n\nREADME not showing?\n\nRepo must be named exactly your username.\nRepo must be Public.\nFile name must be README.md at the root of the repo (not in a folder).\nRefresh your profile page.\n\nCan’t find “New repository”? Click the + in the top-right → New repository.\nChanges not showing? Make sure you clicked Commit changes, then refresh.\n\n\n\n\n\nYou can edit README.md anytime:\n\nIn the browser: open the file → pencil → edit → Commit changes.\nFrom RStudio or Git: pull → edit → commit → push (handy once you’re using Git locally).",
+    "text": "Your GitHub profile can show a custom landing page—a README.md that lives in a special repository named exactly like your username. No code needed; it’s all point-and-click in the browser.",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -478,8 +478,8 @@
     "objectID": "git/github-landing-page.html#what-youll-make",
     "href": "git/github-landing-page.html#what-youll-make",
     "title": "Build Your GitHub Landing Page",
-    "section": "",
-    "text": "A public repo named your GitHub username\n\nA README.md inside it\n\nA profile page that displays that README to visitors",
+    "section": "What You’ll Make",
+    "text": "What You’ll Make\n\nA public repo named your GitHub username\n\nA README.md inside it\n\nA profile page that displays that README to visitors",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -489,8 +489,8 @@
     "objectID": "git/github-landing-page.html#step-1-confirm-your-username",
     "href": "git/github-landing-page.html#step-1-confirm-your-username",
     "title": "Build Your GitHub Landing Page",
-    "section": "",
-    "text": "Sign in at GitHub.com.\n\nClick your avatar (top-right) → Your profile.\n\nNote your username (the text after github.com/ in the URL).\n\nExample: github.com/alexleith → username is alexleith.\nUse the username exactly as shown. Repo names are case-insensitive, but matching avoids confusion.",
+    "section": "Step 1 — Confirm Your Username",
+    "text": "Step 1 — Confirm Your Username\n\nSign in at GitHub.com.\n\nClick your avatar (top-right) → Your profile.\n\nNote your username (the text after github.com/ in the URL).\n\nExample: github.com/alexleith → username is alexleith.\nUse the username exactly as shown. Repo names are case-insensitive, but matching avoids confusion.",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -500,8 +500,8 @@
     "objectID": "git/github-landing-page.html#step-2-create-the-special-repository",
     "href": "git/github-landing-page.html#step-2-create-the-special-repository",
     "title": "Build Your GitHub Landing Page",
-    "section": "",
-    "text": "Click the + (top-right) → New repository.\n\nRepository name: type your exact username (e.g., alexleith).\n\nSet visibility to Public (required).\n\nCheck Initialize this repository with a README.\n\nClick Create repository.\n\nYou now have a repo at:\n\ngithub.com/&lt;username&gt;/&lt;username&gt;\n\nThis is your profile repo.",
+    "section": "Step 2 — Create the Special Repository",
+    "text": "Step 2 — Create the Special Repository\n\nClick the + (top-right) → New repository.\n\nRepository name: type your exact username (e.g., alexleith).\n\nSet visibility to Public (required).\n\nCheck Initialize this repository with a README.\n\nClick Create repository.\n\nYou now have a repo at:\n\ngithub.com/&lt;username&gt;/&lt;username&gt;\n\nThis is your profile repo.",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -511,8 +511,8 @@
     "objectID": "git/github-landing-page.html#step-3-edit-your-readme",
     "href": "git/github-landing-page.html#step-3-edit-your-readme",
     "title": "Build Your GitHub Landing Page",
-    "section": "",
-    "text": "In the new repo, click README.md.\n\nClick the pencil icon (Edit).\n\nReplace the placeholder text with something short and welcoming (see template below).\n\nScroll down, add a brief commit message (e.g., “Create profile README”), and click Commit changes.\n\nVisit your profile: click your avatar → Your profile. You should see your README content at the top.",
+    "section": "Step 3 — Edit Your README",
+    "text": "Step 3 — Edit Your README\n\nIn the new repo, click README.md.\n\nClick the pencil icon (Edit).\n\nReplace the placeholder text with something short and welcoming (see template below).\n\nScroll down, add a brief commit message (e.g., “Create profile README”), and click Commit changes.\n\nVisit your profile: click your avatar → Your profile. You should see your README content at the top.",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -522,8 +522,8 @@
     "objectID": "git/github-landing-page.html#a-copy-paste-template-customize-freely",
     "href": "git/github-landing-page.html#a-copy-paste-template-customize-freely",
     "title": "Build Your GitHub Landing Page",
-    "section": "",
-    "text": "# Hi, I'm YOUR NAME 👋\n\nWelcome to my GitHub profile! I’m a [your major/role] at [your university/organization].\n\nThis semester I’m working on projects in R/RStudio and documenting progress in my weekly journal.\n\n## What I’m learning this term\n- R, RStudio, and Quarto for data analysis & reporting\n- Git + GitHub for version control and collaboration\n- Research methods and reproducible workflows\n\n## Find me\n- Email: [your email or university email, optional]\n- Website/Portfolio: [link, optional]\n- LinkedIn: [link, optional]\n\n## Current tools\n- **Languages:** R, Markdown\n- **Tools:** RStudio, Quarto, GitHub\n\n&gt; ⚠️ Privacy note: keep personal info minimal; use links you’re comfortable sharing publicly.\nTips:\n\nKeep it short and professional.\nUse headings (#, ##) to organize.\nAdd alt text to any images, e.g., ![Alt text](path/to/image.png).",
+    "section": "A Copy-Paste Template (Customize Freely)",
+    "text": "A Copy-Paste Template (Customize Freely)\n# Hi, I'm YOUR NAME 👋\n\nWelcome to my GitHub profile! I’m a [your major/role] at [your university/organization].\n\nThis semester I’m working on projects in R/RStudio and documenting progress in my weekly journal.\n\n## What I’m learning this term\n- R, RStudio, and Quarto for data analysis & reporting\n- Git + GitHub for version control and collaboration\n- Research methods and reproducible workflows\n\n## Find me\n- Email: [your email or university email, optional]\n- Website/Portfolio: [link, optional]\n- LinkedIn: [link, optional]\n\n## Current tools\n- **Languages:** R, Markdown\n- **Tools:** RStudio, Quarto, GitHub\n\n&gt; ⚠️ Privacy note: keep personal info minimal; use links you’re comfortable sharing publicly.\nTips:\n\nKeep it short and professional.\nUse headings (#, ##) to organize.\nAdd alt text to any images, e.g., ![Alt text](path/to/image.png).",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -533,8 +533,8 @@
     "objectID": "git/github-landing-page.html#optional-polish-fast-wins",
     "href": "git/github-landing-page.html#optional-polish-fast-wins",
     "title": "Build Your GitHub Landing Page",
-    "section": "",
-    "text": "Profile bio & links: Avatar → Settings → Public profile. Add a display name, bio, location, pronouns, website, and choose a Public email (or keep hidden).\nPinned repositories: On your profile, click Customize your pins to feature key projects (e.g., your journal repo).\nAppearance: Avatar → Settings → Appearance to pick a theme.",
+    "section": "Optional Polish (Fast Wins)",
+    "text": "Optional Polish (Fast Wins)\n\nProfile bio & links: Avatar → Settings → Public profile. Add a display name, bio, location, pronouns, website, and choose a Public email (or keep hidden).\nPinned repositories: On your profile, click Customize your pins to feature key projects (e.g., your journal repo).\nAppearance: Avatar → Settings → Appearance to pick a theme.",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -544,8 +544,8 @@
     "objectID": "git/github-landing-page.html#troubleshooting",
     "href": "git/github-landing-page.html#troubleshooting",
     "title": "Build Your GitHub Landing Page",
-    "section": "",
-    "text": "README not showing?\n\nRepo must be named exactly your username.\nRepo must be Public.\nFile name must be README.md at the root of the repo (not in a folder).\nRefresh your profile page.\n\nCan’t find “New repository”? Click the + in the top-right → New repository.\nChanges not showing? Make sure you clicked Commit changes, then refresh.",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\nREADME not showing?\n\nRepo must be named exactly your username.\nRepo must be Public.\nFile name must be README.md at the root of the repo (not in a folder).\nRefresh your profile page.\n\nCan’t find “New repository”? Click the + in the top-right → New repository.\nChanges not showing? Make sure you clicked Commit changes, then refresh.",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -555,8 +555,8 @@
     "objectID": "git/github-landing-page.html#updating-later",
     "href": "git/github-landing-page.html#updating-later",
     "title": "Build Your GitHub Landing Page",
-    "section": "",
-    "text": "You can edit README.md anytime:\n\nIn the browser: open the file → pencil → edit → Commit changes.\nFrom RStudio or Git: pull → edit → commit → push (handy once you’re using Git locally).",
+    "section": "Updating Later",
+    "text": "Updating Later\nYou can edit README.md anytime:\n\nIn the browser: open the file → pencil → edit → Commit changes.\nFrom RStudio or Git: pull → edit → commit → push (handy once you’re using Git locally).",
     "crumbs": [
       "Getting Started",
       "GitHub Landing Page"
@@ -609,8 +609,8 @@
     "objectID": "getting-started/getting-started.html#step-1-install-or-update-the-course-package",
     "href": "getting-started/getting-started.html#step-1-install-or-update-the-course-package",
     "title": "Getting Started",
-    "section": "Step 1 — Install or Update the Course Package",
-    "text": "Step 1 — Install or Update the Course Package\nThe course package mccoursepack is hosted on GitHub. Use the remotes package to install or update it.\n#| eval: false\n# Install remotes if not already installed\ninstall.packages(\"remotes\")\n\n# Install or update the course package\nremotes::install_github(\"SIM-Lab-SIUE/mccoursepack\")\n\n# Load the package\nlibrary(mccoursepack)\n\nRun the remotes::install_github() command at the start of the semester and again whenever updates are announced.",
+    "section": "Step 1 – Install or Update the Course Package",
+    "text": "Step 1 – Install or Update the Course Package\nThe course package mccoursepack is hosted on GitHub. Use the remotes package to install or update it.\n# Install remotes if not already installed\ninstall.packages(\"remotes\")\n\n# Install or update the course package\nremotes::install_github(\"SIM-Lab-SIUE/mccoursepack\")\n\n# Load the package\nlibrary(mccoursepack)\n\nRun the remotes::install_github() command at the start of the semester and again whenever updates are announced.",
     "crumbs": [
       "Getting Started"
     ]
@@ -619,8 +619,8 @@
     "objectID": "getting-started/getting-started.html#step-2-create-two-rstudio-projects",
     "href": "getting-started/getting-started.html#step-2-create-two-rstudio-projects",
     "title": "Getting Started",
-    "section": "Step 2 — Create Two RStudio Projects",
-    "text": "Step 2 — Create Two RStudio Projects\nProjects keep everything organized. You’ll create two:\n\nA Tasks Project for weekly assignments.\nA Journal Project for your course journal.\n\n\nCreate the Tasks Project\n\nIn RStudio: File → New Project → New Directory → New Project.\nChoose a location, e.g., Documents/MC451/.\nName the folder: tasks_project.\nClick Create Project.\n\n\n\nCreate the Journal Project\n\nAgain: File → New Project → New Directory → New Project.\nSame parent folder (Documents/MC451/).\nName the folder: journal_project.\nClick Create Project.\n\nYou now have two separate projects: one for all weekly tasks, one for your running journal.",
+    "section": "Step 2 – Create Two RStudio Projects",
+    "text": "Step 2 – Create Two RStudio Projects\nProjects keep everything organized. You’ll create two:\n\nA Tasks Project for weekly assignments.\nA Journal Project for your course journal.\n\n\nCreate the Tasks Project\n\nIn RStudio: File -&gt; New Project -&gt; New Directory -&gt; New Project.\nChoose a location, e.g., Documents/MC451/.\nName the folder: tasks_project.\nClick Create Project.\n\n\n\nCreate the Journal Project\n\nAgain: File -&gt; New Project -&gt; New Directory -&gt; New Project.\nSame parent folder (Documents/MC451/).\nName the folder: journal_project.\nClick Create Project.\n\nYou now have two separate projects: one for all weekly tasks, one for your running journal.",
     "crumbs": [
       "Getting Started"
     ]
@@ -629,8 +629,8 @@
     "objectID": "getting-started/getting-started.html#step-3-set-up-the-journal-project",
     "href": "getting-started/getting-started.html#step-3-set-up-the-journal-project",
     "title": "Getting Started",
-    "section": "Step 3 — Set Up the Journal Project",
-    "text": "Step 3 — Set Up the Journal Project\n\nOpen the journal_project in RStudio.\nIn the Console, run:\n\n#| eval: false\ndownload_journal(\"mc451\")   # or \"mc501\" if in the graduate course\nThis creates the journal/ folder structure with an entries/ directory, a template, and scripts for adding new entries.",
+    "section": "Step 3 – Set Up the Journal Project",
+    "text": "Step 3 – Set Up the Journal Project\n\nOpen the journal_project in RStudio.\nIn the Console, run:\n\ndownload_journal(\"mc451\")   # or \"mc501\" if in the graduate course\nThis creates the journal/ folder structure with an entries/ directory, a template, and scripts for adding new entries.",
     "crumbs": [
       "Getting Started"
     ]
@@ -639,8 +639,8 @@
     "objectID": "getting-started/getting-started.html#step-4-set-up-the-tasks-project",
     "href": "getting-started/getting-started.html#step-4-set-up-the-tasks-project",
     "title": "Getting Started",
-    "section": "Step 4 — Set Up the Tasks Project",
-    "text": "Step 4 — Set Up the Tasks Project\n\nOpen the tasks_project in RStudio.\nUse the helper function to download the starter files for your first week:\n\n#| eval: false\ndownload_week(\"mc451\", week = 1)\n(or substitute \"mc501\" for the graduate course).\nRepeat each week: change the week number to get that week’s scaffold.",
+    "section": "Step 4 – Set Up the Tasks Project",
+    "text": "Step 4 – Set Up the Tasks Project\n\nOpen the tasks_project in RStudio.\nUse the helper function to download the starter files for your first week:\n\ndownload_week(\"mc451\", week = 1)\n(or substitute \"mc501\" for the graduate course).\nRepeat each week: change the week number to get that week’s scaffold.",
     "crumbs": [
       "Getting Started"
     ]
@@ -649,8 +649,8 @@
     "objectID": "getting-started/getting-started.html#step-5-confirm-everything-works",
     "href": "getting-started/getting-started.html#step-5-confirm-everything-works",
     "title": "Getting Started",
-    "section": "Step 5 — Confirm Everything Works",
-    "text": "Step 5 — Confirm Everything Works\n\nOpen the journal_project → render the index file:\nquarto render\nThis should build a unified journal book.\nOpen the tasks_project → render a week’s scaffold. Check that Quarto builds the .qmd file into HTML/PDF.\n\nIf both projects render without errors, you’re fully set up.",
+    "section": "Step 5 – Confirm Everything Works",
+    "text": "Step 5 – Confirm Everything Works\n\nOpen the journal_project -&gt; render the index file:\nquarto render\nThis should build a unified journal book.\nOpen the tasks_project -&gt; render a week’s scaffold. Check that Quarto builds the .qmd file into HTML/PDF.\n\nIf both projects render without errors, you’re fully set up.",
     "crumbs": [
       "Getting Started"
     ]
@@ -670,7 +670,7 @@
     "href": "git/git-and-github.html",
     "title": "Connecting RStudio, Git, and GitHub",
     "section": "",
-    "text": "This guide provides a detailed, beginner-friendly workflow for connecting RStudio to Git and GitHub. We will use the usethis R package to handle most of the complex steps automatically.\n\nPart 1: One-Time Setup\nYou only need to do this part once on your computer.\n\nStep 1: Install Git on Your Computer\nGit is a separate program from R and RStudio. You must install it first.\n\nGo to the official Git website: https://git-scm.com/downloads\nDownload the installer for your operating system (Windows or macOS).\nRun the installer, accepting all the default options. You don’t need to change anything.\n\n\n\nStep 2: Configure Git with Your Identity\nOpen the RStudio Console and run the following two lines of code, replacing the example text with your actual GitHub username and email. This is how your commits will be identified.\n#| eval: false\ninstall.packages(\"usethis\")\nlibrary(usethis)\n\n# Replace with your info\nedit_git_config() \nThis will open a text file. Add the following lines, save the file, and close it.\n[user]\n  name = \"Your Name\"\n  email = \"your.email@example.com\"\n\n\nStep 3: Connect RStudio to GitHub with a Personal Access Token (PAT)\nGitHub requires a special password called a Personal Access Token (PAT) to connect with tools like RStudio. The usethis package makes this easy.\n\nGenerate the Token: In the RStudio Console, run this command. It will open a new tab in your web browser, taking you to the “New personal access token” page on GitHub.\n#| eval: false\ncreate_github_token()\nConfigure the Token on GitHub:\n\nIn the “Note” field, give your token a descriptive name, like “RStudio Token”.\nFor “Expiration,” it is recommended to set a custom date (e.g., the end of the semester).\nUnder “Select scopes,” check the box next to repo. This gives your token permission to access your repositories.\nScroll to the bottom and click “Generate token”.\n\nCopy the Token: You will now see a new page with your token. It will look something like ghp_.... This is the only time you will ever see this token. Click the copy icon next to it.\nSave the Token in RStudio: Go back to RStudio and run the following command in the Console. It will prompt you to paste your token. Paste it and press Enter.\n#| eval: false\ninstall.packages(\"gitcreds\")\nlibrary(gitcreds)\ngitcreds_set()\n\nYou are now fully configured! RStudio can securely talk to your GitHub account.\n\n\n\nPart 2: Creating and Connecting a Project\nThis is the workflow you will use for each new project (like your course journal).\n\nStep 1: Create a New RStudio Project\nFirst, create a new, empty RStudio Project. Do not initialize it as a Git repository yet.\n\nIn RStudio: File → New Project → New Directory → New Project.\nGive it a name (e.g., my-journal-project) and save it somewhere you can find it.\n\n\n\nStep 2: Turn the Project into a Git Repository\nIn the RStudio Console, run this command:\n#| eval: false\nuse_git()\nThis will initialize a Git repository in your project folder. RStudio will ask to restart. Click “Yes.” When it reopens, you will see a Git tab in the top-right pane.\n\n\nStep 3: Create a GitHub Repository and Connect It\nNow, tell usethis to create a repository on GitHub and connect your local project to it.\n#| eval: false\nuse_github()\nThis command will: 1. Ask if you want to commit the files you have. Say “Yes”. 2. Create a new, private repository on your GitHub account with the same name as your RStudio project. 3. Push your local files to the new GitHub repository.\nWhen it’s done, it will open a new browser tab showing you your new repository on GitHub, with your files already in it.\n\n\n\nPart 3: The Daily Workflow (Pull, Stage, Commit, Push)\nNow that your project is connected, here is the simple, day-to-day workflow for saving your work.\n\nPull: Before you start working, click the blue Pull arrow in the Git pane. This gets the latest changes from GitHub. (This is crucial if you work on multiple computers).\nDo Your Work: Edit your files, write your journal entries, etc.\nStage Your Changes:\n\nGo to the Git pane. You will see a list of all the files you’ve modified.\nCheck the boxes under the “Staged” column for all the files you want to save.\n\nCommit Your Changes:\n\nClick the Commit button.\nA new window will open. In the “Commit message” box, write a short, descriptive message about what you changed (e.g., “Completed Week 3 journal entry”).\nClick Commit.\n\nPush to GitHub:\n\nClick the green Push arrow. This sends your committed changes up to your GitHub repository.\n\n\nThat’s it! You have successfully saved your work to GitHub.",
+    "text": "This guide provides a detailed, beginner-friendly workflow for connecting RStudio to Git and GitHub. We will use the usethis R package to handle most of the complex steps automatically.\n\nPrerequisites: Install Helper Packages\nWe will use the usethis and gitcreds packages to simplify the setup. Run this code in the RStudio Console to install and load them.\ninstall.packages(c(\"usethis\", \"gitcreds\"))\nlibrary(usethis)\nlibrary(gitcreds)\n\n\nPart 1: One-Time Setup\nYou only need to do this part once on your computer.\n\nStep 1: Install Git on Your Computer\nGit is a separate program from R and RStudio. You must install it first.\n\nGo to the official Git website: https://git-scm.com/downloads\nDownload the installer for your operating system (Windows or macOS).\nRun the installer, accepting all the default options. You don’t need to change anything.\n\n\n\nStep 2: Configure Git with Your Identity\nOpen the RStudio Console and run the following two lines of code, replacing the example text with your actual GitHub username and email. This is how your commits will be identified.\n# Replace with your info\nedit_git_config() \nThis will open a text file for Git’s global configuration. Add the following lines, save the file, and close it.\n[user]\n  name = \"Your Name\"\n  email = \"your.email@example.com\"\n\n\nStep 3: Connect RStudio to GitHub with a Personal Access Token (PAT)\nGitHub requires a special password called a Personal Access Token (PAT) to connect with tools like RStudio. The usethis package makes this easy.\n\nGenerate the Token: In the RStudio Console, run this command. It will open a new tab in your web browser, taking you to the “New personal access token” page on GitHub.\ncreate_github_token()\nConfigure the Token on GitHub:\n\nIn the “Note” field, give your token a descriptive name, like “RStudio Token”.\nFor “Expiration,” it is recommended to set a custom date (e.g., the end of the semester).\nUnder “Select scopes,” check the box next to repo. This gives your token permission to access your repositories.\nScroll to the bottom and click “Generate token”.\n\nCopy the Token: You will now see a new page with your token. It will look something like ghp_.... This is the only time you will ever see this token. Click the copy icon next to it.\nSave the Token in RStudio: Go back to RStudio and run the following command in the Console. It will prompt you to paste your token. Paste it and press Enter.\ngitcreds_set()\n\nYou are now fully configured! RStudio can securely talk to your GitHub account.\n\n\n\nPart 2: Creating and Connecting a Project\nThis is the workflow you will use for each new project (like your course journal).\n\nStep 1: Create a New RStudio Project\nFirst, create a new, empty RStudio Project. Do not initialize it as a Git repository yet.\n\nIn RStudio: File → New Project → New Directory → New Project.\nGive it a name (e.g., my-journal-project) and save it somewhere you can find it.\n\n\n\nStep 2: Turn the Project into a Git Repository\nIn the RStudio Console, run this command:\nuse_git()\nThis will initialize a Git repository in your project folder. RStudio will ask to restart. Click “Yes.” When it reopens, you will see a Git tab in the top-right pane.\n\n\n\nGit Pane\n\n\n\n\nStep 3: Create a GitHub Repository and Connect It\nNow, tell usethis to create a repository on GitHub and connect your local project to it.\nuse_github()\nThis command will: 1. Ask if you want to commit the files you have. Say “Yes”. 2. Create a new, private repository on your GitHub account with the same name as your RStudio project. 3. Push your local files to the new GitHub repository.\nWhen it’s done, it will open a new browser tab showing you your new repository on GitHub, with your files already in it.\n\n\n\nPart 3: The Daily Workflow (Pull, Stage, Commit, Push)\nNow that your project is connected, here is the simple, day-to-day workflow for saving your work. This is a cycle you will repeat many times.\n\nPull: Before you start working, click the blue Pull arrow in the Git pane. This downloads the latest changes from your GitHub repository. This is crucial if you work on multiple computers or collaborate with others.\nDo Your Work: Edit your files, write your journal entries, analyze data, etc. Save your files as you normally would.\nStage Your Changes:\n\nGo to the Git pane. You will see a list of all the files you’ve modified since your last commit.\nCheck the boxes under the “Staged” column for all the files you want to include in your next save point. “Staging” files is like putting them in a box to get them ready to ship.\n\n\n\n\nRStudio Stage Window\n\n\nCommit Your Changes:\n\nClick the Commit button.\nA new window will open. In the “Commit message” box, write a short, descriptive message about what you changed (e.g., “Completed Week 3 journal entry”). This message is a log for your future self.\nClick Commit. This creates a “save point” (a commit) on your local computer. Your changes are not on GitHub yet.\n\n\n\n\nRStudio Commit Window\n\n\nPush to GitHub:\n\nClick the green Push arrow. This sends your committed changes from your local computer up to your GitHub repository, making them available online.\n\n\nThat’s it! You have successfully saved and backed up your work to GitHub.\n\n\nTroubleshooting\nHere are a few common issues you might encounter.\n\nuse_github() fails: If this command fails, it might be because a repository with that name already exists on GitHub. Make sure the name is unique. It could also fail if your PAT is incorrect. You can re-run gitcreds_set() to enter it again.\nAccidentally committed a large file: Git is not designed for large data files (e.g., &gt;100MB). If you accidentally commit one and the push fails, you will need to remove it from the repository’s history. The easiest way is to use the r-lib/bfg-manager package or follow GitHub’s official guide. The best practice is to add the paths to large files or data folders to a .gitignore file before you commit them.\nMerge Conflicts: If you Pull and get a “merge conflict,” it means you and a collaborator (or you on another computer) edited the same lines in the same file. RStudio will show you the conflicting sections in the file. You must manually edit the file to resolve the differences, save it, and then commit the resolved file.",
     "crumbs": [
       "Git & GitHub",
       "Connecting to GitHub"
@@ -681,7 +681,7 @@
     "href": "git/github-verification.html",
     "title": "GitHub Verification Process",
     "section": "",
-    "text": "To verify student status on GitHub, you must ensure your GitHub profile information (username, email, full name) matches your provided academic documents.\nAlways use your school-issued academic email, provide legible photos of your student ID or enrollment documents, and disable any VPNs. If a VPN is required, try applying from your university’s Wi-Fi or campus network [1].\n\n\n\n\nMatch Profile Information\nMake sure the full name and email on your GitHub profile exactly match the information on the academic document you plan to submit [1, 7].\nUse an Academic Email\nApply using your official, school-issued email address. This is GitHub’s preferred method for verification [3, 7].\nDisable VPNs\nTurn off VPN services, since they can cause location-based verification to fail. If you must use a VPN, try applying from campus instead [4, 8].\n\n\n\n\n\n\nSubmit Clear Photos\nUse your device’s camera to capture your documents. Make sure your full name, school name, and current date are clearly legible [2, 5].\nUse School Wi-Fi\nApply from your university’s Wi-Fi or network if possible—this helps verify your location [6].\nCheck for System Errors\nIf you encounter a general system error, wait and try again later. If the problem persists, contact GitHub Education Support [1, 4].\n\n\n\n\n\n\nTry Alternative Documents\nIf one document type fails, try another—such as an official transcript or enrollment letter [7, 9].\nContact Support\nIf you repeatedly face issues or believe there is incorrect information in the system, submit a support ticket to GitHub Education [4].",
+    "text": "To verify student status on GitHub, you must ensure your GitHub profile information (username, email, full name) matches your provided academic documents.\nAlways use your school-issued academic email, provide legible photos of your student ID or enrollment documents, and disable any VPNs. If a VPN is required, try applying from your university’s Wi-Fi or campus network [1].",
     "crumbs": [
       "Getting Started",
       "GitHub Email Verification"
@@ -691,8 +691,8 @@
     "objectID": "git/github-verification.html#before-applying",
     "href": "git/github-verification.html#before-applying",
     "title": "GitHub Verification Process",
-    "section": "",
-    "text": "Match Profile Information\nMake sure the full name and email on your GitHub profile exactly match the information on the academic document you plan to submit [1, 7].\nUse an Academic Email\nApply using your official, school-issued email address. This is GitHub’s preferred method for verification [3, 7].\nDisable VPNs\nTurn off VPN services, since they can cause location-based verification to fail. If you must use a VPN, try applying from campus instead [4, 8].",
+    "section": "Before Applying",
+    "text": "Before Applying\n\nMatch Profile Information\nMake sure the full name and email on your GitHub profile exactly match the information on the academic document you plan to submit [1, 7].\nUse an Academic Email\nApply using your official, school-issued email address. This is GitHub’s preferred method for verification [3, 7].\nDisable VPNs\nTurn off VPN services, since they can cause location-based verification to fail. If you must use a VPN, try applying from campus instead [4, 8].",
     "crumbs": [
       "Getting Started",
       "GitHub Email Verification"
@@ -702,8 +702,8 @@
     "objectID": "git/github-verification.html#during-the-application",
     "href": "git/github-verification.html#during-the-application",
     "title": "GitHub Verification Process",
-    "section": "",
-    "text": "Submit Clear Photos\nUse your device’s camera to capture your documents. Make sure your full name, school name, and current date are clearly legible [2, 5].\nUse School Wi-Fi\nApply from your university’s Wi-Fi or network if possible—this helps verify your location [6].\nCheck for System Errors\nIf you encounter a general system error, wait and try again later. If the problem persists, contact GitHub Education Support [1, 4].",
+    "section": "During the Application",
+    "text": "During the Application\n\nSubmit Clear Photos\nUse your device’s camera to capture your documents. Make sure your full name, school name, and current date are clearly legible [2, 5].\nUse School Wi-Fi\nApply from your university’s Wi-Fi or network if possible—this helps verify your location [6].\nCheck for System Errors\nIf you encounter a general system error, wait and try again later. If the problem persists, contact GitHub Education Support [1, 4].",
     "crumbs": [
       "Getting Started",
       "GitHub Email Verification"
@@ -713,8 +713,8 @@
     "objectID": "git/github-verification.html#if-the-application-is-rejected",
     "href": "git/github-verification.html#if-the-application-is-rejected",
     "title": "GitHub Verification Process",
-    "section": "",
-    "text": "Try Alternative Documents\nIf one document type fails, try another—such as an official transcript or enrollment letter [7, 9].\nContact Support\nIf you repeatedly face issues or believe there is incorrect information in the system, submit a support ticket to GitHub Education [4].",
+    "section": "If the Application is Rejected",
+    "text": "If the Application is Rejected\n\nTry Alternative Documents\nIf one document type fails, try another—such as an official transcript or enrollment letter [7, 9].\nContact Support\nIf you repeatedly face issues or believe there is incorrect information in the system, submit a support ticket to GitHub Education [4].",
     "crumbs": [
       "Getting Started",
       "GitHub Email Verification"
@@ -725,7 +725,7 @@
     "href": "journal/journal-student-guide.html",
     "title": "Weekly Journal",
     "section": "",
-    "text": "Start with the Student Guide below.\nYour course journal is a Quarto book. Each week has a chapter with three prompts—you answer one.\nWord ranges are enforced when you render:",
+    "text": "Start with the Student Guide below.\nYour course journal is a Quarto book. Each week has a chapter with three prompts–you answer one.\nWord ranges are enforced when you render:",
     "crumbs": [
       "Weekly Journal"
     ]
@@ -734,8 +734,8 @@
     "objectID": "journal/journal-student-guide.html#step-1-create-a-new-rstudio-project",
     "href": "journal/journal-student-guide.html#step-1-create-a-new-rstudio-project",
     "title": "Weekly Journal",
-    "section": "Step 1 — Create a new RStudio Project",
-    "text": "Step 1 — Create a new RStudio Project\n\nOpen RStudio → File → New Project → New Directory → New Project.\n\nChoose a location (e.g., Documents/MC451/) and name it (e.g., journal_project).\n\nFIGURE",
+    "section": "Step 1 – Create a new RStudio Project",
+    "text": "Step 1 – Create a new RStudio Project\n\nOpen RStudio -&gt; File -&gt; New Project -&gt; New Directory -&gt; New Project.\n\nChoose a location (e.g., Documents/MC451/) and name it (e.g., journal_project).\n\nFIGURE",
     "crumbs": [
       "Weekly Journal"
     ]
@@ -744,8 +744,8 @@
     "objectID": "journal/journal-student-guide.html#step-2-install-and-load-the-course-package",
     "href": "journal/journal-student-guide.html#step-2-install-and-load-the-course-package",
     "title": "Weekly Journal",
-    "section": "Step 2 — Install and load the course package",
-    "text": "Step 2 — Install and load the course package\nIn the Console:\n#| eval: false\npak::pak(\"SIM-Lab-SIUE/mccoursepack\")\nlibrary(mccoursepack)\nIf prompted, restart R after installation.\nFIGURE",
+    "section": "Step 2 – Install and load the course package",
+    "text": "Step 2 – Install and load the course package\nIn the Console:\npak::pak(\"SIM-Lab-SIUE/mccoursepack\")\nlibrary(mccoursepack)\nIf prompted, restart R after installation.\nFIGURE",
     "crumbs": [
       "Weekly Journal"
     ]
@@ -754,48 +754,68 @@
     "objectID": "journal/journal-student-guide.html#step-3-download-your-starter-journal",
     "href": "journal/journal-student-guide.html#step-3-download-your-starter-journal",
     "title": "Weekly Journal",
-    "section": "Step 3 — Download your starter journal",
-    "text": "Step 3 — Download your starter journal\nRun:\n#| eval: false\ndownload_journal(\"mc451\", dest = \".\")   # or \"mc501\"\nThis populates your project’s main folder with the complete journal structure.\nFIGURE",
+    "section": "Step 3 – Download your starter journal",
+    "text": "Step 3 – Download your starter journal\nRun:\ndownload_journal(\"mc451\", dest = \".\")   # or \"mc501\"\nThis populates your project’s main folder with the complete journal structure.\nFIGURE",
     "crumbs": [
       "Weekly Journal"
     ]
   },
   {
-    "objectID": "journal/journal-student-guide.html#step-4-add-a-new-week-chapter",
-    "href": "journal/journal-student-guide.html#step-4-add-a-new-week-chapter",
+    "objectID": "journal/journal-student-guide.html#step-4-load-the-journal-helper-function",
+    "href": "journal/journal-student-guide.html#step-4-load-the-journal-helper-function",
     "title": "Weekly Journal",
-    "section": "Step 4 — Add a new week chapter",
-    "text": "Step 4 — Add a new week chapter\nIn the Console pane at the bottom-left, run:\n#| eval: false\n# Pick your week number (2–14). Example:\nnew_journal_entry(week = 3)\nWhat happens:\n\nA new chapter is created and named with today’s date: entries/YYYY-MM-DD.qmd.\nThe three prompts for that week are inserted.\nThe correct word range for your course is set.\n_quarto.yml is automatically updated to add the new chapter to the book’s table of contents.\n\nFIGURE \n\nTroubleshooting: If you run the command twice on the same day, the file will be overwritten (same date name). If you need to keep both, rename the first file (e.g., 2025-09-03b.qmd) before running again.",
+    "section": "Step 4 – Load the Journal Helper Function",
+    "text": "Step 4 – Load the Journal Helper Function\nBefore you can add a new entry, you need to load the helper function that creates the file for you.\n\nIn the Files pane (bottom-right), navigate into the scripts folder.\nClick on the file new_journal_entry.R to open it in the editor.\nClick the Source button in the top-right corner of the editor pane.\n\nThis loads the new_journal_entry() function into your R environment for the current session.",
     "crumbs": [
       "Weekly Journal"
     ]
   },
   {
-    "objectID": "journal/journal-student-guide.html#step-5-choose-your-prompt-then-write",
-    "href": "journal/journal-student-guide.html#step-5-choose-your-prompt-then-write",
+    "objectID": "journal/journal-student-guide.html#step-5-add-a-new-week-chapter",
+    "href": "journal/journal-student-guide.html#step-5-add-a-new-week-chapter",
     "title": "Weekly Journal",
-    "section": "Step 5 — Choose your prompt, then write",
-    "text": "Step 5 — Choose your prompt, then write\nOpen the new file (e.g., entries/2025-09-03.qmd). You’ll see Choose one prompt first, then Response.\nKeep ONE prompt and delete the other two in the Choose one prompt section. Then write your answer only inside the Response block.\n\nChoose one prompt to answer\n\nPrompt A: r params$p1 Prompt B: r params$p2 Prompt C: r params$p3\n\n\n\nResponse\n\nWrite your answer to one of the prompts here. Do not write anything else in this chapter.\n\nStay in range:\n\nMC 451: 250–300 words\nMC 501: 450–500 words\n\nFIGURE",
+    "section": "Step 5 – Add a new week chapter",
+    "text": "Step 5 – Add a new week chapter\nIn the Console pane at the bottom-left, run:\n# Pick your week number (2-14). Example:\nnew_journal_entry(week = 3)\nWhat happens:\n\nA new chapter is created and named with today’s date: entries/YYYY-MM-DD.qmd.\nThe three prompts for that week are inserted.\nThe correct word range for your course is set.\n_quarto.yml is automatically updated to add the new chapter to the book’s table of contents.\n\nFIGURE \n\nTroubleshooting: If you run the command twice on the same day, the file will be overwritten (same date name). If you need to keep both, rename the first file (e.g., 2025-09-03b.qmd) before running again.",
     "crumbs": [
       "Weekly Journal"
     ]
   },
   {
-    "objectID": "journal/journal-student-guide.html#step-6-render-the-entire-journal-unified-output",
-    "href": "journal/journal-student-guide.html#step-6-render-the-entire-journal-unified-output",
+    "objectID": "journal/journal-student-guide.html#step-6-handling-multiple-entries-on-the-same-day",
+    "href": "journal/journal-student-guide.html#step-6-handling-multiple-entries-on-the-same-day",
     "title": "Weekly Journal",
-    "section": "Step 6 — Render the entire journal (unified output)",
-    "text": "Step 6 — Render the entire journal (unified output)\nYou have two equivalent options. Use one of them:\nA) Click Render on index.qmd\n\nIn the Files pane, click on index.qmd.\nClick the Render button in the editor toolbar.\n\nB) Use the Console\n# Run from the project's root directory\nquarto render\nOutputs are in the _book/ directory:\n\nAn HTML book (always, multi-page site with navigation = unified entity).\nPDF/EPUB if you have TinyTeX installed.\n\nIf a PDF fails to build, run:\n#| eval: false\nquarto install tinytex\n# or\nmccourse_setup()\nFIGURE \n\nTip: Rendering a single chapter file will not produce the unified journal. Always render index.qmd (or run quarto render) to build the whole book.",
+    "section": "Step 6 – Handling Multiple Entries on the Same Day",
+    "text": "Step 6 – Handling Multiple Entries on the Same Day\nThe new_journal_entry() function names files by date (e.g., 2025-09-04.qmd). If you want to write a second entry on the same day for a different week’s prompt, you should rename the first file to something more descriptive before creating the new one.\nFor example, you could rename entries/2025-09-04.qmd to entries/2025-09-04-week3.qmd.\nThe good news is that you do not need to manually edit _quarto.yml. The journal is set up to automatically find all .qmd files in the entries/ directory every time you render it. This means you can add, remove, or rename your entry files, and the book will always build correctly.",
     "crumbs": [
       "Weekly Journal"
     ]
   },
   {
-    "objectID": "journal/journal-student-guide.html#step-7-submit-via-github",
-    "href": "journal/journal-student-guide.html#step-7-submit-via-github",
+    "objectID": "journal/journal-student-guide.html#step-7-choose-your-prompt-then-write",
+    "href": "journal/journal-student-guide.html#step-7-choose-your-prompt-then-write",
     "title": "Weekly Journal",
-    "section": "Step 7 — Submit via GitHub",
-    "text": "Step 7 — Submit via GitHub\nWhen you add or edit a chapter, two files are modified:\n\nThe new chapter file: entries/YYYY-MM-DD.qmd\nThe book’s table of contents: _quarto.yml (updated automatically)\n\nIn RStudio:\n\nOpen the Git pane.\nStage both changed files.\nAdd a commit message (e.g., “Week 3 journal entry”).\nCommit and Push.\n\n\nIf you forget to commit the changes to _quarto.yml, your new chapter won’t appear in the published book.",
+    "section": "Step 7 – Choose your prompt, then write",
+    "text": "Step 7 – Choose your prompt, then write\nOpen the new file (e.g., entries/2025-09-03.qmd). You’ll see Choose one prompt first, then Response.\nKeep ONE prompt and delete the other two in the Choose one prompt section. Then write your answer only inside the Response block.\n\nChoose one prompt to answer\n\nPrompt A: r params$p1 Prompt B: r params$p2 Prompt C: r params$p3\n\n\n\nResponse\n\nWrite your answer to one of the prompts here. Do not write anything else in this chapter.\n\nStay in range:\n\nMC 451: 250-300 words\nMC 501: 450-500 words\n\nFIGURE",
+    "crumbs": [
+      "Weekly Journal"
+    ]
+  },
+  {
+    "objectID": "journal/journal-student-guide.html#step-8-render-the-entire-journal-unified-output",
+    "href": "journal/journal-student-guide.html#step-8-render-the-entire-journal-unified-output",
+    "title": "Weekly Journal",
+    "section": "Step 8 – Render the entire journal (unified output)",
+    "text": "Step 8 – Render the entire journal (unified output)\nYou have two equivalent options. Use one of them:\nA) Click Render on index.qmd\n\nIn the Files pane, click on index.qmd.\nClick the Render button in the editor toolbar.\n\nB) Use the Console\n# Run from the project's root directory\nquarto render\nOutputs are in the _book/ directory:\n\nAn HTML book (always, multi-page site with navigation = unified entity).\nPDF/EPUB if you have TinyTeX installed.\n\nIf a PDF fails to build, run:\nquarto install tinytex\n# or\nmccourse_setup()\nFIGURE \n\nTip: Rendering a single chapter file will not produce the unified journal. Always render index.qmd (or run quarto render) to build the whole book.",
+    "crumbs": [
+      "Weekly Journal"
+    ]
+  },
+  {
+    "objectID": "journal/journal-student-guide.html#step-9-submit-via-github",
+    "href": "journal/journal-student-guide.html#step-9-submit-via-github",
+    "title": "Weekly Journal",
+    "section": "Step 9 — Submit via GitHub",
+    "text": "Step 9 — Submit via GitHub\nWhen you add or edit a chapter, two files are modified:\n\nThe new chapter file: entries/YYYY-MM-DD.qmd\nThe book’s table of contents: _quarto.yml (updated automatically by the pre-render script)\n\nIn RStudio:\n\nOpen the Git pane.\nStage both changed files.\nAdd a commit message (e.g., “Week 3 journal entry”).\nCommit and Push.\n\n\nIf you forget to commit the changes to _quarto.yml, your new chapter won’t appear in the published book.",
     "crumbs": [
       "Weekly Journal"
     ]
@@ -805,7 +825,7 @@
     "href": "journal/journal-student-guide.html#visual-workflow",
     "title": "Weekly Journal",
     "section": "Visual Workflow",
-    "text": "Visual Workflow\n\n\n\n\n\nflowchart TD\n  A[\"New RStudio Project\"] --&gt; B[\"Install & load mccoursepack\"]\n  B --&gt; C[\"download_journal('mc451' | 'mc501')\"]\n  C --&gt; D[\"new_journal_entry(week = N)\"]\n  D --&gt; E[\"Open entries/YYYY-MM-DD.qmd → keep ONE prompt → write in Response\"]\n  E --&gt; F[\"Render WHOLE book → Render index.qmd OR `quarto render`\"]\n  F --&gt; G[\"Stage + Commit + Push → `entries/YYYY-MM-DD.qmd` + `_quarto.yml`\"]",
+    "text": "Visual Workflow\n\n\n\n\n\nflowchart TD\n  A[\"New RStudio Project\"] --&gt; B[\"Install & load mccoursepack\"]\n  B --&gt; C[\"download_journal('mc451' | 'mc501')\"]\n  C --&gt; D[\"Source scripts/new_journal_entry.R\"]\n  D --&gt; E[\"new_journal_entry(week = N)\"]\n  E --&gt; F[\"(Optional) Rename entry file for clarity\"]\n  F --&gt; G[\"Open .qmd → keep ONE prompt → write in Response\"]\n  G --&gt; H[\"Render WHOLE book (auto-updates chapters)\"]\n  H --&gt; I[\"Stage + Commit + Push\"]",
     "crumbs": [
       "Weekly Journal"
     ]
@@ -815,7 +835,7 @@
     "href": "journal/journal-student-guide.html#faq",
     "title": "Weekly Journal",
     "section": "FAQ",
-    "text": "FAQ\nIt didn’t ask me for the week number. Is that okay? Yes. In RStudio you usually call the function directly: new_journal_entry(week = 5).\nMy word count says “Out of range.” Edit until you are within the range for your course.\nThe new chapter doesn’t appear in the rendered book. Be sure you rendered the whole book (Render index.qmd or run quarto render from the project root) and committed both the new entry file and the automatically updated _quarto.yml.\nCan I revise later? Yes. Edit the same entries/YYYY-MM-DD.qmd, then commit and push again.",
+    "text": "FAQ\nIt didn’t ask me for the week number. Is that okay? Yes. In RStudio you usually call the function directly: new_journal_entry(week = 5).\nMy word count says “Out of range.” Edit until you are within the range for your course.\nThe new chapter doesn’t appear in the rendered book. Be sure you rendered the whole book (Render index.qmd or run quarto render from the project root). The pre-render script automatically updates the chapter list, but only when the entire book is rendered. Also, make sure you have committed both the new entry file and the automatically modified _quarto.yml.\nCan I revise later? Yes. Edit the same entries/YYYY-MM-DD.qmd, then commit and push again.",
     "crumbs": [
       "Weekly Journal"
     ]
@@ -825,7 +845,7 @@
     "href": "journal/journal-student-guide.html#weekly-checklist-quick-self-audit",
     "title": "Weekly Journal",
     "section": "Weekly checklist (quick self-audit)",
-    "text": "Weekly checklist (quick self-audit)\n\nI created/updated a chapter for this week using new_journal_entry(week = N).\nI kept one prompt and deleted the other two.\nI wrote my answer inside the Response block only.\nMy word count is in range.\nI rendered the whole book by rendering index.qmd (or running quarto render).\nI staged, committed, and pushed entries/YYYY-MM-DD.qmd and the modified _quarto.yml.",
+    "text": "Weekly checklist (quick self-audit)\n\nI created/updated a chapter for this week using new_journal_entry(week = N).\nI sourced the new_journal_entry.R script first.\nI kept one prompt and deleted the other two.\nI wrote my answer inside the Response block only.\nMy word count is in range.\nI rendered the whole book by rendering index.qmd (or running quarto render).\nI staged, committed, and pushed my new/modified entry file(s) and the updated _quarto.yml.",
     "crumbs": [
       "Weekly Journal"
     ]
@@ -895,7 +915,7 @@
     "href": "r-and-rstudio/r-and-rstudio.html#git-integration",
     "title": "R & RStudio",
     "section": "Git integration",
-    "text": "Git integration\nIf your Project is under Git, you’ll see a Git tab in RStudio. Use it to:\n\nStage → Commit → Push changes to GitHub.\n\nIf the Git tab is missing: Tools → Project Options → Git/SVN → Enable version control system: Git or run:\n#| eval: false\nusethis::use_git()",
+    "text": "Git integration\nIf your Project is under Git, you’ll see a Git tab in RStudio. Use it to:\n\nStage → Commit → Push changes to GitHub.\n\nIf the Git tab is missing: Tools → Project Options → Git/SVN → Enable version control system: Git or run:\nusethis::use_git()",
     "crumbs": [
       "R & RStudio"
     ]
@@ -925,7 +945,7 @@
     "href": "r-and-rstudio/r-and-rstudio.html#where-this-fits-with-the-package",
     "title": "R & RStudio",
     "section": "Where this fits with the package",
-    "text": "Where this fits with the package\nEverything in mccoursepack—listing weeks, downloading scaffolds, rendering .qmd—assumes you are inside your course Project.\nWorkflow reminder:\n#| eval: false\nlibrary(mccoursepack)\n\n# list weeks\nlist_weeks(\"mc451\")\n\n# download week 1 into the project folder\ndownload_week(\"mc451\", 1, dest = \".\")\nOpen the downloaded week_01/ folder, work on .qmd files there, and render as needed.",
+    "text": "Where this fits with the package\nEverything in mccoursepack—listing weeks, downloading scaffolds, rendering .qmd—assumes you are inside your course Project.\nWorkflow reminder:\nlibrary(mccoursepack)\n\n# list weeks\nlist_weeks(\"mc451\")\n\n# download week 1 into the project folder\ndownload_week(\"mc451\", 1, dest = \".\")\nOpen the downloaded week_01/ folder, work on .qmd files there, and render as needed.",
     "crumbs": [
       "R & RStudio"
     ]
@@ -935,7 +955,7 @@
     "href": "r-and-rstudio/rstudio-four-panes.html",
     "title": "RStudio’s Four Panes",
     "section": "",
-    "text": "RStudio organizes your work into four panes. Each pane has tabs for specific tasks: editing, running code, viewing objects, managing files, plots, packages, or help. This page gives you a plain-English tour of every pane and every default tab—what each does, when you’ll use it, and where to click next.\n\n\n\nFour Panes\n\n\n\n\n\nWhat it is: a multi-tab code and document editor. You’ll draft R scripts (.R), Quarto/R Markdown (.qmd, .Rmd), plain text, and more here. Code doesn’t execute until you send it to the Console.\n\nTabs across the top hold open files—click a tab to switch documents.\n\nFor Quarto/R Markdown, you can use the visual editor and render from the toolbar; output previews in the Viewer (see Output pane).\n\n\n\n\n\nThis column has three tabs by default:\n\n\nAn interactive R prompt. Type a command (e.g., 1 + 1) and press Return to see results immediately. Most beginners will (1) write code in the Source pane and (2) send lines or chunks to the Console to execute.\n\n\n\nA system shell inside RStudio (bash/zsh on macOS/Linux; PowerShell/Command Prompt on Windows). Supports multiple sessions—handy for Git, package tools, or command-line utilities.\n\n\n\nRuns an R script in a separate R session so long tasks don’t freeze your main session. Start jobs from this tab or by choosing Source as Background Job. Progress and logs appear here.\n\nIf something works in the Console but stalls your session, launch it as a background job. If you need shell tools, hop to Terminal.\n\n\n\n\n\n\nBy default this pane includes Environment, History, Connections, Build, VCS, and Tutorial.\n\nEnvironment: Live list of objects in your R session (data frames, vectors, models). Inspect, remove, or clear objects and launch the spreadsheet-style data viewer.\n\nHistory: Log of commands you’ve executed. Search, select, and resend to Console or a script.\n\nConnections: Shows active database/data-source connections.\n\nBuild: Appears in projects with build tooling (e.g., an R package). Buttons for Install & Restart, Load All, Run R CMD check, clean/rebuild, and run tests.\n\nVCS: Git/SVN integration (commit, diff, pull/push, project-level settings).\n\nTutorial: Runs interactive learnr tutorials inside the IDE.\n\n\n\n\n\nBy default this pane includes Files, Plots, Packages, Help, Viewer, and Presentation.\n\nFiles: Browse folders, open files into Source, rename/move/delete, upload/download (when using server/cloud).\n\nPlots: Displays graphs. Navigate through plot history, pop out to a window, and export (PNG/PDF).\n\nPackages: Lists installed packages; load/unload with a click. Install/Update tools included.\n\nHelp: Documentation for functions and packages (same as R’s help, in a browser-style panel).\n\nViewer: Renders local HTML (Shiny apps, htmlwidgets, Quarto previews, etc.).\n\nPresentation: IDE panel for authoring HTML5 slides (R Presentations).\n\n\n\n\n\nGo to Tools → Global Options → Pane Layout to rearrange panes and choose which tabs live where. If you ever get lost, reset to defaults.\n\n\n\n\n\nSource: Write your instructions.\n\nConsole: Run them (plus Terminal/Jobs for power moves).\n\nEnvironment: Keeps track of what exists (with History/Connections/Build/VCS/Tutorial beside it).\n\nOutput: Displays what you need—files, plots, packages, help, web output, and slide decks.",
+    "text": "RStudio organizes your work into four panes. Each pane has tabs for specific tasks: editing, running code, viewing objects, managing files, plots, packages, or help. This page gives you a plain-English tour of every pane and every default tab—what each does, when you’ll use it, and where to click next.",
     "crumbs": [
       "R & RStudio",
       "RStudio’s Four Panes"
@@ -945,8 +965,8 @@
     "objectID": "r-and-rstudio/rstudio-four-panes.html#source-pane-top-left-where-you-write-and-edit",
     "href": "r-and-rstudio/rstudio-four-panes.html#source-pane-top-left-where-you-write-and-edit",
     "title": "RStudio’s Four Panes",
-    "section": "",
-    "text": "What it is: a multi-tab code and document editor. You’ll draft R scripts (.R), Quarto/R Markdown (.qmd, .Rmd), plain text, and more here. Code doesn’t execute until you send it to the Console.\n\nTabs across the top hold open files—click a tab to switch documents.\n\nFor Quarto/R Markdown, you can use the visual editor and render from the toolbar; output previews in the Viewer (see Output pane).",
+    "section": "1. Source Pane (Top-Left) — Where You Write and Edit",
+    "text": "1. Source Pane (Top-Left) — Where You Write and Edit\nWhat it is: a multi-tab code and document editor. You’ll draft R scripts (.R), Quarto/R Markdown (.qmd, .Rmd), plain text, and more here. Code doesn’t execute until you send it to the Console.\n\nTabs across the top hold open files—click a tab to switch documents.\n\nFor Quarto/R Markdown, you can use the visual editor and render from the toolbar; output previews in the Viewer (see Output pane).",
     "crumbs": [
       "R & RStudio",
       "RStudio’s Four Panes"
@@ -956,8 +976,8 @@
     "objectID": "r-and-rstudio/rstudio-four-panes.html#console-pane-bottom-left-where-code-runs-plus-two-neighbors",
     "href": "r-and-rstudio/rstudio-four-panes.html#console-pane-bottom-left-where-code-runs-plus-two-neighbors",
     "title": "RStudio’s Four Panes",
-    "section": "",
-    "text": "This column has three tabs by default:\n\n\nAn interactive R prompt. Type a command (e.g., 1 + 1) and press Return to see results immediately. Most beginners will (1) write code in the Source pane and (2) send lines or chunks to the Console to execute.\n\n\n\nA system shell inside RStudio (bash/zsh on macOS/Linux; PowerShell/Command Prompt on Windows). Supports multiple sessions—handy for Git, package tools, or command-line utilities.\n\n\n\nRuns an R script in a separate R session so long tasks don’t freeze your main session. Start jobs from this tab or by choosing Source as Background Job. Progress and logs appear here.\n\nIf something works in the Console but stalls your session, launch it as a background job. If you need shell tools, hop to Terminal.",
+    "section": "2. Console Pane (Bottom-Left) — Where Code Runs (Plus Two Neighbors)",
+    "text": "2. Console Pane (Bottom-Left) — Where Code Runs (Plus Two Neighbors)\nThis column has three tabs by default:\n\na. Console\nAn interactive R prompt. Type a command (e.g., 1 + 1) and press Return to see results immediately. Most beginners will (1) write code in the Source pane and (2) send lines or chunks to the Console to execute.\n\n\nb. Terminal\nA system shell inside RStudio (bash/zsh on macOS/Linux; PowerShell/Command Prompt on Windows). Supports multiple sessions—handy for Git, package tools, or command-line utilities.\n\n\nc. Background Jobs\nRuns an R script in a separate R session so long tasks don’t freeze your main session. Start jobs from this tab or by choosing Source as Background Job. Progress and logs appear here.\n\nIf something works in the Console but stalls your session, launch it as a background job. If you need shell tools, hop to Terminal.",
     "crumbs": [
       "R & RStudio",
       "RStudio’s Four Panes"
@@ -967,8 +987,8 @@
     "objectID": "r-and-rstudio/rstudio-four-panes.html#environment-pane-top-right-whats-in-memory-plus-history-tooling",
     "href": "r-and-rstudio/rstudio-four-panes.html#environment-pane-top-right-whats-in-memory-plus-history-tooling",
     "title": "RStudio’s Four Panes",
-    "section": "",
-    "text": "By default this pane includes Environment, History, Connections, Build, VCS, and Tutorial.\n\nEnvironment: Live list of objects in your R session (data frames, vectors, models). Inspect, remove, or clear objects and launch the spreadsheet-style data viewer.\n\nHistory: Log of commands you’ve executed. Search, select, and resend to Console or a script.\n\nConnections: Shows active database/data-source connections.\n\nBuild: Appears in projects with build tooling (e.g., an R package). Buttons for Install & Restart, Load All, Run R CMD check, clean/rebuild, and run tests.\n\nVCS: Git/SVN integration (commit, diff, pull/push, project-level settings).\n\nTutorial: Runs interactive learnr tutorials inside the IDE.",
+    "section": "3. Environment Pane (Top-Right) — What’s in Memory (Plus History & Tooling)",
+    "text": "3. Environment Pane (Top-Right) — What’s in Memory (Plus History & Tooling)\nBy default this pane includes Environment, History, Connections, Build, VCS, and Tutorial.\n\nEnvironment: Live list of objects in your R session (data frames, vectors, models). Inspect, remove, or clear objects and launch the spreadsheet-style data viewer.\n\nHistory: Log of commands you’ve executed. Search, select, and resend to Console or a script.\n\nConnections: Shows active database/data-source connections.\n\nBuild: Appears in projects with build tooling (e.g., an R package). Buttons for Install & Restart, Load All, Run R CMD check, clean/rebuild, and run tests.\n\nVCS: Git/SVN integration (commit, diff, pull/push, project-level settings).\n\nTutorial: Runs interactive learnr tutorials inside the IDE.",
     "crumbs": [
       "R & RStudio",
       "RStudio’s Four Panes"
@@ -978,8 +998,8 @@
     "objectID": "r-and-rstudio/rstudio-four-panes.html#output-pane-bottom-right-files-plots-packages-help-web-output-slides",
     "href": "r-and-rstudio/rstudio-four-panes.html#output-pane-bottom-right-files-plots-packages-help-web-output-slides",
     "title": "RStudio’s Four Panes",
-    "section": "",
-    "text": "By default this pane includes Files, Plots, Packages, Help, Viewer, and Presentation.\n\nFiles: Browse folders, open files into Source, rename/move/delete, upload/download (when using server/cloud).\n\nPlots: Displays graphs. Navigate through plot history, pop out to a window, and export (PNG/PDF).\n\nPackages: Lists installed packages; load/unload with a click. Install/Update tools included.\n\nHelp: Documentation for functions and packages (same as R’s help, in a browser-style panel).\n\nViewer: Renders local HTML (Shiny apps, htmlwidgets, Quarto previews, etc.).\n\nPresentation: IDE panel for authoring HTML5 slides (R Presentations).",
+    "section": "4. Output Pane (Bottom-Right) — Files, Plots, Packages, Help, Web Output, Slides",
+    "text": "4. Output Pane (Bottom-Right) — Files, Plots, Packages, Help, Web Output, Slides\nBy default this pane includes Files, Plots, Packages, Help, Viewer, and Presentation.\n\nFiles: Browse folders, open files into Source, rename/move/delete, upload/download (when using server/cloud).\n\nPlots: Displays graphs. Navigate through plot history, pop out to a window, and export (PNG/PDF).\n\nPackages: Lists installed packages; load/unload with a click. Install/Update tools included.\n\nHelp: Documentation for functions and packages (same as R’s help, in a browser-style panel).\n\nViewer: Renders local HTML (Shiny apps, htmlwidgets, Quarto previews, etc.).\n\nPresentation: IDE panel for authoring HTML5 slides (R Presentations).",
     "crumbs": [
       "R & RStudio",
       "RStudio’s Four Panes"
@@ -989,8 +1009,8 @@
     "objectID": "r-and-rstudio/rstudio-four-panes.html#customizing-your-layout",
     "href": "r-and-rstudio/rstudio-four-panes.html#customizing-your-layout",
     "title": "RStudio’s Four Panes",
-    "section": "",
-    "text": "Go to Tools → Global Options → Pane Layout to rearrange panes and choose which tabs live where. If you ever get lost, reset to defaults.",
+    "section": "Customizing Your Layout",
+    "text": "Customizing Your Layout\nGo to Tools → Global Options → Pane Layout to rearrange panes and choose which tabs live where. If you ever get lost, reset to defaults.",
     "crumbs": [
       "R & RStudio",
       "RStudio’s Four Panes"
@@ -1000,8 +1020,8 @@
     "objectID": "r-and-rstudio/rstudio-four-panes.html#quick-mental-model",
     "href": "r-and-rstudio/rstudio-four-panes.html#quick-mental-model",
     "title": "RStudio’s Four Panes",
-    "section": "",
-    "text": "Source: Write your instructions.\n\nConsole: Run them (plus Terminal/Jobs for power moves).\n\nEnvironment: Keeps track of what exists (with History/Connections/Build/VCS/Tutorial beside it).\n\nOutput: Displays what you need—files, plots, packages, help, web output, and slide decks.",
+    "section": "Quick Mental Model",
+    "text": "Quick Mental Model\n\nSource: Write your instructions.\n\nConsole: Run them (plus Terminal/Jobs for power moves).\n\nEnvironment: Keeps track of what exists (with History/Connections/Build/VCS/Tutorial beside it).\n\nOutput: Displays what you need—files, plots, packages, help, web output, and slide decks.",
     "crumbs": [
       "R & RStudio",
       "RStudio’s Four Panes"
@@ -1012,7 +1032,7 @@
     "href": "reference/package-functions.html",
     "title": "Function Details",
     "section": "",
-    "text": "All commands assume you are working inside an RStudio Project.\n\n\n\nlist_courses()\nReturns a character vector of course IDs (e.g., \"mc451\", \"mc501\"). If no courses are installed, returns an empty vector.\n\n\n\n\nlist_weeks()         # all installed courses\nlist_weeks(\"mc451\")  # a specific course\nReturns folder names like \"week_01\", \"week_02\", … Empty if no weeks are installed for that course.\n\n\n\n\ndownload_week(\"mc451\", 1, dest = \".\")   # accepts 1, \"01\", or \"week_01\"\n\nCreates dest/week_01/\nCopies that week’s files into the folder\nPreserves subfolders\nEmpty templates still create the folder but copy no files\n\nReturns (invisibly) a list:\nlist(dest, course, week, n_copied)\n\n\n\n\nopen_week(1, dest = \".\")\nOpens dest/week_01/ in your system file browser.\n\n\n\n\nmccourse_setup()   # safe to re-run\nEnsures that:\n\nQuarto is installed\nTinyTeX (LaTeX) is available for PDF output\nCore CRAN packages are installed\n\n\n\n\n\nmccourse_self_test()\nRuns a basic check: prints which courses are installed and which weeks are available.\n\n\n\n\nmccourse_update()\nUpdates mccoursepack to the latest GitHub build (Equivalent to running pak::pak(\"SIM-Lab-SIUE/mccoursepack\")).\n\n\n\n\n\nAlways open your RStudio Project before using package commands.\nRender .qmd files to PDF (default) or HTML with Quarto.\nIf PDF rendering fails, run:\n\nmccourse_setup()\nto install TinyTeX and other dependencies.",
+    "text": "All commands assume you are working inside an RStudio Project.",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1022,8 +1042,8 @@
     "objectID": "reference/package-functions.html#list_courses",
     "href": "reference/package-functions.html#list_courses",
     "title": "Function Details",
-    "section": "",
-    "text": "list_courses()\nReturns a character vector of course IDs (e.g., \"mc451\", \"mc501\"). If no courses are installed, returns an empty vector.",
+    "section": "list_courses()",
+    "text": "list_courses()\nlist_courses()\nReturns a character vector of course IDs (e.g., \"mc451\", \"mc501\"). If no courses are installed, returns an empty vector.",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1033,8 +1053,8 @@
     "objectID": "reference/package-functions.html#list_weekscourse-null",
     "href": "reference/package-functions.html#list_weekscourse-null",
     "title": "Function Details",
-    "section": "",
-    "text": "list_weeks()         # all installed courses\nlist_weeks(\"mc451\")  # a specific course\nReturns folder names like \"week_01\", \"week_02\", … Empty if no weeks are installed for that course.",
+    "section": "list_weeks(course = NULL)",
+    "text": "list_weeks(course = NULL)\nlist_weeks()         # all installed courses\nlist_weeks(\"mc451\")  # a specific course\nReturns folder names like \"week_01\", \"week_02\", … Empty if no weeks are installed for that course.",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1044,8 +1064,8 @@
     "objectID": "reference/package-functions.html#download_weekcourse-week-dest-.",
     "href": "reference/package-functions.html#download_weekcourse-week-dest-.",
     "title": "Function Details",
-    "section": "",
-    "text": "download_week(\"mc451\", 1, dest = \".\")   # accepts 1, \"01\", or \"week_01\"\n\nCreates dest/week_01/\nCopies that week’s files into the folder\nPreserves subfolders\nEmpty templates still create the folder but copy no files\n\nReturns (invisibly) a list:\nlist(dest, course, week, n_copied)",
+    "section": "download_week(course, week, dest = \".\")",
+    "text": "download_week(course, week, dest = \".\")\ndownload_week(\"mc451\", 1, dest = \".\")   # accepts 1, \"01\", or \"week_01\"\n\nCreates dest/week_01/\nCopies that week’s files into the folder\nPreserves subfolders\nEmpty templates still create the folder but copy no files\n\nReturns (invisibly) a list:\nlist(dest, course, week, n_copied)",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1055,8 +1075,8 @@
     "objectID": "reference/package-functions.html#open_weekweek-dest-.",
     "href": "reference/package-functions.html#open_weekweek-dest-.",
     "title": "Function Details",
-    "section": "",
-    "text": "open_week(1, dest = \".\")\nOpens dest/week_01/ in your system file browser.",
+    "section": "open_week(week, dest = \".\")",
+    "text": "open_week(week, dest = \".\")\nopen_week(1, dest = \".\")\nOpens dest/week_01/ in your system file browser.",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1066,8 +1086,8 @@
     "objectID": "reference/package-functions.html#mccourse_setupask-true-pkgs-c...",
     "href": "reference/package-functions.html#mccourse_setupask-true-pkgs-c...",
     "title": "Function Details",
-    "section": "",
-    "text": "mccourse_setup()   # safe to re-run\nEnsures that:\n\nQuarto is installed\nTinyTeX (LaTeX) is available for PDF output\nCore CRAN packages are installed",
+    "section": "mccourse_setup(ask = TRUE, pkgs = c(...))",
+    "text": "mccourse_setup(ask = TRUE, pkgs = c(...))\nmccourse_setup()   # safe to re-run\nEnsures that:\n\nQuarto is installed\nTinyTeX (LaTeX) is available for PDF output\nCore CRAN packages are installed",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1077,8 +1097,8 @@
     "objectID": "reference/package-functions.html#mccourse_self_test",
     "href": "reference/package-functions.html#mccourse_self_test",
     "title": "Function Details",
-    "section": "",
-    "text": "mccourse_self_test()\nRuns a basic check: prints which courses are installed and which weeks are available.",
+    "section": "mccourse_self_test()",
+    "text": "mccourse_self_test()\nmccourse_self_test()\nRuns a basic check: prints which courses are installed and which weeks are available.",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1088,8 +1108,8 @@
     "objectID": "reference/package-functions.html#mccourse_update",
     "href": "reference/package-functions.html#mccourse_update",
     "title": "Function Details",
-    "section": "",
-    "text": "mccourse_update()\nUpdates mccoursepack to the latest GitHub build (Equivalent to running pak::pak(\"SIM-Lab-SIUE/mccoursepack\")).",
+    "section": "mccourse_update()",
+    "text": "mccourse_update()\nmccourse_update()\nUpdates mccoursepack to the latest GitHub build (Equivalent to running pak::pak(\"SIM-Lab-SIUE/mccoursepack\")).",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1099,8 +1119,8 @@
     "objectID": "reference/package-functions.html#common-patterns",
     "href": "reference/package-functions.html#common-patterns",
     "title": "Function Details",
-    "section": "",
-    "text": "Always open your RStudio Project before using package commands.\nRender .qmd files to PDF (default) or HTML with Quarto.\nIf PDF rendering fails, run:\n\nmccourse_setup()\nto install TinyTeX and other dependencies.",
+    "section": "Common Patterns",
+    "text": "Common Patterns\n\nAlways open your RStudio Project before using package commands.\nRender .qmd files to PDF (default) or HTML with Quarto.\nIf PDF rendering fails, run:\n\nmccourse_setup()\nto install TinyTeX and other dependencies.",
     "crumbs": [
       "Getting Started",
       "Function Details"
@@ -1235,7 +1255,7 @@
     "href": "troubleshooting/troubleshooting.html#how-to-ask-for-help",
     "title": "Troubleshooting",
     "section": "How to Ask for Help",
-    "text": "How to Ask for Help\nWhen you encounter a problem, providing good diagnostic information is the fastest way to get it solved. Follow these steps:\n\nDescribe what you expected to happen and what actually happened.\nInclude the exact error message. Copy and paste it.\nProvide your system information. Run the following command in the RStudio Console and include the output: r     #| eval: false     sessionInfo()\nProvide your tool versions. Run these commands in the RStudio Terminal and include the output: bash     quarto --version     git --version\nInclude a screenshot. A picture of your full RStudio window (including the error message in the console) is often very helpful.\n\n\nFinding RStudio Log Files\nIn rare cases, you may need to check the RStudio log files for more detailed error information.\n\nWindows: The logs are located in %localappdata%\\\\RStudio. You can copy and paste that path into your File Explorer address bar.\nmacOS: The logs are in ~/.local/share/rstudio. You can find this in the Finder by using the “Go” → “Go to Folder…” menu item.",
+    "text": "How to Ask for Help\nWhen you encounter a problem, providing good diagnostic information is the fastest way to get it solved. Follow these steps:\n\nDescribe what you expected to happen and what actually happened.\nInclude the exact error message. Copy and paste it.\nProvide your system information. Run the following command in the RStudio Console and include the output: r     sessionInfo()\nProvide your tool versions. Run these commands in the RStudio Terminal and include the output: bash     quarto --version     git --version\nInclude a screenshot. A picture of your full RStudio window (including the error message in the console) is often very helpful.\n\n\nFinding RStudio Log Files\nIn rare cases, you may need to check the RStudio log files for more detailed error information.\n\nWindows: The logs are located in %localappdata%\\\\RStudio. You can copy and paste that path into your File Explorer address bar.\nmacOS: The logs are in ~/.local/share/rstudio. You can find this in the Finder by using the “Go” → “Go to Folder…” menu item.",
     "crumbs": [
       "Troubleshooting"
     ]
