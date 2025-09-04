@@ -12,35 +12,33 @@ website:
     background: light
     left:
       - text: "Getting Started"
-        href: getting-started/index.qmd
+        href: getting-started/getting-started.qmd
       - text: "R & RStudio"
-        href: r-and-rstudio/index.qmd
+        href: r-and-rstudio/r-and-rstudio.qmd
       - text: "Weekly Journal"
-        href: journal/index.qmd
+        href: journal/journal-student-guide.qmd
       - text: "Quarto Basics"
-        href: quarto/index.qmd
+        href: quarto/quarto-basics.qmd
       - text: "Course Workflow"
-        href: workflow/index.qmd
+        href: workflow/weekly-workflows.qmd
       - text: "Git & GitHub"
-        href: git/index.qmd
+        href: git/git-and-github.qmd
       - text: "Troubleshooting"
-        href: troubleshooting/index.qmd
+        href: troubleshooting/troubleshooting.qmd
       - text: "Reference"
-        href: reference/index.qmd
+        href: reference/package-reference.qmd
 
   sidebar:
     - id: getting-started
       title: "Getting Started"
       style: docked
       contents:
-        - getting-started/index.qmd
         - getting-started/getting-started.qmd     # Quick Setup (expanded)
 
     - id: r-and-rstudio
       title: "R & RStudio"
       style: docked
       contents:
-        - r-and-rstudio/index.qmd
         - r-and-rstudio/r-and-rstudio.qmd
         - r-and-rstudio/rstudio-four-panes.qmd
         - r-and-rstudio/rstudio-global-options.qmd
@@ -50,28 +48,24 @@ website:
       title: "Weekly Journal"
       style: docked
       contents:
-        - journal/index.qmd
         - journal/journal-student-guide.qmd
 
     - id: quarto
       title: "Quarto Basics"
       style: docked
       contents:
-        - quarto/index.qmd
         - quarto/quarto-basics.qmd
 
     - id: workflow
       title: "Course Workflow"
       style: docked
       contents:
-        - workflow/index.qmd
         - workflow/weekly-workflows.qmd
 
     - id: git
       title: "Git & GitHub"
       style: docked
       contents:
-        - git/index.qmd
         - git/git-and-github.qmd
         - git/github-landing-page.qmd
         - git/github-verification.qmd
@@ -80,7 +74,6 @@ website:
       title: "Troubleshooting"
       style: docked
       contents:
-        - troubleshooting/index.qmd
         - troubleshooting/troubleshooting.qmd
         - troubleshooting/rstudio-older-macs.qmd
 
@@ -88,7 +81,6 @@ website:
       title: "Reference"
       style: docked
       contents:
-        - reference/index.qmd
         - reference/package-reference.qmd
         - reference/package-functions.qmd
         - reference/references.qmd

@@ -3,6 +3,8 @@ title: "Git & GitHub"
 freeze: auto
 ---
 
+Version control, branches, and submissions.
+
 ## Why version control?
 
 Git keeps a complete history of your work, lets you roll back mistakes, and makes sharing/submitting changes straightforward. In Git you **stage** changes, then **commit** them as a snapshot; later you **push** those commits to GitHub to back them up and collaborate.
@@ -58,6 +60,7 @@ You have two clean paths—pick one.
 2. Create/connect the GitHub repo:
 
 ```{r}
+#| eval: false
 install.packages("usethis")
 usethis::use_git()       # initialize git (if needed)
 usethis::use_github()    # creates repo on GitHub, adds 'origin', pushes

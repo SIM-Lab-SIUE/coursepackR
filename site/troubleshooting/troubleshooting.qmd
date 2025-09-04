@@ -3,6 +3,8 @@ title: "Troubleshooting"
 freeze: auto
 ---
 
+Common problems and fixes.
+
 This page collects quick fixes and diagnostic commands for the tools used in this course.
 
 ---

@@ -3,6 +3,8 @@ title: "Weekly Journal"
 freeze: auto
 ---
 
+Start with the **Student Guide** below.
+
 Your **course journal** is a Quarto **book**. Each **week** has a chapter with **three prompts**—you answer **one**.  
 Word ranges are enforced when you render:
 
@@ -26,6 +28,7 @@ Word ranges are enforced when you render:
 In the **Console**:
 
 ```r
+#| eval: false
 pak::pak("SIM-Lab-SIUE/mccoursepack")
 library(mccoursepack)
 ````
@@ -42,6 +45,7 @@ If prompted, restart R after installation.
 Run:
 
 ```r
+#| eval: false
 download_journal("mc451", dest = ".")   # or "mc501"
 ```
 
@@ -57,6 +61,7 @@ This creates a folder `journal/` with everything you need.
 From inside the `journal/` folder in the **Files** pane (click to enter it), run in the **Console**:
 
 ```r
+#| eval: false
 # Pick your week number (2–14). Example:
 new_journal_entry(week = 3)
 ```
@@ -133,6 +138,7 @@ Outputs are in `journal/_book/`:
 If a PDF fails to build, run:
 
 ```r
+#| eval: false
 quarto install tinytex
 # or
 mccourse_setup()

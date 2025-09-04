@@ -4,6 +4,8 @@ sidebar: reference
 format: html
 ---
 
+Package reference and bibliography.
+
 # Package Reference
 
 > **Tip**  

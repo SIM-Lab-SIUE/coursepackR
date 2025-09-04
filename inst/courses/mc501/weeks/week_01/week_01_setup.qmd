@@ -65,6 +65,7 @@ Quarto turns your `.qmd` into web pages or PDFs.
 **Quick Quarto check (in R Console):**
 
 ``` r
+#| eval: false
 install.packages("quarto")   # adds helper functions in R
 quarto::quarto_version()
 ```
@@ -210,6 +211,7 @@ GitHub now uses tokens for authentication (not passwords).
 In **RStudio Console**:
 
 ``` r
+#| eval: false
 install.packages(c("usethis", "gitcreds"))
 usethis::git_sitrep()           # shows current Git/GitHub status
 usethis::edit_git_config()      # optional: set your name/email if needed

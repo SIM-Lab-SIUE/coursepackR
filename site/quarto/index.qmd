@@ -1,6 +1,0 @@
----
-title: "Quarto Basics"
-sidebar: quarto
----
-
-Write, cite, and render with Quarto.

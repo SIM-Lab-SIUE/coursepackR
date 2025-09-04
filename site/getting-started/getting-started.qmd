@@ -1,8 +1,10 @@
 ---
-title: "Quick Setup"
+title: "Getting Started"
 sidebar: getting-started
 format: html
 ---
+
+Welcome to **mccoursepack**. This guide helps you install tools, open your first project, and render your first journal.
 
 # Quick Setup
 
@@ -15,6 +17,7 @@ Follow these steps to get your system ready with the **latest course package** a
 The course package `mccoursepack` is hosted on GitHub. Use the `remotes` package to install or update it.
 
 ```r
+#| eval: false
 # Install remotes if not already installed
 install.packages("remotes")
 
@@ -62,6 +65,7 @@ You now have two separate projects: one for all weekly tasks, one for your runni
 2. In the Console, run:
 
 ```r
+#| eval: false
 download_journal("mc451")   # or "mc501" if in the graduate course
 ```
 
@@ -75,6 +79,7 @@ This creates the `journal/` folder structure with an `entries/` directory, a tem
 2. Use the helper function to download the starter files for your first week:
 
 ```r
+#| eval: false
 download_week("mc451", week = 1)
 ```
 

@@ -3,6 +3,13 @@ title: "R & RStudio"
 freeze: auto
 ---
 
+This section covers installing R/RStudio and tuning the IDE.
+
+- [R & RStudio overview](r-and-rstudio.qmd)
+- [Four Panes](rstudio-four-panes.qmd)
+- [Global Options](rstudio-global-options.qmd)
+- [Legacy Intro (PDF-to-QMD)](r-rstudio-intro-legacy.qmd)
+
 ## R vs. RStudio
 
 - **R** is the programming language and runtime (it executes code).  
@@ -83,6 +90,7 @@ If the Git tab is missing:
 or run:
 
 ```r
+#| eval: false
 usethis::use_git()
 ```
 
@@ -111,6 +119,7 @@ Everything in **mccoursepack**—listing weeks, downloading scaffolds, rendering
 Workflow reminder:
 
 ```r
+#| eval: false
 library(mccoursepack)
 
 # list weeks

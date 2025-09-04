@@ -7,7 +7,11 @@ format:
     code-copy: true
 execute:
   echo: true
-  warning: false
+ ```r
+#| eval: false
+install.packages("ggplot2")  # once
+library(ggplot2)            # each session
+```ning: false
 ---
 
 # Introduction to R and RStudio

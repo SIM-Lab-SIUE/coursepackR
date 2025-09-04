@@ -1,6 +1,0 @@
----
-title: "Course Workflow"
-sidebar: workflow
----
-
-Week-by-week rhythm of the course.
