@@ -49,16 +49,16 @@ Run:
 download_journal("mc451", dest = ".")   # or "mc501"
 ```
 
-This creates a folder `journal/` with everything you need.
+This populates your project's main folder with the complete journal structure.
 
 **FIGURE**
-![RStudio Files pane showing the new `journal/` directory.](../images/files-pane.png "RStudio Files pane"){width=50%; fig-align="center"}
+![RStudio Files pane showing the populated journal project directory.](../images/files-pane.png "RStudio Files pane"){width=50%; fig-align="center"}
 
 ---
 
 ## Step 4 — Add a new week chapter
 
-From inside the `journal/` folder in the **Files** pane (click to enter it), run in the **Console**:
+In the **Console** pane at the bottom-left, run:
 
 ```r
 #| eval: false
@@ -71,7 +71,7 @@ What happens:
 1. A new chapter is created and named with **today’s date**: `entries/YYYY-MM-DD.qmd`.
 2. The **three prompts for that week** are inserted.
 3. The correct **word range** for your course is set.
-4. `_quarto.yml` is updated so the chapter appears in the book.
+4. `_quarto.yml` is **automatically updated** to add the new chapter to the book's table of contents.
 
 
 **FIGURE**
@@ -117,20 +117,17 @@ You have two equivalent options. Use **one** of them:
 
 **A) Click Render on `index.qmd`**
 
-* In the Files pane, open `journal/index.qmd`.
+* In the Files pane, click on `index.qmd`.
 * Click the **Render** button in the editor toolbar.
-  *This renders the entire book.*
 
-**B) Use the Console (renders the whole book)**
+**B) Use the Console**
 
 ```bash
-# From inside the journal/ folder:
+# Run from the project's root directory
 quarto render
-# Or explicitly:
-quarto render index.qmd
 ```
 
-Outputs are in `journal/_book/`:
+Outputs are in the `_book/` directory:
 
 * An **HTML** book (always, multi-page site with navigation = unified entity).
 * **PDF/EPUB** if you have TinyTeX installed.
@@ -145,7 +142,7 @@ mccourse_setup()
 ```
 
 **FIGURE**
-![Files pane showing `journal/_book/` with `index.html` and the chapter pages.](../images/book-files.png "Files Pane with Book Files"){width=50%; fig-align="center"}
+![Files pane showing `_book/` with `index.html` and the chapter pages.](../images/book-files.png "Files Pane with Book Files"){width=50%; fig-align="center"}
 
 > **Tip:** Rendering a single chapter file will **not** produce the unified journal. Always render **`index.qmd`** (or run `quarto render`) to build the whole book.
 
@@ -155,10 +152,10 @@ mccourse_setup()
 
 ## Step 7 — Submit via GitHub
 
-When you add or edit a chapter, **two files change**:
+When you add or edit a chapter, **two files are modified**:
 
-1. `journal/entries/YYYY-MM-DD.qmd`
-2. `journal/_quarto.yml`
+1. The new chapter file: `entries/YYYY-MM-DD.qmd`
+2. The book's table of contents: `_quarto.yml` (updated automatically)
 
 In RStudio:
 
@@ -167,7 +164,7 @@ In RStudio:
 3. Add a commit message (e.g., “Week 3 journal entry”).
 4. **Commit** and **Push**.
 
-> If you forget `_quarto.yml`, your new chapter won’t appear for others.
+> If you forget to commit the changes to `_quarto.yml`, your new chapter won’t appear in the published book.
 
 ---
 
@@ -180,7 +177,7 @@ flowchart TD
   C --> D["new_journal_entry(week = N)"]
   D --> E["Open entries/YYYY-MM-DD.qmd → keep ONE prompt → write in Response"]
   E --> F["Render WHOLE book → Render index.qmd OR `quarto render`"]
-  F --> G["Stage + Commit + Push → entries/YYYY-MM-DD.qmd + _quarto.yml"]
+  F --> G["Stage + Commit + Push → `entries/YYYY-MM-DD.qmd` + `_quarto.yml`"]
 ```
 
 ---
@@ -194,7 +191,7 @@ Yes. In RStudio you usually call the function directly: `new_journal_entry(week 
 Edit until you are within the range for your course.
 
 **The new chapter doesn’t appear in the rendered book.**
-Be sure you rendered the **whole book** (Render `index.qmd` or run `quarto render`) and committed **both** the entry file and `_quarto.yml`.
+Be sure you rendered the **whole book** (Render `index.qmd` or run `quarto render` from the project root) and committed **both** the new entry file and the automatically updated `_quarto.yml`.
 
 **Can I revise later?**
 Yes. Edit the same `entries/YYYY-MM-DD.qmd`, then commit and push again.
@@ -208,4 +205,4 @@ Yes. Edit the same `entries/YYYY-MM-DD.qmd`, then commit and push again.
 * [ ] I wrote my answer **inside the Response block** only.
 * [ ] My word count is **in range**.
 * [ ] I **rendered the whole book** by rendering `index.qmd` (or running `quarto render`).
-* [ ] I **staged, committed, and pushed** `entries/YYYY-MM-DD.qmd` **and** `_quarto.yml`.
+* [ ] I **staged, committed, and pushed** `entries/YYYY-MM-DD.qmd` **and** the modified `_quarto.yml`.

@@ -113,27 +113,28 @@ Use **HTTPS + Personal Access Token (PAT)** or **SSH**.
 
 ---
 
-## Quick diagnostic block
+## How to Ask for Help
 
-Paste into your **Console** or **Terminal** when something breaks:
+When you encounter a problem, providing good diagnostic information is the fastest way to get it solved. Follow these steps:
 
-```r
-# R session info
-sessionInfo()
+1.  **Describe what you expected to happen and what actually happened.**
+2.  **Include the exact error message.** Copy and paste it.
+3.  **Provide your system information.** Run the following command in the RStudio Console and include the output:
+    ```r
+    #| eval: false
+    sessionInfo()
+    ```
+4.  **Provide your tool versions.** Run these commands in the RStudio **Terminal** and include the output:
+    ```bash
+    quarto --version
+    git --version
+    ```
+5.  **Include a screenshot.** A picture of your full RStudio window (including the error message in the console) is often very helpful.
 
-# Package + environment checks
-library(mccoursepack)
-mccourse_self_test()
+### Finding RStudio Log Files
 
-# Quarto + Git + LaTeX checks
-system("quarto --version")
-system("git --version")
-if (requireNamespace("tinytex", quietly = TRUE)) tinytex::is_tinytex()
-```
+In rare cases, you may need to check the RStudio log files for more detailed error information.
 
-When asking for help, include the output above, along with:
-
-* Your operating system
-* R and RStudio versions
-* The exact error message
+*   **Windows:** The logs are located in `%localappdata%\\RStudio`. You can copy and paste that path into your File Explorer address bar.
+*   **macOS:** The logs are in `~/.local/share/rstudio`. You can find this in the Finder by using the "Go" → "Go to Folder..." menu item.
 

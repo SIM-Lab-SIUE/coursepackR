@@ -33,7 +33,8 @@ website:
       title: "Getting Started"
       style: docked
       contents:
-        - getting-started/getting-started.qmd     # Quick Setup (expanded)
+        - getting-started/getting-started.qmd
+        - getting-started/installation-guide.qmd
 
     - id: r-and-rstudio
       title: "R & RStudio"
@@ -75,6 +76,7 @@ website:
       style: docked
       contents:
         - troubleshooting/troubleshooting.qmd
+        - troubleshooting/pdf-tinytex-errors.qmd
         - troubleshooting/rstudio-older-macs.qmd
 
     - id: reference

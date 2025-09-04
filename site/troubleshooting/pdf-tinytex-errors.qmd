@@ -1,0 +1,75 @@
+---
+title: "PDF & TinyTeX Errors"
+sidebar: troubleshooting
+---
+
+This guide helps you solve common issues related to rendering PDF documents with Quarto and TinyTeX.
+
+---
+
+## The Golden Rule: Use `quarto install tinytex`
+
+The most reliable way to set up a LaTeX environment for Quarto is to use Quarto's built-in command.
+
+1.  Open the **Terminal** pane in RStudio (or your system's terminal).
+2.  Run the following command:
+
+    ```bash
+    quarto install tinytex
+    ```
+
+This will download and install a self-contained, correct version of LaTeX that Quarto knows how to use. If you have other LaTeX distributions on your system (like MiKTeX or MacTeX), this method avoids conflicts.
+
+If you are prompted to update TinyTeX, it is usually safe to do so.
+
+---
+
+## Common Error Messages and Solutions
+
+### "tlmgr: command not found" or "LaTeX failed to compile"
+
+This is the most common error. It means that either LaTeX is not installed or Quarto cannot find it.
+
+*   **Solution:** Run `quarto install tinytex` as described above. If you have already installed it, try re-installing it. You may need to first run `quarto uninstall tinytex`.
+
+### "Font ... not found"
+
+This error means the LaTeX distribution is missing a specific font package required by your document.
+
+*   **Solution 1: Update TinyTeX.** The package may have been added in a newer version.
+    ```bash
+    quarto update tinytex
+    ```
+*   **Solution 2: Manually install the LaTeX package.** Find the name of the missing package (the error message often gives a hint, like `...sty` file). Then, use `tlmgr` (TinyTeX's package manager) to install it.
+    ```bash
+    # Example: Install the 'titling' package
+    tinytex::tlmgr_install("titling")
+    ```
+
+### Error on Windows with Special Characters in File Path
+
+*   **Problem:** On Windows, if your RStudio project is located in a folder with spaces or special characters (e.g., `C:\Users\Alex (Work)\My Project`), LaTeX can sometimes fail.
+*   **Solution:** Try to use simple, space-free file paths for your R projects (e.g., `C:\Users\Alex\Documents\R\MyProject`). This is a good practice in general for programming work.
+
+---
+
+## General Troubleshooting Steps
+
+1.  **Render a minimal document.** Create a new, blank Quarto document (`.qmd`) and try to render it to PDF. If it works, the problem is in your document's content (e.g., a broken table or figure). If it fails, the problem is with your LaTeX installation.
+
+    ```quarto
+    ---
+    title: "Test"
+    format: pdf
+    ---
+    
+    This is a test.
+    ```
+
+2.  **Check for a clean environment.** Make sure you don't have conflicting LaTeX installations specified in your system's PATH. Using `quarto install tinytex` is the best way to avoid this.
+
+3.  **Reinstall TinyTeX.** When in doubt, a fresh start often works.
+    ```bash
+    quarto uninstall tinytex
+    quarto install tinytex
+    ```

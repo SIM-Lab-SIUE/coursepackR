@@ -1,0 +1,66 @@
+---
+title: "Installation Guide"
+sidebar: getting-started
+---
+
+This guide provides detailed, OS-specific steps for installing the core software needed for this course: R, RStudio, and Git.
+
+---
+
+## Installing on Windows
+
+Follow these steps in order.
+
+### 1. Install R
+
+1.  Go to the [CRAN (Comprehensive R Archive Network)](https://cran.r-project.org/bin/windows/base/).
+2.  Click the large **"Download R-X.X.X for Windows"** link at the top of the page.
+3.  Run the downloaded installer (`.exe` file).
+4.  Accept all the default settings during installation. Click "Next" until it's finished.
+
+### 2. Install RStudio
+
+1.  Go to the [Posit website](https://posit.co/download/rstudio-desktop/).
+2.  Click the "Download RStudio Desktop" button. The site should automatically detect you are on Windows.
+3.  Run the downloaded installer.
+4.  Accept all the default settings.
+
+### 3. Install Git
+
+1.  Go to the [official Git website](https://git-scm.com/downloads).
+2.  Click the "Windows" link to download the installer.
+3.  Run the installer. This one has many screens, but you can safely **accept all the default options**. The most important thing is to ensure that Git is added to your system's PATH, which is the default behavior.
+
+---
+
+## Installing on macOS
+
+Follow these steps in order.
+
+### 1. Install R
+
+1.  Go to the [CRAN (Comprehensive R Archive Network)](https://cran.r-project.org/bin/macosx/).
+2.  Look for the "Latest release" section. Download the package (`.pkg` file) that matches your Mac's processor (Apple Silicon "M1/M2/M3" or Intel). If you're unsure, click the Apple menu → "About This Mac" to check.
+3.  Run the downloaded installer. Accept all default settings.
+
+### 2. Install RStudio
+
+1.  Go to the [Posit website](https://posit.co/download/rstudio-desktop/).
+2.  Click the "Download RStudio Desktop" button. The site should automatically detect you are on macOS.
+3.  This will download a `.dmg` file. Open it.
+4.  A new window will appear. Drag the RStudio icon into the Applications folder icon.
+5.  The first time you open RStudio, you may get a security warning. Click "Open" to proceed.
+
+### 3. Install Git
+
+macOS comes with Git pre-installed. However, it's often best to install a newer version using [Homebrew](https://brew.sh/), a package manager for macOS.
+
+1.  **Install Homebrew (if you don't have it):** Open the **Terminal** app (you can find it in Applications/Utilities) and paste the following command, then press Enter:
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+2.  **Install Git:** Once Homebrew is installed, run the following command in the Terminal:
+    ```bash
+    brew install git
+    ```
+This ensures you have an up-to-date version of Git.
