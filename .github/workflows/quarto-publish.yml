@@ -1,3 +1,4 @@
+# .github/workflows/quarto-pages.yml
 name: Quarto Publish
 
 on:
@@ -20,29 +21,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1) Install R for {r} code chunks
+      # Install R only if your .qmd chunks use R (they do)
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
 
-      # 2) Install R package deps used during render
-      #    - If you have a DESCRIPTION/lockfile, this will read it automatically.
-      #    - Otherwise, list extras explicitly.
-      - name: Install R dependencies
+      # Install just what rendering needs (no R CMD check)
+      - name: Install render dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: >
             any::remotes,
             github::SIM-Lab-SIUE/mccoursepack
-          needs: check
 
-      # 3) Install Quarto CLI (stable)
+      # Quarto CLI
       - uses: quarto-dev/quarto-actions/setup@v2
 
-      # 4) Render the website located in the site/ subproject
+      # Render Quarto project located in 'site/'
       - name: Render site
         run: quarto render site
 
-      # 5) Upload rendered site as Pages artifact
+      # Upload the built site
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -2,28 +2,15 @@
 % Please edit documentation in R/setup.R
 \name{mccourse_setup}
 \alias{mccourse_setup}
-\title{One-time setup for MC course tools}
+\title{One-time setup for mccoursepack}
 \usage{
-mccourse_setup(
-  ask = TRUE,
-  pkgs = c("tidyverse", "janitor", "here", "readr", "dplyr", "ggplot2", "stringr",
-    "lubridate", "knitr", "rmarkdown")
-)
-}
-\arguments{
-\item{ask}{Prompt before large installs (default TRUE).}
-
-\item{pkgs}{Character vector of CRAN packages to ensure are installed.}
-}
-\value{
-Invisibly TRUE.
-}
-\description{
-Installs Quarto (for rendering), TinyTeX (for PDF), and core CRAN packages
-if they are missing. Safe to re-run; it only installs what's missing.
-}
-\examples{
-\dontrun{
 mccourse_setup()
 }
+\description{
+Installs Quarto CLI (via the {quarto} R package) and TinyTeX if missing,
+then ensures a small set of core CRAN packages are available.
+On Windows, warns if Rtools is not installed.
+}
+\details{
+Safe to re-run; it only installs what’s missing.
 }
