@@ -215,9 +215,9 @@ In Quarto, use markdown headings to structure your narrative:
 Here we clean variables and handle missing values.
 ```
 
-\::: tip
+::: tip
 Keep code tidy: consistent indentation, small steps, and meaningful names. Your future self (and collaborators) will thank you.
-\:::
+:::
 
 ---
 

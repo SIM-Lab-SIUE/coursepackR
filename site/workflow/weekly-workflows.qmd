@@ -129,4 +129,5 @@ git commit -m "docs: expand troubleshooting & reference"
 git push
 ```
 
-GitHub Actions will render and deploy to Pages automatically. :::
+GitHub Actions will render and deploy to Pages automatically. 
+:::

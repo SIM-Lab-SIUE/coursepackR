@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>chapter_06 – mccoursepack</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../">
+<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../../../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../../index.html">
+    <span class="navbar-title">mccoursepack</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../../pages/getting-started.html" aria-current="page"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../pages/r-and-rstudio.html"> 
+<span class="menu-text">R &amp; RStudio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../pages/git-and-github.html"> 
+<span class="menu-text">Git &amp; GitHub</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../pages/quarto-basics.html"> 
+<span class="menu-text">Quarto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../pages/workflows.html"> 
+<span class="menu-text">Workflows</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../pages/troubleshooting.html"> 
+<span class="menu-text">Troubleshooting</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../pages/reference.qmd"> 
+<span class="menu-text">Reference</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../pages/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R &amp; RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../pages/r-and-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">r-and-rstudio.html</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../pages/git-and-github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git &amp; GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../pages/quarto-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto Basics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Workflow</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">pages/week-1.qmd</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../pages/workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Workflows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../pages/troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Package</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">pages/reference.qmd</span>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#from-ideas-to-inquiries-developing-research-questions-and-hypotheses" id="toc-from-ideas-to-inquiries-developing-research-questions-and-hypotheses" class="nav-link active" data-scroll-target="#from-ideas-to-inquiries-developing-research-questions-and-hypotheses">From Ideas to Inquiries: Developing Research Questions and Hypotheses</a>
+  <ul class="collapse">
+  <li><a href="#the-keystone-of-the-research-arch" id="toc-the-keystone-of-the-research-arch" class="nav-link" data-scroll-target="#the-keystone-of-the-research-arch">The Keystone of the Research Arch</a></li>
+  <li><a href="#the-fundamental-distinction-exploration-vs.-prediction" id="toc-the-fundamental-distinction-exploration-vs.-prediction" class="nav-link" data-scroll-target="#the-fundamental-distinction-exploration-vs.-prediction">The Fundamental Distinction: Exploration vs.&nbsp;Prediction</a>
+  <ul class="collapse">
+  <li><a href="#research-questions-the-tools-of-exploration" id="toc-research-questions-the-tools-of-exploration" class="nav-link" data-scroll-target="#research-questions-the-tools-of-exploration">Research Questions: The Tools of Exploration</a></li>
+  <li><a href="#hypotheses-the-tools-of-prediction" id="toc-hypotheses-the-tools-of-prediction" class="nav-link" data-scroll-target="#hypotheses-the-tools-of-prediction">Hypotheses: The Tools of Prediction</a></li>
+  </ul></li>
+  <li><a href="#crafting-quantitative-hypotheses-the-language-of-prediction" id="toc-crafting-quantitative-hypotheses-the-language-of-prediction" class="nav-link" data-scroll-target="#crafting-quantitative-hypotheses-the-language-of-prediction">Crafting Quantitative Hypotheses: The Language of Prediction</a>
+  <ul class="collapse">
+  <li><a href="#the-null-hypothesis-the-necessary-starting-point" id="toc-the-null-hypothesis-the-necessary-starting-point" class="nav-link" data-scroll-target="#the-null-hypothesis-the-necessary-starting-point">The Null Hypothesis: The Necessary Starting Point</a></li>
+  <li><a href="#the-research-hypothesis-stating-the-expected-relationship" id="toc-the-research-hypothesis-stating-the-expected-relationship" class="nav-link" data-scroll-target="#the-research-hypothesis-stating-the-expected-relationship">The Research Hypothesis: Stating the Expected Relationship</a></li>
+  </ul></li>
+  <li><a href="#crafting-qualitative-research-questions-the-language-of-exploration" id="toc-crafting-qualitative-research-questions-the-language-of-exploration" class="nav-link" data-scroll-target="#crafting-qualitative-research-questions-the-language-of-exploration">Crafting Qualitative Research Questions: The Language of Exploration</a></li>
+  <li><a href="#criteria-for-effective-questions-and-hypotheses" id="toc-criteria-for-effective-questions-and-hypotheses" class="nav-link" data-scroll-target="#criteria-for-effective-questions-and-hypotheses">Criteria for Effective Questions and Hypotheses</a>
+  <ul class="collapse">
+  <li><a href="#it-is-clear-and-concise." id="toc-it-is-clear-and-concise." class="nav-link" data-scroll-target="#it-is-clear-and-concise.">1. It is Clear and Concise.</a></li>
+  <li><a href="#it-is-grounded-in-the-literature." id="toc-it-is-grounded-in-the-literature." class="nav-link" data-scroll-target="#it-is-grounded-in-the-literature.">2. It is Grounded in the Literature.</a></li>
+  <li><a href="#it-is-researchable-or-testable." id="toc-it-is-researchable-or-testable." class="nav-link" data-scroll-target="#it-is-researchable-or-testable.">3. It is Researchable (or Testable).</a></li>
+  <li><a href="#it-identifies-the-key-variables-or-central-phenomenon." id="toc-it-identifies-the-key-variables-or-central-phenomenon." class="nav-link" data-scroll-target="#it-identifies-the-key-variables-or-central-phenomenon.">4. It Identifies the Key Variables or Central Phenomenon.</a></li>
+  <li><a href="#it-is-significant-and-worthy-of-investigation." id="toc-it-is-significant-and-worthy-of-investigation." class="nav-link" data-scroll-target="#it-is-significant-and-worthy-of-investigation.">5. It is Significant and Worthy of Investigation.</a></li>
+  </ul></li>
+  <li><a href="#the-crucial-link-to-research-design" id="toc-the-crucial-link-to-research-design" class="nav-link" data-scroll-target="#the-crucial-link-to-research-design">The Crucial Link to Research Design</a></li>
+  <li><a href="#conclusion-the-power-of-a-well-posed-question" id="toc-conclusion-the-power-of-a-well-posed-question" class="nav-link" data-scroll-target="#conclusion-the-power-of-a-well-posed-question">Conclusion: The Power of a Well-Posed Question</a></li>
+  <li><a href="#journal-prompts" id="toc-journal-prompts" class="nav-link" data-scroll-target="#journal-prompts">Journal Prompts</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/SIM-Lab-SIUE/mccoursepack/edit/main/inst/courses/mc451/weeks/week_06/chapter_06.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/SIM-Lab-SIUE/mccoursepack/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="from-ideas-to-inquiries-developing-research-questions-and-hypotheses" class="level1 unnumbered">
+<h1 class="unnumbered">From Ideas to Inquiries: Developing Research Questions and Hypotheses</h1>
+<section id="the-keystone-of-the-research-arch" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-keystone-of-the-research-arch">The Keystone of the Research Arch</h2>
+<p>In the previous chapter, we likened the process of a literature review to entering a room where a long and complex conversation is already in progress. You have spent time listening, learning the key arguments, identifying the major voices, and, most importantly, finding a space where your own voice can be heard—a gap in the conversation. Now, it is time to speak. But what, precisely, will you say? The transition from understanding the existing literature to launching your own investigation is a pivotal moment in the research workflow. It is the point where you must distill everything you have learned into a single, powerful, and focused statement of purpose. This statement is the keystone of your entire research project.</p>
+<p>This keystone takes one of two forms: a <strong>research question</strong> or a <strong>hypothesis</strong>. If the literature review builds the case for why a study is needed, the research question or hypothesis defines what, specifically, the study will investigate. It is the single sentence that holds the entire research design together. Every subsequent decision you make—about who to study, what to measure, how to collect data, and how to analyze it—is made in service of answering that one, precisely formulated sentence. It is the central, generative act of the entire research process, transforming a broad idea into a focused and manageable inquiry.</p>
+<p>The choice between posing a research question versus a hypothesis is not arbitrary or a matter of stylistic preference. It is a strategic decision that depends on the state of existing knowledge in your area of interest and the fundamental goals of your research paradigm. Are you venturing into a new and unexplored territory, seeking to map its features and understand its contours? Or are you working within a well-established landscape, seeking to test a specific prediction about the relationship between two landmarks? The former calls for the exploratory power of a research question; the latter demands the predictive precision of a hypothesis.</p>
+<p>This chapter is dedicated to the art and science of crafting these essential statements of inquiry. We will begin by exploring the fundamental distinction between research questions and hypotheses, linking them to the inductive and deductive logics of different research paradigms. We will then provide a detailed guide to formulating the various types of hypotheses used in quantitative research and the open-ended questions that drive qualitative inquiry. Finally, we will establish a set of universal criteria for what makes a “good” question or hypothesis—one that is clear, grounded, and, above all, researchable. Mastering this skill is the key to ensuring that your research project is not a random walk through the data, but a purposeful and direct journey toward a meaningful contribution to knowledge.</p>
+</section>
+<section id="the-fundamental-distinction-exploration-vs.-prediction" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-fundamental-distinction-exploration-vs.-prediction">The Fundamental Distinction: Exploration vs.&nbsp;Prediction</h2>
+<p>The first and most critical choice in formulating your statement of inquiry is whether to pose a research question or a hypothesis. This decision reflects the primary goal of your study and the amount of prior knowledge available to guide it.</p>
+<section id="research-questions-the-tools-of-exploration" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="research-questions-the-tools-of-exploration">Research Questions: The Tools of Exploration</h3>
+<p><strong>Research questions (RQs)</strong> are used when a study is exploratory in nature. They are the appropriate choice when you are investigating a new concept, a novel phenomenon, or a population that has not been extensively studied before. In such cases, there is often little previous research or established theory to draw upon, making it impossible to form a specific, educated prediction about what you will find. The goal is not to test a pre-existing idea, but to explore a topic, describe its characteristics, and generate a rich, foundational understanding.</p>
+<p>Research questions are also the standard for most qualitative research. As we saw in Chapter 4, the interpretive paradigm aims to understand or describe a phenomenon from the subjective perspective of those experiencing it, rather than to predict an outcome. Qualitative research questions are therefore open-ended, designed to elicit rich, narrative data and to allow for unexpected themes and insights to emerge from the inquiry. They ask “what” or “how” questions to delve into the complexities of human experience. For example, a qualitative researcher might ask:</p>
+<ul>
+<li>RQ: How do first-generation college students describe their experiences of navigating the social and academic culture of a large research university?</li>
+</ul>
+<p>This question does not predict a relationship between variables. Instead, it opens up a field of inquiry, inviting a deep exploration of the students’ lived experiences. The researcher is not starting with an answer; they are embarking on a journey to discover one.</p>
+<p>In quantitative research, research questions are used when there is not enough existing evidence to make a confident prediction. A researcher might know that two variables are likely related but may be unsure of the direction or nature of that relationship. For example, if a new social media platform emerges, a researcher might ask:</p>
+<ul>
+<li>RQ: What is the nature of the relationship between the amount of time spent on the new platform and users’ feelings of social connection?</li>
+</ul>
+<p>This question is still focused on the relationship between measurable variables, but it remains exploratory because the lack of prior research makes a specific prediction premature. The researcher must make a clear argument in their literature review for why a research question is being posed instead of a hypothesis, justifying this choice based on the current state of the scholarly conversation.</p>
+</section>
+<section id="hypotheses-the-tools-of-prediction" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="hypotheses-the-tools-of-prediction">Hypotheses: The Tools of Prediction</h3>
+<p><strong>Hypotheses (H)</strong> are used when there is a sufficient body of existing theory and research to allow the researcher to make an educated, testable prediction about the relationship between variables. They are the hallmark of deductive, quantitative research that flows from the social scientific paradigm. A hypothesis is not a wild guess; it is a logical deduction from a theoretical framework that has been supported by previous empirical evidence. It moves beyond the exploratory “what if” of a research question to the predictive “I expect that” of a formal test.</p>
+<p>A hypothesis is a declarative sentence that posits a specific, expected relationship between an independent variable (the presumed cause) and a dependent variable (the presumed effect). For example, building on decades of research on media effects, a researcher might propose the following hypothesis:</p>
+<ul>
+<li>H: Increased exposure to idealized body images in advertising will be positively correlated with body dissatisfaction among young women.</li>
+</ul>
+<p>This statement is a specific prediction. It identifies the variables (advertising exposure, body dissatisfaction), the population (young women), and the expected direction of the relationship (a positive correlation). The purpose of the research study is then to collect data that will either support or fail to support this specific prediction. The use of a hypothesis signals that the researcher is not just exploring a topic, but is actively testing a component of a larger theory.</p>
+<p>In summary, the choice between a research question and a hypothesis is a direct reflection of your study’s purpose and its relationship to the existing literature. If your goal is to explore, describe, and understand, you will use a research question. If your goal is to predict, test, and explain, you will use a hypothesis.</p>
+</section>
+</section>
+<section id="crafting-quantitative-hypotheses-the-language-of-prediction" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="crafting-quantitative-hypotheses-the-language-of-prediction">Crafting Quantitative Hypotheses: The Language of Prediction</h2>
+<p>In quantitative research, hypotheses are the engine of inquiry. They are precise, falsifiable statements about the relationship between variables that allow researchers to systematically test their theories against empirical evidence. The formulation of a hypothesis is a careful and deliberate process, and understanding the different types of hypotheses is essential for designing a logical and rigorous study.</p>
+<section id="the-null-hypothesis-the-necessary-starting-point" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-null-hypothesis-the-necessary-starting-point">The Null Hypothesis: The Necessary Starting Point</h3>
+<p>Every research hypothesis has a logical counterpart: the <strong>null hypothesis (H0​)</strong>. The null hypothesis is the hypothesis of “no difference” or “no relationship.”1 It is a statement of equality, proposing that the independent variable has no significant effect on the dependent variable, or that there is no significant relationship between the variables in the population. For example, if our research hypothesis is that a new teaching method improves test scores, the null hypothesis would be:</p>
+<ul>
+<li>H0​: There will be no difference in the average test scores between students taught with the new method and students taught with the traditional method.</li>
+</ul>
+<p>The null hypothesis may seem counterintuitive—after all, the researcher expects to find a difference. However, it serves a crucial function in the logic of statistical inference. The null hypothesis acts as both a starting point and a benchmark. It is the state of affairs that is assumed to be true in the absence of compelling evidence to the contrary. The primary objective of inferential statistics is to determine whether the evidence from our sample is sufficient to reject the baseline assumption of no effect. We never set out to “prove” our research hypothesis; we set out to gather enough evidence to reject the null hypothesis confidently. This conservative, skeptical approach is a cornerstone of the scientific method.</p>
+</section>
+<section id="the-research-hypothesis-stating-the-expected-relationship" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-research-hypothesis-stating-the-expected-relationship">The Research Hypothesis: Stating the Expected Relationship</h3>
+<p>The <strong>research hypothesis (H1​ or HA​)</strong>, also known as the alternative hypothesis, is the logical opposite of the null. It is a statement of inequality, proposing that a difference or relationship does exist between the variables. Research hypotheses come in several distinct forms, each reflecting a different level of specificity and a different claim about the nature of the relationship.</p>
+<section id="non-directional-research-hypotheses" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="non-directional-research-hypotheses">Non-Directional Research Hypotheses</h4>
+<p>A <strong>non-directional research hypothesis</strong> states that a difference or relationship exists but does not predict its specific direction or magnitude. It is used when prior research provides enough evidence to suggest that two variables are related, but not enough to make a confident prediction about the nature of that relationship (e.g., whether it is positive or negative).</p>
+<ul>
+<li>Example: “There is a difference in the amount of political news consumed by college students who identify as Democrats and those who identify as Republicans.”</li>
+</ul>
+<p>This hypothesis predicts a difference, but it does not specify which group will consume more news. The outcome could go in either direction, and either result would be consistent with the hypothesis. In statistical testing, a non-directional hypothesis is evaluated using a <strong>two-tailed test</strong>, which allows for the possibility of an effect in either direction.</p>
+</section>
+<section id="directional-research-hypotheses" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="directional-research-hypotheses">Directional Research Hypotheses</h4>
+<p>A <strong>directional research hypothesis</strong> makes a specific prediction about the direction of the relationship or the nature of the difference between groups. This type of hypothesis is used when there is a strong theoretical rationale and/or a consistent body of prior research that allows the researcher to make a more precise, “educated guess.”</p>
+<ul>
+<li>Example: “College students who identify as Republicans will consume a greater amount of political news on television than college students who identify as Democrats.”</li>
+</ul>
+<p>This hypothesis makes a clear, directional prediction (“greater than”). It is a bolder and more specific claim than its non-directional counterpart. A directional hypothesis is evaluated using a <strong>one-tailed test</strong>, which focuses the statistical power on detecting an effect in the predicted direction only. If the results were to show that Democrats consumed significantly</p>
+<p>more television news, this hypothesis would not be supported, even though a significant difference was found.</p>
+</section>
+<section id="causal-hypotheses" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="causal-hypotheses">Causal Hypotheses</h4>
+<p>The strongest and most difficult claim a researcher can make is a <strong>causal hypothesis</strong>. This type of hypothesis goes beyond predicting a relationship or a difference to propose a direct cause-and-effect link between the independent and dependent variables.</p>
+<ul>
+<li>Example: “Exposure to a public service announcement featuring a fear appeal causes an increase in viewers’ intentions to get a flu shot.”</li>
+</ul>
+<p>This hypothesis posits that the fear appeal is the direct cause of the change in vaccination intentions. To test such a claim, a researcher must use a rigorous research design, typically a true <strong>experiment</strong>, that allows them to satisfy the three criteria for causality: temporal ordering (the cause must precede the effect), association (the variables must be correlated), and, most importantly, nonspuriousness (ruling out all other possible alternative explanations for the effect). Because of these stringent requirements, causal hypotheses should be advanced with caution and only when the research design is robust enough to support such a strong claim.</p>
+</section>
+</section>
+</section>
+<section id="crafting-qualitative-research-questions-the-language-of-exploration" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="crafting-qualitative-research-questions-the-language-of-exploration">Crafting Qualitative Research Questions: The Language of Exploration</h2>
+<p>Qualitative research, with its focus on understanding the subjective meanings and lived experiences of individuals, employs a different kind of inquiry. Hypotheses, with their predictive and variable-focused nature, are typically not used in qualitative research because the goal is not to test a pre-existing theory but to explore a phenomenon in all its complexity. Instead, qualitative studies are guided by open-ended, evolving, and non-directional <strong>research questions</strong>.</p>
+<p>The purpose of a qualitative research question is to focus the study on a central phenomenon of interest while remaining broad enough to allow for the discovery of unexpected insights. These questions are designed to open up inquiry, not to narrow it down to a single prediction. While the exact formulation can vary depending on the specific qualitative approach (e.g., ethnography, phenomenology, case study), there are some general principles for crafting effective qualitative research questions.</p>
+<p>A good qualitative research question often begins with an exploratory word like “what” or “how.” It focuses on a single, central concept or phenomenon that the researcher seeks to understand or describe. It also typically includes information about the participants and the context of the study. John W. Creswell provides a useful script for writing a qualitative central question:</p>
+<ul>
+<li>“How (or what) is the [central phenomenon] for [participants] at [research site]?”1</li>
+</ul>
+<p>Using this script, we can formulate a variety of effective qualitative research questions:</p>
+<ul>
+<li><p>Example (Phenomenology): “What are the lived experiences of journalists who have been subjected to online harassment?” (Here, the central phenomenon is “lived experiences of online harassment,” the participants are “journalists,” and the site is implicitly the online environment).</p></li>
+<li><p>Example (Ethnography): “How do members of a remote, rural community use mobile phones to maintain social ties?” (The central phenomenon is “using mobile phones to maintain social ties,” the participants are “members of a remote, rural community,” and the site is that community).</p></li>
+<li><p>Example (Case Study): “How did the communication strategy of a specific non-profit organization evolve during a major public crisis?” (The central phenomenon is the “evolution of communication strategy,” the participant is the “non-profit organization,” and the site is the context of the crisis).</p></li>
+</ul>
+<p>It is important to note that in some forms of qualitative inquiry, particularly long-term ethnographic fieldwork, the research questions may not be fully formed at the beginning of the study. A researcher might enter the field with a broad topic of interest, and the specific, focused research questions may emerge and evolve during the process of data collection and preliminary analysis. This reflects the inductive and flexible nature of the interpretive paradigm. However, for a research proposal, a straightforward and well-formulated central question is essential for communicating the purpose and scope of the planned study.</p>
+</section>
+<section id="criteria-for-effective-questions-and-hypotheses" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="criteria-for-effective-questions-and-hypotheses">Criteria for Effective Questions and Hypotheses</h2>
+<p>Regardless of whether you are crafting a quantitative hypothesis or a qualitative research question, all effective statements of inquiry share a set of core characteristics. A weak or poorly formulated question can compromise an entire study, so it is worth taking the time to ensure your guiding statement is as strong as possible. A good research question or hypothesis must be clear, grounded in the literature, and, most importantly, researchable.</p>
+<section id="it-is-clear-and-concise." class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="it-is-clear-and-concise.">1. It is Clear and Concise.</h3>
+<p>Your research question or hypothesis should be a single, unambiguous sentence. Avoid jargon, overly complex language, and “double-barreled” questions that ask about two different things at once. The statement should be so clear that anyone reading it can understand exactly what your study aims to investigate.</p>
+<ul>
+<li><p>Weak Example: “What is the impact of the modern media environment on the political socialization of young people?” (This is too broad and vague. What is the “modern media environment”? What is “political socialization”?)</p></li>
+<li><p>Strong Example: “Is there a relationship between the frequency of exposure to partisan cable news and the strength of partisan identity among first-time voters?” (This is specific, focused, and uses clear concepts).</p></li>
+</ul>
+</section>
+<section id="it-is-grounded-in-the-literature." class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="it-is-grounded-in-the-literature.">2. It is Grounded in the Literature.</h3>
+<p>Your question or hypothesis should not emerge from a vacuum. It must be a logical extension of the scholarly conversation you outlined in your literature review. It should be clear to the reader how your inquiry builds upon, challenges, or fills a gap in previous research. A hypothesis, in particular, must be directly derived from a theoretical framework.</p>
+</section>
+<section id="it-is-researchable-or-testable." class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="it-is-researchable-or-testable.">3. It is Researchable (or Testable).</h3>
+<p>This is the most critical criterion. A question is only a research question if it can be answered through the practical collection and analysis of empirical data. The variables or concepts in your question must be things that you can actually observe and measure.</p>
+<ul>
+<li><p><strong>Unresearchable Example:</strong> “Is democracy the best form of government?” (This is a philosophical question of value, not an empirical one).</p></li>
+<li><p><strong>Researchable Example</strong>: “Is there a correlation between the level of press freedom in a country and the level of public trust in government?” (This is researchable because both “press freedom” and “public trust” can be operationalized and measured).<br>
+Similarly, a hypothesis must be falsifiable. This means that it must be possible, in principle, to collect data that would show the hypothesis to be false. A statement that cannot be empirically refuted is not a scientific hypothesis.</p></li>
+<li><p><strong>Untestable Example:</strong> “Invisible, undetectable aliens are influencing human elections.” (This cannot be falsified because the aliens are defined as undetectable).</p></li>
+<li><p><strong>Testable Example:</strong> “Exposure to foreign-sponsored misinformation on social media is associated with a decrease in voter turnout.” (This can be tested by measuring misinformation exposure and turnout, and the data could either support or fail to support the association).</p></li>
+</ul>
+</section>
+<section id="it-identifies-the-key-variables-or-central-phenomenon." class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="it-identifies-the-key-variables-or-central-phenomenon.">4. It Identifies the Key Variables or Central Phenomenon.</h3>
+<p>A good statement of inquiry clearly identifies the core elements of the study. For a quantitative hypothesis, this means explicitly naming the independent and dependent variables. For a qualitative research question, it means clearly stating the central phenomenon being explored, as well as the participants and context.</p>
+</section>
+<section id="it-is-significant-and-worthy-of-investigation." class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="it-is-significant-and-worthy-of-investigation.">5. It is Significant and Worthy of Investigation.</h3>
+<p>Finally, a good research question or hypothesis addresses a problem that is worth solving. It should have the potential to make a meaningful contribution, whether theoretical (by refining a theory), practical (by informing policy or practice), or heuristic (by stimulating new research). It should be a question whose answer matters to someone beyond the researcher.</p>
+</section>
+</section>
+<section id="the-crucial-link-to-research-design" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-crucial-link-to-research-design">The Crucial Link to Research Design</h2>
+<p>The formulation of the research question or hypothesis is not an isolated step; it is the central act that dictates the entire research design. The way you word your question or hypothesis directly and logically determines the methodology you must use to answer it. This alignment between question and method is the hallmark of a coherent and rigorous research project.</p>
+<p>Consider the following examples:</p>
+<ul>
+<li><p>If your hypothesis posits a <strong>causal relationship</strong> (e.g., “Does message frame X cause attitude change Y?”), your research design must be an <strong>experiment</strong>. Only an experiment, with its manipulation of the independent variable and random assignment of participants, can provide the control necessary to make a credible causal claim.</p></li>
+<li><p>If your research question asks about the <strong>prevalence</strong> of an attitude or the <strong>correlation</strong> between two variables in a large population (e.g., “What is the relationship between social media use and political knowledge among U.S. adults?”), your design will likely be a <strong>survey</strong>. A survey is the most efficient method for gathering descriptive and correlational data from a large, representative sample.</p></li>
+<li><p>If your research question seeks to understand the <strong>lived experience</strong> of a particular group (e.g., “What is it like for immigrant families to use video chat to maintain relationships with relatives in their home country?”), your method will be qualitative and phenomenological, likely involving <strong>in-depth interviews</strong> to capture rich, personal narratives.</p></li>
+<li><p>If your research question is about understanding the communication practices and shared meanings of a specific culture or community (e.g., “How do players in a massive multiplayer online game develop and enforce community norms?”), your method will be <strong>ethnography</strong>, requiring prolonged immersion and observation in that community.</p></li>
+<li><p>If your research question is about the characteristics of media messages themselves (e.g., “How have the portrayals of female scientists in children’s television programs changed over the past two decades?”), your method will be a <strong>content analysis</strong>, which systematically codes and quantifies the content of texts.</p></li>
+</ul>
+<p>This logical chain—from question to method—is unbreakable. The research question is the key that unlocks a specific methodological door. Choosing the correct key for the right door is the essence of effective research design.</p>
+</section>
+<section id="conclusion-the-power-of-a-well-posed-question" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="conclusion-the-power-of-a-well-posed-question">Conclusion: The Power of a Well-Posed Question</h2>
+<p>The journey from a broad idea to a focused inquiry is one of the most intellectually demanding and rewarding parts of the research process. It is the moment where curiosity is forged into a tool, where a vague interest is sharpened into a precision instrument capable of carving out a new piece of knowledge. The research question or hypothesis is the result of this process—a single, powerful sentence that gives your entire project its purpose, its direction, and its logic.</p>
+<p>We have seen that the choice between a question and a hypothesis reflects a fundamental decision about the goals of your research—whether you aim to explore or to predict. We have delved into the specific language of inquiry, from the cautious skepticism of the null hypothesis to the bold predictions of a directional claim, and from the variable-focused precision of quantitative statements to the open-ended, exploratory nature of qualitative questions. And we have established a set of universal criteria—clarity, grounding in the literature, and, above all, researchability—that define a well-posed inquiry.</p>
+<p>As you move forward into the subsequent chapters on methodology, hold your research question or hypothesis as your constant guide. It is your North Star. Every decision you make about sampling, measurement, and analysis should be justifiable as the most logical and effective way to answer that one, central question. A well-posed question does not just lead to an answer; it illuminates the path you must take to find it.</p>
+</section>
+<section id="journal-prompts" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="journal-prompts">Journal Prompts</h2>
+<ol type="1">
+<li><p>Think of a broad media-related topic you’ve been curious about—something like influencer culture, algorithmic feeds, or news bias. Now, imagine you’re preparing to research this topic. Would you start with a research question or a hypothesis? Why? Reflect on how much you already know (or don’t know) about the topic, and how that affects whether exploration or prediction is the better fit.</p></li>
+<li><p>This chapter outlines five criteria for strong research questions and hypotheses: clarity, grounding in literature, researchability, clear identification of variables or phenomena, and significance. Choose one of these criteria and explain why it seems especially important to you as a beginner researcher. Then, critique a question or hypothesis (real or imagined) that fails to meet this criterion. What makes it fall short?</p></li>
+<li><p>The chapter emphasized that your research question or hypothesis should directly shape the method you choose. Why do you think that connection is so important? Choose one method (e.g., experiment, interview, content analysis) and describe what kind of research question or hypothesis best fits that method. Use your own topic or one discussed in the chapter as an example.</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sim-lab-siue\.github\.io\/mccoursepack");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/SIM-Lab-SIUE/mccoursepack/edit/main/inst/courses/mc451/weeks/week_06/chapter_06.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/SIM-Lab-SIUE/mccoursepack/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../../../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

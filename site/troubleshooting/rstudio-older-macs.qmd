@@ -81,13 +81,13 @@ R
 
 ## TL;DR: Nerdy Survival Guide
 
-\::: tip
+::: tip
 
 1. Check your macOS → map it to an RStudio version.
 2. Install a stable R (4.4.x is safest).
 3. Test in Terminal. If it works there but not in RStudio → compatibility bug.
 4. Downgrade R or RStudio if needed.
 5. Clean RStudio’s settings or turn off GPU if stubborn.
-   \:::
+:::
 
 💡 Translation: **“R works, RStudio doesn’t? Time-travel one version back—either R or RStudio.”**

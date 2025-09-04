@@ -28,9 +28,9 @@ remotes::install_github("SIM-Lab-SIUE/mccoursepack")
 library(mccoursepack)
 ````
 
-\::: tip
+::: tip
 Run the `remotes::install_github()` command at the start of the semester and again whenever updates are announced.
-\:::
+:::
 
 ---
 
