@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../troubleshooting/rstudio-older-macs.html" rel="next">
+<link href="../troubleshooting/pdf-tinytex-errors.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -187,6 +187,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../troubleshooting/pdf-tinytex-errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PDF &amp; TinyTeX Errors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../troubleshooting/rstudio-older-macs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RStudio on Older Macs</span></a>
   </div>
@@ -208,7 +214,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#rstudio-doesnt-show-the-git-tab" id="toc-rstudio-doesnt-show-the-git-tab" class="nav-link" data-scroll-target="#rstudio-doesnt-show-the-git-tab">RStudio doesn’t show the Git tab</a></li>
   <li><a href="#git-push-fails-password-prompts-auth-errors" id="toc-git-push-fails-password-prompts-auth-errors" class="nav-link" data-scroll-target="#git-push-fails-password-prompts-auth-errors">Git push fails (password prompts, auth errors)</a></li>
   <li><a href="#website-didnt-update-on-github-pages" id="toc-website-didnt-update-on-github-pages" class="nav-link" data-scroll-target="#website-didnt-update-on-github-pages">Website didn’t update on GitHub Pages</a></li>
-  <li><a href="#quick-diagnostic-block" id="toc-quick-diagnostic-block" class="nav-link" data-scroll-target="#quick-diagnostic-block">Quick diagnostic block</a></li>
+  <li><a href="#how-to-ask-for-help" id="toc-how-to-ask-for-help" class="nav-link" data-scroll-target="#how-to-ask-for-help">How to Ask for Help</a>
+  <ul class="collapse">
+  <li><a href="#finding-rstudio-log-files" id="toc-finding-rstudio-log-files" class="nav-link" data-scroll-target="#finding-rstudio-log-files">Finding RStudio Log Files</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -312,28 +321,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="quick-diagnostic-block" class="level2">
-<h2 class="anchored" data-anchor-id="quick-diagnostic-block">Quick diagnostic block</h2>
-<p>Paste into your <strong>Console</strong> or <strong>Terminal</strong> when something breaks:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R session info</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Package + environment checks</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mccoursepack)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mccourse_self_test</span>()</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Quarto + Git + LaTeX checks</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"quarto --version"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"git --version"</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">"tinytex"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) tinytex<span class="sc">::</span><span class="fu">is_tinytex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>When asking for help, include the output above, along with:</p>
+<section id="how-to-ask-for-help" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-ask-for-help">How to Ask for Help</h2>
+<p>When you encounter a problem, providing good diagnostic information is the fastest way to get it solved. Follow these steps:</p>
+<ol type="1">
+<li><strong>Describe what you expected to happen and what actually happened.</strong></li>
+<li><strong>Include the exact error message.</strong> Copy and paste it.</li>
+<li><strong>Provide your system information.</strong> Run the following command in the RStudio Console and include the output: <code>r     #| eval: false     sessionInfo()</code></li>
+<li><strong>Provide your tool versions.</strong> Run these commands in the RStudio <strong>Terminal</strong> and include the output: <code>bash     quarto --version     git --version</code></li>
+<li><strong>Include a screenshot.</strong> A picture of your full RStudio window (including the error message in the console) is often very helpful.</li>
+</ol>
+<section id="finding-rstudio-log-files" class="level3">
+<h3 class="anchored" data-anchor-id="finding-rstudio-log-files">Finding RStudio Log Files</h3>
+<p>In rare cases, you may need to check the RStudio log files for more detailed error information.</p>
 <ul>
-<li>Your operating system</li>
-<li>R and RStudio versions</li>
-<li>The exact error message</li>
+<li><strong>Windows:</strong> The logs are located in <code>%localappdata%\\RStudio</code>. You can copy and paste that path into your File Explorer address bar.</li>
+<li><strong>macOS:</strong> The logs are in <code>~/.local/share/rstudio</code>. You can find this in the Finder by using the “Go” → “Go to Folder…” menu item.</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -745,8 +752,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../troubleshooting/rstudio-older-macs.html" class="pagination-link" aria-label="RStudio on Older Macs">
-        <span class="nav-page-text">RStudio on Older Macs</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../troubleshooting/pdf-tinytex-errors.html" class="pagination-link" aria-label="PDF &amp; TinyTeX Errors">
+        <span class="nav-page-text">PDF &amp; TinyTeX Errors</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
