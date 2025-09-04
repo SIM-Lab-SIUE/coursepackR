@@ -4,9 +4,9 @@
 #' then ensures a small set of core CRAN packages are available.
 #' On Windows, warns if Rtools is not installed.
 #'
-#' Safe to re-run; it only installs what’s missing.
+#' Safe to re-run; it only installs what's missing.
+#' @importFrom quarto quarto_install
 #' @importFrom utils install.packages
-#' @importFrom withr with_path
 #' @export
 mccourse_setup <- function() {
 	cli_h1 <- function(x) try(cli::cli_h1(x), silent = TRUE)
@@ -45,9 +45,9 @@ mccourse_setup <- function() {
 	}
 	has_quarto_cli <- nzchar(Sys.which("quarto"))
 	if (!has_quarto_cli) {
-		cli_alert("Quarto CLI not found; installing via {quarto}…")
+		cli_alert("Quarto CLI not found; installing via {quarto}...")
 		# NOTE: correct, lowercase namespace & function
-		quarto::quarto_install()
+		quarto_install()
 		# Refresh PATH for current session if needed
 		has_quarto_cli <- nzchar(Sys.which("quarto"))
 	}
