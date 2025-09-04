@@ -67,9 +67,12 @@ website:
       title: "Git & GitHub"
       style: docked
       contents:
-        - git/git-and-github.qmd
-        - git/github-landing-page.qmd
-        - git/github-verification.qmd
+        - text: "Connecting to GitHub"
+          href: git/git-and-github.qmd
+        - text: "GitHub Landing Page"
+          href: git/github-landing-page.qmd
+        - text: "GitHub Email Verification"
+          href: git/github-verification.qmd
 
     - id: troubleshooting
       title: "Troubleshooting"

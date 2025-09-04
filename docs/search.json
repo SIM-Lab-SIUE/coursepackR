@@ -471,7 +471,7 @@
     "text": "Your GitHub profile can show a custom landing page—a README.md that lives in a special repository named exactly like your username. No code needed; it’s all point-and-click in the browser.\n\n\n\n\nA public repo named your GitHub username\n\nA README.md inside it\n\nA profile page that displays that README to visitors\n\n\n\n\n\n\nSign in at GitHub.com.\n\nClick your avatar (top-right) → Your profile.\n\nNote your username (the text after github.com/ in the URL).\n\nExample: github.com/alexleith → username is alexleith.\nUse the username exactly as shown. Repo names are case-insensitive, but matching avoids confusion.\n\n\n\n\n\nClick the + (top-right) → New repository.\n\nRepository name: type your exact username (e.g., alexleith).\n\nSet visibility to Public (required).\n\nCheck Initialize this repository with a README.\n\nClick Create repository.\n\nYou now have a repo at:\n\ngithub.com/&lt;username&gt;/&lt;username&gt;\n\nThis is your profile repo.\n\n\n\n\n\nIn the new repo, click README.md.\n\nClick the pencil icon (Edit).\n\nReplace the placeholder text with something short and welcoming (see template below).\n\nScroll down, add a brief commit message (e.g., “Create profile README”), and click Commit changes.\n\nVisit your profile: click your avatar → Your profile. You should see your README content at the top.\n\n\n\n\n# Hi, I'm YOUR NAME 👋\n\nWelcome to my GitHub profile! I’m a [your major/role] at [your university/organization].\n\nThis semester I’m working on projects in R/RStudio and documenting progress in my weekly journal.\n\n## What I’m learning this term\n- R, RStudio, and Quarto for data analysis & reporting\n- Git + GitHub for version control and collaboration\n- Research methods and reproducible workflows\n\n## Find me\n- Email: [your email or university email, optional]\n- Website/Portfolio: [link, optional]\n- LinkedIn: [link, optional]\n\n## Current tools\n- **Languages:** R, Markdown\n- **Tools:** RStudio, Quarto, GitHub\n\n&gt; ⚠️ Privacy note: keep personal info minimal; use links you’re comfortable sharing publicly.\nTips:\n\nKeep it short and professional.\nUse headings (#, ##) to organize.\nAdd alt text to any images, e.g., ![Alt text](path/to/image.png).\n\n\n\n\n\n\nProfile bio & links: Avatar → Settings → Public profile. Add a display name, bio, location, pronouns, website, and choose a Public email (or keep hidden).\nPinned repositories: On your profile, click Customize your pins to feature key projects (e.g., your journal repo).\nAppearance: Avatar → Settings → Appearance to pick a theme.\n\n\n\n\n\n\nREADME not showing?\n\nRepo must be named exactly your username.\nRepo must be Public.\nFile name must be README.md at the root of the repo (not in a folder).\nRefresh your profile page.\n\nCan’t find “New repository”? Click the + in the top-right → New repository.\nChanges not showing? Make sure you clicked Commit changes, then refresh.\n\n\n\n\n\nYou can edit README.md anytime:\n\nIn the browser: open the file → pencil → edit → Commit changes.\nFrom RStudio or Git: pull → edit → commit → push (handy once you’re using Git locally).",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -482,7 +482,7 @@
     "text": "A public repo named your GitHub username\n\nA README.md inside it\n\nA profile page that displays that README to visitors",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -493,7 +493,7 @@
     "text": "Sign in at GitHub.com.\n\nClick your avatar (top-right) → Your profile.\n\nNote your username (the text after github.com/ in the URL).\n\nExample: github.com/alexleith → username is alexleith.\nUse the username exactly as shown. Repo names are case-insensitive, but matching avoids confusion.",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -504,7 +504,7 @@
     "text": "Click the + (top-right) → New repository.\n\nRepository name: type your exact username (e.g., alexleith).\n\nSet visibility to Public (required).\n\nCheck Initialize this repository with a README.\n\nClick Create repository.\n\nYou now have a repo at:\n\ngithub.com/&lt;username&gt;/&lt;username&gt;\n\nThis is your profile repo.",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -515,7 +515,7 @@
     "text": "In the new repo, click README.md.\n\nClick the pencil icon (Edit).\n\nReplace the placeholder text with something short and welcoming (see template below).\n\nScroll down, add a brief commit message (e.g., “Create profile README”), and click Commit changes.\n\nVisit your profile: click your avatar → Your profile. You should see your README content at the top.",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -526,7 +526,7 @@
     "text": "# Hi, I'm YOUR NAME 👋\n\nWelcome to my GitHub profile! I’m a [your major/role] at [your university/organization].\n\nThis semester I’m working on projects in R/RStudio and documenting progress in my weekly journal.\n\n## What I’m learning this term\n- R, RStudio, and Quarto for data analysis & reporting\n- Git + GitHub for version control and collaboration\n- Research methods and reproducible workflows\n\n## Find me\n- Email: [your email or university email, optional]\n- Website/Portfolio: [link, optional]\n- LinkedIn: [link, optional]\n\n## Current tools\n- **Languages:** R, Markdown\n- **Tools:** RStudio, Quarto, GitHub\n\n&gt; ⚠️ Privacy note: keep personal info minimal; use links you’re comfortable sharing publicly.\nTips:\n\nKeep it short and professional.\nUse headings (#, ##) to organize.\nAdd alt text to any images, e.g., ![Alt text](path/to/image.png).",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -537,7 +537,7 @@
     "text": "Profile bio & links: Avatar → Settings → Public profile. Add a display name, bio, location, pronouns, website, and choose a Public email (or keep hidden).\nPinned repositories: On your profile, click Customize your pins to feature key projects (e.g., your journal repo).\nAppearance: Avatar → Settings → Appearance to pick a theme.",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -548,7 +548,7 @@
     "text": "README not showing?\n\nRepo must be named exactly your username.\nRepo must be Public.\nFile name must be README.md at the root of the repo (not in a folder).\nRefresh your profile page.\n\nCan’t find “New repository”? Click the + in the top-right → New repository.\nChanges not showing? Make sure you clicked Commit changes, then refresh.",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -559,7 +559,7 @@
     "text": "You can edit README.md anytime:\n\nIn the browser: open the file → pencil → edit → Commit changes.\nFrom RStudio or Git: pull → edit → commit → push (handy once you’re using Git locally).",
     "crumbs": [
       "Getting Started",
-      "Build Your GitHub Landing Page"
+      "GitHub Landing Page"
     ]
   },
   {
@@ -673,7 +673,7 @@
     "text": "This guide provides a detailed, beginner-friendly workflow for connecting RStudio to Git and GitHub. We will use the usethis R package to handle most of the complex steps automatically.\n\nPart 1: One-Time Setup\nYou only need to do this part once on your computer.\n\nStep 1: Install Git on Your Computer\nGit is a separate program from R and RStudio. You must install it first.\n\nGo to the official Git website: https://git-scm.com/downloads\nDownload the installer for your operating system (Windows or macOS).\nRun the installer, accepting all the default options. You don’t need to change anything.\n\n\n\nStep 2: Configure Git with Your Identity\nOpen the RStudio Console and run the following two lines of code, replacing the example text with your actual GitHub username and email. This is how your commits will be identified.\n#| eval: false\ninstall.packages(\"usethis\")\nlibrary(usethis)\n\n# Replace with your info\nedit_git_config() \nThis will open a text file. Add the following lines, save the file, and close it.\n[user]\n  name = \"Your Name\"\n  email = \"your.email@example.com\"\n\n\nStep 3: Connect RStudio to GitHub with a Personal Access Token (PAT)\nGitHub requires a special password called a Personal Access Token (PAT) to connect with tools like RStudio. The usethis package makes this easy.\n\nGenerate the Token: In the RStudio Console, run this command. It will open a new tab in your web browser, taking you to the “New personal access token” page on GitHub.\n#| eval: false\ncreate_github_token()\nConfigure the Token on GitHub:\n\nIn the “Note” field, give your token a descriptive name, like “RStudio Token”.\nFor “Expiration,” it is recommended to set a custom date (e.g., the end of the semester).\nUnder “Select scopes,” check the box next to repo. This gives your token permission to access your repositories.\nScroll to the bottom and click “Generate token”.\n\nCopy the Token: You will now see a new page with your token. It will look something like ghp_.... This is the only time you will ever see this token. Click the copy icon next to it.\nSave the Token in RStudio: Go back to RStudio and run the following command in the Console. It will prompt you to paste your token. Paste it and press Enter.\n#| eval: false\ninstall.packages(\"gitcreds\")\nlibrary(gitcreds)\ngitcreds_set()\n\nYou are now fully configured! RStudio can securely talk to your GitHub account.\n\n\n\nPart 2: Creating and Connecting a Project\nThis is the workflow you will use for each new project (like your course journal).\n\nStep 1: Create a New RStudio Project\nFirst, create a new, empty RStudio Project. Do not initialize it as a Git repository yet.\n\nIn RStudio: File → New Project → New Directory → New Project.\nGive it a name (e.g., my-journal-project) and save it somewhere you can find it.\n\n\n\nStep 2: Turn the Project into a Git Repository\nIn the RStudio Console, run this command:\n#| eval: false\nuse_git()\nThis will initialize a Git repository in your project folder. RStudio will ask to restart. Click “Yes.” When it reopens, you will see a Git tab in the top-right pane.\n\n\nStep 3: Create a GitHub Repository and Connect It\nNow, tell usethis to create a repository on GitHub and connect your local project to it.\n#| eval: false\nuse_github()\nThis command will: 1. Ask if you want to commit the files you have. Say “Yes”. 2. Create a new, private repository on your GitHub account with the same name as your RStudio project. 3. Push your local files to the new GitHub repository.\nWhen it’s done, it will open a new browser tab showing you your new repository on GitHub, with your files already in it.\n\n\n\nPart 3: The Daily Workflow (Pull, Stage, Commit, Push)\nNow that your project is connected, here is the simple, day-to-day workflow for saving your work.\n\nPull: Before you start working, click the blue Pull arrow in the Git pane. This gets the latest changes from GitHub. (This is crucial if you work on multiple computers).\nDo Your Work: Edit your files, write your journal entries, etc.\nStage Your Changes:\n\nGo to the Git pane. You will see a list of all the files you’ve modified.\nCheck the boxes under the “Staged” column for all the files you want to save.\n\nCommit Your Changes:\n\nClick the Commit button.\nA new window will open. In the “Commit message” box, write a short, descriptive message about what you changed (e.g., “Completed Week 3 journal entry”).\nClick Commit.\n\nPush to GitHub:\n\nClick the green Push arrow. This sends your committed changes up to your GitHub repository.\n\n\nThat’s it! You have successfully saved your work to GitHub.",
     "crumbs": [
       "Git & GitHub",
-      "Connecting RStudio, Git, and GitHub"
+      "Connecting to GitHub"
     ]
   },
   {
@@ -684,7 +684,7 @@
     "text": "To verify student status on GitHub, you must ensure your GitHub profile information (username, email, full name) matches your provided academic documents.\nAlways use your school-issued academic email, provide legible photos of your student ID or enrollment documents, and disable any VPNs. If a VPN is required, try applying from your university’s Wi-Fi or campus network [1].\n\n\n\n\nMatch Profile Information\nMake sure the full name and email on your GitHub profile exactly match the information on the academic document you plan to submit [1, 7].\nUse an Academic Email\nApply using your official, school-issued email address. This is GitHub’s preferred method for verification [3, 7].\nDisable VPNs\nTurn off VPN services, since they can cause location-based verification to fail. If you must use a VPN, try applying from campus instead [4, 8].\n\n\n\n\n\n\nSubmit Clear Photos\nUse your device’s camera to capture your documents. Make sure your full name, school name, and current date are clearly legible [2, 5].\nUse School Wi-Fi\nApply from your university’s Wi-Fi or network if possible—this helps verify your location [6].\nCheck for System Errors\nIf you encounter a general system error, wait and try again later. If the problem persists, contact GitHub Education Support [1, 4].\n\n\n\n\n\n\nTry Alternative Documents\nIf one document type fails, try another—such as an official transcript or enrollment letter [7, 9].\nContact Support\nIf you repeatedly face issues or believe there is incorrect information in the system, submit a support ticket to GitHub Education [4].",
     "crumbs": [
       "Getting Started",
-      "GitHub Verification Process"
+      "GitHub Email Verification"
     ]
   },
   {
@@ -695,7 +695,7 @@
     "text": "Match Profile Information\nMake sure the full name and email on your GitHub profile exactly match the information on the academic document you plan to submit [1, 7].\nUse an Academic Email\nApply using your official, school-issued email address. This is GitHub’s preferred method for verification [3, 7].\nDisable VPNs\nTurn off VPN services, since they can cause location-based verification to fail. If you must use a VPN, try applying from campus instead [4, 8].",
     "crumbs": [
       "Getting Started",
-      "GitHub Verification Process"
+      "GitHub Email Verification"
     ]
   },
   {
@@ -706,7 +706,7 @@
     "text": "Submit Clear Photos\nUse your device’s camera to capture your documents. Make sure your full name, school name, and current date are clearly legible [2, 5].\nUse School Wi-Fi\nApply from your university’s Wi-Fi or network if possible—this helps verify your location [6].\nCheck for System Errors\nIf you encounter a general system error, wait and try again later. If the problem persists, contact GitHub Education Support [1, 4].",
     "crumbs": [
       "Getting Started",
-      "GitHub Verification Process"
+      "GitHub Email Verification"
     ]
   },
   {
@@ -717,7 +717,7 @@
     "text": "Try Alternative Documents\nIf one document type fails, try another—such as an official transcript or enrollment letter [7, 9].\nContact Support\nIf you repeatedly face issues or believe there is incorrect information in the system, submit a support ticket to GitHub Education [4].",
     "crumbs": [
       "Getting Started",
-      "GitHub Verification Process"
+      "GitHub Email Verification"
     ]
   },
   {
