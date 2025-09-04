@@ -1,4 +1,4 @@
-# mccoursepack
+# mccours## For Maintainers & Instructorspack
 
 This repository contains the source code for the `mccoursepack` R package and its associated Quarto documentation website.
 
@@ -59,4 +59,4 @@ This package is designed to be a centralized, version-controlled distribution sy
 
 ## License
 
-MIT © SIM Lab @ SIUE
+MIT (c) SIM Lab @ SIUE

@@ -25,7 +25,7 @@ For more detail, see [Function Details](package-functions.qmd).
 |----------|--------------|
 | `list_courses()` | Lists installed course IDs (e.g., `"mc451"`, `"mc501"`) |
 | `list_weeks(course = NULL)` | Shows which week folders are available |
-| `download_week(course, week, dest = ".")` | Copies a week’s files into your project |
+| `download_week(course, week, dest = ".")` | Copies a week's files into your project |
 | `open_week(week, dest = ".")` | Opens a week folder in your system file browser |
 | `mccourse_setup()` | Installs Quarto, TinyTeX, and core packages if missing |
 | `mccourse_self_test()` | Checks which courses/weeks are available |

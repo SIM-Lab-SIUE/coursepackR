@@ -9,7 +9,7 @@ This page collects quick fixes and diagnostic commands for the tools used in thi
 
 ---
 
-## Quarto isn’t found / Render button doesn’t work
+## Quarto isn't found / Render button doesn't work
 
 **Fix:**
 1. Install Quarto: <https://quarto.org/docs/get-started/>  
@@ -23,7 +23,7 @@ quarto --version
 
 ---
 
-## PDF render fails (“No TeX installation detected”, missing LaTeX package)
+## PDF render fails ("No TeX installation detected", missing LaTeX package)
 
 **Fix (fastest):**
 

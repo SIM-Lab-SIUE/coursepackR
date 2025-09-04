@@ -5,25 +5,25 @@ freeze: auto
 
 Start with the **Student Guide** below.
 
-Your **course journal** is a Quarto **book**. Each **week** has a chapter with **three prompts**—you answer **one**.  
+Your **course journal** is a Quarto **book**. Each **week** has a chapter with **three prompts**--you answer **one**.  
 Word ranges are enforced when you render:
 
-- **MC 451:** **250–300** words  
-- **MC 501:** **450–500** words
+- **MC 451:** **250-300** words  
+- **MC 501:** **450-500** words
 
 ---
 
-## Step 1 — Create a new RStudio Project
+## Step 1 -- Create a new RStudio Project
 
-1. Open **RStudio** → **File → New Project → New Directory → New Project**.  
+1. Open **RStudio** -> **File -> New Project -> New Directory -> New Project**.  
 2. Choose a location (e.g., `Documents/MC451/`) and name it (e.g., `journal_project`).
 
 **FIGURE**
-![Screenshot of the “New Project” dialog in RStudio.](../images/new-project.png "New Project Dialog in RStudio"){width=50%; fig-align="center"}
+![Screenshot of the "New Project" dialog in RStudio.](../images/new-project.png "New Project Dialog in RStudio"){width=50%; fig-align="center"}
 
 ---
 
-## Step 2 — Install and load the course package
+## Step 2 -- Install and load the course package
 
 In the **Console**:
 
@@ -40,7 +40,7 @@ If prompted, restart R after installation.
 
 ---
 
-## Step 3 — Download your starter journal
+## Step 3 -- Download your starter journal
 
 Run:
 
@@ -56,34 +56,34 @@ This populates your project's main folder with the complete journal structure.
 
 ---
 
-## Step 4 — Add a new week chapter
+## Step 4 -- Add a new week chapter
 
 In the **Console** pane at the bottom-left, run:
 
 ```r
 #| eval: false
-# Pick your week number (2–14). Example:
+# Pick your week number (2-14). Example:
 new_journal_entry(week = 3)
 ```
 
 What happens:
 
-1. A new chapter is created and named with **today’s date**: `entries/YYYY-MM-DD.qmd`.
+1. A new chapter is created and named with **today's date**: `entries/YYYY-MM-DD.qmd`.
 2. The **three prompts for that week** are inserted.
 3. The correct **word range** for your course is set.
 4. `_quarto.yml` is **automatically updated** to add the new chapter to the book's table of contents.
 
 
 **FIGURE**
-![Console showing `new_journal_entry(week = 3)` and “Created: entries/YYYY-MM-DD.qmd.](../images/journal-week.png "Choosing Week for Journal"){width=50%; fig-align="center"}
+![Console showing `new_journal_entry(week = 3)` and "Created: entries/YYYY-MM-DD.qmd.](../images/journal-week.png "Choosing Week for Journal"){width=50%; fig-align="center"}
 
 > **Troubleshooting:** If you run the command twice **on the same day**, the file will be overwritten (same date name). If you need to keep both, rename the first file (e.g., `2025-09-03b.qmd`) before running again.
 
 ---
 
-## Step 5 — Choose your prompt, then write
+## Step 5 -- Choose your prompt, then write
 
-Open the new file (e.g., `entries/2025-09-03.qmd`). You’ll see **Choose one prompt** first, then **Response**.
+Open the new file (e.g., `entries/2025-09-03.qmd`). You'll see **Choose one prompt** first, then **Response**.
 
 **Keep ONE prompt and delete the other two** in the *Choose one prompt* section. Then write your answer **only** inside the **Response** block.
 
@@ -103,15 +103,15 @@ Open the new file (e.g., `entries/2025-09-03.qmd`). You’ll see **Choose one pr
 
 Stay in range:
 
-* **MC 451:** 250–300 words
-* **MC 501:** 450–500 words
+* **MC 451:** 250-300 words
+* **MC 501:** 450-500 words
 
 **FIGURE**
 ![Editor with the *Choose one prompt* block highlighted above the *Response* block.](../images/choose-prompt.png "Choosing the Journal Week"){width=50%; fig-align="center"}
 
 ---
 
-## Step 6 — Render the **entire** journal (unified output)
+## Step 6 -- Render the **entire** journal (unified output)
 
 You have two equivalent options. Use **one** of them:
 

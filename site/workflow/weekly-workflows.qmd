@@ -13,10 +13,10 @@ Week-by-week rhythm of the course.
 flowchart TD
   A["Open RStudio Project<br/>(.Rproj)"] --> B["Update package<br/>pak::pak('SIM-Lab-SIUE/mccoursepack')"]
   B --> C["Download week N<br/>download_week('mc451', N, '.')"]
-  C --> D["Do the work<br/>edit week_0N/.qmd → Render"]
+  C --> D["Do the work<br/>edit week_0N/.qmd -> Render"]
   D --> E["Add journal entry<br/>source('journal/scripts/new_journal_entry.R')"]
   E --> F["Render journal book<br/>quarto render"]
-  F --> G["Stage → Commit → Push<br/>(Git/GitHub)"]
+  F --> G["Stage -> Commit -> Push<br/>(Git/GitHub)"]
   style A fill:#eef,stroke:#99f
   style G fill:#efe,stroke:#2a2
 ```
@@ -46,7 +46,7 @@ mccourse_setup()   # safe anytime; only installs missing pieces
 
 ------------------------------------------------------------------------
 
-## 2) Pull this week’s scaffold
+## 2) Pull this week's scaffold
 
 ``` r
 #| eval: false
@@ -71,8 +71,8 @@ source("scripts/new_journal_entry.R")
 
 This creates `entries/YYYY-MM-DD.qmd` with three prompts. **Answer exactly one**, staying in your word range:
 
--   **MC 451:** 250–300 words
--   **MC 501:** 450–500 words
+-   **MC 451:** 250-300 words
+-   **MC 501:** 450-500 words
 
 Then render the journal:
 
@@ -86,7 +86,7 @@ Outputs appear under `journal/_book/`.
 
 ## 4) Submit your work (GitHub)
 
-Use RStudio’s **Git pane** or the command line. Each week:
+Use RStudio's **Git pane** or the command line. Each week:
 
 1.  **Pull** to sync with GitHub
 2.  **Stage** the files you changed
