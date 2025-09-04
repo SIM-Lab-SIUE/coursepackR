@@ -1,11 +1,11 @@
 #' One-time setup for mccoursepack
 #'
-#' Installs Quarto CLI (via the {quarto} R package) and TinyTeX if missing,
+#' Installs Quarto CLI (via the `quarto` R package) and TinyTeX if missing,
 #' then ensures a small set of core CRAN packages are available.
 #' On Windows, warns if Rtools is not installed.
 #'
 #' Safe to re-run; it only installs what’s missing.
-#'
+#' @importFrom utils install.packages
 #' @export
 mccourse_setup <- function() {
 	cli_h1 <- function(x) try(cli::cli_h1(x), silent = TRUE)
