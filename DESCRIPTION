@@ -19,8 +19,11 @@ Imports:
     pkgbuild,
     remotes,
     rlang,
-    rstudioapi,
-    stats,
-    utils
-Suggests: testthat (>= 3.0.0), tibble, withr, quarto, tinytex, tidyverse, janitor, here, knitr, rmarkdown
+    usethis,
+    xfun
+Config/Needs/website:
+    any::remotes,
+    github::SIM-Lab-SIUE/mccoursepack
+Suggests: 
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
