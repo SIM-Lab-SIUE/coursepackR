@@ -32,7 +32,7 @@ mccourse_setup <- function() {
 			cli_warn(
 				paste(
 					"Rtools not detected. Install the version matching your R",
-					"(e.g., R 4.5 → Rtools 4.5):",
+					"(e.g., R 4.5 -> Rtools 4.5):",
 					"https://cran.rstudio.com/bin/windows/Rtools/"
 				)
 			)

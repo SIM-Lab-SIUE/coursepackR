@@ -17,11 +17,11 @@ Imports:
     fs,
     pak,
     pkgbuild,
+    quarto,
     remotes,
     rlang,
-    usethis,
-    withr,
-    xfun
+    rstudioapi,
+    tinytex
 Config/Needs/website:
     any::remotes,
     github::SIM-Lab-SIUE/mccoursepack
