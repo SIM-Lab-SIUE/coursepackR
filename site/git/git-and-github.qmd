@@ -33,6 +33,7 @@ GitHub no longer accepts account passwords for Git over HTTPS. Use **HTTPS + Per
 2. Store the token so Git remembers it:
 
 ```{r}
+#| eval: false
 install.packages(c("usethis", "gitcreds"))
 usethis::create_github_token()  # opens the token page in your browser
 gitcreds::gitcreds_set()        # paste the token at the prompt
