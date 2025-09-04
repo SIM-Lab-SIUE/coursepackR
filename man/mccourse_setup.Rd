@@ -7,10 +7,10 @@
 mccourse_setup()
 }
 \description{
-Installs Quarto CLI (via the {quarto} R package) and TinyTeX if missing,
+Installs Quarto CLI (via the \pkg{quarto} R package) and TinyTeX if missing,
 then ensures a small set of core CRAN packages are available.
 On Windows, warns if Rtools is not installed.
 }
 \details{
-Safe to re-run; it only installs what’s missing.
+Safe to re-run; it only installs what's missing.
 }

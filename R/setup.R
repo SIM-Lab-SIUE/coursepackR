@@ -5,8 +5,6 @@
 #' On Windows, warns if Rtools is not installed.
 #'
 #' Safe to re-run; it only installs what's missing.
-#' @importFrom quarto quarto_install
-#' @importFrom utils install.packages
 #' @export
 mccourse_setup <- function() {
 	cli_h1 <- function(x) try(cli::cli_h1(x), silent = TRUE)
@@ -17,7 +15,7 @@ mccourse_setup <- function() {
 	# 0) Soft dependencies for nice messages
 	required_for_msgs <- c("cli")
 	for (p in required_for_msgs) if (!requireNamespace(p, quietly = TRUE)) {
-		install.packages(p, quiet = TRUE)
+		utils::install.packages(p, quiet = TRUE)
 	}
 
 	cli_h1("mccoursepack: setup")
@@ -25,7 +23,7 @@ mccourse_setup <- function() {
 	# 1) Windows check for Rtools (build tools)
 	if (.Platform$OS.type == "windows") {
 		if (!requireNamespace("pkgbuild", quietly = TRUE)) {
-			install.packages("pkgbuild", quiet = TRUE)
+			utils::install.packages("pkgbuild", quiet = TRUE)
 		}
 		ok <- try(pkgbuild::check_build_tools(debug = FALSE), silent = TRUE)
 		if (inherits(ok, "try-error") || isFALSE(ok)) {
@@ -41,13 +39,13 @@ mccourse_setup <- function() {
 
 	# 2) Quarto CLI
 	if (!requireNamespace("quarto", quietly = TRUE)) {
-		install.packages("quarto", quiet = TRUE)
+		utils::install.packages("quarto", quiet = TRUE)
 	}
 	has_quarto_cli <- nzchar(Sys.which("quarto"))
 	if (!has_quarto_cli) {
 		cli_alert("Quarto CLI not found; installing via {quarto}...")
 		# NOTE: correct, lowercase namespace & function
-		quarto_install()
+		quarto::quarto_install()
 		# Refresh PATH for current session if needed
 		has_quarto_cli <- nzchar(Sys.which("quarto"))
 	}
@@ -59,14 +57,14 @@ mccourse_setup <- function() {
 
 	# 3) TinyTeX (LaTeX for PDF)
 	if (!requireNamespace("tinytex", quietly = TRUE)) {
-		install.packages("tinytex", quiet = TRUE)
+		utils::install.packages("tinytex", quiet = TRUE)
 	}
 	has_tinytex <- tryCatch({
 		tinytex::is_tinytex()
 	}, error = function(e) FALSE)
 
 	if (!has_tinytex) {
-		cli_alert("TinyTeX not found; installing minimal LaTeX distribution…")
+		cli_alert("TinyTeX not found; installing minimal LaTeX distribution...")
 		tinytex::install_tinytex(force = FALSE)
 		has_tinytex <- tryCatch(tinytex::is_tinytex(), error = function(e) FALSE)
 		if (has_tinytex) {
@@ -83,7 +81,7 @@ mccourse_setup <- function() {
 	to_get <- core_pkgs[!vapply(core_pkgs, requireNamespace, FUN.VALUE = logical(1), quietly = TRUE)]
 	if (length(to_get)) {
 		cli_alert(sprintf("Installing core packages: %s", paste(to_get, collapse = ", ")))
-		install.packages(to_get, quiet = TRUE)
+		utils::install.packages(to_get, quiet = TRUE)
 	}
 
 	cli_done("Setup finished. If Quarto/TinyTeX were just installed, restart RStudio.")
