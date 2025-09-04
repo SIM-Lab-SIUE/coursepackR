@@ -3,8 +3,6 @@ title: "RStudio’s Four Panes"
 format: html
 ---
 
-# RStudio’s Four Panes: A Practical Tour for First-Time Users
-
 RStudio organizes your work into **four panes**. Each pane has tabs for specific tasks: editing, running code, viewing objects, managing files, plots, packages, or help. This page gives you a plain-English tour of every pane and every default tab—what each does, when you’ll use it, and where to click next.
 
 ![Four Panes](../images/four-panes.png){width="100%"}

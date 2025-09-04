@@ -4,8 +4,6 @@ sidebar: getting-started
 format: html
 ---
 
-# RStudio Global Options — Your Configuration Command Center
-
 Think of this window as your **personal cockpit**. Every slider, checkbox, and dropdown lets you fine-tune RStudio’s behavior, appearance, and workflow. Below is a guide to the most-used tabs—so when you’re ready to tweak, you’re not poking around in the dark.
 
 ![Global Options](../images/global-options.png){width="100%"}

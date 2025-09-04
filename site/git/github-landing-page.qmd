@@ -4,8 +4,6 @@ sidebar: git
 format: html
 ---
 
-# Build Your GitHub Landing Page (Profile README)
-
 Your GitHub profile can show a custom **landing page**—a `README.md` that lives in a special repository named **exactly** like your username. No code needed; it’s all point-and-click in the browser.
 
 ---

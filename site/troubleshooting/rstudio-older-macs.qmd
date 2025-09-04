@@ -4,8 +4,6 @@ sidebar: troubleshooting
 format: html
 ---
 
-# RStudio + R Troubleshooting Cheat-Sheet
-
 This guide is for students running **older macOS versions** who run into crashes or compatibility problems when using RStudio.
 
 ---

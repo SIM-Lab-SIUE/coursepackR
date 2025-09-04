@@ -4,10 +4,6 @@ sidebar: reference
 format: html
 ---
 
-Package reference and bibliography.
-
-# Package Reference
-
 > **Tip**  
 > Load the package each R session:
 > ```r

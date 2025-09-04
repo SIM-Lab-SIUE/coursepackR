@@ -4,8 +4,6 @@ sidebar: git
 format: html
 ---
 
-# GitHub Verification Process
-
 To verify student status on GitHub, you must ensure your **GitHub profile information** (username, email, full name) matches your provided academic documents.  
 Always use your **school-issued academic email**, provide **legible photos** of your student ID or enrollment documents, and **disable any VPNs**. If a VPN is required, try applying from your university’s Wi-Fi or campus network [[1](https://github.com/orgs/community/discussions/51130)].
 

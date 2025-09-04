@@ -4,8 +4,6 @@ sidebar: reference
 format: html
 ---
 
-# Function Details
-
 All commands assume you are working inside an RStudio **Project**.
 
 ---
