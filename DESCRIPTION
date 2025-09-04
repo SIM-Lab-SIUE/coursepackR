@@ -7,7 +7,7 @@ Description: Provides student-facing scaffolds (Quarto templates and starter fil
  for weekly work in MC 451 and MC 501. Students install or update the package
  and use helper functions to copy the appropriate week's materials into a
  local working directory.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

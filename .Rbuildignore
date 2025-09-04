@@ -7,7 +7,6 @@
 ^pkgdown$
 ^site$
 ^README\.md$
-^LICENSE\.md$
 ^inst/INSTRUCTOR-CHECKLIST\.md$
 ^inst/COPYRIGHTS$
 ^desktop\.ini$
