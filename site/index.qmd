@@ -5,11 +5,11 @@ sidebar: getting-started
 
 This site is the **student documentation** for the `mccoursepack`. Start here:
 
-- **[Getting Started](getting-started/)** — install tools, open your first project
-- **[R & RStudio](r-and-rstudio/)** — what’s what
-- **[Weekly Journal](journal/)** — how the journal system works
-- **[Course Workflow](workflow/)** — week-by-week rhythm
-- **[Git & GitHub](git/)** — version control & submissions
-- **[Quarto Basics](quarto/)** — writing with Quarto
-- **[Troubleshooting](troubleshooting/)** — common fixes
-- **[Reference](reference/)** — package functions & bibliography
+- **[Getting Started](getting-started/getting-started.qmd)** — install tools, open your first project
+- **[R & RStudio](r-and-rstudio/r-and-rstudio.qmd)** — what’s what
+- **[Weekly Journal](journal/journal-student-guide.qmd)** — how the journal system works
+- **[Quarto Basics](quarto/quarto-basics.qmd)** — writing with Quarto
+- **[Course Workflow](workflow/weekly-workflows.qmd)** — week-by-week rhythm
+- **[Git & GitHub](git/git-and-github.qmd)** — version control & submissions
+- **[Troubleshooting](troubleshooting/troubleshooting.qmd)** — common fixes
+- **[Reference](reference/package-reference.qmd)** — package functions & bibliography
