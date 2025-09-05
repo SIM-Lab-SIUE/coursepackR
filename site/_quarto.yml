@@ -1,59 +1,13 @@
 project:
   type: website
-  output-dir: ../docs
-  resources:
-    - assets/pdfs/**
-    - imagformat:
-  htmformatformatformatformatformat:
-  html:
-    theme: cosmo
-    toc: true
-    page-navigation: true
-    code-copy: true
-    df-print: paged
-    embed-resources: true:
-    theme: cosmo
-    toc: true
-    page-navigation: true
-    code-copy: true
-    df-print: paged
-    embed-resources: true:
-    theme: cosmo
-    toc: true
-    page-navigation: true
-    code-copy: true
-    df-print: paged
-    embed-resources: true:
-    theme: cosmo
-    toc: true
-    page-navigation: true
-    code-copy: true
-    df-print: paged
-    embed-resources: true:
-    theme: cosmo
-    toc: true
-    page-navigation: true
-    code-copy: true
-    df-print: paged
-    embed-resources: trueheme: cosmo
-    toc: true
-    page-navigation: true
-    code-copy: true
-    df-print: paged
-    embed-resources: true
-    link-external-newwindow: true
-    include-after-body:
-      - text: |
-          <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-          <script src="../site_libs/quarto-search/quarto-search.js"></script>
-          <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-          <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-          <script src="../site_libs/quarto-html/quarto-html.js"></script>ebsite:
-  title: "mccoursepack"
-  search: true
+  output-dir: docs
+
+website:
+  title: "MC Coursepack"
   navbar:
-    background: light
     left:
+      - href: index.qmd
+        text: Home
       - text: "Getting Started"
         href: getting-started/getting-started.qmd
       - text: "R & RStudio"
@@ -110,12 +64,9 @@ project:
       title: "Git & GitHub"
       style: docked
       contents:
-        - text: "Connecting to GitHub"
-          href: git/git-and-github.qmd
-        - text: "GitHub Landing Page"
-          href: git/github-landing-page.qmd
-        - text: "GitHub Email Verification"
-          href: git/github-verification.qmd
+        - git/git-and-github.qmd
+        - git/github-landing-page.qmd
+        - git/github-verification.qmd
 
     - id: troubleshooting
       title: "Troubleshooting"
@@ -135,19 +86,13 @@ project:
 format:
   html:
     theme: cosmo
+    css: styles.css
     toc: true
     page-navigation: true
     code-copy: true
-    df-print: paged
-    link-external-newwindow: false
-    include-after-body:
-      - href: "../site_libs/quarto-nav/quarto-nav.js"
-      - href: "../site_libs/quarto-search/quarto-search.js"
-      - href: "../site_libs/quarto-search/autocomplete.umd.js"
-      - href: "../site_libs/bootstrap/bootstrap.min.js"
-      - href: "../site_libs/quarto-html/quarto-html.js"
 
 execute:
+  freeze: auto
   echo: false
   warning: false
-  freeze: auto
+
