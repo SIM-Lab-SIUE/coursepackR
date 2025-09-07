@@ -6,11 +6,19 @@ sidebar: getting-started
 This site is the **student documentation** for the `mccoursepack`. 
 
 Start here:
+
 - **[Getting Started](getting-started/getting-started.html)** — install tools, open your first project
+
 - **[R & RStudio](r-and-rstudio/r-and-rstudio.html)** — what’s what
+
 - **[Weekly Journal](journal/journal-student-guide.html)** — how the journal system works
+
 - **[Quarto Basics](quarto/quarto-basics.html)** — writing with Quarto
+
 - **[Course Workflow](workflow/weekly-workflows.html)** — week-by-week rhythm
+
 - **[Git & GitHub](git/git-and-github.html)** — version control & submissions
+
 - **[Troubleshooting](troubleshooting/troubleshooting.html)** — common fixes
+
 - **[Reference](reference/package-reference.html)** — package functions & bibliography
