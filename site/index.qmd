@@ -3,8 +3,9 @@ title: "Welcome"
 sidebar: getting-started
 ---
 
-This site is the **student documentation** for the `mccoursepack`. Start here:
+This site is the **student documentation** for the `mccoursepack`. 
 
+Start here:
 - **[Getting Started](getting-started/getting-started.qmd)** — install tools, open your first project
 - **[R & RStudio](r-and-rstudio/r-and-rstudio.qmd)** — what’s what
 - **[Weekly Journal](journal/journal-student-guide.qmd)** — how the journal system works

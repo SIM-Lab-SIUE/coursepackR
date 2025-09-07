@@ -461,7 +461,7 @@
     "href": "index.html",
     "title": "Welcome",
     "section": "",
-    "text": "This site is the student documentation for the mccoursepack. Start here:\n\nGetting Started — install tools, open your first project\nR & RStudio — what’s what\nWeekly Journal — how the journal system works\nCourse Workflow — week-by-week rhythm\nGit & GitHub — version control & submissions\nQuarto Basics — writing with Quarto\nTroubleshooting — common fixes\nReference — package functions & bibliography"
+    "text": "This site is the student documentation for the mccoursepack.\nStart here: - Getting Started — install tools, open your first project - R & RStudio — what’s what - Weekly Journal — how the journal system works - Quarto Basics — writing with Quarto - Course Workflow — week-by-week rhythm - Git & GitHub — version control & submissions - Troubleshooting — common fixes - Reference — package functions & bibliography"
   },
   {
     "objectID": "git/github-landing-page.html",
