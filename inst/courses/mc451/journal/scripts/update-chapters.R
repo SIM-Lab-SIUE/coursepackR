@@ -34,6 +34,14 @@ new_chapters <- c(other_chapters, entry_files)
 quarto_config$book$chapters <- new_chapters
 
 # Write the updated configuration back to the _quarto.yml file
-write_yaml(quarto_config, quarto_yaml_path)
+write_yaml(quarto_config,
+           quarto_yaml_path,
+           handlers = list(
+             logical = function(x) {
+               result <- ifelse(x, "true", "false")
+               class(result) <- "verbatim"
+               return(result)
+             }
+           ))
 
 cat("Successfully synchronized chapters in _quarto.yml.\n")
