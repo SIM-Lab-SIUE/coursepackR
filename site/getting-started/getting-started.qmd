@@ -16,21 +16,25 @@ Follow these steps to get your system ready with the **latest course package** a
 
 ## Step 1 -- Install or Update the Course Package
 
-The course package `mccoursepack` is hosted on GitHub. Use the `remotes` package to install or update it.
+The course package `mccoursepack` is hosted on GitHub. Use the `pak` package to install or update it.
 
 ```r
-# Install remotes if not already installed
-install.packages("remotes")
+# Install pak if not already installed
+install.packages("pak")
 
 # Install or update the course package
-remotes::install_github("SIM-Lab-SIUE/mccoursepack")
+pak::pak("SIM-Lab-SIUE/mccoursepack")
+```
 
+Once the installation is complete, load the package into your R session.
+
+```r
 # Load the package
 library(mccoursepack)
 ````
 
 ::: tip
-Run the `remotes::install_github()` command at the start of the semester and again whenever updates are announced.
+Run the `pak::pak()` command at the start of the semester and again whenever updates are announced.
 :::
 
 ---

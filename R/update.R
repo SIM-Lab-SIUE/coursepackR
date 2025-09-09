@@ -83,51 +83,41 @@ mccourse_update <- function(update = c("ask","always","never"),
       if (!quiet) cli::cli_alert_warning("No GitHub repo configured. Set options(mccoursepack.repo = 'owner/mccoursepack').")
       return(FALSE)
     }
-    if (!rlang::is_installed("remotes")) {
-      if (!quiet) cli::cli_alert_warning("remotes not installed; cannot check GitHub updates.")
+    if (!rlang::is_installed("pak")) {
+      if (!quiet) cli::cli_alert_warning("pak not installed; cannot check GitHub updates.")
       return(FALSE)
     }
-    deps <- tryCatch(remotes::package_deps(repo, upgrade = TRUE), error = function(e) NULL)
-    if (is.null(deps)) return(FALSE)
-    i <- which(deps$package == "mccoursepack")
-    if (length(i) != 1) return(FALSE)
-    diff <- deps$diff[i]
-    # remotes marks updates when diff is not "=="
-    isTRUE(nzchar(diff)) && !identical(diff, "==")
+    diff <- tryCatch(pak::pkg_diff(pkg = repo), error = function(e) NULL)
+    if (is.null(diff) || nrow(diff) == 0) return(FALSE)
+    
+    # pak::pkg_diff returns a data frame with a `diff` column
+    # It is non-empty if there is a difference
+    TRUE
   }
 }
 
-# Internal: perform the install from CRAN or GitHub via pak or remotes
+# Internal: perform the install from CRAN or GitHub via pak
 .install_mccoursepack_latest <- function(source = c("CRAN","GitHub"), repo = NULL, quiet = FALSE) {
   source <- match.arg(source)
-  has_pak     <- rlang::is_installed("pak")
-  has_remotes <- rlang::is_installed("remotes")
+  has_pak <- rlang::is_installed("pak")
 
-  if (identical(source, "CRAN")) {
-    if (has_pak) {
-      tryCatch({ pak::pkg_install("mccoursepack", upgrade = TRUE, ask = FALSE) ; TRUE },
-               error = function(e) FALSE)
-    } else if (has_remotes) {
-      tryCatch({ remotes::install_cran("mccoursepack", upgrade = "always", quiet = quiet) ; TRUE },
-               error = function(e) FALSE)
-    } else {
-      if (!quiet) cli::cli_alert_danger("Neither pak nor remotes is installed. Install one to enable updates.")
-      FALSE
-    }
-  } else {
-    if (is.null(repo) || !nzchar(repo)) {
-      if (!quiet) cli::cli_alert_warning("No GitHub repo configured. Set options(mccoursepack.repo = 'owner/mccoursepack').")
-      return(FALSE)
-    }
-    if (has_pak) {
-      tryCatch({ pak::pkg_install(repo, upgrade = TRUE, ask = FALSE) ; TRUE },
-               error = function(e) FALSE)
-    } else if (has_remotes) {
-      tryCatch({ remotes::install_github(repo, upgrade = "always", quiet = quiet) ; TRUE },
-               error = function(e) FALSE)
-    } else {
-      if (!quiet) cli::cli_alert_danger("Neither pak nor remotes is installed. Install one to enable updates.")
-      FALSE
-    }
+  if (!has_pak) {
+    if (!quiet) cli::cli_alert_danger("pak is not installed. Please run `install.packages('pak')`.")
+    return(FALSE)
   }
+
+  pkg_to_install <- if (identical(source, "CRAN")) "mccoursepack" else repo
+  
+  if (is.null(pkg_to_install) || !nzchar(pkg_to_install)) {
+    if (!quiet) cli::cli_alert_warning("No package source specified.")
+    return(FALSE)
+  }
+
+  tryCatch({
+    pak::pak(pkg_to_install, upgrade = TRUE, ask = FALSE)
+    TRUE
+  }, error = function(e) {
+    if (!quiet) cli::cli_alert_danger("Failed to install package: {e$message}")
+    FALSE
+  })
 }

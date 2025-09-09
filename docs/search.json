@@ -74,7 +74,7 @@
     "href": "workflow/weekly-workflows.html#quick-checklist-each-week",
     "title": "Course Workflow",
     "section": "Quick checklist (each week)",
-    "text": "Quick checklist (each week)\n\nOpen the Project\nUpdate package (pak::pak(\"SIM-Lab-SIUE/mccoursepack\"))\ndownload_week(\"mc451\", N, dest = \".\")\nDo the assignment + add journal entry\nRender to PDF/HTML (and render the journal book)\nStage → Commit → Push to GitHub\n\n\n\n\n\n\n\n\nNoteMaintainers only\n\n\n\nIf you’re editing the documentation site (site/):\nquarto preview site     # live preview\ngit add -A\ngit commit -m \"docs: expand troubleshooting & reference\"\ngit push\nGitHub Actions will render and deploy to Pages automatically.",
+    "text": "Quick checklist (each week)\n\nOpen the Project\nUpdate package (pak::pak(\"SIM-Lab-SIUE/mccoursepack\"))\ndownload_week(\"mc451\", N, dest = \".\")\nDo the assignment + add journal entry\nRender to PDF/HTML (and render the journal book)\nStage → Commit → Push to GitHub\n\n\n\n\n\n\n\n\nMaintainers only\n\n\n\nIf you’re editing the documentation site (site/):\nquarto preview site     # live preview\ngit add -A\ngit commit -m \"docs: expand troubleshooting & reference\"\ngit push\nGitHub Actions will render and deploy to Pages automatically.",
     "crumbs": [
       "Course Workflow"
     ]
@@ -611,7 +611,7 @@
     "href": "getting-started/getting-started.html#step-1-install-or-update-the-course-package",
     "title": "Getting Started",
     "section": "Step 1 – Install or Update the Course Package",
-    "text": "Step 1 – Install or Update the Course Package\nThe course package mccoursepack is hosted on GitHub. Use the remotes package to install or update it.\n# Install remotes if not already installed\ninstall.packages(\"remotes\")\n\n# Install or update the course package\nremotes::install_github(\"SIM-Lab-SIUE/mccoursepack\")\n\n# Load the package\nlibrary(mccoursepack)\n\nRun the remotes::install_github() command at the start of the semester and again whenever updates are announced.",
+    "text": "Step 1 – Install or Update the Course Package\nThe course package mccoursepack is hosted on GitHub. Use the pak package to install or update it.\n# Install pak if not already installed\ninstall.packages(\"pak\")\n\n# Install or update the course package\npak::pak(\"SIM-Lab-SIUE/mccoursepack\")\n\n# Load the package\nlibrary(mccoursepack)\n\nRun the pak::pak() command at the start of the semester and again whenever updates are announced.",
     "crumbs": [
       "Home",
       "Getting Started"
