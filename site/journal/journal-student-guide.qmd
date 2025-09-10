@@ -75,6 +75,9 @@ In the **Console** pane at the bottom-left, run:
 new_journal_entry(week = 3)
 ```
 
+**FIGURE**
+![Entries Stored by Date of Creation.](../images/entries.png "Entries Saved by Date of Creation"){width=50%; fig-align="center"}
+
 What happens:
 
 1. A new chapter is created and named with **today's date**: `entries/YYYY-MM-DD.qmd`.
