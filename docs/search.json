@@ -611,7 +611,7 @@
     "href": "getting-started/getting-started.html#step-1-install-or-update-the-course-package",
     "title": "Getting Started",
     "section": "Step 1 – Install or Update the Course Package",
-    "text": "Step 1 – Install or Update the Course Package\nThe course package mccoursepack is hosted on GitHub. Use the pak package to install or update it.\n# Install pak if not already installed\ninstall.packages(\"pak\")\n\n# Install or update the course package\npak::pak(\"SIM-Lab-SIUE/mccoursepack\")\n\n# Load the package\nlibrary(mccoursepack)\n\nRun the pak::pak() command at the start of the semester and again whenever updates are announced.",
+    "text": "Step 1 – Install or Update the Course Package\nThe course package mccoursepack is hosted on GitHub. Use the pak package to install or update it.\n# Install pak if not already installed\ninstall.packages(\"pak\")\n\n# Install or update the course package\npak::pak(\"SIM-Lab-SIUE/mccoursepack\")\nOnce the installation is complete, load the package into your R session.\n# Load the package\nlibrary(mccoursepack)\n\nRun the pak::pak() command at the start of the semester and again whenever updates are announced.",
     "crumbs": [
       "Home",
       "Getting Started"
@@ -782,7 +782,7 @@
     "href": "journal/journal-student-guide.html#step-5-add-a-new-week-chapter",
     "title": "Weekly Journal",
     "section": "Step 5 – Add a new week chapter",
-    "text": "Step 5 – Add a new week chapter\nIn the Console pane at the bottom-left, run:\n# Pick your week number (2-14). Example:\nnew_journal_entry(week = 3)\nWhat happens:\n\nA new chapter is created and named with today’s date: entries/YYYY-MM-DD.qmd.\nThe three prompts for that week are inserted.\nThe correct word range for your course is set.\n_quarto.yml is automatically updated to add the new chapter to the book’s table of contents.\n\nFIGURE \n\nTroubleshooting: If you run the command twice on the same day, the file will be overwritten (same date name). If you need to keep both, rename the first file (e.g., 2025-09-03b.qmd) before running again.",
+    "text": "Step 5 – Add a new week chapter\nIn the Console pane at the bottom-left, run:\n# Pick your week number (2-14). Example:\nnew_journal_entry(week = 3)\nFIGURE \nWhat happens:\n\nA new chapter is created and named with today’s date: entries/YYYY-MM-DD.qmd.\nThe three prompts for that week are inserted.\nThe correct word range for your course is set.\n_quarto.yml is automatically updated to add the new chapter to the book’s table of contents.\n\nFIGURE \n\nTroubleshooting: If you run the command twice on the same day, the file will be overwritten (same date name). If you need to keep both, rename the first file (e.g., 2025-09-03b.qmd) before running again.",
     "crumbs": [
       "Weekly Journal"
     ]
