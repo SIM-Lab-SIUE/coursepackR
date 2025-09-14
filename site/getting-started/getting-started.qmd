@@ -34,7 +34,7 @@ library(mccoursepack)
 ````
 
 ::: tip
-Run the `pak::pak()` command at the start of the semester and again whenever updates are announced.
+Run the `pak::pak()` command at the start of the semester and again weekly to check for updates.
 :::
 
 ---

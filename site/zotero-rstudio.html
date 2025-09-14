@@ -1,0 +1,49 @@
+---
+title: "Using Zotero with RStudio"
+description: "A guide to integrating Zotero reference management with RStudio for academic writing."
+format: html
+---
+
+# Using Zotero with RStudio
+
+Zotero is a free, open-source reference manager that helps you collect, organize, cite, and share research. Integrating Zotero with RStudio can streamline your academic writing workflow, especially when using Quarto or R Markdown documents.
+
+## 1. Install Zotero
+- Download Zotero from [zotero.org](https://www.zotero.org/).
+- Install the Zotero Connector for your web browser to easily save references.
+
+## 2. Organize Your References
+- Use Zotero to collect and organize references into collections.
+- Attach PDFs and notes to your references for easy access.
+
+## 3. Export References for RStudio
+- **BibTeX Export:**
+    - Right-click a collection or selected items in Zotero.
+    - Choose `Export Collection...` or `Export Items...`.
+    - Select `BibTeX` as the format and save the `.bib` file.
+- **Better BibTeX Plugin:**
+    - Install the [Better BibTeX](https://retorque.re/zotero-better-bibtex/) plugin for advanced citation key management and automatic export.
+
+## 4. Use References in RStudio (Quarto/R Markdown)
+- Place your exported `.bib` file in your project directory (e.g., `references.bib`).
+- In your Quarto or R Markdown document YAML header, add:
+
+```yaml
+documentclass: article
+bibliography: references.bib
+csl: apa.csl  # Optional: for citation style
+```
+
+- Cite references in your text using `@citationkey` (e.g., `@smith2020`).
+
+## 5. Render Your Document
+- Knit or render your document in RStudio. Citations and bibliography will be formatted automatically.
+
+## 6. Tips
+- Keep your `.bib` file updated as you add new references.
+- Use the Better BibTeX auto-export feature to keep your bibliography in sync.
+- Explore citation styles by downloading `.csl` files from [Zotero Style Repository](https://www.zotero.org/styles).
+
+---
+
+For more help, visit the [Zotero Documentation](https://www.zotero.org/support/) or the [Quarto Citations Guide](https://quarto.org/docs/authoring/footnotes-and-citations.html).

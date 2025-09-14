@@ -11,7 +11,11 @@ website:
       - text: "Getting Started"
         href: getting-started/getting-started.qmd
       - text: "R & RStudio"
-        href: r-and-rstudio/r-and-rstudio.qmd
+        menu:
+          - href: r-and-rstudio/r-and-rstudio.qmd
+            text: Overview
+          - href: r-and-rstudio/zotero-rstudio.qmd
+            text: Zotero & RStudio
       - text: "Weekly Journal"
         href: journal/journal-student-guide.qmd
       - text: "Quarto Basics"
@@ -37,10 +41,11 @@ website:
       title: "R & RStudio"
       style: docked
       contents:
-        - r-and-rstudio/r-and-rstudio.qmd
-        - r-and-rstudio/rstudio-four-panes.qmd
-        - r-and-rstudio/rstudio-global-options.qmd
-        - r-and-rstudio/r-rstudio-intro-legacy.qmd
+  - r-and-rstudio/r-and-rstudio.qmd
+  - r-and-rstudio/rstudio-four-panes.qmd
+  - r-and-rstudio/rstudio-global-options.qmd
+  - r-and-rstudio/r-rstudio-intro-legacy.qmd
+  - r-and-rstudio/zotero-rstudio.qmd
 
     - id: journal
       title: "Weekly Journal"
