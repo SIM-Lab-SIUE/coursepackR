@@ -1,0 +1,33 @@
+project:
+  type: book
+  output-dir: ../../docs/textbook-pdf
+book:
+  title: "Introduction to Media and Communication Resesarch Methods"
+  author: "A.P. Leith"
+  chapters:
+    - index.qmd
+    - chapter_02.qmd
+    - chapter_03.qmd
+    - chapter_04.qmd
+    - chapter_05.qmd
+    - chapter_06.qmd
+    - chapter_07.qmd
+    - chapter_08.qmd
+    - chapter_09.qmd
+    - chapter_10.qmd
+    - chapter_11.qmd
+    - chapter_12.qmd
+    - chapter_13.qmd
+    - chapter_14.qmd
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    documentclass: book
+    papersize: letter
+    geometry: [margin=1in]
+    keep-tex: false
+execute:
+  echo: false
+  warning: false
+  freeze: auto

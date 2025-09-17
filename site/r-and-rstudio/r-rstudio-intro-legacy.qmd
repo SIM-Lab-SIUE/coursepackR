@@ -52,7 +52,7 @@ From descriptive stats to regression and beyond in one place; `ggplot2` produces
 ### Reproducible Research
 Quarto documents combine **text + code + output** in one file. Re-render to update everything automatically.
 
-[![Reproducibility Spectrum](images/reproducibility.png){width="100%"}](https://geohackweek.github.io/reproducible-research/01-reproducible/)
+[![Reproducibility Spectrum](../images/reproducibility.png){width="100%"}](https://geohackweek.github.io/reproducible-research/01-reproducible/)
 
 ### Flexible & Extensible
 Thousands of packages for text analysis, social media data, networks, etc. Write your own functions when needed.

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>chapter_13 – MC Coursepack</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../textbook/chapter_14.html" rel="next">
+<link href="../textbook/chapter_12.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MC Coursepack</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../getting-started/getting-started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r--rstudio" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">R &amp; RStudio</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r--rstudio">    
+        <li>
+    <a class="dropdown-item" href="../r-and-rstudio/r-and-rstudio.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../r-and-rstudio/zotero-rstudio.html">
+ <span class="dropdown-text">Zotero &amp; RStudio</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../journal/journal-student-guide.html"> 
+<span class="menu-text">Weekly Journal</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../quarto/quarto-basics.html"> 
+<span class="menu-text">Quarto Basics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../workflow/weekly-workflows.html"> 
+<span class="menu-text">Course Workflow</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../git/git-and-github.html"> 
+<span class="menu-text">Git &amp; GitHub</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../troubleshooting/troubleshooting.html"> 
+<span class="menu-text">Troubleshooting</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../reference/package-reference.html"> 
+<span class="menu-text">Reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../textbook/index.html"> 
+<span class="menu-text">Textbook</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../textbook/chapter_13.html">Describing the Data — Descriptive Statistics and Visualization</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Textbook Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An Introduction to the Research Workflow and the Scientific Approach to Communication</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Research Ethics in the Digital Age</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foundations and Frameworks: Communication and Media Theories in Research</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building on Knowledge: The Literature Review</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">From Ideas to Inquiries: Developing Research Questions and Hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling: The Logic of Selection</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Art of Measurement: Conceptualization and Operationalization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Survey Research: Design and Implementation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Experiments and Causal Research Designs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Content Analysis: Manual and Automated Approaches</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling — Importing, Cleaning, and Transforming Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_13.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Describing the Data — Descriptive Statistics and Visualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Making Inferences — Hypothesis Testing and Reporting</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#describing-the-data-descriptive-statistics-and-visualization" id="toc-describing-the-data-descriptive-statistics-and-visualization" class="nav-link active" data-scroll-target="#describing-the-data-descriptive-statistics-and-visualization">Describing the Data — Descriptive Statistics and Visualization</a>
+  <ul class="collapse">
+  <li><a href="#the-first-look-from-raw-data-to-understanding" id="toc-the-first-look-from-raw-data-to-understanding" class="nav-link" data-scroll-target="#the-first-look-from-raw-data-to-understanding">The First Look: From Raw Data to Understanding</a></li>
+  <li><a href="#descriptive-statistics-summarizing-data-with-numbers" id="toc-descriptive-statistics-summarizing-data-with-numbers" class="nav-link" data-scroll-target="#descriptive-statistics-summarizing-data-with-numbers">Descriptive Statistics: Summarizing Data with Numbers</a>
+  <ul class="collapse">
+  <li><a href="#measures-of-central-tendency-finding-the-center-of-the-data" id="toc-measures-of-central-tendency-finding-the-center-of-the-data" class="nav-link" data-scroll-target="#measures-of-central-tendency-finding-the-center-of-the-data">Measures of Central Tendency: Finding the “Center” of the Data</a></li>
+  <li><a href="#measures-of-dispersion-describing-the-spread-of-the-data" id="toc-measures-of-dispersion-describing-the-spread-of-the-data" class="nav-link" data-scroll-target="#measures-of-dispersion-describing-the-spread-of-the-data">Measures of Dispersion: Describing the “Spread” of the Data</a></li>
+  </ul></li>
+  <li><a href="#data-visualization-summarizing-data-with-pictures" id="toc-data-visualization-summarizing-data-with-pictures" class="nav-link" data-scroll-target="#data-visualization-summarizing-data-with-pictures">Data Visualization: Summarizing Data with Pictures</a>
+  <ul class="collapse">
+  <li><a href="#core-principles-of-effective-visualization" id="toc-core-principles-of-effective-visualization" class="nav-link" data-scroll-target="#core-principles-of-effective-visualization">Core Principles of Effective Visualization</a></li>
+  <li><a href="#a-visual-vocabulary-choosing-the-right-chart-for-the-job" id="toc-a-visual-vocabulary-choosing-the-right-chart-for-the-job" class="nav-link" data-scroll-target="#a-visual-vocabulary-choosing-the-right-chart-for-the-job">A Visual Vocabulary: Choosing the Right Chart for the Job</a></li>
+  </ul></li>
+  <li><a href="#conclusion-the-foundation-of-analysis" id="toc-conclusion-the-foundation-of-analysis" class="nav-link" data-scroll-target="#conclusion-the-foundation-of-analysis">Conclusion: The Foundation of Analysis</a></li>
+  <li><a href="#journal-prompts" id="toc-journal-prompts" class="nav-link" data-scroll-target="#journal-prompts">Journal Prompts</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="describing-the-data-descriptive-statistics-and-visualization" class="level1 unnumbered">
+<h1 class="unnumbered">Describing the Data — Descriptive Statistics and Visualization</h1>
+<section id="the-first-look-from-raw-data-to-understanding" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-first-look-from-raw-data-to-understanding">The First Look: From Raw Data to Understanding</h2>
+<p>You have successfully navigated the intricate processes of research design, sampling, and data collection. The interviews are transcribed, the survey responses are compiled, the content has been coded, or the experiment is complete. You are now faced with the tangible result of your efforts: a dataset. In its raw form, this dataset is often an intimidating and uncommunicative entity—a spreadsheet with hundreds or thousands of rows of numbers, a folder filled with dense text files, or a collection of coded observations. It holds the answers to your research questions, but its secrets are locked away in a language of raw information. How do you begin to unlock them?</p>
+<p>Before we can leap to the complex work of testing hypotheses or making inferences about a population, we must first engage in the fundamental and indispensable act of <strong>description</strong>. This is the essential first step in data analysis, the process of getting to know our data intimately. It is the work of organizing, summarizing, and simplifying the main features of our dataset to understand its basic characteristics. We must understand the landscape of our own data before we can use it as a map to explore the wider world.</p>
+<p>This chapter introduces the two primary toolkits for this descriptive task: <strong>descriptive statistics</strong> and <strong>data visualization</strong>. These are not separate or competing activities; they are deeply intertwined and complementary ways of making sense of information. Descriptive statistics provide the tools to summarize our data with precision and concision, using a few key numbers to represent the central patterns and the spread of our observations. Data visualization, in turn, gives us the power to summarize our data with pictures, transforming those numbers into intuitive and powerful graphical forms that can reveal patterns, trends, and outliers that might otherwise remain hidden. This chapter provides a tool-agnostic guide to the conceptual logic of these methods. We will explore how to find the “center” and describe the “spread” of our data, and we will delve into the core principles of creating visualizations that are not just aesthetically pleasing, but are also clear, honest, and insightful. This is the crucial first look at our data, the foundation upon which all subsequent, more complex analyses will be built.</p>
+</section>
+<section id="descriptive-statistics-summarizing-data-with-numbers" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="descriptive-statistics-summarizing-data-with-numbers">Descriptive Statistics: Summarizing Data with Numbers</h2>
+<p>The primary goal of descriptive statistics is to take a large and potentially overwhelming set of observations and distill it down to a few manageable and meaningful summary numbers. These statistics provide a quantitative overview of our sample, allowing us to understand its key features at a glance. The two most fundamental types of descriptive statistics are measures of central tendency, which describe the “typical” value in our data, and measures of dispersion, which describe how spread out our data is.</p>
+<section id="measures-of-central-tendency-finding-the-center-of-the-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="measures-of-central-tendency-finding-the-center-of-the-data">Measures of Central Tendency: Finding the “Center” of the Data</h3>
+<p>A measure of central tendency is a single score that best represents the center of a distribution. It is the value that we might consider the most typical or representative of the entire set of scores. There are three primary measures of central tendency, and the choice of which one to use depends on the level of measurement of our variable and the shape of our data’s distribution.</p>
+<section id="the-mean-the-arithmetic-average" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-mean-the-arithmetic-average">The Mean: The Arithmetic Average</h4>
+<p>The mean is what most people think of as the “average.” It is calculated by summing all the scores in a dataset and dividing by the total number of scores. The mean is the most common measure of central tendency for interval and ratio-level data because it uses every single data point in its calculation, making it a sensitive and comprehensive summary of the entire dataset. It can be thought of as the “balancing point” of the data.</p>
+<p>The great strength of the mean is also its primary weakness: its sensitivity to every score. The mean is highly susceptible to the influence of <strong>outliers</strong>, which are extreme values that lie far from the rest of the data. Consider the final exam scores for a small class of ten students: {85, 88, 82, 90, 84, 86, 91, 83, 89, 12}. The first nine scores are tightly clustered in the 80s, but one student received a very low score of 12. The mean of these scores is 79. This “average” score is not very representative of the typical student’s performance, as it has been pulled down significantly by the single outlier.</p>
+</section>
+<section id="the-median-the-middle-point" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-median-the-middle-point">The Median: The Middle Point</h4>
+<p>The median is the value that falls in the exact middle of a distribution when all the scores are arranged in rank order from lowest to highest. It is the 50th percentile, the point that splits the data into two equal halves, with 50% of the scores falling above it and 50% falling below it.</p>
+<p>The primary advantage of the median is that it is a <strong>resistant measure</strong>, meaning it is not affected by extreme outliers. In our exam score example {12, 82, 83, 84, <strong>85, 86</strong>, 88, 89, 90, 91}, the median is 85.5 (the average of the two middle scores, 85 and 86). This value is a much more accurate and representative summary of the “typical” student’s performance than the mean of 79. For this reason, the median is the preferred measure of central tendency for data that is measured at the ordinal level, and for interval/ratio data that is highly <strong>skewed</strong> (asymmetrical) or contains significant outliers, such as data on income or housing prices.</p>
+</section>
+<section id="the-mode-the-most-frequent-value" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-mode-the-most-frequent-value">The Mode: The Most Frequent Value</h4>
+<p>The mode is the simplest measure of central tendency. It is the value or category that appears most frequently in a dataset. In the set of exam scores {85, 88, 57, 81, 65, 75, 64, 87, 99, 79, 59, 74, 82, 55, 86, 94, 72, 77, 85}, the mode is 85, because it occurs twice while all other scores occur only once.</p>
+<p>The mode is the only measure of central tendency that can be used for nominal-level (categorical) data. For example, in a survey of political affiliation, the mode would be the party that was chosen by the most respondents. A dataset can have no mode (if all values occur with equal frequency), one mode (<strong>unimodal</strong>), or multiple modes (<strong>bimodal</strong> or <strong>multimodal</strong>). The presence of two distinct modes in a distribution can be an important finding, as it may suggest that the sample is composed of two different subgroups.</p>
+</section>
+</section>
+<section id="measures-of-dispersion-describing-the-spread-of-the-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="measures-of-dispersion-describing-the-spread-of-the-data">Measures of Dispersion: Describing the “Spread” of the Data</h3>
+<p>Knowing the center of a distribution is only half the story. Two datasets can have the exact same mean but look completely different. Consider two small classes that both have a mean exam score of 80. In Class A, the scores are {78, 79, 80, 81, 82}. In Class B, the scores are {60, 70, 80, 90, 100}. While their central tendency is identical, the scores in Class A are tightly clustered around the mean, while the scores in Class B are much more spread out. Measures of dispersion (or variability) are statistics that describe this spread.</p>
+<section id="the-range-the-simplest-spread" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-range-the-simplest-spread">The Range: The Simplest Spread</h4>
+<p>The range is the simplest measure of dispersion, calculated as the difference between the highest and lowest scores in a dataset. In Class A, the range is 4 (82 - 78). In Class B, the range is 40 (100 - 60). The range provides a quick, easy-to-calculate sense of the total spread. However, because it is based on only two data points (the two most extreme scores), it is highly susceptible to outliers and provides a very limited picture of the overall variability.</p>
+</section>
+<section id="the-variance-and-standard-deviation-the-most-powerful-spread" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-variance-and-standard-deviation-the-most-powerful-spread">The Variance and Standard Deviation: The Most Powerful Spread</h4>
+<p>The variance and standard deviation are the most common and most powerful measures of dispersion. They are used with interval and ratio-level data and are typically reported alongside the mean. Conceptually, the <strong>standard deviation</strong> can be understood as the “average distance of the scores from the mean.” The <strong>variance</strong> is simply the standard deviation squared; it is a crucial statistic for more advanced inferential tests but is less intuitive for descriptive purposes because its units are squared (e.g., “dollars squared”).</p>
+<p>A small standard deviation indicates that the data points are tightly clustered around the mean, suggesting a <strong>homogeneous</strong> dataset (like Class A). A large standard deviation indicates that the data points are more spread out, suggesting a <strong>heterogeneous</strong> dataset (like Class B). The standard deviation uses every score in its calculation, making it a sensitive and comprehensive measure of the overall variability in the data.</p>
+</section>
+</section>
+</section>
+<section id="data-visualization-summarizing-data-with-pictures" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="data-visualization-summarizing-data-with-pictures">Data Visualization: Summarizing Data with Pictures</h2>
+<p>While descriptive statistics provide a precise numerical summary of our data, they can sometimes fail to convey the intuitive, “big picture” understanding that a visual representation can offer. Data visualization is the process of translating numerical data into graphical forms to reveal patterns, trends, and relationships. An effective visualization is not an aesthetic afterthought; it is a crucial part of the analysis and communication process that can communicate a key finding more quickly and powerfully than a paragraph of text.</p>
+<section id="core-principles-of-effective-visualization" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="core-principles-of-effective-visualization">Core Principles of Effective Visualization</h3>
+<p>Creating an effective visualization is a craft guided by a set of core principles designed to maximize clarity and minimize distortion. The goal is to create a graphic that is honest, insightful, and easy for your audience to understand.</p>
+<ol type="1">
+<li><p><strong>Show the Data:</strong> The primary goal of any visualization is to present the data clearly. This means focusing on the relevant data points and avoiding unnecessary visual elements—often called “chart junk”—that obscure them. The data itself should be the hero of the graphic.</p></li>
+<li><p><strong>Reduce the Clutter:</strong> Every element in a chart should serve an informational purpose. Unnecessary elements—such as heavy gridlines, distracting background textures, or misleading 3D effects—should be removed to let the data stand out. As the pioneering designer Edward Tufte advises, maximize the “data-ink ratio.”</p></li>
+<li><p><strong>Integrate Graphics and Text:</strong> The text in and around a chart is as important as the visual elements. Instead of relying on a separate legend, label data series directly on the chart. Use an “active title” that states the main finding of the chart, like a newspaper headline, rather than a generic description (e.g., “Vaccination Rates Climbed After Campaign Launch” is better than “Figure 1. Vaccination Rates”).</p></li>
+<li><p><strong>Avoid the “Spaghetti Chart” (Use Small Multiples):</strong> When a single chart becomes too crowded with data (e.g., a line chart with a dozen overlapping lines), it is often better to break it into a series of smaller charts, known as <strong>small multiples</strong> or <strong>panel charts</strong>. These charts all use the same scale and axes but display different subsets of the data, allowing for clear presentation of complex information.</p></li>
+<li><p><strong>Start with Gray:</strong> This is a powerful practical strategy. Begin designing your chart with all elements in shades of gray. This forces you to make conscious, deliberate decisions about where to use color. Color should be used strategically to highlight the most important information and guide the reader’s attention, not for mere decoration.</p></li>
+</ol>
+</section>
+<section id="a-visual-vocabulary-choosing-the-right-chart-for-the-job" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="a-visual-vocabulary-choosing-the-right-chart-for-the-job">A Visual Vocabulary: Choosing the Right Chart for the Job</h3>
+<p>Different chart types are suited for different analytical tasks. The choice of which chart to use should be driven by the story you want to tell with your data.</p>
+<p><strong>Showing a Distribution (for a single variable):</strong></p>
+<ul>
+<li><p><strong>Histogram:</strong> This is the classic tool for visualizing a distribution. It is a bar chart that shows the frequency of data points falling into a series of specified intervals, or “bins.” A histogram is excellent for quickly seeing the overall shape of your data—whether it is symmetrical (like a bell curve), skewed, or bimodal.</p></li>
+<li><p><strong>Box-and-Whisker Plot (Boxplot):</strong> This is a compact and powerful summary of a distribution. The “box” shows the middle 50% of the data (the interquartile range), with a line inside marking the median. The “whiskers” extend out to show the range of the data, and individual points are often used to identify potential outliers. Boxplots are especially useful for comparing the distributions of a variable across several different groups.</p></li>
+</ul>
+<p><strong>Comparing Categories:</strong></p>
+<ul>
+<li><p><strong>Bar Chart:</strong> This is the workhorse for comparing quantities across discrete categories. The length of the bars is proportional to the value they represent. A crucial rule for bar charts is that the value axis must start at zero to avoid distorting the visual comparison of the bars’ lengths.</p></li>
+<li><p><strong>Dot Plot:</strong> This is an excellent alternative to a bar chart, especially when you have many categories. It uses a simple dot to mark the value for each category, resulting in a cleaner, less ink-heavy graphic.</p></li>
+</ul>
+<p><strong>Showing Change Over Time:</strong></p>
+<ul>
+<li><p><strong>Line Chart:</strong> This is the standard for showing trends in a continuous variable over a period of time. The line connects a series of data points, making it easy to see patterns of increase, decrease, and volatility.</p></li>
+<li><p><strong>Slope Chart:</strong> This is a simplified line chart that is perfect for showing the change between just two points in time for multiple categories. It uses a series of lines to connect the starting values on the left to the ending values on the right, clearly showing both the magnitude and direction of change for each category.</p></li>
+</ul>
+<p><strong>Showing a Relationship (between two continuous variables):</strong></p>
+<ul>
+<li><strong>Scatterplot:</strong> This is the primary tool for visualizing the correlation between two variables. Each case in the dataset is represented by a single dot, plotted according to its values on the horizontal (X) axis and the vertical (Y) axis. The overall pattern of the dots reveals the direction (positive or negative), strength (tightly clustered or widely dispersed), and form (linear or curvilinear) of the relationship.</li>
+</ul>
+<p><strong>Showing a Part-to-Whole Relationship:</strong></p>
+<ul>
+<li><p><strong>Pie Chart:</strong> While familiar to most audiences, the pie chart is often criticized by data visualization experts because humans are not very good at accurately judging angles and areas. They are best used for a small number of categories (five or fewer) when the goal is to show a simple part-to-whole comparison and the exact values are less important than the general proportions.</p></li>
+<li><p><strong>Stacked Bar Chart or Treemap:</strong> These are often better alternatives to pie charts. A <strong>100% stacked bar chart</strong> can clearly show how the proportional makeup of a whole changes across different categories. A <strong>treemap</strong> uses a series of nested rectangles, where the area of each rectangle is proportional to its value, to show hierarchical part-to-whole relationships.</p></li>
+</ul>
+<p><strong>Tables as Visualizations:</strong></p>
+<p>Finally, it is essential to remember that even a simple table is a form of data visualization. A well-designed table can be the most effective way to communicate when the goal is to show precise values. The principles of good design apply here as well: use subtle dividers instead of heavy gridlines, align numbers to the right to make them easy to compare, use white space effectively, and consider adding small visual elements like <strong>heatmaps</strong> (coloring the cells based on their value) or <strong>sparklines</strong> (small, word-sized line charts within a row) to enhance readability and highlight patterns.</p>
+</section>
+</section>
+<section id="conclusion-the-foundation-of-analysis" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="conclusion-the-foundation-of-analysis">Conclusion: The Foundation of Analysis</h2>
+<p>The process of describing data is the essential first conversation you have with your research findings. It is the foundational stage where you move from a chaotic collection of raw information to a structured and coherent understanding of your sample’s basic characteristics. The tools of descriptive statistics—the mean, median, mode, range, and standard deviation—provide the numerical language for this conversation, allowing you to summarize complex patterns with precision. The tools of data visualization provide the graphical language, transforming those numbers into intuitive pictures that can reveal insights and communicate findings with power and clarity.</p>
+<p>This descriptive work is not a preliminary chore; it is a fundamental part of the analytical process. It is how we check our assumptions, identify potential problems in our data, and gain the deep familiarity necessary to conduct more advanced analyses responsibly. The insights gained from this first look are the bedrock upon which the inferential claims we will discuss in the next chapter are built.</p>
+</section>
+<section id="journal-prompts" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="journal-prompts">Journal Prompts</h2>
+<ol type="1">
+<li><p>Think about a variable you’ve seen reported often—something like income, grades, or social media followers. Was it reported as an average (mean)? Do you think that number accurately reflected the “typical” case? Based on what you learned in this chapter, would another measure of central tendency (median or mode) have been more appropriate? Why?</p></li>
+<li><p>Describe a time when a graph or chart helped you understand something better than a list of numbers could. What did the visual help reveal? Based on this chapter, which principle of good visualization do you think was at work? If you’ve seen a bad graph or misleading chart, describe that too—and explain what could have made it clearer.</p></li>
+<li><p>The chapter describes descriptive analysis as a “first conversation” with your data. Why is it essential to fully describe your sample before jumping to conclusions or testing hypotheses? How might skipping this step lead to bad research or misleading claims?</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../textbook/chapter_12.html" class="pagination-link" aria-label="Data Wrangling — Importing, Cleaning, and Transforming Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Wrangling — Importing, Cleaning, and Transforming Data</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../textbook/chapter_14.html" class="pagination-link" aria-label="Making Inferences — Hypothesis Testing and Reporting">
+        <span class="nav-page-text">Making Inferences — Hypothesis Testing and Reporting</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

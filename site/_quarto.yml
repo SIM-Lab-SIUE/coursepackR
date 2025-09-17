@@ -29,6 +29,9 @@ website:
       - text: "Reference"
         href: reference/package-reference.qmd
 
+      - text: "Textbook"
+        href: textbook/index.qmd
+
   sidebar:
     - id: getting-started
       title: "Getting Started"
@@ -41,11 +44,11 @@ website:
       title: "R & RStudio"
       style: docked
       contents:
-  - r-and-rstudio/r-and-rstudio.qmd
-  - r-and-rstudio/rstudio-four-panes.qmd
-  - r-and-rstudio/rstudio-global-options.qmd
-  - r-and-rstudio/r-rstudio-intro-legacy.qmd
-  - r-and-rstudio/zotero-rstudio.qmd
+        - r-and-rstudio/r-and-rstudio.qmd
+        - r-and-rstudio/rstudio-four-panes.qmd
+        - r-and-rstudio/rstudio-global-options.qmd
+        - r-and-rstudio/r-rstudio-intro-legacy.qmd
+        - r-and-rstudio/zotero-rstudio.qmd
 
     - id: journal
       title: "Weekly Journal"
@@ -88,13 +91,57 @@ website:
         - reference/package-reference.qmd
         - reference/package-functions.qmd
 
+    - id: textbook
+      title: "Textbook"
+      style: docked
+      contents:
+        - textbook/index.qmd
+        - textbook/chapter_01.qmd
+        - textbook/chapter_02.qmd
+        - textbook/chapter_03.qmd
+        - textbook/chapter_04.qmd
+        - textbook/chapter_05.qmd
+        - textbook/chapter_06.qmd
+        - textbook/chapter_07.qmd
+        - textbook/chapter_08.qmd
+        - textbook/chapter_09.qmd
+        - textbook/chapter_10.qmd
+        - textbook/chapter_11.qmd
+        - textbook/chapter_12.qmd
+        - textbook/chapter_13.qmd
+        - textbook/chapter_14.qmd
+
 format:
+
   html:
     theme: cosmo
     css: styles.css
     toc: true
     page-navigation: true
     code-copy: true
+  pdf:
+    toc: true
+    number-sections: true
+    documentclass: book
+    papersize: letter
+    geometry: [margin=1in]
+    mainfont: Times New Roman
+    sansfont: Arial
+    fontsize: 12pt
+    linestretch: 1.5
+    colorlinks: true
+    toc-depth: 3
+    classoption: [oneside]
+    hyperrefoptions: [bookmarksopen=true,bookmarksnumbered=true]
+    # Ensure left alignment for main text
+    include-in-header: |
+      \usepackage{ragged2e}
+      \RaggedRight
+    # Embed all fonts and optimize PDF
+    pdf-engine: lualatex
+    keep-tex: false
+    # Ensure high-res images (user must provide 300dpi images)
+    # For tables, use kableExtra or booktabs in .qmd for best results
 
 execute:
   freeze: auto

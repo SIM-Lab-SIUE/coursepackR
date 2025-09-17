@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>chapter_07 – MC Coursepack</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../textbook/chapter_08.html" rel="next">
+<link href="../textbook/chapter_06.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e52b01692f360e42712232c25c0c23f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MC Coursepack</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../getting-started/getting-started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r--rstudio" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">R &amp; RStudio</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r--rstudio">    
+        <li>
+    <a class="dropdown-item" href="../r-and-rstudio/r-and-rstudio.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../r-and-rstudio/zotero-rstudio.html">
+ <span class="dropdown-text">Zotero &amp; RStudio</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../journal/journal-student-guide.html"> 
+<span class="menu-text">Weekly Journal</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../quarto/quarto-basics.html"> 
+<span class="menu-text">Quarto Basics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../workflow/weekly-workflows.html"> 
+<span class="menu-text">Course Workflow</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../git/git-and-github.html"> 
+<span class="menu-text">Git &amp; GitHub</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../troubleshooting/troubleshooting.html"> 
+<span class="menu-text">Troubleshooting</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../reference/package-reference.html"> 
+<span class="menu-text">Reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../textbook/index.html"> 
+<span class="menu-text">Textbook</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../textbook/chapter_07.html">Sampling: The Logic of Selection</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Textbook Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An Introduction to the Research Workflow and the Scientific Approach to Communication</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Research Ethics in the Digital Age</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foundations and Frameworks: Communication and Media Theories in Research</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building on Knowledge: The Literature Review</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">From Ideas to Inquiries: Developing Research Questions and Hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_07.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Sampling: The Logic of Selection</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Art of Measurement: Conceptualization and Operationalization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Survey Research: Design and Implementation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Experiments and Causal Research Designs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Content Analysis: Manual and Automated Approaches</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling — Importing, Cleaning, and Transforming Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Describing the Data — Descriptive Statistics and Visualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../textbook/chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Making Inferences — Hypothesis Testing and Reporting</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sampling-the-logic-of-selection" id="toc-sampling-the-logic-of-selection" class="nav-link active" data-scroll-target="#sampling-the-logic-of-selection">Sampling: The Logic of Selection</a>
+  <ul class="collapse">
+  <li><a href="#the-universe-in-a-drop-of-water" id="toc-the-universe-in-a-drop-of-water" class="nav-link" data-scroll-target="#the-universe-in-a-drop-of-water">The Universe in a Drop of Water</a></li>
+  <li><a href="#the-logic-of-sampling-representativeness-and-generalizability" id="toc-the-logic-of-sampling-representativeness-and-generalizability" class="nav-link" data-scroll-target="#the-logic-of-sampling-representativeness-and-generalizability">The Logic of Sampling: Representativeness and Generalizability</a></li>
+  <li><a href="#probability-sampling-the-gold-standard-of-generalization" id="toc-probability-sampling-the-gold-standard-of-generalization" class="nav-link" data-scroll-target="#probability-sampling-the-gold-standard-of-generalization">Probability Sampling: The Gold Standard of Generalization</a>
+  <ul class="collapse">
+  <li><a href="#simple-random-sampling" id="toc-simple-random-sampling" class="nav-link" data-scroll-target="#simple-random-sampling">Simple Random Sampling</a></li>
+  <li><a href="#systematic-random-sampling" id="toc-systematic-random-sampling" class="nav-link" data-scroll-target="#systematic-random-sampling">Systematic Random Sampling</a></li>
+  <li><a href="#stratified-sampling" id="toc-stratified-sampling" class="nav-link" data-scroll-target="#stratified-sampling">Stratified Sampling</a></li>
+  <li><a href="#cluster-sampling" id="toc-cluster-sampling" class="nav-link" data-scroll-target="#cluster-sampling">Cluster Sampling</a></li>
+  </ul></li>
+  <li><a href="#non-probability-sampling-when-generalization-is-not-the-goal" id="toc-non-probability-sampling-when-generalization-is-not-the-goal" class="nav-link" data-scroll-target="#non-probability-sampling-when-generalization-is-not-the-goal">Non-Probability Sampling: When Generalization Is Not the Goal</a>
+  <ul class="collapse">
+  <li><a href="#convenience-sampling" id="toc-convenience-sampling" class="nav-link" data-scroll-target="#convenience-sampling">Convenience Sampling</a></li>
+  <li><a href="#purposive-sampling" id="toc-purposive-sampling" class="nav-link" data-scroll-target="#purposive-sampling">Purposive Sampling</a></li>
+  <li><a href="#snowball-sampling" id="toc-snowball-sampling" class="nav-link" data-scroll-target="#snowball-sampling">Snowball Sampling</a></li>
+  <li><a href="#quota-sampling" id="toc-quota-sampling" class="nav-link" data-scroll-target="#quota-sampling">Quota Sampling</a></li>
+  </ul></li>
+  <li><a href="#sampling-error-confidence-and-sample-size" id="toc-sampling-error-confidence-and-sample-size" class="nav-link" data-scroll-target="#sampling-error-confidence-and-sample-size">Sampling Error, Confidence, and Sample Size</a></li>
+  <li><a href="#sampling-in-the-digital-age-new-frontiers-and-new-problems" id="toc-sampling-in-the-digital-age-new-frontiers-and-new-problems" class="nav-link" data-scroll-target="#sampling-in-the-digital-age-new-frontiers-and-new-problems">Sampling in the Digital Age: New Frontiers and New Problems</a></li>
+  <li><a href="#conclusion-the-foundation-of-inference" id="toc-conclusion-the-foundation-of-inference" class="nav-link" data-scroll-target="#conclusion-the-foundation-of-inference">Conclusion: The Foundation of Inference</a></li>
+  <li><a href="#journal-prompts" id="toc-journal-prompts" class="nav-link" data-scroll-target="#journal-prompts">Journal Prompts</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="sampling-the-logic-of-selection" class="level1 unnumbered">
+<h1 class="unnumbered">Sampling: The Logic of Selection</h1>
+<section id="the-universe-in-a-drop-of-water" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-universe-in-a-drop-of-water">The Universe in a Drop of Water</h2>
+<p>In 1854, a devastating cholera outbreak gripped the Soho district of London. The prevailing theory of the time, the “miasma” theory, held that the disease was spread through “bad air.” A physician named John Snow, however, was skeptical. He suspected the source was contaminated water. To test his idea, he did not need to analyze every drop of water in London or interview every single resident. Instead, he engaged in a brilliant act of sampling. He meticulously mapped the locations of the cholera deaths and found they clustered around a single public water pump on Broad Street. He then took samples of water from that pump and, upon examining it under a microscope, found evidence of the contamination he suspected. By studying a carefully selected subset of the environment, Snow was able to draw a powerful conclusion about the entire outbreak, leading to the removal of the pump handle and a swift decline in new cases.</p>
+<p>This historical episode is a powerful illustration of the logic that lies at the heart of all empirical research: the logic of sampling. In most research, it is impossible, impractical, or simply unnecessary to study every single member of a group of interest. We cannot survey every voter in a country, analyze every news article ever published, or observe every family’s media habits. Instead, we study a smaller, manageable subset—a <strong>sample</strong>—and seek to draw conclusions about the larger group, or <strong>population</strong>, from which it was drawn. The entire process of inference, of making claims about the whole based on evidence from a part, rests on the quality of that sample. A poorly chosen sample, like a movie trailer that shows only the two exciting minutes from a dull two-hour film, can be profoundly misleading. A well-chosen sample, however, can act like a miniature, high-fidelity portrait of the larger population, allowing us to understand the universe by studying a single drop of water.</p>
+<p>This chapter is dedicated to the principles and techniques of sampling. It is a journey into one of the most foundational and consequential stages of the research workflow. We will begin by defining the core concepts of population, sample, and sampling frame, and explore the crucial goals of representativeness and generalizability. We will then delve into the two major families of sampling techniques. First, we will examine <strong>probability sampling</strong>, the gold standard for quantitative research, which uses the power of random selection to generate samples that can accurately mirror a population. Second, we will explore <strong>non-probability sampling</strong>, a set of techniques essential for qualitative and exploratory research, where the goal is not to generalize to a population but to gain deep, targeted insights. Finally, we will discuss the practical realities of sampling error, the logic of confidence intervals, and the new challenges and opportunities for sampling that have emerged in the complex landscape of the digital age. Understanding the logic of selection is not just a technical skill; it is the key to determining the reach and credibility of your research findings.</p>
+</section>
+<section id="the-logic-of-sampling-representativeness-and-generalizability" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-logic-of-sampling-representativeness-and-generalizability">The Logic of Sampling: Representativeness and Generalizability</h2>
+<p>The primary goal of many research studies, particularly those within the social scientific paradigm, is to produce findings that are <strong>generalizable</strong>. Generalization is the process by which a researcher takes conclusions derived from observing a sample and extends those conclusions to the entire, unobserved population. For example, when a polling organization reports that 52% of a sample of 1,200 likely voters supports a particular candidate, they are generalizing that finding to the entire population of tens of millions of likely voters. The degree to which this leap of inference is justified depends entirely on how the sample was selected and, specifically, on its <strong>representativeness</strong>.</p>
+<p>A sample is considered <strong>representative</strong> if it is a microcosm of the population from which it is drawn—if it accurately reflects the characteristics of the population in approximately the same proportion. If a population of university students is 60% female and 40% male, a representative sample of those students should also be approximately 60% female and 40% male. The same would hold true for other relevant characteristics, such as age, race, socioeconomic status, and year in school. A sample that fails to mirror the population in these ways is considered biased, and any generalizations made from it are likely to be inaccurate. This was the fatal flaw of the infamous 1936</p>
+<p>Literary Digest poll, which predicted a landslide presidential victory for Alf Landon over Franklin Roosevelt. The poll’s sample was drawn from telephone directories and automobile registration lists, which in the midst of the Great Depression systematically overrepresented wealthier Americans and excluded the poorer voters who overwhelmingly supported Roosevelt. The sample was massive—over two million people—but it was not representative, and thus its prediction was spectacularly wrong.</p>
+<p>The process of sampling, therefore, begins with a series of careful definitions. The first step is to precisely define the <strong>target population</strong>, which consists of all the objects, events, or people of a certain type about which the researcher seeks knowledge. This definition must be specific, setting clear boundaries that separate who or what is of interest from who or what is not. A population of “married couples” is too vague. A more precise definition might be “opposite-sex married couples, living in the same residence in the United States, who have been married for between five and ten years and have at least one child under the age of 18.”1 This level of specificity is crucial for the next step: creating a <strong>sampling frame</strong>.</p>
+<p>A sampling frame is the actual list of all the elements or units in the population from which the sample will be selected. It is the operationalization of the population definition. For a study of current members of the American Sociological Association, the sampling frame would be the organization’s official membership roster. For a study of news articles from a particular newspaper, the sampling frame would be a complete archive of all articles published in that paper during a specific time period. The quality of a sample can be no better than the quality of its sampling frame. An incomplete or inaccurate list will produce a biased sample, regardless of how carefully the selection process is conducted. For example, if the sampling frame for a city’s residents is the local telephone book, it will systematically exclude people with unlisted numbers and those who only use mobile phones, a problem known as <strong>undercoverage</strong>. The time spent carefully defining the population and constructing or obtaining the best possible sampling frame is a critical investment in the ultimate validity of a study’s findings.</p>
+</section>
+<section id="probability-sampling-the-gold-standard-of-generalization" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="probability-sampling-the-gold-standard-of-generalization">Probability Sampling: The Gold Standard of Generalization</h2>
+<p>How can a researcher be confident that their sample is truly representative of the population? The most powerful strategy for overcoming the obstacles of bias and achieving a representative sample is to use a <strong>probability sampling</strong> technique. A probability sample is one in which every element in the population has a known, non-zero, and calculable probability of being included in the sample. The mechanism that makes this possible is <strong>random selection</strong>. In a random selection process, chance alone determines which elements from the sampling frame are chosen. This process systematically eliminates the influence of researcher bias (e.g., a surveyor in a mall who consciously or unconsciously avoids certain types of people) and allows the laws of probability to do the work of creating a sample that, in the long run, will mirror the population.</p>
+<p>The idea that leaving something as important as sample selection to chance can seem counterintuitive. Our culture often warns us to “leave nothing to chance.” In sampling, however, chance is our greatest ally. It is the guarantor of fairness and the mathematical foundation upon which the entire logic of statistical inference is built. All probability sampling methods require a complete and accurate sampling frame. While there are several variations, they all share this core commitment to random selection.</p>
+<section id="simple-random-sampling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="simple-random-sampling">Simple Random Sampling</h3>
+<p>This is the most basic and straightforward form of probability sampling, and it serves as the theoretical foundation for all others. In a <strong>simple random sample</strong>, every element in the sampling frame has an equal chance of being selected, and every possible combination of elements has an equal chance of being the final sample. The process is analogous to placing the name of every person in the population into a very large hat, mixing them thoroughly, and drawing out the desired number of names for the sample.</p>
+<p>In practice, this is typically done using a computer. The researcher first numbers every element in the sampling frame. Then, a random number generator is used to produce a list of numbers corresponding to the desired sample size. The elements on the list whose numbers were generated are included in the sample. While simple random sampling is the “purest” form of probability sampling, it can be tedious and impractical for very large populations, which has led to the development of more efficient alternatives.</p>
+</section>
+<section id="systematic-random-sampling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="systematic-random-sampling">Systematic Random Sampling</h3>
+<p>A <strong>systematic random sample</strong> is often a more efficient alternative to a simple random sample, especially when dealing with a long sampling frame. The process begins in the same way, with a complete list of the population. The researcher then calculates a <strong>sampling interval</strong> (denoted as k) by dividing the population size by the desired sample size. A random starting point is then selected between 1 and k. From that starting point, every kth element on the list is selected for inclusion in the sample.</p>
+<p>For example, imagine a researcher has a sampling frame of 10,000 employees at a large corporation and wants to draw a sample of 500. The sampling interval would be 20 (10,000 / 500 = 20). The researcher would then use a random number generator to select a starting number between 1 and 20. If the number 13 is chosen, the sample would consist of the 13th, 33rd, 53rd, 73rd (and so on) employees on the list until 500 have been selected. In most cases, a systematic sample is functionally equivalent to a simple random sample. The only potential pitfall is if the sampling frame has a hidden periodic pattern that happens to align with the sampling interval, which could introduce a systematic bias. For instance, if a list of houses is organized by street corner, and every 20th house is a corner lot, a sampling interval of 20 would result in a sample of only corner-lot houses.</p>
+</section>
+<section id="stratified-sampling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="stratified-sampling">Stratified Sampling</h3>
+<p>Sometimes, a researcher wants to ensure that specific subgroups within a population are adequately represented in the sample. This is particularly important when a subgroup of interest is relatively small. A simple random sample might, by chance, underrepresent or even completely miss the members of this small group. <strong>Stratified sampling</strong> is a technique designed to prevent this.</p>
+<p>The process begins by dividing, or stratifying, the population into mutually exclusive and homogeneous subgroups, or <strong>strata</strong>, based on a characteristic of interest (e.g., gender, race, age group, geographic region). A separate random sample (either simple or systematic) is then drawn from within each stratum. This guarantees that the final sample will include members from each subgroup.</p>
+<p>In <strong>proportionate stratified sampling</strong>, the number of elements drawn from each stratum is proportional to that stratum’s representation in the total population. If a university’s student body is 15% seniors, a proportionate stratified sample would ensure that 15% of the sample consists of seniors. In <strong>disproportionate stratified sampling</strong>, a researcher might intentionally “oversample” a small subgroup to ensure they have a large enough number of cases from that group to conduct meaningful statistical analysis. When using this technique, the results must be statistically weighted later to correct for the oversampling and accurately reflect the total population.</p>
+</section>
+<section id="cluster-sampling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="cluster-sampling">Cluster Sampling</h3>
+<p>What happens when it is impossible or impractical to construct a complete sampling frame for a population? This is often the case for large, geographically dispersed populations, like all public high school teachers in the United States. It would be a monumental task to compile a single list of every teacher. <strong>Cluster sampling</strong> is a multi-stage technique designed for precisely these situations.</p>
+<p>Instead of sampling individuals, the researcher first samples larger, naturally occurring groups, or <strong>clusters</strong>, in which the individuals are found. The process works in stages, moving from larger clusters to smaller ones. To sample high school teachers, a researcher might:</p>
+<ol type="1">
+<li><p>Obtain a list of all school districts in the country (the first-stage clusters) and draw a random sample of districts.</p></li>
+<li><p>For each selected district, obtain a list of all high schools (the second-stage clusters) and draw a random sample of schools.</p></li>
+<li><p>For each selected school, obtain a list of all teachers (the final sampling frame) and draw a simple random sample of teachers.</p></li>
+</ol>
+<p>Cluster sampling is often more efficient and less expensive than simple random sampling for large populations. However, it also tends to have a higher degree of sampling error, because error is introduced at each stage of the sampling process.</p>
+</section>
+</section>
+<section id="non-probability-sampling-when-generalization-is-not-the-goal" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="non-probability-sampling-when-generalization-is-not-the-goal">Non-Probability Sampling: When Generalization Is Not the Goal</h2>
+<p>In many research situations, particularly in qualitative or exploratory studies, a sampling frame is not available, or the primary goal is not to produce findings that are statistically generalizable to a larger population. In these cases, researchers use <strong>non-probability sampling</strong> methods. In non-probability sampling, the probability of any given element being selected is unknown, and the selection process is not random. The findings from these samples cannot be used to make statistical inferences about a population, but they can provide valuable, in-depth, and targeted insights that are essential for many research questions.</p>
+<section id="convenience-sampling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="convenience-sampling">Convenience Sampling</h3>
+<p>Also known as accidental or haphazard sampling, <strong>convenience sampling</strong> involves selecting participants based on their easy availability to the researcher. This is the least rigorous of all sampling methods but is very common in communication research, especially for preliminary or exploratory studies. Examples include surveying students in a large university lecture course, interviewing people who happen to be walking through a public park, or analyzing the first 50 comments on a news website. The major disadvantage of convenience sampling is that it is highly susceptible to selection bias; the people who are “convenient” are often not representative of any larger population.</p>
+</section>
+<section id="purposive-sampling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="purposive-sampling">Purposive Sampling</h3>
+<p>Also called judgmental sampling, <strong>purposive sampling</strong> is a technique in which the researcher uses their own knowledge and judgment to select cases that are most informative for the study’s purpose. The researcher intentionally targets individuals who are known to possess specific characteristics or expertise relevant to the research question. For example, if a researcher wants to understand the communication strategies of successful social movement leaders, they would not sample randomly from the population; they would purposively seek out and interview individuals who are recognized as leaders in that field. This method is common in qualitative research where the goal is to gain deep insight from a small, information-rich sample.</p>
+</section>
+<section id="snowball-sampling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="snowball-sampling">Snowball Sampling</h3>
+<p><strong>Snowball sampling</strong>, also known as network or respondent-assisted sampling, is a referral-based technique used to find participants in hard-to-reach or hidden populations for which no sampling frame exists. This method is particularly useful for studying stigmatized or marginalized groups, such as undocumented immigrants, members of an underground subculture, or individuals with a rare medical condition. The researcher starts by identifying and interviewing a few key informants who are members of the population. These initial participants are then asked to refer the researcher to other members of their network. The sample “snowballs” as each new participant leads to others. The primary limitation of this method is that it tends to sample people who are well-connected within a social network, potentially missing those who are more isolated.</p>
+</section>
+<section id="quota-sampling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="quota-sampling">Quota Sampling</h3>
+<p><strong>Quota sampling</strong> is the non-probability equivalent of stratified sampling. Like stratified sampling, the researcher begins by identifying relevant subgroups in the population and determining the proportion of the population that falls into each subgroup (e.g., based on census data for age, gender, and race). The researcher then sets a “quota” for the number of participants to be recruited from each subgroup to match these population proportions. The crucial difference is that the participants who fill these quotas are not selected randomly. They are typically recruited using convenience methods. For example, a mall interviewer might be told to survey 20 men and 30 women. They will then approach people in the mall until they have met those specific quotas. While quota sampling can create a sample that appears representative on the surface for a few key characteristics, it is still subject to the selection biases of convenience sampling and cannot be used for statistical generalization.</p>
+</section>
+</section>
+<section id="sampling-error-confidence-and-sample-size" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sampling-error-confidence-and-sample-size">Sampling Error, Confidence, and Sample Size</h2>
+<p>Even the most meticulously designed probability sample will almost never be a perfect mirror of the population. Imagine drawing a small handful of marbles from a large jar containing an equal number of red and blue marbles. By pure chance, your handful might contain slightly more red marbles or slightly more blue ones. This natural, random variation between a sample statistic (the percentage of red marbles in your hand) and the population parameter (the true 50/50 split in the jar) is called <strong>sampling error</strong>. It is an unavoidable feature of sampling, an acknowledgment that we are working with incomplete information.</p>
+<p>While we cannot eliminate sampling error, the power of probability theory is that it allows us to account for it and to quantify our uncertainty. This is done through the calculation of <strong>confidence intervals</strong> and <strong>confidence levels</strong>.</p>
+<ul>
+<li><p>A <strong>confidence interval</strong>, often reported in the media as the “margin of error,” provides a range of values within which the true population parameter is likely to fall. When a poll reports that a candidate has 46% support with a margin of error of +/- 3%, they are stating a confidence interval of 43% to 49%. They are acknowledging that the true level of support in the population is probably not exactly 46%, but is very likely somewhere within that range.</p></li>
+<li><p>The <strong>confidence level</strong> expresses how certain we are that the true population value lies within that calculated interval. The standard confidence level used in most social science research is 95%. A 95% confidence level means that if we were to draw 100 different random samples from the same population and calculate a confidence interval for each one, we would expect the true population parameter to fall within our interval in 95 of those 100 samples.</p></li>
+</ul>
+<p>The size of the confidence interval—our margin of error—is influenced by two main factors: the variability within the population and the size of our sample. For a highly diverse, or <strong>heterogeneous</strong>, population, we need a larger sample to capture that variability accurately than we would for a very uniform, or <strong>homogeneous</strong>, population. The most direct way a researcher can increase the precision of their estimates (i.e., narrow the confidence interval) is by increasing the <strong>sample size</strong>. A larger sample provides more information and thus reduces the uncertainty caused by sampling error. However, there is a point of diminishing returns; quadrupling the sample size is required to cut the margin of error in half, which can be very costly. Determining the appropriate sample size is a balancing act between the desired level of statistical precision and the practical constraints of time and resources.</p>
+</section>
+<section id="sampling-in-the-digital-age-new-frontiers-and-new-problems" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sampling-in-the-digital-age-new-frontiers-and-new-problems">Sampling in the Digital Age: New Frontiers and New Problems</h2>
+<p>The rise of the internet and social media has radically transformed the landscape of communication research, presenting both unprecedented opportunities and profound new challenges for sampling. Researchers now have access to vast streams of “big data” generated by millions of users, but the traditional principles of sampling are often difficult, if not impossible, to apply in this new environment.</p>
+<p>The most significant challenge is the breakdown of the traditional <strong>sampling frame</strong>. For most social media platforms, a complete and accurate list of all users—the full population—is simply not available to researchers. The total population of Twitter or Facebook is unknown and constantly in flux. This means that a true simple random sample of all users is not possible. Researchers often rely on data collected through a platform’s</p>
+<p><strong>Application Programming Interface (API)</strong>, which provides structured access to a portion of the platform’s data. Twitter’s “streaming API,” for example, provides access to a random sample of about 1% of all public tweets in real-time. While this is a form of random sampling, it is a sample of tweets, not a sample of users, and it is still only a fraction of the total conversation.</p>
+<p>This reality means that many large-scale digital studies, even those involving millions of data points, are effectively relying on large and complex <strong>convenience samples</strong>. The data is “found,” not systematically sampled from a known population. This introduces several potential biases that researchers must acknowledge.</p>
+<ul>
+<li><p><strong>Population Bias:</strong> The population of users on any given social media platform is not representative of the general population. Users of platforms like Twitter, for example, tend to be younger, more urban, and more educated than the population as a whole.</p></li>
+<li><p><strong>Self-Selection Bias:</strong> The content people choose to post is not a random sample of their thoughts or behaviors. People present a curated version of themselves online.</p></li>
+<li><p><strong>Data Availability Bias:</strong> Not all data is equally accessible. Users with private accounts are excluded from most data collection. Furthermore, users who choose to enable features like geotagging their posts have been shown to be demographically different from users who do not.</p></li>
+</ul>
+<p>This new environment does not invalidate digital research, but it does demand a heightened sense of methodological transparency and humility. It is incumbent upon the modern researcher to be clear about the limitations of their digital samples and to be appropriately cautious when making claims about the generalizability of their findings. The logic of sampling remains as crucial as ever, but its application requires a new set of critical considerations for the unique nature of our networked world.</p>
+</section>
+<section id="conclusion-the-foundation-of-inference" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="conclusion-the-foundation-of-inference">Conclusion: The Foundation of Inference</h2>
+<p>The selection of a sample is one of the most consequential decisions a researcher will make. It is the foundation upon which all claims of inference and generalization are built. A carefully constructed probability sample can provide a remarkably accurate portrait of a large and complex population, allowing us to make confident claims about the whole by observing just a small part. A thoughtfully selected non-probability sample can offer deep, rich, and targeted insights into a specific phenomenon or community, providing a level of understanding that a broad survey could never achieve.</p>
+<p>The choice of a sampling strategy is not a mere technicality; it is a direct and logical extension of the research question and the overall goals of the study. A researcher who seeks to produce statistically generalizable findings must embrace the rigor and logic of probability sampling. A researcher who seeks to explore a new area or understand a subjective experience must master the targeted and strategic logic of non-probability sampling. In every case, the researcher must be a critical and transparent steward of their data, fully aware of the strengths and limitations that their sampling decisions impose on their conclusions. In the end, the quality of our knowledge is inextricably linked to the quality of our samples.</p>
+</section>
+<section id="journal-prompts" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="journal-prompts">Journal Prompts</h2>
+<ol type="1">
+<li><p>The chapter opens with the story of John Snow and the Broad Street pump—an example of how sampling can reveal powerful truths about a whole system. Reflect on a time you formed a strong opinion or insight based on a small piece of evidence (e.g., a social media post, a conversation, a single article). Was that sample representative of the broader reality? What does this example teach you about the risks or rewards of inference from a small sample?</p></li>
+<li><p>Imagine you are planning a study on how college students interact with AI tools like ChatGPT. Would you choose a probability sampling method or a non-probability one? Why? Consider your research goals—do you want to generalize to all college students or understand a specific group more deeply? Explain your choice and what trade-offs it involves in terms of access, time, cost, and generalizability.</p></li>
+<li><p>Much of today’s research relies on digital data—tweets, posts, videos, and online surveys. This chapter explains how population bias, self-selection bias, and data availability bias can distort digital research. Choose one of these forms of bias and describe how it might affect a study of online news consumption or streaming habits. What could a researcher do to acknowledge or reduce that bias?</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../textbook/chapter_06.html" class="pagination-link" aria-label="From Ideas to Inquiries: Developing Research Questions and Hypotheses">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">From Ideas to Inquiries: Developing Research Questions and Hypotheses</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../textbook/chapter_08.html" class="pagination-link" aria-label="The Art of Measurement: Conceptualization and Operationalization">
+        <span class="nav-page-text">The Art of Measurement: Conceptualization and Operationalization</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
