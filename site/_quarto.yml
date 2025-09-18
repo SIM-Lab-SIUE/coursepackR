@@ -133,15 +133,11 @@ format:
     toc-depth: 3
     classoption: [oneside]
     hyperrefoptions: [bookmarksopen=true,bookmarksnumbered=true]
-    # Ensure left alignment for main text
-    include-in-header: |
-      \usepackage{ragged2e}
-      \RaggedRight
-    # Embed all fonts and optimize PDF
+    # include-in-header: |
+    #   \usepackage{ragged2e}
+    #   \RaggedRight
     pdf-engine: lualatex
     keep-tex: false
-    # Ensure high-res images (user must provide 300dpi images)
-    # For tables, use kableExtra or booktabs in .qmd for best results
 
 execute:
   freeze: auto
