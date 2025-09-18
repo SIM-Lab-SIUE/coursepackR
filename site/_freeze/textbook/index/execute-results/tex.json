@@ -1,0 +1,17 @@
+{
+  "hash": "b1ab23ae284e7006852ad0709cc563b8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Textbook\"\nformat:\n  html:\n    theme: cosmo\n    css: ../styles.css\n    toc: true\n    page-navigation: true\n    code-copy: true\n  pdf:\n    toc: true\n    number-sections: true\n    documentclass: book\n    papersize: letter\n    geometry: [margin=1in]\n    mainfont: Times New Roman\n    sansfont: Arial\n    fontsize: 12pt\n    linestretch: 1.5\n    colorlinks: true\n    toc-depth: 3\n    classoption: [oneside]\n    hyperrefoptions: [bookmarksopen=true,bookmarksnumbered=true]\n    pdf-engine: lualatex\n    keep-tex: false\n---\n\n# Textbook\n\n\n::: {.cell}\n\n:::\n\n\n```{=include}\ntextbook/chapter_02.qmd\n```\n```{=include}\ntextbook/chapter_03.qmd\n```\n```{=include}\ntextbook/chapter_04.qmd\n```\n```{=include}\ntextbook/chapter_05.qmd\n```\n```{=include}\ntextbook/chapter_06.qmd\n```\n```{=include}\ntextbook/chapter_07.qmd\n```\n```{=include}\ntextbook/chapter_08.qmd\n```\n```{=include}\ntextbook/chapter_09.qmd\n```\n```{=include}\ntextbook/chapter_10.qmd\n```\n```{=include}\ntextbook/chapter_11.qmd\n```\n```{=include}\ntextbook/chapter_12.qmd\n```\n```{=include}\ntextbook/chapter_13.qmd\n```\n```{=include}\ntextbook/chapter_14.qmd\n```",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
