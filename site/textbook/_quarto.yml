@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: ../../docs/textbook-pdf
+  output-dir: ../../docs/textbook
 book:
   title: "Introduction to Media and Communication Resesarch Methods"
   author: "A.P. Leith"
@@ -19,15 +19,29 @@ book:
     - chapter_12.qmd
     - chapter_13.qmd
     - chapter_14.qmd
-format:
-  pdf:
-    toc: true
-    number-sections: true
-    documentclass: book
-    papersize: letter
-    geometry: [margin=1in]
-    keep-tex: false
-execute:
-  echo: false
-  warning: false
+  html:
+    theme: cosmo
+    css: ../styles.css
+    format:
+      html:
+    freeze: auto
+        css: ../styles.css
+        toc: true
+        page-navigation: true
+        code-copy: true
+      pdf:
+        toc: true
+        number-sections: true
+        documentclass: book
+        papersize: letter
+        mainfont: Times New Roman
+        sansfont: Arial
+        fontsize: 12pt
+        linestretch: 1.5
+        colorlinks: true
+        toc-depth: 3
+        classoption: [oneside]
+        hyperrefoptions: [bookmarksopen=true,bookmarksnumbered=true]
+        pdf-engine: lualatex
+        keep-tex: false
   freeze: auto
