@@ -101,6 +101,19 @@ website:
       style: docked
       contents:
         - textbook/index.qmd
+        - textbook/chapter_02.qmd
+        - textbook/chapter_03.qmd
+        - textbook/chapter_04.qmd
+        - textbook/chapter_05.qmd
+        - textbook/chapter_06.qmd
+        - textbook/chapter_07.qmd
+        - textbook/chapter_08.qmd
+        - textbook/chapter_09.qmd
+        - textbook/chapter_10.qmd
+        - textbook/chapter_11.qmd
+        - textbook/chapter_12.qmd
+        - textbook/chapter_13.qmd
+        - textbook/chapter_14.qmd
 
 format:
   html:
