@@ -1,10 +1,7 @@
 ---
 title: "Using Zotero with RStudio"
-description: "A guide to integrating Zotero reference management with RStudio for academic writing."
-format: html
+sidebar: Zotero
 ---
-
-# Using Zotero with RStudio
 
 Zotero is a free, open-source reference manager that helps you collect, organize, cite, and share research. Integrating Zotero with RStudio can streamline your academic writing workflow, especially when using Quarto or R Markdown documents.
 

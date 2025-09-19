@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Getting Started – MC Coursepack</title>
+<title>Using Zotero with RStudio – MC Coursepack</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../getting-started/installation-guide.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -183,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../getting-started/getting-started.html">Getting Started</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../zotero/zotero-rstudio.html">Using Zotero with RStudio</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -201,14 +200,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../getting-started/getting-started.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Getting Started</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../getting-started/installation-guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installation Guide</span></a>
+  <a href="../zotero/zotero-rstudio.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Using Zotero with RStudio</span></a>
   </div>
 </li>
     </ul>
@@ -221,19 +214,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quick-setup" id="toc-quick-setup" class="nav-link active" data-scroll-target="#quick-setup">Quick Setup</a>
-  <ul class="collapse">
-  <li><a href="#step-1-install-or-update-the-course-package" id="toc-step-1-install-or-update-the-course-package" class="nav-link" data-scroll-target="#step-1-install-or-update-the-course-package">Step 1 – Install or Update the Course Package</a></li>
-  <li><a href="#step-2-create-two-rstudio-projects" id="toc-step-2-create-two-rstudio-projects" class="nav-link" data-scroll-target="#step-2-create-two-rstudio-projects">Step 2 – Create Two RStudio Projects</a>
-  <ul class="collapse">
-  <li><a href="#create-the-tasks-project" id="toc-create-the-tasks-project" class="nav-link" data-scroll-target="#create-the-tasks-project">Create the Tasks Project</a></li>
-  <li><a href="#create-the-journal-project" id="toc-create-the-journal-project" class="nav-link" data-scroll-target="#create-the-journal-project">Create the Journal Project</a></li>
-  </ul></li>
-  <li><a href="#step-3-set-up-the-journal-project" id="toc-step-3-set-up-the-journal-project" class="nav-link" data-scroll-target="#step-3-set-up-the-journal-project">Step 3 – Set Up the Journal Project</a></li>
-  <li><a href="#step-4-set-up-the-tasks-project" id="toc-step-4-set-up-the-tasks-project" class="nav-link" data-scroll-target="#step-4-set-up-the-tasks-project">Step 4 – Set Up the Tasks Project</a></li>
-  <li><a href="#step-5-confirm-everything-works" id="toc-step-5-confirm-everything-works" class="nav-link" data-scroll-target="#step-5-confirm-everything-works">Step 5 – Confirm Everything Works</a></li>
-  <li><a href="#mental-model" id="toc-mental-model" class="nav-link" data-scroll-target="#mental-model">Mental Model</a></li>
-  </ul></li>
+  <li><a href="#install-zotero" id="toc-install-zotero" class="nav-link active" data-scroll-target="#install-zotero">1. Install Zotero</a></li>
+  <li><a href="#organize-your-references" id="toc-organize-your-references" class="nav-link" data-scroll-target="#organize-your-references">2. Organize Your References</a></li>
+  <li><a href="#export-references-for-rstudio" id="toc-export-references-for-rstudio" class="nav-link" data-scroll-target="#export-references-for-rstudio">3. Export References for RStudio</a></li>
+  <li><a href="#use-references-in-rstudio-quartor-markdown" id="toc-use-references-in-rstudio-quartor-markdown" class="nav-link" data-scroll-target="#use-references-in-rstudio-quartor-markdown">4. Use References in RStudio (Quarto/R Markdown)</a></li>
+  <li><a href="#render-your-document" id="toc-render-your-document" class="nav-link" data-scroll-target="#render-your-document">5. Render Your Document</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">6. Tips</a></li>
   </ul>
 </nav>
     </div>
@@ -242,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Getting Started</h1>
+<h1 class="title">Using Zotero with RStudio</h1>
 </div>
 
 
@@ -259,97 +245,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Welcome to <strong>mccoursepack</strong>. This guide helps you install tools, open your first project, and render your first journal.</p>
-<section id="quick-setup" class="level1">
-<h1>Quick Setup</h1>
-<p>Follow these steps to get your system ready with the <strong>latest course package</strong> and two dedicated RStudio projects–one for your <strong>weekly class tasks</strong> and one for your <strong>weekly journal</strong>.</p>
-<hr>
-<section id="step-1-install-or-update-the-course-package" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-install-or-update-the-course-package">Step 1 – Install or Update the Course Package</h2>
-<p>The course package <code>mccoursepack</code> is hosted on GitHub. Use the <code>pak</code> package to install or update it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install pak if not already installed</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install or update the course package</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"SIM-Lab-SIUE/mccoursepack"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Once the installation is complete, load the package into your R session.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mccoursepack)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="tip">
-<p>Run the <code>pak::pak()</code> command at the start of the semester and again weekly to check for updates.</p>
-</div>
-<hr>
-</section>
-<section id="step-2-create-two-rstudio-projects" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-create-two-rstudio-projects">Step 2 – Create Two RStudio Projects</h2>
-<p>Projects keep everything organized. You’ll create <strong>two</strong>:</p>
-<ol type="1">
-<li>A <strong>Tasks Project</strong> for weekly assignments.</li>
-<li>A <strong>Journal Project</strong> for your course journal.</li>
-</ol>
-<section id="create-the-tasks-project" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-tasks-project">Create the Tasks Project</h3>
-<ol type="1">
-<li>In RStudio: <strong>File -&gt; New Project -&gt; New Directory -&gt; New Project</strong>.</li>
-<li>Choose a location, e.g., <code>Documents/MC451/</code>.</li>
-<li>Name the folder: <code>tasks_project</code>.</li>
-<li>Click <strong>Create Project</strong>.</li>
-</ol>
-</section>
-<section id="create-the-journal-project" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-journal-project">Create the Journal Project</h3>
-<ol type="1">
-<li>Again: <strong>File -&gt; New Project -&gt; New Directory -&gt; New Project</strong>.</li>
-<li>Same parent folder (<code>Documents/MC451/</code>).</li>
-<li>Name the folder: <code>journal_project</code>.</li>
-<li>Click <strong>Create Project</strong>.</li>
-</ol>
-<p>You now have two separate projects: one for all weekly tasks, one for your running journal.</p>
-<hr>
-</section>
-</section>
-<section id="step-3-set-up-the-journal-project" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-set-up-the-journal-project">Step 3 – Set Up the Journal Project</h2>
-<ol type="1">
-<li>Open the <strong>journal_project</strong> in RStudio.</li>
-<li>In the Console, run:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download_journal</span>(<span class="st">"mc451"</span>)   <span class="co"># or "mc501" if in the graduate course</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This creates the <code>journal/</code> folder structure with an <code>entries/</code> directory, a template, and scripts for adding new entries.</p>
-<hr>
-</section>
-<section id="step-4-set-up-the-tasks-project" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-set-up-the-tasks-project">Step 4 – Set Up the Tasks Project</h2>
-<ol type="1">
-<li>Open the <strong>tasks_project</strong> in RStudio.</li>
-<li>Use the helper function to download the starter files for your first week:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download_week</span>(<span class="st">"mc451"</span>, <span class="at">week =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(or substitute <code>"mc501"</code> for the graduate course).</p>
-<p>Repeat each week: change the <code>week</code> number to get that week’s scaffold.</p>
-<hr>
-</section>
-<section id="step-5-confirm-everything-works" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-confirm-everything-works">Step 5 – Confirm Everything Works</h2>
+<p>Zotero is a free, open-source reference manager that helps you collect, organize, cite, and share research. Integrating Zotero with RStudio can streamline your academic writing workflow, especially when using Quarto or R Markdown documents.</p>
+<section id="install-zotero" class="level2">
+<h2 class="anchored" data-anchor-id="install-zotero">1. Install Zotero</h2>
 <ul>
-<li><p>Open the <strong>journal_project</strong> -&gt; render the index file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This should build a unified journal book.</p></li>
-<li><p>Open the <strong>tasks_project</strong> -&gt; render a week’s scaffold. Check that Quarto builds the <code>.qmd</code> file into HTML/PDF.</p></li>
+<li>Download Zotero from <a href="https://www.zotero.org/">zotero.org</a>.</li>
+<li>Install the Zotero Connector for your web browser to easily save references.</li>
 </ul>
-<p>If both projects render without errors, you’re fully set up.</p>
-<hr>
 </section>
-<section id="mental-model" class="level2">
-<h2 class="anchored" data-anchor-id="mental-model">Mental Model</h2>
+<section id="organize-your-references" class="level2">
+<h2 class="anchored" data-anchor-id="organize-your-references">2. Organize Your References</h2>
 <ul>
-<li><strong>Journal project</strong>: long-running notebook, one entry per week.</li>
-<li><strong>Tasks project</strong>: fresh scaffolds each week for assignments, labs, and exercises.</li>
-<li><strong>mccoursepack package</strong>: the engine that fetches and organizes everything for you.</li>
+<li>Use Zotero to collect and organize references into collections.</li>
+<li>Attach PDFs and notes to your references for easy access.</li>
 </ul>
+</section>
+<section id="export-references-for-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="export-references-for-rstudio">3. Export References for RStudio</h2>
+<ul>
+<li><strong>BibTeX Export:</strong>
+<ul>
+<li>Right-click a collection or selected items in Zotero.</li>
+<li>Choose <code>Export Collection...</code> or <code>Export Items...</code>.</li>
+<li>Select <code>BibTeX</code> as the format and save the <code>.bib</code> file.</li>
+</ul></li>
+<li><strong>Better BibTeX Plugin:</strong>
+<ul>
+<li>Install the <a href="https://retorque.re/zotero-better-bibtex/">Better BibTeX</a> plugin for advanced citation key management and automatic export.</li>
+</ul></li>
+</ul>
+</section>
+<section id="use-references-in-rstudio-quartor-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="use-references-in-rstudio-quartor-markdown">4. Use References in RStudio (Quarto/R Markdown)</h2>
+<ul>
+<li>Place your exported <code>.bib</code> file in your project directory (e.g., <code>references.bib</code>).</li>
+<li>In your Quarto or R Markdown document YAML header, add:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> article</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span><span class="co">  # Optional: for citation style</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Cite references in your text using <code>@citationkey</code> (e.g., <code>@smith2020</code>).</li>
+</ul>
+</section>
+<section id="render-your-document" class="level2">
+<h2 class="anchored" data-anchor-id="render-your-document">5. Render Your Document</h2>
+<ul>
+<li>Knit or render your document in RStudio. Citations and bibliography will be formatted automatically.</li>
+</ul>
+</section>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">6. Tips</h2>
+<ul>
+<li>Keep your <code>.bib</code> file updated as you add new references.</li>
+<li>Use the Better BibTeX auto-export feature to keep your bibliography in sync.</li>
+<li>Explore citation styles by downloading <code>.csl</code> files from <a href="https://www.zotero.org/styles">Zotero Style Repository</a>.</li>
+</ul>
+<hr>
+<p>For more help, visit the <a href="https://www.zotero.org/support/">Zotero Documentation</a> or the <a href="https://quarto.org/docs/authoring/footnotes-and-citations.html">Quarto Citations Guide</a>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -753,15 +708,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../getting-started/installation-guide.html" class="pagination-link" aria-label="Installation Guide">
-        <span class="nav-page-text">Installation Guide</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

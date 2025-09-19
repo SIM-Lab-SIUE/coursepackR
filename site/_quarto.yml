@@ -12,11 +12,7 @@ website:
       - text: "Getting Started"
         href: getting-started/getting-started.qmd
       - text: "R & RStudio"
-        menu:
-          - href: r-and-rstudio/r-and-rstudio.qmd
-            text: Overview
-          - href: r-and-rstudio/zotero-rstudio.qmd
-            text: Zotero & RStudio
+        href: r-and-rstudio/r-and-rstudio.qmd
       - text: "Weekly Journal"
         href: journal/journal-student-guide.qmd
       - text: "Quarto Basics"
@@ -29,6 +25,8 @@ website:
         href: troubleshooting/troubleshooting.qmd
       - text: "Reference"
         href: reference/package-reference.qmd
+      - text: "Zotero"
+        href: zotero/zotero-rstudio.qmd
 
       - text: "Textbook"
         href: textbook/index.qmd
@@ -92,6 +90,11 @@ website:
         - reference/package-reference.qmd
         - reference/package-functions.qmd
 
+    - id: zotero
+      title: "Zotero"
+      style: docked
+      contents:
+        - zotero/zotero-rstudio.qmd
 
     - id: textbook
       title: "Textbook"
