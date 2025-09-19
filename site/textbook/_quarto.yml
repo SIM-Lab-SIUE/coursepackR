@@ -36,18 +36,19 @@ format:
     pdf-engine: lualatex
     keep-tex: false
     include-in-header: |
-      % Google Fonts for PDF (requires internet access during build)
       \usepackage{fontspec}
-      \setmainfont{Public Sans}[Path=,Extension=.ttf,UprightFont=*]
-      \setsansfont{Public Sans}[Path=,Extension=.ttf,UprightFont=*]
-      \newfontfamily\lexendblack{Lexend Black}[Path=,Extension=.ttf,UprightFont=*]
+      % Use Google Fonts via luaotfload (requires internet access during build)
+      \setmainfont{PublicSans-Regular}[Path=fonts/,Extension=.ttf]
+      \setsansfont{PublicSans-Regular}[Path=fonts/,Extension=.ttf]
+      \newfontfamily\lexendblack{Lexend-Black}[Path=fonts/,Extension=.ttf]
       \usepackage{sectsty}
       \sectionfont{\lexendblack}
       % Reduce heading size contrast
       \usepackage{titlesec}
-      	itleformat{\chapter}[display]{\normalfont\bfseries\Huge}{\chaptername\ \thechapter}{20pt}{\lexendblack\LARGE}
-      	itleformat{\section}{\lexendblack\large\bfseries}{\thesection}{1em}{}
-      	itleformat{\subsection}{\lexendblack\normalsize\bfseries}{\thesubsection}{1em}{}
+      \titleformat{\chapter}[display]{\normalfont\bfseries\Huge}{\chaptername\ \thechapter}{20pt}{\lexendblack\LARGE}
+      \titleformat{\section}{\lexendblack\large\bfseries}{\thesection}{1em}{}
+      \titleformat{\subsection}{\lexendblack\normalsize\bfseries}{\thesubsection}{1em}{}
+
   html:
     theme: cosmo
     css: ../styles.css
