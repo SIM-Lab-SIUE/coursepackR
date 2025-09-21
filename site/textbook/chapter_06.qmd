@@ -6,6 +6,8 @@ In the previous chapter, we likened the process of a literature review to enteri
 
 This keystone takes one of two forms: a **research question** or a **hypothesis**. If the literature review builds the case for why a study is needed, the research question or hypothesis defines what, specifically, the study will investigate. It is the single sentence that holds the entire research design together. Every subsequent decision you make—about who to study, what to measure, how to collect data, and how to analyze it—is made in service of answering that one, precisely formulated sentence. It is the central, generative act of the entire research process, transforming a broad idea into a focused and manageable inquiry.
 
+![The Keystone Concept](images/research-keystone.png){fig-alt="The Keystone Concept" width="100%"}
+
 The choice between posing a research question versus a hypothesis is not arbitrary or a matter of stylistic preference. It is a strategic decision that depends on the state of existing knowledge in your area of interest and the fundamental goals of your research paradigm. Are you venturing into a new and unexplored territory, seeking to map its features and understand its contours? Or are you working within a well-established landscape, seeking to test a specific prediction about the relationship between two landmarks? The former calls for the exploratory power of a research question; the latter demands the predictive precision of a hypothesis.
 
 This chapter is dedicated to the art and science of crafting these essential statements of inquiry. We will begin by exploring the fundamental distinction between research questions and hypotheses, linking them to the inductive and deductive logics of different research paradigms. We will then provide a detailed guide to formulating the various types of hypotheses used in quantitative research and the open-ended questions that drive qualitative inquiry. Finally, we will establish a set of universal criteria for what makes a "good" question or hypothesis—one that is clear, grounded, and, above all, researchable. Mastering this skill is the key to ensuring that your research project is not a random walk through the data, but a purposeful and direct journey toward a meaningful contribution to knowledge.
@@ -13,6 +15,8 @@ This chapter is dedicated to the art and science of crafting these essential sta
 ## The Fundamental Distinction: Exploration vs. Prediction {.unnumbered}
 
 The first and most critical choice in formulating your statement of inquiry is whether to pose a research question or a hypothesis. This decision reflects the primary goal of your study and the amount of prior knowledge available to guide it.
+
+![Exploration vs. Prediction](images/exploration-vs-prediction.png){fig-alt="Exploration vs. Prediction" width="100%"}
 
 ### Research Questions: The Tools of Exploration {.unnumbered}
 
@@ -53,6 +57,8 @@ Every research hypothesis has a logical counterpart: the **null hypothesis (H0�
 -   H0​: There will be no difference in the average test scores between students taught with the new method and students taught with the traditional method.
 
 The null hypothesis may seem counterintuitive—after all, the researcher expects to find a difference. However, it serves a crucial function in the logic of statistical inference. The null hypothesis acts as both a starting point and a benchmark. It is the state of affairs that is assumed to be true in the absence of compelling evidence to the contrary. The primary objective of inferential statistics is to determine whether the evidence from our sample is sufficient to reject the baseline assumption of no effect. We never set out to "prove" our research hypothesis; we set out to gather enough evidence to reject the null hypothesis confidently. This conservative, skeptical approach is a cornerstone of the scientific method.
+
+![The Null Hypothesis Benchmark](images/null-hypothesis-scale.png){fig-alt="The Null Hypothesis Benchmark" width="100%"}
 
 ### The Research Hypothesis: Stating the Expected Relationship {.unnumbered}
 
@@ -103,6 +109,8 @@ Using this script, we can formulate a variety of effective qualitative research 
 -   Example (Case Study): "How did the communication strategy of a specific non-profit organization evolve during a major public crisis?" (The central phenomenon is the "evolution of communication strategy," the participant is the "non-profit organization," and the site is the context of the crisis).
 
 It is important to note that in some forms of qualitative inquiry, particularly long-term ethnographic fieldwork, the research questions may not be fully formed at the beginning of the study. A researcher might enter the field with a broad topic of interest, and the specific, focused research questions may emerge and evolve during the process of data collection and preliminary analysis. This reflects the inductive and flexible nature of the interpretive paradigm. However, for a research proposal, a straightforward and well-formulated central question is essential for communicating the purpose and scope of the planned study.
+
+![The Qualitative Interview](images/qualitative-interview.png){fig-alt="The Qualitative Interview" width="100%"}
 
 ## Criteria for Effective Questions and Hypotheses {.unnumbered}
 
