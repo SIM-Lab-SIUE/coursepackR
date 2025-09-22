@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -114,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome to the Course</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -211,13 +246,27 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#empiricism" id="toc-empiricism" class="nav-link" data-scroll-target="#empiricism">Empiricism</a></li>
   <li><a href="#objectivity" id="toc-objectivity" class="nav-link" data-scroll-target="#objectivity">Objectivity</a></li>
-  <li><a href="#determinism" id="toc-determinism" class="nav-link" data-scroll-target="#determinism">Determinism</a></li>
+  <li><a href="#determinism-probabilistic" id="toc-determinism-probabilistic" class="nav-link" data-scroll-target="#determinism-probabilistic">Determinism (Probabilistic)</a></li>
   <li><a href="#control" id="toc-control" class="nav-link" data-scroll-target="#control">Control</a></li>
+  <li><a href="#replication" id="toc-replication" class="nav-link" data-scroll-target="#replication">Replication</a></li>
   </ul></li>
+  <li><a href="#the-goals-of-research-why-are-we-doing-this" id="toc-the-goals-of-research-why-are-we-doing-this" class="nav-link" data-scroll-target="#the-goals-of-research-why-are-we-doing-this">The Goals of Research: Why Are We Doing This?</a></li>
   <li><a href="#the-research-workflow-five-interconnected-stages" id="toc-the-research-workflow-five-interconnected-stages" class="nav-link" data-scroll-target="#the-research-workflow-five-interconnected-stages">The Research Workflow: Five Interconnected Stages</a></li>
-  <li><a href="#tool-agnostic-principles" id="toc-tool-agnostic-principles" class="nav-link" data-scroll-target="#tool-agnostic-principles">Tool-Agnostic Principles</a></li>
+  <li><a href="#open-reproducible-and-ethical-by-default" id="toc-open-reproducible-and-ethical-by-default" class="nav-link" data-scroll-target="#open-reproducible-and-ethical-by-default">Open, Reproducible, and Ethical by Default</a>
+  <ul class="collapse">
+  <li><a href="#minimal-reproducibility-stack" id="toc-minimal-reproducibility-stack" class="nav-link" data-scroll-target="#minimal-reproducibility-stack">Minimal Reproducibility Stack</a></li>
+  <li><a href="#responsible-openness" id="toc-responsible-openness" class="nav-link" data-scroll-target="#responsible-openness">Responsible Openness</a></li>
+  <li><a href="#fair-data-right-sized-for-class-projects" id="toc-fair-data-right-sized-for-class-projects" class="nav-link" data-scroll-target="#fair-data-right-sized-for-class-projects">FAIR Data (Right-Sized for Class Projects)</a></li>
+  </ul></li>
+  <li><a href="#micro-blueprints-you-can-reuse" id="toc-micro-blueprints-you-can-reuse" class="nav-link" data-scroll-target="#micro-blueprints-you-can-reuse">Micro-Blueprints You Can Reuse</a>
+  <ul class="collapse">
+  <li><a href="#one-page-data-management-plan-dmp" id="toc-one-page-data-management-plan-dmp" class="nav-link" data-scroll-target="#one-page-data-management-plan-dmp">One-Page Data Management Plan (DMP)</a></li>
+  <li><a href="#operationalization-snapshot" id="toc-operationalization-snapshot" class="nav-link" data-scroll-target="#operationalization-snapshot">Operationalization Snapshot</a></li>
+  </ul></li>
+  <li><a href="#tool-agnostic-principles-why-logic-beats-buttons" id="toc-tool-agnostic-principles-why-logic-beats-buttons" class="nav-link" data-scroll-target="#tool-agnostic-principles-why-logic-beats-buttons">Tool-Agnostic Principles (Why Logic Beats Buttons)</a></li>
   <li><a href="#conclusion-research-as-disciplined-curiosity" id="toc-conclusion-research-as-disciplined-curiosity" class="nav-link" data-scroll-target="#conclusion-research-as-disciplined-curiosity">Conclusion: Research as Disciplined Curiosity</a></li>
   <li><a href="#journal-prompts" id="toc-journal-prompts" class="nav-link" data-scroll-target="#journal-prompts">Journal Prompts</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference">Quick Reference</a></li>
   </ul>
 </nav>
     </div>
@@ -245,90 +294,194 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="from-curiosity-to-credibility-why-the-research-workflow-matters" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="from-curiosity-to-credibility-why-the-research-workflow-matters">From Curiosity to Credibility: Why the Research Workflow Matters</h2>
-<p>Imagine scrolling through your social media feed and stumbling upon a heated argument under a news post. One person posts a link to an official-looking report, another shares a personal story, and a third posts a meme with a bold claim. Some of what you see feels believable; other parts feel exaggerated or manipulative. You might even start wondering: <em>How do I know which of these is true?</em></p>
-<p>That moment of wondering is the starting point of research. Research begins with <strong>curiosity</strong>—something catches your attention, and you want to understand it better. But curiosity alone isn’t enough to reach a trustworthy conclusion. You need a process that takes you from “I’m wondering…” to “Here is my evidence-based answer.” In the world of communication studies, that process is called the <strong>research workflow</strong>.</p>
-<p>The research workflow is like a recipe for building knowledge. If your curiosity is the raw ingredient, the workflow is the set of instructions that transforms it into a final dish: a credible, verifiable conclusion. It takes you step-by-step from having a general interest to producing an argument that other people can check, test, and trust. Without this process, we’re left guessing, relying on personal opinions, random examples, or unreliable sources. With it, you can produce work that is seen as <strong>credible</strong>—something that could stand up in a professional meeting, a court case, or an academic journal. This credibility isn’t just about being “right”; it’s about showing your work in a way that allows others to see <em>how</em> you arrived at your answer.</p>
-<p>This chapter will walk you through both the workflow itself—the practical steps that take you from question to answer—and the <strong>scientific approach</strong>, which is the set of guiding ideas that helps researchers keep their work fair, systematic, and open to scrutiny. To fully appreciate why this structured approach is so vital, let’s first examine the common shortcuts we all use to make sense of the world.</p>
+<p>Imagine scrolling your feed and stumbling into a lively argument under a news post. One person drops a link to an official-looking report, another shares a personal story, and a third posts a meme with a bold claim. Some of it sounds plausible; some feels manipulative. You wonder: <em>How would I know what’s actually true?</em></p>
+<p>That spark of wondering is where research begins. But curiosity alone won’t carry you to a trustworthy conclusion. You need a <strong>workflow</strong>—a repeatable way to move from “I’m wondering…” to “Here’s my evidence-based answer.” In communication research, that means making your steps visible, testable, and fair so others can check your work and build on it. That visibility is what turns private hunches into <strong>credible</strong> knowledge.</p>
+<p>This chapter introduces the <strong>research workflow</strong> (the practical steps of a project) and the <strong>scientific approach</strong> (the guiding ideas that keep our work systematic and open to scrutiny). We’ll start by examining the everyday shortcuts we use to make sense of the world—and why they’re not enough for building shared knowledge.</p>
+<hr>
 </section>
 <section id="everyday-ways-of-knowingand-their-limits" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="everyday-ways-of-knowingand-their-limits">Everyday Ways of Knowing—and Their Limits</h2>
-<p>Before we dive into the formal process of research, it’s worth noticing how people usually come to believe things. In our daily lives, we can’t stop to conduct a study for every decision. Instead, we rely on mental shortcuts. While efficient, these “everyday ways of knowing” have serious limitations. The four most common are tradition, authority, common sense, and intuition.</p>
-<p><strong>Tradition</strong> is the acceptance of knowledge because “it’s the way things have always been.” We inherit these beliefs from our culture, family, and communities. For example, the idea that a firm handshake conveys confidence is a traditional belief in many Western business cultures. Tradition provides stability and saves us from having to reinvent the wheel for every social custom.</p>
+<p>We can’t run a study for every decision, so we rely on mental shortcuts. They’re efficient, but they have limits:</p>
 <ul>
-<li><strong>The Limit:</strong> Tradition is often based on habit, not evidence, and it can be highly resistant to change. The belief that “watching too much TV will rot your brain” was passed down for generations. While excessive screen time can have negative effects, the claim isn’t scientifically precise. Tradition discourages us from asking, “Is this <em>still</em> true? Was it <em>ever</em> true?”</li>
+<li><strong>Tradition</strong> is “what we’ve always done.” It offers stability but resists updating and often lacks evidence.</li>
+<li><strong>Authority</strong> defers to experts. Useful—until expertise is misapplied, biased, or conflicted.</li>
+<li><strong>Common sense</strong> feels “obvious,” yet it’s culture-bound and frequently contradictory.</li>
+<li><strong>Intuition</strong> is fast and sometimes insightful, but it’s shaped by emotion and bias.</li>
 </ul>
-<p><strong>Authority</strong> involves trusting the word of an expert, leader, or figure of respect. We listen to a doctor’s medical advice, a professor’s lecture, or a trusted journalist’s reporting. This is generally a good strategy, as experts have specialized knowledge we lack.</p>
-<ul>
-<li><strong>The Limit:</strong> Experts can be wrong, they can have biases, and their expertise might be in a different area than the one they are speaking on. A famous actor endorsing a particular diet plan is an appeal to authority, but their expertise is in acting, not nutrition. True authority should be scrutinized: What are their credentials? What is their evidence? Is there a conflict of interest?</li>
-</ul>
-<p><strong>Common sense</strong> refers to the feeling that something is simply “obvious” or “stands to reason.” It’s based on our personal experiences and the unstated rules we’ve picked up from daily life. It might seem like common sense that talking to people face-to-face is always better for building relationships than texting.</p>
-<ul>
-<li><strong>The Limit:</strong> Common sense is notoriously contradictory (e.g., “birds of a feather flock together” vs.&nbsp;“opposites attract”) and is often shaped by our limited, personal view of the world. For an isolated senior, texting might be a vital lifeline that strengthens their relationships, contradicting the “obvious” truth that it’s an inferior form of communication. What’s “common sense” in one culture can be nonsense in another.</li>
-</ul>
-<p><strong>Intuition</strong> is that “gut feeling” or sudden insight that something is true. It’s a quick, non-analytical feeling that you can’t always explain logically. You might have an intuitive sense that a political candidate is trustworthy or that a new ad campaign will be a hit.</p>
-<ul>
-<li><strong>The Limit:</strong> Intuition is heavily influenced by our emotions and unconscious biases. That “gut feeling” about a politician might be a reaction to their appearance or speaking style, not their policies. While intuition can be a great starting point for developing a hypothesis, it’s a terrible endpoint for concluding. It’s a hunch to be tested, not a fact to be trusted.</li>
-</ul>
-<p>These shortcuts aren’t inherently bad—we need them to navigate countless daily interactions. However, they are unreliable for building a shared, factual understanding of the world. Research offers a more rigorous and dependable alternative.</p>
+<p>Shortcuts are fine for daily life, but they’re unreliable for building knowledge others should trust. Research offers a more disciplined alternative.</p>
+<hr>
 </section>
 <section id="the-scientific-approach-a-more-reliable-path" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="the-scientific-approach-a-more-reliable-path">The Scientific Approach: A More Reliable Path</h2>
-<p>To overcome the limits of everyday knowing, researchers in mass communication and other social sciences often adopt the <strong>scientific approach</strong>. This isn’t about wearing a lab coat; it’s a mindset and a framework for building knowledge that actively tries to minimize bias and error. It rests on four foundational principles.</p>
+<p>The scientific approach is not a lab coat—it’s a <strong>mindset</strong> for minimizing error and bias. It’s guided by several core principles.</p>
 <section id="empiricism" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="empiricism">Empiricism</h3>
-<p>At its core, empiricism insists that knowledge must be based on <strong>observable, tangible evidence</strong>. It’s the principle of “show me the data.” Instead of accepting a claim based on tradition or authority, an empiricist seeks to measure, see, or document it. For example, instead of just arguing about whether negative political ads work, a researcher would conduct a study. They might show one group of participants a negative ad and another group a neutral ad, and then measure each group’s voting intentions. The resulting data—the numbers and responses—constitute <strong>empirical evidence</strong>. Empiricism moves us from “I believe…” to “My data show…”</p>
+<p>Claims should be grounded in <strong>observable, documentable evidence</strong>. Instead of debating whether a negative political ad “works,” we measure outcomes (e.g., attitudes, recall, intentions) under defined conditions.</p>
 </section>
 <section id="objectivity" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="objectivity">Objectivity</h3>
-<p>Objectivity is the goal of removing personal biases, feelings, and beliefs from the research process. It’s important to understand that no researcher is perfectly objective—we all have perspectives. However, the scientific approach uses procedures to minimize the influence of those perspectives. For instance, a researcher studying the effects of a new teaching method they invented might have a <strong>double-blind</strong> study, where neither the students nor the person grading the final exam knows who received the new method versus the old one. This prevents the researcher’s hopes from influencing the results. The ultimate goal is <strong>intersubjectivity</strong>: a study so transparently and carefully designed that another objective researcher could repeat it and get a similar outcome.</p>
+<p>Perfect neutrality is impossible, but <strong>procedures</strong> (clear protocols, blinding, preregistration) help keep our preferences from steering results. The goal is <strong>intersubjectivity</strong>: work so transparent that another careful researcher could follow our steps.</p>
 </section>
-<section id="determinism" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="determinism">Determinism</h3>
-<p>This is the idea that events and behaviors are not random; they are caused by identifiable factors and follow predictable patterns. In communication, we operate on the assumption that the way a message is crafted, the channel through which it is sent, and the characteristics of the audience all systematically affect the outcome. This is usually <strong>probabilistic determinism</strong>—we don’t claim that X will <em>always</em> cause Y, but that the presence of X <em>increases the probability</em> of Y occurring. For example, research might find that using more visuals in a health campaign increases the likelihood that teenagers will remember the message, even if it doesn’t work for every single teenager. Without determinism, research would be pointless; if everything were random, there would be no patterns to discover.</p>
+<section id="determinism-probabilistic" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="determinism-probabilistic">Determinism (Probabilistic)</h3>
+<p>Communication outcomes are not random; they co-vary with message, channel, and audience factors. We expect <strong>probabilistic</strong> patterns (X raises the <strong>likelihood</strong> of Y), not guarantees.</p>
 </section>
 <section id="control" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="control">Control</h3>
-<p>Control is the practice of isolating the factor you are studying. To confidently say that one thing causes another, you must rule out other possible explanations. Imagine you want to test if a new website design increases user engagement. If you launch the new design at the same time you launch a massive advertising campaign, you won’t know if increased engagement is due to the design or the ads. A controlled study would change <em>only</em> the website design for a test group and keep the old design for a control group, while keeping all other conditions (like advertising) the same for both. Control is what allows us to move from simply observing a relationship (<strong>correlation</strong>) to establishing a cause-and-effect link (<strong>causation</strong>).</p>
-<p>These four principles are put into action through the <strong>scientific method</strong>. This is the cyclical process where a researcher starts with a <strong>theory</strong> (a broad explanation of how something works), develops a specific, testable <strong>hypothesis</strong> (a prediction), collects <strong>data</strong> (observations) to test the hypothesis, and then draws a <strong>conclusion</strong> that either supports, refutes, or refines the original theory. This conclusion then raises new questions, starting the cycle all over again.</p>
+<p>To argue that X causes Y, we must <strong>rule out alternatives</strong> (comparison groups, consistent procedures, manipulation checks). Control is how we move from “they’re related” (<strong>correlation</strong>) to “X probably produces change in Y” (<strong>causation</strong>).</p>
 </section>
+<section id="replication" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="replication">Replication</h3>
+<p>For findings to be trustworthy, they must be <strong>repeatable</strong>. A single study can be a fluke, a result of random error, or specific to an unmeasured context. <strong>Replication</strong>, where other researchers in other settings follow the original study’s methods and find similar results, is the ultimate safeguard against drawing premature conclusions. It builds collective confidence in a finding.</p>
+<p>These principles drive the <strong>scientific method</strong>: theory → hypotheses → data → conclusions → theory refinement. But before you can follow the workflow, you need to know what you’re trying to accomplish.</p>
+</section>
+</section>
+<section id="the-goals-of-research-why-are-we-doing-this" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-goals-of-research-why-are-we-doing-this">The Goals of Research: Why Are We Doing This?</h2>
+<p>Not all research asks the same kind of question. Your goal will shape every decision you make. Broadly, research can have one of three primary goals:</p>
+<ul>
+<li><p><strong>Exploratory Research:</strong> This is about mapping a new or poorly understood territory. The guiding question is often “What is going on here?” Exploratory studies are common when a new technology or social phenomenon emerges. For example, an early study on TikTok might have aimed to simply describe the communication norms and genres developing on the platform. These studies often use qualitative methods to generate rich insights and groundwork for future research.</p></li>
+<li><p><strong>Explanatory Research:</strong> This is the most common goal in social science, focused on testing theories and answering “Why?” questions. It seeks to explain the relationships between variables, often by testing specific hypotheses about cause and effect. For instance, an explanatory study might test whether exposure to a specific type of media content <em>causes</em> a change in viewers’ attitudes.</p></li>
+<li><p><strong>Evaluative Research:</strong> This is an applied form of research that asks, “Does this work?” It assesses the effectiveness of a specific program, campaign, or intervention. An example would be a study to determine if a non-profit’s media literacy workshop actually improved participants’ ability to identify misinformation.</p></li>
+</ul>
+<p>Knowing your goal—to explore, explain, or evaluate—is the first step in designing a coherent and purposeful study.</p>
+<hr>
 </section>
 <section id="the-research-workflow-five-interconnected-stages" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="the-research-workflow-five-interconnected-stages">The Research Workflow: Five Interconnected Stages</h2>
-<p>The scientific method provides the logic, but the <strong>research workflow</strong> provides the practical, step-by-step map for a project. It consists of five overlapping and often cyclical stages.</p>
-<p><strong>1. Conceptualization</strong> This is the “thinking and planning” stage. It begins with a broad spark of curiosity (e.g., “I’m interested in how misinformation spreads”) and refines it into a focused, answerable <strong>research question</strong>. This process almost always involves a <strong>literature review</strong>—a deep dive into previous studies on the topic. By seeing what other researchers have already found, you can identify gaps in knowledge and sharpen your focus. Your question might evolve from “How does misinformation spread?” to the more specific “How does the presence of a ‘fact-check’ label on a social media post affect a user’s likelihood to share it?”</p>
-<p><strong>2. Design</strong> The design stage is where you create the blueprint for your study. Here, you make the critical decisions about <em>how</em> you will answer your research question. This includes:</p>
+<p>The workflow gives you a practical map. The stages overlap and loop back as you learn.</p>
+<p><strong>1) Conceptualization</strong> Start broad (“How does misinformation spread?”) and refine to a focused <strong>research question</strong> using a <strong>literature review</strong>. You’ll surface what’s known, what’s contested, and where the gaps are (e.g., “Does a platform ‘fact-check’ label reduce <em>sharing intention</em> among 18–24-year-olds?”). Define key <strong>constructs</strong> you’ll later <strong>operationalize</strong>.</p>
+<p><strong>2) Design</strong> Make the blueprint that will answer your question:</p>
 <ul>
-<li><p><strong>Methodology:</strong> Will you use a survey, an experiment, a content analysis of media texts, or in-depth interviews?</p></li>
-<li><p><strong>Sampling:</strong> Who will you study (your <strong>population</strong>), and how will you select a representative subset of them (your <strong>sample</strong>)?</p></li>
-<li><p><strong>Measurement:</strong> How will you define and measure your key concepts (<strong>operationalization</strong>)? For example, how will you measure “likelihood to share”? Will it be a scale from 1-7 on a survey, or an actual button-click in a simulated environment?</p></li>
-<li><p><strong>Ethics:</strong> How will you protect your participants? This involves planning for <strong>informed consent</strong>, ensuring confidentiality, and minimizing any potential harm.</p></li>
+<li><strong>Methodology:</strong> survey, experiment, interview/focus group, (computational) content analysis, ethnography, or a justified mix.</li>
+<li><strong>Sampling:</strong> define the <strong>population</strong>, pick a <strong>sampling frame</strong>, and select a <strong>sample</strong> that fits your question and constraints.</li>
+<li><strong>Measurement:</strong> map constructs to <strong>observable indicators</strong> (scales, behavioral traces, codes). Decide response options, item wording, and manipulation checks.</li>
+<li><strong>Ethics:</strong> plan <strong>informed consent</strong>, privacy, data security, and risk mitigation appropriate to your context and population.</li>
 </ul>
-<p><strong>3. Data Collection</strong> This is the “doing” stage where you execute your design plan and gather your evidence. If you designed a survey, this is when you distribute it. If you planned interviews, this is when you conduct them. If you are doing a content analysis, this is when you systematically review and code the articles or videos. This stage requires precision and consistency. Any mistakes made here—like asking questions in the wrong order or losing survey responses—can compromise the entire project.</p>
-<p><strong>4. Data Analysis</strong> Once you have your raw data, the analysis stage is where you search for patterns and meaning. The goal is to connect your findings back to your original research question. The approach depends on your data:</p>
+<p><strong>3) Data Collection</strong> Run the plan. Consistency is everything: follow scripts, track versions, log deviations, and pilot your instruments. Small slips here (question order, inconsistent coder training) ripple into big validity problems later.</p>
+<p><strong>4) Data Analysis</strong> Connect evidence to your question.</p>
 <ul>
-<li><p><strong>Quantitative Analysis:</strong> If you collected numerical data (e.g., from a survey or experiment), you will use statistical tools to look for relationships, differences, and trends. For example, you might find that “posts with a fact-check label were shared 40% less often than posts without one.”</p></li>
-<li><p><strong>Qualitative Analysis:</strong> If you collected non-numerical data (e.g., from interviews or focus groups), you will look for recurring themes, interpretations, and narratives. You might find a common theme where participants said the fact-check label made them “stop and think” before sharing.</p></li>
+<li><strong>Quantitative:</strong> examine distributions, relationships, differences, and model parameters (with assumptions and effect sizes).</li>
+<li><strong>Qualitative:</strong> code for themes, patterns, processes, and counterexamples; triangulate across sources and analysts.</li>
 </ul>
-<p><strong>5. Communication</strong> The final stage is to share what you’ve learned with the world. Research that sits on a hard drive is useless. Communication can take many forms: a final paper for a class, a presentation at an academic conference, a published article in a scholarly journal, or even a blog post or report for a non-academic audience. Effective communication involves telling the whole story of your research: not just <em>what</em> you found, but <em>how</em> you found it. This transparency is crucial because it allows others to evaluate your work and build upon it critically.</p>
-<p>Crucially, these stages are not always linear. Insights from your data analysis might send you back to the literature to refine your concepts. A pilot test of your data collection method might reveal a flaw in your design, forcing you to revise it. Research is an iterative and sometimes messy process.</p>
+<p><strong>5) Communication</strong> Share not just <strong>what</strong> you found, but <strong>how</strong> you got there. Your audience can be scholarly (conference, journal) or applied (white paper, client deck). Transparent reporting lets others evaluate and extend your work.</p>
+<p><strong>Iterative reality:</strong> Pilot data can send you back to redesign an item; surprising results can send you back to theory. That’s not failure—it’s how knowledge gets sharper.</p>
+<hr>
 </section>
-<section id="tool-agnostic-principles" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="tool-agnostic-principles">Tool-Agnostic Principles</h2>
-<p>In modern research, you will almost certainly use software tools: statistical packages like SPSS or R, survey platforms like Qualtrics, or qualitative analysis software like NVivo. While learning these tools is a valuable skill, it’s far more essential to understand the <strong>principles behind them</strong>.</p>
-<p>Think of it like this: learning to use a calculator is not the same as learning mathematics. A calculator can give you the answer to 1,000/20, but only your understanding of division tells you what that answer <em>means</em> in the context of your problem. Software changes, new programs emerge, and old ones become obsolete. However, the fundamental principles of research—what makes a good sample, how to create a valid measurement, how to ethically treat participants—are timeless. A researcher who understands the “why” can adapt to any tool. A researcher who only knows the “how” of a specific program is stuck when that program changes. Focus on the logic of the method, not just the buttons you click.</p>
+<section id="open-reproducible-and-ethical-by-default" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="open-reproducible-and-ethical-by-default">Open, Reproducible, and Ethical by Default</h2>
+<p>Modern research culture favors work that others can <strong>inspect, rerun, and reuse</strong>. In a media/communication context—where data can be sensitive—“open” also means <strong>responsibly open</strong>.</p>
+<section id="minimal-reproducibility-stack" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="minimal-reproducibility-stack">Minimal Reproducibility Stack</h3>
+<ul>
+<li><strong>Project structure:</strong> keep a consistent skeleton (<code>/data-raw</code>, <code>/data</code>, <code>/scripts</code>, <code>/figs</code>, <code>/doc</code>).</li>
+<li><strong>Version control:</strong> use Git/GitHub for history and collaboration.</li>
+<li><strong>Computational notes:</strong> set a random <strong>seed</strong>; record session info and package versions; log important decisions.</li>
+<li><strong>Readme &amp; codebook:</strong> document variables, units, coding rules, and any derived fields.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Repro Tip:</strong> Save figures and tables <strong>from code</strong>, not by screenshot. It guarantees you can recreate them when data or fonts change.</p>
+</blockquote>
+</section>
+<section id="responsible-openness" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="responsible-openness">Responsible Openness</h3>
+<ul>
+<li><strong>Share what you can:</strong> analysis scripts, simulated or de-identified data, and detailed methods.</li>
+<li><strong>Protect what you must:</strong> remove direct identifiers; paraphrase sensitive quotes that could be search-traced; respect platform Terms of Service and community norms.</li>
+<li><strong>Preregister when appropriate:</strong> record your main hypotheses, outcomes, and analysis plan before peeking deeply at data.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>IRB Watch-Out:</strong> “Public” on the internet is not the same as “free to use without harm.” Consider context, expectations, and the risk of re-identification when quoting posts or linking handles.</p>
+</blockquote>
+</section>
+<section id="fair-data-right-sized-for-class-projects" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fair-data-right-sized-for-class-projects">FAIR Data (Right-Sized for Class Projects)</h3>
+<p>FAIR = <strong>Findable, Accessible, Interoperable, Reusable</strong>. For student work:</p>
+<ul>
+<li>Use clear file names and structured folders; include a <code>README.md</code>.</li>
+<li>Store tabular data in CSV with header rows and documented encodings.</li>
+<li>Define variable names, value labels, and missing codes in a short <strong>codebook</strong>.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Design Decision:</strong> If you can’t legally or ethically share raw data, share a <strong>synthetic</strong> or <strong>toy</strong> dataset plus your full analysis notebook so others can still follow your logic.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="micro-blueprints-you-can-reuse" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="micro-blueprints-you-can-reuse">Micro-Blueprints You Can Reuse</h2>
+<section id="one-page-data-management-plan-dmp" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="one-page-data-management-plan-dmp">One-Page Data Management Plan (DMP)</h3>
+<ul>
+<li><strong>What:</strong> data types (survey responses, transcripts, platform metadata).</li>
+<li><strong>Where:</strong> storage locations (local encrypted drive, institution cloud).</li>
+<li><strong>Who:</strong> access roles (you, teammate, instructor).</li>
+<li><strong>How long:</strong> retention period and deletion plan.</li>
+<li><strong>Protection:</strong> identifiers, de-identification steps, consent terms.</li>
+<li><strong>Sharing:</strong> what will be shared (scripts, codebook, synthetic data) and where (GitHub/OSF repo).</li>
+</ul>
+</section>
+<section id="operationalization-snapshot" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="operationalization-snapshot">Operationalization Snapshot</h3>
+<ul>
+<li><strong>Construct:</strong> “Sharing intention”</li>
+<li><strong>Indicator:</strong> mean of three 7-point items (e.g., “I would share this post with friends”).</li>
+<li><strong>Timing/Context:</strong> immediately after exposure to a post.</li>
+<li><strong>Quality checks:</strong> attention check; reverse-coded item; internal consistency threshold (e.g., α ≥ .70).</li>
+<li><strong>Decision rule:</strong> preregistered exclusion criteria (failed attention check; completion &lt; 60s).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="tool-agnostic-principles-why-logic-beats-buttons" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="tool-agnostic-principles-why-logic-beats-buttons">Tool-Agnostic Principles (Why Logic Beats Buttons)</h2>
+<p>Software evolves; principles endure. Whether you analyze with SPSS, R, or Python, you still need to:</p>
+<ul>
+<li>Match <strong>design</strong> to <strong>question</strong>.</li>
+<li>Match <strong>measurement</strong> to <strong>construct</strong>.</li>
+<li>Match <strong>analysis</strong> to <strong>design</strong> and <strong>assumptions</strong>.</li>
+<li>Report with <strong>transparency</strong> (what you planned, what you did, what changed, and why).</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>R Quick Win (2–5 minutes):</strong> Create a Quarto project with a reproducible scaffold.</p>
+<ol type="1">
+<li>Create a new RStudio Project → “New Directory.”</li>
+<li>Add folders: <code>data-raw/</code>, <code>data/</code>, <code>scripts/</code>, <code>figs/</code>, <code>doc/</code>.</li>
+<li>In <code>scripts/00-setup.R</code>, add:</li>
+</ol>
+<!-- end list -->
+</blockquote>
+<blockquote class="blockquote">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">451</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li>Knit a blank <code>index.qmd</code> to confirm your environment is captured.</li>
+</ol>
+</blockquote>
+<hr>
 </section>
 <section id="conclusion-research-as-disciplined-curiosity" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="conclusion-research-as-disciplined-curiosity">Conclusion: Research as Disciplined Curiosity</h2>
-<p>At its heart, research is <strong>disciplined curiosity</strong>. It begins with the same questions we ask every day, but channels that curiosity through a structured, systematic process designed to produce trustworthy answers. It’s the essential bridge between a private hunch and public, credible knowledge.</p>
-<p>The research workflow provides the practical steps, and the scientific approach provides the guiding philosophy. Together, they allow us to move beyond the limitations of tradition, authority, and common sense. By learning this process, you are gaining more than just an academic skill; you are developing a powerful tool for critical thinking. In a world saturated with information and misinformation, knowing how to ask the right questions and how to identify a credible answer is one of the most important skills you can possess.</p>
+<p>Research channels everyday curiosity into a transparent, cumulative process. The <strong>workflow</strong> gives you the map; the <strong>scientific approach</strong> gives you the compass. Layer in reproducibility and ethical reflexivity, and your work becomes not only credible today but also useful tomorrow—for you, your teammates, and anyone who wants to understand or extend what you’ve done.</p>
+<hr>
 </section>
 <section id="journal-prompts" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="journal-prompts">Journal Prompts</h2>
 <ol type="1">
-<li><p>Think about a claim you’ve seen online that you weren’t sure was true. How would the principles of <strong>empiricism</strong> and <strong>control</strong> help you design a study to test whether it was accurate?</p></li>
-<li><p>Choose a topic you’re curious about in media or communication (e.g., the effect of streaming on movie watching, how politicians use TikTok, portrayals of families on TV). Write a specific <strong>research question</strong> about it. Then, briefly describe what you would do in each of the five stages of the <strong>research workflow</strong> (Conceptualization, Design, Data Collection, Data Analysis, Communication) to answer it.</p></li>
+<li><p>Think about a claim you’ve seen online that you weren’t sure was true. How would the principles of <strong>empiricism</strong>, <strong>control</strong>, and <strong>replication</strong> help you design a study to test whether it was accurate and build confidence in the result?</p></li>
+<li><p>Choose a topic you’re curious about in media or communication (e.g., the effect of streaming on movie watching, how politicians use TikTok). Frame it as an <strong>exploratory</strong>, <strong>explanatory</strong>, and <strong>evaluative</strong> research question. Pick one question and briefly describe what you would do in each of the five stages of the <strong>research workflow</strong> to answer it.</p></li>
 <li><p>Describe a time you learned a digital tool (in any context—school, work, a hobby) without really understanding the reasoning behind what you were doing. How might knowing the “why”—the <strong>tool-agnostic principles</strong>—have helped you use it more effectively, solve problems, or even choose a better tool for the task?</p></li>
 </ol>
+<hr>
+</section>
+<section id="quick-reference" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="quick-reference">Quick Reference</h2>
+<ul>
+<li><strong>Five Stages:</strong> Conceptualization → Design → Data Collection → Data Analysis → Communication</li>
+<li><strong>Five Principles:</strong> Empiricism • Objectivity • Determinism • Control • Replication</li>
+<li><strong>Three Goals:</strong> Exploratory • Explanatory • Evaluative</li>
+<li><strong>Always On:</strong> Ethics • Reproducibility • Transparency</li>
+</ul>
 
 
 </section>
@@ -736,8 +889,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Welcome to the Course">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome to the Course</span></span>
+      <a href="./index.html" class="pagination-link" aria-label="Welcome">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

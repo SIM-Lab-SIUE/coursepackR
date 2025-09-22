@@ -1,12 +1,14 @@
-# Welcome to the Course
+# Welcome
 
 Hi, I’m Dr. A.P. Leith, and I’ll be your guide through this semester’s journey into research methods for mass communications.
 
-Some professors start their introductions with “I’ve been fascinated by \[X\] since I was a child.” I… didn’t. In fact, I’ve always been a **passive media consumer**. I’m the person who prefers to watch someone else play a video game rather than pick up the controller myself. There’s usually *something* playing in the background while I work — podcasts, TV series I’ve half-memorized, or livestreams of someone playing a game I've seen through a dozen times.
+Some professors start their introductions with “I’ve been fascinated by ***X*** since I was a child.” I… didn’t. In fact, I’ve always been a **passive media consumer**. I’m the person who prefers to watch someone else play a video game rather than pick up the controller myself. There’s usually *something* playing in the background while I work — podcasts, TV series I’ve half-memorized, or livestreams of someone playing a game I've seen through a dozen times.
 
 That “observer” habit ended up shaping my research: I notice strange little human patterns in communication, especially when people interact through media technology. And once I notice them, I can’t *not* poke at them until I understand what’s going on.
 
-## My Research in a Nutshell {.unnumbered}
+------------------------------------------------------------------------
+
+## My Research in a Nutshell
 
 A lot of my work lives at the intersection of **interpersonal communication** and **digital media platforms**. I’ve studied:
 
@@ -19,7 +21,36 @@ A lot of my work lives at the intersection of **interpersonal communication** an
 
 These projects usually start as *“Why do people do that?”* moments. They evolve into studies using interviews, surveys, content analysis, and computational text methods — the same methods you’ll be learning in this course.
 
-## Teaching Philosophy {.unnumbered}
+------------------------------------------------------------------------
+
+## Why This Course Matters (Even If You Don't Plan to Be a Researcher)
+
+A fair question for any methods course is: “Will I ever use this again?” My answer is: yes, every single day. This course isn’t just for future academics. It’s for anyone who wants to become a more **critical consumer of information**.
+
+We are constantly bombarded with claims backed by “research”: news reports citing scientific studies, Instagram infographics presenting data, political polls predicting outcomes, and marketing reports claiming product effectiveness. This course equips you to look past the headline and ask the right questions:
+
+-   Who was surveyed for this poll, and does that sample represent the whole population?
+-   Is this study’s conclusion a fair interpretation of its results?
+-   What questions *weren't* asked?
+-   What biases might be baked into the way this data was collected or analyzed?
+
+Learning research methods gives you a framework for evaluating evidence, spotting flimsy arguments, and navigating a world of endless information with confidence and skepticism. It’s a foundational skill for any career in communications and an essential tool for informed citizenship.
+
+------------------------------------------------------------------------
+
+## The Communities of Research
+
+Part of becoming a critical consumer is understanding that not all research looks or acts the same. Our field isn't one giant, uniform enterprise; it’s a collection of different **communities of scholars** who approach their work with different goals and philosophies. When you encounter research, you’re often seeing the product of one of these specific traditions. For now, we can group them into three broad categories:
+
+1.  **Social Scientific Researchers** seek to explain and predict communication patterns. They operate on the belief that there are objective patterns in human behavior that can be uncovered, often using quantitative methods like surveys and experiments to find generalizable results.
+2.  **Interpretive Researchers** seek to understand and describe communication from the subjective viewpoint of the people involved. They are less interested in prediction and more focused on the rich, textured meaning of a specific experience, often using qualitative methods like in-depth interviews and ethnography.
+3.  **Critical Researchers** seek to challenge power structures and promote social justice. They analyze how communication creates and perpetuates inequality, aiming not just to understand the world but to critique it and inspire change.
+
+Understanding these different starting points is key. It explains why one article is full of statistical tables while another is a deep reading of a TV show. It’s a concept we’ll explore in much more detail in Chapter 4, but for now, it helps to know that the diversity of methods you’ll see reflects a healthy diversity of purpose.
+
+------------------------------------------------------------------------
+
+## Teaching Philosophy
 
 I believe research is **formalized curiosity** — the tools and methods we use are just ways of chasing down a good question.
 
@@ -31,9 +62,9 @@ That means:
 -   We’ll make space for trial, error, and iteration.
 -   We’ll learn to use tools like R, RStudio, Quarto, and GitHub not just because they’re “required,” but because they open doors to faster, better, and more shareable research.
 
-![Cover Image](images/cover.png){fig-alt="Cover Image" width="100%"}
+------------------------------------------------------------------------
 
-## A Macro View of the Course {.unnumbered}
+## A Macro View of the Course
 
 The semester follows the following broad arc:
 
@@ -45,20 +76,34 @@ The semester follows the following broad arc:
 
 The main difference between the two courses is the **final project**: - Undergraduates work **in teams** to produce a *White Paper*. - Graduate students work **individually** to produce a full *Research Manuscript*.
 
-## What to Expect {.unnumbered}
+------------------------------------------------------------------------
+
+## What to Expect
 
 Here’s what you can count on:
 
--   **Weekly Readings & Journals**\
+-   **Weekly Readings & Journals**
+
     You’ll read one textbook chapter per week and respond to **one of three prompts** in a short written journal, using a Quarto template and submitting to GitHub.
--   **Hands-On Assignments**\
+
+-   **Hands-On Assignments**
+
     Most weeks, you’ll complete a small, applied project — like cleaning a dataset, building a visualization, or drafting a section of your final paper.
--   **Skill Building in R, Quarto, and GitHub**\
+
+-   **Skill Building in R, Quarto, and GitHub**
+
     We’ll work step-by-step so you can learn to code, analyze, and share without feeling overwhelmed.
--   **Final Project**\
+
+-   **Final Project**
+
     Culminating in final research project.
 
 **My advice:** Approach the semester like a curious researcher, not a box-checker. Ask questions, explore, and remember — research is just curiosity with better documentation.
 
-> *“Research is formalized curiosity. It is poking and prying with a purpose.”*\
+------------------------------------------------------------------------
+
+> “Research is formalized curiosity. It is poking and prying with a purpose.”
+>
 > — Zora Neale Hurston
+
+![Cover Image](images/cover.png){fig-alt="Cover Image" width="50%"}
