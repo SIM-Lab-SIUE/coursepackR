@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Introduction to Media and Communication Research Methods",
+    "title": "Introduction to Media and Communications Research Methods",
     "section": "",
     "text": "1 Welcome to the Course\nHi, I’m Dr. A.P. Leith, and I’ll be your guide through this semester’s journey into research methods for mass communications.\nSome professors start their introductions with “I’ve been fascinated by [X] since I was a child.” I… didn’t. In fact, I’ve always been a passive media consumer. I’m the person who prefers to watch someone else play a video game rather than pick up the controller myself. There’s usually something playing in the background while I work — podcasts, TV series I’ve half-memorized, or livestreams of someone playing a game I’ve seen through a dozen times.\nThat “observer” habit ended up shaping my research: I notice strange little human patterns in communication, especially when people interact through media technology. And once I notice them, I can’t not poke at them until I understand what’s going on.",
     "crumbs": [
@@ -12,7 +12,7 @@
   {
     "objectID": "index.html#my-research-in-a-nutshell",
     "href": "index.html#my-research-in-a-nutshell",
-    "title": "Introduction to Media and Communication Research Methods",
+    "title": "Introduction to Media and Communications Research Methods",
     "section": "My Research in a Nutshell",
     "text": "My Research in a Nutshell\nA lot of my work lives at the intersection of interpersonal communication and digital media platforms. I’ve studied:\n\nParasocial relationships and cues — how small things in a livestream (like a streamer’s tone or how they respond to chat) can make you feel like you “know” them (Parasocial Cues: The Ubiquity of Parasocial Relationships on Twitch, 2021).\nMedia and grief — how fans grieve when a fictional character dies, treating that loss like it happened to a real friend (RIP Kutner: Parasocial Grief Following a TV Character’s Death, 2018).\nWatching as a form of play — why people (like me) often choose to watch games rather than play them (Playing Games for Others, 2018).\nVR and platform affordances — what features of VR worlds spark joy, trust, or frustration, from social connection to motion sickness (Mixed Feelings and Realities, 2023).\nMedia use during COVID — how Twitch became a social space for integration and tension release during lockdown (Twitch in the Time of Quarantine, 2021).\nVirtual meetings and accessibility — which meeting tools people actually use, and how things like captions and avatars affect engagement (Meeting Needs, 2025).\n\nThese projects usually start as “Why do people do that?” moments. They evolve into studies using interviews, surveys, content analysis, and computational text methods — the same methods you’ll be learning in this course.",
     "crumbs": [
@@ -22,9 +22,9 @@
   {
     "objectID": "index.html#teaching-philosophy",
     "href": "index.html#teaching-philosophy",
-    "title": "Introduction to Media and Communication Research Methods",
+    "title": "Introduction to Media and Communications Research Methods",
     "section": "Teaching Philosophy",
-    "text": "Teaching Philosophy\nI believe research is formalized curiosity — the tools and methods we use are just ways of chasing down a good question.\nIn this class, I want you to do more than memorize procedures. I want you to think critically, creatively, and practically. My role is to give you the skills and confidence to explore your own questions about the media world — and to give you the freedom to design research that matters to you.\nThat means:\n\nWe’ll balance theory with hands-on practice.\nWe’ll make space for trial, error, and iteration.\nWe’ll learn to use tools like R, RStudio, Quarto, and GitHub not just because they’re “required,” but because they open doors to faster, better, and more shareable research.",
+    "text": "Teaching Philosophy\nI believe research is formalized curiosity — the tools and methods we use are just ways of chasing down a good question.\nIn this class, I want you to do more than memorize procedures. I want you to think critically, creatively, and practically. My role is to give you the skills and confidence to explore your own questions about the media world — and to give you the freedom to design research that matters to you.\nThat means:\n\nWe’ll balance theory with hands-on practice.\nWe’ll make space for trial, error, and iteration.\nWe’ll learn to use tools like R, RStudio, Quarto, and GitHub not just because they’re “required,” but because they open doors to faster, better, and more shareable research.\n\n\n\n\nCover Image",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Welcome to the Course</span>"
     ]
@@ -32,7 +32,7 @@
   {
     "objectID": "index.html#a-macro-view-of-the-course",
     "href": "index.html#a-macro-view-of-the-course",
-    "title": "Introduction to Media and Communication Research Methods",
+    "title": "Introduction to Media and Communications Research Methods",
     "section": "A Macro View of the Course",
     "text": "A Macro View of the Course\nThe semester follows the following broad arc:\n\nLaying the Foundations — Understanding what research in mass communications looks like, and setting up the digital tools you’ll need.\nDesigning Research — Developing your own research question, finding relevant literature, and selecting the right methods.\nCollecting & Managing Data — Working with surveys, interviews, or content analysis, and learning how to store and organize your data responsibly.\nAnalyzing & Visualizing — Using R and related packages to make sense of your findings.\nCommunicating Results — Writing in a way that’s rigorous but also readable.\n\nThe main difference between the two courses is the final project: - Undergraduates work in teams to produce a White Paper. - Graduate students work individually to produce a full Research Manuscript.",
     "crumbs": [
@@ -42,7 +42,7 @@
   {
     "objectID": "index.html#what-to-expect",
     "href": "index.html#what-to-expect",
-    "title": "Introduction to Media and Communication Research Methods",
+    "title": "Introduction to Media and Communications Research Methods",
     "section": "What to Expect",
     "text": "What to Expect\nHere’s what you can count on:\n\nWeekly Readings & Journals\nYou’ll read one textbook chapter per week and respond to one of three prompts in a short written journal, using a Quarto template and submitting to GitHub.\nHands-On Assignments\nMost weeks, you’ll complete a small, applied project — like cleaning a dataset, building a visualization, or drafting a section of your final paper.\nSkill Building in R, Quarto, and GitHub\nWe’ll work step-by-step so you can learn to code, analyze, and share without feeling overwhelmed.\nFinal Project\nCulminating in final research project.\n\nMy advice: Approach the semester like a curious researcher, not a box-checker. Ask questions, explore, and remember — research is just curiosity with better documentation.\n\n“Research is formalized curiosity. It is poking and prying with a purpose.”\n— Zora Neale Hurston",
     "crumbs": [
