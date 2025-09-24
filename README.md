@@ -13,16 +13,31 @@ The package automates the installation of necessary tools (like Quarto and LaTeX
 
 ------------------------------------------------------------------------
 
+
 ## 🚀 Installation
+
 
 You can install the development version of `mccoursepack` from GitHub with:
 
-``` r
+
+```r
 # If you don't have the 'remotes' package, run this first:
 # install.packages("remotes")
 
 remotes::install_github("sim-lab-siue/mccoursepack")
 ```
+
+**Note:** This package uses the `pak` and `quarto` packages internally for updating and setup. Please ensure both are installed:
+
+```r
+install.packages("pak")
+install.packages("quarto")
+```
+## ❓ Troubleshooting
+
+**Q: I see a warning about missing or unexported objects: 'pak::pkg_diff' or 'quarto::quarto_install'. Should I worry?**
+
+A: No. This is a harmless warning caused by how these packages export their functions. The `mccoursepack` package uses fully qualified calls (e.g., `pak::pkg_diff()`), and as long as you have the `pak` and `quarto` packages installed, everything will work as intended. You can safely ignore this warning.
 
 ------------------------------------------------------------------------
 
@@ -83,25 +98,44 @@ Lists the courses or available weekly material templates bundled within the pack
     list_weeks(course = "mc451")
     ```
 
+
 #### `download_week()` & `download_journal()`
 
 Copies the material for a specific week or the course journal into a local directory on your computer. 📁
 
 -   **Arguments:**
-
     -   `course`: The name of the course (e.g., `"mc451"`).
     -   `week`: The week number (e.g., `1`).
     -   `destdir` (Optional): The destination directory. Defaults to your current working directory.
 
 -   **Usage:**
-
-    ``` r
+    ```r
     # Download week 1 materials for the MC451 course
     download_week(course = "mc451", week = 1)
 
     # Download the journal for MC451
     download_journal(course = "mc451")
     ```
+
+**Journal Entry Template Update:**
+
+When you add a new journal entry (using the provided script), the filename now includes the course, week/chapter, and date, e.g.:
+
+    entries/mc451_week07_2025-09-24.qmd
+
+The YAML header in each entry includes:
+
+```yaml
+---
+title: "Journal Entry"
+course: "mc451"
+week: "07"
+date: "2025-09-24"
+full_date: "September 24, 2025"
+---
+```
+
+This ensures each entry is uniquely identified and easy to organize.
 
 ### Utility Functions
 

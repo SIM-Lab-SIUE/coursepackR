@@ -67,7 +67,20 @@ setwd("journal")                   # go inside journal folder
 source("scripts/new_journal_entry.R")
 ```
 
-This creates `entries/YYYY-MM-DD.qmd` with three prompts. **Answer exactly one**, staying in your word range:
+
+This creates a file like `entries/mc451_week07_2025-09-24.qmd` (with your course, week/chapter, and date in the filename) containing three prompts. **Answer exactly one**, staying in your word range:
+
+The YAML header in each entry includes:
+
+```yaml
+---
+title: "Journal Entry"
+course: "mc451"
+week: "07"
+date: "2025-09-24"
+full_date: "September 24, 2025"
+---
+```
 
 -   **MC 451:** 250-300 words
 -   **MC 501:** 450-500 words

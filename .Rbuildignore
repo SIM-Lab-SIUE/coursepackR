@@ -2,6 +2,9 @@
 ^\.Rproj\.user$
 ^\.github$
 ^\.quarto$
+^infrastructure\.qmd$
+^scripts$
+^inst/courses/.*/weeks/.*/\.quarto$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$

@@ -1,0 +1,48 @@
+---
+title: "Topic Selection"
+format: pdf
+---
+
+# Topic Selection
+
+**Your Name:**
+
+**Thesis Statement:**
+
+**Theory:**
+
+**Theory Rationale:**
+
+**RQ/H 1:**
+
+**RQ/H 2:**
+
+---
+
+## Examples
+
+### Example 1
+
+**Thesis Statement:** This study argues that the **motivation** for using social media—as explained by Uses and Gratifications Theory—is a more significant predictor of mental health outcomes in young adults than the sheer amount of time spent on the platforms. Specifically, it posits that usage motivated by a need for **social connection** will correlate with positive well-being, whereas usage motivated by a need for **social comparison** will predict higher levels of anxiety and depression.
+
+**Theory:** Uses and Gratifications Theory
+
+**Theory Rationale:** Uses and Gratifications Theory posits that individuals are active consumers who choose media to satisfy specific needs. In the context of this study, U&G is applied to differentiate between key motivations for social media use. This research will focus on two primary gratifications: the need for **social connection** (to build and maintain relationships) and the need for **social comparison** (to evaluate oneself against others). It is theorized that the specific gratification sought dictates whether the subsequent impact on an individual's mental health is positive or negative.
+
+**RH 1:** Higher motivation for using social media for **social connection** will be positively associated with **life satisfaction** in young adults.
+
+**RH 2:** Higher motivation for using social media for **social comparison** will be positively associated with **social anxiety** in young adults.
+
+---
+
+### Example 2
+
+**Thesis Statement:** This study argues that, in accordance with Social Exchange Theory, the quality of young adults' offline interpersonal relationships is significantly predicted by the perceived balance of relational **rewards** (e.g., social support, validation) and **costs** (e.g., conflict, jealousy) derived from their social media interactions with those same individuals[, 18].
+
+**Theory:** Social Exchange Theory
+
+**Theory Rationale:** Social Exchange Theory posits that relationship stability and satisfaction are based on a subjective analysis of rewards and costs. Applying this to social media, this study operationalizes **rewards** as perceived social support, emotional validation, and enhanced connection, while **costs** are defined as platform-related jealousy, misunderstandings, and conflict. The theory suggests that when online interactions yield a high reward-to-cost ratio, this positive evaluation will transfer to and enhance the satisfaction of the corresponding offline relationship.
+
+**RH 1:** A higher level of perceived **relational rewards** (e.g., support, validation) from social media interactions is positively correlated with **offline relationship satisfaction**.
+
+**RH 2:** A higher level of perceived **relational costs** (e.g., jealousy, conflict) from social media interactions is negatively correlated with **offline relationship satisfaction**.

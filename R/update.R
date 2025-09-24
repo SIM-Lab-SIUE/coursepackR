@@ -63,7 +63,7 @@ mccourse_update <- function(update = c("ask","always","never"),
   }
 }
 
-# Internal: determine if newer version exists
+## Internal: determine if newer version exists
 .needs_update_mccoursepack <- function(source = c("CRAN","GitHub"), repo = NULL, quiet = FALSE) {
   source <- match.arg(source)
   installed <- tryCatch(utils::packageVersion("mccoursepack"), error = function(e) NA)
