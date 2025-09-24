@@ -1,109 +1,97 @@
-# Welcome
+# Welcome to the Course
 
-Hi, I’m Dr. A.P. Leith, and I’ll be your guide through this semester’s journey into research methods for mass communications.
+Hi, I’m Dr. A. P. Leith, and I’ll be your guide through this semester’s journey into research methods for mass communications.
 
-Some professors start their introductions with “I’ve been fascinated by ***X*** since I was a child.” I… didn’t. In fact, I’ve always been a **passive media consumer**. I’m the person who prefers to watch someone else play a video game rather than pick up the controller myself. There’s usually *something* playing in the background while I work — podcasts, TV series I’ve half-memorized, or livestreams of someone playing a game I've seen through a dozen times.
+Some professors start with “I’ve been fascinated by $X$ since childhood.” I… didn’t. I’ve always been a **passive media consumer**. I’m the person who prefers to watch someone else play a video game rather than pick up the controller. There’s usually *something* playing in the background while I work—podcasts, TV series I’ve half-memorized, or livestreams of games I’ve watched through a dozen times.
 
-That “observer” habit ended up shaping my research: I notice strange little human patterns in communication, especially when people interact through media technology. And once I notice them, I can’t *not* poke at them until I understand what’s going on.
+That “observer” habit shaped my research: I notice small, strange patterns in how people communicate through technology. Once I notice them, I can’t *not* poke at them until I understand what’s going on.
 
-------------------------------------------------------------------------
+## My Research in a Nutshell {.unnumbered}
 
-## My Research in a Nutshell
+My work sits at the intersection of **interpersonal communication** and **digital media platforms**. I’ve studied:
 
-A lot of my work lives at the intersection of **interpersonal communication** and **digital media platforms**. I’ve studied:
+-   **Parasocial relationships and cues** — how tone, pacing, and chat responses in livestreams foster felt intimacy.
+-   **Media and grief** — how fans grieve fictional characters as if they were close others.
+-   **Watching as play** — why many of us choose to watch games rather than play them.
+-   **VR and platform affordances** — which features spark joy, trust, or frustration.
+-   **Media use during COVID** — how livestreaming became a social space for tension release.
+-   **Virtual meetings and accessibility** — how captions, avatars, and features affect engagement.
 
--   **Parasocial relationships and cues** — how small things in a livestream (like a streamer’s tone or how they respond to chat) can make you feel like you “know” them (*Parasocial Cues: The Ubiquity of Parasocial Relationships on Twitch*, 2021).
--   **Media and grief** — how fans grieve when a fictional character dies, treating that loss like it happened to a real friend (*RIP Kutner: Parasocial Grief Following a TV Character's Death*, 2018).
--   **Watching as a form of play** — why people (like me) often choose to watch games rather than play them (*Playing Games for Others*, 2018).
--   **VR and platform affordances** — what features of VR worlds spark joy, trust, or frustration, from social connection to motion sickness (*Mixed Feelings and Realities*, 2023).
--   **Media use during COVID** — how Twitch became a social space for integration and tension release during lockdown (*Twitch in the Time of Quarantine*, 2021).
--   **Virtual meetings and accessibility** — which meeting tools people actually use, and how things like captions and avatars affect engagement (*Meeting Needs*, 2025).
+These projects usually start as *“Why do people do that?”* moments. They evolve into studies using interviews, surveys, content analysis, and computational text methods—the same methods you’ll practice here.
 
-These projects usually start as *“Why do people do that?”* moments. They evolve into studies using interviews, surveys, content analysis, and computational text methods — the same methods you’ll be learning in this course.
+## Teaching Philosophy {.unnumbered}
 
-------------------------------------------------------------------------
+Research is **formalized curiosity**. The tools and methods you’ll learn are ways to chase a good question.
 
-## Why This Course Matters (Even If You Don't Plan to Be a Researcher)
-
-A fair question for any methods course is: “Will I ever use this again?” My answer is: yes, every single day. This course isn’t just for future academics. It’s for anyone who wants to become a more **critical consumer of information**.
-
-We are constantly bombarded with claims backed by “research”: news reports citing scientific studies, Instagram infographics presenting data, political polls predicting outcomes, and marketing reports claiming product effectiveness. This course equips you to look past the headline and ask the right questions:
-
--   Who was surveyed for this poll, and does that sample represent the whole population?
--   Is this study’s conclusion a fair interpretation of its results?
--   What questions *weren't* asked?
--   What biases might be baked into the way this data was collected or analyzed?
-
-Learning research methods gives you a framework for evaluating evidence, spotting flimsy arguments, and navigating a world of endless information with confidence and skepticism. It’s a foundational skill for any career in communications and an essential tool for informed citizenship.
-
-------------------------------------------------------------------------
-
-## The Communities of Research
-
-Part of becoming a critical consumer is understanding that not all research looks or acts the same. Our field isn't one giant, uniform enterprise; it’s a collection of different **communities of scholars** who approach their work with different goals and philosophies. When you encounter research, you’re often seeing the product of one of these specific traditions. For now, we can group them into three broad categories:
-
-1.  **Social Scientific Researchers** seek to explain and predict communication patterns. They operate on the belief that there are objective patterns in human behavior that can be uncovered, often using quantitative methods like surveys and experiments to find generalizable results.
-2.  **Interpretive Researchers** seek to understand and describe communication from the subjective viewpoint of the people involved. They are less interested in prediction and more focused on the rich, textured meaning of a specific experience, often using qualitative methods like in-depth interviews and ethnography.
-3.  **Critical Researchers** seek to challenge power structures and promote social justice. They analyze how communication creates and perpetuates inequality, aiming not just to understand the world but to critique it and inspire change.
-
-Understanding these different starting points is key. It explains why one article is full of statistical tables while another is a deep reading of a TV show. It’s a concept we’ll explore in much more detail in Chapter 4, but for now, it helps to know that the diversity of methods you’ll see reflects a healthy diversity of purpose.
-
-------------------------------------------------------------------------
-
-## Teaching Philosophy
-
-I believe research is **formalized curiosity** — the tools and methods we use are just ways of chasing down a good question.
-
-In this class, I want you to do more than memorize procedures. I want you to **think critically, creatively, and practically**. My role is to give you the skills and confidence to explore your own questions about the media world — and to give you the freedom to design research that matters to *you*.
+In this class, you will **think critically, creatively, and practically**. My role is to help you build skills and confidence to investigate your own questions about the media world—and to design research that matters to *you*.
 
 That means:
 
 -   We’ll balance theory with hands-on practice.
 -   We’ll make space for trial, error, and iteration.
--   We’ll learn to use tools like R, RStudio, Quarto, and GitHub not just because they’re “required,” but because they open doors to faster, better, and more shareable research.
+-   We’ll use R, RStudio, Quarto, and GitHub not just because they’re “required,” but because they enable reproducible, shareable work.
 
-------------------------------------------------------------------------
+> *“Research is formalized curiosity. It is poking and prying with a purpose.”* — Zora Neale Hurston
 
-## A Macro View of the Course
+## How to Use This Book (A 20-Minute Weekly Workflow) {.unnumbered}
 
-The semester follows the following broad arc:
+1.  **Skim (3–5 min):** Read the learning goals at the top of the chapter and scan the section headings. Note the end-of-chapter prompts.
+2.  **Deep read (10–12 min):** Read the body text, pausing at each callout box (see legend below).
+3.  **Journal (3–5 min):** Choose **one** prompt and draft a focused response (250–400 words).
+4.  **Preview the lab (2–3 min):** Glance at the week’s assignment so the reading connects to what you’ll do.
 
-1.  **Laying the Foundations** — Understanding what research in mass communications looks like, and setting up the digital tools you’ll need.
-2.  **Designing Research** — Developing your own research question, finding relevant literature, and selecting the right methods.
-3.  **Collecting & Managing Data** — Working with surveys, interviews, or content analysis, and learning how to store and organize your data responsibly.
-4.  **Analyzing & Visualizing** — Using R and related packages to make sense of your findings.
-5.  **Communicating Results** — Writing in a way that’s rigorous but also readable.
+### Feature Legend (you’ll see these throughout the book) {.unnumbered}
 
-The main difference between the two courses is the **final project**: - Undergraduates work **in teams** to produce a *White Paper*. - Graduate students work **individually** to produce a full *Research Manuscript*.
+-   **R Quick Win** — a tiny, confidence-building task in R that takes \~2–5 minutes.
+-   **IRB Watch-Out** — an ethics or compliance pitfall to consider before collecting data.
+-   **Design Decision** — a fork in the road (e.g., survey vs. interview) and how to choose.
+-   **Grad Extension** — an optional deeper dive or advanced deliverable for graduate students.
+-   **Repro Tip** — a short step that improves reproducibility (naming, versioning, codebooks).
 
-------------------------------------------------------------------------
+*(In Quarto, these appear as callouts; in PDF/print, they appear as shaded boxes.)*
 
-## What to Expect
+## A Macro View of the Course {.unnumbered}
 
-Here’s what you can count on:
+This semester follows a simple arc:
 
--   **Weekly Readings & Journals**
+1.  **Laying the Foundations** — What counts as research in mass communications? Set up the digital tools you’ll need.
+2.  **Designing Research** — Develop a researchable question, connect it to theory, and choose a feasible, ethical method.
+3.  **Collecting & Managing Data** — Build instruments or protocols, gather data responsibly, and keep it organized.
+4.  **Analyzing & Visualizing** — Use R to explore data, run appropriate analyses, and make clear visuals.
+5.  **Communicating Results** — Write plainly and precisely, with rigor that stands up to scrutiny.
 
-    You’ll read one textbook chapter per week and respond to **one of three prompts** in a short written journal, using a Quarto template and submitting to GitHub.
+\[Figure: Semester arc timeline — five labeled phases running left-to-right with small icons for setup, design, collect, analyze, communicate. Beneath each phase: 2–3 example activities (e.g., “Quarto project,” “Operationalize concepts,” “Pilot survey,” “EDA + t-tests,” “Results + discussion”). The figure emphasizes that writing and ethics span **all** phases.\]
 
--   **Hands-On Assignments**
+### Final Project Paths {.unnumbered}
 
-    Most weeks, you’ll complete a small, applied project — like cleaning a dataset, building a visualization, or drafting a section of your final paper.
+-   **Undergraduates (teams):** **White Paper** focused on a practical, industry-facing question.
+-   **Graduate students (individual):** **Research Manuscript** with fuller literature integration and reporting.
 
--   **Skill Building in R, Quarto, and GitHub**
+## What to Expect {.unnumbered}
 
-    We’ll work step-by-step so you can learn to code, analyze, and share without feeling overwhelmed.
+-   **Weekly Readings & Journals** Read one chapter and respond to **one of three prompts** in a short journal using a Quarto template submitted via GitHub.
 
--   **Final Project**
+-   **Hands-On Assignments** Most weeks, complete a small, applied project—clean a dataset, build a visualization, draft a method, or run an analysis. Each task connects directly to the chapter.
 
-    Culminating in final research project.
+-   **Skill Building in R, Quarto, and GitHub** We proceed step-by-step. You’ll set up a project, script analyses, render reports, and version your work—without needing prior coding experience.
 
-**My advice:** Approach the semester like a curious researcher, not a box-checker. Ask questions, explore, and remember — research is just curiosity with better documentation.
+-   **Final Project** All roads lead here. You’ll combine your design, data, analysis, and writing into a coherent deliverable.
 
-------------------------------------------------------------------------
+**Advice for success:** Treat the course like a series of small investigations. Ask precise questions, make your steps transparent, and let your evidence do the talking.
 
-> “Research is formalized curiosity. It is poking and prying with a purpose.”
->
-> — Zora Neale Hurston
+## Tools & Reproducibility (Why These Matter) {.unnumbered}
+
+-   **R + RStudio** — Open, free, and widely used for analysis and visualization.
+-   **Quarto** — Turns your code and writing into clean, shareable documents.
+-   **GitHub** — Tracks changes, backs up your work, and makes collaboration easier.
+
+You’ll learn **project-first habits**: consistent file structure, named scripts, codebooks, and short README files that future-you (and collaborators) can understand. Small steps—like setting a seed, saving session info, and exporting figures from code—will make your work replicable.
+
+## Where to Get Help {.unnumbered}
+
+-   **In class/lab:** Bring questions early, especially about setup and first-week friction.
+-   **Office hours:** For deeper design choices, ethics questions, or results interpretation.
+-   **Peer support:** Ask classmates, but cite any outside code or guides you adapt.
+-   **Documentation habit:** When you hit a snag and fix it, add two sentences to your README explaining the fix.
 
 ![Cover Image](images/cover.png){fig-alt="Cover Image" width="50%"}

@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -84,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome to the Course</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -114,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome to the Course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,14 +234,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome"><span class="header-section-number">1</span> Welcome</a>
+  <li><a href="#welcome-to-the-course" id="toc-welcome-to-the-course" class="nav-link active" data-scroll-target="#welcome-to-the-course"><span class="header-section-number">1</span> Welcome to the Course</a>
   <ul class="collapse">
-  <li><a href="#my-research-in-a-nutshell" id="toc-my-research-in-a-nutshell" class="nav-link" data-scroll-target="#my-research-in-a-nutshell"><span class="header-section-number">1.1</span> My Research in a Nutshell</a></li>
-  <li><a href="#why-this-course-matters-even-if-you-dont-plan-to-be-a-researcher" id="toc-why-this-course-matters-even-if-you-dont-plan-to-be-a-researcher" class="nav-link" data-scroll-target="#why-this-course-matters-even-if-you-dont-plan-to-be-a-researcher"><span class="header-section-number">1.2</span> Why This Course Matters (Even If You Don’t Plan to Be a Researcher)</a></li>
-  <li><a href="#the-communities-of-research" id="toc-the-communities-of-research" class="nav-link" data-scroll-target="#the-communities-of-research"><span class="header-section-number">1.3</span> The Communities of Research</a></li>
-  <li><a href="#teaching-philosophy" id="toc-teaching-philosophy" class="nav-link" data-scroll-target="#teaching-philosophy"><span class="header-section-number">1.4</span> Teaching Philosophy</a></li>
-  <li><a href="#a-macro-view-of-the-course" id="toc-a-macro-view-of-the-course" class="nav-link" data-scroll-target="#a-macro-view-of-the-course"><span class="header-section-number">1.5</span> A Macro View of the Course</a></li>
-  <li><a href="#what-to-expect" id="toc-what-to-expect" class="nav-link" data-scroll-target="#what-to-expect"><span class="header-section-number">1.6</span> What to Expect</a></li>
+  <li><a href="#my-research-in-a-nutshell" id="toc-my-research-in-a-nutshell" class="nav-link" data-scroll-target="#my-research-in-a-nutshell">My Research in a Nutshell</a></li>
+  <li><a href="#teaching-philosophy" id="toc-teaching-philosophy" class="nav-link" data-scroll-target="#teaching-philosophy">Teaching Philosophy</a></li>
+  <li><a href="#how-to-use-this-book-a-20-minute-weekly-workflow" id="toc-how-to-use-this-book-a-20-minute-weekly-workflow" class="nav-link" data-scroll-target="#how-to-use-this-book-a-20-minute-weekly-workflow">How to Use This Book (A 20-Minute Weekly Workflow)</a>
+  <ul class="collapse">
+  <li><a href="#feature-legend-youll-see-these-throughout-the-book" id="toc-feature-legend-youll-see-these-throughout-the-book" class="nav-link" data-scroll-target="#feature-legend-youll-see-these-throughout-the-book">Feature Legend (you’ll see these throughout the book)</a></li>
+  </ul></li>
+  <li><a href="#a-macro-view-of-the-course" id="toc-a-macro-view-of-the-course" class="nav-link" data-scroll-target="#a-macro-view-of-the-course">A Macro View of the Course</a>
+  <ul class="collapse">
+  <li><a href="#final-project-paths" id="toc-final-project-paths" class="nav-link" data-scroll-target="#final-project-paths">Final Project Paths</a></li>
+  </ul></li>
+  <li><a href="#what-to-expect" id="toc-what-to-expect" class="nav-link" data-scroll-target="#what-to-expect">What to Expect</a></li>
+  <li><a href="#tools-reproducibility-why-these-matter" id="toc-tools-reproducibility-why-these-matter" class="nav-link" data-scroll-target="#tools-reproducibility-why-these-matter">Tools &amp; Reproducibility (Why These Matter)</a></li>
+  <li><a href="#where-to-get-help" id="toc-where-to-get-help" class="nav-link" data-scroll-target="#where-to-get-help">Where to Get Help</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -245,94 +281,104 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Welcome</h1>
-<p>Hi, I’m Dr.&nbsp;A.P. Leith, and I’ll be your guide through this semester’s journey into research methods for mass communications.</p>
-<p>Some professors start their introductions with “I’ve been fascinated by <strong><em>X</em></strong> since I was a child.” I… didn’t. In fact, I’ve always been a <strong>passive media consumer</strong>. I’m the person who prefers to watch someone else play a video game rather than pick up the controller myself. There’s usually <em>something</em> playing in the background while I work — podcasts, TV series I’ve half-memorized, or livestreams of someone playing a game I’ve seen through a dozen times.</p>
-<p>That “observer” habit ended up shaping my research: I notice strange little human patterns in communication, especially when people interact through media technology. And once I notice them, I can’t <em>not</em> poke at them until I understand what’s going on.</p>
-<hr>
-<section id="my-research-in-a-nutshell" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="my-research-in-a-nutshell"><span class="header-section-number">1.1</span> My Research in a Nutshell</h2>
-<p>A lot of my work lives at the intersection of <strong>interpersonal communication</strong> and <strong>digital media platforms</strong>. I’ve studied:</p>
+<section id="welcome-to-the-course" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Welcome to the Course</h1>
+<p>Hi, I’m Dr.&nbsp;A. P. Leith, and I’ll be your guide through this semester’s journey into research methods for mass communications.</p>
+<p>Some professors start with “I’ve been fascinated by <span class="math inline">\(X\)</span> since childhood.” I… didn’t. I’ve always been a <strong>passive media consumer</strong>. I’m the person who prefers to watch someone else play a video game rather than pick up the controller. There’s usually <em>something</em> playing in the background while I work—podcasts, TV series I’ve half-memorized, or livestreams of games I’ve watched through a dozen times.</p>
+<p>That “observer” habit shaped my research: I notice small, strange patterns in how people communicate through technology. Once I notice them, I can’t <em>not</em> poke at them until I understand what’s going on.</p>
+<section id="my-research-in-a-nutshell" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="my-research-in-a-nutshell">My Research in a Nutshell</h2>
+<p>My work sits at the intersection of <strong>interpersonal communication</strong> and <strong>digital media platforms</strong>. I’ve studied:</p>
 <ul>
-<li><strong>Parasocial relationships and cues</strong> — how small things in a livestream (like a streamer’s tone or how they respond to chat) can make you feel like you “know” them (<em>Parasocial Cues: The Ubiquity of Parasocial Relationships on Twitch</em>, 2021).</li>
-<li><strong>Media and grief</strong> — how fans grieve when a fictional character dies, treating that loss like it happened to a real friend (<em>RIP Kutner: Parasocial Grief Following a TV Character’s Death</em>, 2018).</li>
-<li><strong>Watching as a form of play</strong> — why people (like me) often choose to watch games rather than play them (<em>Playing Games for Others</em>, 2018).</li>
-<li><strong>VR and platform affordances</strong> — what features of VR worlds spark joy, trust, or frustration, from social connection to motion sickness (<em>Mixed Feelings and Realities</em>, 2023).</li>
-<li><strong>Media use during COVID</strong> — how Twitch became a social space for integration and tension release during lockdown (<em>Twitch in the Time of Quarantine</em>, 2021).</li>
-<li><strong>Virtual meetings and accessibility</strong> — which meeting tools people actually use, and how things like captions and avatars affect engagement (<em>Meeting Needs</em>, 2025).</li>
+<li><strong>Parasocial relationships and cues</strong> — how tone, pacing, and chat responses in livestreams foster felt intimacy.</li>
+<li><strong>Media and grief</strong> — how fans grieve fictional characters as if they were close others.</li>
+<li><strong>Watching as play</strong> — why many of us choose to watch games rather than play them.</li>
+<li><strong>VR and platform affordances</strong> — which features spark joy, trust, or frustration.</li>
+<li><strong>Media use during COVID</strong> — how livestreaming became a social space for tension release.</li>
+<li><strong>Virtual meetings and accessibility</strong> — how captions, avatars, and features affect engagement.</li>
 </ul>
-<p>These projects usually start as <em>“Why do people do that?”</em> moments. They evolve into studies using interviews, surveys, content analysis, and computational text methods — the same methods you’ll be learning in this course.</p>
-<hr>
+<p>These projects usually start as <em>“Why do people do that?”</em> moments. They evolve into studies using interviews, surveys, content analysis, and computational text methods—the same methods you’ll practice here.</p>
 </section>
-<section id="why-this-course-matters-even-if-you-dont-plan-to-be-a-researcher" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="why-this-course-matters-even-if-you-dont-plan-to-be-a-researcher"><span class="header-section-number">1.2</span> Why This Course Matters (Even If You Don’t Plan to Be a Researcher)</h2>
-<p>A fair question for any methods course is: “Will I ever use this again?” My answer is: yes, every single day. This course isn’t just for future academics. It’s for anyone who wants to become a more <strong>critical consumer of information</strong>.</p>
-<p>We are constantly bombarded with claims backed by “research”: news reports citing scientific studies, Instagram infographics presenting data, political polls predicting outcomes, and marketing reports claiming product effectiveness. This course equips you to look past the headline and ask the right questions:</p>
-<ul>
-<li>Who was surveyed for this poll, and does that sample represent the whole population?</li>
-<li>Is this study’s conclusion a fair interpretation of its results?</li>
-<li>What questions <em>weren’t</em> asked?</li>
-<li>What biases might be baked into the way this data was collected or analyzed?</li>
-</ul>
-<p>Learning research methods gives you a framework for evaluating evidence, spotting flimsy arguments, and navigating a world of endless information with confidence and skepticism. It’s a foundational skill for any career in communications and an essential tool for informed citizenship.</p>
-<hr>
-</section>
-<section id="the-communities-of-research" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="the-communities-of-research"><span class="header-section-number">1.3</span> The Communities of Research</h2>
-<p>Part of becoming a critical consumer is understanding that not all research looks or acts the same. Our field isn’t one giant, uniform enterprise; it’s a collection of different <strong>communities of scholars</strong> who approach their work with different goals and philosophies. When you encounter research, you’re often seeing the product of one of these specific traditions. For now, we can group them into three broad categories:</p>
-<ol type="1">
-<li><strong>Social Scientific Researchers</strong> seek to explain and predict communication patterns. They operate on the belief that there are objective patterns in human behavior that can be uncovered, often using quantitative methods like surveys and experiments to find generalizable results.</li>
-<li><strong>Interpretive Researchers</strong> seek to understand and describe communication from the subjective viewpoint of the people involved. They are less interested in prediction and more focused on the rich, textured meaning of a specific experience, often using qualitative methods like in-depth interviews and ethnography.</li>
-<li><strong>Critical Researchers</strong> seek to challenge power structures and promote social justice. They analyze how communication creates and perpetuates inequality, aiming not just to understand the world but to critique it and inspire change.</li>
-</ol>
-<p>Understanding these different starting points is key. It explains why one article is full of statistical tables while another is a deep reading of a TV show. It’s a concept we’ll explore in much more detail in Chapter 4, but for now, it helps to know that the diversity of methods you’ll see reflects a healthy diversity of purpose.</p>
-<hr>
-</section>
-<section id="teaching-philosophy" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="teaching-philosophy"><span class="header-section-number">1.4</span> Teaching Philosophy</h2>
-<p>I believe research is <strong>formalized curiosity</strong> — the tools and methods we use are just ways of chasing down a good question.</p>
-<p>In this class, I want you to do more than memorize procedures. I want you to <strong>think critically, creatively, and practically</strong>. My role is to give you the skills and confidence to explore your own questions about the media world — and to give you the freedom to design research that matters to <em>you</em>.</p>
+<section id="teaching-philosophy" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="teaching-philosophy">Teaching Philosophy</h2>
+<p>Research is <strong>formalized curiosity</strong>. The tools and methods you’ll learn are ways to chase a good question.</p>
+<p>In this class, you will <strong>think critically, creatively, and practically</strong>. My role is to help you build skills and confidence to investigate your own questions about the media world—and to design research that matters to <em>you</em>.</p>
 <p>That means:</p>
 <ul>
 <li>We’ll balance theory with hands-on practice.</li>
 <li>We’ll make space for trial, error, and iteration.</li>
-<li>We’ll learn to use tools like R, RStudio, Quarto, and GitHub not just because they’re “required,” but because they open doors to faster, better, and more shareable research.</li>
+<li>We’ll use R, RStudio, Quarto, and GitHub not just because they’re “required,” but because they enable reproducible, shareable work.</li>
 </ul>
-<hr>
-</section>
-<section id="a-macro-view-of-the-course" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="a-macro-view-of-the-course"><span class="header-section-number">1.5</span> A Macro View of the Course</h2>
-<p>The semester follows the following broad arc:</p>
-<ol type="1">
-<li><strong>Laying the Foundations</strong> — Understanding what research in mass communications looks like, and setting up the digital tools you’ll need.</li>
-<li><strong>Designing Research</strong> — Developing your own research question, finding relevant literature, and selecting the right methods.</li>
-<li><strong>Collecting &amp; Managing Data</strong> — Working with surveys, interviews, or content analysis, and learning how to store and organize your data responsibly.</li>
-<li><strong>Analyzing &amp; Visualizing</strong> — Using R and related packages to make sense of your findings.</li>
-<li><strong>Communicating Results</strong> — Writing in a way that’s rigorous but also readable.</li>
-</ol>
-<p>The main difference between the two courses is the <strong>final project</strong>: - Undergraduates work <strong>in teams</strong> to produce a <em>White Paper</em>. - Graduate students work <strong>individually</strong> to produce a full <em>Research Manuscript</em>.</p>
-<hr>
-</section>
-<section id="what-to-expect" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="what-to-expect"><span class="header-section-number">1.6</span> What to Expect</h2>
-<p>Here’s what you can count on:</p>
-<ul>
-<li><p><strong>Weekly Readings &amp; Journals</strong></p>
-<p>You’ll read one textbook chapter per week and respond to <strong>one of three prompts</strong> in a short written journal, using a Quarto template and submitting to GitHub.</p></li>
-<li><p><strong>Hands-On Assignments</strong></p>
-<p>Most weeks, you’ll complete a small, applied project — like cleaning a dataset, building a visualization, or drafting a section of your final paper.</p></li>
-<li><p><strong>Skill Building in R, Quarto, and GitHub</strong></p>
-<p>We’ll work step-by-step so you can learn to code, analyze, and share without feeling overwhelmed.</p></li>
-<li><p><strong>Final Project</strong></p>
-<p>Culminating in final research project.</p></li>
-</ul>
-<p><strong>My advice:</strong> Approach the semester like a curious researcher, not a box-checker. Ask questions, explore, and remember — research is just curiosity with better documentation.</p>
-<hr>
 <blockquote class="blockquote">
-<p>“Research is formalized curiosity. It is poking and prying with a purpose.”</p>
-<p>— Zora Neale Hurston</p>
+<p><em>“Research is formalized curiosity. It is poking and prying with a purpose.”</em> — Zora Neale Hurston</p>
 </blockquote>
+</section>
+<section id="how-to-use-this-book-a-20-minute-weekly-workflow" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="how-to-use-this-book-a-20-minute-weekly-workflow">How to Use This Book (A 20-Minute Weekly Workflow)</h2>
+<ol type="1">
+<li><strong>Skim (3–5 min):</strong> Read the learning goals at the top of the chapter and scan the section headings. Note the end-of-chapter prompts.</li>
+<li><strong>Deep read (10–12 min):</strong> Read the body text, pausing at each callout box (see legend below).</li>
+<li><strong>Journal (3–5 min):</strong> Choose <strong>one</strong> prompt and draft a focused response (250–400 words).</li>
+<li><strong>Preview the lab (2–3 min):</strong> Glance at the week’s assignment so the reading connects to what you’ll do.</li>
+</ol>
+<section id="feature-legend-youll-see-these-throughout-the-book" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="feature-legend-youll-see-these-throughout-the-book">Feature Legend (you’ll see these throughout the book)</h3>
+<ul>
+<li><strong>R Quick Win</strong> — a tiny, confidence-building task in R that takes ~2–5 minutes.</li>
+<li><strong>IRB Watch-Out</strong> — an ethics or compliance pitfall to consider before collecting data.</li>
+<li><strong>Design Decision</strong> — a fork in the road (e.g., survey vs.&nbsp;interview) and how to choose.</li>
+<li><strong>Grad Extension</strong> — an optional deeper dive or advanced deliverable for graduate students.</li>
+<li><strong>Repro Tip</strong> — a short step that improves reproducibility (naming, versioning, codebooks).</li>
+</ul>
+<p><em>(In Quarto, these appear as callouts; in PDF/print, they appear as shaded boxes.)</em></p>
+</section>
+</section>
+<section id="a-macro-view-of-the-course" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="a-macro-view-of-the-course">A Macro View of the Course</h2>
+<p>This semester follows a simple arc:</p>
+<ol type="1">
+<li><strong>Laying the Foundations</strong> — What counts as research in mass communications? Set up the digital tools you’ll need.</li>
+<li><strong>Designing Research</strong> — Develop a researchable question, connect it to theory, and choose a feasible, ethical method.</li>
+<li><strong>Collecting &amp; Managing Data</strong> — Build instruments or protocols, gather data responsibly, and keep it organized.</li>
+<li><strong>Analyzing &amp; Visualizing</strong> — Use R to explore data, run appropriate analyses, and make clear visuals.</li>
+<li><strong>Communicating Results</strong> — Write plainly and precisely, with rigor that stands up to scrutiny.</li>
+</ol>
+<p>[Figure: Semester arc timeline — five labeled phases running left-to-right with small icons for setup, design, collect, analyze, communicate. Beneath each phase: 2–3 example activities (e.g., “Quarto project,” “Operationalize concepts,” “Pilot survey,” “EDA + t-tests,” “Results + discussion”). The figure emphasizes that writing and ethics span <strong>all</strong> phases.]</p>
+<section id="final-project-paths" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="final-project-paths">Final Project Paths</h3>
+<ul>
+<li><strong>Undergraduates (teams):</strong> <strong>White Paper</strong> focused on a practical, industry-facing question.</li>
+<li><strong>Graduate students (individual):</strong> <strong>Research Manuscript</strong> with fuller literature integration and reporting.</li>
+</ul>
+</section>
+</section>
+<section id="what-to-expect" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="what-to-expect">What to Expect</h2>
+<ul>
+<li><p><strong>Weekly Readings &amp; Journals</strong> Read one chapter and respond to <strong>one of three prompts</strong> in a short journal using a Quarto template submitted via GitHub.</p></li>
+<li><p><strong>Hands-On Assignments</strong> Most weeks, complete a small, applied project—clean a dataset, build a visualization, draft a method, or run an analysis. Each task connects directly to the chapter.</p></li>
+<li><p><strong>Skill Building in R, Quarto, and GitHub</strong> We proceed step-by-step. You’ll set up a project, script analyses, render reports, and version your work—without needing prior coding experience.</p></li>
+<li><p><strong>Final Project</strong> All roads lead here. You’ll combine your design, data, analysis, and writing into a coherent deliverable.</p></li>
+</ul>
+<p><strong>Advice for success:</strong> Treat the course like a series of small investigations. Ask precise questions, make your steps transparent, and let your evidence do the talking.</p>
+</section>
+<section id="tools-reproducibility-why-these-matter" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="tools-reproducibility-why-these-matter">Tools &amp; Reproducibility (Why These Matter)</h2>
+<ul>
+<li><strong>R + RStudio</strong> — Open, free, and widely used for analysis and visualization.</li>
+<li><strong>Quarto</strong> — Turns your code and writing into clean, shareable documents.</li>
+<li><strong>GitHub</strong> — Tracks changes, backs up your work, and makes collaboration easier.</li>
+</ul>
+<p>You’ll learn <strong>project-first habits</strong>: consistent file structure, named scripts, codebooks, and short README files that future-you (and collaborators) can understand. Small steps—like setting a seed, saving session info, and exporting figures from code—will make your work replicable.</p>
+</section>
+<section id="where-to-get-help" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="where-to-get-help">Where to Get Help</h2>
+<ul>
+<li><strong>In class/lab:</strong> Bring questions early, especially about setup and first-week friction.</li>
+<li><strong>Office hours:</strong> For deeper design choices, ethics questions, or results interpretation.</li>
+<li><strong>Peer support:</strong> Ask classmates, but cite any outside code or guides you adapt.</li>
+<li><strong>Documentation habit:</strong> When you hit a snag and fix it, add two sentences to your README explaining the fix.</li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/cover.png" class="img-fluid figure-img" style="width:50.0%" alt="Cover Image"></p>
