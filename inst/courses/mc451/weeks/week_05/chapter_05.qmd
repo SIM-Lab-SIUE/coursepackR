@@ -1,4 +1,4 @@
-# Building on Knowledge: The Literature Review {.unnumbered}
+# The Literature Review
 
 ## Entering the Scholarly Conversation {.unnumbered}
 
@@ -15,6 +15,8 @@ Before diving into the "how-to" of conducting a literature review, it is essenti
 ### Goal 1: To Situate Your Research in the Existing Dialogue {.unnumbered}
 
 The primary purpose of the literature review is to share with the reader the results of other studies that are closely related to the one you are undertaking. This act of situating your work demonstrates that you are aware of the broader context and are not working in isolation. It shows how your study relates to the larger, ongoing dialogue in the literature, positioning your project as the next logical step in a chain of inquiry. By connecting your research to established theories and previous findings, you are building on the collective knowledge of your field, rather than starting from scratch.
+
+![Identifying a Research Gap](images/puzzle.png){width="100%"}
 
 ### Goal 2: To Justify the Need for Your Study by Identifying a "Gap" {.unnumbered}
 
@@ -61,9 +63,13 @@ With your initial keywords in hand, you can begin the search for scholarly sourc
 
 -   **Academic Databases:** Your university library provides access to a host of academic databases. These are the primary tools for a literature review. For communication research, key databases include Communication & Mass Media Complete, PsycINFO, and SocINDEX. General-purpose academic search engines like Google Scholar are also incredibly powerful, especially for forward citation chaining. These databases are essential because they index peer-reviewed journal articles—the gold standard for scholarly research.
 
+![Communication & Mass Media Complete](images/ebscohost.png){width="100%"}
+
 -   **Books and Edited Volumes:** While journal articles report the most current research, books and chapters in edited volumes often provide more comprehensive theoretical overviews or foundational summaries of a topic. Use your library's catalog to search for relevant books.
 
 -   **Government and Foundation Reports:** For specific topics, particularly those related to public policy or applied research, reports from government agencies (e.g., the Pew Research Center, the U.S. Census Bureau) or major foundations can be valuable sources of data and context.
+
+![Pew Research Center](images/pew.png){width="100%"}
 
 #### How to Search: {.unnumbered}
 
@@ -75,7 +81,7 @@ A strategic search is more effective than a scattershot one. Use a combination o
 -   **OR** broadens your search by including synonyms (e.g., "adolescents" OR "teenagers").
 -   **NOT** excludes terms from your search (e.g., "social media" NOT "marketing").
 
-![Boolean Operators.](https://sim-lab-siue.github.io/research-methods/images/boolean.jpg){width="100%"}
+![Boolean Operators.](images/boolean.jpg){width="100%"}
 
 **Citation Chaining:** This is perhaps the most powerful search strategy. Once you find one or two highly relevant, "keystone" articles, you can use them to spiderweb out to the rest of the relevant literature.
 
@@ -90,6 +96,8 @@ Your initial searches will likely yield a large number of potential sources. The
 **The Hierarchy of Credibility:** Prioritize sources based on their scholarly rigor. Peer-reviewed journal articles and scholarly books from academic presses are at the top of the hierarchy. Trade publications, popular magazines, newspaper articles, and general websites, while potentially useful for background context, are not typically considered primary sources for an academic literature review because they have not undergone the same rigorous review process.
 
 **Read the Abstract First:** The abstract is a concise summary of an article's purpose, methods, findings, and conclusions. Reading the abstract is the most efficient way to quickly determine if an article is relevant to your topic before you commit to reading the entire piece.
+
+![Abstract Example.](images/abstract.png){width="100%"}
 
 **Criteria for Evaluation:** As you skim abstracts and articles, ask yourself a series of questions:
 
@@ -106,6 +114,8 @@ Once you have gathered a core set of relevant articles, the real intellectual wo
 **Distinguish Between an Annotated Bibliography and a Literature Review:** This is a critical distinction. An **annotated bibliography** is a list of sources, where each entry is followed by a paragraph that summarizes that single source. A **literature review**, by contrast, organizes sources thematically. Instead of discussing one article at a time, it synthesizes the findings from multiple articles to make a point about a particular theme or concept. Your goal is to write a literature review, not an annotated bibliography.
 
 **Active Reading and Note-Taking:** As you read each article in depth, take systematic notes. For each study, identify the main research question, the theoretical framework, the methodology used (including the sample), the key findings, and the limitations identified by the authors.
+
+![Paperpile Manuscript Annotation](images/annotation.png){width="100%"}
 
 **Develop a Literature Map:** A literature map is a visual tool for organizing the studies you have found. Begin by placing your central topic in the middle of a page. Then, create branches for the major themes or subtopics that you see emerging from the literature. Under each theme, list the key studies that address it. This visual organization helps you know the structure of the conversation and identify where the different pieces of research fit. It will become the outline for your written review.
 
@@ -128,6 +138,8 @@ With your literature map as your guide, you are ready to begin writing. A litera
 -   Acknowledge and discuss conflicting findings. A strong review does not ignore research that contradicts its central argument. Instead, it addresses these conflicts and attempts to explain them (e.g., "While most studies find X, Author D found Y, possibly due to a different methodology...").
 
 **The Conclusion (The "Gap" and the Rationale):** The entire review should build toward its conclusion. This is the most essential part of the literature review. First, briefly summarize the main takeaways from the literature you have reviewed. Then, pivot to the "so what." Explicitly identify the gap, contradiction, or unanswered question that your review has uncovered. Finally, state the purpose of your own proposed study, clearly explaining how it will address this specific gap and, therefore, make a valuable and original contribution to the scholarly conversation.
+
+![How to Structure a Research Paper](images/paper-structure.png){width="100%"}
 
 ## The Concept of Saturation {.unnumbered}
 

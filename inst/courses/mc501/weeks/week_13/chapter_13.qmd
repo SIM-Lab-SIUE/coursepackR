@@ -1,4 +1,4 @@
-# Describing the Data — Descriptive Statistics and Visualization {.unnumbered}
+# Descriptive Statistics and Visualization
 
 ## The First Look: From Raw Data to Understanding {.unnumbered}
 

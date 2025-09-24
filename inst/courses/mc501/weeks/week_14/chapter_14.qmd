@@ -1,4 +1,4 @@
-# Making Inferences — Hypothesis Testing and Reporting {.unnumbered}
+# Making Inferences
 
 ## The Leap from Sample to Population {.unnumbered}
 

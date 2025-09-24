@@ -1,4 +1,4 @@
-# Survey Research: Design and Implementation {.unnumbered}
+# Survey Research
 
 ## The Science of Asking Questions {.unnumbered}
 

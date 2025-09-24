@@ -1,0 +1,97 @@
+# Welcome to the Course
+
+Hi, I’m Dr. A. P. Leith, and I’ll be your guide through this semester’s journey into research methods for mass communications.
+
+Some professors start with “I’ve been fascinated by $X$ since childhood.” I… didn’t. I’ve always been a **passive media consumer**. I’m the person who prefers to watch someone else play a video game rather than pick up the controller. There’s usually *something* playing in the background while I work—podcasts, TV series I’ve half-memorized, or livestreams of games I’ve watched through a dozen times.
+
+That “observer” habit shaped my research: I notice small, strange patterns in how people communicate through technology. Once I notice them, I can’t *not* poke at them until I understand what’s going on.
+
+## My Research in a Nutshell {.unnumbered}
+
+My work sits at the intersection of **interpersonal communication** and **digital media platforms**. I’ve studied:
+
+-   **Parasocial relationships and cues** — how tone, pacing, and chat responses in livestreams foster felt intimacy.
+-   **Media and grief** — how fans grieve fictional characters as if they were close others.
+-   **Watching as play** — why many of us choose to watch games rather than play them.
+-   **VR and platform affordances** — which features spark joy, trust, or frustration.
+-   **Media use during COVID** — how livestreaming became a social space for tension release.
+-   **Virtual meetings and accessibility** — how captions, avatars, and features affect engagement.
+
+These projects usually start as *“Why do people do that?”* moments. They evolve into studies using interviews, surveys, content analysis, and computational text methods—the same methods you’ll practice here.
+
+## Teaching Philosophy {.unnumbered}
+
+Research is **formalized curiosity**. The tools and methods you’ll learn are ways to chase a good question.
+
+In this class, you will **think critically, creatively, and practically**. My role is to help you build skills and confidence to investigate your own questions about the media world—and to design research that matters to *you*.
+
+That means:
+
+-   We’ll balance theory with hands-on practice.
+-   We’ll make space for trial, error, and iteration.
+-   We’ll use R, RStudio, Quarto, and GitHub not just because they’re “required,” but because they enable reproducible, shareable work.
+
+> *“Research is formalized curiosity. It is poking and prying with a purpose.”* — Zora Neale Hurston
+
+## How to Use This Book (A 20-Minute Weekly Workflow) {.unnumbered}
+
+1.  **Skim (3–5 min):** Read the learning goals at the top of the chapter and scan the section headings. Note the end-of-chapter prompts.
+2.  **Deep read (10–12 min):** Read the body text, pausing at each callout box (see legend below).
+3.  **Journal (3–5 min):** Choose **one** prompt and draft a focused response (250–400 words).
+4.  **Preview the lab (2–3 min):** Glance at the week’s assignment so the reading connects to what you’ll do.
+
+### Feature Legend (you’ll see these throughout the book) {.unnumbered}
+
+-   **R Quick Win** — a tiny, confidence-building task in R that takes \~2–5 minutes.
+-   **IRB Watch-Out** — an ethics or compliance pitfall to consider before collecting data.
+-   **Design Decision** — a fork in the road (e.g., survey vs. interview) and how to choose.
+-   **Grad Extension** — an optional deeper dive or advanced deliverable for graduate students.
+-   **Repro Tip** — a short step that improves reproducibility (naming, versioning, codebooks).
+
+*(In Quarto, these appear as callouts; in PDF/print, they appear as shaded boxes.)*
+
+## A Macro View of the Course {.unnumbered}
+
+This semester follows a simple arc:
+
+1.  **Laying the Foundations** — What counts as research in mass communications? Set up the digital tools you’ll need.
+2.  **Designing Research** — Develop a researchable question, connect it to theory, and choose a feasible, ethical method.
+3.  **Collecting & Managing Data** — Build instruments or protocols, gather data responsibly, and keep it organized.
+4.  **Analyzing & Visualizing** — Use R to explore data, run appropriate analyses, and make clear visuals.
+5.  **Communicating Results** — Write plainly and precisely, with rigor that stands up to scrutiny.
+
+\[Figure: Semester arc timeline — five labeled phases running left-to-right with small icons for setup, design, collect, analyze, communicate. Beneath each phase: 2–3 example activities (e.g., “Quarto project,” “Operationalize concepts,” “Pilot survey,” “EDA + t-tests,” “Results + discussion”). The figure emphasizes that writing and ethics span **all** phases.\]
+
+### Final Project Paths {.unnumbered}
+
+-   **Undergraduates (teams):** **White Paper** focused on a practical, industry-facing question.
+-   **Graduate students (individual):** **Research Manuscript** with fuller literature integration and reporting.
+
+## What to Expect {.unnumbered}
+
+-   **Weekly Readings & Journals** Read one chapter and respond to **one of three prompts** in a short journal using a Quarto template submitted via GitHub.
+
+-   **Hands-On Assignments** Most weeks, complete a small, applied project—clean a dataset, build a visualization, draft a method, or run an analysis. Each task connects directly to the chapter.
+
+-   **Skill Building in R, Quarto, and GitHub** We proceed step-by-step. You’ll set up a project, script analyses, render reports, and version your work—without needing prior coding experience.
+
+-   **Final Project** All roads lead here. You’ll combine your design, data, analysis, and writing into a coherent deliverable.
+
+**Advice for success:** Treat the course like a series of small investigations. Ask precise questions, make your steps transparent, and let your evidence do the talking.
+
+## Tools & Reproducibility (Why These Matter) {.unnumbered}
+
+-   **R + RStudio** — Open, free, and widely used for analysis and visualization.
+-   **Quarto** — Turns your code and writing into clean, shareable documents.
+-   **GitHub** — Tracks changes, backs up your work, and makes collaboration easier.
+
+You’ll learn **project-first habits**: consistent file structure, named scripts, codebooks, and short README files that future-you (and collaborators) can understand. Small steps—like setting a seed, saving session info, and exporting figures from code—will make your work replicable.
+
+## Where to Get Help {.unnumbered}
+
+-   **In class/lab:** Bring questions early, especially about setup and first-week friction.
+-   **Office hours:** For deeper design choices, ethics questions, or results interpretation.
+-   **Peer support:** Ask classmates, but cite any outside code or guides you adapt.
+-   **Documentation habit:** When you hit a snag and fix it, add two sentences to your README explaining the fix.
+
+![Cover Image](images/cover.png){fig-alt="Cover Image" width="50%"}

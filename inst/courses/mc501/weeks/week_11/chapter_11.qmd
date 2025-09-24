@@ -1,4 +1,4 @@
-# Content Analysis: Manual and Automated Approaches {.unnumbered}
+# Content Analysis
 
 ## Making Sense of the Symbolic World {.unnumbered}
 

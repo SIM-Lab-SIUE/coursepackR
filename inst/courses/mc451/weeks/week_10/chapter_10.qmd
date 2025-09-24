@@ -1,4 +1,4 @@
-# Experiments and Causal Research Designs {.unnumbered}
+# Experiments and Causal Research Designs
 
 ## The Quest for "Why": Beyond Correlation to Causation {.unnumbered}
 

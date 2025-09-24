@@ -1,4 +1,4 @@
-# Data Wrangling — Importing, Cleaning, and Transforming Data {.unnumbered}
+# Data Wrangling
 
 ## The Bridge from Raw Information to Meaningful Insight {.unnumbered}
 
