@@ -1973,7 +1973,18 @@
     "href": "reference/package-reference.html",
     "title": "Package Reference",
     "section": "",
-    "text": "Tip\nLoad the package each R session:\nlibrary(mccoursepack)\nThis page lists the main functions students will use in this course.\nFor more detail, see Function Details.",
+    "text": "Note\n\n\n\nQ: I see a warning about missing or unexported objects: ‘pak::pkg_diff’ or ‘quarto::quarto_install’. Should I worry?\nA: No. This is a harmless warning caused by how these packages export their functions. The mccoursepack package uses fully qualified calls (e.g., pak::pkg_diff()), and as long as you have the pak and quarto packages installed, everything will work as intended. You can safely ignore this warning.\n\n\n\nTip\nLoad the package each R session:\nlibrary(mccoursepack)\n\nThis page lists the main functions students will use in this course.\nFor more detail, see Function Details.",
+    "crumbs": [
+      "Home",
+      "Package Reference"
+    ]
+  },
+  {
+    "objectID": "reference/package-reference.html#troubleshooting",
+    "href": "reference/package-reference.html#troubleshooting",
+    "title": "Package Reference",
+    "section": "",
+    "text": "Note\n\n\n\nQ: I see a warning about missing or unexported objects: ‘pak::pkg_diff’ or ‘quarto::quarto_install’. Should I worry?\nA: No. This is a harmless warning caused by how these packages export their functions. The mccoursepack package uses fully qualified calls (e.g., pak::pkg_diff()), and as long as you have the pak and quarto packages installed, everything will work as intended. You can safely ignore this warning.\n\n\n\nTip\nLoad the package each R session:\nlibrary(mccoursepack)\n\nThis page lists the main functions students will use in this course.\nFor more detail, see Function Details.",
     "crumbs": [
       "Home",
       "Package Reference"
@@ -2760,7 +2771,7 @@
     "href": "workflow/weekly-workflows.html#write-your-journal-entry",
     "title": "Course Workflow",
     "section": "3) Write your journal entry",
-    "text": "3) Write your journal entry\nAt the end of each week, add a dated chapter to your journal book:\nsetwd(\"journal\")                   # go inside journal folder\nsource(\"scripts/new_journal_entry.R\")\nThis creates entries/YYYY-MM-DD.qmd with three prompts. Answer exactly one, staying in your word range:\n\nMC 451: 250-300 words\nMC 501: 450-500 words\n\nThen render the journal:\nquarto render\nOutputs appear under journal/_book/.",
+    "text": "3) Write your journal entry\nAt the end of each week, add a dated chapter to your journal book:\nsetwd(\"journal\")                   # go inside journal folder\nsource(\"scripts/new_journal_entry.R\")\nThis creates a file like entries/mc451_week07_2025-09-24.qmd (with your course, week/chapter, and date in the filename) containing three prompts. Answer exactly one, staying in your word range:\nThe YAML header in each entry includes:\n---\ntitle: \"Journal Entry\"\ncourse: \"mc451\"\nweek: \"07\"\ndate: \"2025-09-24\"\nfull_date: \"September 24, 2025\"\n---\n\nMC 451: 250-300 words\nMC 501: 450-500 words\n\nThen render the journal:\nquarto render\nOutputs appear under journal/_book/.",
     "crumbs": [
       "Course Workflow"
     ]

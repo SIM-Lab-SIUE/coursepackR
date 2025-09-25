@@ -1,5 +1,9 @@
 # mccoursepack
 
+![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![R build status](https://github.com/SIM-Lab-SIUE/mccoursepack/actions/workflows/R-CMD-check.yaml/badge.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/SIM-Lab-SIUE/mccoursepack) ![Last commit](https://img.shields.io/github/last-commit/SIM-Lab-SIUE/mccoursepack)
+
+[**📄 Reference Manual (PDF)**](docs/mccoursepack_01.06.02.pdf)
+
 [MIT](https://opensource.org/licenses/MIT)
 
 **Author:** Dr. Alex P. Leith ([aleith\@siue.edu](mailto:aleith@siue.edu))\
@@ -13,14 +17,11 @@ The package automates the installation of necessary tools (like Quarto and LaTeX
 
 ------------------------------------------------------------------------
 
-
 ## 🚀 Installation
-
 
 You can install the development version of `mccoursepack` from GitHub with:
 
-
-```r
+``` r
 # If you don't have the 'remotes' package, run this first:
 # install.packages("remotes")
 
@@ -29,10 +30,11 @@ remotes::install_github("sim-lab-siue/mccoursepack")
 
 **Note:** This package uses the `pak` and `quarto` packages internally for updating and setup. Please ensure both are installed:
 
-```r
+``` r
 install.packages("pak")
 install.packages("quarto")
 ```
+
 ## ❓ Troubleshooting
 
 **Q: I see a warning about missing or unexported objects: 'pak::pkg_diff' or 'quarto::quarto_install'. Should I worry?**
@@ -98,18 +100,19 @@ Lists the courses or available weekly material templates bundled within the pack
     list_weeks(course = "mc451")
     ```
 
-
 #### `download_week()` & `download_journal()`
 
 Copies the material for a specific week or the course journal into a local directory on your computer. 📁
 
 -   **Arguments:**
+
     -   `course`: The name of the course (e.g., `"mc451"`).
     -   `week`: The week number (e.g., `1`).
     -   `destdir` (Optional): The destination directory. Defaults to your current working directory.
 
 -   **Usage:**
-    ```r
+
+    ``` r
     # Download week 1 materials for the MC451 course
     download_week(course = "mc451", week = 1)
 
@@ -121,11 +124,13 @@ Copies the material for a specific week or the course journal into a local direc
 
 When you add a new journal entry (using the provided script), the filename now includes the course, week/chapter, and date, e.g.:
 
-    entries/mc451_week07_2025-09-24.qmd
+```         
+entries/mc451_week07_2025-09-24.qmd
+```
 
 The YAML header in each entry includes:
 
-```yaml
+``` yaml
 ---
 title: "Journal Entry"
 course: "mc451"

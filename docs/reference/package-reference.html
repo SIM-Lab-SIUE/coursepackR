@@ -221,7 +221,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#at-a-glance" id="toc-at-a-glance" class="nav-link active" data-scroll-target="#at-a-glance">At a Glance</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link active" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
+  <li><a href="#at-a-glance" id="toc-at-a-glance" class="nav-link" data-scroll-target="#at-a-glance">At a Glance</a></li>
   </ul>
 </nav>
     </div>
@@ -247,6 +248,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Q: I see a warning about missing or unexported objects: ‘pak::pkg_diff’ or ‘quarto::quarto_install’. Should I worry?</strong></p>
+<p><strong>A:</strong> No.&nbsp;This is a harmless warning caused by how these packages export their functions. The <code>mccoursepack</code> package uses fully qualified calls (e.g., <code>pak::pkg_diff()</code>), and as long as you have the <code>pak</code> and <code>quarto</code> packages installed, everything will work as intended. You can safely ignore this warning.</p>
+</div>
+</div>
 <blockquote class="blockquote">
 <p><strong>Tip</strong><br>
 Load the package each R session:</p>
@@ -255,6 +272,7 @@ Load the package each R session:</p>
 <p>This page lists the main functions students will use in this course.<br>
 For more detail, see <a href="../reference/package-functions.html">Function Details</a>.</p>
 <hr>
+</section>
 <section id="at-a-glance" class="level2">
 <h2 class="anchored" data-anchor-id="at-a-glance">At a Glance</h2>
 <table class="caption-top table">
