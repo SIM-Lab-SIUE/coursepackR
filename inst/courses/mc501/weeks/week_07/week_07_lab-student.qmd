@@ -1,96 +1,165 @@
 ---
-title: "Week 7 Lab: Introduction to R's Data Structures"
-subtitle: "Student Template"
-author: "Jane Doe"
+title: "Week 7 Lab: Exploring Data in RStudio with the Tidyverse"
+subtitle: "A Hands-On Introduction to Data Frames and Sampling"
+author: "Your Name"
 format:
-  html:
-    theme: cosmo
+  pdf:
     toc: true
+    number-sections: true
 ---
 
-## 1. Introduction
+## 1. Welcome & Overview
 
-This week in lecture, we discussed **Chapter 7: Sampling**. In R, the "subset" we select from a population is stored in a **data frame**. Today, you will learn how to install/load the course package, access and view real data, and apply sampling methods using tidyverse tools.
+This week, you will get your first real hands-on experience working with data in RStudio! Our focus is on **sampling**—a key idea in statistics. You'll use real data from the `mccoursepack` package, learn how to explore it, and practice sampling using the tidyverse approach.
 
-## 2. Install and Load the Course Package
+**Learning goals:**
 
-In the code chunk below, load the two packages we need for today's lab: `tidyverse` and `mccoursepack`.
+- Practice loading R packages and using RStudio's panes
+- Explore and describe real datasets
+- Use tidyverse tools to filter, sample, and view data
+- Reflect on what it means to sample from a population
+
+---
+
+## 2. Getting Set Up: Packages & Projects
+
+First, make sure you are working in your RStudio project for this course. If you are not, go to **File > Open Project...** and select your `.Rproj` file.
+
+Next, load the packages we will use. If you see an error, ask for help!
 
 ```{r}
 #| label: setup
 #| message: false
-
-# TODO: Load the tidyverse and mccoursepack packages
-library(tidyverse)
-library(mccoursepack)
+library(tidyverse)      # For data wrangling
+library(mccoursepack)  # For course datasets
 ```
 
-## 3. Accessing Our Sample Data
+---
 
-The datasets for this course are included in the `mccoursepack` package. This means after loading the package, the data is available to use by name.
+## 3. Exploring a Real Dataset
 
-In the chunk below, type the name of the `simpsons_characters` dataset to see a preview of it.
+The `mccoursepack` package includes several datasets. Let's start by looking at `simpsons_characters`.
 
-```{r}
-#| label: access-data
+**Task:**
 
-# TODO: Type the name of the simpsons_characters object here to preview it
-simpsons_characters
-simpsons_characters
-simpsons_script_lines
-```
-
-## 4. View Data
-
-Use the `View()` function (with a capital "V") to open your data in a new tab. This is very useful for exploring.
+1. Type the name of the dataset below and run the chunk. What do you see?
+2. Try using the `View()` function to open it in a spreadsheet-like tab.
 
 ```{r}
-#| label: view-data
-#| eval: false
+#| label: explore-characters
+simpsons_characters
 View(simpsons_characters)
+```
+
+**Reflection:**
+
+- What does each row represent? What are some variables (columns) you notice?
+
+---
+
+## 4. Looking at a Larger Dataset
+
+Now let's look at `simpsons_script_lines`, which contains lines spoken by characters.
+
+```{r}
+#| label: explore-lines
+simpsons_script_lines
 View(simpsons_script_lines)
 ```
 
-**After viewing the data, answer these questions:**
-- What is the unit of observation in each dataset?
-- What are some variables you see?
+**Discussion:**
 
-## 5. Selecting and Applying Sampling Methods
+- What is the unit of observation in this dataset?
+- How many rows and columns are there? (Hint: use `nrow()` and `ncol()`)
+- What might be a "population" and a "sample" in this context?
 
-Now let's explore several tidyverse-friendly ways to sample data:
+---
 
-### a) `sample_n()`
-Randomly select a fixed number of rows.
+## 5. Sampling in R: The Tidyverse Way
+
+Sampling is how we select a subset of data from a larger set. Let's try a few ways to sample lines spoken by different characters.
+
+### a) `sample_n()` — Sample a fixed number of rows
+
 ```{r}
+# Sample 5 lines spoken by Lisa Simpson
 simpsons_script_lines %>%
   filter(character_name == "Lisa Simpson", !is.na(spoken_words)) %>%
   sample_n(5)
 ```
 
-### b) `slice_sample()`
-Randomly select rows, with more flexible options (including sampling by group).
+### b) `slice_sample()` — Another way to sample rows
+
 ```{r}
+# Sample 5 lines spoken by Homer Simpson
 simpsons_script_lines %>%
   filter(character_name == "Homer Simpson", !is.na(spoken_words)) %>%
   slice_sample(n = 5)
 ```
 
-### c) `sample_frac()`
-Randomly select a fraction of the data.
+### c) `sample_frac()` — Sample a fraction of the data
+
 ```{r}
+# Sample 5% of Bart Simpson's lines
 simpsons_script_lines %>%
   filter(character_name == "Bart Simpson", !is.na(spoken_words)) %>%
   sample_frac(0.05)
 ```
 
 ### d) Reproducible Sampling with `set.seed()`
+
 Set a seed to get the same sample every time you run the code.
+
 ```{r}
-set.seed(123)
+set.seed(42)
 simpsons_script_lines %>%
   filter(character_name == "Marge Simpson", !is.na(spoken_words)) %>%
   sample_n(5)
 ```
 
+**Try it yourself:**
+
+- Change the character name and sample size. What happens?
+- What do you notice about the sampled lines?
+
 ---
-You do not need to manually create data frames in this course. Focus on exploring, filtering, and sampling real data using tidyverse tools.
+
+## 6. Your Turn: Explore & Reflect
+
+Pick a character you like. Use the code above to:
+
+1. Filter for that character's lines
+2. Take a random sample of 10 lines
+3. View the sample and describe what you see
+
+```{r}
+# Replace "Milhouse Van Houten" with your chosen character
+simpsons_script_lines %>%
+  filter(character_name == "Milhouse Van Houten", !is.na(spoken_words)) %>%
+  sample_n(10)
+```
+
+**Reflection:**
+
+- What kinds of things does your character say?
+- How might sampling help us learn about the whole show?
+
+---
+
+## 7. Wrap-Up & Discussion
+
+In this lab, you:
+
+- Practiced loading packages and using RStudio
+- Explored real datasets using tidyverse tools
+- Learned how to sample data in several ways
+
+**Discussion prompts:**
+
+- What is the difference between a population and a sample?
+- Why is it important to use random sampling?
+- What questions could you answer with these datasets?
+
+---
+
+Great work! Save your `.qmd` file and knit it to HTML. Be ready to share your screen or discuss your findings with the class.
