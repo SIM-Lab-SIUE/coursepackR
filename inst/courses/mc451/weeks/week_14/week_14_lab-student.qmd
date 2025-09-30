@@ -1,0 +1,9 @@
+---
+title: "Week 14 Lab: Inferencing Data Workshop"
+---
+
+*Placeholder for Week 14 R Lab (mc451)*
+
+Refer to the lab plan for details: - Textbook Chapter: 14 - Functions: t.test(), cor.test()
+
+Lab activities will be added here.

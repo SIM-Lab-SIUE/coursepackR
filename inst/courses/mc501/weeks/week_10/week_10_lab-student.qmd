@@ -1,0 +1,9 @@
+---
+title: "Week 10 Lab: Isolating Groups and Variables"
+---
+
+*Placeholder for Week 10 R Lab (mc501)*
+
+Refer to the lab plan for details: - Textbook Chapter: 10 - Functions: filter(), select(), pipe (\|\>)
+
+Lab activities will be added here.

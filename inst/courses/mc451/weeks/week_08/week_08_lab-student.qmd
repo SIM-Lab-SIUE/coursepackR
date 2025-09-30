@@ -1,0 +1,26 @@
+title: "Week 8 Lab: Understanding Data Types and Classes"
+
+## Week 8: From Concepts to Code
+
+**Textbook Chapter:** 8: The Art of Measurement **Dataset:** `simpsons_episodes.rda` (from the `data` folder) **Core Functions/Packages:** `glimpse()`, `summary()`, `factor()` from the tidyverse
+
+### Lab Activities
+
+1.  **Load the Data**
+    -   Use `load("data/simpsons_episodes.rda")` to load the dataset.
+    -   Confirm the object name (should be `simpsons_episodes`).
+2.  **Explore Data Types**
+    -   Use `dplyr::glimpse(simpsons_episodes)` to view the structure and types of each column.
+    -   Discuss: Which columns are numeric, character, or factor?
+3.  **Summarize Numeric Variables**
+    -   Use `summary(simpsons_episodes)` to get an overview of the numeric columns.
+    -   Which variables are continuous? Which are categorical?
+4.  **Convert and Explore Factors**
+    -   Use `mutate()` and `factor()` to convert appropriate columns (e.g., `season`) to factors.
+    -   Discuss: Why might we want to treat `season` as a factor?
+5.  **Discussion**
+    -   Why is `season` an integer but `imdb_rating` is a double? How does this relate to measurement levels?
+
+------------------------------------------------------------------------
+
+*All code should use tidyverse functions where possible. Avoid base R unless necessary.*

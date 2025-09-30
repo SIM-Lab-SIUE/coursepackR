@@ -1,0 +1,34 @@
+title: "Week 9 Lab: Importing and Joining Data"
+
+## Week 9: Importing and Joining Data (with a Qualtrics Focus)
+
+**Textbook Chapter:** 9: Survey Research **Datasets:** `simpsons_script_lines.rda`, `simpsons_characters.rda` (from the `data` folder) **Core Functions/Packages:** `readr`, `dplyr::left_join()`
+
+### Note
+
+This week will include a Qualtrics demonstration. However, we will also practice joining data in R using the Simpsons datasets.
+
+### Lab Activities
+
+1.  **Load the Data**
+    -   Use `load("data/simpsons_script_lines.rda")` and `load("data/simpsons_characters.rda")`.
+    -   Confirm the object names (should be `simpsons_script_lines` and `simpsons_characters`).
+2.  **Join the Data**
+    -   Use `dplyr::left_join()` to combine `simpsons_script_lines` with `simpsons_characters` by the character ID column.
+
+    -   Example:
+
+        ``` r
+        library(dplyr)
+        script_with_char <- left_join(simpsons_script_lines, simpsons_characters, by = c("character_id" = "id"))
+        ```
+3.  **Explore the Joined Data**
+    -   Use `glimpse()` and `View()` to inspect the new data frame.
+    -   What new information is available for each line of dialogue?
+4.  **Discussion**
+    -   Why are unique IDs important for joining tables?
+    -   How does this relate to survey research and Qualtrics?
+
+------------------------------------------------------------------------
+
+*All code should use tidyverse functions where possible. Avoid base R unless necessary.*

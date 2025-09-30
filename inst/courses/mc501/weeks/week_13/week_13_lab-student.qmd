@@ -1,0 +1,9 @@
+---
+title: "Week 13 Lab: Describing Data Workshop"
+---
+
+*Placeholder for Week 13 R Lab (mc501)*
+
+Refer to the lab plan for details: - Textbook Chapter: 13 - Functions: group_by(), summarize(), ggplot(), geom_col(), geom_line()
+
+Lab activities will be added here.

@@ -1,0 +1,7 @@
+---
+title: "Week 13 Instructor Lab Notes"
+---
+
+*Instructor placeholder for Week 13 R Lab*
+
+Refer to the lab plan for details and add instructor notes here.
