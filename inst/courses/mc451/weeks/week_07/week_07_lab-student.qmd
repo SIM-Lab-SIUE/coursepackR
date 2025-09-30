@@ -1,8 +1,8 @@
 ---
 title: "Week 7 Lab: Introduction to R's Data Structures"
-subtitle: "Student Template (Completed)"
+subtitle: "Student Template"
 author: "Jane Doe"
-format: 
+format:
   html:
     theme: cosmo
     toc: true
@@ -10,11 +10,11 @@ format:
 
 ## 1. Introduction
 
-This week in lecture, we discussed **Chapter 7: Sampling**. In R, the "subset" we select from a population is stored in a **data frame**. Today, we will learn how to access data from our course package, view it, and identify its fundamental components: observations and variables.
+This week in lecture, we discussed **Chapter 7: Sampling**. In R, the "subset" we select from a population is stored in a **data frame**. Today, you will learn how to install/load the course package, access and view real data, and apply sampling methods using tidyverse tools.
 
-## 2. Setup
+## 2. Install and Load the Course Package
 
-In the code chunk below, load the two packages we need for today's lab: `tidyverse` and `mccoursepack`.
+Make sure you have the latest version of the course package. If you need to install it, use:
 
 ```{r}
 #| label: setup
@@ -38,54 +38,66 @@ In the chunk below, type the name of the `simpsons_characters` dataset to see a 
 simpsons_characters
 ```
 
-## 4. Viewing the Data Frame
+## 4. Sampling Data in R: A First Look
 
-The `View()` function (with a capital "V") opens your data in a new tab, which is very useful for exploring.
+One of R's strengths is its ability to sample data. Let's see how we can take a random sample of lines spoken by a specific character (e.g., Lisa Simpson) from the `simpsons_script_lines` dataset.
 
-In the chunk below, use the `View()` function to open the `simpsons_characters` dataset.
+Use the `View()` function (with a capital "V") to open your data in a new tab. This is very useful for exploring.
 
 ```{r}
 #| label: view-data
 #| eval: false
-
-# TODO: Use the View() function on the simpsons_characters dataset
 View(simpsons_characters)
+View(simpsons_script_lines)
 ```
 
 **After viewing the data, answer these questions:**
 
-1.  What is the **unit of observation** in this dataset? (i.e., what does each row represent?)
-    
-    > Each row represents a single, unique character from The Simpsons.
-2.  How many observations are in this sample? How many variables?
-    
-    > There are 6,722 observations (characters) and 4 variables.
+- What is the unit of observation in each dataset?
+- What are some variables you see?
 
-## 5. Manually Creating a Data Frame
+## 5. Selecting and Applying Sampling Methods
 
-We can also create a data frame from scratch using the `tibble()` function. In the chunk below, write the code to create a data frame named `simpson_family` that looks like this:
+Now let's explore several tidyverse-friendly ways to sample data:
 
-| name | gender | age |
-| :--- | :--- | --: |
-| Homer Simpson | m | 39 |
-| Marge Simpson | f | 36 |
-| Bart Simpson | m | 10 |
-| Lisa Simpson | f | 8 |
-| Maggie Simpson | f | 1 |
-
+### a) `sample_n()`
+Randomly select a fixed number of rows.
 ```{r}
-#| label: create-tibble
+simpsons_script_lines %>%
+  filter(character_name == "Lisa Simpson", !is.na(spoken_words)) %>%ly select a fixed number of rows.
+  sample_n(5)
+```
+t_lines %>%
+### b) `slice_sample()`ilter(character_name == "Homer Simpson", !is.na(spoken_words)) %>%
+Randomly select rows, with more flexible options (including sampling by group).  sample_n(10)
+```{r}
+simpsons_script_lines %>%
+  filter(character_name == "Homer Simpson", !is.na(spoken_words)) %>% `slice_sample()`
+  slice_sample(n = 5)
+```by group).
 
-# TODO: Create the simpson_family tibble here
-simpson_family <- tibble(
-  name = c("Homer Simpson", "Marge Simpson", "Bart Simpson", "Lisa Simpson", "Maggie Simpson"),
-  gender = c("m", "f", "m", "f", "f"),
-  age = c(39, 36, 10, 8, 1)
-)
-
-simpson_family
+### c) `sample_frac()`{r}
+Randomly select a fraction of the data.simpsons_script_lines %>%
+```{r}e == "Marge Simpson", !is.na(spoken_words)) %>%
+simpsons_script_lines %>%
+  filter(character_name == "Bart Simpson", !is.na(spoken_words)) %>%
+  sample_frac(0.05)
 ```
 
-## 6. Conclusion
+### d) Reproducible Sampling with `set.seed()`domly select a fraction of the data.
+Set a seed to get the same sample every time you run the code.
+```{r}
+set.seed(123)
+simpsons_script_lines %>%er(character_name == "Bart Simpson", !is.na(spoken_words)) %>%
+  filter(character_name == "Marge Simpson", !is.na(spoken_words)) %>%(0.05)
+  sample_n(5)
+```
+ucible Sampling with `set.seed()`
+---
+You do not need to manually create data frames in this course. Focus on exploring, filtering, and sampling real data using tidyverse tools.2.  How many observations are in this sample? How many variables?
+
+    > There are 6,722 observations (characters) and 4 variables.
+
+## 5. Conclusion
 
 Congratulations on completing your first R lab! You've successfully loaded packages, accessed and viewed data, and learned the difference between an observation and a variable.
