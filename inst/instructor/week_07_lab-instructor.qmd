@@ -1,0 +1,104 @@
+---
+title: "Week 7 Lab: Introduction to R's Data Structures"
+subtitle: "From Sampling to Data Frames"
+author: "Instructor"
+format: 
+  html:
+    theme: cosmo
+    toc: true
+---
+
+## 1. Introduction
+
+Welcome to our first hands-on R lab! This week in lecture, we discussed **Chapter 7: Sampling**, which is the process of selecting a subset of a population to study. In R, the "subset" we work with is stored in a special object called a **data frame**.
+
+Today's goal is to bridge the gap between the *concept* of a sample and the *practical reality* of a data frame in R. We will learn how to access data from our course package, view it, and identify its fundamental components.
+
+**Key Concepts for Today:**
+
+* **Data Frame:** A rectangular table of data in R. It's the primary way we store and work with datasets. 
+* **Observation:** A single row in a data frame. In sampling terms, this is one unit from our sample (e.g., one person, one character, one TV episode).
+* **Variable:** A single column in a data frame. This is a characteristic or measurement for each observation (e.g., age, name, gender).
+
+Let's get started!
+
+## 2. Setup
+
+First, we need to load two libraries: the `tidyverse` (our main tool for data work) and `mccoursepack` (which contains our Simpsons datasets).
+
+```{r}
+#| label: setup
+#| message: false
+
+# Load the required libraries
+library(tidyverse)
+library(mccoursepack)
+```
+
+## 3. Accessing Our Sample Data
+
+The datasets for this course are included directly in the `mccoursepack` package. This means that after you run `library(mccoursepack)`, the datasets are immediately available by name! You don't need to load them from a file.
+
+Let's look at the `simpsons_characters` dataset. We can just type its name to see a preview.
+
+```{r}
+#| label: access-data
+
+# Access the simpsons_characters data frame, which is already in our environment
+simpsons_characters
+```
+
+That's it! The data is loaded and ready to use. This is a major benefit of packaging data properly.
+
+## 4. Viewing the Data Frame
+
+Now that we've confirmed the data is available, we want to explore it more fully. The `View()` function (with a capital "V") is the best way to do this. It opens a new tab in RStudio with a spreadsheet-like view of our data frame.
+
+```{r}
+#| label: view-data
+#| eval: false
+
+# Use the View() function to explore the data frame
+View(simpsons_characters)
+```
+
+**Things to notice in the `View()` tab:**
+
+* The data is in a clean, rectangular grid.
+* Each **row** represents a single character. This is our **unit of observation**.
+* Each **column** represents a piece of information about those characters. These are our **variables**.
+* RStudio tells us there are 6722 observations (rows) and 4 variables (columns). This is our sample size!
+
+## 5. Manually Creating a Data Frame
+
+To better understand the structure of a data frame, it's helpful to build one ourselves from scratch. We can use the `tibble()` function to create a small data frame of the main Simpson family members.
+
+A tibble (and a data frame) is constructed column by column.
+
+```{r}
+#| label: create-tibble
+
+# Create a small data frame using the tibble() function
+simpson_family <- tibble(
+  name = c("Homer Simpson", "Marge Simpson", "Bart Simpson", "Lisa Simpson", "Maggie Simpson"),
+  gender = c("m", "f", "m", "f", "f"),
+  age = c(39, 36, 10, 8, 1)
+)
+
+# Print the tibble to the console to see it
+simpson_family
+```
+
+Notice how this `simpson_family` data frame has the same structure as the one we loaded: rows are observations, and columns are variables.
+
+## 6. Conclusion & Key Takeaways
+
+Great work today! We've taken the first and most important step in working with data in R.
+
+* We learned that a **sample** from a population is represented in R as a **data frame**.
+* We accessed data directly from an R package after loading it.
+* We used `View()` to inspect our data frame.
+* We identified that **rows are observations** and **columns are variables**.
+
+Next week, we'll dive deeper into the different *types* of variables R uses, connecting directly to the concept of "levels of measurement" from Chapter 8.
+
