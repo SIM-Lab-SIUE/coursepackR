@@ -98,6 +98,7 @@ mccourse_update <- function(update = c("ask","always","never"),
 }
 
 # Internal: perform the install from CRAN or GitHub via pak
+#' @importFrom utils install.packages
 .install_mccoursepack_latest <- function(source = c("CRAN","GitHub"), repo = NULL, quiet = FALSE) {
   source <- match.arg(source)
   pkg_to_install <- if (identical(source, "CRAN")) "mccoursepack" else repo
