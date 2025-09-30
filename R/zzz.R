@@ -30,8 +30,7 @@
 
 	if (!.mcp_have_quarto()) {
 		packageStartupMessage(
-			"-> Quarto CLI not detected. Run `mccourse_setup()` or do:\n",
-			"   install.packages('quarto'); quarto::quarto_install()"
+			"-> Quarto CLI not detected. Run `mccourse_setup()` to install Quarto."
 		)
 	}
 

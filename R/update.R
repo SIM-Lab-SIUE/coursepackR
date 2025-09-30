@@ -83,41 +83,47 @@ mccourse_update <- function(update = c("ask","always","never"),
       if (!quiet) cli::cli_alert_warning("No GitHub repo configured. Set options(mccoursepack.repo = 'owner/mccoursepack').")
       return(FALSE)
     }
-    if (!rlang::is_installed("pak")) {
-      if (!quiet) cli::cli_alert_warning("pak not installed; cannot check GitHub updates.")
+    # Use remotes to check latest GitHub version
+    if (!rlang::is_installed("remotes")) {
+      if (!quiet) cli::cli_alert_warning("remotes not installed; cannot check GitHub updates.")
       return(FALSE)
     }
-    diff <- tryCatch(pak::pkg_diff(pkg = repo), error = function(e) NULL)
-    if (is.null(diff) || nrow(diff) == 0) return(FALSE)
-    
-    # pak::pkg_diff returns a data frame with a `diff` column
-    # It is non-empty if there is a difference
-    TRUE
+    latest_ver <- tryCatch({
+      info <- remotes::github_release(repo)
+      as.package_version(info$tag_name)
+    }, error = function(e) NA)
+    if (is.na(latest_ver)) return(FALSE)
+    return(latest_ver > installed)
   }
 }
 
 # Internal: perform the install from CRAN or GitHub via pak
 .install_mccoursepack_latest <- function(source = c("CRAN","GitHub"), repo = NULL, quiet = FALSE) {
   source <- match.arg(source)
-  has_pak <- rlang::is_installed("pak")
-
-  if (!has_pak) {
-    if (!quiet) cli::cli_alert_danger("pak is not installed. Please run `install.packages('pak')`.")
-    return(FALSE)
-  }
-
   pkg_to_install <- if (identical(source, "CRAN")) "mccoursepack" else repo
-  
   if (is.null(pkg_to_install) || !nzchar(pkg_to_install)) {
     if (!quiet) cli::cli_alert_warning("No package source specified.")
     return(FALSE)
   }
-
-  tryCatch({
-    pak::pak(pkg_to_install, upgrade = TRUE, ask = FALSE)
-    TRUE
-  }, error = function(e) {
-    if (!quiet) cli::cli_alert_danger("Failed to install package: {e$message}")
-    FALSE
-  })
+  if (identical(source, "CRAN")) {
+    tryCatch({
+      install.packages("mccoursepack")
+      TRUE
+    }, error = function(e) {
+      if (!quiet) cli::cli_alert_danger("Failed to install package: {e$message}")
+      FALSE
+    })
+  } else {
+    if (!rlang::is_installed("remotes")) {
+      if (!quiet) cli::cli_alert_warning("remotes not installed; cannot update from GitHub.")
+      return(FALSE)
+    }
+    tryCatch({
+      remotes::install_github(pkg_to_install)
+      TRUE
+    }, error = function(e) {
+      if (!quiet) cli::cli_alert_danger("Failed to install package: {e$message}")
+      FALSE
+    })
+  }
 }

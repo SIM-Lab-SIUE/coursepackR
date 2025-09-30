@@ -43,16 +43,9 @@ mccourse_setup <- function() {
 	}
 	has_quarto_cli <- nzchar(Sys.which("quarto"))
 	if (!has_quarto_cli) {
-		cli_alert("Quarto CLI not found; installing via {quarto}...")
-		# NOTE: correct, lowercase namespace & function
-		quarto::quarto_install()
-		# Refresh PATH for current session if needed
-		has_quarto_cli <- nzchar(Sys.which("quarto"))
-	}
-	if (has_quarto_cli) {
-		cli_done(sprintf("Quarto available: %s", system2("quarto", "--version", stdout = TRUE)))
+		cli_warn("Quarto CLI not found. Please run `mccourse_setup()` to install Quarto.")
 	} else {
-		cli_warn("Quarto still not on PATH in this session. Restart RStudio after setup.")
+		cli_done(sprintf("Quarto available: %s", system2("quarto", "--version", stdout = TRUE)))
 	}
 
 	# 3) TinyTeX (LaTeX for PDF)
