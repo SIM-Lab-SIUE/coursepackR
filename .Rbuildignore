@@ -13,3 +13,7 @@
 ^inst/INSTRUCTOR-CHECKLIST\.md$
 ^inst/COPYRIGHTS$
 ^desktop\.ini$
+^data-raw$
+^inst/courses/mc451/weeks/week_01/\.Rhistory$
+^inst/courses/mc451/weeks/week_01/\.gitignore$
+^inst/courses/mc451/weeks/week_01/_quarto\.yml$

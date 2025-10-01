@@ -6,6 +6,7 @@
 ##'
 ##' Safe to re-run; it only installs what's missing.
 #' @export
+#' @importFrom utils install.packages
 mccourse_setup <- function() {
 	cli_h1 <- function(x) try(cli::cli_h1(x), silent = TRUE)
 	cli_alert <- function(x) try(cli::cli_alert_info(x), silent = TRUE)
