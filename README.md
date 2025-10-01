@@ -2,12 +2,16 @@
 
 ![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![R build status](https://github.com/SIM-Lab-SIUE/mccoursepack/actions/workflows/R-CMD-check.yaml/badge.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/SIM-Lab-SIUE/mccoursepack) ![Last commit](https://img.shields.io/github/last-commit/SIM-Lab-SIUE/mccoursepack)
 
-[**📄 Reference Manual (PDF)**](docs/mccoursepack_01.06.02.pdf)
+[**📄 Documentation**](https://sim-lab-siue.github.io/mccoursepack/)
+
+[**📚 Textbook**](https://sim-lab-siue.github.io/mccoursepack/textbook/)
 
 [MIT](https://opensource.org/licenses/MIT)
 
 **Author:** Dr. Alex P. Leith ([aleith\@siue.edu](mailto:aleith@siue.edu))\
-**Repository:** `https://github.com/sim-lab-siue/mccoursepack/`
+**Repository:** `https://github.com/sim-lab-siue/mccoursepack/`\
+**Lab Page:** [SIM Lab](https://sim-lab-siue.github.io/)\
+**Research Page:** [Dr. Alex P. Leith](https://apleith.github.io/)
 
 ------------------------------------------------------------------------
 

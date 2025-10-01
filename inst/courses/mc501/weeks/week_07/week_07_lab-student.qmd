@@ -43,6 +43,7 @@ When you see `library(...)` in R, it means you are loading a package—a collect
 ```{r}
 #| label: setup
 #| message: false
+# Load the necessary packages for this lab
 library(tidyverse)      # For data wrangling and visualization
 library(tidytext)       # For analyzing text data
 library(mccoursepack)   # For the Simpsons dataset
@@ -60,7 +61,7 @@ Go to the bag and, without looking, draw a **simple random sample** of **20 dice
 
 Find the `my_dice_sample` tibble in the code chunk below. **Your only task is to replace the zeros (`0`) in the `count` column with the numbers you just tallied.**
 
-## Beginner Note: What is a tibble?
+### Beginner Note: What is a tibble?
 
 A `tibble` is a modern version of a data frame in R. It's just a table of data, like a spreadsheet, but inside R. Here, you will enter your sample counts for each type of die.
 
@@ -77,12 +78,13 @@ my_dice_sample <- tibble(
 print(my_dice_sample)
 ```
 
-## Beginner Note: What is ggplot2?
+### Beginner Note: What is ggplot2?
 
 `ggplot2` is a powerful tool for making plots in R. It is part of the `tidyverse` package you loaded earlier. The code below creates a bar chart showing how many of each die type you have in your sample. You don't need to change anything—just run it!
 
 ```{r}
 #| label: view-dice-plot
+# This code creates a bar chart of your dice sample
 
 ggplot(my_dice_sample, aes(x = die_type, y = count, fill = die_type)) +
   geom_bar(stat = "identity") +
@@ -110,14 +112,14 @@ Great! You've analyzed a physical sample. Now, let's apply the exact same logic 
 
 We can't put 158,000 lines of text in a bag, but we can use code to do the same thing. The code below takes a **simple random sample** of 100 lines spoken by Homer Simpson.
 
-## Beginner Note: How do you access the Simpsons data?
+### Beginner Note: How do you access the Simpsons data?
 
 The `simpsons_script_lines` dataset comes from the `mccoursepack` package you loaded earlier. You can use it just like any other data frame in R. The code below filters for lines spoken by Homer Simpson and randomly selects 100 of them for your sample.
 
 ```{r}
 #| label: draw-digital-sample
-
 # This code draws a random sample of 100 lines for you
+
 homer_sample <- simpsons_script_lines %>%
   filter(character_name == "Homer Simpson", !is.na(spoken_words)) %>%
   slice_sample(n = 100)
@@ -132,8 +134,8 @@ Instead of counting dice types, let's count the most common words in our sample 
 
 ```{r}
 #| label: tally-digital-data
-
 # This code tallies the most frequent words in your sample
+
 word_counts <- homer_sample %>%
   unnest_tokens(word, spoken_words) %>%
   anti_join(stop_words) %>%
@@ -147,12 +149,13 @@ print(word_counts)
 
 Just like with the dice, let's make a bar chart to see the results. This code will plot the top 15 words from your unique sample.
 
-## Beginner Note: Another ggplot2 Example
+### Beginner Note: Another ggplot2 Example
 
 This code uses `ggplot2` to make a bar chart of the 15 most common words in your sample of Homer Simpson's lines. The bars show how often each word appears. The `coord_flip()` function turns the chart sideways so the words are easier to read.
 
 ```{r}
 #| label: view-word-plot
+# This code creates a bar chart of the most common words in your sample
 
 word_counts %>%
   top_n(15) %>%
