@@ -49,9 +49,9 @@ pak::pak("SIM-Lab-SIUE/mccoursepack")
 
 When you see `library(...)` in R, it means you are loading a package—a collection of functions and data that help you do specific tasks. You only need to run these lines once at the start of your session.
 
-* `tidyverse` is a set of packages for working with data and making plots.
-* `tidytext` helps you analyze text (words, sentences, etc.).
-* `mccoursepack` is a special package for this course. It gives you access to the Simpsons data used in this lab. When you load it, datasets like `simpsons_script_lines` become available for you to use in your code.
+-   `tidyverse` is a set of packages for working with data and making plots.
+-   `tidytext` helps you analyze text (words, sentences, etc.).
+-   `mccoursepack` is a special package for this course. It gives you access to the Simpsons data used in this lab. When you load it, datasets like `simpsons_script_lines` become available for you to use in your code.
 
 ```{r}
 # Load the necessary packages for this lab
@@ -62,11 +62,19 @@ library(mccoursepack)   # For the Simpsons dataset
 
 ## 3. Part 1: Your Physical Sample (Dice 🎲)
 
-Let's start with something tangible. The bag of 118 dice is our **population**.
+Let's start with something tangible. The bag of 200 dice is our **population**. The composition of the dice in the bag is as follows:
+
+-   **D4 - 15**
+-   **D6 - 60**
+-   **D8 - 15**
+-   **D10 - 25**
+-   **D12 - 20**
+-   **D20 - 40**
+-   **D100 - 25**
 
 ### Step 1.1: Draw and Tally Your Sample
 
-Go to the bag and, without looking, draw a **simple random sample** of **20 dice**. On a piece of paper, count how many of each die type you have (D4, D6, D8, etc.).
+Each student will draw a **simple random sample** of **20 dice** from the bag. On a piece of paper, count how many of each die type you have (D4, D6, D8, etc.).
 
 ### Step 1.2: Enter Your Data in RStudio
 
@@ -104,8 +112,8 @@ print(all_percentages)
 
 ### Beginner Note: What does this code do?
 
-- `mutate(percentage = ...)`: Adds a new column to calculate the percentage of each die type in your sample.
-- `sum(count)`: Calculates the total number of dice in your sample.
+-   `mutate(percentage = ...)`: Adds a new column to calculate the percentage of each die type in your sample.
+-   `sum(count)`: Calculates the total number of dice in your sample.
 
 ### Step 1.4: Visualize Your Dice Sample
 
@@ -128,10 +136,20 @@ ggplot(my_dice_sample,
 
 ### Step 1.5: Reflection
 
-The true proportion of D6s in the bag is **28.8%**. The difference between your sample's result and this true value is called **sampling error**. It's the natural, unavoidable variation that comes from studying a sample instead of the whole population.
+The true proportions of dice in the bag are as follows:
 
-- What percentage of your sample is D6? Refer to the result from the `all_percentages` calculation above.
-- How does this compare to the true proportion of 28.8%?
+-   **D4**: 7.5%
+-   **D6**: 30%
+-   **D8**: 7.5%
+-   **D10**: 12.5%
+-   **D12**: 10%
+-   **D20**: 20%
+-   **D100**: 12.5%
+
+Compare the percentages in your sample to these true proportions. The difference between your sample's result and these true values is called **sampling error**. It's the natural, unavoidable variation that comes from studying a sample instead of the whole population.
+
+-   What percentage of your sample is D6? Refer to the result from the `all_percentages` calculation above.
+-   How does this compare to the true proportion of 30%?
 
 ## 4. Part 2: Your Digital Sample (The Simpsons 📺)
 
