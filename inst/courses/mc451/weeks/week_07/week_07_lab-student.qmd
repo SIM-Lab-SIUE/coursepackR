@@ -148,7 +148,7 @@ The `simpsons_script_lines` dataset comes from the `mccoursepack` package you lo
 ```{r}
 # This code draws a random sample of 100 lines for you
 homer_sample <- simpsons_script_lines %>%
-  filter(character_name == "Homer Simpson",
+  filter(raw_character_text == "Homer Simpson",
          !is.na(spoken_words)) %>%
   slice_sample(n = 100)
 

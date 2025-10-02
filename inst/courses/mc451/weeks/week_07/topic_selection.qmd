@@ -39,7 +39,7 @@ format: pdf
 
 ### Example 2
 
-**Thesis Statement:** This study argues that, in accordance with Social Exchange Theory, the quality of young adults' offline interpersonal relationships is significantly predicted by the perceived balance of relational **rewards** (e.g., social support, validation) and **costs** (e.g., conflict, jealousy) derived from their social media interactions with those same individuals\[, 18\].
+**Thesis Statement:** This study argues that, in accordance with Social Exchange Theory, the quality of young adults' offline interpersonal relationships is significantly predicted by the perceived balance of relational **rewards** (e.g., social support, validation) and **costs** (e.g., conflict, jealousy) derived from their social media interactions with those same individuals.
 
 **Theory:** Social Exchange Theory
 
