@@ -23,9 +23,22 @@ Today's lab is a two-part, hands-on activity. First, you will draw and analyze a
 
 First, make sure you are in your RStudio project. Next, load the packages we will use. We are adding `tidytext`, a package for basic text analysis.
 
-### Installing or Updating the Course Package
+### Installing or Updating the Required Packages
 
-Before starting the lab, ensure you have the latest version of the `mccoursepack` package installed. Run the following code in your R console:
+Before starting the lab, ensure you have the necessary packages installed. Run the following code in your R console:
+
+#### Step 1: Install CRAN Packages
+
+If you don't already have `tidyverse` and `tidytext` installed, use this command to install them:
+
+```{r}
+# Install multiple packages from CRAN at once
+install.packages(c("tidyverse", "tidytext"))
+```
+
+#### Step 2: Install or Update the Course Package
+
+The `mccoursepack` package is hosted on GitHub. Use the following command to install or update it:
 
 ```{r}
 # Install or update the course package
@@ -41,8 +54,6 @@ When you see `library(...)` in R, it means you are loading a package—a collect
 * `mccoursepack` is a special package for this course. It gives you access to the Simpsons data used in this lab. When you load it, datasets like `simpsons_script_lines` become available for you to use in your code.
 
 ```{r}
-#| label: setup
-#| message: false
 # Load the necessary packages for this lab
 library(tidyverse)      # For data wrangling and visualization
 library(tidytext)       # For analyzing text data
@@ -78,37 +89,35 @@ my_dice_sample <- tibble(
 print(my_dice_sample)
 ```
 
-### Step 1.3: Calculate the Percentage of D6 in Your Sample
+### Step 1.3: Calculate Percentages for All Dice
 
-To calculate the percentage of D6 dice in your sample, use the following code. This will divide the count of D6 by the total number of dice in your sample and multiply by 100 to get the percentage.
+To calculate the percentage of each die type in your sample, use the following code. This will divide the count of each die type by the total number of dice in your sample and multiply by 100 to get the percentage.
 
 ```{r}
-#| label: calculate-d6-percentage
-# Calculate the percentage of D6 dice in your sample
-d6_percentage <- my_dice_sample %>%
-  filter(die_type == "D6") %>%
-  mutate(percentage = (count / sum(my_dice_sample$count)) * 100)
+# First, calculate percentages for all die types
+all_percentages <- my_dice_sample %>%
+  mutate(percentage = (count / sum(count)) * 100)
 
-# Print the result
-d6_percentage
+# You can see the percentages for all dice here:
+print(all_percentages)
 ```
 
 ### Beginner Note: What does this code do?
 
-- `filter(die_type == "D6")`: Selects only the row where the die type is D6.
-- `mutate(percentage = ...)`: Adds a new column to calculate the percentage of D6 dice in your sample.
-- `sum(my_dice_sample$count)`: Calculates the total number of dice in your sample.
+- `mutate(percentage = ...)`: Adds a new column to calculate the percentage of each die type in your sample.
+- `sum(count)`: Calculates the total number of dice in your sample.
 
 ### Step 1.4: Visualize Your Dice Sample
 
 Now for the fun part. The code below will automatically create a bar chart from your specific sample data. Just run the chunk!
 
 ```{r}
-#| label: view-dice-plot
-# This code creates a bar chart of your dice sample
-
-ggplot(my_dice_sample, aes(x = die_type, y = count, fill = die_type)) +
-  geom_bar(stat = "identity") +
+ggplot(my_dice_sample,
+       aes(x = die_type,
+           y = count,
+           fill = die_type)
+       ) +
+  geom_col() +  # Use geom_col() as a direct replacement
   theme_minimal() +
   labs(
     title = "The Composition of My Dice Sample",
@@ -121,7 +130,7 @@ ggplot(my_dice_sample, aes(x = die_type, y = count, fill = die_type)) +
 
 The true proportion of D6s in the bag is **28.8%**. The difference between your sample's result and this true value is called **sampling error**. It's the natural, unavoidable variation that comes from studying a sample instead of the whole population.
 
-- What percentage of your sample is D6? Refer to the result from the `d6_percentage` calculation above.
+- What percentage of your sample is D6? Refer to the result from the `all_percentages` calculation above.
 - How does this compare to the true proportion of 28.8%?
 
 ## 4. Part 2: Your Digital Sample (The Simpsons 📺)
@@ -137,11 +146,10 @@ We can't put 158,000 lines of text in a bag, but we can use code to do the same 
 The `simpsons_script_lines` dataset comes from the `mccoursepack` package you loaded earlier. You can use it just like any other data frame in R. The code below filters for lines spoken by Homer Simpson and randomly selects 100 of them for your sample.
 
 ```{r}
-#| label: draw-digital-sample
 # This code draws a random sample of 100 lines for you
-
 homer_sample <- simpsons_script_lines %>%
-  filter(character_name == "Homer Simpson", !is.na(spoken_words)) %>%
+  filter(character_name == "Homer Simpson",
+         !is.na(spoken_words)) %>%
   slice_sample(n = 100)
 
 # Let's look at a few lines from our sample
@@ -153,9 +161,7 @@ print(homer_sample)
 Instead of counting dice types, let's count the most common words in our sample of Homer's lines. The code below does this for you. It splits the lines into individual words, removes common "stop words" (like "the", "a", "is"), and counts the rest.
 
 ```{r}
-#| label: tally-digital-data
 # This code tallies the most frequent words in your sample
-
 word_counts <- homer_sample %>%
   unnest_tokens(word, spoken_words) %>%
   anti_join(stop_words) %>%
@@ -174,14 +180,15 @@ Just like with the dice, let's make a bar chart to see the results. This code wi
 This code uses `ggplot2` to make a bar chart of the 15 most common words in your sample of Homer Simpson's lines. The bars show how often each word appears. The `coord_flip()` function turns the chart sideways so the words are easier to read.
 
 ```{r}
-#| label: view-word-plot
 # This code creates a bar chart of the most common words in your sample
-
 word_counts %>%
-  top_n(15) %>%
+  slice_max(order_by = n, 
+            n = 15) %>% 
   mutate(word = reorder(word, n)) %>%
-  ggplot(aes(x = word, y = n)) +
-  geom_col(fill = "#FFD90F") + # Springfield yellow!
+  ggplot(aes(x = word, 
+             y = n)
+         ) +
+  geom_col(fill = "#FFD90F") +
   coord_flip() +
   theme_minimal() +
   labs(
