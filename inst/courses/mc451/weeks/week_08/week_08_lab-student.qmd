@@ -1,26 +1,107 @@
+---
 title: "Week 8 Lab: Understanding Data Types and Classes"
+---
 
 ## Week 8: From Concepts to Code
 
-**Textbook Chapter:** 8: The Art of Measurement **Dataset:** `simpsons_episodes.rda` (from the `data` folder) **Core Functions/Packages:** `glimpse()`, `summary()`, `factor()` from the tidyverse
+**Textbook Chapter:** 8: The Art of Measurement  
+**Dataset:** `simpsons_episodes` (included in the `mccoursepack` package)  
+**Core Functions/Packages:** `tidyverse` (for data manipulation and visualization)
 
-### Lab Activities
+### 1. Load the Data
 
-1.  **Load the Data**
-    -   Use `load("data/simpsons_episodes.rda")` to load the dataset.
-    -   Confirm the object name (should be `simpsons_episodes`).
-2.  **Explore Data Types**
-    -   Use `dplyr::glimpse(simpsons_episodes)` to view the structure and types of each column.
-    -   Discuss: Which columns are numeric, character, or factor?
-3.  **Summarize Numeric Variables**
-    -   Use `summary(simpsons_episodes)` to get an overview of the numeric columns.
-    -   Which variables are continuous? Which are categorical?
-4.  **Convert and Explore Factors**
-    -   Use `mutate()` and `factor()` to convert appropriate columns (e.g., `season`) to factors.
-    -   Discuss: Why might we want to treat `season` as a factor?
-5.  **Discussion**
-    -   Why is `season` an integer but `imdb_rating` is a double? How does this relate to measurement levels?
+We will use the `simpsons_episodes` dataset to explore the concepts of measurement. Follow these steps:
 
-------------------------------------------------------------------------
+```r
+# Load the required packages
+library(mccoursepack)
+library(tidyverse)
 
-*All code should use tidyverse functions where possible. Avoid base R unless necessary.*
+# Load the dataset
+data(simpsons_episodes)
+
+# Confirm the dataset is loaded
+head(simpsons_episodes)
+```
+
+### 2. Explore Data Types
+
+Understanding the structure of the dataset is the first step in conceptualizing and operationalizing variables.
+
+```r
+# View the structure of the dataset
+glimpse(simpsons_episodes)
+
+# Discuss: Which columns are numeric, character, or factor?
+```
+
+### 3. Summarize Numeric Variables
+
+Summarizing numeric variables helps us identify continuous and categorical variables.
+
+```r
+# Get an overview of numeric columns
+summary(simpsons_episodes)
+
+# Discuss: Which variables are continuous? Which are categorical?
+```
+
+### 4. Convert and Explore Factors
+
+Some variables, like `season`, are stored as integers but are better treated as factors. Factors represent categorical data.
+
+```r
+# Convert `season` to a factor
+simpsons_episodes <- simpsons_episodes %>%
+  mutate(season = factor(season))
+
+# Check the structure again
+glimpse(simpsons_episodes)
+
+# Discuss: Why might we want to treat `season` as a factor?
+```
+
+### 5. Conceptualization and Operationalization
+
+Let’s connect the dataset to the concepts from Chapter 8:
+
+- **Conceptualization:** Define what we mean by "episode popularity." For example, we might consider `imdb_rating` as an indicator of popularity.
+- **Operationalization:** Use the `imdb_rating` column to measure popularity.
+
+```r
+# Example: Summarize IMDb ratings
+simpsons_episodes %>%
+  summarize(
+    avg_rating = mean(imdb_rating, na.rm = TRUE),
+    min_rating = min(imdb_rating, na.rm = TRUE),
+    max_rating = max(imdb_rating, na.rm = TRUE)
+  )
+```
+
+### 6. Levels of Measurement
+
+Identify the levels of measurement for key variables:
+
+- **Nominal:** `title` (episode names)
+- **Ordinal:** `season` (ordered categories)
+- **Interval/Ratio:** `imdb_rating` (continuous scale)
+
+```r
+# Discuss: Why is `season` ordinal but `imdb_rating` is ratio?
+```
+
+### 7. Reliability and Validity
+
+Reflect on the reliability and validity of the `imdb_rating` variable:
+
+- **Reliability:** Are IMDb ratings consistent across different viewers?
+- **Validity:** Do IMDb ratings accurately measure episode quality?
+
+```r
+# Discuss: Why is it essential for a measure to be both reliable and valid?
+```
+
+### 8. Discussion
+
+- Why is `season` an integer but `imdb_rating` is a double? How does this relate to measurement levels?
+- Think about a time you were measured or evaluated. Did the measure feel reliable and valid? Why or why not?
