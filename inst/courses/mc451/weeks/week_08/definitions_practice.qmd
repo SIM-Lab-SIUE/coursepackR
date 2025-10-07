@@ -1,0 +1,29 @@
+---
+title: "Definitions Practice"
+format: pdf
+---
+
+## Assignment Description
+
+The purpose of this assignment is to practice differentiating between **conceptual** and **operational** definitions. A **conceptual definition** explains what a concept *means* in abstract or theoretical terms (think "dictionary definition"). An **operational definition** specifies exactly how a concept will be *measured* or manipulated in a particular study.
+
+------------------------------------------------------------------------
+
+## Instructions
+
+1.  Identify **four variables** that could be used in a research project you are interested in.
+2.  For each variable, write a clear **conceptual definition**.
+3.  For each variable, write a specific **operational definition**. Remember, this definition must be measurable.
+4.  Complete the table below. An example has been provided in italics to guide you.
+
+------------------------------------------------------------------------
+
+## My Variables and Definitions
+
+| Variable Name | Conceptual Definition | Operational Definition |
+|:-----------------------|:-----------------------|:-----------------------|
+| *Stress* | *The psychological and physiological state of strain or tension resulting from adverse or demanding circumstances.* | *A participant's score on the Perceived Stress Scale (PSS-10), a 10-item questionnaire where higher scores indicate greater perceived stress.* |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
