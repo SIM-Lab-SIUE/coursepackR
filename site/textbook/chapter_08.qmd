@@ -8,11 +8,15 @@ Consider a seemingly straightforward research question: "Does exposure to politi
 
 Measurement is the process of making our abstract concepts concrete, observable, and quantifiable. It is the bridge that allows us to travel from the theoretical realm to the empirical realm. The quality of a study's conclusions can be no better than the quality of its measures. A flawed or ambiguous measurement strategy will produce flawed and ambiguous results, no matter how sophisticated the research design or statistical analysis. This is why measurement is not a mere technicality; it is a central, creative, and intellectually demanding part of the research process.
 
+![Counting](images/counting.jpg){width="100%"}
+
 This chapter demystifies the art of measurement by breaking it down into a two-step translation process. First, we will explore **conceptualization**, the process of refining and specifying the precise meaning of the abstract concepts that are central to our research. Second, we will delve into **operationalization**, the process of developing the specific procedures, or "operations," that will result in empirical observations representing those concepts in the real world. We will also examine the different levels at which we can measure our variables and discuss the crucial criteria of reliability and validity, which allow us to assess the quality and trustworthiness of our measures. By the end of this chapter, you will have the tools to transform your abstract ideas into a concrete plan for gathering credible evidence.
 
 ## The Two-Step Translation: Conceptualization and Operationalization {.unnumbered}
 
 At its core, measurement is a process of translation. We begin with concepts, which are abstract mental ideas, and we must translate them into their concrete, empirical counterparts so they can be subjected to the "show me" demands of scientific inquiry. This translation is not a single leap but a deliberate, two-stage journey that moves from the general to the specific.
+
+![From abstract to concrete.](images/instructions.jpg){width="100%"}
 
 ### Conceptualization: Defining Our Terms {.unnumbered}
 
@@ -50,9 +54,11 @@ Specifying these unique dimensions allows for a more complex and refined underst
 
 ## Step 2: Operationalization—The Recipe for Measurement {.unnumbered}
 
-With a clear conceptual definition in hand, the researcher's task is to create a concrete plan for how to measure it. This is the process of operationalization, where we specify the exact operations that will be involved in observing and recording the values of our variables. A **variable** is the empirical representation of a concept; it is an entity that can take on more than one value. If a concept has only one value, it is a **constant**. The operationalization process results in an **operational definition**, which is a detailed set of instructions—a recipe—for how to measure the variable.
+With a clear conceptual definition in hand, the researcher's task is to create a concrete plan for how to measure it. This is the process of operationalization, where we specify the exact operations that will be involved in observing and recording our variables. A **variable** is the empirical representation of a construct. It is a logical grouping of **attributes**, which are the specific characteristics or qualities that describe it. For example, "gender" is a variable, and its attributes might be "woman," "man," and "non-binary." Because a variable is comprised of a set of attributes, it is an entity that can take on more than one value. If an attribute does not vary, it is a **constant**. The operationalization process results in an **operational definition**, which is a detailed set of instructions—a recipe—for how to measure the variable.
 
 This recipe must be so specific that another researcher could, in principle, replicate the measurement procedure exactly. For example, an operational definition for the variable "physical aggression" in a study of children's television might be: "The number of times a character on screen makes physical contact with another character in a way that is intended to cause harm, including hitting, kicking, or pushing, as recorded by trained coders during a 30-minute programming segment." This definition is specific and outlines a clear set of operations for measurement.
+
+![Clear sets of measurements.](images/recipe.jpg){width="100%"}
 
 Operationalization involves making a series of crucial decisions, the most important of which is determining the **level of measurement** for your variable.
 
@@ -60,11 +66,13 @@ Operationalization involves making a series of crucial decisions, the most impor
 
 Measurement, at its core, entails a numerical translation; it is the process by which we attach numbers to the values of our variables. The way we attach these numbers, and the meaning those numbers carry, is determined by the level of measurement. The level of measurement has profound implications for the kinds of statistical analyses that can be performed on the data. There are four hierarchical levels of measurement: nominal, ordinal, interval, and ratio.
 
+![Measuring tape.](images/measuring-tape.jpg){width="100%"}
+
 #### Nominal Level {.unnumbered}
 
-This is the least precise level of measurement. At the nominal level, numbers are used simply as labels or names for different categories. The categories must be mutually exclusive (an observation can only fit in one category) and exhaustive (there is a category for every possible observation). The numbers themselves have no mathematical meaning; they only serve to distinguish one category from another.
+This is the least precise level of measurement. A variable measured at this level is also known as a **categorical variable**. At the nominal level, numbers are used simply as labels or names for different categories. The categories must be mutually exclusive (an observation can only fit in one category) and exhaustive (there is a category for every possible observation). The numbers themselves have no mathematical meaning; they only serve to distinguish one category from another.
 
--   Example: A variable for "Type of Social Media Platform Used" might be coded as 1 = Facebook, 2 = Twitter, 3 = Instagram, 4 = TikTok. The number 4 is not "more" than the number 1; it is simply a different label.
+-   Example: Common **demographics** are often nominal variables. "Type of Social Media Platform Used" might be coded as 1 = Facebook, 2 = Twitter, 3 = Instagram, 4 = TikTok. The number 4 is not "more" than the number 1; it is simply a different label.
 
 -   Permissible Statistics: Frequency counts, percentages, and the mode (the most common category).
 
@@ -78,9 +86,9 @@ The ordinal level of measurement has the properties of the nominal level, but it
 
 #### Interval Level {.unnumbered}
 
-The interval level of measurement has all the properties of the ordinal level, but it adds the crucial assumption that the distances between the values are equal and meaningful. This means that equal differences between the numbers on the scale represent equal differences in the underlying variable being measured. What is missing at the interval level is a true or absolute zero point.
+The interval level of measurement has all the properties of the ordinal level, but it adds the crucial assumption that the distances between the values are equal and meaningful. This means that equal differences between the numbers on the **scale** represent equal differences in the underlying variable being measured. What is missing at the interval level is a true or absolute zero point.
 
--   Example: Temperature measured in Fahrenheit or Celsius is a classic example. The distance between 30° and 40° is the same as the distance between 70° and 80°. However, 0° does not represent the absence of temperature. In communication research, the most common interval-level measures are Likert-type scales, which ask respondents to indicate their level of agreement on a symmetric scale (e.g., 1 = Strongly Disagree to 5 = Strongly Agree). Researchers assume that the psychological distance between "Strongly Disagree" and "Disagree" is the same as the distance between "Agree" and "Strongly Agree."
+-   Example: Temperature measured in Fahrenheit or Celsius is a classic example. The distance between 30° and 40° is the same as the distance between 70° and 80°. However, 0° does not represent the absence of temperature. In communication research, the most common interval-level measures include the **Likert scale** and the **semantic differential scale**. A **Likert scale** asks respondents to indicate their level of agreement on a symmetric scale (e.g., 1 = Strongly Disagree to 5 = Strongly Agree). A **semantic differential scale** asks respondents to rate a concept on a scale between two opposite adjectives (e.g., "This news source is:" Unreliable ---:---:---:---:---:---:--- Reliable). In both cases, researchers assume the psychological distance between the points is equal.
 
 -   Permissible Statistics: All statistics for ordinal data, plus the mean, standard deviation, correlation, and regression.
 
@@ -96,7 +104,9 @@ The researcher must make a deliberate decision about the level of measurement th
 
 ## Assessing the Quality of Measurement: Reliability and Validity {.unnumbered}
 
-A measure can be precisely defined and meticulously executed, but if it is not a good measure, the research it produces will be worthless. But what makes a measure "good"? Two essential crit: its reliability and its validity.
+A measure can be precisely defined and meticulously executed, but if it is not a good measure, the research it produces will be worthless. But what makes a measure "good"? Before diving into the two essential criteria of reliability and validity, we must consider a fundamental challenge in the measurement process itself: **reactivity**. Reactivity refers to the problem of people changing their behavior simply because they know they are being observed. The very act of measurement can alter the phenomenon being measured, which threatens the accuracy of the findings.
+
+To combat this, researchers sometimes employ **unobtrusive measures**, which are methods of collecting data that do not require the direct participation of the people being studied and, therefore, do not introduce the problem of reactivity. Examples include analyzing existing documents, observing behavior in public spaces without interacting with the subjects, or examining physical traces people leave behind. While not always possible, these measures can provide a valuable, non-reactive complement to more direct methods like surveys and experiments. With this challenge in mind, we can now turn to the two essential criteria for a good measure: its reliability and its validity.
 
 ### Reliability: The Question of Consistency {.unnumbered}
 
@@ -126,7 +136,11 @@ While reliability is about consistency, **validity** is about accuracy. **Measur
 
 ### The Relationship Between Reliability and Validity {.unnumbered}
 
-Reliability and validity are distinct but related concepts. The relationship between them is best understood with a bullseye analogy. Imagine the center of the bullseye is the "true" value of the concept you are trying to measure.
+Reliability and validity are distinct but related concepts.
+
+![Three types of targets.](images/targets.png){width="100%"}
+
+The relationship between them is best understood with a bullseye analogy. Imagine the center of the bullseye is the "true" value of the concept you are trying to measure.
 
 -   An unreliable and invalid measure would be like arrows scattered all over the target, with no consistency and not hitting the center.
 
