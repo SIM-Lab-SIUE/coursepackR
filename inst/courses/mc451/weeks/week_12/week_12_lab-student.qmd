@@ -34,9 +34,7 @@ Instead of importing a raw file, we will load the `w144_excerpt` dataset from ou
 ```{r load-data}
 # Load the excerpted Pew data from our course package
 data("w144_excerpt")
-
 # Let's "interview" the data, as Chapter 12 suggests
-# glimpse() is the best way to do this
 glimpse(w144_excerpt)
 ```
 
@@ -45,13 +43,11 @@ glimpse(w144_excerpt)
 ## 3. Phase 2: Cleaning the Scale
 
 The `fb_news_...` variables measure how often people get news from different sources. The scale is:
-* `1` = Often
-* `2` = Sometimes
-* `3` = Hardly ever
-* `4` = Never
-
-This is a **reversed scale**: a *lower* number means *more* frequency. For analysis, it's more intuitive to have higher numbers mean more frequency. We need to **reverse code** these variables.
-
+This is a **reversed scale**: a *lower* number means *more* frequency. For analysis, it's more intuitive to have higher numbers mean more frequency. We need to **reverse code** these variables:
+* `4` = Often (originally 1)
+* `3` = Sometimes (originally 2)
+* `2` = Hardly ever (originally 3)
+* `1` = Never (originally 4)
 Our desired new scale will be:
 * `4` = Often (originally 1)
 * `3` = Sometimes (originally 2)
@@ -59,22 +55,33 @@ Our desired new scale will be:
 * `1` = Never (originally 4)
 
 ```{r clean-data}
-# We use mutate() and across() to change all 5 columns at once
-# We will create 5 new variables with an "_r" suffix
+## Wrangle and recode the fb_news_ variables
 w144_clean <- w144_excerpt %>%
   mutate(
     across(
       .cols = starts_with("fb_news_"),
-      .fns = ~ recode(., `1` = 4, `2` = 3, `3` = 2, `4` = 1),
-      .names = "{.col}_r"  # This creates the new col names
-    )
+      .fns = ~ recode(as.numeric(haven::zap_labels(.)), `1` = 4, `2` = 3, `3` = 2, `4` = 1),
+      .names = "{.col}_r"
+    ),
+    # Create the composite score by averaging the five reverse-coded items
+    fb_news_diversity_score = rowMeans(select(., ends_with("_r")), na.rm = TRUE),
+    # Replace NaN with NA for cases where all five are missing
+    fb_news_diversity_score = ifelse(is.nan(fb_news_diversity_score), NA, fb_news_diversity_score)
   )
 
 # Let's check our work
 w144_clean %>%
-  select(fb_news_friends, fb_news_friends_r) %>%
+  select(fb_news_friends, fb_news_friends_r, fb_news_diversity_score) %>%
   head()
 ```
+
+# Let's check our work
+```{r check-data}
+w144_clean %>%
+  select(fb_news_friends, fb_news_friends_r, fb_news_diversity_score) %>%
+  head()
+```
+## Now that our variables are cleaned and reverse-coded, our composite variable `fb_news_diversity_score` represents the average frequency of seeing news from diverse sources on Facebook. If all five items are missing for a respondent, their score will be NA.
 
 ## 4. Phase 3: Transforming Data
 
@@ -114,6 +121,9 @@ party_summary <- w144_final %>%
     avg_news_diversity = mean(fb_news_diversity_score, na.rm = TRUE),
     # Calculate the count (n())
     num_respondents = n()
+  ) %>%
+  mutate(
+    avg_news_diversity = ifelse(is.nan(avg_news_diversity), NA, avg_news_diversity)
   )
 
 # Print the summary table
@@ -127,4 +137,4 @@ We've successfully wrangled the data! Let's save our final, clean data frame. We
 ```{r save-data}
 write_csv(w144_final, "w144_clean.csv")
 print("Successfully created w144_clean.csv")
-
+```
