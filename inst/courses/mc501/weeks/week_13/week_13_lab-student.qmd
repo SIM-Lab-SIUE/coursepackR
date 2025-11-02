@@ -5,74 +5,82 @@ format: html
 editor: visual
 ---
 
-> **Required Citation & Disclaimer:** Remember to include the Pew Research Center citation and disclaimer (from Lab 1) in all work that uses this data.
+> **Required Citation:**
+> Pew Research Center, "ATP W144: Politics and News on Social Media Platforms."
+> Pew Research Center, Washington, D.C. (March 2024).
+>
+> **Required Disclaimer:**
+> Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.
 
 ## Introduction
 
-This lab follows **Chapter 13: Descriptive Statistics and Visualization**. Now that we have our `pew_data_clean.csv` file from Lab 1, our job is to "get to know our data." We will use descriptive statistics (mean, median, range) and data visualizations (`ggplot2`) to summarize our sample.
+This lab follows **Chapter 13: Descriptive Statistics and Visualization**. Now that we have our `w144_clean.csv` file from Lab 12, our job is to "get to know our data." We will use descriptive statistics (mean, median, range) and data visualizations (`ggplot2`) to summarize our sample.
 
 ## 1. Setup: Load Packages and Data
 
-We load the `tidyverse` (which includes `ggplot2`) and `skimr` for great summary tables. We will load the **clean CSV** we created in Lab 1.
+We load the `tidyverse` (which includes `ggplot2`) and `skimr` for great summary tables. We will load the **clean CSV** we created in Lab 12.
 
 ```{r load-packages-data, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(skimr) # For easy descriptive stats
+library(mccoursepack)
 
-# Load the clean data from last week
-pew_clean <- read_csv("pew_data_clean.csv")
+# Load the excerpted Pew data from our course package
+data("w144_excerpt")
+w144_clean <- w144_excerpt
 ```
 
 ## 2. Descriptive Statistics (The Numbers)
 
-Chapter 13 discusses *central tendency* (mean, median) and *dispersion* (standard deviation, range).
+Chapter 13 discusses *central tendency* (mean, median) and *dispersion* (standard deviation).
 
 ### A. Overall Summary
 
-The `skim()` function gives us a powerful first look at all our variables.
+The `skim()` function gives us a powerful first look at all our variables. Let's focus on the `fb_news_diversity_score` we created.
 
 ```{r skim}
-skim(pew_clean)
+w144_clean %>%
+  select(fb_news_diversity_score, ideology, party_factor) %>%
+  skim()
 ```
 
 **Questions to Answer:**
-
--   What is the mean `age` of the sample? What is the median?
--   What are the "Measures of Central Tendency" for `age`? (Mean, Median)
--   What are the "Measures of Dispersion" for `age`? (SD, Range = max - min)
+* What is the mean `fb_news_diversity_score`? What is the median?
+* What are the "Measures of Central Tendency" for this score? (Mean, Median)
+* What are the "Measures of Dispersion"? (SD, Range = max - min)
 
 ### B. Grouped Summaries
 
-Let's get descriptives for a key variable, grouped by ideology.
+Let's get descriptives for our composite score, grouped by political party.
 
 ```{r grouped-summary}
-pew_clean %>%
-  # Remove NAs from ideology so they aren't a group
-  filter(!is.na(ideology_simple)) %>%
-  group_by(ideology_simple) %>%
+w144_clean %>%
+  # Remove NAs from party_factor so it isn't a group
+  filter(!is.na(party_factor)) %>%
+  group_by(party_factor) %>%
   summarize(
     count = n(),
-    mean_biden_conf = mean(conf_biden, na.rm = TRUE),
-    sd_biden_conf = sd(conf_biden, na.rm = TRUE),
-    median_age = median(age, na.rm = TRUE)
+    mean_score = mean(fb_news_diversity_score, na.rm = TRUE),
+    sd_score = sd(fb_news_diversity_score, na.rm = TRUE),
+    median_score = median(fb_news_diversity_score, na.rm = TRUE)
   )
 ```
 
 ## 3. Data Visualization (The Pictures)
 
-We will now use `ggplot2` to visualize our data. Remember the "grammar of graphics": `ggplot(data, aes(x, y)) + geom_...()`
+We will now use `ggplot2` to visualize our data. Remember the "grammar of graphics": `ggplot(data, aes(x, y)) + geom...()`
 
 ### A. Showing a Distribution (Single Variable)
 
-A histogram is the best way to see the *shape* of a variable.
+A histogram is the best way to see the *shape* of our new `fb_news_diversity_score`.
 
 ```{r viz-histogram, warning=FALSE}
-# Plot the distribution of Age
-ggplot(pew_clean, aes(x = age)) +
-  geom_histogram(binwidth = 5, color = "white", fill = "steelblue") +
+# Plot the distribution of our composite score
+ggplot(w144_clean, aes(x = fb_news_diversity_score)) +
+  geom_histogram(binwidth = 0.25, color = "white", fill = "steelblue") +
   labs(
-    title = "Distribution of Respondent Age",
-    x = "Age",
+    title = "Distribution of Facebook News Diversity Scores",
+    x = "FB News Diversity Score (1=Low, 4=High)",
     y = "Count"
   ) +
   theme_minimal()
@@ -83,44 +91,44 @@ ggplot(pew_clean, aes(x = age)) +
 A bar chart is perfect for comparing counts or means across groups.
 
 ```{r viz-bar-chart, warning=FALSE}
-# Bar Chart: How many people have a favorable/unfavorable view of the US?
-ggplot(pew_clean, aes(x = view_us)) +
+# Bar Chart: How many people are in each party category?
+ggplot(w144_clean, aes(x = party_factor)) +
   geom_bar(fill = "darkred") +
   labs(
-    title = "Views of the United States",
-    x = "View",
+    title = "Respondent Political Party",
+    x = "Party",
     y = "Number of Respondents"
   ) +
   theme_minimal()
 ```
 
 A boxplot is even better for comparing distributions (Chapter 13).
-
 ```{r viz-boxplot, warning=FALSE}
-# Boxplot: Is confidence in Biden different by ideology?
-ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
+# Boxplot: Is the news diversity score different by party?
+ggplot(w144_clean, aes(x = party_factor, y = fb_news_diversity_score)) +
   geom_boxplot() +
   labs(
-    title = "Confidence in Biden, by Political Ideology",
-    x = "Self-Reported Ideology",
-    y = "Confidence (1=A lot, 4=None)"
+    title = "FB News Diversity Score, by Political Party",
+    x = "Political Party",
+    y = "FB News Diversity Score (1-4)"
   ) +
   theme_minimal()
 ```
 
 ### C. Showing a Relationship (Two Variables)
 
-A scatterplot is the best tool for visualizing the relationship between two continuous variables.
+A scatterplot is the best tool for visualizing the relationship between two continuous variables. Our `ideology` variable is a 1-5 scale, so it works well.
 
 ```{r viz-scatterplot, warning=FALSE}
-# Scatterplot: Is confidence in Biden related to confidence in Putin?
-ggplot(pew_clean, aes(x = conf_biden, y = conf_putin)) +
-  geom_point(alpha = 0.2) + # alpha adds transparency
+# Scatterplot: Is ideology related to news diversity?
+# We add geom_jitter() to spread out the overlapping dots
+ggplot(w144_clean, aes(x = ideology, y = fb_news_diversity_score)) +
+  geom_jitter(alpha = 0.2, width = 0.25) + # alpha adds transparency, width jitters
   geom_smooth(method = "lm") + # Adds a regression line
   labs(
-    title = "Confidence in Biden vs. Putin",
-    x = "Confidence in Biden",
-    y = "Confidence in Putin"
+    title = "Political Ideology vs. FB News Diversity",
+    x = "Ideology (1=V. Conservative, 5=V. Liberal)",
+    y = "FB News Diversity Score (1-4)"
   ) +
   theme_minimal()
-```
+

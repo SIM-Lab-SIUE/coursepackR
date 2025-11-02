@@ -1,126 +1,145 @@
 # ===================================================================
-# PREPARE PEW GLOBAL ATTITUDES (SPRING 2024) DATA FOR COURSE
+# CREATE PEW W144 EXCERPT FOR COURSE R PACKAGE (FINAL)
 #
-# This script loads the raw .sav file, selects key variables,
-# renames them, recodes missing values, and creates new
-# factor and composite variables for analysis.
+# INSTRUCTOR SCRIPT
+#
+# This script loads the raw 'ATP W144.sav' file, which is
+# superior to the CSV as it contains variable/value labels.
+#
+# It creates a "partially clean" 1,000-person excerpt
+# to comply with Pew's Terms of Use.
+#
+# CLEAN: Demographic variables are converted to factors.
+# RAW: The 'fb_news_...' scale items are left as raw numbers (1-4, 99)
+#      so students can wrangle them in Lab 12.
+#
+# This 'w144_excerpt.RData' file is what you will add to
+# the /data folder of your course package.
 # ===================================================================
 
 # --- 1. Load Packages ---
-# install.packages(c("tidyverse", "haven", "skimr"))
+# install.packages("tidyverse")
+# install.packages("haven")
 library(tidyverse)
-library(haven) # For reading .sav files
-library(skimr) # For quick summaries
+library(haven) # The package for reading SPSS (.sav) files
 
-# --- 2. Load Raw Data ---
-# Note: This file must be in your RStudio project directory
-raw_file <- "inst/extdata/pew_global_attitudes_2024.sav"
+# --- 2. Load Raw Data (Instructor must have this file) ---
+# Make sure "ATP W144.sav" is in your project directory
+raw_data <- read_sav("data-raw/ATP W144.sav")
 
-# read_sav() imports the .sav file and preserves all its metadata
-pew_raw <- read_sav(raw_file)
+# --- 3. Partial Cleaning & Transformation ---
 
-# Check column names
-cat("Column names in the raw data:\n")
-print(names(pew_raw))
-
-# --- 3. Clean and Transform Data ---
-
-pew_clean <- pew_raw %>%
+partially_clean_data <- raw_data %>%
   #
-  # PHASE 1: SELECT AND RENAME
+  # PHASE 1: SELECT & RENAME
+  #
+  # NOTE: We are now using the exact variable names from the
+  # 'colnames(raw_data)' output.
   #
   select(
-    # Demographics
-    country = country,
-    age = age,
-    gender = gender,
-    ideology = political_scale2,
+    # Demographics (Raw numeric codes from .sav)
+    age_cat_raw = F_AGECAT,
+    gender_raw = F_GENDER,
+    education_raw = F_EDUCCAT,
+    party_raw = F_PARTY_FINAL,
+    ideology_raw = F_IDEO,
 
-    # Key Survey Items
-    view_us = fav_us,
-    view_china = fav_china,
-    conf_biden = confid_biden,
-    conf_putin = confid_putin,
-    conf_xi = confid_xi,
-    econ_sit = econ_sit
+    # Social Media Use (Raw)
+    # 1=Yes, 2=No, 99=Refused
+    use_facebook = SMUSE_a_W144,
+    use_x = SMUSE_c_W144,
+    use_instagram = SMUSE_d_W144,
+    use_tiktok = SMUSE_i_W144,
+
+    # Facebook News Source Scale (Raw)
+    # 1=Often, 2=Sometimes, 3=Hardly ever, 4=Never, 99=Refused
+    # We rename them to be intuitive for students
+    fb_news_friends = FBSOURCE_a_W144,
+    fb_news_journalists = FBSOURCE_b_W144,
+    fb_news_officials = FBSOURCE_c_W144,
+    fb_news_commenters = FBSOURCE_d_W144,
+    fb_news_influencers = FBSOURCE_e_W144
   ) %>%
   #
-  # PHASE 2: CLEANING (Missing Data & Recoding)
+  # PHASE 2: PARTIALLY CLEAN (Demographics ONLY)
   #
   mutate(
-    # `zap_missing()` converts Pew's "Don't Know" (8/98) and
-    # "Refused" (9/99) codes (which are tagged as missing) into NA.
-    # We apply this to all selected variables.
-    across(everything(), haven::zap_missing),
-
-    # Convert key categorical variables to factors
-    # `as_factor()` uses the embedded labels from the .sav file
-    country = as_factor(country),
-    gender = as_factor(gender),
-
-    # Recode `view_...` variables to be simple factors
-    view_us = as_factor(view_us),
-    view_china = as_factor(view_china),
-
-    # Recode `ideology` into a clean 3-level factor
-    # Assuming political_scale2 is 1-10, simplify to left/center/right
-    ideology = case_when(
-      ideology <= 3 ~ "Left",
-      ideology >= 4 & ideology <= 6 ~ "Center",
-      ideology >= 7 ~ "Right",
+    # Use `as_factor` to convert labeled numbers to clean text factors
+    gender_factor = as_factor(gender_raw),
+    education_factor = as_factor(education_raw),
+    
+    # Manually recode party for cleaner labels
+    party_factor = case_when(
+      party_raw == 1 ~ "Republican",
+      party_raw == 2 ~ "Democrat",
+      party_raw == 3 ~ "Independent",
+      party_raw == 4 ~ "Something else",
       TRUE ~ NA_character_
     ),
 
-    # Convert ordinal scales to numeric for analysis
-    # We must use `as.numeric()` here, NOT `as_factor()`.
-    # Lower numbers = more confidence/better econ.
-    conf_biden = as.numeric(conf_biden),
-    conf_putin = as.numeric(conf_putin),
-    conf_xi = as.numeric(conf_xi),
-    econ_sit = as.numeric(econ_sit)
+    # Keep age and ideology as numeric for scales/correlations
+    # We use `zap_missing` to convert Pew's '99=Refused' to NA
+    age_category = zap_missing(age_cat_raw),
+    ideology = zap_missing(ideology_raw),
+    
+    # Clean the "fb_news" variables by replacing 99 (Refused) with NA
+    # Students will still need to REVERSE CODE these
+    across(starts_with("fb_news_"), ~na_if(., 99))
   ) %>%
   #
-  # PHASE 3: TRANSFORMING (Creating New Variables)
+  # FINAL SELECTION for the excerpt
   #
-  mutate(
-    # Create a composite score for "Confidence in Authoritarian Leaders"
-    # We'll average the scores for Putin and Xi.
-    # na.rm = TRUE is crucial!
-    conf_authoritarian = rowMeans(
-      select(., conf_putin, conf_xi),
-      na.rm = TRUE
-    ),
+  select(
+    # Clean factors for students to use
+    gender_factor,
+    party_factor,
+    education_factor,
+    
+    # Numeric demographics for students to use
+    age_category, # 1-4 scale
+    ideology,     # 1-5 scale
+    
+    # Other raw media vars for exploration
+    use_facebook,
+    use_x,
+    use_instagram,
+    use_tiktok,
 
-    # Create age categories (a "binned" variable)
-    age_group = cut(
-      age,
-      breaks = c(17, 29, 49, 64, Inf),
-      labels = c("18-29", "30-49", "50-64", "65+"),
-      right = TRUE
-    )
+    # The RAW scale items for the Lab 12 assignment
+    fb_news_friends,
+    fb_news_journalists,
+    fb_news_officials,
+    fb_news_commenters,
+    fb_news_influencers
   )
 
-# --- 4. Create Excerpt and Save to Package ---
+# --- 4. Create Policy-Compliant Excerpt ---
 
-# For the R package (adhering to Terms of Use)
-# We take a random sample of 1000 respondents
-set.seed(1234) # For reproducibility
-pew_spring_2024_excerpt <- pew_clean %>%
+# Set a seed for reproducibility
+set.seed(451)
+
+# Take a random sample of 1,000 respondents
+w144_excerpt <- partially_clean_data %>%
   slice_sample(n = 1000)
 
-# Save the data for the R package
-save(pew_spring_2024_excerpt, file = "data/pew_spring_2024_excerpt.rda", compress = "xz")
+# --- 5. Add Citation & Disclaimer (REQUIRED BY PEW) ---
 
-# ===================================================================
-# REQUIRED CITATION AND DISCLAIMER
-#
-# **Citation:**
-# Pew Research Center, "Global Attitudes Spring 2024 Dataset."
-# Pew Research Center, Washington, D.C. (May 2024) [URL]
-#
-# **Disclaimer:**
-# Pew Research Center bears no responsibility for the analyses or
-# interpretations of the data presented here. The opinions expressed
-# herein, including any implications for policy, are those of the
-# author and not of Pew Research Center.
-# ===================================================================
+# Add attributes to the data frame itself
+attr(w144_excerpt, "citation") <- 
+  'Pew Research Center, "ATP W144: Politics and News on Social Media Platforms." Pew Research Center, Washington, D.C. (March 2024).'
+attr(w144_excerpt, "disclaimer") <- 
+  'Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.'
+
+# --- 6. Save for R Package ---
+
+# This creates the .RData file to put in your package's /data folder
+save(
+  w144_excerpt,
+  file = "w144_excerpt.RData",
+  compress = "bzip2"
+)
+
+print("Successfully created 'w144_excerpt.RData' with 1,000 respondents.")
+print("This version includes RAW 'fb_news_...' variables for students to clean in Lab 12.")
+print("Add this file to the /data directory of your R package.")
+print("Remember to add the documentation in /R/data.R and run devtools::document().")

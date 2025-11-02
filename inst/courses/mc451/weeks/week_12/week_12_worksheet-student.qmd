@@ -17,7 +17,7 @@ This optional worksheet provides additional examples of data wrangling technique
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(haven)
+library(mccoursepack)
 ```
 
 ## 1. Loading and Initial Cleaning (Review)
@@ -25,10 +25,10 @@ library(haven)
 Load the raw Pew data and perform basic cleaning as in the lab.
 
 ```{r load-clean}
-# Make sure the .sav file is in the same folder as this QMD file
-pew_raw <- read_sav("pew_global_attitudes_2024.sav")
+data("pew_spring_2024_excerpt")
+# pew_spring_2024_excerpt is now available as a data frame
 
-pew_clean <- pew_raw %>%
+pew_clean <- pew_spring_2024_excerpt %>%
   select(
     country = COUNTRY,
     age = DEM2_AGE,

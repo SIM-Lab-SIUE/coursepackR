@@ -5,147 +5,126 @@ format: html
 editor: visual
 ---
 
-> **Required Citation:** Pew Research Center, "Global Attitudes Spring 2024 Dataset." Pew Research Center, Washington, D.C. (May 2024) \[URL\]
+> **Required Citation:**
+> Pew Research Center, "ATP W144: Politics and News on Social Media Platforms."
+> Pew Research Center, Washington, D.C. (March 2024).
 >
-> **Required Disclaimer:** Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.
+> **Required Disclaimer:**
+> Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.
 
 ## Introduction
 
-This lab follows **Chapter 12: Data Wrangling**. Our goal is to take a "messy" real-world dataset (the Pew Global Attitudes survey) and transform it into a "clean" and "tidy" format that is ready for analysis. We will follow the three-phase data processing pipeline:
+This lab follows **Chapter 12: Data Wrangling**. Our goal is to take a "messy," partially-cleaned dataset and finish the wrangling process ourselves. We will focus on the "Cleaning" and "Transforming" phases to prepare our data for analysis.
 
-1.  **Importing**
-2.  **Cleaning**
-3.  **Transforming**
+Our primary task is to take a set of raw survey items about news sources on Facebook and create a single "Facebook News Trust" composite score.
 
 ## 1. Setup: Load Packages
 
-First, we load the `tidyverse` and `haven` packages. `haven` is a special package for reading data from other stats programs like SPSS (`.sav`).
+First, we load the `tidyverse` (for all our data manipulation) and `mccoursepack` (which contains our course data).
 
 ```{r load-packages, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(haven)
+library(mccoursepack) # Assumes your package is named this
 ```
 
-## 2. Phase 1: Importing Data
+## 2. Phase 1: Importing & Inspecting
 
-We will load the raw `.sav` file. This format is much better than the CSV because it includes *value labels* (e.g., it knows `1 = "Favorable"`) and *missing value* definitions.
+Instead of importing a raw file, we will load the `w144_excerpt` dataset from our course package. This data has 1,000 respondents and a pre-selected set of variables.
 
 ```{r load-data}
-# Make sure the .sav file is in the same folder as this QMD file
-pew_raw <- read_sav("pew_global_attitudes_2024.sav")
+# Load the excerpted Pew data from our course package
+data("w144_excerpt")
 
 # Let's "interview" the data, as Chapter 12 suggests
 # glimpse() is the best way to do this
-glimpse(pew_raw)
+glimpse(w144_excerpt)
 ```
 
-## 3. Phase 2: Cleaning Data
+**Take a look at the data.** You'll see clean factors like `gender_factor` and `party_factor`. But you'll also see "raw" variables like `fb_news_friends`, `fb_news_journalists`, etc. These are the variables we need to wrangle.
 
-The raw data has 288 variables with names like `Q10A_BIDEN`. This is messy. Our "cleaning" stage will involve selecting only the variables we need, renaming them, and handling missing values.
+## 3. Phase 2: Cleaning the Scale
+
+The `fb_news_...` variables measure how often people get news from different sources. The scale is:
+* `1` = Often
+* `2` = Sometimes
+* `3` = Hardly ever
+* `4` = Never
+
+This is a **reversed scale**: a *lower* number means *more* frequency. For analysis, it's more intuitive to have higher numbers mean more frequency. We need to **reverse code** these variables.
+
+Our desired new scale will be:
+* `4` = Often (originally 1)
+* `3` = Sometimes (originally 2)
+* `2` = Hardly ever (originally 3)
+* `1` = Never (originally 4)
 
 ```{r clean-data}
-pew_clean <- pew_raw %>%
-  #
-  # A. Select only the columns we want
-  #
-  select(
-    country = COUNTRY,
-    age = DEM2_AGE,
-    gender = DEM1_GENDER,
-    education = DEM5_EDU,
-    ideology = DEM10_IDEOLOGY,
-    view_us = Q1A_US,
-    conf_biden = Q10A_BIDEN,
-    conf_putin = Q10C_PUTIN,
-    conf_xi = Q10B_XI
-  ) %>%
-  #
-  # B. Handle Missing Data
-  #
+# We use mutate() and across() to change all 5 columns at once
+# We will create 5 new variables with an "_r" suffix
+w144_clean <- w144_excerpt %>%
   mutate(
-    # `haven::zap_missing()` converts the special Pew codes
-    # (like 8="DK", 9="Refused") into proper 'NA' values
-    across(everything(), haven::zap_missing)
-  ) %>%
-  #
-  # C. Standardize and Recode
-  #
-  mutate(
-    # `as_factor()` converts numeric codes to text labels
-    country = as_factor(country),
-    gender = as_factor(gender),
-    view_us = as_factor(view_us),
-    
-    # We can also recode variables manually.
-    # Let's simplify the 5-point ideology scale.
-    ideology_simple = case_when(
-      ideology == 1 ~ "Left",
-      ideology == 2 ~ "Left",
-      ideology == 3 ~ "Center",
-      ideology == 4 ~ "Right",
-      ideology == 5 ~ "Right",
-      TRUE ~ NA_character_ # Assign NA to all others
-    ),
-    
-    # For scales we want to average, we must convert to numeric
-    conf_biden = as.numeric(conf_biden),
-    conf_putin = as.numeric(conf_putin),
-    conf_xi = as.numeric(conf_xi)
+    across(
+      .cols = starts_with("fb_news_"),
+      .fns = ~ recode(., `1` = 4, `2` = 3, `3` = 2, `4` = 1),
+      .names = "{.col}_r"  # This creates the new col names
+    )
   )
 
-# Let's inspect our new, clean data
-glimpse(pew_clean)
+# Let's check our work
+w144_clean %>%
+  select(fb_news_friends, fb_news_friends_r) %>%
+  head()
 ```
 
 ## 4. Phase 3: Transforming Data
 
-Now we create new variables from our clean data, as discussed in Chapter 12.
+Now that our variables are cleaned and reverse-coded, we can create our new composite variable.
 
 ### A. Create a New Variable (Composite Score)
 
-Let's create an "authoritarian_confidence" score by averaging the confidence scores for Putin and Xi.
+Let's create a "Facebook News Diversity" score by averaging the five reverse-coded items. This new variable will represent a person's average frequency of seeing news from diverse sources on Facebook.
 
 ```{r transform-composite}
-pew_final <- pew_clean %>%
+w144_final <- w144_clean %>%
   mutate(
-    # `rowMeans()` calculates the mean for each person (row)
-    # `na.rm = TRUE` is vital! It ignores missing values.
-    conf_authoritarian = rowMeans(
-      select(., conf_putin, conf_xi),
-      na.rm = TRUE
+    # Create a new column 'fb_news_diversity_score'
+    fb_news_diversity_score = rowMeans(
+      select(., starts_with("fb_news_") & ends_with("_r")),
+      na.rm = TRUE # This is VITAL. It ignores missing values.
     )
   )
 
-# Look at the new variable
-pew_final %>% 
-  select(conf_putin, conf_xi, conf_authoritarian) %>% 
+# Look at our new composite score!
+w144_final %>%
+  select(fb_news_diversity_score, party_factor) %>%
   head()
 ```
 
 ### B. Aggregate and Summarize Data
 
-Let's transform our *individual-level* data to *group-level* summaries. What is the average confidence in Biden, grouped by country?
+Now we can use our new score to transform individual data into group-level summaries. What is the average "Facebook News Diversity" score for each political party?
 
 ```{r transform-aggregate}
-country_summary <- pew_final %>%
-  group_by(country) %>%
+party_summary <- w144_final %>%
+  group_by(party_factor) %>%
+  # Make sure to drop NA values from the party factor
+  filter(!is.na(party_factor)) %>%
   summarize(
     # Calculate the mean, removing NAs
-    avg_biden_conf = mean(conf_biden, na.rm = TRUE),
+    avg_news_diversity = mean(fb_news_diversity_score, na.rm = TRUE),
     # Calculate the count (n())
     num_respondents = n()
-  ) %>%
-  # Arrange the results to see highest/lowest
-  arrange(avg_biden_conf)
+  )
 
 # Print the summary table
-print(country_summary)
+print(party_summary)
 ```
 
 ## 5. Save Your Work
 
-We've successfully wrangled the data! Let's save our final, clean data frame to a CSV file. We will use this file in Lab 2.
+We've successfully wrangled the data! Let's save our final, clean data frame. We will use this file in Lab 13 and 14.
 
 ```{r save-data}
-write_csv(pew_final, "pew_data_clean.csv")
-```
+write_csv(w144_final, "w144_clean.csv")
+print("Successfully created w144_clean.csv")
+

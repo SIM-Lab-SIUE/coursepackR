@@ -18,9 +18,11 @@ library(tidyverse)
 library(broom)
 library(car)  # For regression diagnostics
 library(lmtest)  # For additional tests
+library(mccoursepack)
 
-# Load the clean data
-pew_clean <- read_csv("pew_data_clean.csv")
+data("pew_spring_2024_excerpt")
+# pew_spring_2024_excerpt is now available as a data frame
+pew_clean <- pew_spring_2024_excerpt
 ```
 
 ## 1. Advanced Comparison of Means
