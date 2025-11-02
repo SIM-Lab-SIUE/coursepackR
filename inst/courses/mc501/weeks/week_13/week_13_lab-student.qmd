@@ -1,9 +1,126 @@
 ---
-title: "Week 13 Lab: Describing Data Workshop"
+title: "Week 13: Descriptive Statistics and Visualization"
+subtitle: "The First Look: From Raw Data to Understanding"
+format: html
+editor: visual
 ---
 
-*Placeholder for Week 13 R Lab (mc501)*
+> **Required Citation & Disclaimer:** Remember to include the Pew Research Center citation and disclaimer (from Lab 1) in all work that uses this data.
 
-Refer to the lab plan for details: - Textbook Chapter: 13 - Functions: group_by(), summarize(), ggplot(), geom_col(), geom_line()
+## Introduction
 
-Lab activities will be added here.
+This lab follows **Chapter 13: Descriptive Statistics and Visualization**. Now that we have our `pew_data_clean.csv` file from Lab 1, our job is to "get to know our data." We will use descriptive statistics (mean, median, range) and data visualizations (`ggplot2`) to summarize our sample.
+
+## 1. Setup: Load Packages and Data
+
+We load the `tidyverse` (which includes `ggplot2`) and `skimr` for great summary tables. We will load the **clean CSV** we created in Lab 1.
+
+```{r load-packages-data, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(skimr) # For easy descriptive stats
+
+# Load the clean data from last week
+pew_clean <- read_csv("pew_data_clean.csv")
+```
+
+## 2. Descriptive Statistics (The Numbers)
+
+Chapter 13 discusses *central tendency* (mean, median) and *dispersion* (standard deviation, range).
+
+### A. Overall Summary
+
+The `skim()` function gives us a powerful first look at all our variables.
+
+```{r skim}
+skim(pew_clean)
+```
+
+**Questions to Answer:**
+
+-   What is the mean `age` of the sample? What is the median?
+-   What are the "Measures of Central Tendency" for `age`? (Mean, Median)
+-   What are the "Measures of Dispersion" for `age`? (SD, Range = max - min)
+
+### B. Grouped Summaries
+
+Let's get descriptives for a key variable, grouped by ideology.
+
+```{r grouped-summary}
+pew_clean %>%
+  # Remove NAs from ideology so they aren't a group
+  filter(!is.na(ideology_simple)) %>%
+  group_by(ideology_simple) %>%
+  summarize(
+    count = n(),
+    mean_biden_conf = mean(conf_biden, na.rm = TRUE),
+    sd_biden_conf = sd(conf_biden, na.rm = TRUE),
+    median_age = median(age, na.rm = TRUE)
+  )
+```
+
+## 3. Data Visualization (The Pictures)
+
+We will now use `ggplot2` to visualize our data. Remember the "grammar of graphics": `ggplot(data, aes(x, y)) + geom_...()`
+
+### A. Showing a Distribution (Single Variable)
+
+A histogram is the best way to see the *shape* of a variable.
+
+```{r viz-histogram, warning=FALSE}
+# Plot the distribution of Age
+ggplot(pew_clean, aes(x = age)) +
+  geom_histogram(binwidth = 5, color = "white", fill = "steelblue") +
+  labs(
+    title = "Distribution of Respondent Age",
+    x = "Age",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+
+### B. Comparing Categories
+
+A bar chart is perfect for comparing counts or means across groups.
+
+```{r viz-bar-chart, warning=FALSE}
+# Bar Chart: How many people have a favorable/unfavorable view of the US?
+ggplot(pew_clean, aes(x = view_us)) +
+  geom_bar(fill = "darkred") +
+  labs(
+    title = "Views of the United States",
+    x = "View",
+    y = "Number of Respondents"
+  ) +
+  theme_minimal()
+```
+
+A boxplot is even better for comparing distributions (Chapter 13).
+
+```{r viz-boxplot, warning=FALSE}
+# Boxplot: Is confidence in Biden different by ideology?
+ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
+  geom_boxplot() +
+  labs(
+    title = "Confidence in Biden, by Political Ideology",
+    x = "Self-Reported Ideology",
+    y = "Confidence (1=A lot, 4=None)"
+  ) +
+  theme_minimal()
+```
+
+### C. Showing a Relationship (Two Variables)
+
+A scatterplot is the best tool for visualizing the relationship between two continuous variables.
+
+```{r viz-scatterplot, warning=FALSE}
+# Scatterplot: Is confidence in Biden related to confidence in Putin?
+ggplot(pew_clean, aes(x = conf_biden, y = conf_putin)) +
+  geom_point(alpha = 0.2) + # alpha adds transparency
+  geom_smooth(method = "lm") + # Adds a regression line
+  labs(
+    title = "Confidence in Biden vs. Putin",
+    x = "Confidence in Biden",
+    y = "Confidence in Putin"
+  ) +
+  theme_minimal()
+```

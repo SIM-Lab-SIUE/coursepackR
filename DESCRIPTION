@@ -1,7 +1,7 @@
 Package: mccoursepack
 Type: Package
 Title: Course Materials and Weekly Scaffolds for MC 451 and MC 501
-Version: 01.12.01
+Version: 01.12.02
 Authors@R: person("AP", "Leith", email = "apleith@siue.edu", role = c("aut", "cre"))
 Description: Provides student-facing scaffolds (Quarto templates and starter files) for weekly work in MC 451 and MC 501. Students install or update the package and use helper functions to copy the appropriate week's materials into a local working directory.
 License: MIT + file LICENSE
@@ -9,8 +9,16 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: R (>= 4.0)
-Imports: cli, fs, pkgbuild, quarto, rlang, rstudioapi, tinytex
+Imports: 
+    cli, 
+    fs, 
+    pkgbuild, 
+    quarto, 
+    rlang, 
+    rstudioapi, 
+    tinytex
 Config/Needs/website: github::SIM-Lab-SIUE/mccoursepack
 Suggests: testthat (>= 3.0.0), withr, remotes
 Config/testthat/edition: 3
 LazyData: true
+LazyDataCompression: xz

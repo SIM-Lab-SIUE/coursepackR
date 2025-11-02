@@ -1,0 +1,364 @@
+---
+title: "Week 14 Worksheet: Advanced Inferential Statistics"
+subtitle: "Additional Examples of Hypothesis Testing and Regression"
+format: html
+editor: visual
+---
+
+> **Required Citation & Disclaimer:** Remember to include the Pew Research Center citation and disclaimer (from Lab 1) in all work that uses this data.
+
+## Introduction
+
+This optional worksheet provides additional examples of inferential statistics beyond the main lab. Focus on advanced comparison of means tests and regression modeling.
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(broom)
+library(car)  # For regression diagnostics
+library(lmtest)  # For additional tests
+
+# Load the clean data
+pew_clean <- read_csv("pew_data_clean.csv")
+```
+
+## 1. Advanced Comparison of Means
+
+### A. One-Sample t-Test
+
+Test if mean confidence in Biden differs from a known value (e.g., neutral = 2.5).
+
+```{r one-sample-ttest}
+# H0: Mean confidence in Biden = 2.5 (neutral)
+# H1: Mean confidence in Biden ≠ 2.5
+
+one_sample_result <- t.test(pew_clean$conf_biden, mu = 2.5)
+tidy(one_sample_result)
+```
+
+**Interpretation:** If p \< 0.05, the sample mean is significantly different from 2.5.
+
+### B. Paired t-Test
+
+Compare confidence in Biden vs. Putin within the same respondents.
+
+```{r paired-ttest}
+# H0: Mean difference (Biden - Putin) = 0
+# H1: Mean difference (Biden - Putin) ≠ 0
+
+paired_data <- pew_clean %>%
+  filter(!is.na(conf_biden) & !is.na(conf_putin))
+
+paired_result <- t.test(paired_data$conf_biden, paired_data$conf_putin, paired = TRUE)
+tidy(paired_result)
+```
+
+**Interpretation:** Tests if respondents rate Biden differently than Putin on average.
+
+### C. Two-Sample t-Test with Unequal Variances
+
+Compare age between urban and rural respondents (assuming we have urban_rural variable).
+
+```{r unequal-var-ttest}
+# First, let's create a simulated urban_rural variable for demonstration
+set.seed(123)
+pew_clean <- pew_clean %>%
+  mutate(urban_rural = sample(c("Urban", "Rural"), n(), replace = TRUE, prob = c(0.6, 0.4)))
+
+# H0: Mean age is the same for urban and rural
+# H1: Mean age differs between urban and rural
+
+urban_rural_result <- t.test(age ~ urban_rural, data = pew_clean, var.equal = FALSE)
+tidy(urban_rural_result)
+```
+
+### D. Two-Way ANOVA
+
+Test main effects and interaction of ideology and urban/rural on confidence in Biden.
+
+```{r two-way-anova}
+# H0: No main effects or interaction
+# H1: At least one effect is significant
+
+two_way_data <- pew_clean %>%
+  filter(!is.na(ideology_simple))
+
+two_way_result <- aov(conf_biden ~ ideology_simple * urban_rural, data = two_way_data)
+tidy(two_way_result)
+
+# Post-hoc tests
+TukeyHSD(two_way_result)
+```
+
+**Interpretation:** Check for significant main effects and interaction.
+
+### E. Non-Parametric Alternatives
+
+#### Mann-Whitney U Test (Alternative to t-test)
+
+```{r mann-whitney}
+# Non-parametric test for two independent groups
+mann_result <- wilcox.test(conf_biden ~ ideology_simple, 
+                          data = filter(pew_clean, ideology_simple %in% c("Left", "Right")))
+tidy(mann_result)
+```
+
+#### Kruskal-Wallis Test (Alternative to ANOVA)
+
+```{r kruskal}
+# Non-parametric test for three or more groups
+kruskal_result <- kruskal.test(conf_biden ~ ideology_simple, data = pew_clean)
+tidy(kruskal_result)
+```
+
+## 2. Regression Analysis
+
+### A. Simple Linear Regression
+
+Model confidence in Biden as a function of age.
+
+```{r simple-regression}
+# H0: β_age = 0 (no linear relationship)
+# H1: β_age ≠ 0
+
+simple_lm <- lm(conf_biden ~ age, data = pew_clean)
+tidy(simple_lm)
+
+# Model summary
+glance(simple_lm)
+
+# Confidence intervals for coefficients
+confint(simple_lm)
+```
+
+**Interpretation:** - Check if age coefficient is significant - R² indicates proportion of variance explained - F-statistic tests overall model significance
+
+### B. Multiple Linear Regression
+
+Model confidence in Biden as a function of age and ideology.
+
+```{r multiple-regression}
+# Convert ideology to numeric for regression
+pew_clean <- pew_clean %>%
+  mutate(ideology_numeric = as.numeric(factor(ideology_simple, 
+                                             levels = c("Left", "Center", "Right"))))
+
+multiple_lm <- lm(conf_biden ~ age + ideology_numeric, data = pew_clean)
+tidy(multiple_lm)
+
+# Model comparison
+anova(simple_lm, multiple_lm)
+```
+
+**Interpretation:** Does adding ideology improve the model?
+
+### C. Polynomial Regression
+
+Test for non-linear relationship between age and confidence.
+
+```{r polynomial-regression}
+poly_lm <- lm(conf_biden ~ age + I(age^2), data = pew_clean)
+tidy(poly_lm)
+
+# Compare models
+AIC(simple_lm, poly_lm)
+```
+
+### D. Logistic Regression (for Binary Outcomes)
+
+Model favorable vs. unfavorable view of US as function of age and ideology.
+
+```{r logistic-regression}
+# Create binary outcome
+pew_clean <- pew_clean %>%
+  mutate(us_favorable = ifelse(view_us == "Very favorable" | view_us == "Somewhat favorable", 1, 0))
+
+logistic_lm <- glm(us_favorable ~ age + ideology_numeric, 
+                   data = pew_clean, 
+                   family = binomial)
+
+tidy(logistic_lm)
+
+# Odds ratios
+exp(coef(logistic_lm))
+```
+
+**Interpretation:** Odds ratios \> 1 indicate increased odds of favorable view.
+
+### E. Regression Diagnostics
+
+#### Residual Analysis
+
+```{r regression-diagnostics}
+# Residuals vs Fitted
+plot(multiple_lm, which = 1)
+
+# Q-Q Plot
+plot(multiple_lm, which = 2)
+
+# Scale-Location
+plot(multiple_lm, which = 3)
+
+# Cook's Distance
+plot(multiple_lm, which = 4)
+```
+
+#### Tests for Assumptions
+
+```{r assumption-tests}
+# Normality of residuals
+shapiro.test(residuals(multiple_lm))
+
+# Homoscedasticity (Breusch-Pagan test)
+bptest(multiple_lm)
+
+# Multicollinearity (VIF)
+vif(multiple_lm)
+```
+
+### F. Model Selection and Validation
+
+#### Stepwise Regression
+
+```{r stepwise-regression}
+# Create more predictors
+pew_clean <- pew_clean %>%
+  mutate(
+    age_squared = age^2,
+    gender_numeric = as.numeric(factor(gender, levels = c("Male", "Female")))
+  )
+
+full_model <- lm(conf_biden ~ age + age_squared + ideology_numeric + gender_numeric, 
+                 data = pew_clean)
+
+# Stepwise selection
+step_model <- step(full_model, direction = "both")
+tidy(step_model)
+```
+
+#### Cross-Validation
+
+```{r cross-validation}
+# Simple train-test split
+set.seed(123)
+train_indices <- sample(1:nrow(pew_clean), 0.7 * nrow(pew_clean))
+train_data <- pew_clean[train_indices, ]
+test_data <- pew_clean[-train_indices, ]
+
+# Fit on training data
+cv_model <- lm(conf_biden ~ age + ideology_numeric, data = train_data)
+
+# Predict on test data
+predictions <- predict(cv_model, newdata = test_data)
+
+# Calculate RMSE
+rmse <- sqrt(mean((test_data$conf_biden - predictions)^2, na.rm = TRUE))
+rmse
+```
+
+## 3. Effect Sizes and Power Analysis
+
+### A. Effect Size Calculations
+
+```{r effect-sizes}
+# Cohen's d for t-test
+cohen_d <- function(mean1, mean2, sd1, sd2, n1, n2) {
+  pooled_sd <- sqrt(((n1-1)*sd1^2 + (n2-1)*sd2^2) / (n1 + n2 - 2))
+  (mean1 - mean2) / pooled_sd
+}
+
+# Example with ideology groups
+left_data <- filter(pew_clean, ideology_simple == "Left")
+right_data <- filter(pew_clean, ideology_simple == "Right")
+
+d <- cohen_d(mean(left_data$conf_biden, na.rm = TRUE),
+             mean(right_data$conf_biden, na.rm = TRUE),
+             sd(left_data$conf_biden, na.rm = TRUE),
+             sd(right_data$conf_biden, na.rm = TRUE),
+             nrow(left_data), nrow(right_data))
+d
+
+# Eta squared for ANOVA
+eta_squared <- function(anova_result) {
+  ss_effect <- anova_result$`Sum Sq`[1]
+  ss_total <- sum(anova_result$`Sum Sq`)
+  ss_effect / ss_total
+}
+
+anova_result <- aov(conf_biden ~ ideology_simple, data = pew_clean)
+eta_sq <- eta_squared(anova(anova_result))
+eta_sq
+```
+
+### B. Power Analysis
+
+```{r power-analysis}
+# Power for t-test
+power.t.test(n = 100, delta = 0.5, sd = 1, sig.level = 0.05)
+
+# Power for ANOVA
+power.anova.test(groups = 3, n = 50, between.var = 1, within.var = 2)
+```
+
+## 4. Advanced Hypothesis Testing
+
+### A. Bootstrapping
+
+```{r bootstrapping}
+# Bootstrap confidence interval for mean difference
+set.seed(123)
+bootstrap_differences <- replicate(1000, {
+  boot_sample <- pew_clean %>% sample_n(nrow(pew_clean), replace = TRUE)
+  left_boot <- filter(boot_sample, ideology_simple == "Left")
+  right_boot <- filter(boot_sample, ideology_simple == "Right")
+  mean(left_boot$conf_biden, na.rm = TRUE) - mean(right_boot$conf_biden, na.rm = TRUE)
+})
+
+quantile(bootstrap_differences, c(0.025, 0.975))
+```
+
+### B. Permutation Test
+
+```{r permutation-test}
+# Permutation test for difference in means
+observed_diff <- pew_clean %>%
+  filter(ideology_simple %in% c("Left", "Right")) %>%
+  group_by(ideology_simple) %>%
+  summarize(mean_conf = mean(conf_biden, na.rm = TRUE)) %>%
+  pull(mean_conf) %>%
+  diff()
+
+permutation_diffs <- replicate(1000, {
+  permuted <- pew_clean %>%
+    filter(ideology_simple %in% c("Left", "Right")) %>%
+    mutate(ideology_perm = sample(ideology_simple))
+  
+  permuted %>%
+    group_by(ideology_perm) %>%
+    summarize(mean_conf = mean(conf_biden, na.rm = TRUE)) %>%
+    pull(mean_conf) %>%
+    diff()
+})
+
+# p-value
+mean(abs(permutation_diffs) >= abs(observed_diff))
+```
+
+## Practice Exercises
+
+1.  Perform a one-sample t-test to test if the mean age in the sample differs from 40.
+
+2.  Conduct a paired t-test comparing confidence in Biden and confidence in Xi.
+
+3.  Run a two-way ANOVA with ideology and gender as predictors of confidence in Biden.
+
+4.  Build a multiple regression model predicting confidence in Putin from age, ideology, and education.
+
+5.  Check the assumptions of your regression model using diagnostic plots and tests.
+
+6.  Calculate effect sizes for the t-test and ANOVA results from the lab.
+
+7.  Perform a power analysis to determine the sample size needed for 80% power.
+
+8.  Implement a simple bootstrap confidence interval for the correlation between age and confidence in Biden.

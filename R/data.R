@@ -70,4 +70,39 @@
 #'   \item{word_count}{Word count of the line (integer)}
 #' }
 #' @source Generated for educational purposes.
+#' @rdname simpsons_characters
 "simpsons_script_lines"
+
+#' Excerpt from Pew Research Center Global Attitudes Spring 2024 Survey
+#'
+#' A dataset containing an excerpt of 1,000 respondents and 12 variables
+#' from the Pew Research Center Global Attitudes Spring 2024 Survey.
+#' This excerpt is for educational purposes only.
+#'
+#' @format A data frame with 1000 rows and 12 variables:
+#' \describe{
+#'   \item{country}{Respondent's country}
+#'   \item{age}{Respondent's age}
+#'   \item{gender}{Respondent's gender}
+#'   \item{ideology}{Respondent's political ideology (Left/Center/Right)}
+#'   \item{view_us}{Favorable/unfavorable view of the U.S.}
+#'   \item{view_china}{Favorable/unfavorable view of China}
+#'   \item{conf_biden}{Confidence in U.S. President Biden (1=A lot, 4=None)}
+#'   \item{conf_putin}{Confidence in Russian President Putin (1=A lot, 4=None)}
+#'   \item{conf_xi}{Confidence in Chinese President Xi (1=A lot, 4=None)}
+#'   \item{econ_sit}{View of the country's economic situation (1=Very good, 4=Very bad)}
+#'   \item{conf_authoritarian}{Composite score: average confidence in Putin and Xi}
+#'   \item{age_group}{Age group categories (18-29, 30-49, 50-64, 65+)}
+#' }
+#'
+#' @source
+#' Pew Research Center, "Global Attitudes Spring 2024 Dataset."
+#' Pew Research Center, Washington, D.C. (May 2024)
+#' https://www.pewresearch.org/global/2024/05/01/global-attitudes-spring-2024-dataset/
+#'
+#' @section Disclaimer:
+#' Pew Research Center bears no responsibility for the analyses or
+#' interpretations of the data presented here. The opinions expressed
+#' herein, including any implications for policy, are those of the
+#' author and not of Pew Research Center.
+"pew_spring_2024_excerpt"

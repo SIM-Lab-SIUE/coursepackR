@@ -1,9 +1,123 @@
 ---
-title: "Week 14 Lab: Inferencing Data Workshop"
+title: "Week 14: Making Inferences"
+subtitle: "The Leap from Sample to Population"
+format: html
+editor: visual
 ---
 
-*Placeholder for Week 14 R Lab (mc451)*
+> **Required Citation & Disclaimer:** Remember to include the Pew Research Center citation and disclaimer (from Lab 1) in all work that uses this data.
 
-Refer to the lab plan for details: - Textbook Chapter: 14 - Functions: t.test(), cor.test()
+## Introduction
 
-Lab activities will be added here.
+This lab follows **Chapter 14: Making Inferences**. Our goal is to use our sample data to make claims about the larger population. We will do this by:
+
+1.  Stating a **Null Hypothesis (**$H_0$) and **Research Hypothesis (**$H_1$).
+2.  Choosing the correct statistical test.
+3.  Evaluating the **p-value** against our alpha level ($\alpha = 0.05$).
+4.  Interpreting the result and checking the **effect size**.
+
+## 1. Setup: Load Packages and Data
+
+We load `tidyverse` and `broom`. `broom` is a *vital* package that cleans up the messy output from R's statistical tests into tidy tables.
+
+```{r load-packages-data, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(broom) # For tidy()
+library(skimr)
+
+# Load the clean data from Lab 1
+pew_clean <- read_csv("pew_data_clean.csv")
+```
+
+## 2. Test of Association (Categorical): Chi-Square
+
+**Research Question:** Is there a relationship between a respondent's ideology and their view of the United States?
+
+-   $H_0$: There is no association between ideology and view of the U.S.
+-   $H_1$: There is an association between ideology and view of the U.S.
+-   **Test:** Chi-Square ($\chi^2$) Test of Independence.
+
+```{r test-chisq, warning=FALSE}
+# 1. Create a contingency table
+ideology_table <- table(pew_clean$ideology_simple, pew_clean$view_us)
+print(ideology_table)
+
+# 2. Run the test and use tidy() to clean the output
+chi_results <- chisq.test(ideology_table)
+tidy(chi_results)
+```
+
+**Interpretation:**
+
+-   Look at the `p.value`. Is it less than 0.05?
+-   If yes, we **reject the null hypothesis**. It appears there is a statistically significant association between ideology and views of the US.
+-   **Write-up:** "A chi-square test revealed a significant association between political ideology and views of the U.S., $\chi^2$(df) = \[statistic\], $p$ \< .001."
+
+## 3. Test of Association (Continuous): Correlation
+
+**Research Question:** Is confidence in Biden related to confidence in Putin?
+
+-   $H_0$: There is no correlation between confidence in Biden and Putin ($r = 0$).
+-   $H_1$: There is a correlation between confidence in Biden and Putin ($r \neq 0$).
+-   **Test:** Pearson's Correlation ($r$).
+
+```{r test-cor}
+cor_results <- cor.test(pew_clean$conf_biden, pew_clean$conf_putin)
+tidy(cor_results)
+```
+
+**Interpretation:**
+
+-   Look at the `estimate` (this is the effect size, $r$). Is it positive or negative?
+-   Look at the `p.value`. Is it \< 0.05?
+-   **Write-up:** "A Pearson's correlation found a \[positive/negative\], \[weak/moderate/strong\] and statistically significant relationship between confidence in Biden and confidence in Putin, $r$(\[df\]) = \[estimate\], $p$ = \[p.value\]."
+
+## 4. Test of Difference (2 Groups): t-test
+
+**Research Question:** Is there a difference in confidence in Biden between people on the "Left" and "Right" of the political spectrum?
+
+-   $H_0$: The mean confidence in Biden is the same for Left and Right groups.
+-   $H_1$: The mean confidence in Biden is different for Left and Right groups.
+-   **Test:** Independent Samples t-test.
+
+```{r test-ttest}
+# 1. First, create a data frame with only "Left" and "Right"
+left_right_data <- pew_clean %>%
+  filter(ideology_simple %in% c("Left", "Right"))
+
+# 2. Run the t-test. We use the formula: y ~ x
+ttest_results <- t.test(conf_biden ~ ideology_simple, data = left_right_data)
+tidy(ttest_results)
+```
+
+**Interpretation:**
+
+-   Look at `estimate1` (mean for Left) and `estimate2` (mean for Right).
+-   Look at the `p.value`. Is it \< 0.05?
+-   **Write-up:** "An independent samples t-test found that the \[Left/Right\] group ($M$ = \[estimate1\], $SD$ = ?) had significantly \[more/less\] confidence in Biden than the \[Left/Right\] group ($M$ = \[estimate2\], $SD$ = ?), $t$(\[parameter\]) = \[statistic\], $p$ = \[p.value\]."
+
+## 5. Test of Difference (3+ Groups): ANOVA
+
+**Research Question:** Does confidence in Biden differ across education levels?
+
+-   $H_0$: The mean confidence in Biden is the same for all education groups.
+-   $H_1$: At least one education group has a different mean confidence.
+-   **Test:** Analysis of Variance (ANOVA).
+
+```{r test-anova}
+# 1. Convert education to a factor for the ANOVA
+pew_clean$education_factor <- as_factor(pew_clean$education)
+
+# 2. Run the ANOVA
+anova_results <- aov(conf_biden ~ education_factor, data = pew_clean)
+tidy(anova_results)
+
+# 3. If p < .05, run a Post-Hoc test (Tukey's) to see *which* groups differ
+tidy(TukeyHSD(anova_results))
+```
+
+**Interpretation:**
+
+-   Look at the `p.value` from the `tidy(anova_results)` table (the row for `education_factor`). If $p < .05$, the test is significant.
+-   If significant, look at the `TukeyHSD` results. Any row with an `adj.p.value` \< 0.05 represents a significant difference between those two specific groups.
+-   **Write-up:** "A one-way ANOVA revealed a significant effect of education on confidence in Biden, $F$(\[df\], \[df.residual\]) = \[statistic\], $p$ = \[p.value\]. A Tukey post-hoc test showed that the \[Group 1\] ($M$ = ?) was significantly different from the \[Group 2\] ($M$ = ?)."

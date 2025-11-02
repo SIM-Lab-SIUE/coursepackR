@@ -1,0 +1,358 @@
+---
+title: "Week 13 Worksheet: Advanced Descriptive Statistics and Visualizations"
+subtitle: "Additional Examples of Common Statistical Summaries and Plots"
+format: html
+editor: visual
+---
+
+> **Required Citation & Disclaimer:** Remember to include the Pew Research Center citation and disclaimer (from Lab 1) in all work that uses this data.
+
+## Introduction
+
+This optional worksheet provides additional examples of descriptive statistics and data visualizations beyond the main lab. Focus on measures of central tendency and variance, plus comprehensive visualization combinations.
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(skimr)
+library(ggthemes)  # For additional themes
+
+# Load the clean data
+pew_clean <- read_csv("pew_data_clean.csv")
+```
+
+## 1. Advanced Descriptive Statistics
+
+### A. Measures of Central Tendency
+
+Beyond mean and median, calculate mode and geometric mean.
+
+```{r central-tendency}
+# Function to calculate mode
+get_mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+pew_clean %>%
+  summarize(
+    age_mean = mean(age, na.rm = TRUE),
+    age_median = median(age, na.rm = TRUE),
+    age_mode = get_mode(age),
+    # Geometric mean for positive values
+    conf_biden_geomean = exp(mean(log(conf_biden[conf_biden > 0]), na.rm = TRUE))
+  )
+```
+
+### B. Measures of Variance and Spread
+
+Calculate variance, standard deviation, range, IQR, and coefficient of variation.
+
+```{r variance-measures}
+pew_clean %>%
+  summarize(
+    age_variance = var(age, na.rm = TRUE),
+    age_sd = sd(age, na.rm = TRUE),
+    age_range = max(age, na.rm = TRUE) - min(age, na.rm = TRUE),
+    age_iqr = IQR(age, na.rm = TRUE),
+    age_cv = sd(age, na.rm = TRUE) / mean(age, na.rm = TRUE) * 100,  # Coefficient of variation
+    conf_biden_sd = sd(conf_biden, na.rm = TRUE)
+  )
+```
+
+### C. Distribution Shape Measures
+
+Calculate skewness and kurtosis.
+
+```{r shape-measures}
+# Custom functions for skewness and kurtosis
+skewness <- function(x) {
+  n <- length(x)
+  mean_x <- mean(x, na.rm = TRUE)
+  sd_x <- sd(x, na.rm = TRUE)
+  sum((x - mean_x)^3, na.rm = TRUE) / (n * sd_x^3)
+}
+
+kurtosis <- function(x) {
+  n <- length(x)
+  mean_x <- mean(x, na.rm = TRUE)
+  sd_x <- sd(x, na.rm = TRUE)
+  sum((x - mean_x)^4, na.rm = TRUE) / (n * sd_x^4) - 3
+}
+
+pew_clean %>%
+  summarize(
+    age_skewness = skewness(age),
+    age_kurtosis = kurtosis(age),
+    conf_biden_skewness = skewness(conf_biden),
+    conf_biden_kurtosis = kurtosis(conf_biden)
+  )
+```
+
+### D. Grouped Descriptive Statistics
+
+Advanced grouped summaries with multiple measures.
+
+```{r grouped-descriptives}
+pew_clean %>%
+  filter(!is.na(ideology_simple)) %>%
+  group_by(ideology_simple) %>%
+  summarize(
+    n = n(),
+    age_mean = mean(age, na.rm = TRUE),
+    age_sd = sd(age, na.rm = TRUE),
+    age_min = min(age, na.rm = TRUE),
+    age_max = max(age, na.rm = TRUE),
+    age_q25 = quantile(age, 0.25, na.rm = TRUE),
+    age_median = median(age, na.rm = TRUE),
+    age_q75 = quantile(age, 0.75, na.rm = TRUE),
+    conf_biden_mean = mean(conf_biden, na.rm = TRUE),
+    conf_biden_sd = sd(conf_biden, na.rm = TRUE)
+  )
+```
+
+## 2. Visualization Combinations
+
+### A. One Continuous Variable
+
+#### Histogram with Density Overlay
+
+```{r viz-hist-density}
+ggplot(pew_clean, aes(x = age)) +
+  geom_histogram(aes(y = ..density..), binwidth = 5, fill = "lightblue", color = "black", alpha = 0.7) +
+  geom_density(color = "red", size = 1) +
+  labs(title = "Age Distribution: Histogram with Density", x = "Age", y = "Density") +
+  theme_minimal()
+```
+
+#### Boxplot for Distribution Summary
+
+```{r viz-boxplot-single}
+ggplot(pew_clean, aes(x = "", y = age)) +
+  geom_boxplot(fill = "lightgreen", color = "darkgreen") +
+  labs(title = "Age Distribution: Boxplot", x = "", y = "Age") +
+  theme_minimal() +
+  coord_flip()
+```
+
+#### Violin Plot
+
+```{r viz-violin}
+ggplot(pew_clean, aes(x = "", y = age)) +
+  geom_violin(fill = "purple", alpha = 0.5) +
+  geom_boxplot(width = 0.1, fill = "white") +
+  labs(title = "Age Distribution: Violin Plot", x = "", y = "Age") +
+  theme_minimal() +
+  coord_flip()
+```
+
+### B. One Discrete Variable
+
+#### Bar Chart with Counts
+
+```{r viz-bar-count}
+ggplot(pew_clean, aes(x = view_us)) +
+  geom_bar(fill = "steelblue") +
+  labs(title = "Views of the United States", x = "View", y = "Count") +
+  theme_minimal()
+```
+
+#### Pie Chart (Alternative to Bar)
+
+```{r viz-pie}
+pew_clean %>%
+  count(view_us) %>%
+  ggplot(aes(x = "", y = n, fill = view_us)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  labs(title = "Views of the United States: Pie Chart", fill = "View") +
+  theme_void()
+```
+
+### C. Two Continuous Variables
+
+#### Scatterplot with Trend Line
+
+```{r viz-scatter-trend}
+ggplot(pew_clean, aes(x = age, y = conf_biden)) +
+  geom_point(alpha = 0.6, color = "blue") +
+  geom_smooth(method = "lm", color = "red", se = TRUE) +
+  labs(title = "Age vs. Confidence in Biden", x = "Age", y = "Confidence in Biden") +
+  theme_minimal()
+```
+
+#### Scatterplot with Loess Smooth
+
+```{r viz-scatter-loess}
+ggplot(pew_clean, aes(x = age, y = conf_biden)) +
+  geom_point(alpha = 0.6, color = "darkgreen") +
+  geom_smooth(method = "loess", color = "orange", se = FALSE) +
+  labs(title = "Age vs. Confidence in Biden (Loess)", x = "Age", y = "Confidence in Biden") +
+  theme_minimal()
+```
+
+#### Line Plot (if data were time-series)
+
+```{r viz-line}
+# Create a summary for line plot
+age_summary <- pew_clean %>%
+  group_by(age_group = cut(age, breaks = seq(18, 80, by = 5))) %>%
+  summarize(mean_conf = mean(conf_biden, na.rm = TRUE))
+
+ggplot(age_summary, aes(x = age_group, y = mean_conf, group = 1)) +
+  geom_line(color = "purple", size = 1) +
+  geom_point(color = "purple", size = 2) +
+  labs(title = "Mean Confidence in Biden by Age Group", x = "Age Group", y = "Mean Confidence") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### D. Continuous × Discrete Variables
+
+#### Boxplot by Group
+
+```{r viz-boxplot-group}
+ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
+  geom_boxplot(fill = "lightcoral", color = "darkred") +
+  labs(title = "Confidence in Biden by Ideology", x = "Ideology", y = "Confidence in Biden") +
+  theme_minimal()
+```
+
+#### Violin Plot by Group
+
+```{r viz-violin-group}
+ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
+  geom_violin(fill = "lightyellow", color = "orange") +
+  geom_boxplot(width = 0.1, fill = "white") +
+  labs(title = "Confidence in Biden by Ideology: Violin", x = "Ideology", y = "Confidence in Biden") +
+  theme_minimal()
+```
+
+#### Bar Chart with Error Bars
+
+```{r viz-bar-error}
+ideology_summary <- pew_clean %>%
+  filter(!is.na(ideology_simple)) %>%
+  group_by(ideology_simple) %>%
+  summarize(
+    mean_conf = mean(conf_biden, na.rm = TRUE),
+    se_conf = sd(conf_biden, na.rm = TRUE) / sqrt(n())
+  )
+
+ggplot(ideology_summary, aes(x = ideology_simple, y = mean_conf)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  geom_errorbar(aes(ymin = mean_conf - se_conf, ymax = mean_conf + se_conf), width = 0.2) +
+  labs(title = "Mean Confidence in Biden by Ideology (with SE)", x = "Ideology", y = "Mean Confidence") +
+  theme_minimal()
+```
+
+#### Faceted Histograms
+
+```{r viz-facet-hist}
+ggplot(pew_clean, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "lightgreen", color = "black") +
+  facet_wrap(~ ideology_simple) +
+  labs(title = "Age Distribution by Ideology", x = "Age", y = "Count") +
+  theme_minimal()
+```
+
+### E. Two Discrete Variables
+
+#### Stacked Bar Chart
+
+```{r viz-stacked-bar}
+ggplot(pew_clean, aes(x = ideology_simple, fill = view_us)) +
+  geom_bar(position = "stack") +
+  labs(title = "Ideology vs. US Views: Stacked Bar", x = "Ideology", y = "Count", fill = "US View") +
+  theme_minimal()
+```
+
+#### Filled Bar Chart (Proportions)
+
+```{r viz-filled-bar}
+ggplot(pew_clean, aes(x = ideology_simple, fill = view_us)) +
+  geom_bar(position = "fill") +
+  labs(title = "Ideology vs. US Views: Proportions", x = "Ideology", y = "Proportion", fill = "US View") +
+  theme_minimal()
+```
+
+#### Mosaic Plot (using geom_tile)
+
+```{r viz-mosaic}
+# Create contingency table
+mosaic_data <- pew_clean %>%
+  filter(!is.na(ideology_simple), !is.na(view_us)) %>%
+  count(ideology_simple, view_us) %>%
+  group_by(ideology_simple) %>%
+  mutate(prop = n / sum(n))
+
+ggplot(mosaic_data, aes(x = ideology_simple, y = view_us, fill = prop)) +
+  geom_tile() +
+  geom_text(aes(label = round(prop, 2)), color = "white") +
+  scale_fill_gradient(low = "lightblue", high = "darkblue") +
+  labs(title = "Ideology vs. US Views: Mosaic Plot", x = "Ideology", y = "US View", fill = "Proportion") +
+  theme_minimal()
+```
+
+### F. Three Variables (Continuous × Continuous × Discrete)
+
+#### Scatterplot with Color Coding
+
+```{r viz-scatter-color}
+ggplot(pew_clean, aes(x = age, y = conf_biden, color = ideology_simple)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Age vs. Confidence in Biden by Ideology", 
+       x = "Age", y = "Confidence in Biden", color = "Ideology") +
+  theme_minimal()
+```
+
+#### Faceted Scatterplots
+
+```{r viz-facet-scatter}
+ggplot(pew_clean, aes(x = age, y = conf_biden)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", color = "red") +
+  facet_wrap(~ ideology_simple) +
+  labs(title = "Age vs. Confidence in Biden by Ideology (Faceted)", 
+       x = "Age", y = "Confidence in Biden") +
+  theme_minimal()
+```
+
+## 3. Advanced Visualization Techniques
+
+### A. Combining Multiple Geoms
+
+```{r viz-multi-geom}
+ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
+  geom_violin(fill = "lightgray", alpha = 0.5) +
+  geom_boxplot(width = 0.1, fill = "white") +
+  geom_jitter(alpha = 0.3, color = "blue", width = 0.2) +
+  labs(title = "Confidence in Biden by Ideology: Multi-Geom", 
+       x = "Ideology", y = "Confidence in Biden") +
+  theme_minimal()
+```
+
+### B. Custom Themes and Colors
+
+```{r viz-custom-theme}
+ggplot(pew_clean, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "darkorange", color = "white") +
+  labs(title = "Age Distribution", x = "Age", y = "Count") +
+  theme_economist()  # Using ggthemes
+```
+
+## Practice Exercises
+
+1.  Calculate additional measures of central tendency (harmonic mean, trimmed mean) for age.
+
+2.  Create a summary table showing skewness and kurtosis for all continuous variables.
+
+3.  Generate a correlation plot (scatterplot matrix) for age, conf_biden, conf_putin, and conf_xi.
+
+4.  Create a heatmap showing the relationship between education levels and confidence scores.
+
+5.  Experiment with different color palettes and themes for the visualizations above.
+
+6.  Create a time-series style plot using age groups as "time" periods.

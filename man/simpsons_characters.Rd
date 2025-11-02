@@ -3,6 +3,7 @@
 \docType{data}
 \name{simpsons_characters}
 \alias{simpsons_characters}
+\alias{simpsons_script_lines}
 \title{simpsons_characters}
 \format{
 A data frame with columns:
@@ -12,14 +13,37 @@ A data frame with columns:
 \item{normalized_name}{Normalized character name (character)}
 \item{gender}{Character gender (character)}
 }
+
+A data frame with columns:
+\describe{
+\item{id}{Unique identifier for the line (integer)}
+\item{character_id}{Unique identifier for the character (integer)}
+\item{episode_id}{Unique identifier for the episode (integer)}
+\item{location_id}{Unique identifier for the location (integer)}
+\item{normalized_text}{Normalized text of the line (character)}
+\item{raw_text}{Raw text of the line (character)}
+\item{raw_character_text}{Raw text of the character (character)}
+\item{raw_location_text}{Raw text of the location (character)}
+\item{spoken_words}{Words spoken in the line (character)}
+\item{number}{Line number in the script (integer)}
+\item{speaking_line}{Indicator if the line is spoken (logical)}
+\item{timestamp_in_ms}{Timestamp in milliseconds (integer)}
+\item{word_count}{Word count of the line (integer)}
+}
 }
 \source{
+Generated for educational purposes.
+
 Generated for educational purposes.
 }
 \usage{
 simpsons_characters
+
+simpsons_script_lines
 }
 \description{
 A dataset containing information about characters in The Simpsons.
+
+A dataset containing script lines from The Simpsons.
 }
 \keyword{datasets}

@@ -1,0 +1,273 @@
+---
+title: "Week 12 Worksheet: Advanced Data Wrangling Techniques"
+subtitle: "Additional Examples for Preparing Survey Data"
+format: html
+editor: visual
+---
+
+> **Required Citation:** Pew Research Center, "Global Attitudes Spring 2024 Dataset." Pew Research Center, Washington, D.C. (May 2024) \[URL\]
+>
+> **Required Disclaimer:** Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.
+
+## Introduction
+
+This optional worksheet provides additional examples of data wrangling techniques beyond the main lab. Focus on advanced cleaning, recoding, and creating composite variables for public data preparation.
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(haven)
+```
+
+## 1. Loading and Initial Cleaning (Review)
+
+Load the raw Pew data and perform basic cleaning as in the lab.
+
+```{r load-clean}
+# Make sure the .sav file is in the same folder as this QMD file
+pew_raw <- read_sav("pew_global_attitudes_2024.sav")
+
+pew_clean <- pew_raw %>%
+  select(
+    country = COUNTRY,
+    age = DEM2_AGE,
+    gender = DEM1_GENDER,
+    education = DEM5_EDU,
+    ideology = DEM10_IDEOLOGY,
+    view_us = Q1A_US,
+    conf_biden = Q10A_BIDEN,
+    conf_putin = Q10C_PUTIN,
+    conf_xi = Q10B_XI,
+    # Additional variables for examples
+    income = DEM6_INCOME,
+    urban_rural = DEM7_URBAN,
+    religion = DEM8_RELIGION
+  ) %>%
+  mutate(across(everything(), haven::zap_missing)) %>%
+  mutate(
+    country = as_factor(country),
+    gender = as_factor(gender),
+    view_us = as_factor(view_us),
+    education = as_factor(education),
+    income = as_factor(income),
+    urban_rural = as_factor(urban_rural),
+    religion = as_factor(religion)
+  )
+```
+
+## 2. Advanced Recoding Techniques
+
+### A. Creating Ordinal Scales from Categorical Data
+
+Convert education levels to an ordinal numeric scale.
+
+```{r recode-ordinal}
+pew_clean <- pew_clean %>%
+  mutate(
+    education_ordinal = case_when(
+      education == "No formal education" ~ 1,
+      education == "Primary school" ~ 2,
+      education == "Secondary school" ~ 3,
+      education == "Some university" ~ 4,
+      education == "University degree" ~ 5,
+      education == "Post-graduate" ~ 6,
+      TRUE ~ NA_real_
+    )
+  )
+```
+
+### B. Grouping Categories for Simplicity
+
+Combine religion categories into broader groups.
+
+```{r recode-group}
+pew_clean <- pew_clean %>%
+  mutate(
+    religion_grouped = case_when(
+      religion %in% c("Catholic", "Protestant", "Orthodox Christian") ~ "Christian",
+      religion %in% c("Sunni Muslim", "Shia Muslim") ~ "Muslim",
+      religion == "Jewish" ~ "Jewish",
+      religion == "Hindu" ~ "Hindu",
+      religion == "Buddhist" ~ "Buddhist",
+      religion == "Atheist" ~ "Atheist",
+      religion == "Agnostic" ~ "Agnostic",
+      TRUE ~ "Other/None"
+    )
+  )
+```
+
+## 3. Creating Multiple Composite Scores
+
+### A. Confidence in Western Leaders
+
+Average confidence in Biden (US) vs. Putin and Xi (authoritarian).
+
+```{r composite-western}
+pew_clean <- pew_clean %>%
+  mutate(
+    conf_biden = as.numeric(conf_biden),
+    conf_putin = as.numeric(conf_putin),
+    conf_xi = as.numeric(conf_xi),
+    
+    conf_western = conf_biden,  # Biden represents Western leader
+    conf_authoritarian = rowMeans(select(., conf_putin, conf_xi), na.rm = TRUE)
+  )
+```
+
+### B. Socioeconomic Status Index
+
+Create a composite from education and income (treating as ordinal).
+
+```{r composite-ses}
+pew_clean <- pew_clean %>%
+  mutate(
+    income_ordinal = case_when(
+      income == "Lower" ~ 1,
+      income == "Working" ~ 2,
+      income == "Middle" ~ 3,
+      income == "Upper-Middle" ~ 4,
+      income == "Upper" ~ 5,
+      TRUE ~ NA_real_
+    ),
+    ses_index = rowMeans(select(., education_ordinal, income_ordinal), na.rm = TRUE)
+  )
+```
+
+### C. Urban-Rural Ideology Scale
+
+Combine urban/rural residence with ideology.
+
+```{r composite-urban-ideology}
+pew_clean <- pew_clean %>%
+  mutate(
+    ideology_numeric = as.numeric(ideology),
+    urban_ideology = case_when(
+      urban_rural == "Urban" & ideology_numeric <= 2 ~ "Urban Left",
+      urban_rural == "Urban" & ideology_numeric >= 4 ~ "Urban Right",
+      urban_rural == "Urban" & ideology_numeric == 3 ~ "Urban Center",
+      urban_rural == "Rural" & ideology_numeric <= 2 ~ "Rural Left",
+      urban_rural == "Rural" & ideology_numeric >= 4 ~ "Rural Right",
+      urban_rural == "Rural" & ideology_numeric == 3 ~ "Rural Center",
+      TRUE ~ NA_character_
+    )
+  )
+```
+
+## 4. Handling Missing Data in Composites
+
+### A. Minimum Valid Responses for Composites
+
+Only create composite if at least 2 out of 3 items are non-missing.
+
+```{r composite-min-valid}
+pew_clean <- pew_clean %>%
+  mutate(
+    # Count non-missing values
+    conf_count = rowSums(!is.na(select(., conf_biden, conf_putin, conf_xi))),
+    
+    # Create composite only if at least 2 valid responses
+    conf_overall = ifelse(conf_count >= 2, 
+                         rowMeans(select(., conf_biden, conf_putin, conf_xi), na.rm = TRUE),
+                         NA_real_)
+  )
+```
+
+### B. Imputation for Missing Values (Simple Mean Imputation)
+
+Replace missing values with group means.
+
+```{r imputation}
+pew_clean <- pew_clean %>%
+  group_by(country) %>%
+  mutate(
+    age_imputed = ifelse(is.na(age), mean(age, na.rm = TRUE), age),
+    ideology_imputed = ifelse(is.na(ideology_numeric), mean(ideology_numeric, na.rm = TRUE), ideology_numeric)
+  ) %>%
+  ungroup()
+```
+
+## 5. Data Validation and Quality Checks
+
+### A. Check for Logical Inconsistencies
+
+Ensure age is reasonable and education levels make sense.
+
+```{r validation}
+pew_clean <- pew_clean %>%
+  mutate(
+    age_valid = age >= 18 & age <= 100,
+    education_valid = !is.na(education_ordinal)
+  )
+
+# Summary of validation
+pew_clean %>%
+  summarize(
+    total_cases = n(),
+    valid_age = sum(age_valid, na.rm = TRUE),
+    valid_education = sum(education_valid, na.rm = TRUE)
+  )
+```
+
+### B. Outlier Detection
+
+Identify outliers in continuous variables.
+
+```{r outliers}
+# Using IQR method for age
+age_q25 <- quantile(pew_clean$age, 0.25, na.rm = TRUE)
+age_q75 <- quantile(pew_clean$age, 0.75, na.rm = TRUE)
+age_iqr <- age_q75 - age_q25
+
+pew_clean <- pew_clean %>%
+  mutate(
+    age_outlier = age < (age_q25 - 1.5 * age_iqr) | age > (age_q75 + 1.5 * age_iqr)
+  )
+```
+
+## 6. Preparing Data for Public Release
+
+### A. Anonymization
+
+Remove or generalize identifying information.
+
+```{r anonymize}
+pew_public <- pew_clean %>%
+  select(-c(country, religion)) %>%  # Remove potentially identifying variables
+  mutate(
+    age_grouped = cut(age, breaks = c(0, 30, 50, 100), labels = c("18-30", "31-50", "51+"))
+  ) %>%
+  select(-age)  # Remove original age
+```
+
+### B. Create Metadata Summary
+
+```{r metadata}
+data_summary <- pew_public %>%
+  summarize(
+    n_observations = n(),
+    n_variables = ncol(.),
+    variables = paste(names(.), collapse = ", "),
+    date_prepared = Sys.Date()
+  )
+
+print(data_summary)
+```
+
+### C. Save Cleaned Dataset
+
+```{r save-clean}
+write_csv(pew_public, "pew_data_advanced_clean.csv")
+```
+
+## Practice Exercises
+
+1.  Create a composite score for "global confidence" using confidence in all three leaders (Biden, Putin, Xi).
+
+2.  Recode the income variable into a 3-category system (Low, Medium, High).
+
+3.  Handle missing data in the ideology variable using median imputation instead of mean.
+
+4.  Create validation checks for the composite scores you created.
+
+5.  Prepare a version of the dataset with different levels of aggregation (country-level summaries).

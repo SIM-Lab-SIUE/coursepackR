@@ -1,9 +1,151 @@
 ---
-title: "Week 12 Lab: Data Wrangling Workshop"
+title: "Week 12: Data Wrangling with Pew Research Data"
+subtitle: "From Raw Information to Meaningful Insight"
+format: html
+editor: visual
 ---
 
-*Placeholder for Week 12 R Lab (mc451)*
+> **Required Citation:** Pew Research Center, "Global Attitudes Spring 2024 Dataset." Pew Research Center, Washington, D.C. (May 2024) \[URL\]
+>
+> **Required Disclaimer:** Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.
 
-Refer to the lab plan for details: - Textbook Chapter: 12 - Datasets: episodes, script_lines, characters, locations - Functions: left_join(), rename(), arrange()
+## Introduction
 
-Lab activities will be added here.
+This lab follows **Chapter 12: Data Wrangling**. Our goal is to take a "messy" real-world dataset (the Pew Global Attitudes survey) and transform it into a "clean" and "tidy" format that is ready for analysis. We will follow the three-phase data processing pipeline:
+
+1.  **Importing**
+2.  **Cleaning**
+3.  **Transforming**
+
+## 1. Setup: Load Packages
+
+First, we load the `tidyverse` and `haven` packages. `haven` is a special package for reading data from other stats programs like SPSS (`.sav`).
+
+```{r load-packages, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(haven)
+```
+
+## 2. Phase 1: Importing Data
+
+We will load the raw `.sav` file. This format is much better than the CSV because it includes *value labels* (e.g., it knows `1 = "Favorable"`) and *missing value* definitions.
+
+```{r load-data}
+# Make sure the .sav file is in the same folder as this QMD file
+pew_raw <- read_sav("pew_global_attitudes_2024.sav")
+
+# Let's "interview" the data, as Chapter 12 suggests
+# glimpse() is the best way to do this
+glimpse(pew_raw)
+```
+
+## 3. Phase 2: Cleaning Data
+
+The raw data has 288 variables with names like `Q10A_BIDEN`. This is messy. Our "cleaning" stage will involve selecting only the variables we need, renaming them, and handling missing values.
+
+```{r clean-data}
+pew_clean <- pew_raw %>%
+  #
+  # A. Select only the columns we want
+  #
+  select(
+    country = COUNTRY,
+    age = DEM2_AGE,
+    gender = DEM1_GENDER,
+    education = DEM5_EDU,
+    ideology = DEM10_IDEOLOGY,
+    view_us = Q1A_US,
+    conf_biden = Q10A_BIDEN,
+    conf_putin = Q10C_PUTIN,
+    conf_xi = Q10B_XI
+  ) %>%
+  #
+  # B. Handle Missing Data
+  #
+  mutate(
+    # `haven::zap_missing()` converts the special Pew codes
+    # (like 8="DK", 9="Refused") into proper 'NA' values
+    across(everything(), haven::zap_missing)
+  ) %>%
+  #
+  # C. Standardize and Recode
+  #
+  mutate(
+    # `as_factor()` converts numeric codes to text labels
+    country = as_factor(country),
+    gender = as_factor(gender),
+    view_us = as_factor(view_us),
+    
+    # We can also recode variables manually.
+    # Let's simplify the 5-point ideology scale.
+    ideology_simple = case_when(
+      ideology == 1 ~ "Left",
+      ideology == 2 ~ "Left",
+      ideology == 3 ~ "Center",
+      ideology == 4 ~ "Right",
+      ideology == 5 ~ "Right",
+      TRUE ~ NA_character_ # Assign NA to all others
+    ),
+    
+    # For scales we want to average, we must convert to numeric
+    conf_biden = as.numeric(conf_biden),
+    conf_putin = as.numeric(conf_putin),
+    conf_xi = as.numeric(conf_xi)
+  )
+
+# Let's inspect our new, clean data
+glimpse(pew_clean)
+```
+
+## 4. Phase 3: Transforming Data
+
+Now we create new variables from our clean data, as discussed in Chapter 12.
+
+### A. Create a New Variable (Composite Score)
+
+Let's create an "authoritarian_confidence" score by averaging the confidence scores for Putin and Xi.
+
+```{r transform-composite}
+pew_final <- pew_clean %>%
+  mutate(
+    # `rowMeans()` calculates the mean for each person (row)
+    # `na.rm = TRUE` is vital! It ignores missing values.
+    conf_authoritarian = rowMeans(
+      select(., conf_putin, conf_xi),
+      na.rm = TRUE
+    )
+  )
+
+# Look at the new variable
+pew_final %>% 
+  select(conf_putin, conf_xi, conf_authoritarian) %>% 
+  head()
+```
+
+### B. Aggregate and Summarize Data
+
+Let's transform our *individual-level* data to *group-level* summaries. What is the average confidence in Biden, grouped by country?
+
+```{r transform-aggregate}
+country_summary <- pew_final %>%
+  group_by(country) %>%
+  summarize(
+    # Calculate the mean, removing NAs
+    avg_biden_conf = mean(conf_biden, na.rm = TRUE),
+    # Calculate the count (n())
+    num_respondents = n()
+  ) %>%
+  # Arrange the results to see highest/lowest
+  arrange(avg_biden_conf)
+
+# Print the summary table
+print(country_summary)
+```
+
+## 5. Save Your Work
+
+We've successfully wrangled the data! Let's save our final, clean data frame to a CSV file. We will use this file in Lab 2.
+
+```{r save-data}
+write_csv(pew_final, "pew_data_clean.csv")
+```
