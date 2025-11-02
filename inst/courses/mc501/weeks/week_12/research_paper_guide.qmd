@@ -1,0 +1,111 @@
+# A Guide to Writing Your APA-Style Research Paper
+
+This guide outlines the structure of your 6,000-8,000 word APA-style research paper. You will write this entire document inside a single Quarto (`.qmd`) file.
+
+### **Part 1: The Introduction (Setting the Stage)**
+
+Your introduction establishes the research problem and its significance. In APA style, this section is often *not* labeled "Introduction"; it just begins the paper.
+
+-   **Identify the Problem:** Start by broadly identifying the mass communications problem.
+
+-   **Establish Significance:** Use existing literature and statistics to explain why this problem is important. What are the consequences? This builds the "so what?"
+
+-   **State Your Purpose & Variables:** Conclude with a clear *purpose statement* that introduces your specific variables.
+
+    -   **Example:** "The purpose of this study is to analyze the relationship between exposure to brand activism (Variable 1) on Instagram and the development of brand loyalty (Variable 2) among Gen Z consumers."
+
+### **Part 2: Literature Review & Theoretical Framework**
+
+This section is a comprehensive argument that builds a case for your research using your 15-20 academic sources. It demonstrates your mastery of the field.
+
+#### **Choosing a Theoretical Framework**
+
+Your paper must be grounded in theory.
+
+-   **How to Choose:** Look for a mass communications theory that explains *why* your variables might be related (e.g., **Agenda-Setting Theory**, **Uses and Gratifications Theory**, **Social Cognitive Theory**).
+
+-   **How to Use It:** State your chosen theory, explain its core tenets, and describe how it directly informs your hypotheses and topic.
+
+#### **Writing the Literature Review**
+
+Your goal is to identify the "gap" in the research.
+
+1.  **Organize by Variable/Theme:** Organize your review into themes based on your key variables, not author by author.
+
+2.  **Synthesize, Don't Summarize:** Show how the sources "talk" to each other.
+
+    -   **Try This:** "Research consistently shows that... (Smith, 2020; Jones, 2021). However, Lee (2022) offers a conflicting viewpoint, arguing that... This discrepancy suggests..."
+
+3.  **Identify the "Gap":** Conclude by pointing out what *isn't* known. This gap leads directly to your research questions.
+
+    -   **Example:** "While research has explored news on Twitter, little has examined... This study aims to fill that gap."
+
+### **Part 3: Research Questions (RQs) / Hypotheses (RHs)**
+
+This is the heart of your paper. You must include **exactly two (2) RQs and/or RHs** that flow directly from the "gap" you identified.
+
+-   **Variable Check:** Clearly identify your variables.
+
+    -   **Variable 1 (Independent):** The "cause" or predictor.
+
+    -   **Variable 2 (Dependent):** The "effect" or outcome.
+
+-   **Research Questions (RQs):** Use when *exploring* a topic. (e.g., "What is the relationship between...?")
+
+-   **Hypotheses (RHs):** Use when *predicting* an outcome based on your theory. (e.g., "Higher exposure to X will be positively associated with Y.")
+
+### **Part 4: Method (Your Research "Recipe")**
+
+This section explains *exactly* what you did. It must be written in APA style (past tense, third person).
+
+-   **Design:** State your study design (e.g., "This study employed a cross-sectional survey design...").
+
+-   **Participants:** Describe your target population (N=100 goal), sampling strategy, and final sample.
+
+-   **Measures (Operationalization):** This is critical. Explain how your survey questions *measured* your abstract variables.
+
+    -   **Example:** "Brand Loyalty was measured using a 3-item scale adapted from Smith (2019), asking participants... on a 5-point Likert scale (1 = Not at all likely, 5 = Extremely likely). The scale demonstrated good internal consistency (\$\\alpha\$ = .88)."
+
+-   **Procedure:** Detail how you collected the data (e.g., Google Forms, Qualtrics).
+
+-   **Data Analysis Plan:** State that **all data was analyzed using RStudio**. Describe the *types* of inferential statistics you ran (e.g., "Pearson correlations," "independent samples t-tests," "ANOVA," or "linear regression").
+
+### **Part 5: Results (Just the Facts, via R)**
+
+Present your findings *without* interpretation. This section must be dry and factual.
+
+-   **Answer Your RQs/RHs:** Structure this section around your two RQs/RHs, in order.
+
+-   **Present the Data:** Report the results of your statistical analyses in proper APA format.
+
+    -   **Example:** "A Pearson correlation revealed a significant positive relationship between Instagram use and body dissatisfaction, *r*(103) = .45, *p* \< .001."
+
+-   **Show Your Visualizations:** Include your **2+ visualizations** created in R. These must be formatted as APA-style Figures or Tables, with proper captions. Embed them directly from your R code chunks.
+
+### **Part 6: Discussion (What It All Means)**
+
+This is where you *interpret* your results and show your critical thinking. This section (along with your Lit Review) will be the bulk of your word count.
+
+1.  **Summarize Your Findings:** Restate your main findings in plain English.
+
+2.  **Connect to Your Lit Review & Theory:** How do your findings compare to your 15-20 sources? Do they support, contradict, or add nuance? Did they support your theoretical framework?
+
+3.  **State the Implications:**
+
+    -   **Theoretical Implications:** What does this mean for the *theory* you used?
+
+    -   **Practical Implications:** What do your findings *mean* for communications professionals?
+
+4.  **Acknowledge Limitations:** Be honest about your study's weaknesses (e.g., convenience sample, self-report data).
+
+5.  **Directions for Future Research:** Based on your limitations and findings, what should the next study investigate?
+
+### **Part 7: Conclusion**
+
+Wrap everything up.
+
+-   **Brief Summary:** A short summary of the entire paper (Problem -\> Method -\> Key Finding -\> Key Takeaway).
+
+-   **Final Thought:** A concluding paragraph on the overall importance of this line of research.
+
+*For guides on RStudio, GitHub, and Zotero, please see the other documents provided.*

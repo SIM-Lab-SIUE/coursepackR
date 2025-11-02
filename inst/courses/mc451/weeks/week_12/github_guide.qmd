@@ -1,0 +1,83 @@
+# Guide to Collaborating with GitHub
+
+Using Git and GitHub is the professional standard for managing projects. For a 2-3 person team, this workflow will prevent lost work and merge conflicts.
+
+### **Step 1: One Person Creates the Repository**
+
+1.  One team member (the "Repo Owner") goes to [GitHub.com](https://github.com/ "null").
+
+2.  Create a new **private** repository. Name it clearly (e.g., `coms-white-paper-f24`).
+
+3.  **IMPORTANT:** Check the box to **"Add a README file"**.
+
+4.  Go to the repository's `Settings` \> `Collaborators` and add your teammates using their GitHub usernames.
+
+### **Step 2: All Members Clone the Repository**
+
+Once your teammates accept the invitation, *every* team member (including the owner) must "clone" the repository to their computer. This creates a local copy.
+
+1.  Go to the repository's main page on GitHub.
+
+2.  Click the green `<> Code` button.
+
+3.  Copy the `HTTPS` URL.
+
+4.  In RStudio, go to `File` \> `New Project...` \> `Version Control` \> `Git`.
+
+5.  Paste the URL into the `Repository URL` field.
+
+6.  Choose a location on your computer for the project to live.
+
+7.  Click "Create Project." RStudio will restart and open your new project, which is now a Git repository.
+
+### **Step 3: The Daily Workflow (Pull, Edit, Commit, Push)**
+
+**This is the most important part.** Follow this cycle *every time* you start and stop working.
+
+#### **A. PULL (Before you start work)**
+
+*Before you write a single word,* you must "pull" any changes your teammates have made.
+
+1.  Open your RStudio project.
+
+2.  Go to the **`Git`** tab in the top-right pane.
+
+3.  Click the **`Pull`** button (blue down-arrow). This fetches all changes from GitHub.
+
+#### **B. EDIT (Do your work)**
+
+-   Now you can safely work on your files (e.g., write in the `.qmd` file, add R code).
+
+-   **Communicate!** Tell your team, "I'm working on the Methodology section." This helps avoid "merge conflicts" where two people edit the same lines at the same time.
+
+#### **C. COMMIT (Save your changes)**
+
+When you've finished a chunk of work (or at the end of the day), you must "commit" your changes. This is like taking a local snapshot.
+
+1.  Go to the **`Git`** tab.
+
+2.  Check the boxes next to the files you've changed.
+
+3.  Click **`Commit`**.
+
+4.  A new window will open. In the `Commit message` box, write a *brief* description of what you did (e.g., "Drafted methodology section" or "Fixed ggplot2 chart").
+
+5.  Click **`Commit`**.
+
+#### **D. PUSH (Share your changes)**
+
+Your "commit" is still only on your computer. To share it with your team, you must "push" it to GitHub.
+
+1.  After committing, click the **`Push`** button (green up-arrow) on the `Git` tab.
+
+2.  Your changes are now on GitHub, and your teammates can "pull" them.
+
+**Cycle:** `Pull` -\> `Edit` -\> `Commit` -\> `Push` -\> `(Teammate Pulls)`
+
+### **Step 4: The Final Repository Structure**
+
+Your final repository *must* be organized. Create these folders inside your RStudio project:
+
+```         
+/your-project-repository ├── white_paper.qmd       <-- Your main Quarto file ├── references.bib        <-- Your bibliography file ├── README.md             <-- A brief description of your project │ ├── /data │   ├── survey_data_raw.csv   <-- The raw data from your survey │ ├── /output │   └── white_paper.pdf       <-- The final, rendered PDF of your paper │ └── (Your RStudio .Rproj file will also be here)  
+```

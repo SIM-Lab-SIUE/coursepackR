@@ -1,0 +1,115 @@
+# A Guide to Writing Your Mass Communications White Paper
+
+This guide outlines the structure of your 3,000-4,000 word white paper. You will write this entire document inside a single Quarto (`.qmd`) file.
+
+### **Part 1: The Introduction (Setting the Stage)**
+
+Your introduction grabs the reader’s attention and establishes the "so what?" of your paper.
+
+-   **Identify the Problem:** Start by clearly identifying the mass communications problem or trend (e.g., "social media misinformation," "brand activism").
+
+-   **Establish Significance:** Explain why this problem matters. Who is affected? What are the consequences? This is where you hook your reader.
+
+-   **State Your Purpose:** End your introduction with a clear *purpose statement*.
+
+    -   **Example:** "The purpose of this paper is to analyze how brand activism (Variable 1) on Instagram influences the brand loyalty (Variable 2) of Gen Z consumers."
+
+### **Part 2: Literature Review & Theoretical Framework**
+
+This section is a comprehensive argument that builds a case for your research using your 10-12 academic sources.
+
+#### **Choosing a Theoretical Framework**
+
+A theory is a "lens" that helps you explain *why* or *how* your variables might be related.
+
+-   **How to Choose:** Look for a mass communications theory that explains your problem (e.g., **Agenda-Setting Theory**, **Uses and Gratifications Theory**, **Diffusion of Innovations**).
+
+-   **How to Use It:** State your chosen theory, explain its basic concepts, and describe how it applies to *your* specific topic.
+
+#### **Writing the Literature Review**
+
+Your goal here is to identify the "gap" in the research that your paper will fill.
+
+1.  **Organize by Variable/Theme:** Don't go author by author. Organize your lit review into themes based on your key variables.
+
+2.  **Synthesize, Don't Summarize:** Show how the sources "talk" to each other.
+
+    -   **Instead of:** "Smith (2020) found X. Jones (2021) found Y."
+
+    -   **Try This:** "Research consistently shows that... (Smith, 2020; Jones, 2021). However, Lee (2022) offers a conflicting viewpoint..."
+
+3.  **Identify the "Gap":** Conclude your lit review by pointing out what *isn't* known. This "gap" is what your project will investigate.
+
+    -   **Example:** "While research has explored news on Twitter, little has examined... This paper aims to fill that gap."
+
+### **Part 3: Research Questions (RQs) / Hypotheses (RHs)**
+
+This is the heart of your paper. You must include **exactly two (2) RQs and/or RHs** that flow directly from the "gap" you identified.
+
+-   **Variable Check:** Clearly identify your variables.
+
+    -   **Variable 1 (Independent):** The "cause" or predictor (e.g., *amount* of Instagram use).
+
+    -   **Variable 2 (Dependent):** The "effect" or outcome (e.g., *level* of body dissatisfaction).
+
+-   **Research Questions (RQs):** Use when *exploring* a topic.
+
+    -   **RQ1:** How do college students describe the credibility of political news they see on TikTok?
+
+-   **Hypotheses (RHs):** Use when *predicting* an outcome based on your theory.
+
+    -   **RH1:** Higher exposure to "ideal body" images on Instagram (Variable 1) will be positively associated with higher levels of body dissatisfaction (Variable 2).
+
+### **Part 4: Methodology (Your Research "Recipe")**
+
+This section explains *exactly* what you did to answer your RQs/RHs. Your methodology **must be a survey**.
+
+-   **Survey Design:** Explain *how* you built your questionnaire. Did you adapt questions from previous research? What kinds of questions did you use (e.g., Likert scales)?
+
+-   **Operationalize Your Variables:** Explain how your survey questions *measured* your abstract variables.
+
+    -   **Example:** "We measured 'Brand Loyalty' using a 3-question survey asking participants... on a 5-point scale from 'Not at all likely' to 'Extremely likely'."
+
+-   **Sample:** Describe your target population (N=100 goal) and your sampling strategy.
+
+    -   **Example:** "Our target population was undergraduate students. We used a convenience sample, distributing our anonymous online survey... Our final sample consisted of **105 responses**."
+
+-   **Procedure:** Detail how you collected the data (e.g., Google Forms, Qualtrics) and for how long.
+
+-   **Data Analysis Plan:** State that **all data was analyzed using RStudio**. Describe the *types* of analysis you ran (e.g., "descriptive statistics," "Pearson correlation").
+
+### **Part 5: Results (Just the Facts, via R)**
+
+Present your findings *without* interpretation. This is where you integrate your R code chunks and visualizations.
+
+-   **Answer Your RQs/RHs:** Structure this section around your two RQs/RHs.
+
+-   **Present the Data:** Report the results of your statistical analyses clearly.
+
+    -   "Our correlation test found a significant positive relationship between Instagram use and body dissatisfaction (r = .45, p \< .01)."
+
+-   **Show Your Visualizations:** Include your **2+ visualizations** created in R. Embed them directly from your R code chunks. Each visual must have a clear title and label.
+
+-   **Integrate Code (Professionally):** Use Quarto chunk options like `echo: false` to hide most of your code, showing only the R chunks necessary to prove your analysis or generate your plots.
+
+### **Part 6: Discussion (What It All Means)**
+
+This is where you *interpret* your results and show your critical thinking.
+
+1.  **Summarize Your Findings:** Restate your main findings in plain English. Were your RQs/RHs answered or supported?
+
+2.  **Connect to Your Lit Review & Theory:** How do your findings compare to your 10-12 sources? Do they support, contradict, or add something new?
+
+3.  **State the Implications (The "So What?"):** What do your findings *mean* for communications professionals? This is a critical part of a "white paper."
+
+4.  **Acknowledge Limitations:** Be honest about your study's weaknesses (e.g., "Our sample was small and based on convenience...").
+
+### **Part 7: Conclusion & Recommendations**
+
+Wrap everything up and provide actionable takeaways.
+
+-   **Brief Summary:** A 3-4 sentence summary of the entire paper (Problem -\> Key Finding -\> Key Takeaway).
+
+-   **Actionable Recommendations:** Based on your findings, what is your *specific, actionable advice* for professionals in the field?
+
+*For guides on setting up your project, using GitHub, and managing citations, please see the other documents provided.*

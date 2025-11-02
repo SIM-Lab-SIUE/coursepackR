@@ -1,0 +1,81 @@
+# Guide: Zotero & RStudio for APA Formatting
+
+This guide shows you how to connect Zotero to your RStudio project to create automated APA 7th Edition citations and bibliographies. This is essential for a graduate research paper.
+
+### **Step 1: Install Zotero & Better BibTeX**
+
+1.  **Install Zotero:** Go to [zotero.org](https://www.zotero.org/ "null") and install the Zotero application.
+
+2.  **Install the Zotero Connector:** Install the browser connector to save sources from Google Scholar with one click.
+
+3.  **Install Better BibTeX (BBT) Plugin:** This is **essential** for creating stable citation keys.
+
+    -   Go to the BBT GitHub page: [github.com/retorquere/zotero-better-bibtex/releases](https://github.com/retorquere/zotero-better-bibtex/releases "null")
+
+    -   Download the latest `.xpi` file.
+
+    -   In Zotero, go to `Tools` \> `Add-ons`.
+
+    -   Click the gear icon \> "Install Add-on From File..." and select the `.xpi` file. Restart Zotero.
+
+### **Step 2: Organize Your Library**
+
+-   Create a new "Collection" in Zotero for this project (e.g., "Grad Paper").
+
+-   As you find your 15-20 sources, add them directly to this collection using the Zotero browser connector.
+
+-   **Crucial Step:** Click on each source in Zotero and *check the metadata*. Ensure the title, author, journal, and year are correct. The BBT citation key (e.g., `mccombs1972`) will be generated automatically.
+
+### **Step 3: Export Your `.bib` File**
+
+This is the file Quarto will read. You will set Zotero to *automatically* update this file.
+
+1.  In Zotero, select your project's collection.
+
+2.  Go to `File` \> `Export Library...`.
+
+3.  **Format:** Select **`Better BibTeX`**.
+
+4.  Check the box for **`Keep updated`**.
+
+5.  Navigate *inside* your RStudio project folder (the one cloned from GitHub).
+
+6.  Save the file as `references.bib`.
+
+This `references.bib` file now lives in your project and will auto-update whenever you add or change a source in your Zotero collection.
+
+### **Step 4: Link Your `.bib` & `.csl` Files to Quarto**
+
+1.  Open your `research_paper.qmd` file in RStudio.
+
+2.  Make sure you have downloaded the `apa.csl` file from the Zotero Style Repository (see `grad_technical_guide.md`) and saved it in your project folder.
+
+3.  In the **YAML header**, add *both* of these lines:
+
+    ```         
+    --- title: "My Research Paper" author: "My Name" format: pdf bibliography: references.bib csl: apa.csl ---  
+    ```
+
+    -   `bibliography: references.bib` tells Quarto your sources.
+
+    -   `csl: apa.csl` tells Quarto to format everything in APA 7.
+
+### **Step 5: How to Cite in Your Paper**
+
+1.  **Find the Citekey:** Click on a source in your Zotero library. The "Info" pane on the right will show the `Citation Key` (e.g., `mccombs1972`).
+
+2.  **Cite in Text:** When writing, put that key inside `[@...]`.
+
+    -   **Parenthetical:** `...as shown in the study [@]mccombs1972.`
+
+        -   *Renders as:* ...as shown in the study (McCombs & Shaw, 1972).
+
+    -   **Narrative:** `...as [@]mccombs1972 argued.`
+
+        -   *Renders as:* ...as McCombs & Shaw (1972) argued.
+
+    -   **Multiple:** `...in several studies [e.g., @smith2020; @lee2022].`
+
+        -   *Renders as:* ...in several studies (e.g., Smith, 2020; Lee, 2022).
+
+When you "Render" your PDF, Quarto will find all your `[@...]` tags, format them perfectly in APA 7 style, and build your "References" list at the end.

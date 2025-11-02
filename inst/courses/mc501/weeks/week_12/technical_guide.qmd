@@ -1,0 +1,97 @@
+# Technical Guide: RStudio, Quarto, & Survey Design
+
+This guide covers the technical setup for producing an APA-formatted paper in RStudio and reviews survey design.
+
+### **Part 1: RStudio & Quarto Setup (for APA 7)**
+
+Your entire paper will be a single Quarto (`.qmd`) file formatted for APA 7th Edition.
+
+#### **1. Create Your RStudio Project**
+
+Follow the steps in `grad_github_guide.md` to create your project by "cloning" your GitHub repository.
+
+#### **2. Install Necessary R Packages**
+
+You will need packages to analyze and visualize your data. Open the `Console` in RStudio and run this command:
+
+```         
+install.packages(c("tidyverse", "rmarkdown", "quarto", "apaTables", "readr"))  
+```
+
+-   `tidyverse`: Includes `ggplot2` (visualization) and `dplyr` (data cleaning).
+
+-   `apaTables`: A great package for creating APA-formatted tables from your R analysis.
+
+-   `readr`: For reading your `.csv` file.
+
+#### **3. Get the APA 7 Style File (`.csl`)**
+
+Quarto uses a CSL (Citation Style Language) file to format your references.
+
+1.  Go to the [Zotero Style Repository](https://www.zotero.org/styles "null").
+
+2.  Search for "American Psychological Association 7th edition".
+
+3.  Right-click the link and "Save Link As...".
+
+4.  Save the file as `apa.csl` directly into your RStudio Project's main folder.
+
+#### **4. Create Your `research_paper.qmd` File**
+
+1.  In RStudio, go to `File` \> `New File...` \> `Quarto Document...`.
+
+2.  Save the file as `research_paper.qmd`.
+
+3.  This file will have a **YAML header**. You *must* edit it to look like this:
+
+    ```         
+    --- title: "Your Full Title Here" author: "Your Name" format:    pdf:     keep-tex: true editor: visual bibliography: references.bib csl: apa.csl abstract: |   Your 250-word abstract goes here. Write this last. ---  
+    ```
+
+    -   `bibliography: references.bib`: Tells Quarto where your Zotero citations are.
+
+    -   `csl: apa.csl`: Tells Quarto to use the APA 7 style file you just downloaded.
+
+    -   `abstract: |`: This creates a properly formatted abstract block.
+
+#### **5. R Code Chunks**
+
+-   Use `echo: false` and `warning: false` on your R code chunks to hide the code itself, as per APA style. You only want to show the *output* (the tables or figures).
+
+    -   Example: `{r, echo=false, warning=false, message=false}`
+
+-   Use `apaTables::apa.cor.table()` or `apaTables::apa.reg.table()` to generate Word/Latex code for APA-formatted tables, which you can then place in your document.
+
+### **Part 2: Survey Design Best Practices**
+
+Your goal is 100+ responses. A well-designed survey is crucial for a graduate-level project.
+
+#### **1. Ethics First**
+
+-   **Anonymity:** You *must* ensure your survey is anonymous. Do not ask for names or emails.
+
+-   **Informed Consent:** Your first "question" must be a consent page. Explain:
+
+    -   Who you are and that this is for a graduate class project.
+
+    -   That participation is voluntary and anonymous.
+
+    -   That they can quit at any time.
+
+    -   An "I agree to participate" button must be clicked to proceed.
+
+-   **Get Approval:** Get your survey questions approved by your instructor *before* you launch.
+
+#### **2. Use Validated Scales**
+
+-   This is a key difference for grad-level work. Do *not* make up your own questions to measure complex variables (like "brand loyalty" or "body dissatisfaction").
+
+-   **Find Scales:** Use Google Scholar to find papers on your topic. Look at their "Method" section to see *how* they measured your variable. Find the original paper that *created* that scale.
+
+-   **Cite Your Measures:** In your `Method` section, you will cite the authors of the scale you used.
+
+    -   *Example:* "Brand loyalty was measured using the 5-item scale developed by Smith (2019)..."
+
+#### **3. Keep It Focused**
+
+-   Only ask questions that *directly* help you measure your variables (independent, dependent) and any important demographic/control variables (e.g., age, gender, time on social media).

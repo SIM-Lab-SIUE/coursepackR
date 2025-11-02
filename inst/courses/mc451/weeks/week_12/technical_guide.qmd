@@ -1,0 +1,51 @@
+# Technical Guide: RStudio
+
+This guide covers the technical setup of your RStudio project and best practices for your survey.
+
+### **RStudio & Quarto Setup**
+
+Your entire paper will be a single Quarto (`.qmd`) file.
+
+#### **1. Create Your RStudio Project**
+
+Follow the steps in `github_guide.md` to create your project by "cloning" your GitHub repository. This is the best way to start.
+
+#### **2. Install Necessary R Packages**
+
+You will need packages to analyze and visualize your data. Open the `Console` in RStudio and run this command:
+
+```         
+install.packages(c("tidyverse", "rmarkdown", "quarto"))  
+```
+
+-   `tidyverse` is a collection of packages, including `ggplot2` (for visualization) and `dplyr` (for data cleaning).
+
+-   `rmarkdown` and `quarto` are needed to render your final document.
+
+#### **3. Create Your `white_paper.qmd` File**
+
+1.  In RStudio, go to `File` \> `New File...` \> `Quarto Document...`.
+
+2.  Give it a title. Select `PDF` as the output format.
+
+3.  Save the file as `white_paper.qmd` in the main directory of your project.
+
+4.  This file will have a **YAML header** (the part at the top between `---`). This header controls your document. It should look like this:
+
+    ```         
+    --- title: "Your Title Here" author: "Your Names Here" format: pdf editor: visual bibliography: references.bib ---  
+    ```
+
+    -   The `bibliography: references.bib` line is essential for your citations (see `zotero_guide.md`).
+
+#### **4. R Code Chunks**
+
+You will write your R code in "chunks" inside your `.qmd` file.
+
+-   You can insert a chunk by typing `{r}` (three backticks, `{r}`).
+
+-   This is where you will load, clean, analyze, and visualize your data.
+
+-   **To hide code:** Use chunk options. `echo: false` hides the code but shows the output (like a plot).
+
+    -   Example: `{r, echo=false, warning=false}`

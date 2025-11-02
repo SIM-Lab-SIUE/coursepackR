@@ -1,0 +1,91 @@
+# Guide: Using Zotero with RStudio & Quarto
+
+This guide shows you how to connect your Zotero reference manager to your RStudio project to create professional, automated citations and bibliographies. This is *much* easier than writing a bibliography by hand.
+
+### **Why Zotero?**
+
+Zotero is a free tool that saves your academic sources. By linking it to your Quarto document, you can type a simple "key" (like `[@mccombs1972]`) and Quarto will automatically:
+
+1.  Insert a formatted in-text citation.
+
+2.  Add the full, correct reference to your bibliography at the end of the paper.
+
+### **Step 1: Install Zotero & Better BibTeX**
+
+1.  **Install Zotero:** Go to [zotero.org](https://www.zotero.org/ "null") and download and install the Zotero application.
+
+2.  **Install the Zotero Connector:** While there, install the browser connector for Chrome, Firefox, or Safari. This lets you save sources from Google Scholar with one click.
+
+3.  **Install Better BibTeX (BBT) Plugin:** This plugin is **essential**. It creates stable, clean "citation keys" for RStudio.
+
+    -   Go to the BBT GitHub page: [github.com/retorquere/zotero-better-bibtex/releases](https://github.com/retorquere/zotero-better-bibtex/releases "null")
+
+    -   Download the latest `.xpi` file.
+
+    -   In Zotero, go to `Tools` \> `Add-ons`.
+
+    -   Click the gear icon in the top right and select "Install Add-on From File..."
+
+    -   Select the `.xpi` file you just downloaded. Restart Zotero.
+
+### **Step 2: Create a Group Library (Optional, but Recommended)**
+
+1.  In Zotero, click the "New Library" icon (yellow folder) and choose `New Group...`.
+
+2.  Create a "Private" group and invite your teammates.
+
+3.  Now you can all add your 10-12 sources to one shared library.
+
+### **Step 3: Export Your `.bib` File**
+
+This is the file Quarto will read. You will set Zotero to *automatically* update this file every time you add a source.
+
+1.  In Zotero, select your project's collection (or the group library).
+
+2.  Go to `File` \> `Export Library...`.
+
+3.  **Crucially:** For `Format`, select **`Better BibTeX`**. (Do *not* select "BibTeX").
+
+4.  Check the box for **`Keep updated`**. This is the magic part.
+
+5.  Navigate *inside* your RStudio project folder (the one cloned from GitHub).
+
+6.  Save the file as `references.bib`.
+
+Now, your `references.bib` file will live next to your `white_paper.qmd` file and will auto-update whenever you change your Zotero library.
+
+### **Step 4: Link Your `.bib` File to Quarto**
+
+1.  Open your `white_paper.qmd` file in RStudio.
+
+2.  In the **YAML header** (the part at the top between `---`), add this line:
+
+    ```         
+    bibliography: references.bib  
+    ```
+
+    Your full header might look like this:
+
+    ```         
+    --- title: "My White Paper" format: pdf bibliography: references.bib ---  
+    ```
+
+### **Step 5: How to Cite in Your Paper**
+
+1.  **Find the Citekey:** Click on a source in your Zotero library. The "Info" pane on the right will now have a `Citation Key` field (e.g., `mccombs1972`). This is created by the BBT plugin.
+
+2.  **Cite in Text:** When you are writing in your `.qmd` file, just put that key inside `[@...]`.
+
+    -   **In-text:** `...as shown by [@]mccombs1972.`
+
+        -   *Renders as:* ...as shown by (McCombs & Shaw, 1972).
+
+    -   **Narrative:** `...as [@]mccombs1972 argued.`
+
+        -   *Renders as:* ...as McCombs & Shaw (1972) argued.
+
+    -   **Multiple:** `...in several studies [see @smith2020; @lee2022].`
+
+        -   *Renders as:* ...in several studies (see Smith, 2020; Lee, 2022).
+
+When you "Render" your PDF, Quarto will find all your `[@...]` tags, format them, and build a perfect bibliography at the end.

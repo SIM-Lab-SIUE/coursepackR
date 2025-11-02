@@ -1,0 +1,91 @@
+# Guide: Using GitHub for Your Research Project
+
+Even for a solo project, using Git and GitHub is a professional best practice. It provides version control (a "time machine" for your work), a secure cloud backup, and a simple way to submit your project.
+
+### **Why Use GitHub for a Solo Project?**
+
+-   **Version Control:** You can "commit" (save) snapshots of your project. If you break your code or delete a section by accident, you can easily "roll back" to a previous version.
+
+-   **Cloud Backup:** Your project lives on your computer *and* on GitHub. If your computer fails, your work is not lost.
+
+-   **Portability:** You can "clone" your project onto any computer, work on it, and "push" your changes back to the cloud.
+
+-   **Submission:** It's how you will turn in your RProject as required.
+
+### **Step 1: Create the GitHub Repository**
+
+1.  Go to [GitHub.com](https://github.com/ "null").
+
+2.  Create a new **private** repository. Name it clearly (e.g., `grad-research-paper-f24`).
+
+3.  **IMPORTANT:** Check the box to **"Add a README file"**.
+
+4.  (You do not need to add collaborators for this project).
+
+### **Step 2: Clone the Repository to RStudio**
+
+This creates a local copy of the project on your computer.
+
+1.  Go to the repository's main page on GitHub.
+
+2.  Click the green `<> Code` button.
+
+3.  Copy the `HTTPS` URL.
+
+4.  In RStudio, go to `File` \> `New Project...` \> `Version Control` \> `Git`.
+
+5.  Paste the URL into the `Repository URL` field.
+
+6.  Choose a location on your computer for the project to live.
+
+7.  Click "Create Project." RStudio will restart and open your new project.
+
+### **Step 3: The Solo Workflow (Pull, Edit, Commit, Push)**
+
+Follow this cycle to keep your local files and your cloud backup in sync.
+
+#### **A. PULL (When you start work)**
+
+*Before you start working,* it's a good habit to "pull." This is crucial if you ever work from two different computers (e.g., a desktop and a laptop).
+
+1.  Open your RStudio project.
+
+2.  Go to the **`Git`** tab in the top-right pane.
+
+3.  Click the **`Pull`** button (blue down-arrow). This fetches the latest version from GitHub.
+
+#### **B. EDIT (Do your work)**
+
+-   Now you can safely work on your files (e.g., write in the `.qmd` file, add R code).
+
+#### **C. COMMIT (Save a snapshot)**
+
+When you've finished a chunk of work (or at the end of the day), you "commit" your changes.
+
+1.  Go to the **`Git`** tab.
+
+2.  Check the boxes next to the files you've changed.
+
+3.  Click **`Commit`**.
+
+4.  A new window will open. In the `Commit message` box, write a *brief* description of what you did (e.g., "Finished results section" or "Fixed ggplot2 labels").
+
+5.  Click **`Commit`**.
+
+#### **D. PUSH (Back up to the cloud)**
+
+Your "commit" is still only on your computer. "Pushing" sends it to GitHub. Do this at the end of every work session.
+
+1.  After committing, click the **`Push`** button (green up-arrow) on the `Git` tab.
+
+2.  Your changes are now safely backed up on GitHub.
+
+**Your Cycle:** `Pull` (to sync) -\> `Edit` -\> `Commit` (to save) -\> `Push` (to back up).
+
+### **Step 4: The Final Repository Structure**
+
+Your final repository *must* be organized.
+
+```         
+/your-project-repository ├── research_paper.qmd    <-- Your main Quarto file ├── references.bib        <-- Your bibliography file ├── apa.csl               <-- Your APA 7 style file (see technical_guide) ├── README.md             <-- A brief abstract of your project │ ├── /data │   ├── survey_data_raw.csv   <-- The raw data from your survey │ ├── /output │   └── research_paper.pdf    <-- The final, rendered PDF │ └── (Your RStudio .Rproj file will also be here)  
+```
