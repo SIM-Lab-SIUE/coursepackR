@@ -5,120 +5,312 @@ format: html
 editor: visual
 ---
 
-> **Required Citation:**
-> Pew Research Center, "ATP W144: Politics and News on Social Media Platforms."
-> Pew Research Center, Washington, D.C. (March 2024).
->
-> **Required Disclaimer:**
-> Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.
+## **COMM 451: Introduction to Data Analysis**
 
-## Introduction
+**Lab 14: Inferential Statistics** **Due Date:** Week 14, end of lab period
 
-This lab follows **Chapter 14: Making Inferences**. Our goal is to use our sample data to make claims about the larger population. We will use the `w144_clean.csv` file we created, which includes our `fb_news_diversity_score`.
+### **Learning Objectives**
 
-We will:
-1.  State a **Null Hypothesis ($H_0$)** and **Research Hypothesis ($H_1$)**.
-2.  Choose the correct statistical test.
-3.  Evaluate the **p-value** against our alpha level ($\alpha = 0.05$).
-4.  Interpret the result and write it up.
+In the last two labs, you have wrangled and visualized your data.
 
-## 1. Setup: Load Packages and Data
+-   In **Lab 12**, you created new variables (like `platform_count`).
+-   In **Lab 13**, you *described* those variables using plots (like `geom_violin`). You *saw* what looked like differences between groups.
 
-We load `tidyverse` and `broom`. `broom` is a *vital* package that cleans up the messy output from R's statistical tests into tidy tables.
+This week, we make the **leap from description to inference**. As the `data-chapters.pdf` reading explains, we are moving from "what we see" in our **sample** to making an educated, statistical claim about the larger **population**. We will ask: "Is the difference I see in my plot *real*, or could it just be due to random chance?"
 
-```{r load-packages-data, message=FALSE, warning=FALSE}
+By the end of this lab, you will be able to:
+
+-   Define a **Null Hypothesis (H0)** and an **Alternative Hypothesis (HA)**.
+-   Understand and interpret a **p-value** (and the `p < .05` rule).
+-   Run and interpret a **Chi-Square Test** (`chisq.test()`) for categorical relationships.
+-   Run and interpret a **T-Test** (`t.test()`) to compare two group means.
+-   Run and interpret an **ANOVA** (`aov()`) to compare three or more group means.
+-   Run and interpret a **TukeyHSD()** post-hoc test to find *which* groups are different.
+
+### **Pew Research Center: Required Citation**
+
+As always, any script, report, or presentation that uses this data must include the following disclaimer:
+
+> "Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.”
+
+------------------------------------------------------------------------
+
+## **Part 1: Setup - Get Your Data Ready**
+
+This lab **depends on your work from Lab 12**. We must first re-create the `w144_wrangled` dataset that contains all your new scales and variables.
+
+1.  Open RStudio and create a **new R Script**.
+2.  Save it in your Project folder as `Lab_14.R`.
+3.  Load the `tidyverse` library.
+
+### **Step 1: The "Wrangle Chunk" 🧱**
+
+Copy this *entire* block of code from Lab 12. This is your "wrangle chunk" that creates your final `w144_wrangled` object.
+
+**Run this entire chunk of code.**
+
+```{r}
+# Make sure you've run: library(tidyverse)
+
+# 1. Load the tidyverse
 library(tidyverse)
-library(broom) # For tidy()
-library(mccoursepack)
 
-# Load the excerpted Pew data from our course package
-data("w144_excerpt")
-w144_clean <- w144_excerpt
+# 2. Find the full path to the data file *inside* the 'mccoursepack' package
+# system.file() is the standard way to find package files
+data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
+
+# 3. Load the data from that full path
+w144_data <- read_csv(data_path)
+
+# 4. Glimpse to confirm it's loaded!
+glimpse(w144_data)
+
+# 5. RUN ALL WRANGLING STEPS
+w144_wrangled <- w144_data %>% 
+  
+  mutate(
+    
+    # Create 'party_simple'
+    party_simple = case_when(
+      party == "Republican" ~ "Republican",
+      party == "Democrat" ~ "Democrat",
+      TRUE ~ "Independent/Other"
+    ) %>% 
+      factor(levels = c("Republican", "Democrat", "Independent/Other")),
+    
+    # Create 'platform_count'
+    platform_count = (uses_facebook == "Yes") +
+                     (uses_x == "Yes") +
+                     (uses_instagram == "Yes") +
+                     (uses_tiktok == "Yes"),
+    
+    # Recode 'fb_why' items to 1/0
+    across(
+      starts_with("fb_why_"), 
+      ~ if_else(. == "Yes", 1, 0),
+      .names = "{.col}_n" 
+    )
+
+  ) %>% 
+  
+  # Create 'fb_uses_count' scale
+  mutate(
+    fb_uses_count = rowSums(
+      across(starts_with("fb_why_") & ends_with("_n")), 
+      na.rm = TRUE
+    )
+  )
+
+# 6. CHECK YOUR WORK
+# Glimpse your final object to make sure it's ready.
+glimpse(w144_wrangled)
 ```
 
-## 2. Test of Association (Categorical): Chi-Square
+After running this, your **Environment** should contain the `w144_wrangled` object. We are now ready to test hypotheses.
 
-**Research Question:** Is there a relationship between a respondent's political party and their education level?
+------------------------------------------------------------------------
 
-* **$H_0$:** There is no association between `party_factor` and `education_factor`.
-* **$H_1$:** There is an association between `party_factor` and `education_factor`.
-* **Test:** Chi-Square ($\chi^2$) Test of Independence.
+## **Part 2: What is Hypothesis Testing? (The 30-Second Version)**
 
-```{r test-chisq, warning=FALSE}
-# 1. Create a contingency table
-party_ed_table <- table(w144_clean$party_factor, w144_clean$education_factor)
-print(party_ed_table)
+In inferential statistics, we are always testing a **Null Hypothesis (H0)**.
 
-# 2. Run the test and use tidy() to clean the output
-chi_results <- chisq.test(party_ed_table)
-tidy(chi_results)
+-   **Null Hypothesis (H0):** The "boring" hypothesis. It states there is **no** relationship, **no** association, or **no** difference between groups. (e.g., "There is no difference in platform use between men and women.")
+-   **Alternative Hypothesis (HA):** The "interesting" hypothesis. It states that there *is* a relationship, association, or difference. (e.g., "There *is* a difference in platform use between men and women.")
+
+We run a test to get a **p-value**.
+
+-   The **p-value** is the *probability of getting our data (or more extreme) if the Null Hypothesis (H0) were true.*
+-   A tiny p-value means: "It's *very unlikely* we'd see this data if H0 were true."
+-   **The Rule:** If **`p < .05`** (less than 5% probability), we **reject the Null Hypothesis (H0)**. We conclude that our finding is **statistically significant** and that our Alternative Hypothesis (HA) is likely true.
+
+------------------------------------------------------------------------
+
+## **Part 3: Test 1 - The Chi-Square (χ²) Test**
+
+**Use Case:** When you are testing for an **association** between two **categorical** variables.
+
+-   **Research Question:** "Is there a statistically significant *association* between political party (`party_simple`) and TikTok use (`uses_tiktok`)?"
+-   **H0 (Null):** There is **no association** between `party_simple` and `uses_tiktok`. (The variables are independent.)
+-   **HA (Alternative):** There *is* an association between `party_simple` and `uses_tiktok`.
+
+### **Step 1: Create a Contingency Table (Crosstab)**
+
+It's always good practice to look at the numbers first. The `table()` function is great for this.
+
+```{r}
+# Create a table of the two categorical variables
+party_tiktok_table <- table(w144_wrangled$party_simple, 
+                            w144_wrangled$uses_tiktok)
+
+# Print the table to the Console
+print(party_tiktok_table)
 ```
 
-**Interpretation:**
-* Look at the `p.value`. Is it less than 0.05?
-* If yes, we **reject the null hypothesis**.
-* **Write-up:** "A chi-square test revealed a significant association between political party and education level, $\chi^2$(df) = [statistic], $p$ < .001."
+*You can see the raw counts. But are these counts "different enough" from what we'd expect by chance?*
 
-## 3. Test of Association (Continuous): Correlation
+### **Step 2: Run the Chi-Square Test**
 
-**Research Question:** Is a person's political ideology related to their Facebook news diversity score?
+The `chisq.test()` function runs the test directly on your table.
 
-* **$H_0$:** There is no correlation between `ideology` and `fb_news_diversity_score` ($r = 0$).
-* **$H_1$:** There is a correlation between `ideology` and `fb_news_diversity_score` ($r \neq 0$).
-* **Test:** Pearson's Correlation ($r$).
-
-```{r test-cor}
-# Note: `ideology` is numeric (1-5), as is our composite score.
-cor_results <- cor.test(w144_clean$ideology, w144_clean$fb_news_diversity_score)
-tidy(cor_results)
+```{r}
+# Run the test on the table object you just created
+chisq.test(party_tiktok_table)
 ```
 
-**Interpretation:**
-* Look at the `estimate` (this is the effect size, $r$). Is it positive or negative? (Positive means as ideology becomes more liberal (5), the score increases).
-* Look at the `p.value`. Is it < 0.05?
-* **Write-up:** "A Pearson's correlation found a [positive/negative], [weak/moderate/strong] and statistically significant relationship between ideology and Facebook news diversity, $r$([df]) = [estimate], $p$ = [p.value]."
+### **Step 3: Interpret the Result**
 
-## 4. Test of Difference (2 Groups): t-test
+Look in your Console at the output. You'll see `X-squared = ...`, `df = ...`, and `p-value = ...`.
 
-**Research Question:** Is there a difference in Facebook news diversity scores between men and women?
-
-* **$H_0$:** The mean `fb_news_diversity_score` is the same for men and women.
-* **$H_1$:** The mean `fb_news_diversity_score` is different for men and women.
-* **Test:** Independent Samples t-test.
-
-```{r test-ttest}
-# 1. Run the t-test. We use the formula: y ~ x
-# Note: The `gender_factor` has only two levels, "Man" and "Woman".
-ttest_results <- t.test(fb_news_diversity_score ~ gender_factor, data = w144_clean)
-tidy(ttest_results)
+```         
+    Pearson's Chi-squared test
+data:  party_tiktok_table
+X-squared = 824.22, df = 2, p-value < 2.2e-16
 ```
 
-**Interpretation:**
-* Look at `estimate1` (mean for Man) and `estimate2` (mean for Woman).
-* Look at the `p.value`. Is it < 0.05?
-* **Write-up:** "An independent samples t-test found that [Men] ($M$ = [estimate1]) had [significantly different/no significant difference in] Facebook news diversity scores compared to [Women] ($M$ = [estimate2]), $t$([parameter]) = [statistic], $p$ = [p.value]."
+-   **Interpretation:** Our p-value is `< 2.2e-16`. This is scientific notation for a *very, very* small number (0.000...0022).
+-   This p-value is *much less than 0.05*.
+-   **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude that there *is* a statistically significant association between a person's political party and whether or not they use TikTok.
 
-## 5. Test of Difference (3+ Groups): ANOVA
+------------------------------------------------------------------------
 
-**Research Question:** Does Facebook news diversity score differ across political parties?
+## **Part 4: Test 2 - The Independent Samples T-Test**
 
-* **$H_0$:** The mean `fb_news_diversity_score` is the same for all party groups.
-* **$H_1$:** At least one party group has a different mean score.
-* **Test:** Analysis of Variance (ANOVA).
+**Use Case:** When you are testing for a **difference** in a **numeric** variable between **two categorical** groups.
 
-```{r test-anova}
-# 1. Run the ANOVA (y ~ x)
-# Our `party_factor` variable has 4 levels, so ANOVA is appropriate.
-anova_results <- aov(fb_news_diversity_score ~ party_factor, data = w144_clean)
-tidy(anova_results)
+-   **Research Question:** "Is there a statistically significant *difference* in `platform_count` (numeric) between men and women (`gender`)?"
+-   **H0 (Null):** The mean `platform_count` for men is **the same as** the mean `platform_count` for women. (Mean 1 = Mean 2)
+-   **HA (Alternative):** The mean `platform_count` for men is **not the same as** the mean `platform_count` for women. (Mean 1 ≠ Mean 2)
 
-# 2. If p < .05, run a Post-Hoc test (Tukey's) to see *which* groups differ
-# We only do this if the main ANOVA is significant!
-tidy(TukeyHSD(anova_results))
+### **Step 1: Run the T-Test**
+
+We use the `t.test()` function. The formula syntax `y ~ x` (read as "y by x") is the easiest way. `platform_count ~ gender`.
+
+**Important:** The `t.test()` function can be fussy about `NA` (missing) values. It's safest to create a small, filtered dataset first.
+
+```{r}
+# 1. Create a dataset that removes anyone who didn't answer 'gender'
+# 'is.na()' means "is missing" and '!' means "NOT"
+gender_data <- w144_wrangled %>% 
+  filter(!is.na(gender))
+
+# 2. Run the t.test on this new, clean data
+t.test(platform_count ~ gender, data = gender_data)
 ```
 
-**Interpretation:**
-* Look at the `p.value` from the `tidy(anova_results)` table (the row for `party_factor`). If $p < .05$, the test is significant.
-* If significant, look at the `TukeyHSD` results. Any row with an `adj.p.value` < 0.05 represents a significant difference between those two specific groups.
-* **Write-up:** "A one-way ANOVA revealed a significant effect of political party on Facebook news diversity scores, $F$([df], [df.residual]) = [statistic], $p$ = [p.value]. A Tukey post-hoc test showed that [Group 1] ($M$ = ?) was significantly different from [Group 2] ($M$ = ?)."
+### **Step 2: Interpret the Result**
 
+Look at the output in your Console.
+
+```         
+    Welch Two Sample t-test
+data:  platform_count by gender
+t = 2.0594, df = 9976.2, p-value = 0.03947
+...
+mean in group Female mean in group Male 
+           2.036087            1.986872 
+```
+
+-   **Interpretation:** Our `p-value` is `0.03947`.
+-   This p-value is *less than 0.05*.
+-   **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude there *is* a statistically significant difference in the average number of platforms used by men and women.
+-   The output also gives us the means: Females in the sample used an average of 2.04 platforms, while Males used 1.99. The t-test confirms this small difference is *statistically significant*.
+
+------------------------------------------------------------------------
+
+## **Part 5: Test 3 - Analysis of Variance (ANOVA)**
+
+**Use Case:** When you are testing for a **difference** in a **numeric** variable between **three or more categorical** groups. (It's like a t-test for 3+ groups).
+
+-   **Research Question:** "Is there a statistically significant *difference* in `platform_count` (numeric) across our four `age_group` categories?"
+-   **H0 (Null):** The mean `platform_count` is **the same** for all four age groups. (Mean 1 = Mean 2 = Mean 3 = Mean 4)
+-   **HA (Alternative):** **At least one** of the age group means is different from the others.
+
+### **Step 1: Create the ANOVA Model**
+
+We use the `aov()` (Analysis of Variance) function. The syntax is the same formula: `y ~ x`.
+
+```{r}
+# 1. Create the model object
+# 'aov()' stands for 'analysis of variance'
+anova_model <- aov(platform_count ~ age_group, data = w144_wrangled)
+```
+
+### **Step 2: Get the Summary Table**
+
+You must call `summary()` on the model to see the results.
+
+```{r}
+# 2. Look at the summary of the model
+summary(anova_model)
+```
+
+### **Step 3: Interpret the Result**
+
+The output in your Console is a table. Find the row for your variable (`age_group`).
+
+```         
+              Df Sum Sq Mean Sq F value Pr(>F)    
+age_group      3   2817   939.1   554.2 <2e-16 ***
+Residuals  10166  17234     1.7                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+(284 observations deleted due to missingness)
+```
+
+-   **Interpretation:** Find the `Pr(>F)` column. This is your p-value.
+-   Our p-value is `< 2e-16`, which is *much less than 0.05*.
+-   **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude that there *is* a statistically significant difference in mean `platform_count` somewhere between our four age groups.
+
+------------------------------------------------------------------------
+
+## **Part 6: The "So What?" Test (ANOVA Post-Hoc)**
+
+The ANOVA test is "dumb." It tells us "a difference *exists*" but not *which groups* are different. Is "18-29" different from "30-49"? Is "30-49" different from "65+"? We don't know.
+
+We must run a **post-hoc test** (meaning "after this") to find out. We'll use `TukeyHSD()` (Tukey's Honest Significant Difference).
+
+### **Step 1: Run the TukeyHSD() Test**
+
+You just run this function on your `anova_model` object.
+
+```{r}
+# Run the post-hoc test
+TukeyHSD(anova_model)
+```
+
+### **Step 2: Interpret the Result**
+
+This output is a big table of *all possible pairs*. The only column you care about is `p adj` (the "adjusted p-value").
+
+```         
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = platform_count ~ age_group, data = w144_wrangled)
+
+$age_group
+                 diff         lwr         upr    p adj
+30-49-18-29   -0.5750036 -0.66981880 -0.4801884  < 2e-16 ***
+50-64-18-29   -1.1274577 -1.22389148 -1.0310240  < 2e-16 ***
+65+-18-29     -1.6373859 -1.73489115 -1.5398807  < 2e-16 ***
+50-64-30-49   -0.5524541 -0.63580447 -0.4691038  < 2e-16 ***
+65+-30-49     -1.0623823 -1.14710202 -0.9776626  < 2e-16 ***
+65+-50-64     -0.5099282 -0.59620563 -0.4236508  < 2e-16 ***
+```
+
+-   **Interpretation:** Look at the `p adj` column for every row.
+-   The p-value for `30-49-18-29` is `< 2e-16` (which is \< 0.05). This means the "18-29" and "30-49" groups are significantly different.
+-   The p-value for `50-64-18-29` is `< 2e-16`. They are also different.
+-   ... in fact, **all pairs** have a `p adj < .05`.
+-   **Conclusion:** This test gives us the full story: *Every single age group is statistically significantly different from every other age group* in their average platform use. This confirms what we saw in our Week 13 visualization!
+
+------------------------------------------------------------------------
+
+## **Part 7: Lab Submission (Optional Challenge)**
+
+To get credit for this lab, save your `Lab_14.R` script.
+
+If you have extra time, try this **challenge**:
+
+1.  **Run a new, full analysis** (from `aov()` to `TukeyHSD()`) to answer this question: "Is there a statistically significant difference in `fb_uses_count` (the scale you built in Lab 12) across our three `party_simple` groups?"
+2.  **Write a comment (`#`)** above your code explaining your final conclusion in plain English. (Did you reject the null? What does the Tukey test show?)

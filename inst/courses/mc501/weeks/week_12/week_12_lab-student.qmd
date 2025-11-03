@@ -5,136 +5,315 @@ format: html
 editor: visual
 ---
 
-> **Required Citation:**
-> Pew Research Center, "ATP W144: Politics and News on Social Media Platforms."
-> Pew Research Center, Washington, D.C. (March 2024).
->
-> **Required Disclaimer:**
-> Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.
+## **COMM 501: Introduction to Data Analysis**
 
-## Introduction
+**Lab 12: Data Wrangling** **Due Date:** Week 12, end of lab period
 
-This lab follows **Chapter 12: Data Wrangling**. Our goal is to take a "messy," partially-cleaned dataset and finish the wrangling process ourselves. We will focus on the "Cleaning" and "Transforming" phases to prepare our data for analysis.
+### **Learning Objectives**
 
-Our primary task is to take a set of raw survey items about news sources on Facebook and create a single "Facebook News Trust" composite score.
+Welcome to your first *real* lab in RStudio! The process of cleaning and preparing data is called **data wrangling**. As the *data-chapters.pdf* reading explains, this is the "mise en place" of research—the essential prep work you do before you can get to the "cooking" (or analysis).
 
-## 1. Setup: Load Packages
+By the end of this lab, you will be able to:
 
-First, we load the `tidyverse` (for all our data manipulation) and `mccoursepack` (which contains our course data).
+-   Navigate the RStudio interface.
+-   Read a dataset into R using `read_csv()`.
+-   Create new variables (columns) using `mutate()`.
+-   Use `case_when()` and `if_else()` to recode data.
+-   Combine multiple variables to create a **composite scale score**.
+-   Answer basic descriptive questions using `group_by()` and `summarize()`.
 
-```{r load-packages, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(mccoursepack) # Assumes your package is named this
+### **Pew Research Center: Required Citation**
+
+This lab uses a real-world dataset from the Pew Research Center. As per their Terms of Use, you must always include the following disclaimer in any work (even class assignments) that uses this data:
+
+> "Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.”
+
+------------------------------------------------------------------------
+
+## **Part 1: Orientation - Welcome to RStudio**
+
+First, open RStudio. You will see four main windows, or **panes**.
+
+1.  **Top-Left (Script Editor):** This is your **R Script** (a `.R` file). It's like a text document where you write and save all your code. This is where you will do 99% of your work.
+2.  **Bottom-Left (Console):** This is the **Console**. It's where your code actually *runs* and where results appear. You can type code here, but it's not saved.
+3.  **Top-Right (Environment):** This is your **Environment**. It's a list of all the **objects** (like datasets) that you have loaded into R's memory.
+4.  **Bottom-Right (Files/Plots):** This pane has multiple tabs. You'll use the **Files** tab to find your dataset and the **Plots** tab to see your visualizations.
+
+### **The MOST Important First Step: RStudio Projects**
+
+We will *always* use RStudio Projects. A "Project" bundles all your files (data, scripts, plots) into one folder. This saves you from *ever* having `file not found` errors.
+
+1.  Go to **File \> New Project...**
+2.  Click **New Directory**.
+3.  Click **New Project**.
+4.  For "Directory name," type something like **`R_Labs`**.
+5.  Click **Create Project**.
+6.  Now, go to the **Files** pane (bottom-right). Find the dataset file you were given, `w144_teaching_dataset_v2.csv`, and move it into this new `R_Labs` folder on your computer.
+7.  Click the "New File" icon (white page with green plus) and select **R Script**. A new, blank `Script` will open (top-left).
+8.  Go to **File \> Save As** and name this script `Lab_12.R`.
+
+You are now ready. All your work will be saved in this project folder.
+
+------------------------------------------------------------------------
+
+## **Part 2: Setup - Loading Your Tools and Data**
+
+Let's write some code! In your `Lab_12.R` script (top-left), type the following.
+
+To **run** a line of code, click on it and press **`Ctrl + Enter`** (on Windows) or **`Cmd + Return`** (on Mac).
+
+### **Step 1: Load the `tidyverse` 🧰**
+
+R's power comes from packages. The `tidyverse` is a collection of packages that makes data wrangling simple and intuitive. The `library()` function "opens the toolbox" so R can use its functions.
+
+```{r}
+# This comment explains your code. R ignores anything after a #.
+# Run this line to load all the 'tidyverse' tools.
+library(tidyverse) 
 ```
 
-## 2. Phase 1: Importing & Inspecting
+*You may see some red text in your Console. This is normal! It's just R telling you which packages it loaded.*
 
-Instead of importing a raw file, we will load the `w144_excerpt` dataset from our course package. This data has 1,000 respondents and a pre-selected set of variables.
+### **Step 2: Load Your Data ➡️**
 
-```{r load-data}
-# Load the excerpted Pew data from our course package
-data("w144_excerpt")
-# Let's "interview" the data, as Chapter 12 suggests
-glimpse(w144_excerpt)
+Now we'll read our CSV file into the R **Environment**. We use the `read_csv()` function.
+
+Most importantly, we need to *save* this data as an **object** (or "variable"). We do this using the **assignment arrow: `<-`** (a "less than" sign and a hyphen). You can think of `<-` as "gets" or "is saved as."
+
+```{r}
+# 1. Find the full path to the data file *inside* the 'mccoursepack' package
+# system.file() is the standard way to find package files
+data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
+
+# 2. Load the data from that full path
+w144_data <- read_csv(data_path)
+
+# 3. Glimpse to confirm it's loaded!
+glimpse(w144_data)
 ```
 
-**Take a look at the data.** You'll see clean factors like `gender_factor` and `party_factor`. But you'll also see "raw" variables like `fb_news_friends`, `fb_news_journalists`, etc. These are the variables we need to wrangle.
+After you run this line, look at your **Environment** (top-right). You should see `w144_data` appear! This means your data is loaded.
 
-## 3. Phase 2: Cleaning the Scale
+### **Step 3: Look at Your Data ✅**
 
-The `fb_news_...` variables measure how often people get news from different sources. The scale is:
-This is a **reversed scale**: a *lower* number means *more* frequency. For analysis, it's more intuitive to have higher numbers mean more frequency. We need to **reverse code** these variables:
-* `4` = Often (originally 1)
-* `3` = Sometimes (originally 2)
-* `2` = Hardly ever (originally 3)
-* `1` = Never (originally 4)
-Our desired new scale will be:
-* `4` = Often (originally 1)
-* `3` = Sometimes (originally 2)
-* `2` = Hardly ever (originally 3)
-* `1` = Never (originally 4)
+Never work "blind." Always look at your data after you load it. The best way is with the `glimpse()` function.
 
-```{r clean-data}
-## Wrangle and recode the fb_news_ variables
-w144_clean <- w144_excerpt %>%
+```{r}
+# Run this to get a "glimpse" of your data in the Console.
+glimpse(w144_data)
+```
+
+This is fantastic! `glimpse()` shows you every column name (like `party` or `uses_tiktok`), the data type (like `<fct>` for "factor" or `<dbl>` for "double"/number), and the first few rows of data.
+
+------------------------------------------------------------------------
+
+## **Part 3: The Core Task - Wrangling with `dplyr`**
+
+We will now "wrangle" this data to create new variables for our analysis. We will use a "pipe," which looks like this: **`|>`**.
+
+The **pipe `|>`** is the most important part of the `tidyverse`. It means **"AND THEN..."**
+
+You use it to chain commands together in a logical, step-by-step way. `DATA %>% DO_STEP_1() %>% DO_STEP_2()`
+
+Let's start a new "wrangled" dataset.
+
+```{r}
+# This code block starts our pipe.
+# We're saying: "Take w144_data AND THEN..."
+# We save the *entire* result in a new object: w144_wrangled
+w144_wrangled <- w144_data %>% 
+  
+  # The 'mutate()' function CREATES NEW COLUMNS.
+  # Let's start by making a simpler party variable.
   mutate(
+    
+    # 1. NEW VARIABLE: 'party_simple'
+    # 'case_when()' is a powerful IF/THEN function.
+    # It checks a set of rules in order.
+    party_simple = case_when(
+      party == "Republican" ~ "Republican", # IF party is "Republican", THEN "Republican"
+      party == "Democrat" ~ "Democrat",     # IF party is "Democrat", THEN "Democrat"
+      TRUE ~ "Independent/Other"          # TRUE is a "catch-all" for everything else
+    ) %>% 
+      # We pipe 'party_simple' to factor() to set the correct order
+      factor(levels = c("Republican", "Democrat", "Independent/Other"))
+  
+  ) # This parenthesis closes the 'mutate()' function
+
+
+# --- CHECK YOUR WORK ---
+# Let's count our two party variables to see if it worked.
+# The 'count()' function is a fast way to get frequencies.
+w144_wrangled %>% 
+  count(party, party_simple)
+```
+
+**Look at the result in your Console.** You should see a table showing how "Independent" and "Something else" were both correctly grouped into "Independent/Other."
+
+------------------------------------------------------------------------
+
+## **Part 4: Task 2 - Create a `platform_count` Scale**
+
+Now, let's continue our pipe. We want to create a new variable that is a *count* of how many social media platforms a person uses (out of the four listed).
+
+**How it works:** In R, when you do math on a logical statement, `TRUE` is treated as `1` and `FALSE` is treated as `0`. So, `(uses_facebook == "Yes")` will either be `TRUE` (1) or `FALSE` (0) for each person. This is a *very* powerful trick.
+
+Let's add to our `mutate()` command.
+
+```{r}
+# --- THIS IS THE FULL SCRIPT SO FAR ---
+# Copy and paste this into your script.
+# We are adding a comma after 'party_simple' and adding our new variable.
+
+w144_wrangled <- w144_data %>% 
+  
+  mutate(
+    
+    # 1. NEW VARIABLE: 'party_simple' (from before)
+    party_simple = case_when(
+      party == "Republican" ~ "Republican",
+      party == "Democrat" ~ "Democrat",
+      TRUE ~ "Independent/Other"
+    ) %>% 
+      factor(levels = c("Republican", "Democrat", "Independent/Other")),
+    
+    # 2. NEW VARIABLE: 'platform_count' (NEW CODE)
+    # We are just adding the 1s and 0s from these four columns.
+    platform_count = (uses_facebook == "Yes") +
+                     (uses_x == "Yes") +
+                     (uses_instagram == "Yes") +
+                     (uses_tiktok == "Yes")
+  
+  ) # This parenthesis closes the 'mutate()' function
+
+
+# --- CHECK YOUR WORK ---
+# Let's get a 'summary()' of our new numeric variable
+summary(w144_wrangled$platform_count)
+```
+
+**In your Console,** you should see a summary showing the `Min.` (0), `Median`, `Mean`, and `Max.` (4) for your new scale. This proves it worked!
+
+------------------------------------------------------------------------
+
+## **Part 5: Task 3 - Create a "Reasons for Use" Scale**
+
+This is the central task of the lab and a key skill for social science. We want to create a scale that measures *how many* different reasons a person uses Facebook (out of the 7 `fb_why_` items).
+
+**The Problem:** The `fb_why_` columns are "Yes" and "No" text. We can't add text. **The Solution:** We need to do this in two steps:
+
+1.  **Step 3a:** Convert all "Yes" to `1` and "No" to `0`.
+2.  **Step 3b:** Add those `1`s and `0`s together for each person.
+
+We will add these new steps *inside* our `mutate()` call.
+
+```{r}
+# --- THIS IS THE FULL SCRIPT SO FAR ---
+# Copy and paste this to *replace* your previous code.
+# We are adding our new scale-creation steps.
+
+w144_wrangled <- w144_data %>% 
+  
+  mutate(
+    
+    # 1. NEW VARIABLE: 'party_simple' (from before)
+    party_simple = case_when(
+      party == "Republican" ~ "Republican",
+      party == "Democrat" ~ "Democrat",
+      TRUE ~ "Independent/Other"
+    ) %>% 
+      factor(levels = c("Republican", "Democrat", "Independent/Other")),
+    
+    # 2. NEW VARIABLE: 'platform_count' (from before)
+    platform_count = (uses_facebook == "Yes") +
+                     (uses_x == "Yes") +
+                     (uses_instagram == "Yes") +
+                     (uses_tiktok == "Yes"),
+    
+    
+    # --- 3a. RECODE 'fb_why' ITEMS TO 1/0 ---
+    # 'across()' lets us do the same thing to many columns at once.
+    # 'starts_with("fb_why_")' selects all 7 'fb_why' columns.
+    # 'if_else()' is a simple IF/THEN: if_else(condition, value_if_TRUE, value_if_FALSE)
     across(
-      .cols = starts_with("fb_news_"),
-      .fns = ~ recode(as.numeric(haven::zap_labels(.)), `1` = 4, `2` = 3, `3` = 2, `4` = 1),
-      .names = "{.col}_r"
-    ),
-    # Create the composite score by averaging the five reverse-coded items
-    fb_news_diversity_score = rowMeans(select(., ends_with("_r")), na.rm = TRUE),
-    # Replace NaN with NA for cases where all five are missing
-    fb_news_diversity_score = ifelse(is.nan(fb_news_diversity_score), NA, fb_news_diversity_score)
-  )
-
-# Let's check our work
-w144_clean %>%
-  select(fb_news_friends, fb_news_friends_r, fb_news_diversity_score) %>%
-  head()
-```
-
-# Let's check our work
-```{r check-data}
-w144_clean %>%
-  select(fb_news_friends, fb_news_friends_r, fb_news_diversity_score) %>%
-  head()
-```
-## Now that our variables are cleaned and reverse-coded, our composite variable `fb_news_diversity_score` represents the average frequency of seeing news from diverse sources on Facebook. If all five items are missing for a respondent, their score will be NA.
-
-## 4. Phase 3: Transforming Data
-
-Now that our variables are cleaned and reverse-coded, we can create our new composite variable.
-
-### A. Create a New Variable (Composite Score)
-
-Let's create a "Facebook News Diversity" score by averaging the five reverse-coded items. This new variable will represent a person's average frequency of seeing news from diverse sources on Facebook.
-
-```{r transform-composite}
-w144_final <- w144_clean %>%
-  mutate(
-    # Create a new column 'fb_news_diversity_score'
-    fb_news_diversity_score = rowMeans(
-      select(., starts_with("fb_news_") & ends_with("_r")),
-      na.rm = TRUE # This is VITAL. It ignores missing values.
+      starts_with("fb_why_"), 
+      ~ if_else(. == "Yes", 1, 0),
+      # '.names' creates new columns, adding "_n" (for 'numeric') to the end
+      .names = "{.col}_n" 
     )
-  )
 
-# Look at our new composite score!
-w144_final %>%
-  select(fb_news_diversity_score, party_factor) %>%
-  head()
-```
-
-### B. Aggregate and Summarize Data
-
-Now we can use our new score to transform individual data into group-level summaries. What is the average "Facebook News Diversity" score for each political party?
-
-```{r transform-aggregate}
-party_summary <- w144_final %>%
-  group_by(party_factor) %>%
-  # Make sure to drop NA values from the party factor
-  filter(!is.na(party_factor)) %>%
-  summarize(
-    # Calculate the mean, removing NAs
-    avg_news_diversity = mean(fb_news_diversity_score, na.rm = TRUE),
-    # Calculate the count (n())
-    num_respondents = n()
-  ) %>%
+  ) %>% # <-- This parenthesis closes 'mutate()'
+  
+  # --- 3b. SUM THE NEW 1/0 COLUMNS ---
+  # We start a NEW 'mutate()' call after the first one finishes.
+  # This is because we can only sum the columns *after* they are created.
   mutate(
-    avg_news_diversity = ifelse(is.nan(avg_news_diversity), NA, avg_news_diversity)
-  )
+    
+    # 'rowSums()' adds up columns *across* a single row.
+    # 'na.rm = TRUE' tells R to just ignore any missing (NA) data.
+    fb_uses_count = rowSums(
+      across(starts_with("fb_why_") & ends_with("_n")), # Selects our new numeric columns
+      na.rm = TRUE
+    )
+    
+  ) # <-- This parenthesis closes the SECOND 'mutate()'
 
-# Print the summary table
-print(party_summary)
+
+# --- CHECK YOUR WORK ---
+# Glimpse the data to see your new '_n' columns AND 'fb_uses_count'
+glimpse(w144_wrangled)
+
+# Get a summary of your final scale
+summary(w144_wrangled$fb_uses_count)
 ```
 
-## 5. Save Your Work
+**Check your `glimpse()` output.** You should see new columns like `fb_why_news_n` (which is `<dbl>`) and, at the very end, your new `fb_uses_count` scale! The summary should show a `Min.` of 0 and a `Max.` of 7.
 
-We've successfully wrangled the data! Let's save our final, clean data frame. We will use this file in Lab 13 and 14.
+------------------------------------------------------------------------
 
-```{r save-data}
-write_csv(w144_final, "w144_clean.csv")
-print("Successfully created w144_clean.csv")
+## **Part 6: The Payoff - Answering Questions**
+
+Why did we do all that? Because now we can *finally* answer interesting questions. This is the "payoff" for all your hard wrangling.
+
+**Question:** What is the average `platform_count` and `fb_uses_count` for each political party?
+
+To do this, we combine two *new* verbs:
+
+-   `group_by()`: Creates "groups" in the data (e.g., all Republicans, all Democrats).
+-   `summarize()`: Collapses each group into a single number (like a mean).
+
+<!-- end list -->
+
+```{r}
+# We use our final 'w144_wrangled' object
+w144_wrangled %>% 
+  
+  # 1. Group by the 'party_simple' variable we created
+  group_by(party_simple) %>% 
+  
+  # 2. Calculate the mean for our two new scales
+  summarize(
+    avg_platform_count = mean(platform_count, na.rm = TRUE),
+    avg_fb_uses_count = mean(fb_uses_count, na.rm = TRUE)
+  ) %>% 
+  
+  # 3. 'arrange()' sorts our final output
+  # 'desc()' means "descending" (highest to lowest)
+  arrange(desc(avg_platform_count))
 ```
+
+**Look at the table in your Console.** You just ran your first analysis! You've transformed raw survey data into a clean, summary table that answers a specific research question.
+
+------------------------------------------------------------------------
+
+## **Part 7: Lab Submission (Optional Challenge)**
+
+To get credit for this lab, save your `Lab_12.R` script.
+
+If you have extra time, try this **challenge**:
+
+1.  Go back into your `w144_wrangled` script.
+2.  In the same way you created `fb_uses_count`, can you create a **`tt_uses_count`** scale using the `tt_why_` variables? (You'll need to add steps for `tt_why_..._n` and `tt_uses_count`).
+3.  Run a final analysis that shows the average `tt_uses_count` for each `age_group`.
+
+**Congratulations!** You've just completed the hardest part of data analysis: data wrangling. You are now officially an R user.

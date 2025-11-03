@@ -1,145 +1,271 @@
-# ===================================================================
-# CREATE PEW W144 EXCERPT FOR COURSE R PACKAGE (FINAL)
-#
-# INSTRUCTOR SCRIPT
-#
-# This script loads the raw 'ATP W144.sav' file, which is
-# superior to the CSV as it contains variable/value labels.
-#
-# It creates a "partially clean" 1,000-person excerpt
-# to comply with Pew's Terms of Use.
-#
-# CLEAN: Demographic variables are converted to factors.
-# RAW: The 'fb_news_...' scale items are left as raw numbers (1-4, 99)
-#      so students can wrangle them in Lab 12.
-#
-# This 'w144_excerpt.RData' file is what you will add to
-# the /data folder of your course package.
-# ===================================================================
+# ---
+# Title: R Script to Prepare Pew ATP W144 for Teaching (v2 - Scales)
+# Author: Your Name / Your Institution
+# Date: 2025-11-03
+# ---
 
-# --- 1. Load Packages ---
-# install.packages("tidyverse")
-# install.packages("haven")
+# ---
+# 0. IMPORTANT: TERMS OF USE & CITATION
+# ---
+# This script selects an "excerpt" of ~35 variables from the original 195.
+# This is NOT "substantially in full" and complies with Pew's Terms of Use.
+#
+# Required Citation (Section 2):
+# "American Trends Panel: Wave 144." Pew Research Center, Washington, D.C. (March 18-24, 2024).
+#
+# Required Disclaimer (Section 13):
+# "Pew Research Center bears no responsibility for the analyses or interpretations
+# of the data presented here. The opinions expressed herein, including any
+# implications for policy, are those of the author and not of Pew Research Center.”
+# ---
+
+# ---
+# 1. LOAD LIBRARIES
+# ---
 library(tidyverse)
-library(haven) # The package for reading SPSS (.sav) files
+library(here)
 
-# --- 2. Load Raw Data (Instructor must have this file) ---
-# Make sure "ATP W144.sav" is in your project directory
-raw_data <- read_sav("data-raw/ATP W144.sav")
+# ---
+# 2. DEFINE FILE PATHS
+# ---
+data_file_path <- here("data-raw/ATP W144.csv")
 
-# --- 3. Partial Cleaning & Transformation ---
+# ---
+# 3. LOAD DATA
+# ---
+raw_data <- read_csv(data_file_path)
 
-partially_clean_data <- raw_data %>%
-  #
-  # PHASE 1: SELECT & RENAME
-  #
-  # NOTE: We are now using the exact variable names from the
-  # 'colnames(raw_data)' output.
-  #
+# ---
+# 4. PROCESS AND CLEAN DATA
+# ---
+# This pipe selects, renames, and recodes raw variables.
+# It does NOT create composite scales (e.g., platform_count).
+# This is left for the students in the Week 1 lab.
+
+cleaned_data <- raw_data |>
+
+  # ---
+  # STEP 4A: SELECT RELEVANT VARIABLES
+  # ---
+  # We are selecting more variables now, specifically "batteries" of 
+  # questions that students can combine into scales.
   select(
-    # Demographics (Raw numeric codes from .sav)
-    age_cat_raw = F_AGECAT,
-    gender_raw = F_GENDER,
-    education_raw = F_EDUCCAT,
-    party_raw = F_PARTY_FINAL,
-    ideology_raw = F_IDEO,
+    # Respondent ID & Weight
+    QKEY,
+    WEIGHT_W144, 
 
-    # Social Media Use (Raw)
-    # 1=Yes, 2=No, 99=Refused
-    use_facebook = SMUSE_a_W144,
-    use_x = SMUSE_c_W144,
-    use_instagram = SMUSE_d_W144,
-    use_tiktok = SMUSE_i_W144,
-
-    # Facebook News Source Scale (Raw)
-    # 1=Often, 2=Sometimes, 3=Hardly ever, 4=Never, 99=Refused
-    # We rename them to be intuitive for students
-    fb_news_friends = FBSOURCE_a_W144,
-    fb_news_journalists = FBSOURCE_b_W144,
-    fb_news_officials = FBSOURCE_c_W144,
-    fb_news_commenters = FBSOURCE_d_W144,
-    fb_news_influencers = FBSOURCE_e_W144
-  ) %>%
-  #
-  # PHASE 2: PARTIALLY CLEAN (Demographics ONLY)
-  #
-  mutate(
-    # Use `as_factor` to convert labeled numbers to clean text factors
-    gender_factor = as_factor(gender_raw),
-    education_factor = as_factor(education_raw),
+    # ---
+    # Elements for "Platform Count" Scale (Week 1 Task)
+    # ---
+    SMUSE_a_W144, # Facebook
+    SMUSE_c_W144, # X (Twitter)
+    SMUSE_d_W144, # Instagram
+    SMUSE_i_W144, # TikTok
     
-    # Manually recode party for cleaner labels
-    party_factor = case_when(
-      party_raw == 1 ~ "Republican",
-      party_raw == 2 ~ "Democrat",
-      party_raw == 3 ~ "Independent",
-      party_raw == 4 ~ "Something else",
-      TRUE ~ NA_character_
+    # ---
+    # Elements for "News Platform Count" Scale (Week 1 Optional Task)
+    # ---
+    SOCIALNEWS2_a_W144,
+    SOCIALNEWS2_c_W144,
+    SOCIALNEWS2_d_W144,
+    SOCIALNEWS2_i_W144,
+
+    # ---
+    # Battery for "Reasons for using Facebook" Scale (Week 1 Task)
+    # ---
+    FBWHY_a_W144, # Get news
+    FBWHY_b_W144, # Entertainment
+    FBWHY_c_W144, # Social circle
+    FBWHY_d_W144, # Express opinions
+    FBWHY_e_W144, # Find products
+    FBWHY_f_W144, # Shared interests
+    FBWHY_g_W144, # Family/friends
+    
+    # ---
+    # Battery for "Reasons for using TikTok" Scale (Week 1 Task)
+    # ---
+    TTWHY_a_W144, # Get news
+    TTWHY_b_W144, # Entertainment
+    TTWHY_c_W144, # Social circle
+    TTWHY_d_W144, # Express opinions
+    TTWHY_e_W144, # Find products
+    TTWHY_f_W144, # Shared interests
+    TTWHY_g_W144, # Family/friends
+
+    # ---
+    # Individual Ordinal/Categorical Items for Analysis
+    # ---
+    FBSEEPOL_W144,   # How much political content on Facebook
+    TTSEEPOL_W144,   # How much political content on TikTok
+    FBPOLIDEO_W144,  # Does Facebook content lean liberal/conservative
+    TTPOLIDEO_W144,  # Does TikTok content lean liberal/conservative
+
+    # ---
+    # Key Demographics
+    # ---
+    F_AGECAT,   # Age category
+    F_GENDER,   # Gender
+    F_EDUCCAT,  # Education level
+    F_RACETHNMOD, # Race / Ethnicity
+    F_PARTY_FINAL, # Party affiliation
+    F_IDEO,     # Ideology
+    F_INC_SDT1  # Income
+  ) |>
+
+  # ---
+  # STEP 4B: RECODE "REFUSED" TO NA
+  # ---
+  # Convert all 99s, 98s, and -1s to NA for correct analysis.
+  mutate(
+    across(
+      everything(),
+      ~ na_if(., 99)
+    ),
+    across(
+      everything(),
+      ~ na_if(., 98)
+    ),
+    across(
+      everything(),
+      ~ na_if(., -1)
+    )
+  ) |>
+
+  # ---
+  # STEP 4C: RENAME VARIABLES
+  # ---
+  # Give variables clear, human-readable names.
+  rename(
+    weight = WEIGHT_W144,
+    
+    # Platform Use items
+    uses_facebook = SMUSE_a_W144,
+    uses_x = SMUSE_c_W144,
+    uses_instagram = SMUSE_d_W144,
+    uses_tiktok = SMUSE_i_W144,
+
+    # News Use items
+    news_facebook = SOCIALNEWS2_a_W144,
+    news_x = SOCIALNEWS2_c_W144,
+    news_instagram = SOCIALNEWS2_d_W144,
+    news_tiktok = SOCIALNEWS2_i_W144,
+    
+    # Facebook "Why Use" Battery
+    fb_why_news = FBWHY_a_W144,
+    fb_why_entertain = FBWHY_b_W144,
+    fb_why_social = FBWHY_c_W144,
+    fb_why_opinion = FBWHY_d_W144,
+    fb_why_products = FBWHY_e_W144,
+    fb_why_interests = FBWHY_f_W144,
+    fb_why_family = FBWHY_g_W144,
+
+    # TikTok "Why Use" Battery
+    tt_why_news = TTWHY_a_W144,
+    tt_why_entertain = TTWHY_b_W144,
+    tt_why_social = TTWHY_c_W144,
+    tt_why_opinion = TTWHY_d_W144,
+    tt_why_products = TTWHY_e_W144,
+    tt_why_interests = TTWHY_f_W144,
+    tt_why_family = TTWHY_g_W144,
+
+    # Political Content
+    fb_pol_content = FBSEEPOL_W144,
+    tt_pol_content = TTSEEPOL_W144,
+    fb_pol_lean = FBPOLIDEO_W144,
+    tt_pol_lean = TTPOLIDEO_W144,
+    
+    # Demographics
+    age_group = F_AGECAT,
+    gender = F_GENDER,
+    education = F_EDUCCAT,
+    race_ethnicity = F_RACETHNMOD,
+    party = F_PARTY_FINAL,
+    ideology = F_IDEO,
+    income = F_INC_SDT1
+  ) |>
+
+  # ---
+  # STEP 4D: CREATE FACTORS (from numeric codes)
+  # ---
+  # This makes all plots and tables human-readable.
+  # We convert 1/2 to Yes/No, 1/2/3/4 to party names, etc.
+  mutate(
+    
+    # Yes/No Variables (1=Yes, 2=No)
+    # This includes all 'uses_', 'news_', 'fb_why_', and 'tt_why_' items
+    across(
+      starts_with("uses_") | starts_with("news_") | 
+      starts_with("fb_why_") | starts_with("tt_why_"),
+      ~ factor(., levels = c(1, 2), labels = c("Yes", "No"))
+    ),
+    
+    # Demographics
+    gender = factor(gender,
+      levels = c(1, 2),
+      labels = c("Male", "Female")
+    ),
+    age_group = factor(age_group,
+      levels = c(1, 2, 3, 4),
+      labels = c("18-29", "30-49", "50-64", "65+")
+    ),
+    race_ethnicity = factor(race_ethnicity,
+      levels = c(1, 2, 3, 4, 5),
+      labels = c("White non-Hispanic", "Black non-Hispanic", "Hispanic", 
+                 "Other", "Asian non-Hispanic")
+    ),
+    education = factor(education,
+      levels = c(1, 2, 3, 4, 5),
+      labels = c("Less than high school", "High school graduate", "Some college", 
+                 "College graduate", "Postgraduate")
+    ),
+    party = factor(party,
+      levels = c(1, 2, 3, 4),
+      labels = c("Republican", "Democrat", "Independent", "Something else")
+    ),
+    ideology = factor(ideology,
+      levels = c(1, 2, 3, 4, 5),
+      labels = c("Very conservative", "Conservative", "Moderate", 
+                 "Liberal", "Very liberal")
     ),
 
-    # Keep age and ideology as numeric for scales/correlations
-    # We use `zap_missing` to convert Pew's '99=Refused' to NA
-    age_category = zap_missing(age_cat_raw),
-    ideology = zap_missing(ideology_raw),
+    # Ordinal Variables (Content exposure)
+    fb_pol_content = factor(fb_pol_content,
+      levels = c(1, 2, 3, 4, 5),
+      labels = c("All or almost all", "Most", "Some", "A little", "None at all"),
+      ordered = TRUE
+    ),
+    tt_pol_content = factor(tt_pol_content,
+      levels = c(1, 2, 3, 4, 5),
+      labels = c("All or almost all", "Most", "Some", "A little", "None at all"),
+      ordered = TRUE
+    ),
     
-    # Clean the "fb_news" variables by replacing 99 (Refused) with NA
-    # Students will still need to REVERSE CODE these
-    across(starts_with("fb_news_"), ~na_if(., 99))
-  ) %>%
-  #
-  # FINAL SELECTION for the excerpt
-  #
-  select(
-    # Clean factors for students to use
-    gender_factor,
-    party_factor,
-    education_factor,
-    
-    # Numeric demographics for students to use
-    age_category, # 1-4 scale
-    ideology,     # 1-5 scale
-    
-    # Other raw media vars for exploration
-    use_facebook,
-    use_x,
-    use_instagram,
-    use_tiktok,
-
-    # The RAW scale items for the Lab 12 assignment
-    fb_news_friends,
-    fb_news_journalists,
-    fb_news_officials,
-    fb_news_commenters,
-    fb_news_influencers
+    # Categorical Variable (Platform lean)
+    fb_pol_lean = factor(fb_pol_lean,
+      levels = c(1, 2, 3, 4),
+      labels = c("Mostly conservative", "Mostly liberal", 
+                 "Doesn't lean either way", "Not sure")
+    ),
+    tt_pol_lean = factor(tt_pol_lean,
+      levels = c(1, 2, 3, 4),
+      labels = c("Mostly conservative", "Mostly liberal", 
+                 "Doesn't lean either way", "Not sure")
+    )
   )
 
-# --- 4. Create Policy-Compliant Excerpt ---
+# ---
+# 5. SAVE THE CLEANED, "RAW ELEMENTS" DATA
+# ---
+# This is the final file for your students. It is clean, labeled,
+# and ready for them to wrangle and build scales from.
+output_file_path <- here("w144_teaching_dataset_v2.csv")
+write_csv(cleaned_data, output_file_path)
 
-# Set a seed for reproducibility
-set.seed(451)
-
-# Take a random sample of 1,000 respondents
-w144_excerpt <- partially_clean_data %>%
-  slice_sample(n = 1000)
-
-# --- 5. Add Citation & Disclaimer (REQUIRED BY PEW) ---
-
-# Add attributes to the data frame itself
-attr(w144_excerpt, "citation") <- 
-  'Pew Research Center, "ATP W144: Politics and News on Social Media Platforms." Pew Research Center, Washington, D.C. (March 2024).'
-attr(w144_excerpt, "disclaimer") <- 
-  'Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.'
-
-# --- 6. Save for R Package ---
-
-# This creates the .RData file to put in your package's /data folder
-save(
-  w144_excerpt,
-  file = "w144_excerpt.RData",
-  compress = "bzip2"
-)
-
-print("Successfully created 'w144_excerpt.RData' with 1,000 respondents.")
-print("This version includes RAW 'fb_news_...' variables for students to clean in Lab 12.")
-print("Add this file to the /data directory of your R package.")
-print("Remember to add the documentation in /R/data.R and run devtools::document().")
+# ---
+# 6. SCRIPT COMPLETE
+# ---
+print(paste("Cleaned data saved successfully to", output_file_path))
+print("Data dimensions:")
+dim(cleaned_data)
+print("Column names and data types:")
+glimpse(cleaned_data)
