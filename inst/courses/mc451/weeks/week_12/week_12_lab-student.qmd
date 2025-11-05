@@ -87,9 +87,6 @@ data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "m
 
 # 2. Load the data from that full path
 w144_data <- read_csv(data_path)
-
-# 3. Glimpse to confirm it's loaded!
-glimpse(w144_data)
 ```
 
 After you run this line, look at your **Environment** (top-right). You should see `w144_data` appear! This means your data is loaded.
@@ -109,9 +106,9 @@ This is fantastic! `glimpse()` shows you every column name (like `party` or `use
 
 ## **Part 3: The Core Task - Wrangling with `dplyr`**
 
-We will now "wrangle" this data to create new variables for our analysis. We will use a "pipe," which looks like this: **`|>`**.
+We will now "wrangle" this data to create new variables for our analysis. We will use a "pipe," which looks like this: **`%>%`**.
 
-The **pipe `|>`** is the most important part of the `tidyverse`. It means **"AND THEN..."**
+The **pipe `%>%`** is the most important part of the `tidyverse`. It means **"AND THEN..."**
 
 You use it to chain commands together in a logical, step-by-step way. `DATA %>% DO_STEP_1() %>% DO_STEP_2()`
 
@@ -161,21 +158,12 @@ Now, let's continue our pipe. We want to create a new variable that is a *count*
 Let's add to our `mutate()` command.
 
 ```{r}
-# --- THIS IS THE FULL SCRIPT SO FAR ---
 # Copy and paste this into your script.
 # We are adding a comma after 'party_simple' and adding our new variable.
 
-w144_wrangled <- w144_data %>% 
+w144_wrangled <- w144_wrangled %>% 
   
   mutate(
-    
-    # 1. NEW VARIABLE: 'party_simple' (from before)
-    party_simple = case_when(
-      party == "Republican" ~ "Republican",
-      party == "Democrat" ~ "Democrat",
-      TRUE ~ "Independent/Other"
-    ) %>% 
-      factor(levels = c("Republican", "Democrat", "Independent/Other")),
     
     # 2. NEW VARIABLE: 'platform_count' (NEW CODE)
     # We are just adding the 1s and 0s from these four columns.
@@ -187,7 +175,6 @@ w144_wrangled <- w144_data %>%
   ) # This parenthesis closes the 'mutate()' function
 
 
-# --- CHECK YOUR WORK ---
 # Let's get a 'summary()' of our new numeric variable
 summary(w144_wrangled$platform_count)
 ```
@@ -208,29 +195,13 @@ This is the central task of the lab and a key skill for social science. We want 
 We will add these new steps *inside* our `mutate()` call.
 
 ```{r}
-# --- THIS IS THE FULL SCRIPT SO FAR ---
 # Copy and paste this to *replace* your previous code.
 # We are adding our new scale-creation steps.
 
-w144_wrangled <- w144_data %>% 
+w144_wrangled <- w144_wrangled %>% 
   
   mutate(
-    
-    # 1. NEW VARIABLE: 'party_simple' (from before)
-    party_simple = case_when(
-      party == "Republican" ~ "Republican",
-      party == "Democrat" ~ "Democrat",
-      TRUE ~ "Independent/Other"
-    ) %>% 
-      factor(levels = c("Republican", "Democrat", "Independent/Other")),
-    
-    # 2. NEW VARIABLE: 'platform_count' (from before)
-    platform_count = (uses_facebook == "Yes") +
-                     (uses_x == "Yes") +
-                     (uses_instagram == "Yes") +
-                     (uses_tiktok == "Yes"),
-    
-    
+
     # --- 3a. RECODE 'fb_why' ITEMS TO 1/0 ---
     # 'across()' lets us do the same thing to many columns at once.
     # 'starts_with("fb_why_")' selects all 7 'fb_why' columns.
