@@ -1,7 +1,7 @@
 Package: mccoursepack
 Type: Package
 Title: Course Materials and Weekly Scaffolds for MC 451 and MC 501
-Version: 01.12.05
+Version: 01.12.06
 Authors@R: person("AP", "Leith", email = "apleith@siue.edu", role = c("aut", "cre"))
 Description: Provides student-facing scaffolds (Quarto templates and starter files) for weekly work in MC 451 and MC 501. Students install or update the package and use helper functions to copy the appropriate week's materials into a local working directory.
 License: MIT + file LICENSE

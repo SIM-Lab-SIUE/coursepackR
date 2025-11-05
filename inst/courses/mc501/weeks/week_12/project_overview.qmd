@@ -46,64 +46,25 @@ Use this checklist to track your progress.
 
 #### **Phase 1: Setup & Planning (Week 1-2)**
 
--   \[ \] Finalize your research topic.
+-   [ ] Finalize your research topic.
 
--   \[ \] Get your topic and RQs/RHs approved by your instructor.
+-   [ ] Get your topic and RQs/RHs approved by your instructor.
 
--   \[ \] Create your private GitHub repository (see `grad_github_guide.md`).
+-   [ ] Create your private GitHub repository (see `grad_github_guide.md`).
 
--   \[ \] Clone the repository to your local machine via RStudio.
+-   [ ] Clone the repository to your local machine via RStudio.
 
--   \[ \] Set up your RStudio Project and main `research_paper.qmd` file (see `grad_technical_guide.md`).
 
--   \[ \] Set up your Zotero library and link your `references.bib` file (see `grad_zotero_guide.md`).
+# Project Overview (Summary)
 
-#### **Phase 2: Research & Data Collection (Week 3-5)**
+-   [ ] Check that all 15-20 sources are cited correctly.
 
--   \[ \] Conduct your literature review, adding 15-20 sources to Zotero.
+-   [ ] Check that your R code runs and your visualizations render properly.
 
--   \[ \] Write the draft of your Introduction & Literature Review.
+-   [ ] Render your final `research_paper.pdf` and add it to the `/output` folder.
 
--   \[ \] Design your survey (see `grad_technical_guide.md` for best practices).
+-   [ ] Push all final changes to GitHub.
 
--   \[ \] **Ethics Check:** Get your survey questions approved by your instructor before launching.
+-   [ ] **Submit the `research_paper.pdf` to Blackboard.**
 
--   \[ \] Launch your survey and collect data (Goal: 100+ responses).
-
--   \[ \] Close the survey and export the data as `survey_data_raw.csv`.
-
--   \[ \] Add the raw data file to your `/data` folder and push to GitHub.
-
-#### **Phase 3: Analysis & Writing (Week 6-8)**
-
--   \[ \] Write the `Method` section in APA style.
-
--   \[ \] Clean your data using an R script (or a code chunk in your `.qmd`).
-
--   \[ \] Analyze your data in R to answer your 2 RQs/RHs (e.g., correlations, t-tests, ANOVA).
-
--   \[ \] Create at least 2 high-quality, APA-formatted visualizations in R.
-
--   \[ \] Write the `Results` section, embedding your R output and visuals.
-
--   \[ \] Write the `Discussion` section, connecting your results to your lit review and theory.
-
-#### **Phase 4: Finalization (Week 9-10)**
-
--   \[ \] Write the `Abstract`, `Conclusion`, and format the `References` page.
-
--   \[ \] Read and edit the entire paper for clarity, style, and APA formatting.
-
--   \[ \] Check that all 15-20 sources are cited correctly.
-
--   \[ \] Check that your R code runs and your visualizations render properly.
-
--   \[ \] Render your final `research_paper.pdf` and add it to the `/output` folder.
-
--   \[ \] Update your `README.md` with your final abstract.
-
--   \[ \] Push all final changes to GitHub.
-
--   \[ \] **Submit the `research_paper.pdf` to Blackboard.**
-
--   \[ \] **Submit your GitHub repository link.**
+-   [ ] **Submit your GitHub repository link.**

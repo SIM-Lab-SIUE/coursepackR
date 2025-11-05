@@ -1,0 +1,6 @@
+participant_id,age,gender,social_media_use,news_trust,solution_preference
+1,22,Female,3.5,2,Email
+2,25,Male,2.1,4,Social Media
+3,30,Female,4.0,1,Website
+4,19,Male,5.0,2,Email
+5,45,Female,1.0,5,Social Media

@@ -61,6 +61,10 @@ For a new student, the workflow is straightforward:
 ------------------------------------------------------------------------
 
 ## Functions
+## 📋 Final Submission Checklists
+
+- [Graduate Research Paper Final Submission Checklist (MC501)](inst/guides/grad_final_submission_checklist.md)
+- [Undergraduate White Paper Final Submission Checklist (MC451)](inst/guides/undergrad_final_submission_checklist.md)
 
 This section details the primary functions you will interact with.
 
@@ -70,23 +74,19 @@ This section details the primary functions you will interact with.
 
 Performs a one-time, automated setup of your system. It's safe to re-run this function if something isn't working correctly.
 
--   **What it does:**
     -   Installs the **Quarto CLI** for rendering documents.
     -   Installs **TinyTeX**, a lightweight LaTeX distribution for creating PDFs.
     -   Installs essential R packages (`fs`, `rlang`, `cli`, `rstudioapi`).
     -   On Windows, it checks for Rtools and provides installation guidance if it's missing.
--   **Usage:** `r     mccourse_setup()`
 
 #### `mccourse_self_test()`
 
 Runs a series of diagnostic checks to ensure the package and its dependencies are correctly installed and configured. 🩺
 
--   **What it does:**
     -   Checks for the correct versions of **R** and **RStudio**.
     -   Verifies that **Git** and **Quarto** are installed and accessible.
     -   Confirms that the course templates (`mc451`, `mc501`) are discoverable.
     -   Reports the results in a clean, easy-to-read table.
--   **Usage:** `r     mccourse_self_test()`
 
 ### Listing & Downloading Course Materials
 
@@ -94,7 +94,6 @@ Runs a series of diagnostic checks to ensure the package and its dependencies ar
 
 Lists the courses or available weekly material templates bundled within the package.
 
--   **Usage:**
 
     ``` r
     list_courses()
@@ -108,13 +107,11 @@ Lists the courses or available weekly material templates bundled within the pack
 
 Copies the material for a specific week or the course journal into a local directory on your computer. 📁
 
--   **Arguments:**
 
     -   `course`: The name of the course (e.g., `"mc451"`).
     -   `week`: The week number (e.g., `1`).
     -   `destdir` (Optional): The destination directory. Defaults to your current working directory.
 
--   **Usage:**
 
     ``` r
     # Download week 1 materials for the MC451 course
@@ -135,13 +132,11 @@ entries/mc451_week07_2025-09-24.qmd
 The YAML header in each entry includes:
 
 ``` yaml
----
 title: "Journal Entry"
 course: "mc451"
 week: "07"
 date: "2025-09-24"
 full_date: "September 24, 2025"
----
 ```
 
 This ensures each entry is uniquely identified and easy to organize.
@@ -152,15 +147,12 @@ This ensures each entry is uniquely identified and easy to organize.
 
 A convenient helper to open a downloaded week's folder in your system's file browser.
 
--   **Usage:** `r     # After downloading week 1, open its folder     open_week(1)`
 
 #### `mccourse_update()`
 
 Checks for and installs the latest version of the `mccoursepack` package from GitHub.
 
--   **Usage:** `r     mccourse_update()`
 
-------------------------------------------------------------------------
 
 ## 🍩 Included Datasets
 

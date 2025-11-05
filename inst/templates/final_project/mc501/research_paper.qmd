@@ -1,0 +1,230 @@
+---
+# -----------------------------------------------------------------
+# APA 7TH MANUSCRIPT: QUARTO TEMPLATE
+# -----------------------------------------------------------------
+# This YAML header controls the formatting of your entire document.
+# It is pre-configured for a professional APA 7th Edition paper.
+title: "Your Full Research Paper Title Goes Here"
+author:
+  - name: "Your Full Name"
+    affiliation: "Your University"
+    author-note: "first-author-note" # This links to the Author Note section below
+
+# ---------------------------------------------------------------
+# PROJECT STARTER INSTRUCTIONS (Read Me First)
+# ---------------------------------------------------------------
+# HOW TO USE THIS TEMPLATE:
+# 1. Fill in the YAML header below with your project details.
+# 2. Write your manuscript in the sections provided.
+# 3. Update the bibliography file (references.bib) as you add sources.
+# 4. Replace the dummy data in /data/survey_data.csv with your real survey data.
+# 5. Use RStudio's 'Render' button or run `quarto render research_paper.qmd` to create your PDF in /output.
+# 6. Review the checklist below to ensure you meet all requirements.
+# 7. For technical help, see:
+#    - grad_technical_guide.md
+#    - grad_github_guide.md
+#    - grad_zotero_guide.md
+#    - Quarto docs: https://quarto.org/docs/
+#
+# MASTER PROJECT CHECKLIST (Quick Reference)
+# - [ ] 6,000–8,000 words (excluding references, tables, appendices)
+# - [ ] 15-20 academic, peer-reviewed citations
+# - [ ] Two Research Questions (RQs) and/or Hypotheses (RHs)
+# - [ ] All data analyzed in RStudio
+# - [ ] At least two APA-formatted data visualizations
+# - [ ] APA 7th Edition style throughout
+# - [ ] Final PDF rendered and saved in /output
+# - [ ] All files pushed to GitHub
+# - [ ] PDF submitted to Blackboard
+#
+# For more details, see the README.md and your course guides.
+    orcid: "0000-0000-0000-0000"     # Get your free ORCID iD at orcid.org
+
+# Add more authors by uncommenting the lines below
+#  - name: "Second Author's Name"
+#    affiliation: "Second Author's University"
+#    author-note: "second-author-note"
+#    orcid: "0000-0000-0000-0000"
+
+# --- Author Notes ---
+# 
+author-note-place: "margin" # Puts notes in the footer (common) or "margin"
+author-note:
+  - id: "first-author-note"
+    text: |
+      **Disclosures:** [If you have no conflicts of interest, state: "We have no known conflict of interest to disclose.". If you received funding, state it here.]
+
+      **Correspondence:** [Correspondence concerning this article should be addressed to Your Full Name, Department Name, University Name, University Address. Email: your.email@university.edu ]
+
+#  - id: "second-author-note"
+#    text: "Department of [Name], [University Name]."
+
+# --- Abstract & Keywords ---
+abstract: |
+  [Your abstract is a brief, comprehensive summary of the paper. It should be no more than 250 words. Summarize your problem, participants, method, basic findings, and conclusions. This is often the last part you write.]
+
+keywords: "keyword 1, keyword 2, keyword 3, keyword 4, keyword 5" # [Provide 3-5 relevant keywords ]
+
+# --- APA & Document Settings ---
+running-head: "YOUR SHORTENED TITLE" # [Must be 50 characters or less, in ALL CAPS ]
+bibliography: references.bib         # [File name for your Zotero .bib file ]
+format: 
+  apa-pdf:
+    keep-tex: false
+    watermark: false # Set to true for a DRAFT watermark
+    
+# --- R Code Setup ---
+# This global chunk sets default options for all R code blocks
+execute:
+  echo: false     # Hides the R code itself in the final PDF
+  warning: false  # Hides any R warnings
+  message: false  # Hides any R messages
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| 
+# Load required R packages
+library(tidyverse) # For data manipulation (dplyr, ggplot2) and reading (readr)
+library(here)      # For locating files in your RStudio Project
+library(knitr)     # For creating formatted tables
+````
+
+## Literature Review
+
+[Your literature review text goes here. Synthesize your 15-20 sources to establish the background and importance of your topic. Identify the gap in the research that your study will address.]
+
+## The Present Study
+
+[This section narrows the focus from the general lit review to your specific project. End this section by clearly stating your two Research Questions and/or Hypotheses.]
+
+**RQ1:** [State your first research question here.]
+**RQ2:** [State your second research question here.]
+
+# Method
+
+## Participants
+
+[Describe your participants. How many? (N=xxx). Provide key demographics (age, gender, etc.). [cite\_start]See Table 7.2  for a good example.]
+
+[cite\_start][Describe your sampling procedure (e.g., convenience, snowball) and how you recruited (e.g., social media, SONA).]
+
+## Measures
+
+[Describe the survey instrument you created. If you used established scales, describe them (e.g., "News trust was measured using a 5-item Likert scale...").]
+
+## Procedure
+
+[Explain the steps you took. "Data was collected via an online survey built in [Qualtrics/Google Forms] and distributed from [Date] to [Date]. Participants first read an informed consent page..."]
+
+## Analytic Strategy
+
+[Briefly state how you will analyze the data to answer your RQs. (e.g., "To answer RQ1, a Pearson correlation was computed... To answer RQ2, an independent-samples t-test was conducted...")]
+
+# Results
+
+```{r}
+#| label: load-data
+
+# Load data using the 'here' package to find the file
+file_path <- here("data", "survey_data.csv")
+survey_data <- read_csv(file_path)
+
+# --- Data Cleaning (Example) ---
+# This is where you would clean your data.
+# e.g., filter(age > 18), mutate(gender = as.factor(gender)), etc.
+cleaned_data <- survey_data
+```
+
+[Start with a brief overview of your analysis. Then, address each RQ/RH in order.]
+
+## Research Question 1
+
+[State the results for your first RQ/RH. Include the relevant statistics in the text. [cite\_start]For example: "A Pearson correlation revealed a significant negative relationship between social media use and news trust, *r*(98) = -.25, *p* = .012." ]
+
+```{r}
+#| label: tbl-corr-matrix
+#| tbl-cap: "Correlation Matrix for Key Study Variables"
+#| tbl-note: "N = 100. *p* < .05, **p* < .01."
+#| tbl-cap-location: top # APA format (Quarto default is bottom)
+
+# --- Dummy Code for a Correlation Table ---
+# This code won't run without a 'cor.R' file, 
+# but it shows the student the *structure* of making a table.
+# A simpler way:
+corr_matrix <- cleaned_data |>
+  select(age, social_media_use, news_trust, political_knowledge) |>
+  cor()
+
+# Use knitr::kable() to format the table for APA
+kable(corr_matrix, 
+      digits = 2, 
+      booktabs = TRUE,
+      caption = "Correlation Matrix") |>
+  # This is an example of a kableExtra function to add a footnote
+  # kable_classic(full_width = F) |>
+  # add_footnote("N = 100. *p* < .05", notation = "symbol")
+```
+
+[Your text continues here. You must refer to the table above, e.g., "Full results of the correlation analysis are presented in @tbl-corr-matrix."]
+
+## Research Question 2
+
+[State the results for your second RQ/RH. Include relevant statistics in the text.]
+
+```{r}
+#| label: fig-bar-chart
+#| fig-cap: "Political Knowledge Scores by Gender."
+#| fig-cap-location: top # APA 7th (Quarto's default is bottom)
+#| fig-alt: "A bar chart showing that mean political knowledge was higher for participants identifying as Male than for those identifying as Female."
+#| 
+#| # --- Figure Note ---
+#| # Quarto's `apa-pdf` format doesn't have a `fig-note` chunk option
+#| # like it does for tables (`tbl-note`).
+#| # Instead, you add the Figure Note manually in the text block
+#| # immediately AFTER the figure chunk.
+
+# --- Dummy Code for a ggplot2 Figure ---
+cleaned_data |>
+  filter(gender %in% c("Male", "Female")) |> # Example filter
+  ggplot(aes(x = gender, y = political_knowledge, fill = gender)) +
+  geom_bar(stat = "summary", fun = "mean", position = "dodge") +
+  geom_errorbar(stat = "summary", fun.data = "mean_cl_normal", width = 0.2) +
+  labs(y = "Political Knowledge Score (0-10)", x = "Gender") +
+  theme_classic(base_size = 12) +
+  theme(legend.position = "none") # Remove legend as x-axis is clear
+```
+
+*Note.* This figure displays the mean political knowledge scores for male and female participants. [cite\_start]Error bars represent 95% confidence intervals.
+
+[Your text continues here. You must refer to the figure above, e.g., "As shown in @fig-bar-chart, male participants (M = 7.2, SD = 1.1) scored significantly higher..."]
+
+# Discussion
+
+[Summarize your main findings in plain English. Do not just repeat the statistics from the Results section.]
+
+[Discuss how your findings support or challenge existing literature. Connect back to the sources from your introduction.]
+
+## Limitations
+
+[Acknowledge the limitations of your study (e.g., small/non-representative sample, reliance on self-report measures).]
+
+## Future Directions
+
+[Suggest new research questions that arise from your findings. What should the next study in this area investigate?]
+
+## Conclusion
+
+[Provide a final, summary paragraph. What is the key takeaway message of your research? What are the practical implications of your work?]
+
+# References
+
+::: {\#refs}
+:::
+
+# Appendix A: Survey Instrument
+
+[You can paste the text of your survey questions here.]
+
+````

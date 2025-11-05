@@ -1,42 +1,12 @@
-# Technical Guide: RStudio, Quarto, & Survey Design
+# Technical Guide (Summary)
 
-This guide covers the technical setup for producing an APA-formatted paper in RStudio and reviews survey design.
+For full technical setup instructions—including RStudio, Quarto, package installation, and survey design—see the central guide:
 
-### **Part 1: RStudio & Quarto Setup (for APA 7)**
+[Technical Guide: RStudio, Quarto, & Survey Design](../../../../guides/grad_technical_guide.md)
 
-Your entire paper will be a single Quarto (`.qmd`) file formatted for APA 7th Edition.
+**Key reminders for MC501:** - Follow the central guide for setup and troubleshooting. - Ask your instructor if you encounter technical issues. \#### **5. R Code Chunks**
 
-#### **1. Create Your RStudio Project**
-
-Follow the steps in `grad_github_guide.md` to create your project by "cloning" your GitHub repository.
-
-#### **2. Install Necessary R Packages**
-
-You will need packages to analyze and visualize your data. Open the `Console` in RStudio and run this command:
-
-```         
-install.packages(c("tidyverse", "rmarkdown", "quarto", "apaTables", "readr"))  
-```
-
--   `tidyverse`: Includes `ggplot2` (visualization) and `dplyr` (data cleaning).
-
--   `apaTables`: A great package for creating APA-formatted tables from your R analysis.
-
--   `readr`: For reading your `.csv` file.
-
-#### **3. Get the APA 7 Style File (`.csl`)**
-
-Quarto uses a CSL (Citation Style Language) file to format your references.
-
-1.  Go to the [Zotero Style Repository](https://www.zotero.org/styles "null").
-
-2.  Search for "American Psychological Association 7th edition".
-
-3.  Right-click the link and "Save Link As...".
-
-4.  Save the file as `apa.csl` directly into your RStudio Project's main folder.
-
-#### **4. Create Your `research_paper.qmd` File**
+...
 
 1.  In RStudio, go to `File` \> `New File...` \> `Quarto Document...`.
 

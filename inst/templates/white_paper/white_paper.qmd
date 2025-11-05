@@ -1,0 +1,66 @@
+---
+title: "Your White Paper Title Goes Here"
+author:
+  - name: "Team Member 1"
+    affiliation: "Your University"
+  - name: "Team Member 2"
+    affiliation: "Your University"
+  # Add more authors as needed
+format:
+  pdf:
+    toc: true
+bibliography: references.bib
+---
+
+# Instructions & Checklist
+
+<!--
+- Fill in the YAML header above with your team and project details.
+- Write your manuscript in the sections below.
+- Update references.bib as you add sources.
+- Replace dummy data in /data/survey_data.csv with your real survey data.
+- Use RStudio's 'Render' button or run `quarto render white_paper.qmd` to create your PDF in /output.
+- For full requirements, see the central guides in /inst/guides.
+-->
+
+# Introduction
+[Establish the problem and its significance.]
+
+# Literature Review
+[Synthesize 10-12 academic sources. Identify the gap.]
+
+# The Present Study
+[State your two Research Questions (RQs) and/or Hypotheses (RHs).]
+
+# Methodology
+## Participants
+[Describe your sample and recruitment.]
+## Measures
+[Describe your survey instrument.]
+## Procedure
+[Explain your data collection process.]
+## Analytic Strategy
+[Describe your planned analyses.]
+
+# Results
+```{r}
+#| label: load-data
+file_path <- here::here("data", "survey_data.csv")
+survey_data <- readr::read_csv(file_path)
+# Data cleaning and analysis code here
+```
+
+[Embed your R output and visualizations.]
+
+# Discussion
+[Connect your results to the literature.]
+
+# Conclusion & Recommendations
+[Summarize findings and propose solutions.]
+
+# References
+::: {#refs}
+:::
+
+# Appendix: Survey Instrument
+[Paste your survey questions here.]
