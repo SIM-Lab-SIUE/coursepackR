@@ -54,6 +54,20 @@ pew_clean <- pew_spring_2024_excerpt %>%
     urban_rural = as_factor(urban_rural),
     religion = as_factor(religion)
   )
+
+# Load the new teaching dataset
+w144_clean <- read_csv("w144_teaching_dataset_v2.csv")
+
+# Example: select variables and basic cleaning
+w144_clean <- w144_clean %>%
+  mutate(
+    platform_count = as.integer(platform_count),
+    age = as.integer(age),
+    gender = as.factor(gender),
+    education = as.factor(education),
+    major = as.factor(major),
+    year = as.factor(year)
+  )
 ```
 
 ## 2. Advanced Recoding Techniques
@@ -151,6 +165,58 @@ pew_clean <- pew_clean %>%
       urban_rural == "Rural" & ideology_numeric == 3 ~ "Rural Center",
       TRUE ~ NA_character_
     )
+  )
+```
+
+### A. Creating Numeric Scales from Categorical Data (Updated)
+
+Convert education and year to numeric scales for analysis.
+
+```{r recode-ordinal-updated}
+w144_clean <- w144_clean %>%
+  mutate(
+    education_num = as.integer(education),
+    year_num = as.integer(year)
+  )
+```
+
+### B. Grouping Majors for Simplicity
+
+Combine similar majors into broader groups.
+
+```{r recode-major-group}
+w144_clean <- w144_clean %>%
+  mutate(
+    major_grouped = case_when(
+      major %in% c("Biology", "Chemistry", "Physics") ~ "Science",
+      major %in% c("English", "History", "Philosophy") ~ "Humanities",
+      major %in% c("Business", "Economics") ~ "Business",
+      TRUE ~ as.character(major)
+    )
+  )
+```
+
+## 3. Creating Composite Scores (Updated)
+
+### A. Platform Engagement Index
+
+Create a composite score from platform_count and year_num.
+
+```{r composite-platform}
+w144_clean <- w144_clean %>%
+  mutate(
+    engagement_index = rowMeans(select(., platform_count, year_num), na.rm = TRUE)
+  )
+```
+
+### B. Academic Status Index
+
+Combine education_num and major_grouped for a simple academic status indicator.
+
+```{r composite-academic}
+w144_clean <- w144_clean %>%
+  mutate(
+    academic_status = paste(education, major_grouped, sep = "-")
   )
 ```
 

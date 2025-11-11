@@ -18,11 +18,21 @@ library(tidyverse)
 library(broom)
 library(car)  # For regression diagnostics
 library(lmtest)  # For additional tests
+data("pew_spring_2024_excerpt")
 library(mccoursepack)
 
-data("pew_spring_2024_excerpt")
-# pew_spring_2024_excerpt is now available as a data frame
-pew_clean <- pew_spring_2024_excerpt
+# Load the new teaching data
+data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
+w144_data <- read_csv(data_path)
+w144_clean <- w144_data %>%
+  mutate(
+    gender = as_factor(gender),
+    education = as_factor(education),
+    income = as_factor(income),
+    urban_rural = as_factor(urban_rural),
+    ideology_simple = as_factor(ideology_simple),
+    party = as_factor(party)
+  )
 ```
 
 ## 1. Advanced Comparison of Means
@@ -172,12 +182,12 @@ AIC(simple_lm, poly_lm)
 Model favorable vs. unfavorable view of US as function of age and ideology.
 
 ```{r logistic-regression}
-# Create binary outcome
-pew_clean <- pew_clean %>%
-  mutate(us_favorable = ifelse(view_us == "Very favorable" | view_us == "Somewhat favorable", 1, 0))
+# Create binary outcome for high platform use
+w144_clean <- w144_clean %>%
+  mutate(platform_high = ifelse(platform_count >= 2, 1, 0))
 
-logistic_lm <- glm(us_favorable ~ age + ideology_numeric, 
-                   data = pew_clean, 
+logistic_lm <- glm(platform_high ~ age + ideology_numeric, 
+                   data = w144_clean, 
                    family = binomial)
 
 tidy(logistic_lm)
@@ -225,14 +235,14 @@ vif(multiple_lm)
 
 ```{r stepwise-regression}
 # Create more predictors
-pew_clean <- pew_clean %>%
+w144_clean <- w144_clean %>%
   mutate(
     age_squared = age^2,
     gender_numeric = as.numeric(factor(gender, levels = c("Male", "Female")))
   )
 
-full_model <- lm(conf_biden ~ age + age_squared + ideology_numeric + gender_numeric, 
-                 data = pew_clean)
+full_model <- lm(platform_count ~ age + age_squared + ideology_numeric + gender_numeric, 
+                 data = w144_clean)
 
 # Stepwise selection
 step_model <- step(full_model, direction = "both")
@@ -244,18 +254,18 @@ tidy(step_model)
 ```{r cross-validation}
 # Simple train-test split
 set.seed(123)
-train_indices <- sample(1:nrow(pew_clean), 0.7 * nrow(pew_clean))
-train_data <- pew_clean[train_indices, ]
-test_data <- pew_clean[-train_indices, ]
+train_indices <- sample(1:nrow(w144_clean), 0.7 * nrow(w144_clean))
+train_data <- w144_clean[train_indices, ]
+test_data <- w144_clean[-train_indices, ]
 
 # Fit on training data
-cv_model <- lm(conf_biden ~ age + ideology_numeric, data = train_data)
+cv_model <- lm(platform_count ~ age + ideology_numeric, data = train_data)
 
 # Predict on test data
 predictions <- predict(cv_model, newdata = test_data)
 
 # Calculate RMSE
-rmse <- sqrt(mean((test_data$conf_biden - predictions)^2, na.rm = TRUE))
+rmse <- sqrt(mean((test_data$platform_count - predictions)^2, na.rm = TRUE))
 rmse
 ```
 
@@ -270,14 +280,16 @@ cohen_d <- function(mean1, mean2, sd1, sd2, n1, n2) {
   (mean1 - mean2) / pooled_sd
 }
 
-# Example with ideology groups
-left_data <- filter(pew_clean, ideology_simple == "Left")
-right_data <- filter(pew_clean, ideology_simple == "Right")
-
 d <- cohen_d(mean(left_data$conf_biden, na.rm = TRUE),
-             mean(right_data$conf_biden, na.rm = TRUE),
-             sd(left_data$conf_biden, na.rm = TRUE),
-             sd(right_data$conf_biden, na.rm = TRUE),
+
+# Example with ideology groups
+left_data <- filter(w144_clean, ideology_simple == "Left")
+right_data <- filter(w144_clean, ideology_simple == "Right")
+
+d <- cohen_d(mean(left_data$platform_count, na.rm = TRUE),
+             mean(right_data$platform_count, na.rm = TRUE),
+             sd(left_data$platform_count, na.rm = TRUE),
+             sd(right_data$platform_count, na.rm = TRUE),
              nrow(left_data), nrow(right_data))
 d
 
@@ -288,7 +300,7 @@ eta_squared <- function(anova_result) {
   ss_effect / ss_total
 }
 
-anova_result <- aov(conf_biden ~ ideology_simple, data = pew_clean)
+anova_result <- aov(platform_count ~ ideology_simple, data = w144_clean)
 eta_sq <- eta_squared(anova(anova_result))
 eta_sq
 ```
@@ -311,10 +323,10 @@ power.anova.test(groups = 3, n = 50, between.var = 1, within.var = 2)
 # Bootstrap confidence interval for mean difference
 set.seed(123)
 bootstrap_differences <- replicate(1000, {
-  boot_sample <- pew_clean %>% sample_n(nrow(pew_clean), replace = TRUE)
+  boot_sample <- w144_clean %>% sample_n(nrow(w144_clean), replace = TRUE)
   left_boot <- filter(boot_sample, ideology_simple == "Left")
   right_boot <- filter(boot_sample, ideology_simple == "Right")
-  mean(left_boot$conf_biden, na.rm = TRUE) - mean(right_boot$conf_biden, na.rm = TRUE)
+  mean(left_boot$platform_count, na.rm = TRUE) - mean(right_boot$platform_count, na.rm = TRUE)
 })
 
 quantile(bootstrap_differences, c(0.025, 0.975))
@@ -324,22 +336,22 @@ quantile(bootstrap_differences, c(0.025, 0.975))
 
 ```{r permutation-test}
 # Permutation test for difference in means
-observed_diff <- pew_clean %>%
+observed_diff <- w144_clean %>%
   filter(ideology_simple %in% c("Left", "Right")) %>%
   group_by(ideology_simple) %>%
-  summarize(mean_conf = mean(conf_biden, na.rm = TRUE)) %>%
-  pull(mean_conf) %>%
+  summarize(mean_platform = mean(platform_count, na.rm = TRUE)) %>%
+  pull(mean_platform) %>%
   diff()
 
 permutation_diffs <- replicate(1000, {
-  permuted <- pew_clean %>%
+  permuted <- w144_clean %>%
     filter(ideology_simple %in% c("Left", "Right")) %>%
     mutate(ideology_perm = sample(ideology_simple))
   
   permuted %>%
     group_by(ideology_perm) %>%
-    summarize(mean_conf = mean(conf_biden, na.rm = TRUE)) %>%
-    pull(mean_conf) %>%
+    summarize(mean_platform = mean(platform_count, na.rm = TRUE)) %>%
+    pull(mean_platform) %>%
     diff()
 })
 

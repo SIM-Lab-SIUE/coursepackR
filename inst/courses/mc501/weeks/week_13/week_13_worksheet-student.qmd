@@ -20,9 +20,19 @@ library(skimr)
 library(ggthemes)  # For additional themes
 
 # Load the clean data
-data("pew_spring_2024_excerpt")
-# pew_spring_2024_excerpt is now available as a data frame
-pew_clean <- pew_spring_2024_excerpt
+# Load the new teaching dataset
+w144_clean <- read_csv("w144_teaching_dataset_v2.csv")
+
+# Example: select variables and basic cleaning
+w144_clean <- w144_clean %>%
+  mutate(
+    platform_count = as.integer(platform_count),
+    age = as.integer(age),
+    gender = as.factor(gender),
+    education = as.factor(education),
+    major = as.factor(major),
+    year = as.factor(year)
+  )
 ```
 
 ## 1. Advanced Descriptive Statistics
@@ -38,7 +48,7 @@ get_mode <- function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-pew_clean %>%
+w144_clean %>%
   summarize(
     age_mean = mean(age, na.rm = TRUE),
     age_median = median(age, na.rm = TRUE),
@@ -53,7 +63,7 @@ pew_clean %>%
 Calculate variance, standard deviation, range, IQR, and coefficient of variation.
 
 ```{r variance-measures}
-pew_clean %>%
+w144_clean %>%
   summarize(
     age_variance = var(age, na.rm = TRUE),
     age_sd = sd(age, na.rm = TRUE),
@@ -84,7 +94,7 @@ kurtosis <- function(x) {
   sum((x - mean_x)^4, na.rm = TRUE) / (n * sd_x^4) - 3
 }
 
-pew_clean %>%
+w144_clean %>%
   summarize(
     age_skewness = skewness(age),
     age_kurtosis = kurtosis(age),
@@ -98,7 +108,7 @@ pew_clean %>%
 Advanced grouped summaries with multiple measures.
 
 ```{r grouped-descriptives}
-pew_clean %>%
+w144_clean %>%
   filter(!is.na(ideology_simple)) %>%
   group_by(ideology_simple) %>%
   summarize(
@@ -122,7 +132,7 @@ pew_clean %>%
 #### Histogram with Density Overlay
 
 ```{r viz-hist-density}
-ggplot(pew_clean, aes(x = age)) +
+ggplot(w144_clean, aes(x = age)) +
   geom_histogram(aes(y = ..density..), binwidth = 5, fill = "lightblue", color = "black", alpha = 0.7) +
   geom_density(color = "red", size = 1) +
   labs(title = "Age Distribution: Histogram with Density", x = "Age", y = "Density") +
@@ -132,7 +142,7 @@ ggplot(pew_clean, aes(x = age)) +
 #### Boxplot for Distribution Summary
 
 ```{r viz-boxplot-single}
-ggplot(pew_clean, aes(x = "", y = age)) +
+ggplot(w144_clean, aes(x = "", y = age)) +
   geom_boxplot(fill = "lightgreen", color = "darkgreen") +
   labs(title = "Age Distribution: Boxplot", x = "", y = "Age") +
   theme_minimal() +
@@ -142,7 +152,7 @@ ggplot(pew_clean, aes(x = "", y = age)) +
 #### Violin Plot
 
 ```{r viz-violin}
-ggplot(pew_clean, aes(x = "", y = age)) +
+ggplot(w144_clean, aes(x = "", y = age)) +
   geom_violin(fill = "purple", alpha = 0.5) +
   geom_boxplot(width = 0.1, fill = "white") +
   labs(title = "Age Distribution: Violin Plot", x = "", y = "Age") +
@@ -155,7 +165,7 @@ ggplot(pew_clean, aes(x = "", y = age)) +
 #### Bar Chart with Counts
 
 ```{r viz-bar-count}
-ggplot(pew_clean, aes(x = view_us)) +
+ggplot(w144_clean, aes(x = platform_count)) +
   geom_bar(fill = "steelblue") +
   labs(title = "Views of the United States", x = "View", y = "Count") +
   theme_minimal()
@@ -164,7 +174,7 @@ ggplot(pew_clean, aes(x = view_us)) +
 #### Pie Chart (Alternative to Bar)
 
 ```{r viz-pie}
-pew_clean %>%
+w144_clean %>%
   count(view_us) %>%
   ggplot(aes(x = "", y = n, fill = view_us)) +
   geom_bar(stat = "identity", width = 1) +
@@ -178,7 +188,7 @@ pew_clean %>%
 #### Scatterplot with Trend Line
 
 ```{r viz-scatter-trend}
-ggplot(pew_clean, aes(x = age, y = conf_biden)) +
+ggplot(w144_clean, aes(x = age, y = platform_count)) +
   geom_point(alpha = 0.6, color = "blue") +
   geom_smooth(method = "lm", color = "red", se = TRUE) +
   labs(title = "Age vs. Confidence in Biden", x = "Age", y = "Confidence in Biden") +
@@ -188,7 +198,7 @@ ggplot(pew_clean, aes(x = age, y = conf_biden)) +
 #### Scatterplot with Loess Smooth
 
 ```{r viz-scatter-loess}
-ggplot(pew_clean, aes(x = age, y = conf_biden)) +
+ggplot(w144_clean, aes(x = age, y = platform_count)) +
   geom_point(alpha = 0.6, color = "darkgreen") +
   geom_smooth(method = "loess", color = "orange", se = FALSE) +
   labs(title = "Age vs. Confidence in Biden (Loess)", x = "Age", y = "Confidence in Biden") +
@@ -199,7 +209,7 @@ ggplot(pew_clean, aes(x = age, y = conf_biden)) +
 
 ```{r viz-line}
 # Create a summary for line plot
-age_summary <- pew_clean %>%
+age_summary <- w144_clean %>%
   group_by(age_group = cut(age, breaks = seq(18, 80, by = 5))) %>%
   summarize(mean_conf = mean(conf_biden, na.rm = TRUE))
 
@@ -216,7 +226,7 @@ ggplot(age_summary, aes(x = age_group, y = mean_conf, group = 1)) +
 #### Boxplot by Group
 
 ```{r viz-boxplot-group}
-ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
+ggplot(w144_clean, aes(x = major, y = platform_count)) +
   geom_boxplot(fill = "lightcoral", color = "darkred") +
   labs(title = "Confidence in Biden by Ideology", x = "Ideology", y = "Confidence in Biden") +
   theme_minimal()
@@ -225,7 +235,7 @@ ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
 #### Violin Plot by Group
 
 ```{r viz-violin-group}
-ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
+ggplot(w144_clean, aes(x = major, y = platform_count)) +
   geom_violin(fill = "lightyellow", color = "orange") +
   geom_boxplot(width = 0.1, fill = "white") +
   labs(title = "Confidence in Biden by Ideology: Violin", x = "Ideology", y = "Confidence in Biden") +
@@ -235,7 +245,7 @@ ggplot(pew_clean, aes(x = ideology_simple, y = conf_biden)) +
 #### Bar Chart with Error Bars
 
 ```{r viz-bar-error}
-ideology_summary <- pew_clean %>%
+major_summary <- w144_clean %>%
   filter(!is.na(ideology_simple)) %>%
   group_by(ideology_simple) %>%
   summarize(
@@ -253,7 +263,7 @@ ggplot(ideology_summary, aes(x = ideology_simple, y = mean_conf)) +
 #### Faceted Histograms
 
 ```{r viz-facet-hist}
-ggplot(pew_clean, aes(x = age)) +
+ggplot(w144_clean, aes(x = age)) +
   geom_histogram(binwidth = 5, fill = "lightgreen", color = "black") +
   facet_wrap(~ ideology_simple) +
   labs(title = "Age Distribution by Ideology", x = "Age", y = "Count") +
@@ -265,7 +275,7 @@ ggplot(pew_clean, aes(x = age)) +
 #### Stacked Bar Chart
 
 ```{r viz-stacked-bar}
-ggplot(pew_clean, aes(x = ideology_simple, fill = view_us)) +
+ggplot(w144_clean, aes(x = major, fill = year)) +
   geom_bar(position = "stack") +
   labs(title = "Ideology vs. US Views: Stacked Bar", x = "Ideology", y = "Count", fill = "US View") +
   theme_minimal()
@@ -274,7 +284,7 @@ ggplot(pew_clean, aes(x = ideology_simple, fill = view_us)) +
 #### Filled Bar Chart (Proportions)
 
 ```{r viz-filled-bar}
-ggplot(pew_clean, aes(x = ideology_simple, fill = view_us)) +
+ggplot(w144_clean, aes(x = major, fill = year)) +
   geom_bar(position = "fill") +
   labs(title = "Ideology vs. US Views: Proportions", x = "Ideology", y = "Proportion", fill = "US View") +
   theme_minimal()
@@ -284,7 +294,7 @@ ggplot(pew_clean, aes(x = ideology_simple, fill = view_us)) +
 
 ```{r viz-mosaic}
 # Create contingency table
-mosaic_data <- pew_clean %>%
+mosaic_data <- w144_clean %>%
   filter(!is.na(ideology_simple), !is.na(view_us)) %>%
   count(ideology_simple, view_us) %>%
   group_by(ideology_simple) %>%
@@ -303,7 +313,7 @@ ggplot(mosaic_data, aes(x = ideology_simple, y = view_us, fill = prop)) +
 #### Scatterplot with Color Coding
 
 ```{r viz-scatter-color}
-ggplot(pew_clean, aes(x = age, y = conf_biden, color = ideology_simple)) +
+ggplot(w144_clean, aes(x = age, y = platform_count, color = major)) +
   geom_point(alpha = 0.7) +
   geom_smooth(method = "lm", se = FALSE) +
   labs(title = "Age vs. Confidence in Biden by Ideology", 
@@ -314,7 +324,7 @@ ggplot(pew_clean, aes(x = age, y = conf_biden, color = ideology_simple)) +
 #### Faceted Scatterplots
 
 ```{r viz-facet-scatter}
-ggplot(pew_clean, aes(x = age, y = conf_biden)) +
+ggplot(w144_clean, aes(x = age, y = platform_count)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", color = "red") +
   facet_wrap(~ ideology_simple) +

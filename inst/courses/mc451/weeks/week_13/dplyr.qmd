@@ -1,0 +1,545 @@
+# R `dplyr` Verbs: A Guide for Students
+
+This document explains the core functions from the `dplyr` package. All examples use the `pew_data` dataset, which you can load as follows:
+
+```r
+# First, make sure you have dplyr installed: install.packages("dplyr")
+library(dplyr)
+library(readr)
+
+# Load the dataset
+pew_data <- read_csv("ATP_W144_excerpt.csv")
+```
+
+-----
+
+## Rows
+
+Verbs that principally operate on rows.
+
+### `arrange()`
+
+**Explanation:** This function reorders the rows in your data frame based on the values in one or more columns. The default order is ascending (A-Z, 1-10).
+
+**Example:** Sort the data to find the youngest respondents (based on the `f_agecat` column, where a lower number means a younger age group).
+
+```r
+# Sort by the 'f_agecat' column in ascending order
+sorted_data <- pew_data %>%
+  arrange(f_agecat)
+
+# Print the first 6 rows of the key columns
+print(select(sorted_data, qkey, f_agecat), n = 6)
+```
+
+**Explanation:** The code above takes the original `pew_data`, pipes it (`%>%`) into the `arrange()` function, and tells it to sort by the `f_agecat` column. The result is saved in a new variable `sorted_data`.
+
+**Practice Prompt:** How would you sort the data to see the respondents in the *oldest* age category first? (Hint: Use the `desc()` helper function inside `arrange()`).
+
+-----
+
+### `distinct()`
+
+**Explanation:** This function is used to find and keep only the unique (or distinct) rows in your data. You can look for unique combinations across specific columns or for entire rows.
+
+**Example:** Find all the unique combinations of gender (`f_gender`) and political party (`f_party_final`) present in the dataset.
+
+```r
+distinct_combinations <- pew_data %>%
+  distinct(f_gender, f_party_final)
+
+print(distinct_combinations)
+```
+
+**Explanation:** This pipes the data into `distinct()` and specifies the columns to check for unique pairs. `dplyr` will return a new data frame containing only one row for each unique combination of `f_gender` and `f_party_final`.
+
+**Practice Prompt:** How would you find out how many unique age categories (`f_agecat`) are in the data? (Hint: You can pipe your `distinct()` result into another verb, `nrow()`, or use `n_distinct()` which you'll see later).
+
+-----
+
+### `filter()`
+
+**Explanation:** This is one of the most powerful verbs. It allows you to keep only the rows that match a specific logical condition (e.g., `value > 10`, `column == "News"`).
+
+**Example:** Filter the data to find all respondents who are in age category 1 (`f_agecat == 1`).
+
+```r
+# The == operator is used for "is equal to"
+age_cat_1_data <- pew_data %>%
+  filter(f_agecat == 1)
+
+print(select(age_cat_1_data, qkey, f_agecat), n = 6)
+```
+
+**Explanation:** This code filters the `pew_data` for all rows where the value in the `f_agecat` column is exactly `1`.
+
+**Practice Prompt:** How would you filter for respondents who are *both* in age category 1 (`f_agecat == 1`) and use a computer as their device type (`device_type_w144 == 1`)? (Hint: You use the `&` (and) operator inside your `filter()` call).
+
+-----
+
+### `slice()` `slice_head()` `slice_tail()` `slice_min()` `slice_max()` `slice_sample()`
+
+**Explanation:** These functions subset rows based on their *position* (their integer index) or other criteria.
+
+  * `slice()`: Selects rows by specific row numbers.
+  * `slice_head()`: Selects the first `n` rows.
+  * `slice_tail()`: Selects the last `n` rows.
+  * `slice_min()` / `slice_max()`: Selects rows with the lowest/highest values in a column.
+  * `slice_sample()`: Selects random rows.
+
+**Example:** Select the 100th to 105th rows from the dataset.
+
+```r
+# Select rows by their position
+sliced_data <- pew_data %>%
+  slice(100:105)
+
+print(select(sliced_data, qkey))
+```
+
+**Explanation:** `slice(100:105)` tells `dplyr` to keep only the rows from 100 through 105. `slice_head(n = 5)` would be a shortcut for `slice(1:5)`.
+
+**Practice Prompt:** How would you select 10 random rows from the dataset?
+
+-----
+
+## Columns
+
+Verbs that principally operate on columns.
+
+### `glimpse()`
+
+**Explanation:** This function provides a quick, transposed summary of the data frame. It's fantastic for seeing every column's name, its data type (e.g., `dbl` for numeric, `chr` for character), and the first few values.
+
+**Example:** Get a glimpse of the dataset's structure.
+
+```r
+# glimpse() is often used by itself
+glimpse(pew_data)
+```
+
+**Explanation:** This will print a summary to your console. It's often more useful than `View()` or `head()` for large datasets with many columns, as it fits compactly and tells you the data types.
+
+**Practice Prompt:** Run `glimpse(pew_data)` and identify two columns that are `dbl` (numeric) and one column that might be better as a `factor` (categorical).
+
+-----
+
+### `mutate()`
+
+**Explanation:** This verb creates new columns or modifies existing ones, while keeping all other columns.
+
+**Example:** Create a new column `f_agecat_plus_10` that is just the `f_agecat` value with 10 added to it.
+
+```r
+new_col_data <- pew_data %>%
+  mutate(f_agecat_plus_10 = f_agecat + 10)
+
+# Select just the relevant columns to show the change
+print(select(new_col_data, f_agecat, f_agecat_plus_10), n = 6)
+```
+
+**Explanation:** `mutate()` adds a new column named `f_agecat_plus_10`. The values in this column are determined by the expression on the right side of the equals sign (`f_agecat + 10`).
+
+**Practice Prompt:** Create a new column called `device_is_mobile` that is `TRUE` if `device_type_w144` is 2 and `FALSE` otherwise. (Hint: Use `device_is_mobile = (device_type_w144 == 2)`).
+
+-----
+
+### `pull()`
+
+**Explanation:** This extracts a single column from the data frame, not as a smaller data frame, but as a **vector** (which is like a list or a 1D array).
+
+**Example:** Pull the `f_party_final` column into its own vector.
+
+```r
+# This extracts the column as a vector
+party_vector <- pew_data %>%
+  pull(f_party_final)
+
+print(head(party_vector))
+print(str(party_vector))
+```
+
+**Explanation:** Notice the output is no longer a table. It's a single vector of data. This is useful when you want to pass the data to a function (like `mean()` or `table()`) that expects a vector, not a data frame.
+
+**Practice Prompt:** Pull the `f_agecat` column and find the average (mean) age category. (Hint: `pew_data %>% pull(f_agecat) %>% mean()`).
+
+-----
+
+### `relocate()`
+
+**Explanation:** This function changes the order of columns. It's a convenient way to move important columns to the front of your dataset.
+
+**Example:** Move the `f_agecat`, `f_gender`, and `f_party_final` columns to the very beginning of the data frame.
+
+```r
+relocated_data <- pew_data %>%
+  relocate(f_agecat, f_gender, f_party_final)
+
+# Glimpse to see the new column order
+glimpse(relocated_data)
+```
+
+**Explanation:** `relocate()` moves the specified columns to the front by default. You can also use `.before` or `.after` arguments to be more precise (e.g., `relocate(f_agecat, .after = qkey)`).
+
+**Practice Prompt:** How would you move the `qkey` column to be *after* the `device_type_w144` column?
+
+-----
+
+### `rename()` / `rename_with()`
+
+**Explanation:** `rename()` renames one or more columns. `rename_with()` allows you to apply a function to *all* column names (e.g., make them all lowercase).
+
+**Example:** Rename the `f_gender` and `f_agecat` columns to `gender` and `age_category` for simplicity.
+
+```r
+renamed_data <- pew_data %>%
+  rename(gender = f_gender,
+         age_category = f_agecat)
+
+# Glimpse to see the new names
+glimpse(renamed_data)
+```
+
+**Explanation:** The syntax for `rename()` is `new_name = old_name`. This is the opposite of many other tools, so be careful\!
+
+**Practice Prompt:** Rename the `f_party_final` column to `political_party`.
+
+-----
+
+### `select()`
+
+**Explanation:** This function subsets your data by keeping or dropping columns based on their names or types.
+
+**Example:** Create a new, smaller data frame that only contains `qkey`, `f_agecat`, `f_gender`, and `f_party_final`.
+
+```r
+selected_data <- pew_data %>%
+  select(qkey, f_agecat, f_gender, f_party_final)
+
+glimpse(selected_data)
+```
+
+**Explanation:** You simply list the names of the columns you want to keep. You can also use a minus sign (`-`) to drop columns (e.g., `select(-qkey)` would keep everything *except* `qkey`).
+
+**Practice Prompt:** How would you select all columns that *start with* the letters "fb"? (Hint: Look up `select()` helpers like `starts_with()`).
+
+-----
+
+## Groups
+
+Verbs that principally operate on groups of rows.
+
+### `count()` / `tally()`
+
+**Explanation:** `count()` is a powerful shortcut that groups by one or more variables and counts the number of observations (rows) in each group. `tally()` is a simpler version that just counts rows within an *existing* group (it's less common now).
+
+**Example:** Count how many respondents are in each political party (`f_party_final`).
+
+```r
+party_counts <- pew_data %>%
+  count(f_party_final, sort = TRUE)
+
+print(party_counts)
+```
+
+**Explanation:** This is a shortcut for `group_by(f_party_final) %>% summarise(n = n())`. It automatically groups by the column(s) you provide, counts the rows, and puts the result in a new column named `n`. `sort = TRUE` sorts the results from largest to smallest.
+
+**Practice Prompt:** Get a count of respondents by `device_type_w144`.
+
+-----
+
+### `group_by()` / `ungroup()`
+
+**Explanation:** `group_by()` doesn't do much on its own. It adds "grouping metadata" to the data frame. Any verb you use *after* `group_by()` (like `summarise()` or `mutate()`) will be performed *on each group* separately. `ungroup()` removes this grouping metadata.
+
+**Example:** Group the data by `f_party_final`.
+
+```r
+# This creates a 'grouped_df'
+# It looks the same, but its behavior is different
+grouped_by_party <- pew_data %>%
+  group_by(f_party_final)
+
+print(grouped_by_party)
+```
+
+**Explanation:** As you can see, the output just says `Groups: f_party_final [5]`. This tells you the data is now "primed" for a grouped operation. This leads directly to `summarise()`.
+
+-----
+
+### `summarise()` / `summarize()`
+
+**Explanation:** This function collapses each group (created by `group_by()`) into a single summary row.
+
+**Example:** Find the *average age category* (`f_agecat`) for *each* political party (`f_party_final`).
+
+```r
+# Note: Many survey columns use 99 as a 'Refused' code.
+# We should filter those out first, or they will skew the mean.
+summary_data <- pew_data %>%
+  filter(f_agecat != 99, f_party_final != 99) %>%
+  group_by(f_party_final) %>%
+  summarise(
+    average_age_category = mean(f_agecat, na.rm = TRUE),
+    number_of_respondents = n()
+  )
+
+print(summary_data)
+```
+
+**Explanation:** This is the "group and summarize" pattern, the most common workflow in `dplyr`.
+
+1.  `filter(...)` removes the "Refused" (99) codes.
+2.  `group_by(f_party_final)` splits the data into groups (party 1, party 2, etc.).
+3.  `summarise()` then runs calculations on *each group*.
+4.  `average_age_category = mean(...)` creates a new column by calculating the `mean` of `f_agecat` *for that group*.
+5.  `number_of_respondents = n()` uses the `n()` helper to count the number of rows *in that group*.
+
+**Practice Prompt:** Find the *maximum* `f_agecat` (i.e., the oldest category present) for each `f_gender` group. (Hint: The aggregation function is `max()`).
+
+-----
+
+## Data Frames (Joins)
+
+Verbs that operate on two data frames. First, let's create two example data frames.
+
+```r
+# Create a data frame with respondent data
+data_respondents <- pew_data %>%
+  select(qkey, f_agecat, f_gender) %>%
+  slice(1:5)
+
+# Create a data frame with political data
+data_politics <- pew_data %>%
+  select(qkey, f_party_final) %>%
+  slice(3:7)
+
+print(data_respondents)
+print(data_politics)
+```
+
+*(This creates two small tables. `data_respondents` has rows 1-5. `data_politics` has rows 3-7. They will share rows 3, 4, and 5.)*
+
+-----
+
+### `inner_join()`
+
+**Explanation:** Keeps only the rows that have matching keys (`qkey` in this case) in *both* data frames.
+
+**Example:**
+
+```r
+# Will find keys that are in both (rows 3, 4, 5)
+inner_joined <- inner_join(data_respondents, data_politics, by = "qkey")
+
+print(inner_joined)
+```
+
+-----
+
+### `left_join()`
+
+**Explanation:** Keeps *all* rows from the "left" data frame (`data_respondents`) and adds data from the "right" (`data_politics`) where the keys match. If there's no match, it fills with `NA`.
+
+**Example:**
+
+```r
+# Will keep all 5 rows from data_respondents
+left_joined <- left_join(data_respondents, data_politics, by = "qkey")
+
+print(left_joined)
+```
+
+*(This will show `f_party_final` for rows 3, 4, and 5, but `NA` for rows 1 and 2).*
+
+-----
+
+### `semi_join()`
+
+**Explanation:** This is a *filtering* join. It keeps all rows from the first data frame *that have a match* in the second data frame, but it *does not* add any new columns.
+
+**Example:** Get all respondents from `data_respondents` who are *also* in `data_politics`.
+
+```r
+# Will keep rows 3, 4, 5 from data_respondents
+semi_joined <- semi_join(data_respondents, data_politics, by = "qkey")
+
+print(semi_joined)
+```
+
+-----
+
+### `anti_join()`
+
+**Explanation:** The opposite of `semi_join()`. It keeps all rows from the first data frame *that do not* have a match in the second.
+
+**Example:** Get all respondents from `data_respondents` who are *not* in `data_politics`.
+
+```r
+# Will keep rows 1 and 2 from data_respondents
+anti_joined <- anti_join(data_respondents, data_politics, by = "qkey")
+
+print(anti_joined)
+```
+
+-----
+
+## Multiple Columns
+
+### `across()`
+
+**Explanation:** `across()` is a powerful helper function used *inside* `mutate()` or `summarise()` to apply the same function(s) to multiple columns at once.
+
+**Example:** Get the mean of all "fbwhy" columns (Facebook-why).
+
+```r
+# We can use helpers like starts_with() inside across()
+mean_fb_data <- pew_data %>%
+  summarise(
+    across(starts_with("fbwhy_"), 
+           ~ mean(.x, na.rm = TRUE))
+  )
+
+print(mean_fb_data)
+```
+
+**Explanation:**
+
+  * `across(starts_with("fbwhy_"), ...)` tells `dplyr` to select all columns that start with "fbwhy\_".
+  * `~ mean(.x, na.rm = TRUE)` is a "lambda" or "anonymous function". The `~` starts it, and `.x` represents *each column* being operated on. This calculates the mean for each "fbwhy\_" column individually.
+
+**Practice Prompt:** How would you use `mutate()` and `across()` to change all "xtwhy\_" (X/Twitter-why) columns, replacing any `99` values with `NA`? (Hint: Use `~ na_if(.x, 99)`).
+
+-----
+
+## Vector Functions
+
+These are helper functions that work on individual vectors (columns).
+
+### `case_when()`
+
+**Explanation:** Creates a new vector by applying a set of logical conditions. It's a powerful and safe "if... else if... else" tool, perfect for `mutate()`.
+
+**Example:** Create a new column `age_generation` based on `f_agecat`.
+(1 = Gen Z, 2 = Millennial, 3 = Gen X, 4/5 = Boomer/Silent)
+
+```r
+generation_data <- pew_data %>%
+  mutate(
+    age_generation = case_when(
+      f_agecat == 1 ~ "Gen Z",
+      f_agecat == 2 ~ "Millennial",
+      f_agecat == 3 ~ "Gen X",
+      f_agecat == 4 | f_agecat == 5 ~ "Boomer/Silent",
+      TRUE ~ "Other/Refused"  # Catches 99s, etc.
+    )
+  )
+
+# Use count() to check the new column
+print(count(generation_data, age_generation))
+```
+
+**Explanation:** `case_when()` evaluates each condition on the left of the `~` (tilde). When it finds the first `TRUE` condition, it returns the value on the right. The `TRUE ~ ...` at the end acts as a default "else" case.
+
+-----
+
+### `if_else()`
+
+**Explanation:** A simpler, single-condition "if... else" function. It's very strict: `if_else(condition, value_if_true, value_if_false)`.
+
+**Example:** Create a column `is_desktop` that is "Desktop" if `device_type_w144 == 1` and "Mobile" otherwise.
+
+```r
+device_data <- pew_data %>%
+  mutate(
+    device_name = if_else(device_type_w144 == 1, 
+                          "Desktop", 
+                          "Mobile")
+  )
+
+print(count(device_data, device_type_w144, device_name))
+```
+
+-----
+
+### `lag()` / `lead()`
+
+**Explanation:** These functions "shift" a vector, allowing you to get the `lag()` (previous) or `lead()` (next) value. This is most useful *after* an `arrange()` and often inside a `group_by()`.
+
+**Example:** Find the `qkey` of the *previous* respondent *within the same age category*.
+
+```r
+# Sort by age category first!
+lag_data <- pew_data %>%
+  arrange(f_agecat, qkey) %>%
+  group_by(f_agecat) %>%
+  mutate(previous_respondent_in_group = lag(qkey)) %>%
+  ungroup() # Good practice to ungroup after mutate
+
+print(select(lag_data, f_agecat, qkey, previous_respondent_in_group), n = 10)
+```
+
+*(This will show `NA` for the *first* respondent in each new age group, which is correct).*
+
+-----
+
+### `n_distinct()`
+
+**Explanation:** Counts the number of *unique* (distinct) values in a vector. It's often used inside `summarise()`.
+
+**Example:** How many unique political parties are represented in `f_party_final`?
+
+```r
+unique_parties <- pew_data %>%
+  summarise(
+    num_unique_parties = n_distinct(f_party_final)
+  )
+
+print(unique_parties)
+```
+
+-----
+
+### `na_if()`
+
+**Explanation:** A convenient function to convert a specific value (like `99`) to `NA` (Not Available/Missing).
+
+**Example:** Convert all `99` values in `f_agecat` to `NA`.
+
+```r
+cleaner_data <- pew_data %>%
+  mutate(f_agecat_clean = na_if(f_agecat, 99))
+
+# Compare the counts
+print(count(pew_data, f_agecat))
+print(count(cleaner_data, f_agecat_clean)) # Will show an NA row
+```
+
+-----
+
+### `row_number()`
+
+**Explanation:** An "ordering" function that assigns a unique number to each row (1, 2, 3...) based on an ordering. It's almost always used inside `mutate()` after `arrange()` and `group_by()`.
+
+**Example:** Find the two *youngest* respondents (lowest `f_agecat`) *from each political party*.
+
+```r
+# We filter out 99s first for a fair comparison
+youngest_in_party <- pew_data %>%
+  filter(f_agecat != 99, f_party_final != 99) %>%
+  arrange(f_agecat) %>%
+  group_by(f_party_final) %>%
+  mutate(rank_in_party = row_number()) %>%
+  filter(rank_in_party <= 2) %>%
+  select(f_party_final, f_agecat, rank_in_party, qkey)
+  
+print(youngest_in_party)
+```
+
+**Explanation:**
+
+1.  We filter out "Refused" codes.
+2.  We `arrange()` by `f_agecat` *first*, so the youngest are at the top.
+3.  We `group_by()` political party.
+4.  `mutate(rank_in_party = row_number())` gives a rank (1, 2, 3...) *restarting for each party*. Since the data is already sorted by age, rank 1 is the youngest in that party.
+5.  Finally, we `filter()` to keep only ranks 1 and 2.

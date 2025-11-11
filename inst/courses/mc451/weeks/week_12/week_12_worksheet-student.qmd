@@ -22,37 +22,29 @@ library(mccoursepack)
 
 ## 1. Loading and Initial Cleaning (Review)
 
-Load the raw Pew data and perform basic cleaning as in the lab.
+Load the new teaching dataset and perform basic cleaning as in the lab.
 
 ```{r load-clean}
-data("pew_spring_2024_excerpt")
-# pew_spring_2024_excerpt is now available as a data frame
+# Find the full path to the new data set inside the mccoursepack package
+data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
+w144_data <- read_csv(data_path)
 
-pew_clean <- pew_spring_2024_excerpt %>%
-  select(
-    country = COUNTRY,
-    age = DEM2_AGE,
-    gender = DEM1_GENDER,
-    education = DEM5_EDU,
-    ideology = DEM10_IDEOLOGY,
-    view_us = Q1A_US,
-    conf_biden = Q10A_BIDEN,
-    conf_putin = Q10C_PUTIN,
-    conf_xi = Q10B_XI,
-    # Additional variables for examples
-    income = DEM6_INCOME,
-    urban_rural = DEM7_URBAN,
-    religion = DEM8_RELIGION
-  ) %>%
-  mutate(across(everything(), haven::zap_missing)) %>%
+# Preview the data structure
+glimpse(w144_data)
+
+# For this worksheet, we'll assume the following columns exist (adjust as needed):
+#   id, age, gender, education, ideology, party, uses_facebook, uses_x, uses_instagram, uses_tiktok,
+#   fb_why_news, fb_why_family, fb_why_friends, fb_why_groups, fb_why_events, fb_why_entertainment, fb_why_other,
+#   income, urban_rural, religion
+
+w144_clean <- w144_data %>%
   mutate(
-    country = as_factor(country),
     gender = as_factor(gender),
-    view_us = as_factor(view_us),
     education = as_factor(education),
     income = as_factor(income),
     urban_rural = as_factor(urban_rural),
-    religion = as_factor(religion)
+    religion = as_factor(religion),
+    ideology = as.numeric(ideology)
   )
 ```
 
@@ -63,7 +55,7 @@ pew_clean <- pew_spring_2024_excerpt %>%
 Convert education levels to an ordinal numeric scale.
 
 ```{r recode-ordinal}
-pew_clean <- pew_clean %>%
+w144_clean <- w144_clean %>%
   mutate(
     education_ordinal = case_when(
       education == "No formal education" ~ 1,
@@ -82,7 +74,7 @@ pew_clean <- pew_clean %>%
 Combine religion categories into broader groups.
 
 ```{r recode-group}
-pew_clean <- pew_clean %>%
+w144_clean <- w144_clean %>%
   mutate(
     religion_grouped = case_when(
       religion %in% c("Catholic", "Protestant", "Orthodox Christian") ~ "Christian",
@@ -103,15 +95,14 @@ pew_clean <- pew_clean %>%
 
 Average confidence in Biden (US) vs. Putin and Xi (authoritarian).
 
-```{r composite-western}
-pew_clean <- pew_clean %>%
+```{r composite-platforms}
+# Example: Create a composite score for number of platforms used
+w144_clean <- w144_clean %>%
   mutate(
-    conf_biden = as.numeric(conf_biden),
-    conf_putin = as.numeric(conf_putin),
-    conf_xi = as.numeric(conf_xi),
-    
-    conf_western = conf_biden,  # Biden represents Western leader
-    conf_authoritarian = rowMeans(select(., conf_putin, conf_xi), na.rm = TRUE)
+    platform_count = (uses_facebook == "Yes") +
+      (uses_x == "Yes") +
+      (uses_instagram == "Yes") +
+      (uses_tiktok == "Yes")
   )
 ```
 
@@ -120,7 +111,7 @@ pew_clean <- pew_clean %>%
 Create a composite from education and income (treating as ordinal).
 
 ```{r composite-ses}
-pew_clean <- pew_clean %>%
+w144_clean <- w144_clean %>%
   mutate(
     income_ordinal = case_when(
       income == "Lower" ~ 1,
@@ -139,16 +130,15 @@ pew_clean <- pew_clean %>%
 Combine urban/rural residence with ideology.
 
 ```{r composite-urban-ideology}
-pew_clean <- pew_clean %>%
+w144_clean <- w144_clean %>%
   mutate(
-    ideology_numeric = as.numeric(ideology),
     urban_ideology = case_when(
-      urban_rural == "Urban" & ideology_numeric <= 2 ~ "Urban Left",
-      urban_rural == "Urban" & ideology_numeric >= 4 ~ "Urban Right",
-      urban_rural == "Urban" & ideology_numeric == 3 ~ "Urban Center",
-      urban_rural == "Rural" & ideology_numeric <= 2 ~ "Rural Left",
-      urban_rural == "Rural" & ideology_numeric >= 4 ~ "Rural Right",
-      urban_rural == "Rural" & ideology_numeric == 3 ~ "Rural Center",
+      urban_rural == "Urban" & ideology <= 2 ~ "Urban Left",
+      urban_rural == "Urban" & ideology >= 4 ~ "Urban Right",
+      urban_rural == "Urban" & ideology == 3 ~ "Urban Center",
+      urban_rural == "Rural" & ideology <= 2 ~ "Rural Left",
+      urban_rural == "Rural" & ideology >= 4 ~ "Rural Right",
+      urban_rural == "Rural" & ideology == 3 ~ "Rural Center",
       TRUE ~ NA_character_
     )
   )
@@ -161,15 +151,13 @@ pew_clean <- pew_clean %>%
 Only create composite if at least 2 out of 3 items are non-missing.
 
 ```{r composite-min-valid}
-pew_clean <- pew_clean %>%
+# Example: Only create composite if at least 2 out of 4 platforms are non-missing
+w144_clean <- w144_clean %>%
   mutate(
-    # Count non-missing values
-    conf_count = rowSums(!is.na(select(., conf_biden, conf_putin, conf_xi))),
-    
-    # Create composite only if at least 2 valid responses
-    conf_overall = ifelse(conf_count >= 2, 
-                         rowMeans(select(., conf_biden, conf_putin, conf_xi), na.rm = TRUE),
-                         NA_real_)
+    platform_nonmissing = rowSums(!is.na(select(., uses_facebook, uses_x, uses_instagram, uses_tiktok))),
+    platform_count_valid = ifelse(platform_nonmissing >= 2,
+      rowSums(select(., uses_facebook, uses_x, uses_instagram, uses_tiktok) == "Yes", na.rm = TRUE),
+      NA_real_)
   )
 ```
 
@@ -178,11 +166,12 @@ pew_clean <- pew_clean %>%
 Replace missing values with group means.
 
 ```{r imputation}
-pew_clean <- pew_clean %>%
-  group_by(country) %>%
+# Impute missing age and ideology by group (e.g., by party)
+w144_clean <- w144_clean %>%
+  group_by(party) %>%
   mutate(
     age_imputed = ifelse(is.na(age), mean(age, na.rm = TRUE), age),
-    ideology_imputed = ifelse(is.na(ideology_numeric), mean(ideology_numeric, na.rm = TRUE), ideology_numeric)
+    ideology_imputed = ifelse(is.na(ideology), mean(ideology, na.rm = TRUE), ideology)
   ) %>%
   ungroup()
 ```
@@ -194,14 +183,14 @@ pew_clean <- pew_clean %>%
 Ensure age is reasonable and education levels make sense.
 
 ```{r validation}
-pew_clean <- pew_clean %>%
+w144_clean <- w144_clean %>%
   mutate(
     age_valid = age >= 18 & age <= 100,
     education_valid = !is.na(education_ordinal)
   )
 
 # Summary of validation
-pew_clean %>%
+w144_clean %>%
   summarize(
     total_cases = n(),
     valid_age = sum(age_valid, na.rm = TRUE),
@@ -213,13 +202,14 @@ pew_clean %>%
 
 Identify outliers in continuous variables.
 
+age_iqr <- age_q75 - age_q25
 ```{r outliers}
 # Using IQR method for age
-age_q25 <- quantile(pew_clean$age, 0.25, na.rm = TRUE)
-age_q75 <- quantile(pew_clean$age, 0.75, na.rm = TRUE)
+age_q25 <- quantile(w144_clean$age, 0.25, na.rm = TRUE)
+age_q75 <- quantile(w144_clean$age, 0.75, na.rm = TRUE)
 age_iqr <- age_q75 - age_q25
 
-pew_clean <- pew_clean %>%
+w144_clean <- w144_clean %>%
   mutate(
     age_outlier = age < (age_q25 - 1.5 * age_iqr) | age > (age_q75 + 1.5 * age_iqr)
   )
@@ -232,8 +222,8 @@ pew_clean <- pew_clean %>%
 Remove or generalize identifying information.
 
 ```{r anonymize}
-pew_public <- pew_clean %>%
-  select(-c(country, religion)) %>%  # Remove potentially identifying variables
+w144_public <- w144_clean %>%
+  select(-c(religion)) %>%  # Remove potentially identifying variables
   mutate(
     age_grouped = cut(age, breaks = c(0, 30, 50, 100), labels = c("18-30", "31-50", "51+"))
   ) %>%
@@ -242,8 +232,9 @@ pew_public <- pew_clean %>%
 
 ### B. Create Metadata Summary
 
-```{r metadata}
 data_summary <- pew_public %>%
+```{r metadata}
+data_summary <- w144_public %>%
   summarize(
     n_observations = n(),
     n_variables = ncol(.),
@@ -257,7 +248,7 @@ print(data_summary)
 ### C. Save Cleaned Dataset
 
 ```{r save-clean}
-write_csv(pew_public, "pew_data_advanced_clean.csv")
+write_csv(w144_public, "w144_data_advanced_clean.csv")
 ```
 
 ## Practice Exercises

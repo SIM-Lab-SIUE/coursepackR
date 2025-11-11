@@ -44,8 +44,11 @@ Let's write some code! In your `Lab_12.R` script (or in a code chunk like this),
 
 R's power comes from packages. The `tidyverse` is a collection of packages that makes data wrangling simple and intuitive. The `library()` function "opens the toolbox" so R can use its functions.
 
-```         
-# This comment explains your code. R ignores anything after a #. # Run this line to load all the 'tidyverse' tools. library(tidyverse)  
+
+```{r}
+# This comment explains your code. R ignores anything after a #.
+# Run this line to load all the 'tidyverse' tools.
+library(tidyverse)
 ```
 
 *You may see some red text in your Console. This is normal! It's just R telling you which packages it loaded.*
@@ -56,8 +59,13 @@ Now we'll read our CSV file into the R **Environment**. We use the `read_csv()` 
 
 Most importantly, we need to *save* this data as an **object** (or "variable"). We do this using the **assignment arrow: `<-`** (a "less than" sign and a hyphen). You can think of `<-` as "gets" or "is saved as."
 
-```         
-# 1. Find the full path to the data file *inside* the 'mccoursepack' package # system.file() is the standard way to find package files data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")  # 2. Load the data from that full path w144_data <- read_csv(data_path) 
+
+```{r}
+# 1. Find the full path to the data file *inside* the 'mccoursepack' package
+# system.file() is the standard way to find package files
+data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
+# 2. Load the data from that full path
+w144_data <- read_csv(data_path)
 ```
 
 After you run this line, look at your **Environment** (top-right). You should see `w144_data` appear! This means your data is loaded.
@@ -66,8 +74,10 @@ After you run this line, look at your **Environment** (top-right). You should se
 
 Never work "blind." Always look at your data after you load it. The best way is with the `glimpse()` function.
 
-```         
-# Run this to get a "glimpse" of your data in the Console. glimpse(w144_data) 
+
+```{r}
+# Run this to get a "glimpse" of your data in the Console.
+glimpse(w144_data)
 ```
 
 `glimpse()` shows you every column name (like `party` or `uses_tiktok`), the data type (like `<chr>` for character/text or `<dbl>` for double/number), and the first few rows of data.
@@ -84,32 +94,50 @@ It takes the data on the left and "pipes" it into the function on the right. Let
 
 `select()` is used to pick (or remove) columns by name.
 
-```         
-# Take the data AND THEN select only the 'party' and 'age_group' columns w144_data %>%    select(party, age_group) 
+
+```{r}
+# Take the data AND THEN select only the 'party' and 'age_group' columns
+w144_data %>%
+	select(party, age_group)
 ```
 
 ### **Verb 2: `filter()` - Chooses ROWS**
 
 `filter()` is used to pick rows based on a logical test.
 
-```         
-# Take the data AND THEN filter for rows where 'age_group' is "18-29" # Note: We use a double-equals sign `==` to mean "is equal to" w144_data %>%    filter(age_group == "18-29") 
+
+```{r}
+# Take the data AND THEN filter for rows where 'age_group' is "18-29"
+# Note: We use a double-equals sign `==` to mean "is equal to"
+w144_data %>%
+	filter(age_group == "18-29")
 ```
 
 ### **Verb 3: `arrange()` - Sorts ROWS**
 
 `arrange()` re-orders all the rows based on a column's values.
 
-```         
-# Take the data AND THEN arrange the rows by 'F_AGE' (from youngest to oldest) w144_data %>%    arrange(F_AGE)  # You can also sort in descending order w144_data %>%    arrange(desc(F_AGE)) # 'desc()' means descending 
+
+```{r}
+# Take the data AND THEN arrange the rows by 'F_AGE' (from youngest to oldest)
+w144_data %>%
+	arrange(F_AGE)
+
+# You can also sort in descending order
+w144_data %>%
+	arrange(desc(F_AGE)) # 'desc()' means descending
 ```
 
 ### **Chaining Verbs Together**
 
 The *power* of the pipe comes from chaining verbs. **Question:** Show me the `party` and `F_AGE` for all "18-29" year-olds, sorted from oldest to youngest.
 
-```         
-w144_data %>%    filter(age_group == "18-29") %>%    # 1. First, filter the rows   select(party, F_AGE) %>%            # 2. Then, select the columns   arrange(desc(F_AGE))                # 3. Finally, sort the result 
+
+```{r}
+w144_data %>%
+	filter(age_group == "18-29") %>%    # 1. First, filter the rows
+	select(party, F_AGE) %>%             # 2. Then, select the columns
+	arrange(desc(F_AGE))                 # 3. Finally, sort the result
 ```
 
 ## **Part 3: Creating New Variables with `mutate()`**
@@ -122,8 +150,31 @@ This is the core of "wrangling." We will start a new, permanent dataset called `
 
 Let's make a simpler `party` variable. We'll use `case_when()` for this.
 
-```         
-# This code block starts our pipe. # We're saying: "Take w144_data AND THEN..." # We save the *entire* result in a new object: w144_wrangled w144_wrangled <- w144_data %>%       # The 'mutate()' function CREATES NEW COLUMNS.   mutate(          # 1. NEW VARIABLE: 'party_simple'     # 'case_when()' is a powerful IF/THEN function.     # It checks a set of rules in order.     party_simple = case_when(       party == "Republican" ~ "Republican", # IF party is "Republican", THEN "Republican"       party == "Democrat" ~ "Democrat",     # IF party is "Democrat", THEN "Democrat"       TRUE ~ "Independent/Other"          # TRUE is a "catch-all" for everything else     ) %>%        # We pipe 'party_simple' to factor() to set the correct order       factor(levels = c("Republican", "Democrat", "Independent/Other"))      ) # This parenthesis closes the 'mutate()' function   # --- CHECK YOUR WORK --- # Let's count our two party variables to see if it worked. # The 'count()' function is a fast way to get frequencies. w144_wrangled %>%    count(party, party_simple) 
+
+```{r}
+# This code block starts our pipe.
+# We're saying: "Take w144_data AND THEN..."
+# We save the *entire* result in a new object: w144_wrangled
+w144_wrangled <- w144_data %>%
+	# The 'mutate()' function CREATES NEW COLUMNS.
+	mutate(
+		# 1. NEW VARIABLE: 'party_simple'
+		# 'case_when()' is a powerful IF/THEN function.
+		# It checks a set of rules in order.
+		party_simple = case_when(
+			party == "Republican" ~ "Republican", # IF party is "Republican", THEN "Republican"
+			party == "Democrat" ~ "Democrat",     # IF party is "Democrat", THEN "Democrat"
+			TRUE ~ "Independent/Other"             # TRUE is a "catch-all" for everything else
+		) %>%
+			# We pipe 'party_simple' to factor() to set the correct order
+			factor(levels = c("Republican", "Democrat", "Independent/Other"))
+	)
+
+# --- CHECK YOUR WORK ---
+# Let's count our two party variables to see if it worked.
+# The 'count()' function is a fast way to get frequencies.
+w144_wrangled %>%
+	count(party, party_simple)
 ```
 
 **Look at the result in your Console.** You should see a table showing how "Independent" and "Something else" were both correctly grouped into "Independent/Other."
@@ -134,8 +185,24 @@ Now, let's continue our pipe. We'll *add* a new variable to our `w144_wrangled` 
 
 **How it works:** In R, `TRUE` is treated as `1` and `FALSE` is treated as `0`. So, `(uses_facebook == "Yes")` will be `1` (if TRUE) or `0` (if FALSE). We can add these 1s and 0s.
 
-```         
-# We take our 'w144_wrangled' object (which already has party_simple) # AND THEN add *another* new variable inside a mutate() call.  w144_wrangled <- w144_wrangled %>%       mutate(          # 2. NEW VARIABLE: 'platform_count'     # We are just adding the 1s and 0s from these four columns.     platform_count = (uses_facebook == "Yes") +                      (uses_x == "Yes") +                      (uses_instagram == "Yes") +                      (uses_tiktok == "Yes")      ) # This parenthesis closes the 'mutate()' function   # --- CHECK YOUR WORK --- # Let's get a 'summary()' of our new numeric variable # The `$` sign is used to pull one column from a dataset summary(w144_wrangled$platform_count) 
+
+```{r}
+# We take our 'w144_wrangled' object (which already has party_simple)
+# AND THEN add *another* new variable inside a mutate() call.
+w144_wrangled <- w144_wrangled %>%
+	mutate(
+		# 2. NEW VARIABLE: 'platform_count'
+		# We are just adding the 1s and 0s from these four columns.
+		platform_count = (uses_facebook == "Yes") +
+			(uses_x == "Yes") +
+			(uses_instagram == "Yes") +
+			(uses_tiktok == "Yes")
+	)
+
+# --- CHECK YOUR WORK ---
+# Let's get a 'summary()' of our new numeric variable
+# The `$` sign is used to pull one column from a dataset
+summary(w144_wrangled$platform_count)
 ```
 
 **In your Console,** you should see a summary showing the `Min.` (0), `Median`, `Mean`, and `Max.` (4) for your new scale. This proves it worked!
@@ -152,8 +219,39 @@ This is the central task. We want to create a scale that measures *how many* dif
 
 We will add these new steps to our `w144_wrangled` pipe.
 
-```         
-# We continue modifying our 'w144_wrangled' object w144_wrangled <- w144_wrangled %>%       mutate(      # --- 4a. RECODE 'fb_why' ITEMS TO 1/0 ---     # 'across()' lets us do the same thing to many columns at once.     # 'starts_with("fb_why_")' selects all 7 'fb_why' columns.     # 'if_else()' is a simple IF/THEN: if_else(condition, value_if_TRUE, value_if_FALSE)     across(       starts_with("fb_why_"),        ~ if_else(. == "Yes", 1, 0),       # '.names' creates new columns, adding "_n" (for 'numeric') to the end       .names = "{.col}_n"      )    ) %>% # <-- This parenthesis closes 'mutate()'      # --- 4b. SUM THE NEW 1/0 COLUMNS ---   # We start a NEW 'mutate()' call after the first one finishes.   # This is because we can only sum the columns *after* they are created.   mutate(          # 'rowSums()' adds up columns *across* a single row.     # 'na.rm = TRUE' tells R to just ignore any missing (NA) data.     fb_uses_count = rowSums(       across(starts_with("fb_why_") & ends_with("_n")), # Selects our new numeric columns       na.rm = TRUE     )        ) # <-- This parenthesis closes the SECOND 'mutate()'   # --- CHECK YOUR WORK --- # Glimpse the data to see your new '_n' columns AND 'fb_uses_count' glimpse(w144_wrangled)  # Get a summary of your final scale summary(w144_wrangled$fb_uses_count) 
+
+```{r}
+# We continue modifying our 'w144_wrangled' object
+w144_wrangled <- w144_wrangled %>%
+	mutate(
+		# --- 4a. RECODE 'fb_why' ITEMS TO 1/0 ---
+		# 'across()' lets us do the same thing to many columns at once.
+		# 'starts_with("fb_why_")' selects all 7 'fb_why' columns.
+		# 'if_else()' is a simple IF/THEN: if_else(condition, value_if_TRUE, value_if_FALSE)
+		across(
+			starts_with("fb_why_"),
+			~ if_else(. == "Yes", 1, 0),
+			# '.names' creates new columns, adding "_n" (for 'numeric') to the end
+			.names = "{.col}_n"
+		)
+	) %>% # <-- This parenthesis closes 'mutate()'
+	# --- 4b. SUM THE NEW 1/0 COLUMNS ---
+	# We start a NEW 'mutate()' call after the first one finishes.
+	# This is because we can only sum the columns *after* they are created.
+	mutate(
+		# 'rowSums()' adds up columns *across* a single row.
+		# 'na.rm = TRUE' tells R to just ignore any missing (NA) data.
+		fb_uses_count = rowSums(
+			across(starts_with("fb_why_") & ends_with("_n")), # Selects our new numeric columns
+			na.rm = TRUE
+		)
+	)
+
+# --- CHECK YOUR WORK ---
+# Glimpse the data to see your new '_n' columns AND 'fb_uses_count'
+glimpse(w144_wrangled)
+# Get a summary of your final scale
+summary(w144_wrangled$fb_uses_count)
 ```
 
 **Check your `glimpse()` output.** You should see new columns like `fb_why_news_n` (which is `<dbl>`) and, at the very end, your new `fb_uses_count` scale! The summary should show a `Min.` of 0 and a `Max.` of 7.
@@ -170,8 +268,20 @@ To do this, we combine two *new* verbs:
 
 -   `summarize()`: Collapses each group into a single number (like a mean).
 
-```         
-# We use our final 'w144_wrangled' object w144_wrangled %>%       # 1. Group by the 'party_simple' variable we created   group_by(party_simple) %>%       # 2. Calculate the mean for our two new scales   summarize(     avg_platform_count = mean(platform_count, na.rm = TRUE),     avg_fb_uses_count = mean(fb_uses_count, na.rm = TRUE)   ) %>%       # 3. 'arrange()' sorts our final output   # 'desc()' means "descending" (highest to lowest)   arrange(desc(avg_platform_count)) 
+
+```{r}
+# We use our final 'w144_wrangled' object
+w144_wrangled %>%
+	# 1. Group by the 'party_simple' variable we created
+	group_by(party_simple) %>%
+	# 2. Calculate the mean for our two new scales
+	summarize(
+		avg_platform_count = mean(platform_count, na.rm = TRUE),
+		avg_fb_uses_count = mean(fb_uses_count, na.rm = TRUE)
+	) %>%
+	# 3. 'arrange()' sorts our final output
+	# 'desc()' means "descending" (highest to lowest)
+	arrange(desc(avg_platform_count))
 ```
 
 **Look at the table in your Console.** You just ran your first analysis! You've transformed raw survey data into a clean, summary table that answers a specific research question.
