@@ -1,0 +1,260 @@
+Here is the updated Markdown file for the `janitor` package.
+
+I've gone through and updated all the R code examples to use the new, correct column names from your `w144_wrangled` data (e.g., `QKEY`, `age_group`, `gender`, `party_simple`, `education`). I've also updated the filter conditions, as the new text-based columns use `NA` for missing values instead of the number `99`.
+
+-----
+
+# R `janitor` Package: A Guide for Students
+
+This guide introduces you to the most common functions from the **`janitor`** package. This package is designed to make data cleaning and creating summary tables (like crosstabs) simple and efficient. It works perfectly with the `dplyr` verbs you've already learned.
+
+All examples assume you have first loaded the `dplyr` and `janitor` libraries and the Pew dataset:
+
+```{r}
+# First, make sure you have janitor installed: install.packages("janitor")
+library(dplyr)
+library(janitor) # Load janitor
+library(readr)
+
+# Load the dataset
+# This R code below loads the *original* data and *creates*
+# the 'w144_wrangled' data frame by adding new columns.
+data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
+w144_data <- read_csv(data_path)
+
+w144_wrangled <- w144_data %>% 
+  mutate(
+    party_simple = case_when(
+      party == "Republican" ~ "Republican",
+      party == "Democrat" ~ "Democrat",
+      TRUE ~ "Independent/Other"
+    ) %>% 
+      factor(levels = c("Republican", "Democrat", "Independent/Other")),
+    
+    platform_count = (uses_facebook == "Yes") +
+                     (uses_x == "Yes") +
+                     (uses_instagram == "Yes") +
+                     (uses_tiktok == "Yes"),
+    across(
+      starts_with("fb_why_"), 
+      ~ if_else(. == "Yes", 1, 0),
+      .names = "{.col}_n" 
+    )
+  ) %>%
+  mutate(
+    fb_uses_count = rowSums(
+      across(starts_with("fb_why_") & ends_with("_n")), 
+      na.rm = TRUE
+    )
+  )
+```
+
+-----
+
+## 🧹 Core Cleaning Functions
+
+These functions help you clean your dataset.
+
+### `clean_names()`
+
+**Explanation:** This is the most famous `janitor` function. It "perfectly formats data.frame column names." It converts all names to a consistent format (by default, "snake\_case," which is `lowercase_and_with_underscores`) and ensures all names are unique. This is extremely useful when you import data from Excel or other sources with messy column names (like "Column Name (2025)").
+
+**Example:** Let's create a small, "messy" data frame and clean it.
+
+```{r}
+# Create a messy data frame using our w144_wrangled
+# We select real columns and then rename them to be messy
+messy_data <- w144_wrangled %>%
+  select(QKEY, education, age_group) %>%
+  rename("Respondent ID" = QKEY,
+         "Level of Education" = education,
+         "age_group" = age_group) # This one is already mostly clean
+
+print("--- Original Messy Names ---")
+glimpse(messy_data)
+
+# Now, clean the names
+clean_data <- messy_data %>%
+  clean_names()
+
+print("--- Cleaned Names ---")
+glimpse(clean_data)
+```
+
+**Explanation:** We first `rename()` our columns to have spaces and capital letters, which are difficult to work with in R. When we pipe `messy_data` into `clean_names()`, it automatically converts "Respondent ID" to `respondent_id` and "Level of Education" to `level_of_education`. The `age_group` column is also standardized.
+
+**Practice Prompt:** The `w144_wrangled` object is already clean. To see `clean_names()` in action, pipe the original `w144_data` object into `clean_names()` and use `glimpse()` to see the result.
+
+-----
+
+### `remove_empty()`
+
+**Explanation:** This is a simple utility to remove all rows or all columns from your data that are *entirely* `NA`. You can specify `which = "rows"`, `which = "cols"`, or `which = c("rows", "cols")`.
+
+**Example:** Let's create a test data frame with an empty row and an empty column.
+
+```{r}
+# Create a test data frame
+test_df <- data.frame(
+  A = c(1, NA, 3),
+  B = c(NA, NA, NA), # An all-NA column
+  C = c(4, 5, NA)
+)
+# Add an all-NA row
+test_df[4, ] <- NA
+
+print("--- Original Data ---")
+print(test_df)
+
+# Remove both empty rows and columns
+clean_df <- test_df %>%
+  remove_empty(which = c("rows", "cols"))
+
+print("--- Cleaned Data ---")
+print(clean_df)
+```
+
+**Explanation:** The original `test_df` had an all-NA column (`B`) and an all-NA row (row 4). The `remove_empty()` function identified and removed both, returning only the 3x2 data frame with actual data.
+
+**Practice Prompt:** Using the same `test_df`, how would you remove *only* the empty columns but *keep* the empty row?
+
+-----
+
+### `get_dupes()`
+
+**Explanation:** This function helps you find duplicate records during data cleaning. [cite: 712] You provide the data frame and the column names to check for duplicate combinations. It returns a new data frame showing *only* the rows that are duplicates, plus a new column `dupe_count` showing how many times that combination appeared.
+
+**Example:** Let's check if there are any duplicate respondent IDs (`QKEY`) in our dataset. (There shouldn't be\!)
+
+```{r}
+# Check for duplicates in the 'QKEY' column
+w144_wrangled %>%
+  get_dupes(QKEY)
+```
+
+**Explanation:** This code checks the entire `w144_wrangled` data frame to see if any value in the `QKEY` column appears more than once. If it returns an empty data frame (with 0 rows), it means our data is "clean" and every respondent ID is unique.
+
+**Practice Prompt:** Check if there are any rows that have the *exact same combination* of `age_group`, `gender`, and `party_simple`.
+
+-----
+
+## 📊 Tabulation Functions (`tabyl`)
+
+This family of functions is for creating frequency tables and crosstabs.
+
+### `tabyl()`
+
+**Explanation:** This is a modern replacement for R's `table()` function. It takes a data frame and one, two, or three variable names and creates a frequency table.
+
+  - **One variable:** Creates a frequency table with counts (`n`) and percentages (`percent`).
+  - **Two variables:** Creates a crosstabulation (crosstab) showing the counts of co-occurrences.
+  - The result is a **data frame**, so you can pipe it to other `dplyr` or `janitor` functions.
+
+**Example:** Create a 1-way frequency table for education level and a 2-way crosstab for gender and political party.
+
+```{r}
+# 1-way table (using education)
+w144_wrangled %>%
+  tabyl(education)
+
+# 2-way table (crosstab)
+# We can filter out NA values for a cleaner table
+w144_wrangled %>%
+  filter(!is.na(gender), !is.na(party_simple)) %>%
+  tabyl(gender, party_simple)
+```
+
+**Explanation:** The first `tabyl()` shows the counts and percentages for `education`. The second `tabyl()` creates a table with `gender` as the rows and `party_simple` as the columns, showing the count of respondents at each intersection (e.g., how many people are both "Female" and "Democrat").
+
+**Practice Prompt:** Create a two-way `tabyl()` to explore the relationship between `age_group` and `party_simple`.
+
+-----
+
+### `adorn_totals()`
+
+**Explanation:** This function is "piped" after a `tabyl()` to add a totals row and/or column. You can specify `where = "row"`, `where = "col"`, or `where = c("row", "col")` to control which totals are added.
+
+**Example:** Create a crosstab of gender and party and add totals for both rows and columns.
+
+```{r}
+w144_wrangled %>%
+  filter(!is.na(gender), !is.na(party_simple)) %>%
+  tabyl(gender, party_simple) %>%
+  adorn_totals(where = c("row", "col"))
+```
+
+**Explanation:** This chain first creates the crosstab. Then, `adorn_totals()` adds a "Total" row at the bottom and a "Total" column on the right, giving you the marginal frequencies.
+
+**Practice Prompt:** Create a `tabyl()` of `age_group` and `gender` (filtering for `NA`s) and add *only* a totals column.
+
+-----
+
+### `adorn_percentages()`
+
+**Explanation:** This function converts a data frame of counts (from `tabyl()`) into percentages. You **must** specify the `denominator` to tell it *how* to calculate the percentages:
+
+  - `denominator = "row"` (calculates across the rows)
+  - `denominator = "col"` (calculates down the columns)
+  - `denominator = "all"` (calculates based on the grand total)
+
+**Example:** Answer the question: "What percentage of *each political party* is "Female" vs. "Male"?"
+
+```{r}
+# We must use denominator = "col" to get percentages *within* each column (party)
+w144_wrangled %>%
+  filter(!is.na(gender), !is.na(party_simple)) %>%
+  tabyl(gender, party_simple) %>%
+  adorn_percentages(denominator = "col")
+```
+
+**Explanation:** This calculates the percentages *down the columns*. For example, you'll see the percentage of "Democrat" respondents who are "Female" and the percentage who are "Male". Each column will add up to 1.0 (representing 100% of that party).
+
+**Practice Prompt:** How would you answer the *other* question: "What percentage of *each gender* falls into each political party?" (Hint: You'll need to change the `denominator`).
+
+-----
+
+### `adorn_pct_formatting()`
+
+**Explanation:** This function makes your percentages (which are decimals, like `0.5833`) look pretty. It multiplies by 100, rounds the number, and adds a "%" sign. You can control the number of decimal places with the `digits` argument.
+
+**Example:** Create a column-percentage table and format it to one decimal place.
+
+```{r}
+w144_wrangled %>%
+  filter(!is.na(gender), !is.na(party_simple)) %>%
+  tabyl(gender, party_simple) %>%
+  adorn_percentages(denominator = "col") %>%
+  adorn_pct_formatting(digits = 1)
+```
+
+**Explanation:** This chain builds on the last example. The `adorn_percentages()` output (e.g., `0.5833...`) is piped into `adorn_pct_formatting()`, which turns it into a clean, readable string like "58.3%".
+
+**Practice Prompt:** Create the same table, but show the percentages with *zero* decimal places.
+
+-----
+
+### `adorn_ns()`
+
+**Explanation:** This is the final piece for a "publication-ready" table. After you've converted your counts to percentages, `adorn_ns()` adds the original counts (the "N") back into the table. This allows you to show both the percentage and the N in a single cell (e.g., "58.3% (120)").
+
+**Example:** Create a full table showing formatted column percentages *and* the underlying Ns.
+
+```{r}
+w144_wrangled %>%
+  filter(!is.na(gender), !is.na(party_simple)) %>%
+  tabyl(gender, party_simple) %>%
+  adorn_totals("col") %>% # Add column totals before percentages
+  adorn_percentages(denominator = "col") %>%
+  adorn_pct_formatting(digits = 1) %>%
+  adorn_ns(position = "front")
+```
+
+**Explanation:** This is a common "full" pipeline.
+
+1.  `tabyl()`: Creates the counts.
+2.  `adorn_totals("col")`: Adds a "Total" column.
+3.  `adorn_percentages("col")`: Calculates column percentages (this works correctly even with the total column\!).
+4.  `adorn_pct_formatting()`: Formats the percentages to strings (e.g., "58.3%").
+5.  `adorn_ns(position = "front")`: Adds the original Ns (e.g., "(120)") to the front of the percentage string.
+
+**Practice Prompt:** Create the same table, but pipe `adorn_totals(where = c("row", "col"))` *after* `adorn_ns()` to get a fully-adorned table with Ns, percentages, and totals for both dimensions.
