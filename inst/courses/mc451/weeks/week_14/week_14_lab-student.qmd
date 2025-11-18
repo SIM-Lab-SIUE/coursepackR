@@ -4,19 +4,19 @@
 
 In the last two labs, you have wrangled and visualized your data.
 
-  * In **Lab 12**, you created new variables (like `platform_count`).
-  * In **Lab 13**, you *described* those variables using plots (like `geom_violin`). You *saw* what looked like differences between groups.
+-   In **Lab 12**, you created new variables (like `platform_count`).
+-   In **Lab 13**, you *described* those variables using plots (like `geom_violin`). You *saw* what looked like differences between groups.
 
 This week, we make the **leap from description to inference**. As the `data-chapters.pdf` reading explains, we are moving from "what we see" in our **sample** to making an educated, statistical claim about the larger **population**. We will ask: "Is the difference I see in my plot *real*, or could it just be due to random chance?"
 
 By the end of this lab, you will be able to:
 
-  * Define a **Null Hypothesis (H0)** and an **Alternative Hypothesis (HA)**.
-  * Understand and interpret a **p-value** (and the `p < .05` rule).
-  * Run and interpret a **Chi-Square Test** (`chisq.test()`) for categorical relationships.
-  * Run and interpret a **T-Test** (`t.test()`) to compare two group means.
-  * Run and interpret an **ANOVA** (`aov()`) to compare three or more group means.
-  * Run and interpret a **TukeyHSD()** post-hoc test to find *which* groups are different.
+-   Define a **Null Hypothesis (H0)** and an **Alternative Hypothesis (HA)**.
+-   Understand and interpret a **p-value** (and the `p < .05` rule).
+-   Run and interpret a **Chi-Square Test** (`chisq.test()`) for categorical relationships.
+-   Run and interpret a **T-Test** (`t.test()`) to compare two group means.
+-   Run and interpret an **ANOVA** (`aov()`) to compare three or more group means.
+-   Run and interpret a **TukeyHSD()** post-hoc test to find *which* groups are different.
 
 ### **Pew Research Center: Required Citation**
 
@@ -24,7 +24,7 @@ As always, any script, report, or presentation that uses this data must include 
 
 > "Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.”
 
------
+------------------------------------------------------------------------
 
 ## **Part 1: Setup - Get Your Data Ready**
 
@@ -83,43 +83,43 @@ w144_wrangled <- w144_data %>%
 glimpse(w144_wrangled)
 ```
 
-  * **1. Load the tidyverse:** Loads the `tidyverse` library.
-  * **2. Find Path:** `system.file()` is the standard way to find package files *inside* the 'mccoursepack' package.
-  * **3. Load Data:** Loads the data from the full path.
-  * **4. Glimpse:** Confirms the raw `w144_data` is loaded.
-  * **5. Run Wrangling Steps:**
-      * (Inside first `mutate`): Create 'party\_simple'
-      * (Inside first `mutate`): Create 'platform\_count'
-      * (Inside first `mutate`): Recode 'fb\_why' items to 1/0
-      * (Inside second `mutate`): Create 'fb\_uses\_count' scale
-  * **6. Check Your Work:** Glimpse your final `w144_wrangled` object to make sure it's ready.
+-   **1. Load the tidyverse:** Loads the `tidyverse` library.
+-   **2. Find Path:** `system.file()` is the standard way to find package files *inside* the 'mccoursepack' package.
+-   **3. Load Data:** Loads the data from the full path.
+-   **4. Glimpse:** Confirms the raw `w144_data` is loaded.
+-   **5. Run Wrangling Steps:**
+    -   (Inside first `mutate`): Create 'party_simple'
+    -   (Inside first `mutate`): Create 'platform_count'
+    -   (Inside first `mutate`): Recode 'fb_why' items to 1/0
+    -   (Inside second `mutate`): Create 'fb_uses_count' scale
+-   **6. Check Your Work:** Glimpse your final `w144_wrangled` object to make sure it's ready.
 
 After running this, your **Environment** should contain the `w144_wrangled` object. We are now ready to test hypotheses.
 
------
+------------------------------------------------------------------------
 
 ## **Part 2: What is Hypothesis Testing? (The 30-Second Version)**
 
 In inferential statistics, we are always testing a **Null Hypothesis (H0)**.
 
-  * **Null Hypothesis (H0):** The "boring" hypothesis. It states there is **no** relationship, **no** association, or **no** difference between groups. (e.g., "There is no difference in platform use between men and women.")
-  * **Alternative Hypothesis (HA):** The "interesting" hypothesis. It states that there *is* a relationship, association, or difference. (e.g., "There *is* a difference in platform use between men and women.")
+-   **Null Hypothesis (H0):** The "boring" hypothesis. It states there is **no** relationship, **no** association, or **no** difference between groups. (e.g., "There is no difference in platform use between men and women.")
+-   **Alternative Hypothesis (HA):** The "interesting" hypothesis. It states that there *is* a relationship, association, or difference. (e.g., "There *is* a difference in platform use between men and women.")
 
 We run a test to get a **p-value**.
 
-  * The **p-value** is the *probability of getting our data (or more extreme) if the Null Hypothesis (H0) were true.*
-  * A tiny p-value means: "It's *very unlikely* we'd see this data if H0 were true."
-  * **The Rule:** If **`p < .05`** (less than 5% probability), we **reject the Null Hypothesis (H0)**. We conclude that our finding is **statistically significant** and that our Alternative Hypothesis (HA) is likely true.
+-   The **p-value** is the *probability of getting our data (or more extreme) if the Null Hypothesis (H0) were true.*
+-   A tiny p-value means: "It's *very unlikely* we'd see this data if H0 were true."
+-   **The Rule:** If **`p < .05`** (less than 5% probability), we **reject the Null Hypothesis (H0)**. We conclude that our finding is **statistically significant** and that our Alternative Hypothesis (HA) is likely true.
 
------
+------------------------------------------------------------------------
 
 ## **Part 3: Test 1 - The Chi-Square (χ²) Test**
 
 **Use Case:** When you are testing for an **association** between two **categorical** variables.
 
-  * **Research Question:** "Is there a statistically significant *association* between political party (`party_simple`) and TikTok use (`uses_tiktok`)?"
-  * **H0 (Null):** There is **no association** between `party_simple` and `uses_tiktok`. (The variables are independent.)
-  * **HA (Alternative):** There *is* an association between `party_simple` and `uses_tiktok`.
+-   **Research Question:** "Is there a statistically significant *association* between political party (`party_simple`) and TikTok use (`uses_tiktok`)?"
+-   **H0 (Null):** There is **no association** between `party_simple` and `uses_tiktok`. (The variables are independent.)
+-   **HA (Alternative):** There *is* an association between `party_simple` and `uses_tiktok`.
 
 ### **Step 1: Create a Contingency Table (Crosstab)**
 
@@ -132,8 +132,8 @@ party_tiktok_table <- table(w144_wrangled$party_simple,
 print(party_tiktok_table)
 ```
 
-  * This creates a contingency table (crosstab) of the two categorical variables.
-  * `print()` displays the table in the Console.
+-   This creates a contingency table (crosstab) of the two categorical variables.
+-   `print()` displays the table in the Console.
 
 *You can see the raw counts. But are these counts "different enough" from what we'd expect by chance?*
 
@@ -145,86 +145,86 @@ The `chisq.test()` function runs the test directly on your table.
 chisq.test(party_tiktok_table)
 ```
 
-  * Runs the Chi-Square test on the `party_tiktok_table` object you just created.
+-   Runs the Chi-Square test on the `party_tiktok_table` object you just created.
 
 ### **Step 3: Interpret the Result**
 
-Look in your Console at the output. You'll see `X-squared = ...`, `df = ...`, and `p-value = ...`.
+Regression analysis allows us to examine the relationship between one numeric outcome (dependent variable) and one or more predictor (independent) variables. Here, we will cover both simple (linear) and multiple linear regression using the `w144_wrangled` dataset.
 
-```
-        Pearson's Chi-squared test
-data:  party_tiktok_table
-X-squared = 824.22, df = 2, p-value < 2.2e-16
-```
+**Note:** In this dataset, `income` is a categorical variable (see codebook), but it is coded as numeric (1–9, with 99 = Refused). Treating it as numeric is a simplification for demonstration purposes.
 
-  * **Interpretation:** Our p-value is `< 2.2e-16`. This is scientific notation for a *very, very* small number (0.000...0022).
-  * This p-value is *much less than 0.05*.
-  * **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude that there *is* a statistically significant association between a person's political party and whether or not they use TikTok.
+### **A. Simple Linear Regression**
 
------
+**Use Case:** Predict a numeric outcome from a single numeric predictor.
 
-## **Part 4: Test 2 - The Independent Samples T-Test**
+-   **Research Question:** Is there a relationship between family income (coded 1–9) and the number of platforms used (`platform_count`)?
+-   **H0 (Null):** There is no linear relationship between income and platform count (slope = 0).
+-   **HA (Alternative):** There is a linear relationship (slope ≠ 0).
 
-**Use Case:** When you are testing for a **difference** in a **numeric** variable between **two categorical** groups.
-
-  * **Research Question:** "Is there a statistically significant *difference* in `platform_count` (numeric) between men and women (`gender`)?"
-  * **H0 (Null):** The mean `platform_count` for men is **the same as** the mean `platform_count` for women. (Mean 1 = Mean 2)
-  * **HA (Alternative):** The mean `platform_count` for men is **not the same as** the mean `platform_count` for women. (Mean 1 ≠ Mean 2)
-
-### **Step 1: Run the T-Test**
-
-We use the `t.test()` function. The formula syntax `y ~ x` (read as "y by x") is the easiest way. `platform_count ~ gender`.
-
-**Important:** The `t.test()` function can be fussy about `NA` (missing) values. It's safest to create a small, filtered dataset first.
+#### **Step 1: Fit the Linear Regression Model**
 
 ```{r}
-gender_data <- w144_wrangled %>% 
-  filter(!is.na(gender))
+# Remove missing values and refusals for income and platform_count
+reg_data <- w144_wrangled %>% filter(!is.na(income), income != 99, !is.na(platform_count))
 
-t.test(platform_count ~ gender, data = gender_data)
+# Fit the model
+lm_simple <- lm(platform_count ~ income, data = reg_data)
+
+# View the summary
+summary(lm_simple)
 ```
 
-  * **Step 1:** Create a new dataset (`gender_data`) that removes rows where the `gender` column has a missing (`NA`) value. `is.na()` checks for missing, and `!` means "NOT".
-  * **Step 2:** Run the `t.test` on this new, clean `gender_data`, using the formula `platform_count ~ gender` ("platform\_count by gender").
+#### **Step 2: Interpret the Result**
 
-### **Step 2: Interpret the Result**
+Look at the `summary(lm_simple)` output. Focus on the `income` row:
 
-Look at the output in your Console.
+-   The **Estimate** for `income` is the slope. If positive, platform use increases as income increases (from lower to higher income categories).
+-   The **p-value** tests if the slope is significantly different from zero.
+-   If `p < .05`, we reject H0 and conclude there is a significant linear relationship between income and platform count.
 
+------------------------------------------------------------------------
+
+### **B. Multiple Linear Regression**
+
+**Use Case:** Predict a numeric outcome from two or more predictors (can be numeric or categorical).
+
+-   **Research Question:** How do income, gender, and political party together predict the number of platforms used?
+-   **H0 (Null):** None of the predictors are related to platform count (all slopes = 0).
+-   **HA (Alternative):** At least one predictor is related to platform count.
+
+#### **Step 1: Fit the Multiple Regression Model**
+
+```{r}
+# Remove missing values and refusals for all predictors
+multi_reg_data <- w144_wrangled %>% 
+  filter(!is.na(income), income != 99, !is.na(gender), !is.na(party_simple), !is.na(platform_count))
+
+# Fit the model (gender and party_simple are categorical)
+lm_multi <- lm(platform_count ~ income + gender + party_simple, data = multi_reg_data)
+
+# View the summary
+summary(lm_multi)
 ```
-        Welch Two Sample t-test
-data:  platform_count by gender
-t = 2.0594, df = 9976.2, p-value = 0.03947
-...
-mean in group Female mean in group Male 
-           2.036087            1.986872 
-```
 
-  * **Interpretation:** Our `p-value` is `0.03947`.
-  * This p-value is *less than 0.05*.
-  * **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude there *is* a statistically significant difference in the average number of platforms used by men and women.
-  * The output also gives us the means: Females in the sample used an average of 2.04 platforms, while Males used 1.99. The t-test confirms this small difference is *statistically significant*.
+#### **Step 2: Interpret the Result**
 
------
+-   Each row in the output shows the effect of a predictor, controlling for the others.
+-   The **p-value** for each predictor tests if it is significantly related to platform count.
+-   If `p < .05` for a predictor, it is a significant predictor of platform count.
+-   The **Intercept** is the expected platform count for the reference group (e.g., lowest income, baseline gender and party).
 
-## **Part 5: Test 3 - Analysis of Variance (ANOVA)**
+------------------------------------------------------------------------
 
-**Use Case:** When you are testing for a **difference** in a **numeric** variable between **three or more categorical** groups. (It's like a t-test for 3+ groups).
+**Summary:**
 
-  * **Research Question:** "Is there a statistically significant *difference* in `platform_count` (numeric) across our four `age_group` categories?"
-  * **H0 (Null):** The mean `platform_count` is **the same** for all four age groups. (Mean 1 = Mean 2 = Mean 3 = Mean 4)
-  * **HA (Alternative):** **At least one** of the age group means is different from the others.
-
-### **Step 1: Create the ANOVA Model**
-
-We use the `aov()` (Analysis of Variance) function. The syntax is the same formula: `y ~ x`.
+Regression analysis allows you to model and interpret the relationship between a numeric outcome and one or more predictors. Use simple regression for one predictor, and multiple regression for several predictors (including categorical variables). Here, income is treated as numeric for demonstration, but in practice, you may want to treat it as a factor.
 
 ```{r}
 anova_model <- aov(platform_count ~ age_group, data = w144_wrangled)
 ```
 
-  * **Step 1:** Create the model object using `aov()` (analysis of variance).
-  * The formula `platform_count ~ age_group` tests the `platform_count` variable *by* the `age_group` categories.
+-   **Step 1:** Create the model object using `aov()` (analysis of variance).
+-   The formula `platform_count ~ age_group` tests the `platform_count` variable *by* the `age_group` categories.
 
 ### **Step 2: Get the Summary Table**
 
@@ -234,13 +234,13 @@ You must call `summary()` on the model to see the results.
 summary(anova_model)
 ```
 
-  * **Step 2:** Look at the summary of the model object to see the results table.
+-   **Step 2:** Look at the summary of the model object to see the results table.
 
 ### **Step 3: Interpret the Result**
 
 The output in your Console is a table. Find the row for your variable (`age_group`).
 
-```
+```         
                  Df Sum Sq Mean Sq F value Pr(>F)    
 age_group         3   2817   939.1   554.2 <2e-16 ***
 Residuals     10166  17234     1.7                   
@@ -249,11 +249,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 (284 observations deleted due to missingness)
 ```
 
-  * **Interpretation:** Find the `Pr(>F)` column. This is your p-value.
-  * Our p-value is `< 2e-16`, which is *much less than 0.05*.
-  * **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude that there *is* a statistically significant difference in mean `platform_count` somewhere between our four age groups.
+-   **Interpretation:** Find the `Pr(>F)` column. This is your p-value.
+-   Our p-value is `< 2e-16`, which is *much less than 0.05*.
+-   **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude that there *is* a statistically significant difference in mean `platform_count` somewhere between our four age groups.
 
------
+------------------------------------------------------------------------
 
 ## **Part 6: The "So What?" Test (ANOVA Post-Hoc)**
 
@@ -269,13 +269,13 @@ You just run this function on your `anova_model` object.
 TukeyHSD(anova_model)
 ```
 
-  * Runs the `TukeyHSD()` (Tukey's Honest Significant Difference) post-hoc test on the `anova_model` object.
+-   Runs the `TukeyHSD()` (Tukey's Honest Significant Difference) post-hoc test on the `anova_model` object.
 
 ### **Step 2: Interpret the Result**
 
 This output is a big table of *all possible pairs*. The only column you care about is `p adj` (the "adjusted p-value").
 
-```
+```         
   Tukey multiple comparisons of means
     95% family-wise confidence level
 
@@ -291,83 +291,82 @@ $age_group
 65+-50-64     -0.5099282 -0.59620563 -0.4236508 < 2e-16 ***
 ```
 
-  * **Interpretation:** Look at the `p adj` column for every row.
-  * The p-value for `30-49-18-29` is `< 2e-16` (which is \< 0.05). This means the "18-29" and "30-49" groups are significantly different.
-  * The p-value for `50-64-18-29` is `< 2e-16`. They are also different.
-  * ... in fact, **all pairs** have a `p adj < .05`.
-  * **Conclusion:** This test gives us the full story: *Every single age group is statistically significantly different from every other age group* in their average platform use. This confirms what we saw in our Week 13 visualization\!
+-   **Interpretation:** Look at the `p adj` column for every row.
+-   The p-value for `30-49-18-29` is `< 2e-16` (which is \< 0.05). This means the "18-29" and "30-49" groups are significantly different.
+-   The p-value for `50-64-18-29` is `< 2e-16`. They are also different.
+-   ... in fact, **all pairs** have a `p adj < .05`.
+-   **Conclusion:** This test gives us the full story: *Every single age group is statistically significantly different from every other age group* in their average platform use. This confirms what we saw in our Week 13 visualization!
 
-  -----
+------------------------------------------------------------------------
 
-  ## **Part 7: Regression Analysis**
+## **Part 7: Regression Analysis**
 
-  Regression analysis allows us to examine the relationship between one numeric outcome (dependent variable) and one or more predictor (independent) variables. Here, we will cover both simple (linear) and multiple linear regression using the `w144_wrangled` dataset.
+Regression analysis allows us to examine the relationship between one numeric outcome (dependent variable) and one or more predictor (independent) variables. Here, we will cover both simple (linear) and multiple linear regression using the `w144_wrangled` dataset.
 
-  ### **A. Simple Linear Regression**
+**Note:** In this dataset, `platform_count` is a true numeric variable (0–4, number of platforms used). We will use it as our outcome variable.
 
-  **Use Case:** Predict a numeric outcome from a single numeric predictor.
+### **A. Simple Linear Regression**
 
-  * **Research Question:** Is there a relationship between age (as a numeric variable) and the number of platforms used (`platform_count`)?
-  * **H0 (Null):** There is no linear relationship between age and platform count (slope = 0).
-  * **HA (Alternative):** There is a linear relationship (slope ≠ 0).
+**Use Case:** Predict a numeric outcome from a single numeric predictor.
 
-  #### **Step 1: Fit the Linear Regression Model**
+-   **Research Question:** Is there a relationship between the number of Facebook reasons checked (`fb_uses_count`) and the number of platforms used (`platform_count`)?
+-   **H0 (Null):** There is no linear relationship between `fb_uses_count` and `platform_count` (slope = 0).
+-   **HA (Alternative):** There is a linear relationship (slope ≠ 0).
 
-  ```{r}
-  # Make sure age is numeric. If not, convert it.
-  w144_wrangled <- w144_wrangled %>% mutate(age_num = as.numeric(age))
+#### **Step 1: Fit the Linear Regression Model**
 
-  # Remove missing values for age_num and platform_count
-  reg_data <- w144_wrangled %>% filter(!is.na(age_num), !is.na(platform_count))
+```{r}
+# Remove missing values for fb_uses_count and platform_count
+reg_data <- w144_wrangled %>% filter(!is.na(fb_uses_count), !is.na(platform_count))
 
-  # Fit the model
-  lm_simple <- lm(platform_count ~ age_num, data = reg_data)
+# Fit the model
+lm_simple <- lm(platform_count ~ fb_uses_count, data = reg_data)
 
-  # View the summary
-  summary(lm_simple)
-  ```
+# View the summary
+summary(lm_simple)
+```
 
-  #### **Step 2: Interpret the Result**
+#### **Step 2: Interpret the Result**
 
-  Look at the `summary(lm_simple)` output. Focus on the `age_num` row:
+Look at the `summary(lm_simple)` output. Focus on the `fb_uses_count` row:
 
-  * The **Estimate** for `age_num` is the slope. If negative, platform use decreases as age increases.
-  * The **p-value** tests if the slope is significantly different from zero.
-  * If `p < .05`, we reject H0 and conclude there is a significant linear relationship between age and platform count.
+-   The **Estimate** for `fb_uses_count` is the slope. If positive, platform use increases as the number of Facebook reasons increases.
+-   The **p-value** tests if the slope is significantly different from zero.
+-   If `p < .05`, we reject H0 and conclude there is a significant linear relationship between Facebook reasons and platform count.
 
-  -----
+------------------------------------------------------------------------
 
-  ### **B. Multiple Linear Regression**
+### **B. Multiple Linear Regression**
 
-  **Use Case:** Predict a numeric outcome from two or more predictors (can be numeric or categorical).
+**Use Case:** Predict a numeric outcome from two or more predictors (can be numeric or categorical).
 
-  * **Research Question:** How do age, gender, and political party together predict the number of platforms used?
-  * **H0 (Null):** None of the predictors are related to platform count (all slopes = 0).
-  * **HA (Alternative):** At least one predictor is related to platform count.
+-   **Research Question:** How do Facebook reasons (`fb_uses_count`), gender, and political party together predict the number of platforms used?
+-   **H0 (Null):** None of the predictors are related to platform count (all slopes = 0).
+-   **HA (Alternative):** At least one predictor is related to platform count.
 
-  #### **Step 1: Fit the Multiple Regression Model**
+#### **Step 1: Fit the Multiple Regression Model**
 
-  ```{r}
-  # Remove missing values for all predictors
-  multi_reg_data <- w144_wrangled %>% 
-    filter(!is.na(age_num), !is.na(gender), !is.na(party_simple), !is.na(platform_count))
+```{r}
+# Remove missing values for all predictors
+multi_reg_data <- w144_wrangled %>% 
+  filter(!is.na(fb_uses_count), !is.na(gender), !is.na(party_simple), !is.na(platform_count))
 
-  # Fit the model (gender and party_simple are categorical)
-  lm_multi <- lm(platform_count ~ age_num + gender + party_simple, data = multi_reg_data)
+# Fit the model (gender and party_simple are categorical)
+lm_multi <- lm(platform_count ~ fb_uses_count + gender + party_simple, data = multi_reg_data)
 
-  # View the summary
-  summary(lm_multi)
-  ```
+# View the summary
+summary(lm_multi)
+```
 
-  #### **Step 2: Interpret the Result**
+#### **Step 2: Interpret the Result**
 
-  * Each row in the output shows the effect of a predictor, controlling for the others.
-  * The **p-value** for each predictor tests if it is significantly related to platform count.
-  * If `p < .05` for a predictor, it is a significant predictor of platform count.
-  * The **Intercept** is the expected platform count for the reference group (e.g., baseline gender and party).
+-   Each row in the output shows the effect of a predictor, controlling for the others.
+-   The **p-value** for each predictor tests if it is significantly related to platform count.
+-   If `p < .05` for a predictor, it is a significant predictor of platform count.
+-   The **Intercept** is the expected platform count for the reference group (e.g., baseline gender and party).
 
-  -----
+------------------------------------------------------------------------
 
-  **Summary:**
+**Summary:**
 
-  Regression analysis allows you to model and interpret the relationship between a numeric outcome and one or more predictors. Use simple regression for one predictor, and multiple regression for several predictors (including categorical variables).
+Regression analysis allows you to model and interpret the relationship between a numeric outcome and one or more predictors. Here, `platform_count` is used as a true numeric outcome, and `fb_uses_count` as a numeric predictor. Use simple regression for one predictor, and multiple regression for several predictors (including categorical variables).

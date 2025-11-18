@@ -49,29 +49,23 @@ w144_data <- read_csv(data_path)
 glimpse(w144_data)
 
 w144_wrangled <- w144_data %>% 
-  
   mutate(
-    
     party_simple = case_when(
       party == "Republican" ~ "Republican",
       party == "Democrat" ~ "Democrat",
       TRUE ~ "Independent/Other"
     ) %>% 
       factor(levels = c("Republican", "Democrat", "Independent/Other")),
-    
     platform_count = (uses_facebook == "Yes") +
                      (uses_x == "Yes") +
                      (uses_instagram == "Yes") +
                      (uses_tiktok == "Yes"),
-    
     across(
       starts_with("fb_why_"), 
       ~ if_else(. == "Yes", 1, 0),
       .names = "{.col}_n" 
     )
-
   ) %>% 
-  
   mutate(
     fb_uses_count = rowSums(
       across(starts_with("fb_why_") & ends_with("_n")), 
@@ -117,7 +111,7 @@ summary(w144_wrangled$fb_uses_count)
 
 ### **B) For `categorical` factors: `count()`**
 
-The `count()` function is the best way to see the *frequencies* for categorical variables (like `party_simple` or `age_group`).
+The `count()` function is the best way to see the *frequencies* for categorical variables (like `party_simple`, `age_group`, or coded variables like `income`).
 
 ```{r}
 w144_wrangled %>% 
@@ -125,10 +119,15 @@ w144_wrangled %>%
 
 w144_wrangled %>% 
   count(age_group, sort = TRUE)
+
+w144_wrangled %>%
+  filter(!is.na(income), income != 99) %>%
+  count(income, sort = TRUE)
 ```
 
 -   **Lines 1-2:** Count the 'party_simple' variable you created.
--   **Lines 4-5:** You can also sort the results. `'sort = TRUE'` lists the biggest group first.
+-   **Lines 4-5:** Count the 'age_group' variable, sorted by size.
+-   **Lines 7-9:** Count the 'income' variable, filtering out missing/refused (99), sorted by size.
 
 ------------------------------------------------------------------------
 
@@ -158,13 +157,23 @@ The first step in exploration is to understand the *shape* of your key variables
 
 ```{r}
 ggplot(data = w144_wrangled, aes(x = party_simple)) +
-  
   geom_bar()
 ```
 
 -   **1. Setup:** `data` is 'w144_wrangled', `x-axis` is 'party_simple'.
 -   **2. Geometry:** Add a 'bar chart' layer.
--   **`ggplot()` Challenge:** Run the code above. Now, create a new bar chart for the `education` variable. What does it tell you?
+
+**`ggplot()` Challenge:**
+
+-   Create a new bar chart for the `education` variable. What does it tell you?
+-   Create a bar chart for the `income` variable (filter out 99 = Refused):
+
+```{r}
+ggplot(data = w144_wrangled %>% filter(!is.na(income), income != 99), aes(x = factor(income))) +
+  geom_bar()
+```
+
+-   **Interpretation:** For `income`, the x-axis shows category codes (see codebook for meaning). Which income group is most common?
 
 ### **B) Numeric Variable -\> `geom_histogram()`**
 
@@ -172,7 +181,6 @@ ggplot(data = w144_wrangled, aes(x = party_simple)) +
 
 ```{r}
 ggplot(data = w144_wrangled, aes(x = platform_count)) +
-  
   geom_histogram(binwidth = 1, fill = "blue", color = "white") 
 ```
 
@@ -187,15 +195,13 @@ ggplot(data = w144_wrangled, aes(x = platform_count)) +
 
 This is where you hunt for insights! How does one variable change in relation to another?
 
-### **A) Categorical (X) vs. Numeric (Y) -\> `geom_violin()` or `geom_boxplot()`**
+### **A) Categorical (X) vs. Numeric (Y) -> `geom_violin()` or `geom_boxplot()`**
 
 **Question:** Does `platform_count` (numeric) differ by `age_group` (categorical)? **Plot:** A violin plot (or boxplot). A violin plot is like a histogram for each group, turned on its side.
 
 ```{r}
 ggplot(data = w144_wrangled, aes(x = age_group, y = platform_count)) +
-  
   geom_violin() +
-  
   stat_summary(fun = "mean", geom = "point", color = "red", size = 3)
 ```
 
@@ -204,13 +210,24 @@ ggplot(data = w144_wrangled, aes(x = age_group, y = platform_count)) +
 -   **3. (Optional):** Add a point for the mean in each group using `stat_summary()`.
 -   **Interpretation:** Look at the plot. You can instantly see that the distribution of platform use for "18-29" year-olds is *very* different from "65+" year-olds. This is a key finding!
 
+**`ggplot()` Challenge:**
+
+-   Create a violin plot of `fb_uses_count` by `age_group`:
+
+```{r}
+ggplot(data = w144_wrangled, aes(x = age_group, y = fb_uses_count)) +
+  geom_violin() +
+  stat_summary(fun = "mean", geom = "point", color = "red", size = 3)
+```
+
+-   **Interpretation:** For `fb_uses_count`, do some age groups report more reasons for Facebook use than others?
+
 ### **B) Categorical (X) vs. Categorical (Fill) -\> `geom_bar(position = "fill")`**
 
 **Question:** What is the *proportion* of TikTok use (`uses_tiktok`) in each `age_group`? **Plot:** A 100% "filled" bar chart.
 
 ```{r}
 ggplot(data = w144_wrangled, aes(x = age_group, fill = uses_tiktok)) +
-  
   geom_bar(position = "fill") 
 ```
 
@@ -218,6 +235,17 @@ ggplot(data = w144_wrangled, aes(x = age_group, fill = uses_tiktok)) +
 -   **2. Geometry:** A bar chart.
 -   `position = "fill"` turns the stacked bars into a 100% proportional chart.
 -   **Interpretation:** This plot clearly shows that `uses_tiktok` makes up a huge proportion of the "18-29" bar, but a tiny sliver of the "65+" bar.
+
+**`ggplot()` Challenge:**
+
+-   Create a filled bar chart of `uses_tiktok` by `income` (filter out 99 = Refused):
+
+```{r}
+ggplot(data = w144_wrangled %>% filter(!is.na(income), income != 99), aes(x = factor(income), fill = uses_tiktok)) +
+  geom_bar(position = "fill")
+```
+
+-   **Interpretation:** For `income`, the x-axis shows category codes. In which income groups is TikTok use most or least common?
 
 ------------------------------------------------------------------------
 
@@ -233,7 +261,6 @@ Let's take our violin plot from Part 5 and add clean labels. The `labs()` functi
 ggplot(data = w144_wrangled, aes(x = age_group, y = platform_count)) +
   geom_violin() +
   stat_summary(fun = "mean", geom = "point", color = "red", size = 3) +
-  
   labs(
     title = "Social Media Platform Use is Heavily Tied to Age",
     subtitle = "Distribution of platform count (out of 4) by age group",
@@ -253,11 +280,8 @@ ggplot(data = w144_wrangled, aes(x = age_group, y = platform_count)) +
 
 ```{r}
 ggplot(data = w144_wrangled, aes(x = fb_uses_count)) +
-  
   geom_histogram(binwidth = 1, fill = "navy", color = "white") +
-  
   facet_wrap(~ party_simple) +
-  
   labs(
     title = "Facebook 'Reasons for Use' by Political Party",
     x = "Number of Reasons Cited (out of 7)",

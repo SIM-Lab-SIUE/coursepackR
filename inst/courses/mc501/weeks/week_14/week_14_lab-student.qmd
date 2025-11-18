@@ -149,76 +149,75 @@ chisq.test(party_tiktok_table)
 
 ### **Step 3: Interpret the Result**
 
-Look in your Console at the output. You'll see `X-squared = ...`, `df = ...`, and `p-value = ...`.
+Regression analysis allows us to examine the relationship between one numeric outcome (dependent variable) and one or more predictor (independent) variables. Here, we will cover both simple (linear) and multiple linear regression using the `w144_wrangled` dataset.
 
-```
-        Pearson's Chi-squared test
-data:  party_tiktok_table
-X-squared = 824.22, df = 2, p-value < 2.2e-16
-```
+**Note:** In this dataset, `income` is a categorical variable (see codebook), but it is coded as numeric (1–9, with 99 = Refused). Treating it as numeric is a simplification for demonstration purposes.
 
-  * **Interpretation:** Our p-value is `< 2.2e-16`. This is scientific notation for a *very, very* small number (0.000...0022).
-  * This p-value is *much less than 0.05*.
-  * **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude that there *is* a statistically significant association between a person's political party and whether or not they use TikTok.
+### **A. Simple Linear Regression**
 
------
+**Use Case:** Predict a numeric outcome from a single numeric predictor.
 
-## **Part 4: Test 2 - The Independent Samples T-Test**
+* **Research Question:** Is there a relationship between family income (coded 1–9) and the number of platforms used (`platform_count`)?
+* **H0 (Null):** There is no linear relationship between income and platform count (slope = 0).
+* **HA (Alternative):** There is a linear relationship (slope ≠ 0).
 
-**Use Case:** When you are testing for a **difference** in a **numeric** variable between **two categorical** groups.
-
-  * **Research Question:** "Is there a statistically significant *difference* in `platform_count` (numeric) between men and women (`gender`)?"
-  * **H0 (Null):** The mean `platform_count` for men is **the same as** the mean `platform_count` for women. (Mean 1 = Mean 2)
-  * **HA (Alternative):** The mean `platform_count` for men is **not the same as** the mean `platform_count` for women. (Mean 1 ≠ Mean 2)
-
-### **Step 1: Run the T-Test**
-
-We use the `t.test()` function. The formula syntax `y ~ x` (read as "y by x") is the easiest way. `platform_count ~ gender`.
-
-**Important:** The `t.test()` function can be fussy about `NA` (missing) values. It's safest to create a small, filtered dataset first.
+#### **Step 1: Fit the Linear Regression Model**
 
 ```{r}
-gender_data <- w144_wrangled %>% 
-  filter(!is.na(gender))
+# Remove missing values and refusals for income and platform_count
+reg_data <- w144_wrangled %>% filter(!is.na(income), income != 99, !is.na(platform_count))
 
-t.test(platform_count ~ gender, data = gender_data)
+# Fit the model
+lm_simple <- lm(platform_count ~ income, data = reg_data)
+
+# View the summary
+summary(lm_simple)
 ```
 
-  * **Step 1:** Create a new dataset (`gender_data`) that removes rows where the `gender` column has a missing (`NA`) value. `is.na()` checks for missing, and `!` means "NOT".
-  * **Step 2:** Run the `t.test` on this new, clean `gender_data`, using the formula `platform_count ~ gender` ("platform\_count by gender").
+#### **Step 2: Interpret the Result**
 
-### **Step 2: Interpret the Result**
+Look at the `summary(lm_simple)` output. Focus on the `income` row:
 
-Look at the output in your Console.
-
-```
-        Welch Two Sample t-test
-data:  platform_count by gender
-t = 2.0594, df = 9976.2, p-value = 0.03947
-...
-mean in group Female mean in group Male 
-           2.036087            1.986872 
-```
-
-  * **Interpretation:** Our `p-value` is `0.03947`.
-  * This p-value is *less than 0.05*.
-  * **Conclusion:** We **reject the Null Hypothesis (H0)**. We conclude there *is* a statistically significant difference in the average number of platforms used by men and women.
-  * The output also gives us the means: Females in the sample used an average of 2.04 platforms, while Males used 1.99. The t-test confirms this small difference is *statistically significant*.
+* The **Estimate** for `income` is the slope. If positive, platform use increases as income increases (from lower to higher income categories).
+* The **p-value** tests if the slope is significantly different from zero.
+* If `p < .05`, we reject H0 and conclude there is a significant linear relationship between income and platform count.
 
 -----
 
-## **Part 5: Test 3 - Analysis of Variance (ANOVA)**
+### **B. Multiple Linear Regression**
 
-**Use Case:** When you are testing for a **difference** in a **numeric** variable between **three or more categorical** groups. (It's like a t-test for 3+ groups).
+**Use Case:** Predict a numeric outcome from two or more predictors (can be numeric or categorical).
 
-  * **Research Question:** "Is there a statistically significant *difference* in `platform_count` (numeric) across our four `age_group` categories?"
-  * **H0 (Null):** The mean `platform_count` is **the same** for all four age groups. (Mean 1 = Mean 2 = Mean 3 = Mean 4)
-  * **HA (Alternative):** **At least one** of the age group means is different from the others.
+* **Research Question:** How do income, gender, and political party together predict the number of platforms used?
+* **H0 (Null):** None of the predictors are related to platform count (all slopes = 0).
+* **HA (Alternative):** At least one predictor is related to platform count.
 
-### **Step 1: Create the ANOVA Model**
+#### **Step 1: Fit the Multiple Regression Model**
 
-We use the `aov()` (Analysis of Variance) function. The syntax is the same formula: `y ~ x`.
+```{r}
+# Remove missing values and refusals for all predictors
+multi_reg_data <- w144_wrangled %>% 
+  filter(!is.na(income), income != 99, !is.na(gender), !is.na(party_simple), !is.na(platform_count))
 
+# Fit the model (gender and party_simple are categorical)
+lm_multi <- lm(platform_count ~ income + gender + party_simple, data = multi_reg_data)
+
+# View the summary
+summary(lm_multi)
+```
+
+#### **Step 2: Interpret the Result**
+
+* Each row in the output shows the effect of a predictor, controlling for the others.
+* The **p-value** for each predictor tests if it is significantly related to platform count.
+* If `p < .05` for a predictor, it is a significant predictor of platform count.
+* The **Intercept** is the expected platform count for the reference group (e.g., lowest income, baseline gender and party).
+
+-----
+
+**Summary:**
+
+Regression analysis allows you to model and interpret the relationship between a numeric outcome and one or more predictors. Use simple regression for one predictor, and multiple regression for several predictors (including categorical variables). Here, income is treated as numeric for demonstration, but in practice, you may want to treat it as a factor.
 ```{r}
 anova_model <- aov(platform_count ~ age_group, data = w144_wrangled)
 ```
@@ -303,25 +302,24 @@ $age_group
 
   Regression analysis allows us to examine the relationship between one numeric outcome (dependent variable) and one or more predictor (independent) variables. Here, we will cover both simple (linear) and multiple linear regression using the `w144_wrangled` dataset.
 
+  **Note:** In this dataset, `platform_count` is a true numeric variable (0–4, number of platforms used). We will use it as our outcome variable.
+
   ### **A. Simple Linear Regression**
 
   **Use Case:** Predict a numeric outcome from a single numeric predictor.
 
-  * **Research Question:** Is there a relationship between age (as a numeric variable) and the number of platforms used (`platform_count`)?
-  * **H0 (Null):** There is no linear relationship between age and platform count (slope = 0).
+  * **Research Question:** Is there a relationship between the number of Facebook reasons checked (`fb_uses_count`) and the number of platforms used (`platform_count`)?
+  * **H0 (Null):** There is no linear relationship between `fb_uses_count` and `platform_count` (slope = 0).
   * **HA (Alternative):** There is a linear relationship (slope ≠ 0).
 
   #### **Step 1: Fit the Linear Regression Model**
 
   ```{r}
-  # Make sure age is numeric. If not, convert it.
-  w144_wrangled <- w144_wrangled %>% mutate(age_num = as.numeric(age))
-
-  # Remove missing values for age_num and platform_count
-  reg_data <- w144_wrangled %>% filter(!is.na(age_num), !is.na(platform_count))
+  # Remove missing values for fb_uses_count and platform_count
+  reg_data <- w144_wrangled %>% filter(!is.na(fb_uses_count), !is.na(platform_count))
 
   # Fit the model
-  lm_simple <- lm(platform_count ~ age_num, data = reg_data)
+  lm_simple <- lm(platform_count ~ fb_uses_count, data = reg_data)
 
   # View the summary
   summary(lm_simple)
@@ -329,11 +327,11 @@ $age_group
 
   #### **Step 2: Interpret the Result**
 
-  Look at the `summary(lm_simple)` output. Focus on the `age_num` row:
+  Look at the `summary(lm_simple)` output. Focus on the `fb_uses_count` row:
 
-  * The **Estimate** for `age_num` is the slope. If negative, platform use decreases as age increases.
+  * The **Estimate** for `fb_uses_count` is the slope. If positive, platform use increases as the number of Facebook reasons increases.
   * The **p-value** tests if the slope is significantly different from zero.
-  * If `p < .05`, we reject H0 and conclude there is a significant linear relationship between age and platform count.
+  * If `p < .05`, we reject H0 and conclude there is a significant linear relationship between Facebook reasons and platform count.
 
   -----
 
@@ -341,7 +339,7 @@ $age_group
 
   **Use Case:** Predict a numeric outcome from two or more predictors (can be numeric or categorical).
 
-  * **Research Question:** How do age, gender, and political party together predict the number of platforms used?
+  * **Research Question:** How do Facebook reasons (`fb_uses_count`), gender, and political party together predict the number of platforms used?
   * **H0 (Null):** None of the predictors are related to platform count (all slopes = 0).
   * **HA (Alternative):** At least one predictor is related to platform count.
 
@@ -350,10 +348,10 @@ $age_group
   ```{r}
   # Remove missing values for all predictors
   multi_reg_data <- w144_wrangled %>% 
-    filter(!is.na(age_num), !is.na(gender), !is.na(party_simple), !is.na(platform_count))
+    filter(!is.na(fb_uses_count), !is.na(gender), !is.na(party_simple), !is.na(platform_count))
 
   # Fit the model (gender and party_simple are categorical)
-  lm_multi <- lm(platform_count ~ age_num + gender + party_simple, data = multi_reg_data)
+  lm_multi <- lm(platform_count ~ fb_uses_count + gender + party_simple, data = multi_reg_data)
 
   # View the summary
   summary(lm_multi)
@@ -370,4 +368,4 @@ $age_group
 
   **Summary:**
 
-  Regression analysis allows you to model and interpret the relationship between a numeric outcome and one or more predictors. Use simple regression for one predictor, and multiple regression for several predictors (including categorical variables).
+  Regression analysis allows you to model and interpret the relationship between a numeric outcome and one or more predictors. Here, `platform_count` is used as a true numeric outcome, and `fb_uses_count` as a numeric predictor. Use simple regression for one predictor, and multiple regression for several predictors (including categorical variables).

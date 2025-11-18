@@ -102,35 +102,39 @@ w144_data %>%
 -   This code reads as: Take the `w144_data` AND THEN `filter` for rows where 'age_group' is "18-29".
 -   Note: We use a double-equals sign `==` to mean "is equal to" (a test), not a single `=` (which is for assignment).
 
+
 ### **Verb 3: `arrange()` - Sorts ROWS**
 
 `arrange()` re-orders all the rows based on a column's values.
 
+**Note:** In this dataset, `income` is a categorical variable (see codebook), but it is coded as numeric (1–9, with 99 = Refused). Treating it as numeric is a simplification for demonstration purposes.
+
 ```{r}
 w144_data %>%
-     arrange(F_AGE)
+     arrange(income)
 
 w144_data %>%
-     arrange(desc(F_AGE))
+     arrange(desc(income))
 ```
 
--   The first block takes the data AND THEN `arrange`s the rows by 'F_AGE' (from youngest to oldest).
+-   The first block takes the data AND THEN `arrange`s the rows by 'income' (from lowest to highest income category).
 -   The second block shows how to sort in descending order. `desc()` is the function for "descending."
+
 
 ### **Chaining Verbs Together**
 
-The *power* of the pipe comes from chaining verbs. **Question:** Show me the `party` and `F_AGE` for all "18-29" year-olds, sorted from oldest to youngest.
+The *power* of the pipe comes from chaining verbs. **Question:** Show me the `party` and `income` for all "18-29" year-olds, sorted from highest to lowest income category.
 
 ```{r}
 w144_data %>%
      filter(age_group == "18-29") %>%
-     select(party, F_AGE) %>%
-     arrange(desc(F_AGE))
+     select(party, income) %>%
+     arrange(desc(income))
 ```
 
 -   **Step 1:** First, `filter` the rows to get only "18-29" year-olds.
--   **Step 2:** Then, `select` only the 'party' and 'F_AGE' columns.
--   **Step 3:** Finally, `arrange` the result by 'F_AGE' in descending order.
+-   **Step 2:** Then, `select` only the 'party' and 'income' columns.
+-   **Step 3:** Finally, `arrange` the result by 'income' in descending order.
 
 ## **Part 3: Creating New Variables with `mutate()`**
 
