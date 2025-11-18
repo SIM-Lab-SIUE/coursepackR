@@ -296,3 +296,78 @@ $age_group
   * The p-value for `50-64-18-29` is `< 2e-16`. They are also different.
   * ... in fact, **all pairs** have a `p adj < .05`.
   * **Conclusion:** This test gives us the full story: *Every single age group is statistically significantly different from every other age group* in their average platform use. This confirms what we saw in our Week 13 visualization\!
+
+  -----
+
+  ## **Part 7: Regression Analysis**
+
+  Regression analysis allows us to examine the relationship between one numeric outcome (dependent variable) and one or more predictor (independent) variables. Here, we will cover both simple (linear) and multiple linear regression using the `w144_wrangled` dataset.
+
+  ### **A. Simple Linear Regression**
+
+  **Use Case:** Predict a numeric outcome from a single numeric predictor.
+
+  * **Research Question:** Is there a relationship between age (as a numeric variable) and the number of platforms used (`platform_count`)?
+  * **H0 (Null):** There is no linear relationship between age and platform count (slope = 0).
+  * **HA (Alternative):** There is a linear relationship (slope ≠ 0).
+
+  #### **Step 1: Fit the Linear Regression Model**
+
+  ```{r}
+  # Make sure age is numeric. If not, convert it.
+  w144_wrangled <- w144_wrangled %>% mutate(age_num = as.numeric(age))
+
+  # Remove missing values for age_num and platform_count
+  reg_data <- w144_wrangled %>% filter(!is.na(age_num), !is.na(platform_count))
+
+  # Fit the model
+  lm_simple <- lm(platform_count ~ age_num, data = reg_data)
+
+  # View the summary
+  summary(lm_simple)
+  ```
+
+  #### **Step 2: Interpret the Result**
+
+  Look at the `summary(lm_simple)` output. Focus on the `age_num` row:
+
+  * The **Estimate** for `age_num` is the slope. If negative, platform use decreases as age increases.
+  * The **p-value** tests if the slope is significantly different from zero.
+  * If `p < .05`, we reject H0 and conclude there is a significant linear relationship between age and platform count.
+
+  -----
+
+  ### **B. Multiple Linear Regression**
+
+  **Use Case:** Predict a numeric outcome from two or more predictors (can be numeric or categorical).
+
+  * **Research Question:** How do age, gender, and political party together predict the number of platforms used?
+  * **H0 (Null):** None of the predictors are related to platform count (all slopes = 0).
+  * **HA (Alternative):** At least one predictor is related to platform count.
+
+  #### **Step 1: Fit the Multiple Regression Model**
+
+  ```{r}
+  # Remove missing values for all predictors
+  multi_reg_data <- w144_wrangled %>% 
+    filter(!is.na(age_num), !is.na(gender), !is.na(party_simple), !is.na(platform_count))
+
+  # Fit the model (gender and party_simple are categorical)
+  lm_multi <- lm(platform_count ~ age_num + gender + party_simple, data = multi_reg_data)
+
+  # View the summary
+  summary(lm_multi)
+  ```
+
+  #### **Step 2: Interpret the Result**
+
+  * Each row in the output shows the effect of a predictor, controlling for the others.
+  * The **p-value** for each predictor tests if it is significantly related to platform count.
+  * If `p < .05` for a predictor, it is a significant predictor of platform count.
+  * The **Intercept** is the expected platform count for the reference group (e.g., baseline gender and party).
+
+  -----
+
+  **Summary:**
+
+  Regression analysis allows you to model and interpret the relationship between a numeric outcome and one or more predictors. Use simple regression for one predictor, and multiple regression for several predictors (including categorical variables).
