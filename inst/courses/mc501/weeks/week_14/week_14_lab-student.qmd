@@ -241,11 +241,11 @@ The output in your Console is a table. Find the row for your variable (`age_grou
 
 ```
                  Df Sum Sq Mean Sq F value Pr(>F)    
-age_group         3   2817   939.1   554.2 <2e-16 ***
-Residuals     10166  17234     1.7                   
+age_group       3   1809   602.9   504.5 <2e-16 ***
+Residuals   10120  12095     1.2                   
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-(284 observations deleted due to missingness)
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+330 observations deleted due to missingness
 ```
 
   * **Interpretation:** Find the `Pr(>F)` column. This is your p-value.
@@ -281,13 +281,13 @@ This output is a big table of *all possible pairs*. The only column you care abo
 Fit: aov(formula = platform_count ~ age_group, data = w144_wrangled)
 
 $age_group
-                   diff        lwr        upr   p adj
-30-49-18-29   -0.5750036 -0.66981880 -0.4801884 < 2e-16 ***
-50-64-18-29   -1.1274577 -1.22389148 -1.0310240 < 2e-16 ***
-65+-18-29     -1.6373859 -1.73489115 -1.5398807 < 2e-16 ***
-50-64-30-49   -0.5524541 -0.63580447 -0.4691038 < 2e-16 ***
-65+-30-49     -1.0623823 -1.14710202 -0.9776626 < 2e-16 ***
-65+-50-64     -0.5099282 -0.59620563 -0.4236508 < 2e-16 ***
+                  diff        lwr        upr p adj
+30-49-18-29 -0.3413115 -0.4541341 -0.2284890     0
+50-64-18-29 -0.7477763 -0.8618724 -0.6336801     0
+65+-18-29   -1.2668449 -1.3801576 -1.1535321     0
+50-64-30-49 -0.4064647 -0.4778189 -0.3351105     0
+65+-30-49   -0.9255333 -0.9956280 -0.8554386     0
+65+-50-64   -0.5190686 -0.5911954 -0.4469419     0
 ```
 
   * **Interpretation:** Look at the `p adj` column for every row.
