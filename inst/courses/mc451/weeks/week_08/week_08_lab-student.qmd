@@ -4,33 +4,34 @@ title: "Week 8 Lab: Understanding Data Types and Classes"
 
 ## Week 8: From Concepts to Code
 
-**Textbook Chapter:** 8: The Art of Measurement  
-**Dataset:** `simpsons_episodes` (included in the `mccoursepack` package)  
+**Textbook Chapter:** 8: The Art of Measurement\
+**Dataset:** `w144_excerpt` (included in the `mccoursepack` package)\
 **Core Functions/Packages:** `tidyverse` (for data manipulation and visualization)
 
 ### 1. Load the Data
 
-We will use the `simpsons_episodes` dataset to explore the concepts of measurement. Follow these steps:
+We will use the `w144_excerpt` dataset to explore the concepts of measurement. Follow these steps:
 
-```r
+``` r
 # Load the required packages
 library(mccoursepack)
 library(tidyverse)
 
 # Load the dataset
-data(simpsons_episodes)
+#> mccoursepack v0.1.0: Pew Research Center ATP W144 excerpt loaded. See ?w144_excerpt for details.
+data(w144_excerpt)
 
 # Confirm the dataset is loaded
-head(simpsons_episodes)
+head(w144_excerpt)
 ```
 
 ### 2. Explore Data Types
 
 Understanding the structure of the dataset is the first step in conceptualizing and operationalizing variables.
 
-```r
+``` r
 # View the structure of the dataset
-glimpse(simpsons_episodes)
+glimpse(w144_excerpt)
 
 # Discuss: Which columns are numeric, character, or factor?
 ```
@@ -39,42 +40,42 @@ glimpse(simpsons_episodes)
 
 Summarizing numeric variables helps us identify continuous and categorical variables.
 
-```r
+``` r
 # Get an overview of numeric columns
-summary(simpsons_episodes)
+summary(w144_excerpt)
 
 # Discuss: Which variables are continuous? Which are categorical?
 ```
 
 ### 4. Convert and Explore Factors
 
-Some variables, like `season`, are stored as integers but are better treated as factors. Factors represent categorical data.
+Some variables, like `age_group` or `party_simple`, are stored as character or factor. Factors represent categorical data.
 
-```r
-# Convert `season` to a factor
-simpsons_episodes <- simpsons_episodes %>%
-  mutate(season = factor(season))
+``` r
+# Convert `age_group` to a factor (if not already)
+w144_excerpt <- w144_excerpt %>%
+  mutate(age_group = factor(age_group))
 
 # Check the structure again
-glimpse(simpsons_episodes)
+glimpse(w144_excerpt)
 
-# Discuss: Why might we want to treat `season` as a factor?
+# Discuss: Why might we want to treat `age_group` as a factor?
 ```
 
 ### 5. Conceptualization and Operationalization
 
 Let’s connect the dataset to the concepts from Chapter 8:
 
-- **Conceptualization:** Define what we mean by "episode popularity." For example, we might consider `imdb_rating` as an indicator of popularity.
-- **Operationalization:** Use the `imdb_rating` column to measure popularity.
+-   **Conceptualization:** Define what we mean by "social media engagement." For example, we might consider `platform_count` as an indicator of engagement.
+-   **Operationalization:** Use the `platform_count` column to measure engagement.
 
-```r
-# Example: Summarize IMDb ratings
-simpsons_episodes %>%
+``` r
+# Example: Summarize platform counts
+w144_excerpt %>%
   summarize(
-    avg_rating = mean(imdb_rating, na.rm = TRUE),
-    min_rating = min(imdb_rating, na.rm = TRUE),
-    max_rating = max(imdb_rating, na.rm = TRUE)
+    avg_platforms = mean(platform_count, na.rm = TRUE),
+    min_platforms = min(platform_count, na.rm = TRUE),
+    max_platforms = max(platform_count, na.rm = TRUE)
   )
 ```
 
@@ -82,26 +83,26 @@ simpsons_episodes %>%
 
 Identify the levels of measurement for key variables:
 
-- **Nominal:** `title` (episode names)
-- **Ordinal:** `season` (ordered categories)
-- **Interval/Ratio:** `imdb_rating` (continuous scale)
+-   **Nominal:** `party_simple` (political party)
+-   **Ordinal:** `age_group` (ordered categories)
+-   **Interval/Ratio:** `platform_count` (count scale)
 
-```r
-# Discuss: Why is `season` ordinal but `imdb_rating` is ratio?
+``` r
+# Discuss: Why is `age_group` ordinal but `platform_count` is ratio?
 ```
 
 ### 7. Reliability and Validity
 
-Reflect on the reliability and validity of the `imdb_rating` variable:
+Reflect on the reliability and validity of the `platform_count` variable:
 
-- **Reliability:** Are IMDb ratings consistent across different viewers?
-- **Validity:** Do IMDb ratings accurately measure episode quality?
+-   **Reliability:** Is the way platforms are counted consistent across respondents?
+-   **Validity:** Does `platform_count` accurately measure social media engagement?
 
-```r
+``` r
 # Discuss: Why is it essential for a measure to be both reliable and valid?
 ```
 
 ### 8. Discussion
 
-- Why is `season` an integer but `imdb_rating` is a double? How does this relate to measurement levels?
-- Think about a time you were measured or evaluated. Did the measure feel reliable and valid? Why or why not?
+-   Why is `age_group` a factor but `platform_count` is numeric? How does this relate to measurement levels?
+-   Think about a time you were measured or evaluated. Did the measure feel reliable and valid? Why or why not?

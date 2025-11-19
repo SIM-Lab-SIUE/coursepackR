@@ -2,32 +2,32 @@ title: "Week 9 Lab: Importing and Joining Data"
 
 ## Week 9: Importing and Joining Data (with a Qualtrics Focus)
 
-**Textbook Chapter:** 9: Survey Research **Datasets:** `simpsons_script_lines.rda`, `simpsons_characters.rda` (from the `data` folder) **Core Functions/Packages:** `readr`, `dplyr::left_join()`
+-   **Textbook Chapter:** 9: Survey Research\
+-   **Dataset:** `w144_excerpt` (from the `mccoursepack` package)\
+-   **Core Functions/Packages:** `dplyr::left_join()`, `dplyr::mutate()`, `dplyr::case_when()`, `tidyverse`
 
 ### Note
 
-This week will include a Qualtrics demonstration. However, we will also practice joining data in R using the Simpsons datasets.
+This week will include a Qualtrics demonstration. We will also practice joining and transforming data in R using real survey data from Pew Research Center (ATP W144).
 
 ### Lab Activities
 
 1.  **Load the Data**
-    -   Use `load("data/simpsons_script_lines.rda")` and `load("data/simpsons_characters.rda")`.
-    -   Confirm the object names (should be `simpsons_script_lines` and `simpsons_characters`).
-2.  **Join the Data**
-    -   Use `dplyr::left_join()` to combine `simpsons_script_lines` with `simpsons_characters` by the character ID column.
-
-    -   Example:
-
-        ``` r
-        library(dplyr)
-        script_with_char <- left_join(simpsons_script_lines, simpsons_characters, by = c("character_id" = "id"))
-        ```
-3.  **Explore the Joined Data**
-    -   Use `glimpse()` and `View()` to inspect the new data frame.
-    -   What new information is available for each line of dialogue?
-4.  **Discussion**
-    -   Why are unique IDs important for joining tables?
-    -   How does this relate to survey research and Qualtrics?
+    -   Load the Pew dataset using: `r     library(mccoursepack)     library(tidyverse)     data(w144_excerpt)     df <- w144_excerpt`
+    -   Use `glimpse(df)` to explore the structure.
+2.  **Create a New Data Frame**
+    -   Suppose you want to join a new variable to this data. Create a small data frame with country-level region info: `r     region_lookup <- tibble(       country = c("United States", "Canada", "France", "Germany", "Japan"),       region = c("Americas", "Americas", "Europe", "Europe", "Asia")     )`
+    -   (You may need to adjust country names to match those in `df$country`.)
+3.  **Join the Data**
+    -   Use `left_join()` to add the region info to the Pew data: `r     df_joined <- left_join(df, region_lookup, by = "country")     glimpse(df_joined)`
+    -   How many rows have a non-missing `region`? What does this tell you about the join?
+4.  **Explore and Summarize**
+    -   Use `count(df_joined, region)` to see the number of respondents by region (including NAs).
+    -   Try creating a new variable, e.g., `r     df_joined <- df_joined %>% mutate(is_young = age < 30)`
+    -   Summarize the average of a numeric variable by region (where available), e.g.: `r     df_joined %>% group_by(region) %>% summarize(mean_age = mean(age, na.rm = TRUE))`
+5.  **Discussion**
+    -   Why are unique IDs or keys important for joining tables?
+    -   How does this relate to survey research and Qualtrics data merges?
 
 ------------------------------------------------------------------------
 

@@ -18,7 +18,7 @@ library(tidyverse)
 library(broom)
 library(car)  # For regression diagnostics
 library(lmtest)  # For additional tests
-data("pew_spring_2024_excerpt")
+data("w144_excerpt")
 library(mccoursepack)
 
 # Load the new teaching data

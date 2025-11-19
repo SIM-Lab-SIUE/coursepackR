@@ -25,10 +25,10 @@ library(mccoursepack)
 Load the raw Pew data and perform basic cleaning as in the lab.
 
 ```{r load-clean}
-data("pew_spring_2024_excerpt")
-# pew_spring_2024_excerpt is now available as a data frame
+data("w144_excerpt")
+# w144_excerpt is now available as a data frame
 
-pew_clean <- pew_spring_2024_excerpt %>%
+pew_clean <- w144_excerpt %>%
   select(
     country = COUNTRY,
     age = DEM2_AGE,
@@ -57,17 +57,6 @@ pew_clean <- pew_spring_2024_excerpt %>%
 
 # Load the new teaching dataset
 w144_clean <- read_csv("w144_teaching_dataset_v2.csv")
-
-# Example: select variables and basic cleaning
-w144_clean <- w144_clean %>%
-  mutate(
-    platform_count = as.integer(platform_count),
-    age = as.integer(age),
-    gender = as.factor(gender),
-    education = as.factor(education),
-    major = as.factor(major),
-    year = as.factor(year)
-  )
 ```
 
 ## 2. Advanced Recoding Techniques

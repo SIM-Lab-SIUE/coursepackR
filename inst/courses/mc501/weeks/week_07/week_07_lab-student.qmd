@@ -10,71 +10,42 @@ format:
 
 ## 1. Welcome & Objectives
 
-Today's lab is a two-part, hands-on activity. First, you will draw and analyze a **physical sample** of dice. Then, you will apply the exact same logic to analyze a **digital sample** from a large dataset containing every line of dialogue from *The Simpsons*. This will show how the core principles of sampling are the same whether you're holding the data in your hand or exploring it on a computer.
+Today's lab is a two-part, hands-on activity. First, you will draw and analyze a **physical sample** of dice. Then, you will apply the same logic to analyze a **digital sample** from a real survey dataset. This will show how the core principles of sampling are the same whether you're holding the data in your hand or exploring it on a computer.
 
 **Learning Goals:**
 
 -   Draw a physical sample and enter its data into RStudio.
--   Analyze a digital sample from a large, real-world dataset.
+-   Analyze a digital sample from a real-world dataset.
 -   See how R can be used to quickly summarize and visualize data from any sample.
 -   Understand the connection between a sample and the population it comes from.
 
 ## 2. Getting Set Up
 
-First, make sure you are in your RStudio project. Next, load the packages we will use. We are adding `tidytext`, a package for basic text analysis.
-
-### Installing or Updating the Required Packages
-
-Before starting the lab, ensure you have the necessary packages installed. Run the following code in your R console:
-
-#### Step 1: Install CRAN Packages
-
-If you don't already have `tidyverse` and `tidytext` installed, use this command to install them:
+First, make sure you are in your RStudio project. We will use the `tidyverse` package for this lab.
 
 ```{r}
-# Install multiple packages from CRAN at once
-install.packages(c("tidyverse", "tidytext"))
-```
-
-#### Step 2: Install or Update the Course Package
-
-The `mccoursepack` package is hosted on GitHub. Use the following command to install or update it:
-
-```{r}
-# Install or update the course package
-pak::pak("SIM-Lab-SIUE/mccoursepack")
-```
-
-### Beginner Note: What does this code do?
-
-When you see `library(...)` in R, it means you are loading a package—a collection of functions and data that help you do specific tasks. You only need to run these lines once at the start of your session.
-
-* `tidyverse` is a set of packages for working with data and making plots.
-* `tidytext` helps you analyze text (words, sentences, etc.).
-* `mccoursepack` is a special package for this course. It gives you access to the Simpsons data used in this lab. When you load it, datasets like `simpsons_script_lines` become available for you to use in your code.
-
-```{r}
-# Load the necessary packages for this lab
-library(tidyverse)      # For data wrangling and visualization
-library(tidytext)       # For analyzing text data
-library(mccoursepack)   # For the Simpsons dataset
+library(tidyverse)
 ```
 
 ## 3. Part 1: Your Physical Sample (Dice 🎲)
 
-Let's start with something tangible. The bag of 118 dice is our **population**.
+Let's start with something tangible. The bag of 200 dice is our **population**. The composition of the dice in the bag is as follows:
+
+-   **D4 - 15**
+-   **D6 - 60**
+-   **D8 - 15**
+-   **D10 - 25**
+-   **D12 - 20**
+-   **D20 - 40**
+-   **D100 - 25**
 
 ### Step 1.1: Draw and Tally Your Sample
 
-Go to the bag and, without looking, draw a **simple random sample** of **20 dice**. On a piece of paper, count how many of each die type you have (D4, D6, D8, etc.).
+Each student will draw a **simple random sample** of **20 dice** from the bag. On a piece of paper, count how many of each die type you have (D4, D6, D8, etc.).
 
 ### Step 1.2: Enter Your Data in RStudio
 
 Find the `my_dice_sample` tibble in the code chunk below. **Your only task is to replace the zeros (`0`) in the `count` column with the numbers you just tallied.**
-
-### Beginner Note: What is a tibble?
-
-A `tibble` is a modern version of a data frame in R. It's just a table of data, like a spreadsheet, but inside R. Here, you will enter your sample counts for each type of die.
 
 ```{r}
 #| label: enter-dice-data
@@ -85,31 +56,19 @@ my_dice_sample <- tibble(
   count = c(0, 0, 0, 0, 0, 0, 0) # e.g., c(2, 6, 3, 2, 2, 4, 1)
 )
 
-# Run this chunk after you've entered your data.
 print(my_dice_sample)
 ```
 
 ### Step 1.3: Calculate Percentages for All Dice
 
-To calculate the percentage of each die type in your sample, use the following code. This will divide the count of each die type by the total number of dice in your sample and multiply by 100 to get the percentage.
-
 ```{r}
-# First, calculate percentages for all die types
 all_percentages <- my_dice_sample %>%
   mutate(percentage = (count / sum(count)) * 100)
 
-# You can see the percentages for all dice here:
 print(all_percentages)
 ```
 
-### Beginner Note: What does this code do?
-
-- `mutate(percentage = ...)`: Adds a new column to calculate the percentage of each die type in your sample.
-- `sum(count)`: Calculates the total number of dice in your sample.
-
 ### Step 1.4: Visualize Your Dice Sample
-
-Now for the fun part. The code below will automatically create a bar chart from your specific sample data. Just run the chunk!
 
 ```{r}
 ggplot(my_dice_sample,
@@ -117,7 +76,7 @@ ggplot(my_dice_sample,
            y = count,
            fill = die_type)
        ) +
-  geom_col() +  # Use geom_col() as a direct replacement
+  geom_col() +
   theme_minimal() +
   labs(
     title = "The Composition of My Dice Sample",
@@ -128,79 +87,81 @@ ggplot(my_dice_sample,
 
 ### Step 1.5: Reflection
 
-The true proportion of D6s in the bag is **28.8%**. The difference between your sample's result and this true value is called **sampling error**. It's the natural, unavoidable variation that comes from studying a sample instead of the whole population.
+The true proportions of dice in the bag are as follows:
 
-- What percentage of your sample is D6? Refer to the result from the `all_percentages` calculation above.
-- How does this compare to the true proportion of 28.8%?
+-   **D4**: 7.5%
+-   **D6**: 30%
+-   **D8**: 7.5%
+-   **D10**: 12.5%
+-   **D12**: 10%
+-   **D20**: 20%
+-   **D100**: 12.5%
 
-## 4. Part 2: Your Digital Sample (The Simpsons 📺)
+Compare the percentages in your sample to these true proportions. The difference between your sample's result and these true values is called **sampling error**.
 
-Great! You've analyzed a physical sample. Now, let's apply the exact same logic to a much larger population: all \~158,000 lines of dialogue in the `simpsons_script_lines` dataset. Our goal is to see what a sample can tell us about a character.
+---
 
-### Step 2.1: "Draw" Your Digital Sample
+## 4. Part 2: Your Digital Sample (Survey Data)
 
-We can't put 158,000 lines of text in a bag, but we can use code to do the same thing. The code below takes a **simple random sample** of 100 lines spoken by Homer Simpson.
+Now, let's apply the same logic to a real survey dataset. We'll use a random sample from a large Pew Research Center survey.
 
-### Beginner Note: How do you access the Simpsons data?
+### Step 2.1: Loading the Data
 
-The `simpsons_script_lines` dataset comes from the `mccoursepack` package you loaded earlier. You can use it just like any other data frame in R. The code below filters for lines spoken by Homer Simpson and randomly selects 100 of them for your sample.
+When you load the `mccoursepack` package, the excerpted Pew dataset is available as `w144_excerpt`. Load it just like you would with other famous datasets (e.g., `penguins` from `palmerpenguins`).
 
 ```{r}
-# This code draws a random sample of 100 lines for you
-homer_sample <- simpsons_script_lines %>%
-  filter(raw_character_text == "Homer Simpson",
-         !is.na(spoken_words)) %>%
-  slice_sample(n = 100)
-
-# Let's look at a few lines from our sample
-print(homer_sample)
+library(mccoursepack)
+#> mccoursepack v0.1.0: Pew Research Center ATP W144 excerpt loaded. See ?w144_excerpt for details.
+data(w144_excerpt)
+glimpse(w144_excerpt)
 ```
 
-### Step 2.2: "Tally" Your Digital Data
+-   You should see a message confirming the data is loaded, just like with `palmerpenguins` or `ggplot2::mpg`.
 
-Instead of counting dice types, let's count the most common words in our sample of Homer's lines. The code below does this for you. It splits the lines into individual words, removes common "stop words" (like "the", "a", "is"), and counts the rest.
+### Step 2.2: Take a Random Sample
+
+Let's take a simple random sample of 50 people from the dataset.
 
 ```{r}
-# This code tallies the most frequent words in your sample
-word_counts <- homer_sample %>%
-  unnest_tokens(word, spoken_words) %>%
-  anti_join(stop_words) %>%
-  count(word, sort = TRUE)
+set.seed(123)
+my_sample <- w144_excerpt %>%
+  slice_sample(n = 50)
 
-# Let's see the Top 10 words
-print(word_counts)
+print(my_sample)
 ```
 
-### Step 2.3: Visualize Your Word Sample
+### Step 2.3: Summarize and Visualize Your Sample
 
-Just like with the dice, let's make a bar chart to see the results. This code will plot the top 15 words from your unique sample.
-
-### Beginner Note: Another ggplot2 Example
-
-This code uses `ggplot2` to make a bar chart of the 15 most common words in your sample of Homer Simpson's lines. The bars show how often each word appears. The `coord_flip()` function turns the chart sideways so the words are easier to read.
+What is the average number of platforms used (`platform_count`) in your sample?
 
 ```{r}
-# This code creates a bar chart of the most common words in your sample
-word_counts %>%
-  slice_max(order_by = n, 
-            n = 15) %>% 
-  mutate(word = reorder(word, n)) %>%
-  ggplot(aes(x = word, 
-             y = n)
-         ) +
-  geom_col(fill = "#FFD90F") +
-  coord_flip() +
+mean_platforms <- mean(my_sample$platform_count, na.rm = TRUE)
+mean_platforms
+```
+
+Make a bar chart of the `age_group` distribution in your sample:
+
+```{r}
+my_sample %>%
+  count(age_group) %>%
+  ggplot(aes(x = age_group, y = n, fill = age_group)) +
+  geom_col() +
   theme_minimal() +
   labs(
-    title = "Most Common Words in My Homer Simpson Sample",
-    x = "Word",
-    y = "Frequency in Sample"
+    title = "Age Group Distribution in My Sample",
+    x = "Age Group",
+    y = "Count"
   )
 ```
 
-## 5. Final Reflection
+---
 
-Think about the two parts of this lab. In Part 1, you used a sample of dice to make an inference about the whole bag. In Part 2, you used a sample of words to make an inference about Homer's character.
+## 5. Reflection
 
--   The goal in both cases is **generalizability**: the extent to which we can apply findings from our sample to the entire, unobserved population.
--   How was analyzing the Simpsons word sample similar to analyzing the dice sample? What is the main goal we are trying to achieve in both cases?
+-   How does the average `platform_count` in your sample compare to the whole dataset? Try calculating the mean for the full dataset and compare.
+-   How does the distribution of `age_group` in your sample compare to the full dataset?
+-   What do you notice about sampling error and variation?
+
+------------------------------------------------------------------------
+
+> "Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center."
