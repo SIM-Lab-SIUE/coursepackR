@@ -5,6 +5,78 @@ format: html
 editor: visual
 ---
 
+# Worksheet 14: Inferential Statistics (Modernized)
+
+## Learning Objectives
+
+This worksheet will help you practice the concepts from Lab 14:
+
+- Null and alternative hypotheses
+- p-values and statistical significance
+- Chi-square test for categorical variables
+- T-test for comparing two means
+- ANOVA for comparing three or more means
+
+You will use the same dataset as in Lab 14. Make sure you have run your "wrangle chunk" to create the `pew_wrangled` object.
+
+### Pew Research Center: Required Citation
+
+> "Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center."
+
+-----
+
+## 1. Null and Alternative Hypotheses
+
+Write a null hypothesis (H0) and an alternative hypothesis (HA) for the following research question:
+
+**Research Question:** Are there differences in TikTok use by party identification?
+
+**H0:**
+
+**HA:**
+
+## 2. Chi-Square Test
+
+Use the `chisq.test()` function to test the relationship between party identification and TikTok use. Use the `party_simple` and `uses_tiktok` variables in your `pew_wrangled` dataset.
+
+```{r}
+party_tiktok_table <- table(pew_wrangled$party_simple, pew_wrangled$USE_TIKTOK)
+chisq.test(party_tiktok_table)
+```
+## 3. T-Test
+
+Use the `t.test()` function to compare the mean number of platforms used (`platform_count`) between two income groups. Use the `income` and `platform_count` variables in your `pew_wrangled` dataset. (Hint: You may need to filter out missing or refusal values.)
+
+```{r}
+reg_data <- pew_wrangled %>% filter(!is.na(income), income != 99, !is.na(platform_count))
+t.test(platform_count ~ income, data = reg_data)
+```
+## 4. ANOVA
+
+Use the `aov()` function to test for differences in `platform_count` by age group. Use the `age_group` and `platform_count` variables in your `pew_wrangled` dataset.
+
+```{r}
+anova_model <- aov(platform_count ~ age_group, data = pew_wrangled)
+summary(anova_model)
+TukeyHSD(anova_model)
+```
+## 5. Regression (Bonus)
+
+Use the `lm()` function to predict `platform_count` from `income`, `gender`, and `party_simple` in your `pew_wrangled` dataset. (Hint: Remove missing values.)
+
+```{r}
+multi_reg_data <- pew_wrangled %>% 
+  filter(!is.na(income), income != 99, !is.na(gender), !is.na(party_simple), !is.na(platform_count))
+lm_multi <- lm(platform_count ~ income + gender + party_simple, data = multi_reg_data)
+summary(lm_multi)
+```
+---
+title: "Week 14 Worksheet: Advanced Inferential Statistics"
+subtitle: "Additional Examples of Hypothesis Testing and Regression"
+format: html
+editor: visual
+---
+
 > **Required Citation & Disclaimer:** Remember to include the Pew Research Center citation and disclaimer (from Lab 1) in all work that uses this data.
 
 ## Introduction

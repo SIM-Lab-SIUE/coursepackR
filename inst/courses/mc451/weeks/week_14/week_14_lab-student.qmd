@@ -1,3 +1,9 @@
+---
+title: "Lab 14: Inferential Statistics (Modernized)"
+format: html
+editor: visual
+---
+
 # **Lab 14: Inferential Statistics**
 
 ## **Learning Objectives**
@@ -28,7 +34,7 @@ As always, any script, report, or presentation that uses this data must include 
 
 ## **Part 1: Setup - Get Your Data Ready**
 
-This lab **depends on your work from Lab 12**. We must first re-create the `w144_wrangled` dataset that contains all your new scales and variables.
+This lab **depends on your work from Lab 12**. We must first re-create the `pew_wrangled` dataset that contains all your new scales and variables.
 
 1.  Open RStudio and create a **new R Script**.
 2.  Save it in your Project folder as `Lab_14.R`.
@@ -36,51 +42,49 @@ This lab **depends on your work from Lab 12**. We must first re-create the `w144
 
 ### **Step 1: The "Wrangle Chunk" 🧱**
 
-Copy this *entire* block of code from Lab 12. This is your "wrangle chunk" that creates your final `w144_wrangled` object.
+Copy this *entire* block of code. This is your "wrangle chunk" that creates your final `pew_wrangled` object.
 
 **Run this entire chunk of code.**
 
 ```{r}
 library(tidyverse)
 
-data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
+# Use the new Pew dataset
+data_path <- system.file("extdata", "ATP_W144_excerpt.csv", package = "mccoursepack")
+pew_data <- read_csv(data_path)
 
-w144_data <- read_csv(data_path)
+glimpse(pew_data)
 
-glimpse(w144_data)
-
-w144_wrangled <- w144_data %>% 
-  
+# Wrangle Pew data to match new conventions
+pew_wrangled <- pew_data %>%
   mutate(
-    
     party_simple = case_when(
-      party == "Republican" ~ "Republican",
-      party == "Democrat" ~ "Democrat",
+      F_PARTY_FINAL == "Rep/lean Rep" ~ "Republican",
+      F_PARTY_FINAL == "Dem/lean Dem" ~ "Democrat",
       TRUE ~ "Independent/Other"
-    ) %>% 
-      factor(levels = c("Republican", "Democrat", "Independent/Other")),
-    
-    platform_count = (uses_facebook == "Yes") +
-                     (uses_x == "Yes") +
-                     (uses_instagram == "Yes") +
-                     (uses_tiktok == "Yes"),
-    
+    ) %>% factor(levels = c("Republican", "Democrat", "Independent/Other")),
+    age_group = as_factor(F_AGECAT),
+    gender = as_factor(GENDER),
+    education = as_factor(F_EDUCCAT),
+    income = as_factor(F_INC_SDT1),
+    platform_count = (USE_FACEBOOK == "Yes") +
+                     (USE_X == "Yes") +
+                     (USE_INSTAGRAM == "Yes") +
+                     (USE_TIKTOK == "Yes"),
     across(
-      starts_with("fb_why_"), 
+      starts_with("FB_WHY_"),
       ~ if_else(. == "Yes", 1, 0),
-      .names = "{.col}_n" 
+      .names = "{.col}_n"
     )
-
-  ) %>% 
-  
+  ) %>%
   mutate(
     fb_uses_count = rowSums(
-      across(starts_with("fb_why_") & ends_with("_n")), 
+      across(starts_with("FB_WHY_") & ends_with("_n")),
       na.rm = TRUE
     )
   )
 
-glimpse(w144_wrangled)
+glimpse(pew_wrangled)
 ```
 
   * **1. Load the tidyverse:** Loads the `tidyverse` library.
@@ -126,8 +130,9 @@ We run a test to get a **p-value**.
 It's always good practice to look at the numbers first. The `table()` function is great for this.
 
 ```{r}
-party_tiktok_table <- table(w144_wrangled$party_simple, 
-                            w144_wrangled$uses_tiktok)
+
+# Use the new wrangled data and correct TikTok column
+party_tiktok_table <- table(pew_wrangled$party_simple, pew_wrangled$USE_TIKTOK)
 
 print(party_tiktok_table)
 ```
@@ -165,7 +170,9 @@ Regression analysis allows us to examine the relationship between one numeric ou
 
 ```{r}
 # Remove missing values and refusals for income and platform_count
-reg_data <- w144_wrangled %>% filter(!is.na(income), income != 99, !is.na(platform_count))
+
+# Remove missing values and refusals for income and platform_count
+reg_data <- pew_wrangled %>% filter(!is.na(income), income != 99, !is.na(platform_count))
 
 # Fit the model
 lm_simple <- lm(platform_count ~ income, data = reg_data)
@@ -196,7 +203,9 @@ Look at the `summary(lm_simple)` output. Focus on the `income` row:
 
 ```{r}
 # Remove missing values and refusals for all predictors
-multi_reg_data <- w144_wrangled %>% 
+
+# Remove missing values and refusals for all predictors
+multi_reg_data <- pew_wrangled %>% 
   filter(!is.na(income), income != 99, !is.na(gender), !is.na(party_simple), !is.na(platform_count))
 
 # Fit the model (gender and party_simple are categorical)
@@ -219,7 +228,8 @@ summary(lm_multi)
 
 Regression analysis allows you to model and interpret the relationship between a numeric outcome and one or more predictors. Use simple regression for one predictor, and multiple regression for several predictors (including categorical variables). Here, income is treated as numeric for demonstration, but in practice, you may want to treat it as a factor.
 ```{r}
-anova_model <- aov(platform_count ~ age_group, data = w144_wrangled)
+
+anova_model <- aov(platform_count ~ age_group, data = pew_wrangled)
 ```
 
   * **Step 1:** Create the model object using `aov()` (analysis of variance).
@@ -265,6 +275,7 @@ We must run a **post-hoc test** (meaning "after this") to find out. We'll use `T
 You just run this function on your `anova_model` object.
 
 ```{r}
+
 TukeyHSD(anova_model)
 ```
 
@@ -316,7 +327,9 @@ $age_group
 
   ```{r}
   # Remove missing values for fb_uses_count and platform_count
-  reg_data <- w144_wrangled %>% filter(!is.na(fb_uses_count), !is.na(platform_count))
+
+  # Remove missing values for fb_uses_count and platform_count
+  reg_data <- pew_wrangled %>% filter(!is.na(fb_uses_count), !is.na(platform_count))
 
   # Fit the model
   lm_simple <- lm(platform_count ~ fb_uses_count, data = reg_data)
@@ -347,7 +360,9 @@ $age_group
 
   ```{r}
   # Remove missing values for all predictors
-  multi_reg_data <- w144_wrangled %>% 
+
+  # Remove missing values for all predictors
+  multi_reg_data <- pew_wrangled %>% 
     filter(!is.na(fb_uses_count), !is.na(gender), !is.na(party_simple), !is.na(platform_count))
 
   # Fit the model (gender and party_simple are categorical)

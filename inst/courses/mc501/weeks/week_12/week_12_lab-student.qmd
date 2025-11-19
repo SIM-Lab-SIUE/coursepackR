@@ -6,6 +6,235 @@ Welcome to your first *real* lab in RStudio! The process of cleaning and prepari
 
 By the end of this lab, you will be able to:
 
+  * Read a dataset into R using `read_csv()`.
+  * Use the core `dplyr` verbs: `select()`, `filter()`, and `arrange()`.
+  * Create new variables (columns) using `mutate()`.
+  * Use `case_when()` and `if_else()` to recode data.
+  * Combine multiple variables to create a **composite scale score**.
+  * Answer basic descriptive questions using `group_by()` and `summarize()`.
+
+### **Pew Research Center: Required Citation**
+
+This lab uses a real-world dataset from the Pew Research Center. As per their Terms of Use, you must always include the following disclaimer in any work (even class assignments) that uses this data:
+
+> "Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.”
+
+## **Part 1: Setup - Loading Your Tools and Data**
+
+Let's write some code! In your `Lab_12.R` script (or in a code chunk like this), type the following.
+
+**Your Workflow:**
+
+1.  **Write** your code in the **Script Editor**.
+2.  **Run** your code by pressing **`Ctrl + Enter`** (Windows) or **`Cmd + Return`** (Mac).
+3.  **See** your results appear in the **Console**.
+4.  **Check** your loaded data in the **Environment** pane.
+
+### **Step 1: Load the `tidyverse` 🧰**
+
+R's power comes from packages. The `tidyverse` is a collection of packages that makes data wrangling simple and intuitive. The `library()` function "opens the toolbox" so R can use its functions.
+
+```{r}
+library(tidyverse)
+```
+
+  * This comment explains your code. R ignores anything after a `#`.
+  * Run this line to load all the 'tidyverse' tools.
+
+*You may see some red text in your Console. This is normal! It's just R telling you which packages it loaded.*
+
+### **Step 2: Load Your Data ➡️**
+
+Now we'll read our CSV file into the R **Environment**. We use the `read_csv()` function.
+
+Most importantly, we need to *save* this data as an **object** (or "variable"). We do this using the **assignment arrow: `<-`** (a "less than" sign and a hyphen). You can think of `<-` as "gets" or "is saved as."
+
+```{r}
+library(mccoursepack)
+data(ATP_W144_excerpt)
+df <- ATP_W144_excerpt
+```
+
+     * This code loads the Pew ATP W144 excerpt data from the mccoursepack package and saves it as `df`.
+
+After you run this line, look at your **Environment** (top-right). You should see `df` appear! This means your data is loaded.
+
+### **Step 3: Look at Your Data ✅**
+
+Never work "blind." Always look at your data after you load it. The best way is with the `glimpse()` function.
+
+
+```{r}
+glimpse(df)
+```
+
+  * This function gives you a "glimpse" of your data in the Console.
+
+`glimpse()` shows you every column name (like `F_PARTY_FINAL` or `F_AGECAT`), the data type (like `<dbl>` for number), and the first few rows of data.
+
+## **Part 2: The Core 'Verbs' of `dplyr`**
+
+The `tidyverse` is built on a few simple "verbs." We link these verbs together using the **pipe: `%>%`**.
+
+The pipe `%>%` is the most important part of the `tidyverse`. It means **"AND THEN..."**
+
+It takes the data on the left and "pipes" it into the function on the right. Let's try the three most common verbs.
+
+### **Verb 1: `select()` - Chooses COLUMNS**
+
+`select()` is used to pick (or remove) columns by name.
+
+```{r}
+df %>%
+     select(F_PARTY_FINAL, F_AGECAT)
+```
+
+  * This code reads as: Take the `df` AND THEN `select` only the 'F_PARTY_FINAL' and 'F_AGECAT' columns.
+
+### **Verb 2: `filter()` - Chooses ROWS**
+
+`filter()` is used to pick rows based on a logical test.
+
+```{r}
+df %>%
+     filter(F_AGECAT == 1) # 1 = youngest group, see codebook for details
+```
+
+  * This code reads as: Take the `df` AND THEN `filter` for rows where 'F_AGECAT' is 1 (youngest group).
+  * Note: We use a double-equals sign `==` to mean "is equal to" (a test), not a single `=` (which is for assignment).
+
+### **Verb 3: `arrange()` - Sorts ROWS**
+
+`arrange()` re-orders all the rows based on a column's values.
+
+```{r}
+df %>%
+     arrange(F_AGECAT)
+
+df %>%
+     arrange(desc(F_AGECAT))
+```
+
+  * The first block takes the data AND THEN `arrange`s the rows by 'F_AGECAT' (from youngest to oldest).
+  * The second block shows how to sort in descending order. `desc()` is the function for "descending."
+
+### **Chaining Verbs Together**
+
+The *power* of the pipe comes from chaining verbs. **Question:** Show me the `F_PARTY_FINAL` and `F_AGECAT` for all youngest group (F_AGECAT == 1), sorted from oldest to youngest.
+
+```{r}
+df %>%
+     filter(F_AGECAT == 1) %>%
+     select(F_PARTY_FINAL, F_AGECAT) %>%
+     arrange(desc(F_AGECAT))
+```
+
+  * **Step 1:** First, `filter` for 'F_AGECAT' is 1 (youngest group).
+  * **Step 2:** Then, `select` only the 'F_PARTY_FINAL' and 'F_AGECAT' columns.
+  * **Step 3:** Finally, `arrange` from oldest to youngest within the youngest group.
+
+## **Part 3: Creating New Variables with `mutate()`**
+
+The verbs above just subset your data. The most powerful verb is `mutate()`, which **creates new columns**.
+
+This is the core of "wrangling." We will start a new, permanent dataset called `df_wrangled` that will hold all our new variables.
+
+### **Task 1: Create a Simple Party Variable**
+
+Let's make a simpler party variable from `F_PARTY_FINAL` (numeric code). We'll use `case_when()` for this.
+
+```{r}
+df_wrangled <- df %>%
+     mutate(
+          party_simple = case_when(
+               F_PARTY_FINAL == 1 ~ "Democrat",
+               F_PARTY_FINAL == 2 ~ "Republican",
+               F_PARTY_FINAL == 3 ~ "Independent/Other",
+               TRUE ~ NA_character_
+          ) %>%
+               factor(levels = c("Democrat", "Republican", "Independent/Other"))
+     )
+
+# --- CHECK YOUR WORK ---
+df_wrangled %>%
+     count(F_PARTY_FINAL, party_simple)
+```
+
+  * This code block starts our pipe. We're saying: "Take `df` AND THEN..."
+  * We save the *entire* result in a new object: `df_wrangled`.
+  * `mutate()` is the function that CREATES NEW COLUMNS.
+  * **New Variable 1: `party_simple`**
+    -   `case_when()` is a powerful IF/THEN function. It checks a set of rules in order.
+    -   `F_PARTY_FINAL == 1 ~ "Democrat"` means: IF `F_PARTY_FINAL` is 1, THEN make `party_simple` "Democrat".
+    -   `TRUE ~ NA_character_` is a "catch-all" for missing or unclassified codes.
+  * We pipe the new `party_simple` variable directly into the `factor()` function. This sets a specific order for the categories, which is good practice.
+  * **Check Your Work:**
+    -   The `count()` function is a fast way to get frequencies. We use it to see our original `F_PARTY_FINAL` and new `party_simple` columns side-by-side to ensure it worked.
+
+**Look at the result in your Console.** You should see a table showing the mapping from codes to party labels.
+
+### **Task 2: Create a Composite Platform Use Score**
+
+Now, let's continue our pipe. We'll *add* a new variable to our `df_wrangled` object. For demonstration, let's sum up use of Facebook, Instagram, and X (Twitter) if those columns exist (replace with available columns as needed):
+
+```{r}
+df_wrangled <- df_wrangled %>%
+     mutate(
+          platform_count = rowSums(
+               select(., FBACC_W144, IGACC_W144, XTACC_W144) == 1,
+               na.rm = TRUE
+          )
+     )
+
+# --- CHECK YOUR WORK ---
+summary(df_wrangled$platform_count)
+```
+
+  * This code adds up the number of platforms used (where 1 = yes/active account) for Facebook, Instagram, and X (Twitter).
+  * Adjust the columns as needed for your dataset.
+
+## **Part 4: Summarize by Party**
+
+Now that you have a wrangled dataset, you can answer questions by group. For example, what is the average platform count for each party?
+
+```{r}
+df_wrangled %>%
+     group_by(party_simple) %>%
+     summarize(
+          avg_platform_count = mean(platform_count, na.rm = TRUE)
+     ) %>%
+     arrange(desc(avg_platform_count))
+```
+
+  * This code groups by the new `party_simple` variable and summarizes the mean platform count for each group.
+
+```{r}
+df_wrangled %>%
+     group_by(party_simple) %>%
+     summarize(
+          avg_platform_count = mean(platform_count, na.rm = TRUE),
+          avg_fb_uses_count = mean(fb_uses_count, na.rm = TRUE)
+     ) %>%
+     arrange(desc(avg_platform_count))
+```
+
+  * We use our final `df_wrangled` object.
+  * **Step 1:** `group_by()` groups the data by the `party_simple` variable we created. All calculations after this will be done *for each group*.
+  * **Step 2:** `summarize()` collapses each group into a single row.
+      * We create `avg_platform_count` by calculating the `mean()` of the `platform_count` column.
+      * We do the same for `avg_fb_uses_count`.
+      * `na.rm = TRUE` tells R to ignore missing data when calculating the mean.
+  * **Step 3:** `arrange()` sorts our final summary table. `desc()` means "descending" (highest to lowest).
+
+**Look at the table in your Console.** You just ran your first analysis! You've transformed raw survey data into a clean, summary table that answers a specific research question.
+# **Lab 12: Data Wrangling**
+
+## **Learning Objectives**
+
+Welcome to your first *real* lab in RStudio! The process of cleaning and preparing data is called **data wrangling**. As the *data-chapters.pdf* reading explains, this is the "mise en place" of research—the essential prep work you do before you can get to the "cooking" (or analysis).
+
+By the end of this lab, you will be able to:
+
 -   Read a dataset into R using `read_csv()`.
 -   Use the core `dplyr` verbs: `select()`, `filter()`, and `arrange()`.
 -   Create new variables (columns) using `mutate()`.
@@ -231,41 +460,20 @@ w144_wrangled <- w144_wrangled %>%
                na.rm = TRUE
           )
      )
+               ## **Part 4: Summarize by Party**
 
-# --- CHECK YOUR WORK ---
-glimpse(w144_wrangled)
-summary(w144_wrangled$fb_uses_count)
-```
+               Now that you have a wrangled dataset, you can answer questions by group. For example, what is the average platform count for each party?
 
--   We continue modifying our `w144_wrangled` object.
--   **Step 4a: Recode 'fb_why' items to 1/0** (Inside the first `mutate()`)
-    -   `across()` lets us perform the same action on many columns at once.
-    -   `starts_with("fb_why_")` selects all 7 columns that begin with that name.
-    -   `if_else()` is a simple IF/THEN function. The formula `~ if_else(. == "Yes", 1, 0)` means: "If the value (`.`) is 'Yes', make it 1, otherwise make it 0."
-    -   `.names = "{.col}_n"` creates *new* columns, keeping the original column name (`{.col}`) and adding `_n` (for 'numeric') to the end (e.g., `fb_why_news_n`).
--   **Step 4b: Sum the new 1/0 columns** (Inside a *second* `mutate()`)
-    -   We start a new `mutate()` call because we can only sum the new columns *after* they have been created in the first step.
-    -   `rowSums()` is a function that adds up values *across* a single row.
-    -   We use `across()` again to select only our new numeric columns (those that `start_with("fb_why_")` AND `end_with("_n")`).
-    -   `na.rm = TRUE` is a critical argument that tells R to "remove NAs" (missing data) before summing.
--   **Check Your Work:**
-    -   `glimpse()` lets you see all your new `_n` columns and the final `fb_uses_count` scale.
-    -   `summary()` gives you a statistical summary of the final scale.
+               ```{r}
+               df_wrangled %>%
+                    group_by(party_simple) %>%
+                    summarize(
+                         avg_platform_count = mean(platform_count, na.rm = TRUE)
+                    ) %>%
+                    arrange(desc(avg_platform_count))
+               ```
 
-**Check your `glimpse()` output.** You should see new columns like `fb_why_news_n` (which is `<dbl>`) and, at the very end, your new `fb_uses_count` scale! The summary should show a `Min.` of 0 and a `Max.` of 7.
-
-## **Part 5: The Payoff - Answering Questions**
-
-Why did we do all that? Because now we can *finally* answer interesting questions. This is the "payoff" for all your hard wrangling.
-
-**Question:** What is the average `platform_count` and `fb_uses_count` for each political party?
-
-To do this, we combine two *new* verbs:
-
--   `group_by()`: Creates "groups" in the data (e.g., all Republicans, all Democrats).
--   `summarize()`: Collapses each group into a single number (like a mean).
-
-<!-- end list -->
+               -   This code groups by the new `party_simple` variable and summarizes the mean platform count for each group.
 
 ```{r}
 w144_wrangled %>%

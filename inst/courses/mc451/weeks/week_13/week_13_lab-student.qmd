@@ -49,19 +49,14 @@ w144_data <- read_csv(data_path)
 glimpse(w144_data)
 
 w144_wrangled <- w144_data %>% 
-  mutate(
-    party_simple = case_when(
-      party == "Republican" ~ "Republican",
-      party == "Democrat" ~ "Democrat",
-      TRUE ~ "Independent/Other"
     ) %>% 
       factor(levels = c("Republican", "Democrat", "Independent/Other")),
     platform_count = (uses_facebook == "Yes") +
                      (uses_x == "Yes") +
-                     (uses_instagram == "Yes") +
                      (uses_tiktok == "Yes"),
     across(
       starts_with("fb_why_"), 
+This lab **depends on your work from Lab 12**. We must first re-create the `pew_wrangled` dataset that contains all your new scales and variables, but now using the new Pew ATP dataset.
       ~ if_else(. == "Yes", 1, 0),
       .names = "{.col}_n" 
     )
@@ -97,15 +92,9 @@ Before we plot, let's get some quick numbers.
 
 ### **A) For `numeric` scales: `summary()`**
 
-The `summary()` function is perfect for the scales you built (`platform_count`, `fb_uses_count`). It gives you the "five-number summary" plus the mean.
-
-```{r}
-summary(w144_wrangled$platform_count)
-
 summary(w144_wrangled$fb_uses_count)
 ```
 
--   **Line 1:** Get a summary for your 'platform_count' scale.
 -   **Line 3:** Get a summary for your 'fb_uses_count' scale.
 -   **Interpretation:** Look at the `Mean` (the average), the `Median` (the 50th percentile, or middle value), and the `Min.` and `Max.` values. This tells you the range and central tendency of your scale.
 

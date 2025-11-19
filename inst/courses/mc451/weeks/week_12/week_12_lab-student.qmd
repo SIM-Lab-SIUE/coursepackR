@@ -50,26 +50,27 @@ Now we'll read our CSV file into the R **Environment**. We use the `read_csv()` 
 Most importantly, we need to *save* this data as an **object** (or "variable"). We do this using the **assignment arrow: `<-`** (a "less than" sign and a hyphen). You can think of `<-` as "gets" or "is saved as."
 
 ```{r}
-data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
-w144_data <- read_csv(data_path)
+library(mccoursepack)
+data(ATP_W144_excerpt)
+df <- ATP_W144_excerpt
 ```
 
-  * **Line 1:** `system.file()` is the standard way to find package files. This line finds the full path to the data file *inside* the 'mccoursepack' package.
-  * **Line 2:** This line loads the data from the full path we just found and saves it as `w144_data`.
+     * This code loads the Pew ATP W144 excerpt data from the mccoursepack package and saves it as `df`.
 
-After you run this line, look at your **Environment** (top-right). You should see `w144_data` appear\! This means your data is loaded.
+After you run this line, look at your **Environment** (top-right). You should see `df` appear! This means your data is loaded.
 
 ### **Step 3: Look at Your Data ✅**
 
 Never work "blind." Always look at your data after you load it. The best way is with the `glimpse()` function.
 
+
 ```{r}
-glimpse(w144_data)
+glimpse(df)
 ```
 
   * This function gives you a "glimpse" of your data in the Console.
 
-`glimpse()` shows you every column name (like `party` or `uses_tiktok`), the data type (like `<chr>` for character/text or `<dbl>` for double/number), and the first few rows of data.
+`glimpse()` shows you every column name (like `F_PARTY_FINAL` or `F_AGECAT`), the data type (like `<dbl>` for number), and the first few rows of data.
 
 ## **Part 2: The Core 'Verbs' of `dplyr`**
 
@@ -84,22 +85,22 @@ It takes the data on the left and "pipes" it into the function on the right. Let
 `select()` is used to pick (or remove) columns by name.
 
 ```{r}
-w144_data %>%
-     select(party, age_group)
+df %>%
+     select(F_PARTY_FINAL, F_AGECAT)
 ```
 
-  * This code reads as: Take the `w144_data` AND THEN `select` only the 'party' and 'age\_group' columns.
+  * This code reads as: Take the `df` AND THEN `select` only the 'F_PARTY_FINAL' and 'F_AGECAT' columns.
 
 ### **Verb 2: `filter()` - Chooses ROWS**
 
 `filter()` is used to pick rows based on a logical test.
 
 ```{r}
-w144_data %>%
-     filter(age_group == "18-29")
+df %>%
+     filter(F_AGECAT == 1) # 1 = youngest group, see codebook for details
 ```
 
-  * This code reads as: Take the `w144_data` AND THEN `filter` for rows where 'age\_group' is "18-29".
+  * This code reads as: Take the `df` AND THEN `filter` for rows where 'F_AGECAT' is 1 (youngest group).
   * Note: We use a double-equals sign `==` to mean "is equal to" (a test), not a single `=` (which is for assignment).
 
 ### **Verb 3: `arrange()` - Sorts ROWS**
@@ -107,35 +108,35 @@ w144_data %>%
 `arrange()` re-orders all the rows based on a column's values.
 
 ```{r}
-w144_data %>%
-     arrange(F_AGE)
+df %>%
+     arrange(F_AGECAT)
 
-w144_data %>%
-     arrange(desc(F_AGE))
+df %>%
+     arrange(desc(F_AGECAT))
 ```
 
-  * The first block takes the data AND THEN `arrange`s the rows by 'F\_AGE' (from youngest to oldest).
+  * The first block takes the data AND THEN `arrange`s the rows by 'F_AGECAT' (from youngest to oldest).
   * The second block shows how to sort in descending order. `desc()` is the function for "descending."
 
 ### **Chaining Verbs Together**
 
-The *power* of the pipe comes from chaining verbs. **Question:** Show me the `party` and `F_AGE` for all "18-29" year-olds, sorted from oldest to youngest.
+The *power* of the pipe comes from chaining verbs. **Question:** Show me the `F_PARTY_FINAL` and `F_AGECAT` for all youngest group (F_AGECAT == 1), sorted from oldest to youngest.
 
 ```{r}
 w144_data %>%
      filter(age_group == "18-29") %>%
      select(party, F_AGE) %>%
      arrange(desc(F_AGE))
+```{r}
+df %>%
+     filter(F_AGECAT == 1) %>%
+     select(F_PARTY_FINAL, F_AGECAT) %>%
+     arrange(desc(F_AGECAT))
 ```
 
-  * **Step 1:** First, `filter` the rows to get only "18-29" year-olds.
-  * **Step 2:** Then, `select` only the 'party' and 'F\_AGE' columns.
-  * **Step 3:** Finally, `arrange` the result by 'F\_AGE' in descending order.
-
-## **Part 3: Creating New Variables with `mutate()`**
-
-The verbs above just subset your data. The most powerful verb is `mutate()`, which **creates new columns**.
-
+  * **Step 1:** First, `filter` for 'F_AGECAT' is 1 (youngest group).
+  * **Step 2:** Then, `select` only the 'F_PARTY_FINAL' and 'F_AGECAT' columns.
+  * **Step 3:** Finally, `arrange` from oldest to youngest within the youngest group.
 This is the core of "wrangling." We will start a new, permanent dataset called `w144_wrangled` that will hold all our new variables.
 
 ### **Task 1: Create `party_simple`**
@@ -156,16 +157,16 @@ w144_wrangled <- w144_data %>%
 # --- CHECK YOUR WORK ---
 w144_wrangled %>%
      count(party, party_simple)
+```{r}
+df %>%
+     arrange(F_INC_SDT1)
+
+df %>%
+     arrange(desc(F_INC_SDT1))
 ```
 
-  * This code block starts our pipe. We're saying: "Take `w144_data` AND THEN..."
-  * We save the *entire* result in a new object: `w144_wrangled`.
-  * `mutate()` is the function that CREATES NEW COLUMNS.
-  * **New Variable 1: `party_simple`**
-      * `case_when()` is a powerful IF/THEN function. It checks a set of rules in order.
-      * `party == "Republican" ~ "Republican"` means: IF `party` is "Republican", THEN make `party_simple` "Republican".
-      * `TRUE ~ "Independent/Other"` is a "catch-all" that assigns "Independent/Other" to everything that didn't match the rules above it.
-  * We pipe the new `party_simple` variable directly into the `factor()` function. This sets a specific order for the categories, which is good practice.
+  * The first block takes the data AND THEN `arrange`s the rows by 'F_INC_SDT1' (from lowest to highest income category).
+  * The second block shows how to sort in descending order. `desc()` is the function for "descending."
   * **Check Your Work:**
       * The `count()` function is a fast way to get frequencies. We use it to see our original `party` and new `party_simple` columns side-by-side to ensure it worked.
 

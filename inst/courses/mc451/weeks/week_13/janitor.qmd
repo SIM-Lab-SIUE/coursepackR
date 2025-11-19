@@ -16,36 +16,20 @@ library(dplyr)
 library(janitor) # Load janitor
 library(readr)
 
-# Load the dataset
-# This R code below loads the *original* data and *creates*
-# the 'w144_wrangled' data frame by adding new columns.
-data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
-w144_data <- read_csv(data_path)
+data_path <- system.file("extdata", "ATP_W144_excerpt.csv", package = "mccoursepack")
+pew_data <- read_csv(data_path)
 
-w144_wrangled <- w144_data %>% 
+pew_wrangled <- pew_data %>%
   mutate(
     party_simple = case_when(
-      party == "Republican" ~ "Republican",
-      party == "Democrat" ~ "Democrat",
+      F_PARTY_FINAL == "Rep/lean Rep" ~ "Republican",
+      F_PARTY_FINAL == "Dem/lean Dem" ~ "Democrat",
       TRUE ~ "Independent/Other"
-    ) %>% 
-      factor(levels = c("Republican", "Democrat", "Independent/Other")),
-    
-    platform_count = (uses_facebook == "Yes") +
-                     (uses_x == "Yes") +
-                     (uses_instagram == "Yes") +
-                     (uses_tiktok == "Yes"),
-    across(
-      starts_with("fb_why_"), 
-      ~ if_else(. == "Yes", 1, 0),
-      .names = "{.col}_n" 
-    )
-  ) %>%
-  mutate(
-    fb_uses_count = rowSums(
-      across(starts_with("fb_why_") & ends_with("_n")), 
-      na.rm = TRUE
-    )
+    ) %>% factor(levels = c("Republican", "Democrat", "Independent/Other")),
+    age_cat = as_factor(F_AGECAT),
+    education = as_factor(F_EDUCCAT),
+    gender = as_factor(GENDER),
+    income = as_factor(F_INC_SDT1)
   )
 ```
 
@@ -62,13 +46,14 @@ These functions help you clean your dataset.
 **Example:** Let's create a small, "messy" data frame and clean it.
 
 ```{r}
-# Create a messy data frame using our w144_wrangled
+
+# Create a messy data frame using our pew_wrangled
 # We select real columns and then rename them to be messy
-messy_data <- w144_wrangled %>%
-  select(QKEY, education, age_group) %>%
+messy_data <- pew_wrangled %>%
+  select(QKEY, education, age_cat) %>%
   rename("Respondent ID" = QKEY,
          "Level of Education" = education,
-         "age_group" = age_group) # This one is already mostly clean
+         "age_cat" = age_cat) # This one is already mostly clean
 
 print("--- Original Messy Names ---")
 glimpse(messy_data)
@@ -83,7 +68,7 @@ glimpse(clean_data)
 
 **Explanation:** We first `rename()` our columns to have spaces and capital letters, which are difficult to work with in R. When we pipe `messy_data` into `clean_names()`, it automatically converts "Respondent ID" to `respondent_id` and "Level of Education" to `level_of_education`. The `age_group` column is also standardized.
 
-**Practice Prompt:** The `w144_wrangled` object is already clean. To see `clean_names()` in action, pipe the original `w144_data` object into `clean_names()` and use `glimpse()` to see the result.
+**Practice Prompt:** The `pew_wrangled` object is already clean. To see `clean_names()` in action, pipe the original `pew_data` object into `clean_names()` and use `glimpse()` to see the result.
 
 -----
 
@@ -127,14 +112,15 @@ print(clean_df)
 **Example:** Let's check if there are any duplicate respondent IDs (`QKEY`) in our dataset. (There shouldn't be\!)
 
 ```{r}
+
 # Check for duplicates in the 'QKEY' column
-w144_wrangled %>%
+pew_wrangled %>%
   get_dupes(QKEY)
 ```
 
 **Explanation:** This code checks the entire `w144_wrangled` data frame to see if any value in the `QKEY` column appears more than once. If it returns an empty data frame (with 0 rows), it means our data is "clean" and every respondent ID is unique.
 
-**Practice Prompt:** Check if there are any rows that have the *exact same combination* of `age_group`, `gender`, and `party_simple`.
+**Practice Prompt:** Check if there are any rows that have the *exact same combination* of `age_cat`, `gender`, and `party_simple`.
 
 -----
 
@@ -153,20 +139,21 @@ This family of functions is for creating frequency tables and crosstabs.
 **Example:** Create a 1-way frequency table for education level and a 2-way crosstab for gender and political party.
 
 ```{r}
+
 # 1-way table (using education)
-w144_wrangled %>%
+pew_wrangled %>%
   tabyl(education)
 
 # 2-way table (crosstab)
 # We can filter out NA values for a cleaner table
-w144_wrangled %>%
+pew_wrangled %>%
   filter(!is.na(gender), !is.na(party_simple)) %>%
   tabyl(gender, party_simple)
 ```
 
 **Explanation:** The first `tabyl()` shows the counts and percentages for `education`. The second `tabyl()` creates a table with `gender` as the rows and `party_simple` as the columns, showing the count of respondents at each intersection (e.g., how many people are both "Female" and "Democrat").
 
-**Practice Prompt:** Create a two-way `tabyl()` to explore the relationship between `age_group` and `party_simple`.
+**Practice Prompt:** Create a two-way `tabyl()` to explore the relationship between `age_cat` and `party_simple`.
 
 -----
 
@@ -177,7 +164,7 @@ w144_wrangled %>%
 **Example:** Create a crosstab of gender and party and add totals for both rows and columns.
 
 ```{r}
-w144_wrangled %>%
+pew_wrangled %>%
   filter(!is.na(gender), !is.na(party_simple)) %>%
   tabyl(gender, party_simple) %>%
   adorn_totals(where = c("row", "col"))
@@ -201,7 +188,7 @@ w144_wrangled %>%
 
 ```{r}
 # We must use denominator = "col" to get percentages *within* each column (party)
-w144_wrangled %>%
+pew_wrangled %>%
   filter(!is.na(gender), !is.na(party_simple)) %>%
   tabyl(gender, party_simple) %>%
   adorn_percentages(denominator = "col")
@@ -220,7 +207,7 @@ w144_wrangled %>%
 **Example:** Create a column-percentage table and format it to one decimal place.
 
 ```{r}
-w144_wrangled %>%
+pew_wrangled %>%
   filter(!is.na(gender), !is.na(party_simple)) %>%
   tabyl(gender, party_simple) %>%
   adorn_percentages(denominator = "col") %>%
@@ -240,7 +227,7 @@ w144_wrangled %>%
 **Example:** Create a full table showing formatted column percentages *and* the underlying Ns.
 
 ```{r}
-w144_wrangled %>%
+pew_wrangled %>%
   filter(!is.na(gender), !is.na(party_simple)) %>%
   tabyl(gender, party_simple) %>%
   adorn_totals("col") %>% # Add column totals before percentages

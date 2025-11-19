@@ -99,7 +99,7 @@ The true proportions of dice in the bag are as follows:
 
 Compare the percentages in your sample to these true proportions. The difference between your sample's result and these true values is called **sampling error**.
 
----
+------------------------------------------------------------------------
 
 ## 4. Part 2: Your Digital Sample (Survey Data)
 
@@ -107,16 +107,18 @@ Now, let's apply the same logic to a real survey dataset. We'll use a random sam
 
 ### Step 2.1: Loading the Data
 
-When you load the `mccoursepack` package, the excerpted Pew dataset is available as `w144_excerpt`. Load it just like you would with other famous datasets (e.g., `penguins` from `palmerpenguins`).
+
+When you load the `mccoursepack` package, the excerpted Pew dataset is available as `ATP_W144_excerpt`. Load it just like you would with other famous datasets (e.g., `penguins` from `palmerpenguins`).
 
 ```{r}
 library(mccoursepack)
-#> mccoursepack v0.1.0: Pew Research Center ATP W144 excerpt loaded. See ?w144_excerpt for details.
-data(w144_excerpt)
-glimpse(w144_excerpt)
+#> mccoursepack v0.1.0: Pew Research Center ATP W144 excerpt loaded. See ?ATP_W144_excerpt for details.
+data(ATP_W144_excerpt)
+glimpse(ATP_W144_excerpt)
 ```
 
 -   You should see a message confirming the data is loaded, just like with `palmerpenguins` or `ggplot2::mpg`.
+
 
 ### Step 2.2: Take a Random Sample
 
@@ -124,7 +126,7 @@ Let's take a simple random sample of 50 people from the dataset.
 
 ```{r}
 set.seed(123)
-my_sample <- w144_excerpt %>%
+my_sample <- ATP_W144_excerpt %>%
   slice_sample(n = 50)
 
 print(my_sample)
@@ -132,34 +134,37 @@ print(my_sample)
 
 ### Step 2.3: Summarize and Visualize Your Sample
 
-What is the average number of platforms used (`platform_count`) in your sample?
+
+#### Example Summaries with the New Dataset
+
+What is the average age category (`F_AGECAT`) in your sample?
 
 ```{r}
-mean_platforms <- mean(my_sample$platform_count, na.rm = TRUE)
-mean_platforms
+mean_agecat <- mean(my_sample$F_AGECAT, na.rm = TRUE)
+mean_agecat
 ```
 
-Make a bar chart of the `age_group` distribution in your sample:
+Make a bar chart of the `F_AGECAT` distribution in your sample:
 
 ```{r}
 my_sample %>%
-  count(age_group) %>%
-  ggplot(aes(x = age_group, y = n, fill = age_group)) +
+  count(F_AGECAT) %>%
+  ggplot(aes(x = as.factor(F_AGECAT), y = n, fill = as.factor(F_AGECAT))) +
   geom_col() +
   theme_minimal() +
   labs(
-    title = "Age Group Distribution in My Sample",
-    x = "Age Group",
+    title = "Age Category Distribution in My Sample",
+    x = "F_AGECAT",
     y = "Count"
   )
 ```
 
----
+------------------------------------------------------------------------
 
 ## 5. Reflection
 
--   How does the average `platform_count` in your sample compare to the whole dataset? Try calculating the mean for the full dataset and compare.
--   How does the distribution of `age_group` in your sample compare to the full dataset?
+-   How does the average `F_AGECAT` in your sample compare to the whole dataset? Try calculating the mean for the full dataset and compare.
+-   How does the distribution of `F_AGECAT` in your sample compare to the full dataset?
 -   What do you notice about sampling error and variation?
 
 ------------------------------------------------------------------------

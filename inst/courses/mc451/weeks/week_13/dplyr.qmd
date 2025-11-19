@@ -9,31 +9,17 @@ library(readr)
 library(mccoursepack)
 
 # Load the dataset
-data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
-w144_data <- read_csv(data_path)
-w144_wrangled <- w144_data %>% 
+data_path <- system.file("extdata", "ATP_W144_excerpt.csv", package = "mccoursepack")
+pew_data <- read_csv(data_path)
+pew_wrangled <- pew_data %>%
   mutate(
     party_simple = case_when(
-      party == "Republican" ~ "Republican",
-      party == "Democrat" ~ "Democrat",
+      F_PARTY_FINAL == "Rep/lean Rep" ~ "Republican",
+      F_PARTY_FINAL == "Dem/lean Dem" ~ "Democrat",
       TRUE ~ "Independent/Other"
-    ) %>% 
-      factor(levels = c("Republican", "Democrat", "Independent/Other")),
-    platform_count = (uses_facebook == "Yes") +
-                     (uses_x == "Yes") +
-                     (uses_instagram == "Yes") +
-                     (uses_tiktok == "Yes"),
-    across(
-      starts_with("fb_why_"), 
-      ~ if_else(. == "Yes", 1, 0),
-      .names = "{.col}_n" 
-    )
-  ) %>% 
-  mutate(
-    fb_uses_count = rowSums(
-      across(starts_with("fb_why_") & ends_with("_n")), 
-      na.rm = TRUE
-    )
+    ) %>% factor(levels = c("Republican", "Democrat", "Independent/Other")),
+    age_cat = as_factor(F_AGECAT),
+    income = as_factor(F_INC_SDT1)
   )
 ```
 

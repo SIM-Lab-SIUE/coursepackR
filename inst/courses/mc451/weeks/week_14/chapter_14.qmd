@@ -1,14 +1,29 @@
-# Making Inferences
 
-## The Leap from Sample to Population {.unnumbered}
+# Chapter 14: Inferential Statistics (Modernized)
 
-In the previous chapter, we explored the essential first step of data analysis: describing our data. Through the tools of descriptive statistics and data visualization, we learned how to take a raw dataset and distill it into a coherent and understandable summary. We can now confidently describe the central tendency, spread, and shape of the variables within our sample. We can state the mean age of the 500 university students we surveyed, or visualize the distribution of their social media usage. This is a crucial and illuminating process, but for much of quantitative research, it is only the beginning of the journey.
+This chapter covers the basics of inferential statistics using the course dataset. We will use the `pew_wrangled` object you created in Lab 12, and all code and examples now use the new Pew dataset and valid columns.
 
-The ultimate goal of most social scientific inquiry is not simply to describe the specific sample we have collected, but to say something meaningful about the larger, unobserved **population** from which that sample was drawn. We want to move from the particular to the general. We want to take the findings from our 500 students and make a reasonable claim about the media habits of all 20,000 students at the university. This is the act of **statistical inference**: the process of using data from a sample to draw conclusions or make educated guesses about a population. It is a logical and mathematical leap of faith, a journey from the known to the unknown.
+## 1. Chi-Square Test Example
 
-How can we make this leap with any degree of confidence? How do we know if a pattern we observe in our sample—a difference between two groups or a relationship between two variables—is a "real" pattern that likely exists in the broader population, or if it is merely a fluke, a random artifact of the specific individuals who happened to end up in our sample? This is the central question that **hypothesis testing** is designed to answer. It is a systematic framework for making decisions under conditions of uncertainty. It is the formal process by which we use the laws of probability to evaluate the evidence from our sample and make a disciplined judgment about our research hypotheses.
+```{r}
+party_tiktok_table <- table(pew_wrangled$party_simple, pew_wrangled$USE_TIKTOK)
+chisq.test(party_tiktok_table)
+```
 
-This chapter is the culmination of our journey through the quantitative research workflow. It demystifies the logic of inferential statistics, focusing on the conceptual framework of hypothesis testing rather than on complex mathematical formulas. We will explore the core concepts that drive this process, including the crucial role of the null hypothesis, the meaning of statistical significance and the p-value, and the two types of errors we risk making in any inferential decision. Critically, we will distinguish between a finding that is statistically significant and one that is practically meaningful by introducing the essential concept of **effect size**. Finally, we will provide a conceptual guide to choosing the correct statistical test for your research question and offer a clear blueprint for how to report your findings transparently and responsibly.
+## 2. T-Test Example
+
+```{r}
+reg_data <- pew_wrangled %>% filter(!is.na(income), income != 99, !is.na(platform_count))
+t.test(platform_count ~ income, data = reg_data)
+```
+
+## 3. ANOVA Example
+
+```{r}
+anova_model <- aov(platform_count ~ age_group, data = pew_wrangled)
+summary(anova_model)
+TukeyHSD(anova_model)
+```
 
 ## The Logic of Hypothesis Testing: A Framework for Decision-Making {.unnumbered}
 

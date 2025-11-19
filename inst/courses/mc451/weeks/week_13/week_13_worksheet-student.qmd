@@ -20,16 +20,19 @@ library(ggthemes)  # For additional themes
 library(mccoursepack)
 
 # Load the new teaching data
-data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
-w144_data <- read_csv(data_path)
-w144_clean <- w144_data %>%
+data_path <- system.file("extdata", "ATP_W144_excerpt.csv", package = "mccoursepack")
+pew_data <- read_csv(data_path)
+pew_clean <- pew_data %>%
   mutate(
-    gender = as_factor(gender),
-    education = as_factor(education),
-    income = as_factor(income),
-    urban_rural = as_factor(urban_rural),
-    ideology_simple = as_factor(ideology_simple),
-    party = as_factor(party)
+    gender = as_factor(GENDER),
+    education = as_factor(F_EDUCCAT),
+    income = as_factor(F_INC_SDT1),
+    age_cat = as_factor(F_AGECAT),
+    party_simple = case_when(
+      F_PARTY_FINAL == "Rep/lean Rep" ~ "Republican",
+      F_PARTY_FINAL == "Dem/lean Dem" ~ "Democrat",
+      TRUE ~ "Independent/Other"
+    ) %>% factor(levels = c("Republican", "Democrat", "Independent/Other"))
   )
 ```
 

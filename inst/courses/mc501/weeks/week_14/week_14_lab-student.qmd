@@ -1,3 +1,137 @@
+---
+title: "Lab 14: Inferential Statistics (Modernized)"
+format: html
+editor: visual
+---
+
+# **Lab 14: Inferential Statistics**
+
+## **Learning Objectives**
+
+In the last two labs, you have wrangled and visualized your data.
+
+  * In **Lab 12**, you created new variables (like `platform_count`).
+  * In **Lab 13**, you *described* those variables using plots (like `geom_violin`). You *saw* what looked like differences between groups.
+
+This week, we make the **leap from description to inference**. As the `data-chapters.pdf` reading explains, we are moving from "what we see" in our **sample** to making an educated, statistical claim about the larger **population**. We will ask: "Is the difference I see in my plot *real*, or could it just be due to random chance?"
+
+By the end of this lab, you will be able to:
+
+  * Define a **Null Hypothesis (H0)** and an **Alternative Hypothesis (HA)**.
+  * Understand and interpret a **p-value** (and the `p < .05` rule).
+  * Run and interpret a **Chi-Square Test** (`chisq.test()`) for categorical relationships.
+  * Run and interpret a **T-Test** (`t.test()`) to compare two group means.
+  * Run and interpret an **ANOVA** (`aov()`) to compare three or more group means.
+  * Run and interpret a **TukeyHSD()** post-hoc test to find *which* groups are different.
+
+### **Pew Research Center: Required Citation**
+
+As always, any script, report, or presentation that uses this data must include the following disclaimer:
+
+> "Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.”
+
+-----
+
+## **Part 1: Setup - Get Your Data Ready**
+
+This lab **depends on your work from Lab 12**. We must first re-create the `pew_wrangled` dataset that contains all your new scales and variables.
+
+1.  Open RStudio and create a **new R Script**.
+2.  Save it in your Project folder as `Lab_14.R`.
+3.  Load the `tidyverse` library.
+
+### **Step 1: The "Wrangle Chunk" 🧱**
+
+Copy this *entire* block of code. This is your "wrangle chunk" that creates your final `pew_wrangled` object.
+
+**Run this entire chunk of code.**
+
+```{r}
+library(tidyverse)
+
+# Use the new Pew dataset
+data_path <- system.file("extdata", "ATP_W144_excerpt.csv", package = "mccoursepack")
+pew_data <- read_csv(data_path)
+
+glimpse(pew_data)
+
+# Wrangle Pew data to match new conventions
+pew_wrangled <- pew_data %>%
+  mutate(
+    party_simple = case_when(
+      F_PARTY_FINAL == "Rep/lean Rep" ~ "Republican",
+      F_PARTY_FINAL == "Dem/lean Dem" ~ "Democrat",
+      TRUE ~ "Independent/Other"
+    ) %>% factor(levels = c("Republican", "Democrat", "Independent/Other")),
+    age_group = as_factor(F_AGECAT),
+    gender = as_factor(GENDER),
+    education = as_factor(F_EDUCCAT),
+    income = as_factor(F_INC_SDT1),
+    platform_count = (USE_FACEBOOK == "Yes") +
+                     (USE_X == "Yes") +
+                     (USE_INSTAGRAM == "Yes") +
+                     (USE_TIKTOK == "Yes"),
+    across(
+      starts_with("FB_WHY_"),
+      ~ if_else(. == "Yes", 1, 0),
+      .names = "{.col}_n"
+    )
+  ) %>%
+  mutate(
+    fb_uses_count = rowSums(
+      across(starts_with("FB_WHY_") & ends_with("_n")),
+      na.rm = TRUE
+    )
+  )
+
+glimpse(pew_wrangled)
+```
+
+```{r}
+party_tiktok_table <- table(pew_wrangled$party_simple, pew_wrangled$USE_TIKTOK)
+chisq.test(party_tiktok_table)
+
+# Remove missing values and refusals for income and platform_count
+reg_data <- pew_wrangled %>% filter(!is.na(income), income != 99, !is.na(platform_count))
+
+# Fit the model
+lm_simple <- lm(platform_count ~ income, data = reg_data)
+
+# View the summary
+summary(lm_simple)
+
+# Remove missing values and refusals for all predictors
+multi_reg_data <- pew_wrangled %>% 
+  filter(!is.na(income), income != 99, !is.na(gender), !is.na(party_simple), !is.na(platform_count))
+
+# Fit the model (gender and party_simple are categorical)
+lm_multi <- lm(platform_count ~ income + gender + party_simple, data = multi_reg_data)
+
+# View the summary
+summary(lm_multi)
+
+anova_model <- aov(platform_count ~ age_group, data = pew_wrangled)
+TukeyHSD(anova_model)
+
+# Remove missing values for fb_uses_count and platform_count
+reg_data <- pew_wrangled %>% filter(!is.na(fb_uses_count), !is.na(platform_count))
+
+# Fit the model
+lm_simple <- lm(platform_count ~ fb_uses_count, data = reg_data)
+
+# View the summary
+summary(lm_simple)
+
+# Remove missing values for all predictors
+multi_reg_data <- pew_wrangled %>% 
+    filter(!is.na(fb_uses_count), !is.na(gender), !is.na(party_simple), !is.na(platform_count))
+
+# Fit the model (gender and party_simple are categorical)
+lm_multi <- lm(platform_count ~ fb_uses_count + gender + party_simple, data = multi_reg_data)
+
+# View the summary
+summary(lm_multi)
+```
 # **Lab 14: Inferential Statistics**
 
 ## **Learning Objectives**

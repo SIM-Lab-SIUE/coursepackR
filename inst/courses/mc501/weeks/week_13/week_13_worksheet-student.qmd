@@ -1,9 +1,7 @@
----
 title: "Week 13 Worksheet: Advanced Descriptive Statistics and Visualizations"
 subtitle: "Additional Examples of Common Statistical Summaries and Plots"
 format: html
 editor: visual
----
 
 > **Required Citation & Disclaimer:** Remember to include the Pew Research Center citation and disclaimer (from Lab 1) in all work that uses this data.
 
