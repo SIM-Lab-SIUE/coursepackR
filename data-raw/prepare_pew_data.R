@@ -76,6 +76,7 @@ data_excerpt <- raw_data %>%
 # ---
 fwrite(data_excerpt, "data/ATP_W144_excerpt.csv")
 
+
 # ---
 # 5. SCRIPT COMPLETE
 # ---
@@ -83,8 +84,15 @@ cat("Excerpted data saved to data/ATP_W144_excerpt.csv\n")
 cat("Rows:", nrow(data_excerpt), " Columns:", ncol(data_excerpt), "\n")
 str(data_excerpt)
 
+# --- 
+# 6. SAVE AS PACKAGE DATASET (.rda)
 # ---
-# 6. SAVE AS RDA FOR PACKAGE
-# ---
-excerpt <- data.table::fread("inst/extdata/ATP_W144_excerpt.csv")
-save(excerpt, file = "data/ATP_W144_excerpt.rda")
+
+# Read the CSV back in (ensures correct structure)
+data_excerpt <- fread("data/ATP_W144_excerpt.csv") %>% as.data.frame()
+
+# Name the object as you want it to appear in the package
+ATP_W144_excerpt <- data_excerpt
+
+# Save to the 'data/' directory as .rda (run this from the package root)
+usethis::use_data(ATP_W144_excerpt, overwrite = TRUE)

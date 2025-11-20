@@ -50,8 +50,7 @@ Copy this *entire* block of code. This is your "wrangle chunk" that creates your
 library(tidyverse)
 
 # Use the new Pew dataset
-data_path <- system.file("extdata", "ATP_W144_excerpt.csv", package = "mccoursepack")
-pew_data <- read_csv(data_path)
+data(ATP_W144_excerpt)
 
 glimpse(pew_data)
 
