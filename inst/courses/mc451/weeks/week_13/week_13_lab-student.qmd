@@ -1,285 +1,233 @@
-# **Lab 13: Descriptive Statistics & Data Visualization**
+---
+title: "Lab 13: Descriptive Statistics & Visualization"
+author: "Research Methods"
+format: pdf
+editor: visual
+---
+
+# **Lab 13: Describing and Visualizing Data**
 
 ## **Learning Objectives**
 
-In Lab 12, you did the hard work of "wrangling"—you created new, meaningful variables like `party_simple` and `platform_count`. But data wrangling is just the prep work. This week, we learn how to **explore** that data.
-
-This is the "fun" part. Data visualization allows you to *see* patterns, find relationships, and get a feel for your data before you ever run a formal statistical test.
+In the previous lab, you "wrangled" your data—cleaning it and creating new variables. Now comes the fun part: telling the story of that data.
 
 By the end of this lab, you will be able to:
 
--   Get quick descriptive statistics using `summary()` and `count()`.
--   Understand the basic "grammar" of the `ggplot2` package.
--   Create **histograms** to see the distribution of numeric variables.
--   Create **bar charts** to see the distribution of categorical variables.
--   Create **boxplots** and **violin plots** to compare groups.
--   Create **filled bar charts** to compare proportions.
--   Polish your plots with labels and titles using `labs()`.
--   Use `facet_wrap()` to create powerful "small multiple" plots.
+-   **Calculate Frequencies:** Count categories using `count()`.
+-   **Calculate Averages:** Find means and medians using `summarize()`.
+-   **Visualize Categories:** Create bar charts with `ggplot2`.
+-   **Visualize Distributions:** Create histograms and boxplots.
+-   **Style Your Plots:** Add titles, labels, and professional themes.
 
-### **Pew Research Center: Required Citation**
+## **Part 1: Setup and Data Prep**
 
-As always, any script, report, or presentation that uses this data must include the following disclaimer:
+First, we must load our tools and recreate the clean dataset we built in Lab 12.
 
-> "Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.”
-
-------------------------------------------------------------------------
-
-## **Part 1: Setup - Get Your Data Ready**
-
-This lab **depends on your work from Lab 12**. We must first re-create the `w144_wrangled` dataset that contains all your new scales and variables.
-
-1.  Open RStudio and create a **new R Script**.
-2.  Save it in your Project folder as `Lab_13.R`.
-3.  Load the `tidyverse` library.
-
-### **Step 1: The "Wrangle Chunk" 🧱**
-
-Copy this *entire* block of code from Lab 12. This is your "wrangle chunk" that takes the raw `w144_teaching_dataset_v2.csv` and creates your final `w144_wrangled` object.
-
-**Run this entire chunk of code.**
+**Step 1:** Run this chunk to load the `tidyverse` and `mccoursepack`.
 
 ```{r}
 library(tidyverse)
+library(mccoursepack)
+```
 
-data_path <- system.file("extdata", "w144_teaching_dataset_v2.csv", package = "mccoursepack")
+**Step 2:** Run this chunk to load and clean the data. (This is the exact code we wrote in Lab 12, combined into one block for convenience).
 
-w144_data <- read_csv(data_path)
+```{r}
+# Load raw data
+data(ATP_W144_excerpt)
+df <- ATP_W144_excerpt
 
-glimpse(w144_data)
-
-w144_wrangled <- w144_data %>% 
-    ) %>% 
-      factor(levels = c("Republican", "Democrat", "Independent/Other")),
-    platform_count = (uses_facebook == "Yes") +
-                     (uses_x == "Yes") +
-                     (uses_tiktok == "Yes"),
-    across(
-      starts_with("fb_why_"), 
-This lab **depends on your work from Lab 12**. We must first re-create the `pew_wrangled` dataset that contains all your new scales and variables, but now using the new Pew ATP dataset.
-      ~ if_else(. == "Yes", 1, 0),
-      .names = "{.col}_n" 
-    )
-  ) %>% 
+# Rename, Recode, and Create Scales
+w144_wrangled <- df %>%
+  rename(
+    party = F_PARTY_FINAL,
+    age_cat = F_AGECAT,
+    uses_facebook = SMUSE_a_W144,
+    uses_x = SMUSE_c_W144,
+    uses_instagram = SMUSE_d_W144,
+    uses_tiktok = SMUSE_i_W144,
+    fb_why_news = FBWHY_a_W144,
+    fb_why_politics = FBWHY_b_W144,
+    fb_why_culture = FBWHY_c_W144,
+    fb_why_entertainment = FBWHY_d_W144,
+    fb_why_friends = FBWHY_e_W144,
+    fb_why_interests = FBWHY_f_W144,
+    fb_why_reviews = FBWHY_g_W144
+  ) %>%
   mutate(
+    # Create Simplified Party Variable
+    party_simple = case_when(
+        party == 1 ~ "Republican",
+        party == 2 ~ "Democrat",
+        TRUE ~ "Independent/Other"
+    ),
+    # Recode Usage to Yes/No
+    across(starts_with("uses_"), ~ if_else(. == 1, "Yes", "No")),
+    # Create Platform Count (0-4)
+    platform_count = (uses_facebook == "Yes") + (uses_x == "Yes") + 
+                     (uses_instagram == "Yes") + (uses_tiktok == "Yes"),
+    # Create FB Reasons Count (0-7)
     fb_uses_count = rowSums(
-      across(starts_with("fb_why_") & ends_with("_n")), 
-      na.rm = TRUE
+        across(starts_with("fb_why_"), ~ if_else(. %in% c(1, 2), 1, 0)), 
+        na.rm = TRUE
     )
   )
 
+# Check the final dataset
 glimpse(w144_wrangled)
 ```
 
--   **1. Load the tidyverse:** Loads the `tidyverse` library.
--   **2. Find Path:** `system.file()` is the standard way to find package files *inside* the 'mccoursepack' package.
--   **3. Load Data:** Loads the data from the full path.
--   **4. Glimpse:** Confirms the raw `w144_data` is loaded.
--   **5. Run Wrangling Steps:**
-    -   (Inside first `mutate`): Create 'party_simple'
-    -   (Inside first `mutate`): Create 'platform_count'
-    -   (Inside first `mutate`): Recode 'fb_why' items to 1/0
-    -   (Inside second `mutate`): Create 'fb_uses_count' scale
--   **6. Check Your Work:** Glimpse your final `w144_wrangled` object to make sure it's ready.
+-----
 
-After running this, your **Environment** (top-right) should contain the `w144_wrangled` object. We are now ready to explore.
+## **Part 2: Categorical Statistics (Counts & Percents)**
 
-------------------------------------------------------------------------
+When analyzing **categorical** data (nominal variables like `party_simple` or `uses_tiktok`), we want to know *how many* people fall into each group.
 
-## **Part 2: Descriptive Statistics (The "10,000-Foot View")**
+### **Frequency Tables**
 
-Before we plot, let's get some quick numbers.
-
-### **A) For `numeric` scales: `summary()`**
-
-summary(w144_wrangled$fb_uses_count)
-```
-
--   **Line 3:** Get a summary for your 'fb_uses_count' scale.
--   **Interpretation:** Look at the `Mean` (the average), the `Median` (the 50th percentile, or middle value), and the `Min.` and `Max.` values. This tells you the range and central tendency of your scale.
-
-### **B) For `categorical` factors: `count()`**
-
-The `count()` function is the best way to see the *frequencies* for categorical variables (like `party_simple`, `age_group`, or coded variables like `income`).
+The `count()` function is the quickest way to see the distribution of a variable. The code below counts how many people are in each political category.
 
 ```{r}
-w144_wrangled %>% 
-  count(party_simple)
-
-w144_wrangled %>% 
-  count(age_group, sort = TRUE)
-
 w144_wrangled %>%
-  filter(!is.na(income), income != 99) %>%
-  count(income, sort = TRUE)
+  count(party_simple)
 ```
 
--   **Lines 1-2:** Count the 'party_simple' variable you created.
--   **Lines 4-5:** Count the 'age_group' variable, sorted by size.
--   **Lines 7-9:** Count the 'income' variable, filtering out missing/refused (99), sorted by size.
+We can also calculate percentages. To do this, we use `mutate()` to divide the count (`n`) by the total number of rows (`sum(n)`).
 
-------------------------------------------------------------------------
+```{r}
+w144_wrangled %>%
+  count(party_simple) %>%
+  mutate(percent = n / sum(n))
+```
 
-## **Part 3: The Grammar of Graphics (`ggplot2`)**
+### **Visualizing Categories: The Bar Chart**
 
-`summary()` and `count()` are great, but a *picture is worth a thousand numbers*. We will use the `ggplot2` package (which is part of the `tidyverse`) to make our plots.
+The best way to visualize categorical data is a **Bar Chart**. In R, we use the package `ggplot2` (which is part of the tidyverse).
 
-All `ggplot` code follows the same "grammar":
+**The Grammar of Graphics:**
+`ggplot()` works in layers, like painting on a canvas:
 
-1.  `ggplot(data = ... , aes(x = ... , y = ...))`
-    -   **`data`:** Your dataset (we'll use `w144_wrangled`).
-    -   **`aes()`:** The "aesthetics." This is where you map variables to visual properties, like `x` (the x-axis), `y` (the y-axis), and `fill` (the color).
-2.  `+`
-    -   The "plus" sign connects your setup to a...
-3.  `geom_...()`
-    -   The "geometry." This is the *type* of plot you want (bar chart, histogram, boxplot, etc.).
+1.  **The Canvas:** `ggplot(data = ...)`
+2.  **The Variables (Aesthetics):** `aes(x = ...)`
+3.  **The Geometry (The shapes):** `geom_bar()`
 
-------------------------------------------------------------------------
-
-## **Part 4: Plotting ONE Variable (Distributions)**
-
-The first step in exploration is to understand the *shape* of your key variables.
-
-### **A) Categorical Variable -\> `geom_bar()`**
-
-**Question:** How many people are in each `party_simple` group? **Plot:** A bar chart.
+The code below creates a simple bar chart of political parties.
 
 ```{r}
 ggplot(data = w144_wrangled, aes(x = party_simple)) +
   geom_bar()
 ```
 
--   **1. Setup:** `data` is 'w144_wrangled', `x-axis` is 'party_simple'.
--   **2. Geometry:** Add a 'bar chart' layer.
+### **Adding Style**
 
-**`ggplot()` Challenge:**
+That chart is accurate, but ugly. Let's add three things to make it publication-ready:
 
--   Create a new bar chart for the `education` variable. What does it tell you?
--   Create a bar chart for the `income` variable (filter out 99 = Refused):
+1.  **Fill Color:** Add `fill = "steelblue"` inside `geom_bar`.
+2.  **Labels:** Use `labs()` to add a title and clean up axis names.
+3.  **Theme:** Use `theme_minimal()` to remove the gray background.
 
-```{r}
-ggplot(data = w144_wrangled %>% filter(!is.na(income), income != 99), aes(x = factor(income))) +
-  geom_bar()
-```
-
--   **Interpretation:** For `income`, the x-axis shows category codes (see codebook for meaning). Which income group is most common?
-
-### **B) Numeric Variable -\> `geom_histogram()`**
-
-**Question:** What is the distribution of our `platform_count` scale? **Plot:** A histogram.
+<!-- end list -->
 
 ```{r}
-ggplot(data = w144_wrangled, aes(x = platform_count)) +
-  geom_histogram(binwidth = 1, fill = "blue", color = "white") 
-```
-
--   **1. Setup:** `data` is 'w144_wrangled', `x-axis` is 'platform_count'.
--   **2. Geometry:** Add a 'histogram' layer.
--   `binwidth = 1` is important: it makes each bar 1 unit wide (0, 1, 2, 3, 4).
--   **`ggplot()` Challenge:** Run the code above. Now, create a new histogram for the `fb_uses_count` scale you built. What's the most common number of "reasons" people use Facebook?
-
-------------------------------------------------------------------------
-
-## **Part 5: Plotting TWO Variables (Relationships)**
-
-This is where you hunt for insights! How does one variable change in relation to another?
-
-### **A) Categorical (X) vs. Numeric (Y) -> `geom_violin()` or `geom_boxplot()`**
-
-**Question:** Does `platform_count` (numeric) differ by `age_group` (categorical)? **Plot:** A violin plot (or boxplot). A violin plot is like a histogram for each group, turned on its side.
-
-```{r}
-ggplot(data = w144_wrangled, aes(x = age_group, y = platform_count)) +
-  geom_violin() +
-  stat_summary(fun = "mean", geom = "point", color = "red", size = 3)
-```
-
--   **1. Setup:** `x-axis` is 'age_group', `y-axis` is 'platform_count'.
--   **2. Geometry:** Add a 'violin' layer.
--   **3. (Optional):** Add a point for the mean in each group using `stat_summary()`.
--   **Interpretation:** Look at the plot. You can instantly see that the distribution of platform use for "18-29" year-olds is *very* different from "65+" year-olds. This is a key finding!
-
-**`ggplot()` Challenge:**
-
--   Create a violin plot of `fb_uses_count` by `age_group`:
-
-```{r}
-ggplot(data = w144_wrangled, aes(x = age_group, y = fb_uses_count)) +
-  geom_violin() +
-  stat_summary(fun = "mean", geom = "point", color = "red", size = 3)
-```
-
--   **Interpretation:** For `fb_uses_count`, do some age groups report more reasons for Facebook use than others?
-
-### **B) Categorical (X) vs. Categorical (Fill) -\> `geom_bar(position = "fill")`**
-
-**Question:** What is the *proportion* of TikTok use (`uses_tiktok`) in each `age_group`? **Plot:** A 100% "filled" bar chart.
-
-```{r}
-ggplot(data = w144_wrangled, aes(x = age_group, fill = uses_tiktok)) +
-  geom_bar(position = "fill") 
-```
-
--   **1. Setup:** `x-axis` is 'age_group', 'fill' color is 'uses_tiktok'.
--   **2. Geometry:** A bar chart.
--   `position = "fill"` turns the stacked bars into a 100% proportional chart.
--   **Interpretation:** This plot clearly shows that `uses_tiktok` makes up a huge proportion of the "18-29" bar, but a tiny sliver of the "65+" bar.
-
-**`ggplot()` Challenge:**
-
--   Create a filled bar chart of `uses_tiktok` by `income` (filter out 99 = Refused):
-
-```{r}
-ggplot(data = w144_wrangled %>% filter(!is.na(income), income != 99), aes(x = factor(income), fill = uses_tiktok)) +
-  geom_bar(position = "fill")
-```
-
--   **Interpretation:** For `income`, the x-axis shows category codes. In which income groups is TikTok use most or least common?
-
-------------------------------------------------------------------------
-
-## **Part 6: Polishing and Faceting (The "Power Moves")**
-
-Your plots work, but now let's make them look professional and add more analytical power.
-
-### **A) Polishing with `labs()`**
-
-Let's take our violin plot from Part 5 and add clean labels. The `labs()` function lets you change all labels at once.
-
-```{r}
-ggplot(data = w144_wrangled, aes(x = age_group, y = platform_count)) +
-  geom_violin() +
-  stat_summary(fun = "mean", geom = "point", color = "red", size = 3) +
+ggplot(w144_wrangled, aes(x = party_simple)) +
+  geom_bar(fill = "steelblue") +
   labs(
-    title = "Social Media Platform Use is Heavily Tied to Age",
-    subtitle = "Distribution of platform count (out of 4) by age group",
-    x = "Age Group",
-    y = "Number of Platforms Used",
-    caption = "Source: Pew Research Center, ATP W144"
-  )
-```
-
--   Add this `labs()` layer to make your plot report-ready.
-
-### **B) Analyzing with `facet_wrap()`**
-
-**This is the most powerful tool in exploratory analysis.** `facet_wrap()` creates a *separate plot* for each level of a categorical variable.
-
-**Question:** We know the distribution of `fb_uses_count` (from Part 4). But does that distribution look *different* for Democrats, Republicans, and Independents?
-
-```{r}
-ggplot(data = w144_wrangled, aes(x = fb_uses_count)) +
-  geom_histogram(binwidth = 1, fill = "navy", color = "white") +
-  facet_wrap(~ party_simple) +
-  labs(
-    title = "Facebook 'Reasons for Use' by Political Party",
-    x = "Number of Reasons Cited (out of 7)",
+    title = "Distribution of Political Party",
+    subtitle = "Pew Research Center (Wave 144)",
+    x = "Political Party",
     y = "Count of Respondents"
+  ) +
+  theme_minimal()
+```
+
+-----
+
+## **Part 3: Continuous Statistics (Means & Spread)**
+
+When analyzing **continuous** data (ratio/interval variables like your `platform_count` or `fb_uses_count`), counting isn't enough. We need summary statistics like the **Mean** (average) and **Median** (middle value).
+
+### **Summary Tables**
+
+We use `summarize()` to calculate these stats. The code below calculates the average number of platforms used by the entire sample.
+
+```{r}
+w144_wrangled %>%
+  summarize(
+    average_platforms = mean(platform_count, na.rm = TRUE),
+    median_platforms = median(platform_count, na.rm = TRUE),
+    min_platforms = min(platform_count, na.rm = TRUE),
+    max_platforms = max(platform_count, na.rm = TRUE)
   )
 ```
 
--   **1. Setup:** A basic histogram of 'fb_uses_count'.
--   **2. Geometry:** A histogram.
--   **3. The Power Move:** `facet_wrap(~ party_simple)` creates 3 separate histograms, one for each party.
--   **4. Polish it:** Add labels with `labs()`.
--   **Interpretation:** Look at the three plots. Do they look the same? Do you see any differences in the "shape" of the data for each group? This gives you a powerful hint about what you'll find in Week 14!
+### **Comparing Groups**
+
+Usually, we want to compare these averages across groups. We combine `group_by()` with `summarize()` to do this.
+
+The code below answers the question: *Who uses more social media apps, Republicans or Democrats?*
+
+```{r}
+w144_wrangled %>%
+  group_by(party_simple) %>%
+  summarize(
+    avg_platforms = mean(platform_count, na.rm = TRUE),
+    avg_fb_reasons = mean(fb_uses_count, na.rm = TRUE)
+  )
+```
+
+### **Visualizing Distributions: The Histogram**
+
+To see the "shape" of continuous data, we use a **Histogram**. This shows us if the data is clumped in the middle (Normal distribution) or skewed to one side.
+
+The code below visualizes the `fb_uses_count` scale. Note that we use `geom_histogram()` and set a `binwidth` (how wide the bars are). Since our scale counts whole numbers (0, 1, 2...), a binwidth of 1 is perfect.
+
+```{r}
+ggplot(w144_wrangled, aes(x = fb_uses_count)) +
+  geom_histogram(binwidth = 1, fill = "purple", color = "white") +
+  labs(
+    title = "How Many Reasons Do People Use Facebook?",
+    x = "Number of Reasons (0-7)",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+
+### **Visualizing Comparisons: The Boxplot**
+
+The **Boxplot** is the standard social science tool for comparing distributions across groups. It shows the Median (the line in the middle) and the Range (the whiskers).
+
+The code below puts the Categorical variable (`party_simple`) on the X-axis and the Continuous variable (`platform_count`) on the Y-axis.
+
+```{r}
+ggplot(w144_wrangled, aes(x = party_simple, y = platform_count)) +
+  geom_boxplot(fill = "lightgray") +
+  labs(
+    title = "Social Media Usage by Political Party",
+    x = "Party",
+    y = "Number of Platforms Used (0-4)"
+  ) +
+  theme_minimal()
+```
+
+## **Part 4: Challenge - Combining It All**
+
+Let's look at one final relationship: **Age** and **Facebook Motivation**.
+
+We will filter for only the youngest age group (`age_cat == 1`, which is 18-29) and see how many reasons they have for using Facebook compared to the oldest group (`age_cat == 4`, which is 65+).
+
+```{r}
+w144_wrangled %>%
+  filter(age_cat == 1 | age_cat == 4) %>%
+  ggplot(aes(x = as.factor(age_cat), y = fb_uses_count, fill = as.factor(age_cat))) +
+  geom_boxplot() +
+  scale_x_discrete(labels = c("1" = "18-29", "4" = "65+")) +
+  labs(
+    title = "Facebook Motivation: Gen Z vs. Boomers",
+    x = "Age Group",
+    y = "Count of Reasons for Using FB",
+    fill = "Age Group"
+  ) +
+  theme_minimal()
+```
+
+
