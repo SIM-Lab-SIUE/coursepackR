@@ -1,26 +1,61 @@
-#' Download a week's template into a destination directory
+# ==============================================================================
+# Download Weekly Course Materials
+# ==============================================================================
+# This file contains the primary function students use to copy weekly templates
+# from the installed package to their local working directory. It handles both
+# single-course and multi-course installations, with backward compatibility.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Download Week Template
+# ------------------------------------------------------------------------------
+#' Download a week's course template to local directory
 #'
-#' Copies the installed files for a given `course` and `week` into a
-#' subfolder named `week_XX` inside `dest`. If the week template is empty
-#' (e.g., holiday weeks), it still creates the `week_XX` folder and copies nothing.
+#' Copies the installed template files for a given course and week into a
+#' subfolder named `week_XX` inside the destination directory. This is the
+#' primary function students use to get their weekly assignment materials.
 #'
-#' Backward compatibility: if you call `download_week(1, dest)`, it assumes there
-#' is a single installed course and uses it. If multiple courses exist, you must
-#' supply the `course` argument.
+#' @section Backward Compatibility:
+#' If you call `download_week(1, dest)` with only a week number, the function
+#' assumes there is exactly one installed course and uses it automatically.
+#' If multiple courses are installed, you must specify the course explicitly.
 #'
-#' @param course Course name (e.g., "mc451", "mc501"). For back-compat you may
-#'   pass only `week` as the first argument if exactly one course is installed.
-#' @param week Integer or string like `"01"` or `"week_01"`.
-#' @param dest Destination directory (created if needed). Defaults to current dir.
-#' @return (invisibly) a list with `dest` (the created week folder), `course`,
-#'   `week`, and `n_copied`.
+#' @section Empty Weeks:
+#' Some weeks (e.g., holidays or break weeks) may have no files. In these cases,
+#' the function still creates the `week_XX` folder but copies nothing into it.
+#' This ensures consistent folder structure across all weeks.
+#'
+#' @param course Character. Course name (e.g., "mc451", "mc501"). For backward
+#'   compatibility, you may pass only `week` as the first argument if exactly
+#'   one course is installed.
+#' @param week Integer or character. Week number as integer (1, 2, ...) or
+#'   string ("01", "week_01"). Will be formatted as "week_01", "week_02", etc.
+#' @param dest Character. Destination directory path (created if needed).
+#'   Defaults to current working directory (".").
+#'   
+#' @return Invisibly returns a list with components:
+#'   \describe{
+#'     \item{dest}{Full normalized path to the created week folder}
+#'     \item{course}{Course identifier used}
+#'     \item{week}{Zero-padded week number ("01", "02", ...)}
+#'     \item{n_copied}{Number of files successfully copied}
+#'   }
+#'   
+#' @export
 #' @examples
 #' \dontrun{
-#' # Use a temporary folder in examples/checks (portable on Windows)
-#' d <- tempdir()
-#' download_week("mc451", 1, dest = d)  # creates d/week_01/...
+#' # Download MC451 Week 1 to current directory
+#' download_week("mc451", 1)
+#' 
+#' # Download to specific folder
+#' download_week("mc451", 1, dest = "~/coursework")
+#' 
+#' # Backward compatible: single-course installation
+#' download_week(1)  # Auto-detects course
+#' 
+#' # Use string week identifier
+#' download_week("mc501", "week_03")
 #' }
-#' @export
 download_week <- function(course, week = NULL, dest = ".") {
   # Back-compat: allow download_week(week, dest) if only one course installed
   if (is.null(week)) {

@@ -13,11 +13,26 @@
 **Lab Page:** [SIM Lab](https://sim-lab-siue.github.io/)\
 **Research Page:** [Dr. Alex P. Leith](https://apleith.github.io/)
 
+**Version:** 01.14.10 (Proof of Concept - Refactored)
+
 ------------------------------------------------------------------------
+
+## 📦 About This Package
 
 The `mccoursepack` package provides a seamless and user-friendly R/RStudio environment for students in **MC451** and **MC501** at SIUE. 🎓 Its primary goal is to abstract away the complexities of software setup and file management, allowing you to focus on learning data analysis concepts.
 
 The package automates the installation of necessary tools (like Quarto and LaTeX), provides easy access to weekly course materials and journals, and includes self-check and update functions to ensure your environment remains consistent and functional throughout the course.
+
+### 🎯 What's New in This Version
+
+This version represents a **comprehensive refactoring** for proof of concept closure:
+
+- ✅ **Removed duplicate code** - Eliminated redundant files (list_weeks.R, validate_weeks.R)
+- ✅ **Enhanced documentation** - Every function now has comprehensive annotations
+- ✅ **Improved code clarity** - Added inline comments explaining logic
+- ✅ **Fixed dependencies** - Added missing packages to DESCRIPTION
+- ✅ **Added developer guides** - See CHANGELOG.md and DEVELOPERS.md
+- ✅ **Cleaned up structure** - Streamlined for maintainability
 
 ------------------------------------------------------------------------
 
