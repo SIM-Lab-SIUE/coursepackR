@@ -1,0 +1,46 @@
+---
+title: "Undergraduate Technical Guide"
+sidebar: pages
+---
+
+This guide covers technical setup for your Quarto white paper and survey design best practices for your team project.
+
+## RStudio & Quarto Setup
+
+1. **One team member creates the RStudio Project** by cloning your GitHub repository
+2. **All team members:** Clone the same repository to your computers
+3. **Install necessary R packages:**
+   ```r
+   install.packages(c("tidyverse", "rmarkdown", "quarto", "readr"))
+   ```
+4. **Create your `white_paper.qmd`** file using the template provided
+5. **Organize your `/data` folder** with:
+   - `survey_data_raw.csv` (original export)
+   - `survey_data_clean.csv` (after cleaning)
+
+## Survey Design Best Practices
+
+- **Use clear, unbiased questions** – avoid leading or double-barreled questions
+- **Pilot test your survey** – ask 3-5 people for feedback before full launch
+- **Get instructor approval** – before launching
+- **Track response rate** – aim for N=100+ responses
+- **Export data as CSV** – from your survey platform (Qualtrics, Google Forms, etc.)
+- **Name your file clearly** – `survey_data_raw.csv`
+
+## Rendering to PDF
+
+- In RStudio, click the **Render** button or run:
+  ```r
+  quarto render white_paper.qmd --to pdf
+  ```
+- PDF will appear in `/output` folder
+- Each team member should verify formatting before final submission
+
+## Team Collaboration on GitHub
+
+- **Create branches** for different sections (e.g., `intro`, `methods`, `analysis`)
+- **Commit regularly** with clear messages
+- **Pull before pushing** to avoid conflicts
+- **Communicate** about who is working on which section
+
+For more details, see [Undergraduate GitHub Guide](undergrad-github-guide.html).

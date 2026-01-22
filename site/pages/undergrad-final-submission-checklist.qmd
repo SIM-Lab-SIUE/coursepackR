@@ -1,0 +1,168 @@
+---
+title: "Undergraduate Final Submission Checklist"
+sidebar: pages
+---
+
+Complete this checklist as a team before submitting your white paper.
+
+## Project Requirements
+
+### Paper Content (3,000-4,000 words)
+- [ ] Title and abstract (100-150 words)
+- [ ] Introduction section (~800-1,000 words)
+- [ ] Literature review section (~600-800 words)
+- [ ] Methods section (~400-600 words)
+- [ ] Results section (~400-600 words)
+- [ ] Discussion section (~600-800 words)
+- [ ] References section (all sources cited)
+
+### Research Requirements
+- [ ] One original survey with N=100+ responses
+- [ ] Survey data collected and exported as CSV
+- [ ] Data cleaned in R
+- [ ] Two Research Questions (RQs) and/or Hypotheses (RHs) stated clearly
+- [ ] Data analysis performed in RStudio
+- [ ] At least two data visualizations (tables/figures) created in R
+
+### Citation Requirements
+- [ ] 10-12 academic sources cited
+- [ ] All citations formatted consistently
+- [ ] References listed alphabetically
+- [ ] All in-text citations have corresponding references
+
+### Writing & Formatting
+- [ ] Title is clear and descriptive
+- [ ] Professional, journalistic tone throughout
+- [ ] No jargon without explanation
+- [ ] Spell-checked and proofread by all team members
+- [ ] Consistent formatting and heading levels
+- [ ] Figures and tables have clear labels and captions
+
+## Technical Requirements
+
+### RStudio Project
+- [ ] Team has shared RStudio project cloned from GitHub
+- [ ] `white_paper.qmd` file created with proper structure
+- [ ] `references.bib` file with all citations
+- [ ] `/data` folder with survey data (raw and cleaned)
+- [ ] `/output` folder with final PDF
+
+### Quarto Document
+- [ ] YAML header includes:
+  - [ ] `title:` (your white paper title)
+  - [ ] `author:` (all team members' names)
+  - [ ] `bibliography: references.bib` (if using citations)
+  - [ ] `format: pdf`
+- [ ] All R code chunks work and include comments
+- [ ] Visualizations (plots, tables) properly created and labeled
+
+### Rendering
+- [ ] Document renders to PDF without errors
+- [ ] PDF is readable and properly formatted
+- [ ] All figures and tables appear correctly
+- [ ] Page numbers visible in PDF
+- [ ] No broken links or missing images
+
+## GitHub Repository
+
+### Repository Setup
+- [ ] Private GitHub repository created
+- [ ] Repository named clearly (e.g., `white-paper-f25`)
+- [ ] README.md file explains the project
+- [ ] All team members invited as collaborators
+- [ ] All team members can access and edit
+
+### Repository Contents
+- [ ] RStudio project files included
+- [ ] `white_paper.qmd` file committed
+- [ ] `references.bib` file committed
+- [ ] `/data` folder with cleaned survey data
+- [ ] `/output` folder with final PDF
+- [ ] `.gitignore` configured for the project
+
+### Git Workflow (Team Collaboration)
+- [ ] Commits made throughout the project (not just at the end)
+- [ ] Commit messages are clear and descriptive
+- [ ] All team members have made commits
+- [ ] Branches used for different sections (recommended)
+- [ ] All changes merged to main branch
+- [ ] All changes pushed to remote repository
+- [ ] No uncommitted changes at submission time
+
+### Collaboration Checklist
+- [ ] Team roles assigned (who wrote what section)
+- [ ] Regular commits indicate collaborative work
+- [ ] Each team member made meaningful contributions
+- [ ] No one person did all the work
+
+## Submission
+
+### GitHub Repository
+- [ ] Repository is private (not public)
+- [ ] All team members have access
+- [ ] README.md is clear and informative
+- [ ] Latest version of all files committed and pushed
+- [ ] No sensitive data in repository
+
+### Final Deliverables
+- [ ] GitHub link provided to instructor
+- [ ] Final PDF generated and saved in `/output`
+- [ ] All project files uploaded to GitHub
+- [ ] Repository organized and clean
+
+### If Submitting to Blackboard
+- [ ] Final PDF uploaded to Blackboard
+- [ ] GitHub link provided in submission
+- [ ] Both submitted before deadline
+
+## Before You Submit
+
+### Quality Check
+- [ ] All team members have read the final paper
+- [ ] Spelling and grammar checked
+- [ ] Formatting is consistent throughout
+- [ ] All figures and tables properly labeled
+- [ ] All sources cited correctly
+
+### Data Visualization Check
+- [ ] At least 2 figures/tables included
+- [ ] All visualizations have titles and labels
+- [ ] Axes are clearly labeled (if applicable)
+- [ ] Visualizations are readable and relevant
+
+### Team Communication
+- [ ] All team members agree the paper is ready
+- [ ] All concerns addressed
+- [ ] All feedback from instructor incorporated
+- [ ] GitHub shows collaborative effort
+
+## Common Issues to Watch For
+
+- ❌ Missing citations or unformatted references
+- ❌ Inconsistent formatting or heading levels
+- ❌ Missing data visualizations
+- ❌ Unreadable or poorly labeled figures/tables
+- ❌ GitHub repository not shared with all team members
+- ❌ Rendering errors in Quarto
+- ❌ Spelling and grammar errors
+- ❌ Missing sections or incomplete content
+- ❌ Unresolved merge conflicts in Git
+
+## Dividing Work Effectively
+
+**Suggested team breakdown:**
+
+- **Person A:** Introduction & Literature Review
+- **Person B:** Methods & Results
+- **Person C:** Discussion, References & Proofing
+- **All:** Design visualizations, proof final copy
+
+## Questions or Problems?
+
+If something doesn't work:
+1. Check the [Troubleshooting Guide](../troubleshooting/troubleshooting.html)
+2. Review the [Undergraduate Technical Guide](undergrad-technical-guide.html)
+3. Review the [GitHub Guide](undergrad-github-guide.html) for collaboration tips
+4. Ask your instructor
+
+**Great job working as a team! Good luck with your submission!**

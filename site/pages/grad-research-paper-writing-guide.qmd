@@ -1,0 +1,159 @@
+---
+title: "Graduate Research Paper Writing Guide"
+sidebar: pages
+---
+
+This guide provides best practices for writing your APA 7th Edition research paper using Quarto.
+
+## Before You Start
+
+- **Review the assignment requirements:** See [Graduate Research Paper Overview](grad-research-paper-overview.html)
+- **Understand APA 7th Edition:** The style guide for academic papers in communication research
+- **Set up your environment:** See [Graduate Technical Guide](grad-technical-guide.html)
+
+## Paper Structure (APA 7th Edition)
+
+### 1. Title Page
+- Centered title (all caps)
+- Author name
+- Institutional affiliation
+- Author note (if applicable)
+
+In Quarto YAML:
+```yaml
+title: "Your Full Title Here"
+author: "Your Name"
+format: pdf
+```
+
+### 2. Abstract (150-250 words)
+
+Summarize:
+- Research questions/hypotheses
+- Method (sample, design)
+- Key findings
+- Implications
+
+```markdown
+## Abstract
+
+[Your 150-250 word summary]
+```
+
+### 3. Introduction
+
+Establish:
+- Context (why this matters)
+- Literature review (what's known)
+- Research gap (what's missing)
+- Research questions/hypotheses (your contribution)
+
+Target: ~1,500-2,000 words
+
+### 4. Literature Review
+
+Organize by theme, not source list:
+- Group related studies
+- Compare perspectives
+- Identify patterns
+- Lead to your research questions
+
+Target: ~2,000-2,500 words
+
+### 5. Methods
+
+Describe your:
+- **Research Design:** Quantitative survey (e.g., cross-sectional)
+- **Participants:** N=100, demographics, recruitment
+- **Procedures:** How you collected data
+- **Instruments:** Survey questions, measures
+- **Analysis:** Statistical tests used in R
+
+Target: ~800-1,000 words
+
+### 6. Results
+
+Present:
+- Demographic tables
+- Statistical findings (t-tests, correlations, regressions)
+- Data visualizations (APA-formatted figures)
+- Organized by research question
+
+Include at least **two APA-formatted visualizations** (tables or figures).
+
+Target: ~500-800 words
+
+### 7. Discussion
+
+Interpret your findings:
+- Answer your research questions
+- Explain unexpected results
+- Compare to prior research
+- Acknowledge limitations
+- Suggest future research
+
+Target: ~1,000-1,500 words
+
+### 8. References
+
+Automatic in Quarto:
+- All sources cited in-text appear here
+- Alphabetically sorted
+- APA format applied automatically
+
+## APA Style Essentials
+
+### In-Text Citations
+```markdown
+- One author: (Smith, 2023)
+- Two authors: (Smith & Jones, 2023)
+- Three+ authors: (Smith et al., 2023)
+- Direct quote: (Smith, 2023, p. 45)
+```
+
+### Headings
+```markdown
+# Level 1 Heading
+## Level 2 Heading
+### Level 3 Heading
+```
+
+### Tables & Figures
+Include captions:
+```markdown
+| Measure | Mean | SD |
+|---------|------|-----|
+| Engagement | 4.2 | 1.1 |
+
+: Table 1. Descriptive Statistics
+```
+
+### Writing Style
+- **Active voice:** "The study found..." (not "It was found...")
+- **Past tense:** "Previous research showed..."
+- **Present tense:** "The data suggest..."
+- **Avoid:** Contractions, "I," "you," first person
+
+## Common Mistakes to Avoid
+
+- ❌ No citations in Introduction
+- ❌ Copying text from sources (paraphrase & cite!)
+- ❌ Inconsistent heading levels
+- ❌ Unformatted tables/figures
+- ❌ Missing APA references
+- ❌ Mixing data from Methods and Results
+
+## Tips for Success
+
+1. **Start with an outline** – organize your thoughts before writing
+2. **Write a rough draft first** – don't aim for perfection
+3. **Write the Abstract last** – after you know what your paper says
+4. **Use Quarto's built-in features** – automatic citations, numbering, formatting
+5. **Get feedback** – from peers and your instructor
+6. **Proofread carefully** – check for grammar, spelling, APA compliance
+
+## Resources
+
+- [Purdue OWL - APA Format](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_style_introduction.html)
+- [Quarto Authoring Guide](https://quarto.org/docs/authoring/markdown-basics.html)
+- [APA Publication Manual (7th Edition)](https://apastyle.apa.org/)

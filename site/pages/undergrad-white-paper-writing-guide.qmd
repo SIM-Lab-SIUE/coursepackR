@@ -1,0 +1,176 @@
+---
+title: "Undergraduate White Paper Writing Guide"
+sidebar: pages
+---
+
+This guide provides best practices for writing your white paper as a team using Quarto.
+
+## Before You Start
+
+- **Review the assignment:** See [Undergraduate White Paper Overview](undergrad-white-paper-overview.html)
+- **Understand white paper style:** Professional, journalistic writing (not academic APA)
+- **Set up your environment:** See [Undergraduate Technical Guide](undergrad-technical-guide.html)
+- **Plan your team roles:** Who writes intro, methods, analysis, discussion?
+
+## Paper Structure
+
+### 1. Title & Abstract
+
+**Title:** Clear, compelling, descriptive
+- Example: "How Social Media Shapes Political Engagement Among Young Adults"
+
+**Abstract:** 100-150 word summary
+- What is the issue?
+- What did you research?
+- Key findings?
+
+```markdown
+# How Social Media Shapes Political Engagement Among Young Adults
+
+## Abstract
+
+[100-150 word summary of your research]
+```
+
+### 2. Introduction (800-1,000 words)
+
+Hook your reader:
+- Start with a compelling fact or question
+- Explain the issue's importance
+- Preview what you'll cover
+- State your research questions
+
+### 3. Literature Review (600-800 words)
+
+Show what's known:
+- Summarize existing research
+- Highlight gaps or debates
+- Lead to your research questions
+
+### 4. Methods (400-600 words)
+
+Explain your approach:
+- **What you studied:** Your research topic/questions
+- **Who you surveyed:** Sample size, demographics
+- **How you collected data:** Survey platform, timeframe
+- **How you analyzed data:** What statistics/visualizations you created
+
+### 5. Results (400-600 words)
+
+Present your findings:
+- Use clear data visualizations (tables, charts)
+- Highlight key numbers
+- Include at least **two figures or tables**
+- Explain what the data shows (in plain language, not jargon)
+
+### 6. Discussion (600-800 words)
+
+Interpret your results:
+- What do your findings mean?
+- How do they fit with prior research?
+- What are the limitations?
+- What are the practical implications?
+- What questions remain?
+
+### 7. References
+
+List all sources cited:
+```markdown
+## References
+
+[Your bibliography, alphabetically sorted]
+```
+
+## Writing Style for White Papers
+
+### Keep It Accessible
+- Use plain language (explain jargon when necessary)
+- Avoid overly academic tone
+- Write for a general, educated audience
+
+### Use Active Voice
+- ❌ "It was found that..."
+- ✅ "Our survey found that..."
+
+### Tell a Story
+- Don't just list findings
+- Explain what they mean
+- Help readers understand the "so what?"
+
+### Be Concise
+- Cut unnecessary words
+- Get to the point
+- Use clear subheadings
+
+### Cite Your Sources
+```markdown
+Research shows X [@smith2023].
+```
+
+## Team Collaboration Tips
+
+### Divide and Conquer
+- **Person A:** Introduction & Literature Review
+- **Person B:** Methods & Results
+- **Person C:** Discussion & References
+- **All together:** Proofread and polish
+
+### Consistency
+- Use same citation style throughout
+- Match heading levels and formatting
+- Ensure consistent terminology
+
+### Integration
+- Each person should read others' sections
+- Smooth transitions between sections
+- Unified voice and message
+
+## Creating Visualizations in R
+
+Include at least **two figures or tables:**
+
+```r
+# Example: Bar plot
+library(ggplot2)
+ggplot(data, aes(x = category, y = value)) +
+  geom_col() +
+  labs(title = "Your Title", x = "X Label", y = "Y Label")
+```
+
+## Common Mistakes to Avoid
+
+- ❌ No citations
+- ❌ Inconsistent formatting
+- ❌ Unclear tables/figures
+- ❌ Jargon without explanation
+- ❌ Unsupported claims
+- ❌ Poor grammar/spelling
+
+## Checklist Before Submission
+
+- ✓ Title is clear and descriptive
+- ✓ Abstract summarizes key points (100-150 words)
+- ✓ All sections included and flow logically
+- ✓ At least 10-12 citations
+- ✓ At least 2 data visualizations (figures/tables)
+- ✓ Data analysis done in R
+- ✓ No obvious grammar or spelling errors
+- ✓ All team members' names included
+- ✓ GitHub repository is up-to-date
+- ✓ PDF renders cleanly
+
+## Tips for Success
+
+1. **Start with an outline** – map out your sections first
+2. **Draft early** – don't wait until the last minute
+3. **Read aloud** – catch awkward phrasing
+4. **Get feedback** – from your team and instructor
+5. **Visualize your data** – create clear, labeled figures
+6. **Cite as you write** – don't leave it for the end
+7. **Proofread multiple times** – grammar, spelling, consistency
+
+## Resources
+
+- [Purdue OWL - General Writing](https://owl.purdue.edu/owl/general_writing/index.html)
+- [Quarto Guide](https://quarto.org/docs/authoring/markdown-basics.html)
+- [Data Visualization in R (ggplot2)](https://ggplot2.tidyverse.org/)

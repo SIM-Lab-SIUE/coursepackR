@@ -1047,541 +1047,773 @@
     ]
   },
   {
-    "objectID": "r-and-rstudio/rstudio-global-options.html",
-    "href": "r-and-rstudio/rstudio-global-options.html",
-    "title": "RStudio Global Options",
+    "objectID": "r-and-rstudio/zotero-rstudio.html",
+    "href": "r-and-rstudio/zotero-rstudio.html",
+    "title": "Using Zotero with RStudio",
     "section": "",
-    "text": "Think of this window as your personal cockpit. Every slider, checkbox, and dropdown lets you fine-tune RStudio’s behavior, appearance, and workflow. Below is a guide to the most-used tabs—so when you’re ready to tweak, you’re not poking around in the dark."
+    "text": "Zotero is a free, open-source reference manager that helps you collect, organize, cite, and share research. Integrating Zotero with RStudio can streamline your academic writing workflow, especially when using Quarto or R Markdown documents.\n\n\n\nDownload Zotero from zotero.org.\nInstall the Zotero Connector for your web browser to easily save references.\n\n\n\n\n\nUse Zotero to collect and organize references into collections.\nAttach PDFs and notes to your references for easy access.\n\n\n\n\n\nBibTeX Export:\n\nRight-click a collection or selected items in Zotero.\nChoose Export Collection... or Export Items....\nSelect BibTeX as the format and save the .bib file.\n\nBetter BibTeX Plugin:\n\nInstall the Better BibTeX plugin for advanced citation key management and automatic export.\n\n\n\n\n\n\nPlace your exported .bib file in your project directory (e.g., references.bib).\nIn your Quarto or R Markdown document YAML header, add:\n\nbibliography: references.bib\ncsl: apa.csl  # Optional: for citation style\n\nCite references in your text using @citationkey (e.g., @smith2020).\n\n\n\n\n\nKnit or render your document in RStudio. Citations and bibliography will be formatted automatically.\n\n\n\n\n\nKeep your .bib file updated as you add new references.\nUse the Better BibTeX auto-export feature to keep your bibliography in sync.\nExplore citation styles by downloading .csl files from Zotero Style Repository.\n\n\nFor more help, visit the Zotero Documentation or the Quarto Citations Guide.",
+    "crumbs": [
+      "R & RStudio",
+      "Using Zotero with RStudio"
+    ]
   },
   {
-    "objectID": "r-and-rstudio/rstudio-global-options.html#general",
-    "href": "r-and-rstudio/rstudio-global-options.html#general",
-    "title": "RStudio Global Options",
-    "section": "1. General",
-    "text": "1. General\n\nR Sessions: Pick which R installation runs inside RStudio (handy if you have multiple versions installed).\n\nDefault working directory: Sets where files open and save by default when you’re not inside a project.\n\nWorkspace:\n\nRestore .RData into workspace at startup: leave unchecked for a clean slate every session.\n\nSave workspace to .RData on exit: set to Never to avoid saving random objects (recommended for reproducibility).\n\n\nHistory: Options to automatically save command history—even across sessions—and to remove duplicates.\n\nOther: Miscellaneous options, like wrapping text when switching tabs or whether crash reports are auto-submitted."
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-global-options.html#code",
-    "href": "r-and-rstudio/rstudio-global-options.html#code",
-    "title": "RStudio Global Options",
-    "section": "2. Code",
-    "text": "2. Code\nControls how code is displayed and edited.\nCommon options: soft wrapping, tabs vs. spaces, auto indentation, and diagnostics for languages like C/C++ or HTML/CSS."
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-global-options.html#appearance",
-    "href": "r-and-rstudio/rstudio-global-options.html#appearance",
-    "title": "RStudio Global Options",
-    "section": "3. Appearance",
-    "text": "3. Appearance\nCustomize how RStudio looks:\n\nTheme (dark, light, solarized, etc.)\n\nZoom level for text\n\nEditor font and size\n\nSyntax highlighting themes (with a live preview)\n\nThis is where you soften glare or crank the contrast—so your code reads like a poem instead of eye strain."
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-global-options.html#pane-layout",
-    "href": "r-and-rstudio/rstudio-global-options.html#pane-layout",
-    "title": "RStudio Global Options",
-    "section": "4. Pane Layout",
-    "text": "4. Pane Layout\nYour four-pane structure can become your personal artboard:\n\nChoose which pane (Source, Console, Environment, Output) goes where.\n\nReassign tabs (Help, Files, Packages, Plots, etc.).\n\nAdd extra Source columns to work on multiple scripts side-by-side.\n\nOften adjusted just once, this can make RStudio feel like it moves with your brain, not against it."
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-global-options.html#packages",
-    "href": "r-and-rstudio/rstudio-global-options.html#packages",
-    "title": "RStudio Global Options",
-    "section": "5. Packages",
-    "text": "5. Packages\nAppears only if you’ve installed or used packages. Options include:\n\nDefault CRAN mirror\n\nWhether the Packages pane is shown\n\nIntegration with devtools\n\nBuild settings and auto-navigation when building or checking packages\n\nThis is especially useful if you start writing or maintaining your own packages."
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-global-options.html#other-tabs-power-user-settings",
-    "href": "r-and-rstudio/rstudio-global-options.html#other-tabs-power-user-settings",
-    "title": "RStudio Global Options",
-    "section": "6. Other Tabs (Power-User Settings)",
-    "text": "6. Other Tabs (Power-User Settings)\n\nR Markdown: configure editing, visual mode, citations, outline visibility.\n\nGit/SVN: set up version control, authentication, and commit preferences.\n\nTerminal: pick your shell, scrollback buffer, and startup commands.\n\nAccessibility: adjust screen reader, motion reduction, and focus control."
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-global-options.html#why-it-matters",
-    "href": "r-and-rstudio/rstudio-global-options.html#why-it-matters",
-    "title": "RStudio Global Options",
-    "section": "Why It Matters",
-    "text": "Why It Matters\n\nIf RStudio keeps reopening everything you worked on—even forgotten objects—your “Save workspace” option is probably still set to Always. Change it to Never for a fresh start every time.\n\n\nTired of tiny fonts or glaring white backgrounds at 2 a.m.? Head to Appearance and make RStudio your cozy digital notebook.\n\n\nWant RStudio to feel like an extension of your thought process? Adjust the Pane Layout—it’s surprisingly transformative.\n\n\nRStudio stops being “just another program” when you shape it to fit your workflow. Every layout tweak, every bolded code line, every choice to suppress auto-loads—they all help you think and work more clearly."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html",
-    "title": "Introduction to R and RStudio",
+    "objectID": "r-and-rstudio/zotero-rstudio.html#install-zotero",
+    "href": "r-and-rstudio/zotero-rstudio.html#install-zotero",
+    "title": "Using Zotero with RStudio",
     "section": "",
-    "text": "R is a free, open-source language for data manipulation, analysis, and visualization. RStudio is the IDE (workbench) that makes R friendlier and faster. Together they give you a modern workflow for reproducible research in mass communication."
+    "text": "Download Zotero from zotero.org.\nInstall the Zotero Connector for your web browser to easily save references.",
+    "crumbs": [
+      "R & RStudio",
+      "Using Zotero with RStudio"
+    ]
   },
   {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-r",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-r",
-    "title": "Introduction to R and RStudio",
-    "section": "What is R?",
-    "text": "What is R?\n\nA programming language for statistics and data work (from simple summaries to machine learning).\nScript-based: you write code that documents exactly what you did—great for transparency and reuse.\nSuperpowers via packages (e.g., tidyverse for wrangling, ggplot2 for visualization).\n\nWhy it matters here: You’ll analyze surveys, scrape or analyze social media, and make publication-quality figures—repeatably."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-rstudio",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-rstudio",
-    "title": "Introduction to R and RStudio",
-    "section": "What is RStudio?",
-    "text": "What is RStudio?\nRStudio (by Posit) is the integrated development environment for R:\n\nSource editor with syntax highlighting and autocomplete\nConsole for running code\nEnvironment to inspect objects/datasets\nFiles/Plots/Packages/Help/Viewer to manage outputs and docs\nTight integration with Quarto (dynamic documents) and Git\n\nOutcome: faster iteration, cleaner organization, and easier collaboration."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#why-use-r-rstudio",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#why-use-r-rstudio",
-    "title": "Introduction to R and RStudio",
-    "section": "Why Use R + RStudio?",
-    "text": "Why Use R + RStudio?\n\nOpen Source\nFree to install and extend. A huge community keeps adding new methods without license fees.\n\n\nAnalysis & Visualization\nFrom descriptive stats to regression and beyond in one place; ggplot2 produces clear, customizable graphics.\n\n\nReproducible Research\nQuarto documents combine text + code + output in one file. Re-render to update everything automatically.\n\n\n\nReproducibility Spectrum\n\n\n\n\nFlexible & Extensible\nThousands of packages for text analysis, social media data, networks, etc. Write your own functions when needed."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#install-r-and-rstudio",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#install-r-and-rstudio",
-    "title": "Introduction to R and RStudio",
-    "section": "Install R and RStudio",
-    "text": "Install R and RStudio\n\n1) Install R\n\nGo to https://cran.r-project.org/\nChoose your OS (Windows / macOS / Linux) and install.\n\n\n\n2) Install RStudio\n\nGo to https://posit.co/download/rstudio-desktop/\nDownload RStudio Desktop (free) for your OS and install.\n\n\nInstall R first, then RStudio. RStudio detects your R installation at launch."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#meet-the-rstudio-interface-four-panes",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#meet-the-rstudio-interface-four-panes",
-    "title": "Introduction to R and RStudio",
-    "section": "Meet the RStudio Interface (Four Panes)",
-    "text": "Meet the RStudio Interface (Four Panes)\n\nSource (top-left): write/edit scripts (.R) and Quarto files (.qmd).\nConsole (bottom-left): run code interactively; see results/errors.\nEnvironment (top-right): objects in memory (data frames, models, etc.).\nOutput (bottom-right): Files, Plots, Packages, Help, Viewer (for HTML/Shiny/Quarto previews).\n\n\nFor a deeper tour, see RStudio’s Four Panes in this section."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#start-a-new-project",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#start-a-new-project",
-    "title": "Introduction to R and RStudio",
-    "section": "Start a New Project",
-    "text": "Start a New Project\nProjects keep everything for one assignment/research task in one folder.\n\nFile → New Project…\nChoose New Directory → New Project (or link an existing folder).\nName it and create.\n\nBenefits: consistent working directory, clean file paths, and fewer “where did that file go?” moments. Git can be enabled during setup for version control."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#file-management-essentials",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#file-management-essentials",
-    "title": "Introduction to R and RStudio",
-    "section": "File Management Essentials",
-    "text": "File Management Essentials\n\nR Script vs. R Markdown / Quarto\n\nR Script (.R): pure code; great for fast analysis.\nQuarto (.qmd): prose + code + output → renders to HTML/PDF/Word for reports.\n\n# R Script example\nsummary(cars)\nplot(cars)\n\n# Quarto example chunk (runs when you render the doc)\nlibrary(ggplot2)\nggplot(cars, aes(speed, dist)) + geom_point()\n\n\n\n\n\n\n\n\n\n\nCSV vs. Excel\n\nPrefer CSV for clean, durable data.\nUse Excel only when collaborators require it or you genuinely need multiple sheets.\n\n\n\nSuggested subfolders\ndata/     # raw and cleaned datasets\nscripts/  # R scripts\nreports/  # .qmd / rendered outputs\noutput/   # figures, tables, exports"
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#package-management",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#package-management",
-    "title": "Introduction to R and RStudio",
-    "section": "Package Management",
-    "text": "Package Management\n\nInstall once, load each session\ninstall.packages(\"ggplot2\")  # once\nlibrary(ggplot2)             # each new R session\n\n\nCommon packages for this course\n\ntidyverse: wrangling + plotting\nggplot2: visualization\ndplyr: data manipulation\nquanteda / tm: text analysis\nrtweet: Twitter/X data (when permitted)\n\nUpdate periodically:\nupdate.packages(ask = FALSE)"
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#basics-of-r-quick-start",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#basics-of-r-quick-start",
-    "title": "Introduction to R and RStudio",
-    "section": "Basics of R (Quick Start)",
-    "text": "Basics of R (Quick Start)\n\nArithmetic\n5 + 3     # 8\n5 - 3     # 2\n5 * 3     # 15\n5 / 3     # 1.6667\n5 ^ 3     # 125\n5 %% 3    # 2 (modulus)\n\n\nVariables\nx &lt;- 10          # preferred assignment in R\ny = 20           # also works\nname &lt;- \"Alex\"\n\n\nFunctions\nsum(1, 2, 3)            # 6\nmean(c(1, 2, 3, 4))     # 2.5\nsqrt(16)                # 4"
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#commenting-organizing-code",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#commenting-organizing-code",
-    "title": "Introduction to R and RStudio",
-    "section": "Commenting & Organizing Code",
-    "text": "Commenting & Organizing Code\n\nComments\n# This is a comment for humans\nage &lt;- c(18, 23, 21, 30)   # vector of ages\n\n\nSections\n# =========================\n# Section: Data Preparation\n# =========================\nIn Quarto, use markdown headings to structure your narrative:\n## Data Preparation\n\nHere we clean variables and handle missing values.\n\nKeep code tidy: consistent indentation, small steps, and meaningful names. Your future self (and collaborators) will thank you."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#first-run-your-hello-world",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#first-run-your-hello-world",
-    "title": "Introduction to R and RStudio",
-    "section": "First Run: Your Hello World",
-    "text": "First Run: Your Hello World\nprint(\"Hello, World!\")\nOpen a Quarto file and add a code chunk:\n\n::: {.cell}\n\n```{.r .cell-code}\nprint(\"Hello, World from Quarto!\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Hello, World from Quarto!\"\n```\n\n\n:::\n:::\n\nRender the document to see executable output embedded in your report."
-  },
-  {
-    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#next-steps",
-    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#next-steps",
-    "title": "Introduction to R and RStudio",
-    "section": "Next Steps",
-    "text": "Next Steps\n\nInstall the course package and pull your Journal scaffold.\nRead RStudio’s Four Panes and Global Options pages to customize your workspace.\nCommit your project to GitHub and set your Profile README."
-  },
-  {
-    "objectID": "quarto/quarto-basics.html",
-    "href": "quarto/quarto-basics.html",
-    "title": "Quarto Basics",
+    "objectID": "r-and-rstudio/zotero-rstudio.html#organize-your-references",
+    "href": "r-and-rstudio/zotero-rstudio.html#organize-your-references",
+    "title": "Using Zotero with RStudio",
     "section": "",
-    "text": "Write, cite, and render with Quarto.",
+    "text": "Use Zotero to collect and organize references into collections.\nAttach PDFs and notes to your references for easy access.",
     "crumbs": [
-      "Quarto Basics"
+      "R & RStudio",
+      "Using Zotero with RStudio"
     ]
   },
   {
-    "objectID": "quarto/quarto-basics.html#what-is-quarto",
-    "href": "quarto/quarto-basics.html#what-is-quarto",
-    "title": "Quarto Basics",
-    "section": "What is Quarto?",
-    "text": "What is Quarto?\nQuarto is a publishing system for technical docs. You write a .qmd file (Markdown + optional code), and Quarto renders it to HTML, PDF, slides, and more. By default it renders to HTML unless you specify otherwise.",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#install-verify",
-    "href": "quarto/quarto-basics.html#install-verify",
-    "title": "Quarto Basics",
-    "section": "Install & verify",
-    "text": "Install & verify\n\nInstall Quarto: https://quarto.org/docs/get-started/\nVerify in a terminal:\n\nquarto check\nquarto --version\nPDF note: PDF output requires a TeX engine. The easiest path is TinyTeX.\nquarto install tinytex\n(Or run mccourse_setup() in R to install prerequisites automatically.)",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#your-first-document",
-    "href": "quarto/quarto-basics.html#your-first-document",
-    "title": "Quarto Basics",
-    "section": "Your first document",
-    "text": "Your first document\nCreate report.qmd:\n---\ntitle: \"My Report\"\nformat: html   # default is html if omitted\n---\n\n# Hello, Quarto\n\nThis is **Markdown**. Add text, lists, images, and code blocks.\nRender to HTML:\nquarto render report.qmd --to html",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#course-patterns-documents-vs.-book",
-    "href": "quarto/quarto-basics.html#course-patterns-documents-vs.-book",
-    "title": "Quarto Basics",
-    "section": "Course patterns: Documents vs. Book",
-    "text": "Course patterns: Documents vs. Book\nIn this course you’ll use Quarto in two modes:\n\nWeekly documents (one file → one output)\n\n\nLives under folders like week_01/\nYou open a .qmd and render it directly\n\n\nJournal as a Quarto book (many chapters → one book)\n\n\nLives in journal/\nEach entry is a chapter in journal/entries/\nThe book’s table of contents is defined in journal/_quarto.yml\n\n\nMinimal book _quarto.yml (journal)\nproject:\n  type: book\n  output-dir: _book\n\nbook:\n  title: \"Course Journal\"\n  author: \"YOUR NAME\"\n  date: today\n  downloads: [pdf, epub]\n  chapters:\n    - index.qmd\n    # --- auto-managed: do not edit below ---\n    # BEGIN AUTO\n    # END AUTO\n    # --- end auto-managed ---\n\nformat:\n  html:\n    toc: true\n    number-sections: true\n  pdf:\n    toc: true\n    number-sections: true\n\nThe scripts/update_chapters.R script rewrites the lines between BEGIN AUTO and END AUTO to include all dated files under entries/ (sorted by filename). Don’t edit that block manually.\n\nRender the whole journal book from inside journal/:\nquarto render\nOutputs appear in journal/_book/.",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#pdf-first-and-multi-format-options",
-    "href": "quarto/quarto-basics.html#pdf-first-and-multi-format-options",
-    "title": "Quarto Basics",
-    "section": "PDF-first and multi-format options",
-    "text": "PDF-first and multi-format options\nYou can request specific formats in the document YAML:\n---\ntitle: \"PDF-first example\"\nformat: pdf\n---\nOr enable multiple formats with options:\n---\ntitle: \"PDF & HTML\"\nformat:\n  pdf:\n    toc: true\n    number-sections: true\n  html:\n    toc: true\n    code-fold: true\n---",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#render-from-rstudio-or-vs-code",
-    "href": "quarto/quarto-basics.html#render-from-rstudio-or-vs-code",
-    "title": "Quarto Basics",
-    "section": "Render from RStudio or VS Code",
-    "text": "Render from RStudio or VS Code\n\nRStudio: open a .qmd and click Render.\nVS Code: install the Quarto extension; use Quarto: Render or run quarto render in the integrated terminal.",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#project-basics-render-only-what-you-intend",
-    "href": "quarto/quarto-basics.html#project-basics-render-only-what-you-intend",
-    "title": "Quarto Basics",
-    "section": "Project basics (render only what you intend)",
-    "text": "Project basics (render only what you intend)\nQuarto projects let you render a folder of documents with shared settings and control which files render:\n# site/_quarto.yml (example for a website/docs project)\nproject:\n  type: website\n  output-dir: _site\n  render:\n    - index.qmd\n    - pages/**/*.qmd\nThat whitelist prevents Quarto from scanning and rendering the entire repository.",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#execution-control-cache-freeze-optional",
-    "href": "quarto/quarto-basics.html#execution-control-cache-freeze-optional",
-    "title": "Quarto Basics",
-    "section": "Execution control: cache & freeze (optional)",
-    "text": "Execution control: cache & freeze (optional)\n\nCache stores chunk results so long computations aren’t re-run.\nFreeze reuses previously rendered results during project renders:\n\nexecute:\n  freeze: auto\nAdd this to the project’s _quarto.yml (site or book) to stabilize outputs until sources change.",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#journal-chapter-template-prompt-only",
-    "href": "quarto/quarto-basics.html#journal-chapter-template-prompt-only",
-    "title": "Quarto Basics",
-    "section": "Journal chapter template (prompt-only)",
-    "text": "Journal chapter template (prompt-only)\nEach journal chapter is created from entry_template.qmd and contains three prompts plus a Response section. Students answer one prompt only. The template includes an automatic word count:\n\nMC 451: 250–300 words\nMC 501: 450–500 words\n\nRendering the chapter shows the current count and whether it’s in range.\n\nNew chapters are created by running source(\"scripts/new_journal_entry.R\") inside journal/. The script injects prompts and updates _quarto.yml.",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#common-options",
-    "href": "quarto/quarto-basics.html#common-options",
-    "title": "Quarto Basics",
-    "section": "Common options",
-    "text": "Common options\n\nTable of contents: toc: true\nCode folding (HTML): code-fold: true\nSection numbering: number-sections: true\nPDF fine-tuning: geometry, documentclass, keep-tex, include-in-header, etc.",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "quarto/quarto-basics.html#troubleshooting-quick-hits",
-    "href": "quarto/quarto-basics.html#troubleshooting-quick-hits",
-    "title": "Quarto Basics",
-    "section": "Troubleshooting quick hits",
-    "text": "Troubleshooting quick hits\n\n“No TeX installation detected” → run quarto install tinytex or mccourse_setup().\nWhole repo renders unintentionally → set project.render (see above).\nNew journal chapter not appearing → commit both the new entries/YYYY-MM-DD.qmd and journal/_quarto.yml, then re-render.\nWord count out of range → ensure only the Response section contains your text; target the correct range for your course.",
-    "crumbs": [
-      "Quarto Basics"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
+    "objectID": "r-and-rstudio/zotero-rstudio.html#export-references-for-rstudio",
+    "href": "r-and-rstudio/zotero-rstudio.html#export-references-for-rstudio",
+    "title": "Using Zotero with RStudio",
     "section": "",
-    "text": "This site is the student documentation for the mccoursepack.\nStart here:\n\nGetting Started — install tools, open your first project\nR & RStudio — what’s what\nWeekly Journal — how the journal system works\nQuarto Basics — writing with Quarto\nCourse Workflow — week-by-week rhythm\nGit & GitHub — version control & submissions\nTroubleshooting — common fixes\nReference — package functions & bibliography"
+    "text": "BibTeX Export:\n\nRight-click a collection or selected items in Zotero.\nChoose Export Collection... or Export Items....\nSelect BibTeX as the format and save the .bib file.\n\nBetter BibTeX Plugin:\n\nInstall the Better BibTeX plugin for advanced citation key management and automatic export.",
+    "crumbs": [
+      "R & RStudio",
+      "Using Zotero with RStudio"
+    ]
   },
   {
-    "objectID": "git/github-landing-page.html",
-    "href": "git/github-landing-page.html",
-    "title": "Build Your GitHub Landing Page",
+    "objectID": "r-and-rstudio/zotero-rstudio.html#use-references-in-rstudio-quartor-markdown",
+    "href": "r-and-rstudio/zotero-rstudio.html#use-references-in-rstudio-quartor-markdown",
+    "title": "Using Zotero with RStudio",
     "section": "",
-    "text": "Your GitHub profile can show a custom landing page—a README.md that lives in a special repository named exactly like your username. No code needed; it’s all point-and-click in the browser.",
+    "text": "Place your exported .bib file in your project directory (e.g., references.bib).\nIn your Quarto or R Markdown document YAML header, add:\n\nbibliography: references.bib\ncsl: apa.csl  # Optional: for citation style\n\nCite references in your text using @citationkey (e.g., @smith2020).",
     "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
+      "R & RStudio",
+      "Using Zotero with RStudio"
     ]
   },
   {
-    "objectID": "git/github-landing-page.html#what-youll-make",
-    "href": "git/github-landing-page.html#what-youll-make",
-    "title": "Build Your GitHub Landing Page",
-    "section": "What You’ll Make",
-    "text": "What You’ll Make\n\nA public repo named your GitHub username\n\nA README.md inside it\n\nA profile page that displays that README to visitors",
-    "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
-    ]
-  },
-  {
-    "objectID": "git/github-landing-page.html#step-1-confirm-your-username",
-    "href": "git/github-landing-page.html#step-1-confirm-your-username",
-    "title": "Build Your GitHub Landing Page",
-    "section": "Step 1 — Confirm Your Username",
-    "text": "Step 1 — Confirm Your Username\n\nSign in at GitHub.com.\n\nClick your avatar (top-right) → Your profile.\n\nNote your username (the text after github.com/ in the URL).\n\nExample: github.com/alexleith → username is alexleith.\nUse the username exactly as shown. Repo names are case-insensitive, but matching avoids confusion.",
-    "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
-    ]
-  },
-  {
-    "objectID": "git/github-landing-page.html#step-2-create-the-special-repository",
-    "href": "git/github-landing-page.html#step-2-create-the-special-repository",
-    "title": "Build Your GitHub Landing Page",
-    "section": "Step 2 — Create the Special Repository",
-    "text": "Step 2 — Create the Special Repository\n\nClick the + (top-right) → New repository.\n\nRepository name: type your exact username (e.g., alexleith).\n\nSet visibility to Public (required).\n\nCheck Initialize this repository with a README.\n\nClick Create repository.\n\nYou now have a repo at:\n\ngithub.com/&lt;username&gt;/&lt;username&gt;\n\nThis is your profile repo.",
-    "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
-    ]
-  },
-  {
-    "objectID": "git/github-landing-page.html#step-3-edit-your-readme",
-    "href": "git/github-landing-page.html#step-3-edit-your-readme",
-    "title": "Build Your GitHub Landing Page",
-    "section": "Step 3 — Edit Your README",
-    "text": "Step 3 — Edit Your README\n\nIn the new repo, click README.md.\n\nClick the pencil icon (Edit).\n\nReplace the placeholder text with something short and welcoming (see template below).\n\nScroll down, add a brief commit message (e.g., “Create profile README”), and click Commit changes.\n\nVisit your profile: click your avatar → Your profile. You should see your README content at the top.",
-    "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
-    ]
-  },
-  {
-    "objectID": "git/github-landing-page.html#a-copy-paste-template-customize-freely",
-    "href": "git/github-landing-page.html#a-copy-paste-template-customize-freely",
-    "title": "Build Your GitHub Landing Page",
-    "section": "A Copy-Paste Template (Customize Freely)",
-    "text": "A Copy-Paste Template (Customize Freely)\n# Hi, I'm YOUR NAME 👋\n\nWelcome to my GitHub profile! I’m a [your major/role] at [your university/organization].\n\nThis semester I’m working on projects in R/RStudio and documenting progress in my weekly journal.\n\n## What I’m learning this term\n- R, RStudio, and Quarto for data analysis & reporting\n- Git + GitHub for version control and collaboration\n- Research methods and reproducible workflows\n\n## Find me\n- Email: [your email or university email, optional]\n- Website/Portfolio: [link, optional]\n- LinkedIn: [link, optional]\n\n## Current tools\n- **Languages:** R, Markdown\n- **Tools:** RStudio, Quarto, GitHub\n\n&gt; ⚠️ Privacy note: keep personal info minimal; use links you’re comfortable sharing publicly.\nTips:\n\nKeep it short and professional.\nUse headings (#, ##) to organize.\nAdd alt text to any images, e.g., ![Alt text](path/to/image.png).",
-    "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
-    ]
-  },
-  {
-    "objectID": "git/github-landing-page.html#optional-polish-fast-wins",
-    "href": "git/github-landing-page.html#optional-polish-fast-wins",
-    "title": "Build Your GitHub Landing Page",
-    "section": "Optional Polish (Fast Wins)",
-    "text": "Optional Polish (Fast Wins)\n\nProfile bio & links: Avatar → Settings → Public profile. Add a display name, bio, location, pronouns, website, and choose a Public email (or keep hidden).\nPinned repositories: On your profile, click Customize your pins to feature key projects (e.g., your journal repo).\nAppearance: Avatar → Settings → Appearance to pick a theme.",
-    "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
-    ]
-  },
-  {
-    "objectID": "git/github-landing-page.html#troubleshooting",
-    "href": "git/github-landing-page.html#troubleshooting",
-    "title": "Build Your GitHub Landing Page",
-    "section": "Troubleshooting",
-    "text": "Troubleshooting\n\nREADME not showing?\n\nRepo must be named exactly your username.\nRepo must be Public.\nFile name must be README.md at the root of the repo (not in a folder).\nRefresh your profile page.\n\nCan’t find “New repository”? Click the + in the top-right → New repository.\nChanges not showing? Make sure you clicked Commit changes, then refresh.",
-    "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
-    ]
-  },
-  {
-    "objectID": "git/github-landing-page.html#updating-later",
-    "href": "git/github-landing-page.html#updating-later",
-    "title": "Build Your GitHub Landing Page",
-    "section": "Updating Later",
-    "text": "Updating Later\nYou can edit README.md anytime:\n\nIn the browser: open the file → pencil → edit → Commit changes.\nFrom RStudio or Git: pull → edit → commit → push (handy once you’re using Git locally).",
-    "crumbs": [
-      "Home",
-      "Build Your GitHub Landing Page"
-    ]
-  },
-  {
-    "objectID": "getting-started/installation-guide.html",
-    "href": "getting-started/installation-guide.html",
-    "title": "Installation Guide",
+    "objectID": "r-and-rstudio/zotero-rstudio.html#render-your-document",
+    "href": "r-and-rstudio/zotero-rstudio.html#render-your-document",
+    "title": "Using Zotero with RStudio",
     "section": "",
-    "text": "This guide provides detailed, OS-specific steps for installing the core software needed for this course: R, RStudio, and Git.",
+    "text": "Knit or render your document in RStudio. Citations and bibliography will be formatted automatically.",
     "crumbs": [
-      "Home",
-      "Installation Guide"
+      "R & RStudio",
+      "Using Zotero with RStudio"
     ]
   },
   {
-    "objectID": "getting-started/installation-guide.html#installing-on-windows",
-    "href": "getting-started/installation-guide.html#installing-on-windows",
-    "title": "Installation Guide",
-    "section": "Installing on Windows",
-    "text": "Installing on Windows\nFollow these steps in order.\n\n1. Install R\n\nGo to the CRAN (Comprehensive R Archive Network).\nClick the large “Download R-X.X.X for Windows” link at the top of the page.\nRun the downloaded installer (.exe file).\nAccept all the default settings during installation. Click “Next” until it’s finished.\n\n\n\n2. Install RStudio\n\nGo to the Posit website.\nClick the “Download RStudio Desktop” button. The site should automatically detect you are on Windows.\nRun the downloaded installer.\nAccept all the default settings.\n\n\n\n3. Install Git\n\nGo to the official Git website.\nClick the “Windows” link to download the installer.\nRun the installer. This one has many screens, but you can safely accept all the default options. The most important thing is to ensure that Git is added to your system’s PATH, which is the default behavior.",
-    "crumbs": [
-      "Home",
-      "Installation Guide"
-    ]
-  },
-  {
-    "objectID": "getting-started/installation-guide.html#installing-on-macos",
-    "href": "getting-started/installation-guide.html#installing-on-macos",
-    "title": "Installation Guide",
-    "section": "Installing on macOS",
-    "text": "Installing on macOS\nFollow these steps in order.\n\n1. Install R\n\nGo to the CRAN (Comprehensive R Archive Network).\nLook for the “Latest release” section. Download the package (.pkg file) that matches your Mac’s processor (Apple Silicon “M1/M2/M3” or Intel). If you’re unsure, click the Apple menu → “About This Mac” to check.\nRun the downloaded installer. Accept all default settings.\n\n\n\n2. Install RStudio\n\nGo to the Posit website.\nClick the “Download RStudio Desktop” button. The site should automatically detect you are on macOS.\nThis will download a .dmg file. Open it.\nA new window will appear. Drag the RStudio icon into the Applications folder icon.\nThe first time you open RStudio, you may get a security warning. Click “Open” to proceed.\n\n\n\n3. Install Git\nmacOS comes with Git pre-installed. However, it’s often best to install a newer version using Homebrew, a package manager for macOS.\n\nInstall Homebrew (if you don’t have it): Open the Terminal app (you can find it in Applications/Utilities) and paste the following command, then press Enter: bash     /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nInstall Git: Once Homebrew is installed, run the following command in the Terminal: bash     brew install git This ensures you have an up-to-date version of Git.",
-    "crumbs": [
-      "Home",
-      "Installation Guide"
-    ]
-  },
-  {
-    "objectID": "getting-started/getting-started.html",
-    "href": "getting-started/getting-started.html",
-    "title": "Getting Started",
+    "objectID": "r-and-rstudio/zotero-rstudio.html#tips",
+    "href": "r-and-rstudio/zotero-rstudio.html#tips",
+    "title": "Using Zotero with RStudio",
     "section": "",
-    "text": "Welcome to mccoursepack. This guide helps you install tools, open your first project, and render your first journal.",
+    "text": "Keep your .bib file updated as you add new references.\nUse the Better BibTeX auto-export feature to keep your bibliography in sync.\nExplore citation styles by downloading .csl files from Zotero Style Repository.\n\n\nFor more help, visit the Zotero Documentation or the Quarto Citations Guide.",
     "crumbs": [
-      "Home",
-      "Getting Started"
+      "R & RStudio",
+      "Using Zotero with RStudio"
     ]
   },
   {
-    "objectID": "getting-started/getting-started.html#step-1-install-or-update-the-course-package",
-    "href": "getting-started/getting-started.html#step-1-install-or-update-the-course-package",
-    "title": "Getting Started",
-    "section": "Step 1 – Install or Update the Course Package",
-    "text": "Step 1 – Install or Update the Course Package\nThe course package mccoursepack is hosted on GitHub. Use the pak package to install or update it.\n# Install pak if not already installed\ninstall.packages(\"pak\")\n\n# Install or update the course package\npak::pak(\"SIM-Lab-SIUE/mccoursepack\")\nOnce the installation is complete, load the package into your R session.\n# Load the package\nlibrary(mccoursepack)\n\nRun the pak::pak() command at the start of the semester and again weekly to check for updates.",
-    "crumbs": [
-      "Home",
-      "Getting Started"
-    ]
-  },
-  {
-    "objectID": "getting-started/getting-started.html#step-2-create-two-rstudio-projects",
-    "href": "getting-started/getting-started.html#step-2-create-two-rstudio-projects",
-    "title": "Getting Started",
-    "section": "Step 2 – Create Two RStudio Projects",
-    "text": "Step 2 – Create Two RStudio Projects\nProjects keep everything organized. You’ll create two:\n\nA Tasks Project for weekly assignments.\nA Journal Project for your course journal.\n\n\nCreate the Tasks Project\n\nIn RStudio: File -&gt; New Project -&gt; New Directory -&gt; New Project.\nChoose a location, e.g., Documents/MC451/.\nName the folder: tasks_project.\nClick Create Project.\n\n\n\nCreate the Journal Project\n\nAgain: File -&gt; New Project -&gt; New Directory -&gt; New Project.\nSame parent folder (Documents/MC451/).\nName the folder: journal_project.\nClick Create Project.\n\nYou now have two separate projects: one for all weekly tasks, one for your running journal.",
-    "crumbs": [
-      "Home",
-      "Getting Started"
-    ]
-  },
-  {
-    "objectID": "getting-started/getting-started.html#step-3-set-up-the-journal-project",
-    "href": "getting-started/getting-started.html#step-3-set-up-the-journal-project",
-    "title": "Getting Started",
-    "section": "Step 3 – Set Up the Journal Project",
-    "text": "Step 3 – Set Up the Journal Project\n\nOpen the journal_project in RStudio.\nIn the Console, run:\n\ndownload_journal(\"mc451\")   # or \"mc501\" if in the graduate course\nThis creates the journal/ folder structure with an entries/ directory, a template, and scripts for adding new entries.",
-    "crumbs": [
-      "Home",
-      "Getting Started"
-    ]
-  },
-  {
-    "objectID": "getting-started/getting-started.html#step-4-set-up-the-tasks-project",
-    "href": "getting-started/getting-started.html#step-4-set-up-the-tasks-project",
-    "title": "Getting Started",
-    "section": "Step 4 – Set Up the Tasks Project",
-    "text": "Step 4 – Set Up the Tasks Project\n\nOpen the tasks_project in RStudio.\nUse the helper function to download the starter files for your first week:\n\ndownload_week(\"mc451\", week = 1)\n(or substitute \"mc501\" for the graduate course).\nRepeat each week: change the week number to get that week’s scaffold.",
-    "crumbs": [
-      "Home",
-      "Getting Started"
-    ]
-  },
-  {
-    "objectID": "getting-started/getting-started.html#step-5-confirm-everything-works",
-    "href": "getting-started/getting-started.html#step-5-confirm-everything-works",
-    "title": "Getting Started",
-    "section": "Step 5 – Confirm Everything Works",
-    "text": "Step 5 – Confirm Everything Works\n\nOpen the journal_project -&gt; render the index file:\nquarto render\nThis should build a unified journal book.\nOpen the tasks_project -&gt; render a week’s scaffold. Check that Quarto builds the .qmd file into HTML/PDF.\n\nIf both projects render without errors, you’re fully set up.",
-    "crumbs": [
-      "Home",
-      "Getting Started"
-    ]
-  },
-  {
-    "objectID": "getting-started/getting-started.html#mental-model",
-    "href": "getting-started/getting-started.html#mental-model",
-    "title": "Getting Started",
-    "section": "Mental Model",
-    "text": "Mental Model\n\nJournal project: long-running notebook, one entry per week.\nTasks project: fresh scaffolds each week for assignments, labs, and exercises.\nmccoursepack package: the engine that fetches and organizes everything for you.",
-    "crumbs": [
-      "Home",
-      "Getting Started"
-    ]
-  },
-  {
-    "objectID": "git/git-and-github.html",
-    "href": "git/git-and-github.html",
-    "title": "Connecting RStudio, Git, and GitHub",
+    "objectID": "r-and-rstudio/rstudio-four-panes.html",
+    "href": "r-and-rstudio/rstudio-four-panes.html",
+    "title": "RStudio’s Four Panes",
     "section": "",
-    "text": "This guide provides a detailed, beginner-friendly workflow for connecting RStudio to Git and GitHub. We will use the usethis R package to handle most of the complex steps automatically.\n\nPrerequisites: Install Helper Packages\nWe will use the usethis and gitcreds packages to simplify the setup. Run this code in the RStudio Console to install and load them.\ninstall.packages(c(\"usethis\", \"gitcreds\"))\nlibrary(usethis)\nlibrary(gitcreds)\n\n\nPart 1: One-Time Setup\nYou only need to do this part once on your computer.\n\nStep 1: Install Git on Your Computer\nGit is a separate program from R and RStudio. You must install it first.\n\nGo to the official Git website: https://git-scm.com/downloads\nDownload the installer for your operating system (Windows or macOS).\nRun the installer, accepting all the default options. You don’t need to change anything.\n\n\n\nStep 2: Configure Git with Your Identity\nOpen the RStudio Console and run the following two lines of code, replacing the example text with your actual GitHub username and email. This is how your commits will be identified.\n# Replace with your info\nedit_git_config() \nThis will open a text file for Git’s global configuration. Add the following lines, save the file, and close it.\n[user]\n  name = \"Your Name\"\n  email = \"your.email@example.com\"\n\n\nStep 3: Connect RStudio to GitHub with a Personal Access Token (PAT)\nGitHub requires a special password called a Personal Access Token (PAT) to connect with tools like RStudio. The usethis package makes this easy.\n\nGenerate the Token: In the RStudio Console, run this command. It will open a new tab in your web browser, taking you to the “New personal access token” page on GitHub.\ncreate_github_token()\nConfigure the Token on GitHub:\n\nIn the “Note” field, give your token a descriptive name, like “RStudio Token”.\nFor “Expiration,” it is recommended to set a custom date (e.g., the end of the semester).\nUnder “Select scopes,” check the box next to repo. This gives your token permission to access your repositories.\nScroll to the bottom and click “Generate token”.\n\nCopy the Token: You will now see a new page with your token. It will look something like ghp_.... This is the only time you will ever see this token. Click the copy icon next to it.\nSave the Token in RStudio: Go back to RStudio and run the following command in the Console. It will prompt you to paste your token. Paste it and press Enter.\ngitcreds_set()\n\nYou are now fully configured! RStudio can securely talk to your GitHub account.\n\n\n\nPart 2: Creating and Connecting a Project\nThis is the workflow you will use for each new project (like your course journal).\n\nStep 1: Create a New RStudio Project\nFirst, create a new, empty RStudio Project. Do not initialize it as a Git repository yet.\n\nIn RStudio: File → New Project → New Directory → New Project.\nGive it a name (e.g., my-journal-project) and save it somewhere you can find it.\n\n\n\nStep 2: Turn the Project into a Git Repository\nIn the RStudio Console, run this command:\nuse_git()\nThis will initialize a Git repository in your project folder. RStudio will ask to restart. Click “Yes.” When it reopens, you will see a Git tab in the top-right pane.\n\n\n\nGit Pane\n\n\n\n\nStep 3: Create a GitHub Repository and Connect It\nNow, tell usethis to create a repository on GitHub and connect your local project to it.\nuse_github()\nThis command will: 1. Ask if you want to commit the files you have. Say “Yes”. 2. Create a new, private repository on your GitHub account with the same name as your RStudio project. 3. Push your local files to the new GitHub repository.\nWhen it’s done, it will open a new browser tab showing you your new repository on GitHub, with your files already in it.\n\n\n\nPart 3: The Daily Workflow (Pull, Stage, Commit, Push)\nNow that your project is connected, here is the simple, day-to-day workflow for saving your work. This is a cycle you will repeat many times.\n\nPull: Before you start working, click the blue Pull arrow in the Git pane. This downloads the latest changes from your GitHub repository. This is crucial if you work on multiple computers or collaborate with others.\nDo Your Work: Edit your files, write your journal entries, analyze data, etc. Save your files as you normally would.\nStage Your Changes:\n\nGo to the Git pane. You will see a list of all the files you’ve modified since your last commit.\nCheck the boxes under the “Staged” column for all the files you want to include in your next save point. “Staging” files is like putting them in a box to get them ready to ship.\n\n\n\n\nRStudio Stage Window\n\n\nCommit Your Changes:\n\nClick the Commit button.\nA new window will open. In the “Commit message” box, write a short, descriptive message about what you changed (e.g., “Completed Week 3 journal entry”). This message is a log for your future self.\nClick Commit. This creates a “save point” (a commit) on your local computer. Your changes are not on GitHub yet.\n\n\n\n\nRStudio Commit Window\n\n\nPush to GitHub:\n\nClick the green Push arrow. This sends your committed changes from your local computer up to your GitHub repository, making them available online.\n\n\nThat’s it! You have successfully saved and backed up your work to GitHub.\n\n\nTroubleshooting\nHere are a few common issues you might encounter.\n\nuse_github() fails: If this command fails, it might be because a repository with that name already exists on GitHub. Make sure the name is unique. It could also fail if your PAT is incorrect. You can re-run gitcreds_set() to enter it again.\nAccidentally committed a large file: Git is not designed for large data files (e.g., &gt;100MB). If you accidentally commit one and the push fails, you will need to remove it from the repository’s history. The easiest way is to use the r-lib/bfg-manager package or follow GitHub’s official guide. The best practice is to add the paths to large files or data folders to a .gitignore file before you commit them.\nMerge Conflicts: If you Pull and get a “merge conflict,” it means you and a collaborator (or you on another computer) edited the same lines in the same file. RStudio will show you the conflicting sections in the file. You must manually edit the file to resolve the differences, save it, and then commit the resolved file.",
+    "text": "RStudio organizes your work into four panes. Each pane has tabs for specific tasks: editing, running code, viewing objects, managing files, plots, packages, or help. This page gives you a plain-English tour of every pane and every default tab—what each does, when you’ll use it, and where to click next.",
     "crumbs": [
-      "Git & GitHub",
-      "Connecting RStudio, Git, and GitHub"
+      "R & RStudio",
+      "RStudio’s Four Panes"
     ]
   },
   {
-    "objectID": "git/github-verification.html",
-    "href": "git/github-verification.html",
-    "title": "GitHub Verification Process",
+    "objectID": "r-and-rstudio/rstudio-four-panes.html#source-pane-top-left-where-you-write-and-edit",
+    "href": "r-and-rstudio/rstudio-four-panes.html#source-pane-top-left-where-you-write-and-edit",
+    "title": "RStudio’s Four Panes",
+    "section": "1. Source Pane (Top-Left) — Where You Write and Edit",
+    "text": "1. Source Pane (Top-Left) — Where You Write and Edit\nWhat it is: a multi-tab code and document editor. You’ll draft R scripts (.R), Quarto/R Markdown (.qmd, .Rmd), plain text, and more here. Code doesn’t execute until you send it to the Console.\n\nTabs across the top hold open files—click a tab to switch documents.\n\nFor Quarto/R Markdown, you can use the visual editor and render from the toolbar; output previews in the Viewer (see Output pane).",
+    "crumbs": [
+      "R & RStudio",
+      "RStudio’s Four Panes"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-four-panes.html#console-pane-bottom-left-where-code-runs-plus-two-neighbors",
+    "href": "r-and-rstudio/rstudio-four-panes.html#console-pane-bottom-left-where-code-runs-plus-two-neighbors",
+    "title": "RStudio’s Four Panes",
+    "section": "2. Console Pane (Bottom-Left) — Where Code Runs (Plus Two Neighbors)",
+    "text": "2. Console Pane (Bottom-Left) — Where Code Runs (Plus Two Neighbors)\nThis column has three tabs by default:\n\na. Console\nAn interactive R prompt. Type a command (e.g., 1 + 1) and press Return to see results immediately. Most beginners will (1) write code in the Source pane and (2) send lines or chunks to the Console to execute.\n\n\nb. Terminal\nA system shell inside RStudio (bash/zsh on macOS/Linux; PowerShell/Command Prompt on Windows). Supports multiple sessions—handy for Git, package tools, or command-line utilities.\n\n\nc. Background Jobs\nRuns an R script in a separate R session so long tasks don’t freeze your main session. Start jobs from this tab or by choosing Source as Background Job. Progress and logs appear here.\n\nIf something works in the Console but stalls your session, launch it as a background job. If you need shell tools, hop to Terminal.",
+    "crumbs": [
+      "R & RStudio",
+      "RStudio’s Four Panes"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-four-panes.html#environment-pane-top-right-whats-in-memory-plus-history-tooling",
+    "href": "r-and-rstudio/rstudio-four-panes.html#environment-pane-top-right-whats-in-memory-plus-history-tooling",
+    "title": "RStudio’s Four Panes",
+    "section": "3. Environment Pane (Top-Right) — What’s in Memory (Plus History & Tooling)",
+    "text": "3. Environment Pane (Top-Right) — What’s in Memory (Plus History & Tooling)\nBy default this pane includes Environment, History, Connections, Build, VCS, and Tutorial.\n\nEnvironment: Live list of objects in your R session (data frames, vectors, models). Inspect, remove, or clear objects and launch the spreadsheet-style data viewer.\n\nHistory: Log of commands you’ve executed. Search, select, and resend to Console or a script.\n\nConnections: Shows active database/data-source connections.\n\nBuild: Appears in projects with build tooling (e.g., an R package). Buttons for Install & Restart, Load All, Run R CMD check, clean/rebuild, and run tests.\n\nVCS: Git/SVN integration (commit, diff, pull/push, project-level settings).\n\nTutorial: Runs interactive learnr tutorials inside the IDE.",
+    "crumbs": [
+      "R & RStudio",
+      "RStudio’s Four Panes"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-four-panes.html#output-pane-bottom-right-files-plots-packages-help-web-output-slides",
+    "href": "r-and-rstudio/rstudio-four-panes.html#output-pane-bottom-right-files-plots-packages-help-web-output-slides",
+    "title": "RStudio’s Four Panes",
+    "section": "4. Output Pane (Bottom-Right) — Files, Plots, Packages, Help, Web Output, Slides",
+    "text": "4. Output Pane (Bottom-Right) — Files, Plots, Packages, Help, Web Output, Slides\nBy default this pane includes Files, Plots, Packages, Help, Viewer, and Presentation.\n\nFiles: Browse folders, open files into Source, rename/move/delete, upload/download (when using server/cloud).\n\nPlots: Displays graphs. Navigate through plot history, pop out to a window, and export (PNG/PDF).\n\nPackages: Lists installed packages; load/unload with a click. Install/Update tools included.\n\nHelp: Documentation for functions and packages (same as R’s help, in a browser-style panel).\n\nViewer: Renders local HTML (Shiny apps, htmlwidgets, Quarto previews, etc.).\n\nPresentation: IDE panel for authoring HTML5 slides (R Presentations).",
+    "crumbs": [
+      "R & RStudio",
+      "RStudio’s Four Panes"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-four-panes.html#customizing-your-layout",
+    "href": "r-and-rstudio/rstudio-four-panes.html#customizing-your-layout",
+    "title": "RStudio’s Four Panes",
+    "section": "Customizing Your Layout",
+    "text": "Customizing Your Layout\nGo to Tools → Global Options → Pane Layout to rearrange panes and choose which tabs live where. If you ever get lost, reset to defaults.",
+    "crumbs": [
+      "R & RStudio",
+      "RStudio’s Four Panes"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-four-panes.html#quick-mental-model",
+    "href": "r-and-rstudio/rstudio-four-panes.html#quick-mental-model",
+    "title": "RStudio’s Four Panes",
+    "section": "Quick Mental Model",
+    "text": "Quick Mental Model\n\nSource: Write your instructions.\n\nConsole: Run them (plus Terminal/Jobs for power moves).\n\nEnvironment: Keeps track of what exists (with History/Connections/Build/VCS/Tutorial beside it).\n\nOutput: Displays what you need—files, plots, packages, help, web output, and slide decks.",
+    "crumbs": [
+      "R & RStudio",
+      "RStudio’s Four Panes"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/r-and-rstudio.html",
+    "href": "r-and-rstudio/r-and-rstudio.html",
+    "title": "R & RStudio",
     "section": "",
-    "text": "To verify student status on GitHub, you must ensure your GitHub profile information (username, email, full name) matches your provided academic documents.\nAlways use your school-issued academic email, provide legible photos of your student ID or enrollment documents, and disable any VPNs. If a VPN is required, try applying from your university’s Wi-Fi or campus network [1].",
+    "text": "This section covers installing R/RStudio and tuning the IDE.",
     "crumbs": [
-      "Home",
-      "GitHub Verification Process"
+      "R & RStudio"
     ]
   },
   {
-    "objectID": "git/github-verification.html#before-applying",
-    "href": "git/github-verification.html#before-applying",
-    "title": "GitHub Verification Process",
-    "section": "Before Applying",
-    "text": "Before Applying\n\nMatch Profile Information\nMake sure the full name and email on your GitHub profile exactly match the information on the academic document you plan to submit [1, 7].\nUse an Academic Email\nApply using your official, school-issued email address. This is GitHub’s preferred method for verification [3, 7].\nDisable VPNs\nTurn off VPN services, since they can cause location-based verification to fail. If you must use a VPN, try applying from campus instead [4, 8].",
+    "objectID": "r-and-rstudio/r-and-rstudio.html#r-vs.-rstudio",
+    "href": "r-and-rstudio/r-and-rstudio.html#r-vs.-rstudio",
+    "title": "R & RStudio",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\nR is the programming language and runtime (it executes code).\n\nRStudio (Posit IDE) is the graphical environment where you write code, manage files, and render documents.\n\nYou’ll always use them together: R runs under the hood; RStudio makes it easier to work productively.",
     "crumbs": [
-      "Home",
-      "GitHub Verification Process"
+      "R & RStudio"
     ]
   },
   {
-    "objectID": "git/github-verification.html#during-the-application",
-    "href": "git/github-verification.html#during-the-application",
-    "title": "GitHub Verification Process",
-    "section": "During the Application",
-    "text": "During the Application\n\nSubmit Clear Photos\nUse your device’s camera to capture your documents. Make sure your full name, school name, and current date are clearly legible [2, 5].\nUse School Wi-Fi\nApply from your university’s Wi-Fi or network if possible—this helps verify your location [6].\nCheck for System Errors\nIf you encounter a general system error, wait and try again later. If the problem persists, contact GitHub Education Support [1, 4].",
+    "objectID": "r-and-rstudio/r-and-rstudio.html#the-rstudio-interface-four-panes",
+    "href": "r-and-rstudio/r-and-rstudio.html#the-rstudio-interface-four-panes",
+    "title": "R & RStudio",
+    "section": "The RStudio interface (four panes)",
+    "text": "The RStudio interface (four panes)\n\nSource (top-left): edit scripts and .qmd files\n\nConsole (bottom-left): run code interactively\n\nEnvironment / History (top-right): see objects in memory, command history\n\nFiles / Plots / Packages / Help / Viewer (bottom-right): navigate files, view plots, load packages, get help",
     "crumbs": [
-      "Home",
-      "GitHub Verification Process"
+      "R & RStudio"
     ]
   },
   {
-    "objectID": "git/github-verification.html#if-the-application-is-rejected",
-    "href": "git/github-verification.html#if-the-application-is-rejected",
-    "title": "GitHub Verification Process",
-    "section": "If the Application is Rejected",
-    "text": "If the Application is Rejected\n\nTry Alternative Documents\nIf one document type fails, try another—such as an official transcript or enrollment letter [7, 9].\nContact Support\nIf you repeatedly face issues or believe there is incorrect information in the system, submit a support ticket to GitHub Education [4].",
+    "objectID": "r-and-rstudio/r-and-rstudio.html#projects-your-1-best-practice",
+    "href": "r-and-rstudio/r-and-rstudio.html#projects-your-1-best-practice",
+    "title": "R & RStudio",
+    "section": "Projects: your #1 best practice",
+    "text": "Projects: your #1 best practice\nAlways work inside an RStudio Project (one folder per course or research project).\n\nEach Project has its own working directory, history, and settings.\n\nThis avoids broken file paths and makes your work reproducible.\n\nCreate a Project:\nFile → New Project → New Directory → New Project\nPro tip: In Preferences → General, set RStudio to never save/restore .RData. Clean sessions prevent stale objects from carrying over.",
+    "crumbs": [
+      "R & RStudio"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/r-and-rstudio.html#console-vs.-script-and-quarto",
+    "href": "r-and-rstudio/r-and-rstudio.html#console-vs.-script-and-quarto",
+    "title": "R & RStudio",
+    "section": "Console vs. Script (and Quarto)",
+    "text": "Console vs. Script (and Quarto)\n\nUse the Console for quick experiments.\n\nSave work you want to keep in a script (.R) or a Quarto document (.qmd).\n\nRender .qmd with the Render button (RStudio toolbar) or in a terminal:\nquarto render myfile.qmd\n\nHandy keys (Source pane)\n\nRun line/selection: Ctrl+Enter (Win/Linux) or Cmd+Return (macOS)\nInsert code chunk in .qmd: Ctrl+Alt+I (Win/Linux) or Option+Cmd+I (macOS)\nFull list: Tools → Keyboard Shortcuts Help",
+    "crumbs": [
+      "R & RStudio"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/r-and-rstudio.html#files-and-paths-keep-them-relative",
+    "href": "r-and-rstudio/r-and-rstudio.html#files-and-paths-keep-them-relative",
+    "title": "R & RStudio",
+    "section": "Files and paths (keep them relative)",
+    "text": "Files and paths (keep them relative)\nInside a Project, paths are relative to the project root.\nExample:\n# Good (portable)\nsongs &lt;- read.csv(\"data/songs.csv\")\n\n# Bad (breaks on other computers)\nsongs &lt;- read.csv(\"C:/Users/Alex/Desktop/songs.csv\")\n\nAvoid setwd() in scripts. The Project sets the working directory automatically.",
+    "crumbs": [
+      "R & RStudio"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/r-and-rstudio.html#git-integration",
+    "href": "r-and-rstudio/r-and-rstudio.html#git-integration",
+    "title": "R & RStudio",
+    "section": "Git integration",
+    "text": "Git integration\nIf your Project is under Git, you’ll see a Git tab in RStudio. Use it to:\n\nStage → Commit → Push changes to GitHub.\n\nIf the Git tab is missing: Tools → Project Options → Git/SVN → Enable version control system: Git or run:\nusethis::use_git()",
+    "crumbs": [
+      "R & RStudio"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/r-and-rstudio.html#handy-shortcuts",
+    "href": "r-and-rstudio/r-and-rstudio.html#handy-shortcuts",
+    "title": "R & RStudio",
+    "section": "Handy shortcuts",
+    "text": "Handy shortcuts\n\nCommand Palette: Ctrl/Cmd+Shift+P\nKeyboard Shortcuts Help: Alt/Option+Shift+K\nComment/Uncomment: Ctrl+Shift+C (Win/Linux) or Cmd+Shift+C (macOS)",
+    "crumbs": [
+      "R & RStudio"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/r-and-rstudio.html#default-settings-to-adopt-once",
+    "href": "r-and-rstudio/r-and-rstudio.html#default-settings-to-adopt-once",
+    "title": "R & RStudio",
+    "section": "Default settings to adopt (once)",
+    "text": "Default settings to adopt (once)\n\nDisable save/restore of .RData (Preferences → General).\nKeep Projects in simple paths (e.g., Documents/MC451).\nEnable Git integration early.",
+    "crumbs": [
+      "R & RStudio"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/r-and-rstudio.html#where-this-fits-with-the-package",
+    "href": "r-and-rstudio/r-and-rstudio.html#where-this-fits-with-the-package",
+    "title": "R & RStudio",
+    "section": "Where this fits with the package",
+    "text": "Where this fits with the package\nEverything in mccoursepack—listing weeks, downloading scaffolds, rendering .qmd—assumes you are inside your course Project.\nWorkflow reminder:\nlibrary(mccoursepack)\n\n# list weeks\nlist_weeks(\"mc451\")\n\n# download week 1 into the project folder\ndownload_week(\"mc451\", 1, dest = \".\")\nOpen the downloaded week_01/ folder, work on .qmd files there, and render as needed.",
+    "crumbs": [
+      "R & RStudio"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html",
+    "href": "pages/undergrad-zotero-guide.html",
+    "title": "Undergraduate Zotero Guide",
+    "section": "",
+    "text": "This guide shows you how to connect Zotero to your RStudio project to create automated citations and bibliographies for your white paper. Much easier than writing a bibliography by hand!",
     "crumbs": [
       "Home",
-      "GitHub Verification Process"
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#why-zotero",
+    "href": "pages/undergrad-zotero-guide.html#why-zotero",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Why Zotero?",
+    "text": "Why Zotero?\nZotero is a free, open-source reference manager that: - Saves your academic sources with one click - Automatically formats citations in any style - Syncs across devices - Your whole team can use the same reference library",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#step-1-install-zotero-better-bibtex",
+    "href": "pages/undergrad-zotero-guide.html#step-1-install-zotero-better-bibtex",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Step 1: Install Zotero & Better BibTeX",
+    "text": "Step 1: Install Zotero & Better BibTeX\n\nInstall Zotero: Go to zotero.org and download the desktop application\nInstall the Zotero Connector: Install the browser extension for Chrome, Firefox, or Safari\n\nSave sources from Google Scholar with one click\n\nInstall Better BibTeX (BBT) Plugin: Makes citation keys stable\n\nGo to Better BibTeX releases\nDownload the latest .xpi file\nIn Zotero: Tools → Add-ons → Install from file",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#step-2-create-a-team-zotero-library-optional",
+    "href": "pages/undergrad-zotero-guide.html#step-2-create-a-team-zotero-library-optional",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Step 2: Create a Team Zotero Library (Optional)",
+    "text": "Step 2: Create a Team Zotero Library (Optional)\nFor team collaboration, one person can: 1. Create a Zotero Group Library 2. Share the group link with teammates 3. All team members join the group 4. References sync automatically across the team\nOr: One person manages Zotero, exports the .bib file, and shares it on GitHub.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#step-3-collect-your-sources",
+    "href": "pages/undergrad-zotero-guide.html#step-3-collect-your-sources",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Step 3: Collect Your Sources",
+    "text": "Step 3: Collect Your Sources\n\nOpen Zotero\nCreate a folder for your project (e.g., “White Paper F25”)\nUse the Zotero Connector to save from Google Scholar, JSTOR, etc.\nManually add sources if needed\n\nAim for 10-12 sources for your white paper.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#step-4-export-to-bibtex",
+    "href": "pages/undergrad-zotero-guide.html#step-4-export-to-bibtex",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Step 4: Export to BibTeX",
+    "text": "Step 4: Export to BibTeX\n\nRight-click your project folder in Zotero\nSelect Export Collection...\nChoose BibTeX format\nSave as references.bib in your RStudio project root folder",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#step-5-configure-quarto",
+    "href": "pages/undergrad-zotero-guide.html#step-5-configure-quarto",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Step 5: Configure Quarto",
+    "text": "Step 5: Configure Quarto\nIn your white_paper.qmd, add to the YAML header:\nbibliography: references.bib\ncsl: apa.csl",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#step-6-cite-in-your-document",
+    "href": "pages/undergrad-zotero-guide.html#step-6-cite-in-your-document",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Step 6: Cite in Your Document",
+    "text": "Step 6: Cite in Your Document\nUse the citation key (usually author-year):\nResearch shows X [@smith2023].\nQuarto formats it as: (Smith, 2023)",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#rendering",
+    "href": "pages/undergrad-zotero-guide.html#rendering",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Rendering",
+    "text": "Rendering\nWhen you render your document:\nquarto render white_paper.qmd --to pdf\nQuarto automatically: 1. Inserts in-text citations 2. Creates a formatted bibliography 3. Applies citation style (APA, Chicago, etc.)",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#citation-style",
+    "href": "pages/undergrad-zotero-guide.html#citation-style",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Citation Style",
+    "text": "Citation Style\nWe recommend APA format (apa.csl): - Download from Zotero Style Repository - Save as apa.csl in your project root",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#team-tips",
+    "href": "pages/undergrad-zotero-guide.html#team-tips",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Team Tips",
+    "text": "Team Tips\n\nOne person manages citations – to avoid conflicts\nShare the references.bib file on GitHub\nCommit changes when adding new sources\nCommunicate about which sources you’re using",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-zotero-guide.html#tips",
+    "href": "pages/undergrad-zotero-guide.html#tips",
+    "title": "Undergraduate Zotero Guide",
+    "section": "Tips",
+    "text": "Tips\n\nKeep your library organized with collections\nUse note fields to record page numbers and key quotes\nExport references.bib frequently\nCheck citation formatting in your PDF before submission\n\nFor more help, see Zotero Documentation and Quarto Citations.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-overview.html",
+    "href": "pages/undergrad-white-paper-overview.html",
+    "title": "Undergraduate White Paper Overview",
+    "section": "",
+    "text": "This document outlines the assignment requirements, deliverables, and master checklist for your group white paper project.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-overview.html#core-requirements",
+    "href": "pages/undergrad-white-paper-overview.html#core-requirements",
+    "title": "Undergraduate White Paper Overview",
+    "section": "Core Requirements",
+    "text": "Core Requirements\n\nTeam project (2-3 members)\n3,000–4,000 words\n10-12 academic citations\nOne original survey (N=100 goal)\nTwo Research Questions (RQs) and/or Hypotheses (RHs)\nAll data analyzed in RStudio\nAt least two data visualizations created in R\nWritten in Quarto (.qmd)\nProfessional journalistic style",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-overview.html#final-deliverables",
+    "href": "pages/undergrad-white-paper-overview.html#final-deliverables",
+    "title": "Undergraduate White Paper Overview",
+    "section": "Final Deliverables",
+    "text": "Final Deliverables\n\nGitHub: Private repository with all project files\nBlackboard: Final submission link (if required by your instructor)",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-overview.html#master-project-checklist",
+    "href": "pages/undergrad-white-paper-overview.html#master-project-checklist",
+    "title": "Undergraduate White Paper Overview",
+    "section": "Master Project Checklist",
+    "text": "Master Project Checklist\nSee Undergraduate Final Submission Checklist for a full breakdown of requirements by phase.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-overview.html#related-guides",
+    "href": "pages/undergrad-white-paper-overview.html#related-guides",
+    "title": "Undergraduate White Paper Overview",
+    "section": "Related Guides",
+    "text": "Related Guides\n\nUndergraduate Technical Guide – RStudio, Quarto, survey design\nUndergraduate GitHub Guide – Version control & collaboration\nUndergraduate Zotero Guide – Citation management\nUndergraduate White Paper Writing Guide – Structure and style",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-github-guide.html",
+    "href": "pages/undergrad-github-guide.html",
+    "title": "Undergraduate GitHub Guide",
+    "section": "",
+    "text": "This guide covers all steps for using GitHub in your group white paper project, including setup, collaboration, and submission.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate GitHub Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-github-guide.html#why-use-github",
+    "href": "pages/undergrad-github-guide.html#why-use-github",
+    "title": "Undergraduate GitHub Guide",
+    "section": "Why Use GitHub?",
+    "text": "Why Use GitHub?\n\nVersion control: Save snapshots of your work, track changes\nCloud backup: Protect your team’s work\nCollaboration: All team members can work on the same project\nSubmission: Required for your final project",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate GitHub Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-github-guide.html#steps",
+    "href": "pages/undergrad-github-guide.html#steps",
+    "title": "Undergraduate GitHub Guide",
+    "section": "Steps",
+    "text": "Steps\n\n1. Team Leader: Create a Repository\n\nGo to GitHub.com\nCreate a new private repository\nName it clearly: e.g., white-paper-f25\nAdd a README.md file\nInvite team members as collaborators\n\n\n\n2. All Team Members: Clone the Repository\n\nCopy the HTTPS URL from GitHub\nIn RStudio: File → New Project → Version Control → Git\nPaste the URL and choose a local folder\nClick Create Project\n\n\n\n3. Collaborate Safely\nCreate branches for different sections:\n# In terminal\ngit checkout -b section-name\nExamples: intro, methods, analysis, references\nCommit regularly: - Stage your changes in the Git pane - Write clear commit messages - Click Commit\nPush your work: - Click Push in the Git pane - Your changes appear on GitHub\nPull before you start working: - Click Pull to get the latest changes from your teammates - Prevents conflicts when merging\n\n\n4. Submit Your Project\n\nKeep all files in your repository\nFinal submission: GitHub link (all team members should have access)",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate GitHub Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-github-guide.html#team-tips",
+    "href": "pages/undergrad-github-guide.html#team-tips",
+    "title": "Undergraduate GitHub Guide",
+    "section": "Team Tips",
+    "text": "Team Tips\n\nCommunicate – Discuss who is working on which section\nCommit often – With clear, descriptive messages\nPull first, push last – Always pull before starting and push when done\nReview before merging – Use pull requests to review team members’ work\nKeep data files clean – Use .gitignore to exclude temporary files",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate GitHub Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-github-guide.html#resolving-conflicts",
+    "href": "pages/undergrad-github-guide.html#resolving-conflicts",
+    "title": "Undergraduate GitHub Guide",
+    "section": "Resolving Conflicts",
+    "text": "Resolving Conflicts\nIf two team members edit the same section, you may get a merge conflict.\n\nPull the latest changes\nRStudio will show conflicting lines\nChoose which version to keep (or combine both)\nCommit the resolved version\nPush your changes\n\nFor more details, see the main Git guide.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate GitHub Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html",
+    "href": "pages/grad-zotero-guide.html",
+    "title": "Graduate Zotero Guide",
+    "section": "",
+    "text": "This guide shows you how to connect Zotero to your RStudio project to create automated APA 7th Edition citations and bibliographies. This is essential for a graduate research paper.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#why-zotero",
+    "href": "pages/grad-zotero-guide.html#why-zotero",
+    "title": "Graduate Zotero Guide",
+    "section": "Why Zotero?",
+    "text": "Why Zotero?\nZotero is a free, open-source reference manager that: - Saves your academic sources with one click - Automatically formats citations in any style - Syncs across devices - Integrates seamlessly with Quarto documents",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#step-1-install-zotero-better-bibtex",
+    "href": "pages/grad-zotero-guide.html#step-1-install-zotero-better-bibtex",
+    "title": "Graduate Zotero Guide",
+    "section": "Step 1: Install Zotero & Better BibTeX",
+    "text": "Step 1: Install Zotero & Better BibTeX\n\nInstall Zotero: Go to zotero.org and download the desktop application\nInstall the Zotero Connector: Install the browser extension for Chrome, Firefox, or Safari\n\nThis lets you save sources from Google Scholar with one click\n\nInstall Better BibTeX (BBT) Plugin: This is essential for creating stable citation keys\n\nGo to Better BibTeX releases\nDownload the latest .xpi file\nIn Zotero, go to Tools → Add-ons → Install from file",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#step-2-create-your-zotero-library",
+    "href": "pages/grad-zotero-guide.html#step-2-create-your-zotero-library",
+    "title": "Graduate Zotero Guide",
+    "section": "Step 2: Create Your Zotero Library",
+    "text": "Step 2: Create Your Zotero Library\n\nOpen Zotero on your computer\nCreate a folder for your project (e.g., “Research Paper F25”)\nStart saving sources:\n\nUse the Zotero Connector from Google Scholar\nManually add sources by clicking New Item",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#step-3-export-to-bibtex",
+    "href": "pages/grad-zotero-guide.html#step-3-export-to-bibtex",
+    "title": "Graduate Zotero Guide",
+    "section": "Step 3: Export to BibTeX",
+    "text": "Step 3: Export to BibTeX\n\nRight-click your project folder in Zotero\nSelect Export Collection...\nChoose BibTeX format\nSave as references.bib in your RStudio project root folder\n\nTip: Use Better BibTeX’s auto-export feature for live updates: - Right-click collection → Automatic Export... → Select BibTeX",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#step-4-configure-quarto",
+    "href": "pages/grad-zotero-guide.html#step-4-configure-quarto",
+    "title": "Graduate Zotero Guide",
+    "section": "Step 4: Configure Quarto",
+    "text": "Step 4: Configure Quarto\nIn your research_paper.qmd, add to the YAML header:\nbibliography: references.bib\ncsl: apa.csl",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#step-5-cite-in-your-document",
+    "href": "pages/grad-zotero-guide.html#step-5-cite-in-your-document",
+    "title": "Graduate Zotero Guide",
+    "section": "Step 5: Cite in Your Document",
+    "text": "Step 5: Cite in Your Document\nTo cite a source, use the citation key from Zotero:\nThis research shows X [@authorYear].\nExample:\nSocial media shapes political engagement [@pew2021].\nQuarto automatically formats it as: (Pew, 2021)\nFull citation appears in bibliography at the end.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#rendering",
+    "href": "pages/grad-zotero-guide.html#rendering",
+    "title": "Graduate Zotero Guide",
+    "section": "Rendering",
+    "text": "Rendering\nWhen you render your document:\nquarto render research_paper.qmd --to pdf\nQuarto automatically: 1. Inserts formatted in-text citations 2. Creates a properly formatted bibliography 3. Applies APA 7th Edition style",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#apa-style-csl-file",
+    "href": "pages/grad-zotero-guide.html#apa-style-csl-file",
+    "title": "Graduate Zotero Guide",
+    "section": "APA Style CSL File",
+    "text": "APA Style CSL File\nMake sure you have the APA 7th Edition CSL file: 1. Download from Zotero Style Repository 2. Save as apa.csl in your project root",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-zotero-guide.html#tips",
+    "href": "pages/grad-zotero-guide.html#tips",
+    "title": "Graduate Zotero Guide",
+    "section": "Tips",
+    "text": "Tips\n\nKeep your Zotero library organized with collections\nUse descriptive note fields for page numbers and key quotes\nExport references.bib frequently to stay in sync\nCheck citation formatting in your PDF before submitting\n\nFor more help, see Zotero Documentation and Quarto Citations Guide.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Zotero Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-writing-guide.html",
+    "href": "pages/grad-research-paper-writing-guide.html",
+    "title": "Graduate Research Paper Writing Guide",
+    "section": "",
+    "text": "This guide provides best practices for writing your APA 7th Edition research paper using Quarto.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-writing-guide.html#before-you-start",
+    "href": "pages/grad-research-paper-writing-guide.html#before-you-start",
+    "title": "Graduate Research Paper Writing Guide",
+    "section": "Before You Start",
+    "text": "Before You Start\n\nReview the assignment requirements: See Graduate Research Paper Overview\nUnderstand APA 7th Edition: The style guide for academic papers in communication research\nSet up your environment: See Graduate Technical Guide",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-writing-guide.html#paper-structure-apa-7th-edition",
+    "href": "pages/grad-research-paper-writing-guide.html#paper-structure-apa-7th-edition",
+    "title": "Graduate Research Paper Writing Guide",
+    "section": "Paper Structure (APA 7th Edition)",
+    "text": "Paper Structure (APA 7th Edition)\n\n1. Title Page\n\nCentered title (all caps)\nAuthor name\nInstitutional affiliation\nAuthor note (if applicable)\n\nIn Quarto YAML:\ntitle: \"Your Full Title Here\"\nauthor: \"Your Name\"\nformat: pdf\n\n\n2. Abstract (150-250 words)\nSummarize: - Research questions/hypotheses - Method (sample, design) - Key findings - Implications\n## Abstract\n\n[Your 150-250 word summary]\n\n\n3. Introduction\nEstablish: - Context (why this matters) - Literature review (what’s known) - Research gap (what’s missing) - Research questions/hypotheses (your contribution)\nTarget: ~1,500-2,000 words\n\n\n4. Literature Review\nOrganize by theme, not source list: - Group related studies - Compare perspectives - Identify patterns - Lead to your research questions\nTarget: ~2,000-2,500 words\n\n\n5. Methods\nDescribe your: - Research Design: Quantitative survey (e.g., cross-sectional) - Participants: N=100, demographics, recruitment - Procedures: How you collected data - Instruments: Survey questions, measures - Analysis: Statistical tests used in R\nTarget: ~800-1,000 words\n\n\n6. Results\nPresent: - Demographic tables - Statistical findings (t-tests, correlations, regressions) - Data visualizations (APA-formatted figures) - Organized by research question\nInclude at least two APA-formatted visualizations (tables or figures).\nTarget: ~500-800 words\n\n\n7. Discussion\nInterpret your findings: - Answer your research questions - Explain unexpected results - Compare to prior research - Acknowledge limitations - Suggest future research\nTarget: ~1,000-1,500 words\n\n\n8. References\nAutomatic in Quarto: - All sources cited in-text appear here - Alphabetically sorted - APA format applied automatically",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-writing-guide.html#apa-style-essentials",
+    "href": "pages/grad-research-paper-writing-guide.html#apa-style-essentials",
+    "title": "Graduate Research Paper Writing Guide",
+    "section": "APA Style Essentials",
+    "text": "APA Style Essentials\n\nIn-Text Citations\n- One author: (Smith, 2023)\n- Two authors: (Smith & Jones, 2023)\n- Three+ authors: (Smith et al., 2023)\n- Direct quote: (Smith, 2023, p. 45)\n\n\nHeadings\n# Level 1 Heading\n## Level 2 Heading\n### Level 3 Heading\n\n\nTables & Figures\nInclude captions:\n| Measure | Mean | SD |\n|---------|------|-----|\n| Engagement | 4.2 | 1.1 |\n\n: Table 1. Descriptive Statistics\n\n\nWriting Style\n\nActive voice: “The study found…” (not “It was found…”)\nPast tense: “Previous research showed…”\nPresent tense: “The data suggest…”\nAvoid: Contractions, “I,” “you,” first person",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-writing-guide.html#common-mistakes-to-avoid",
+    "href": "pages/grad-research-paper-writing-guide.html#common-mistakes-to-avoid",
+    "title": "Graduate Research Paper Writing Guide",
+    "section": "Common Mistakes to Avoid",
+    "text": "Common Mistakes to Avoid\n\n❌ No citations in Introduction\n❌ Copying text from sources (paraphrase & cite!)\n❌ Inconsistent heading levels\n❌ Unformatted tables/figures\n❌ Missing APA references\n❌ Mixing data from Methods and Results",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-writing-guide.html#tips-for-success",
+    "href": "pages/grad-research-paper-writing-guide.html#tips-for-success",
+    "title": "Graduate Research Paper Writing Guide",
+    "section": "Tips for Success",
+    "text": "Tips for Success\n\nStart with an outline – organize your thoughts before writing\nWrite a rough draft first – don’t aim for perfection\nWrite the Abstract last – after you know what your paper says\nUse Quarto’s built-in features – automatic citations, numbering, formatting\nGet feedback – from peers and your instructor\nProofread carefully – check for grammar, spelling, APA compliance",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-writing-guide.html#resources",
+    "href": "pages/grad-research-paper-writing-guide.html#resources",
+    "title": "Graduate Research Paper Writing Guide",
+    "section": "Resources",
+    "text": "Resources\n\nPurdue OWL - APA Format\nQuarto Authoring Guide\nAPA Publication Manual (7th Edition)",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-github-guide.html",
+    "href": "pages/grad-github-guide.html",
+    "title": "Graduate GitHub Guide",
+    "section": "",
+    "text": "This guide covers all steps for using GitHub in your research project, including setup, version control, and submission.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate GitHub Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-github-guide.html#why-use-github",
+    "href": "pages/grad-github-guide.html#why-use-github",
+    "title": "Graduate GitHub Guide",
+    "section": "Why Use GitHub?",
+    "text": "Why Use GitHub?\n\nVersion control: Save snapshots, roll back changes\nCloud backup: Protect your work\nPortability: Work from any computer\nSubmission: Required for your final project",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate GitHub Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-github-guide.html#steps",
+    "href": "pages/grad-github-guide.html#steps",
+    "title": "Graduate GitHub Guide",
+    "section": "Steps",
+    "text": "Steps\n\n1. Create a Private Repository\n\nGo to GitHub.com\nCreate a new private repository\nName it clearly: e.g., grad-research-paper-f25\nAdd a README.md file\n\n\n\n2. Clone to RStudio\n\nCopy the HTTPS URL from GitHub\nIn RStudio: File → New Project → Version Control → Git\nPaste the URL and choose a local folder\nClick Create Project\n\n\n\n3. Work Locally\n\nEdit files in RStudio\nCommit changes regularly:\n\nGit pane → Check files to stage\nWrite a clear commit message\nClick Commit\n\n\n\n\n4. Push to GitHub\n\nClick Push in the Git pane\nYour changes now appear on GitHub\n\n\n\n5. Submit Your Project\n\nKeep all files in your repository\nFinal submission: GitHub link to Blackboard",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate GitHub Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-github-guide.html#tips",
+    "href": "pages/grad-github-guide.html#tips",
+    "title": "Graduate GitHub Guide",
+    "section": "Tips",
+    "text": "Tips\n\nCommit often – with clear, descriptive messages\nPull before pushing – to avoid conflicts\nKeep sensitive data out – never commit API keys or personal info\nUse .gitignore – to exclude files like .Rhistory or data/\n\nFor more details, see the main Git guide.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate GitHub Guide"
     ]
   },
   {
@@ -1715,257 +1947,1089 @@
     ]
   },
   {
-    "objectID": "r-and-rstudio/r-and-rstudio.html",
-    "href": "r-and-rstudio/r-and-rstudio.html",
-    "title": "R & RStudio",
+    "objectID": "git/github-verification.html",
+    "href": "git/github-verification.html",
+    "title": "GitHub Verification Process",
     "section": "",
-    "text": "This section covers installing R/RStudio and tuning the IDE.",
+    "text": "To verify student status on GitHub, you must ensure your GitHub profile information (username, email, full name) matches your provided academic documents.\nAlways use your school-issued academic email, provide legible photos of your student ID or enrollment documents, and disable any VPNs. If a VPN is required, try applying from your university’s Wi-Fi or campus network [1].",
     "crumbs": [
-      "R & RStudio"
+      "Home",
+      "GitHub Verification Process"
     ]
   },
   {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#r-vs.-rstudio",
-    "href": "r-and-rstudio/r-and-rstudio.html#r-vs.-rstudio",
-    "title": "R & RStudio",
-    "section": "R vs. RStudio",
-    "text": "R vs. RStudio\n\nR is the programming language and runtime (it executes code).\n\nRStudio (Posit IDE) is the graphical environment where you write code, manage files, and render documents.\n\nYou’ll always use them together: R runs under the hood; RStudio makes it easier to work productively.",
+    "objectID": "git/github-verification.html#before-applying",
+    "href": "git/github-verification.html#before-applying",
+    "title": "GitHub Verification Process",
+    "section": "Before Applying",
+    "text": "Before Applying\n\nMatch Profile Information\nMake sure the full name and email on your GitHub profile exactly match the information on the academic document you plan to submit [1, 7].\nUse an Academic Email\nApply using your official, school-issued email address. This is GitHub’s preferred method for verification [3, 7].\nDisable VPNs\nTurn off VPN services, since they can cause location-based verification to fail. If you must use a VPN, try applying from campus instead [4, 8].",
     "crumbs": [
-      "R & RStudio"
+      "Home",
+      "GitHub Verification Process"
     ]
   },
   {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#the-rstudio-interface-four-panes",
-    "href": "r-and-rstudio/r-and-rstudio.html#the-rstudio-interface-four-panes",
-    "title": "R & RStudio",
-    "section": "The RStudio interface (four panes)",
-    "text": "The RStudio interface (four panes)\n\nSource (top-left): edit scripts and .qmd files\n\nConsole (bottom-left): run code interactively\n\nEnvironment / History (top-right): see objects in memory, command history\n\nFiles / Plots / Packages / Help / Viewer (bottom-right): navigate files, view plots, load packages, get help",
+    "objectID": "git/github-verification.html#during-the-application",
+    "href": "git/github-verification.html#during-the-application",
+    "title": "GitHub Verification Process",
+    "section": "During the Application",
+    "text": "During the Application\n\nSubmit Clear Photos\nUse your device’s camera to capture your documents. Make sure your full name, school name, and current date are clearly legible [2, 5].\nUse School Wi-Fi\nApply from your university’s Wi-Fi or network if possible—this helps verify your location [6].\nCheck for System Errors\nIf you encounter a general system error, wait and try again later. If the problem persists, contact GitHub Education Support [1, 4].",
     "crumbs": [
-      "R & RStudio"
+      "Home",
+      "GitHub Verification Process"
     ]
   },
   {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#projects-your-1-best-practice",
-    "href": "r-and-rstudio/r-and-rstudio.html#projects-your-1-best-practice",
-    "title": "R & RStudio",
-    "section": "Projects: your #1 best practice",
-    "text": "Projects: your #1 best practice\nAlways work inside an RStudio Project (one folder per course or research project).\n\nEach Project has its own working directory, history, and settings.\n\nThis avoids broken file paths and makes your work reproducible.\n\nCreate a Project:\nFile → New Project → New Directory → New Project\nPro tip: In Preferences → General, set RStudio to never save/restore .RData. Clean sessions prevent stale objects from carrying over.",
+    "objectID": "git/github-verification.html#if-the-application-is-rejected",
+    "href": "git/github-verification.html#if-the-application-is-rejected",
+    "title": "GitHub Verification Process",
+    "section": "If the Application is Rejected",
+    "text": "If the Application is Rejected\n\nTry Alternative Documents\nIf one document type fails, try another—such as an official transcript or enrollment letter [7, 9].\nContact Support\nIf you repeatedly face issues or believe there is incorrect information in the system, submit a support ticket to GitHub Education [4].",
     "crumbs": [
-      "R & RStudio"
+      "Home",
+      "GitHub Verification Process"
     ]
   },
   {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#console-vs.-script-and-quarto",
-    "href": "r-and-rstudio/r-and-rstudio.html#console-vs.-script-and-quarto",
-    "title": "R & RStudio",
-    "section": "Console vs. Script (and Quarto)",
-    "text": "Console vs. Script (and Quarto)\n\nUse the Console for quick experiments.\n\nSave work you want to keep in a script (.R) or a Quarto document (.qmd).\n\nRender .qmd with the Render button (RStudio toolbar) or in a terminal:\nquarto render myfile.qmd\n\nHandy keys (Source pane)\n\nRun line/selection: Ctrl+Enter (Win/Linux) or Cmd+Return (macOS)\nInsert code chunk in .qmd: Ctrl+Alt+I (Win/Linux) or Option+Cmd+I (macOS)\nFull list: Tools → Keyboard Shortcuts Help",
-    "crumbs": [
-      "R & RStudio"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#files-and-paths-keep-them-relative",
-    "href": "r-and-rstudio/r-and-rstudio.html#files-and-paths-keep-them-relative",
-    "title": "R & RStudio",
-    "section": "Files and paths (keep them relative)",
-    "text": "Files and paths (keep them relative)\nInside a Project, paths are relative to the project root.\nExample:\n# Good (portable)\nsongs &lt;- read.csv(\"data/songs.csv\")\n\n# Bad (breaks on other computers)\nsongs &lt;- read.csv(\"C:/Users/Alex/Desktop/songs.csv\")\n\nAvoid setwd() in scripts. The Project sets the working directory automatically.",
-    "crumbs": [
-      "R & RStudio"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#git-integration",
-    "href": "r-and-rstudio/r-and-rstudio.html#git-integration",
-    "title": "R & RStudio",
-    "section": "Git integration",
-    "text": "Git integration\nIf your Project is under Git, you’ll see a Git tab in RStudio. Use it to:\n\nStage → Commit → Push changes to GitHub.\n\nIf the Git tab is missing: Tools → Project Options → Git/SVN → Enable version control system: Git or run:\nusethis::use_git()",
-    "crumbs": [
-      "R & RStudio"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#handy-shortcuts",
-    "href": "r-and-rstudio/r-and-rstudio.html#handy-shortcuts",
-    "title": "R & RStudio",
-    "section": "Handy shortcuts",
-    "text": "Handy shortcuts\n\nCommand Palette: Ctrl/Cmd+Shift+P\nKeyboard Shortcuts Help: Alt/Option+Shift+K\nComment/Uncomment: Ctrl+Shift+C (Win/Linux) or Cmd+Shift+C (macOS)",
-    "crumbs": [
-      "R & RStudio"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#default-settings-to-adopt-once",
-    "href": "r-and-rstudio/r-and-rstudio.html#default-settings-to-adopt-once",
-    "title": "R & RStudio",
-    "section": "Default settings to adopt (once)",
-    "text": "Default settings to adopt (once)\n\nDisable save/restore of .RData (Preferences → General).\nKeep Projects in simple paths (e.g., Documents/MC451).\nEnable Git integration early.",
-    "crumbs": [
-      "R & RStudio"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/r-and-rstudio.html#where-this-fits-with-the-package",
-    "href": "r-and-rstudio/r-and-rstudio.html#where-this-fits-with-the-package",
-    "title": "R & RStudio",
-    "section": "Where this fits with the package",
-    "text": "Where this fits with the package\nEverything in mccoursepack—listing weeks, downloading scaffolds, rendering .qmd—assumes you are inside your course Project.\nWorkflow reminder:\nlibrary(mccoursepack)\n\n# list weeks\nlist_weeks(\"mc451\")\n\n# download week 1 into the project folder\ndownload_week(\"mc451\", 1, dest = \".\")\nOpen the downloaded week_01/ folder, work on .qmd files there, and render as needed.",
-    "crumbs": [
-      "R & RStudio"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-four-panes.html",
-    "href": "r-and-rstudio/rstudio-four-panes.html",
-    "title": "RStudio’s Four Panes",
+    "objectID": "git/git-and-github.html",
+    "href": "git/git-and-github.html",
+    "title": "Connecting RStudio, Git, and GitHub",
     "section": "",
-    "text": "RStudio organizes your work into four panes. Each pane has tabs for specific tasks: editing, running code, viewing objects, managing files, plots, packages, or help. This page gives you a plain-English tour of every pane and every default tab—what each does, when you’ll use it, and where to click next.",
+    "text": "This guide provides a detailed, beginner-friendly workflow for connecting RStudio to Git and GitHub. We will use the usethis R package to handle most of the complex steps automatically.\n\nPrerequisites: Install Helper Packages\nWe will use the usethis and gitcreds packages to simplify the setup. Run this code in the RStudio Console to install and load them.\ninstall.packages(c(\"usethis\", \"gitcreds\"))\nlibrary(usethis)\nlibrary(gitcreds)\n\n\nPart 1: One-Time Setup\nYou only need to do this part once on your computer.\n\nStep 1: Install Git on Your Computer\nGit is a separate program from R and RStudio. You must install it first.\n\nGo to the official Git website: https://git-scm.com/downloads\nDownload the installer for your operating system (Windows or macOS).\nRun the installer, accepting all the default options. You don’t need to change anything.\n\n\n\nStep 2: Configure Git with Your Identity\nOpen the RStudio Console and run the following two lines of code, replacing the example text with your actual GitHub username and email. This is how your commits will be identified.\n# Replace with your info\nedit_git_config() \nThis will open a text file for Git’s global configuration. Add the following lines, save the file, and close it.\n[user]\n  name = \"Your Name\"\n  email = \"your.email@example.com\"\n\n\nStep 3: Connect RStudio to GitHub with a Personal Access Token (PAT)\nGitHub requires a special password called a Personal Access Token (PAT) to connect with tools like RStudio. The usethis package makes this easy.\n\nGenerate the Token: In the RStudio Console, run this command. It will open a new tab in your web browser, taking you to the “New personal access token” page on GitHub.\ncreate_github_token()\nConfigure the Token on GitHub:\n\nIn the “Note” field, give your token a descriptive name, like “RStudio Token”.\nFor “Expiration,” it is recommended to set a custom date (e.g., the end of the semester).\nUnder “Select scopes,” check the box next to repo. This gives your token permission to access your repositories.\nScroll to the bottom and click “Generate token”.\n\nCopy the Token: You will now see a new page with your token. It will look something like ghp_.... This is the only time you will ever see this token. Click the copy icon next to it.\nSave the Token in RStudio: Go back to RStudio and run the following command in the Console. It will prompt you to paste your token. Paste it and press Enter.\ngitcreds_set()\n\nYou are now fully configured! RStudio can securely talk to your GitHub account.\n\n\n\nPart 2: Creating and Connecting a Project\nThis is the workflow you will use for each new project (like your course journal).\n\nStep 1: Create a New RStudio Project\nFirst, create a new, empty RStudio Project. Do not initialize it as a Git repository yet.\n\nIn RStudio: File → New Project → New Directory → New Project.\nGive it a name (e.g., my-journal-project) and save it somewhere you can find it.\n\n\n\nStep 2: Turn the Project into a Git Repository\nIn the RStudio Console, run this command:\nuse_git()\nThis will initialize a Git repository in your project folder. RStudio will ask to restart. Click “Yes.” When it reopens, you will see a Git tab in the top-right pane.\n\n\n\nGit Pane\n\n\n\n\nStep 3: Create a GitHub Repository and Connect It\nNow, tell usethis to create a repository on GitHub and connect your local project to it.\nuse_github()\nThis command will: 1. Ask if you want to commit the files you have. Say “Yes”. 2. Create a new, private repository on your GitHub account with the same name as your RStudio project. 3. Push your local files to the new GitHub repository.\nWhen it’s done, it will open a new browser tab showing you your new repository on GitHub, with your files already in it.\n\n\n\nPart 3: The Daily Workflow (Pull, Stage, Commit, Push)\nNow that your project is connected, here is the simple, day-to-day workflow for saving your work. This is a cycle you will repeat many times.\n\nPull: Before you start working, click the blue Pull arrow in the Git pane. This downloads the latest changes from your GitHub repository. This is crucial if you work on multiple computers or collaborate with others.\nDo Your Work: Edit your files, write your journal entries, analyze data, etc. Save your files as you normally would.\nStage Your Changes:\n\nGo to the Git pane. You will see a list of all the files you’ve modified since your last commit.\nCheck the boxes under the “Staged” column for all the files you want to include in your next save point. “Staging” files is like putting them in a box to get them ready to ship.\n\n\n\n\nRStudio Stage Window\n\n\nCommit Your Changes:\n\nClick the Commit button.\nA new window will open. In the “Commit message” box, write a short, descriptive message about what you changed (e.g., “Completed Week 3 journal entry”). This message is a log for your future self.\nClick Commit. This creates a “save point” (a commit) on your local computer. Your changes are not on GitHub yet.\n\n\n\n\nRStudio Commit Window\n\n\nPush to GitHub:\n\nClick the green Push arrow. This sends your committed changes from your local computer up to your GitHub repository, making them available online.\n\n\nThat’s it! You have successfully saved and backed up your work to GitHub.\n\n\nTroubleshooting\nHere are a few common issues you might encounter.\n\nuse_github() fails: If this command fails, it might be because a repository with that name already exists on GitHub. Make sure the name is unique. It could also fail if your PAT is incorrect. You can re-run gitcreds_set() to enter it again.\nAccidentally committed a large file: Git is not designed for large data files (e.g., &gt;100MB). If you accidentally commit one and the push fails, you will need to remove it from the repository’s history. The easiest way is to use the r-lib/bfg-manager package or follow GitHub’s official guide. The best practice is to add the paths to large files or data folders to a .gitignore file before you commit them.\nMerge Conflicts: If you Pull and get a “merge conflict,” it means you and a collaborator (or you on another computer) edited the same lines in the same file. RStudio will show you the conflicting sections in the file. You must manually edit the file to resolve the differences, save it, and then commit the resolved file.",
     "crumbs": [
-      "R & RStudio",
-      "RStudio’s Four Panes"
+      "Git & GitHub",
+      "Connecting RStudio, Git, and GitHub"
     ]
   },
   {
-    "objectID": "r-and-rstudio/rstudio-four-panes.html#source-pane-top-left-where-you-write-and-edit",
-    "href": "r-and-rstudio/rstudio-four-panes.html#source-pane-top-left-where-you-write-and-edit",
-    "title": "RStudio’s Four Panes",
-    "section": "1. Source Pane (Top-Left) — Where You Write and Edit",
-    "text": "1. Source Pane (Top-Left) — Where You Write and Edit\nWhat it is: a multi-tab code and document editor. You’ll draft R scripts (.R), Quarto/R Markdown (.qmd, .Rmd), plain text, and more here. Code doesn’t execute until you send it to the Console.\n\nTabs across the top hold open files—click a tab to switch documents.\n\nFor Quarto/R Markdown, you can use the visual editor and render from the toolbar; output previews in the Viewer (see Output pane).",
-    "crumbs": [
-      "R & RStudio",
-      "RStudio’s Four Panes"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-four-panes.html#console-pane-bottom-left-where-code-runs-plus-two-neighbors",
-    "href": "r-and-rstudio/rstudio-four-panes.html#console-pane-bottom-left-where-code-runs-plus-two-neighbors",
-    "title": "RStudio’s Four Panes",
-    "section": "2. Console Pane (Bottom-Left) — Where Code Runs (Plus Two Neighbors)",
-    "text": "2. Console Pane (Bottom-Left) — Where Code Runs (Plus Two Neighbors)\nThis column has three tabs by default:\n\na. Console\nAn interactive R prompt. Type a command (e.g., 1 + 1) and press Return to see results immediately. Most beginners will (1) write code in the Source pane and (2) send lines or chunks to the Console to execute.\n\n\nb. Terminal\nA system shell inside RStudio (bash/zsh on macOS/Linux; PowerShell/Command Prompt on Windows). Supports multiple sessions—handy for Git, package tools, or command-line utilities.\n\n\nc. Background Jobs\nRuns an R script in a separate R session so long tasks don’t freeze your main session. Start jobs from this tab or by choosing Source as Background Job. Progress and logs appear here.\n\nIf something works in the Console but stalls your session, launch it as a background job. If you need shell tools, hop to Terminal.",
-    "crumbs": [
-      "R & RStudio",
-      "RStudio’s Four Panes"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-four-panes.html#environment-pane-top-right-whats-in-memory-plus-history-tooling",
-    "href": "r-and-rstudio/rstudio-four-panes.html#environment-pane-top-right-whats-in-memory-plus-history-tooling",
-    "title": "RStudio’s Four Panes",
-    "section": "3. Environment Pane (Top-Right) — What’s in Memory (Plus History & Tooling)",
-    "text": "3. Environment Pane (Top-Right) — What’s in Memory (Plus History & Tooling)\nBy default this pane includes Environment, History, Connections, Build, VCS, and Tutorial.\n\nEnvironment: Live list of objects in your R session (data frames, vectors, models). Inspect, remove, or clear objects and launch the spreadsheet-style data viewer.\n\nHistory: Log of commands you’ve executed. Search, select, and resend to Console or a script.\n\nConnections: Shows active database/data-source connections.\n\nBuild: Appears in projects with build tooling (e.g., an R package). Buttons for Install & Restart, Load All, Run R CMD check, clean/rebuild, and run tests.\n\nVCS: Git/SVN integration (commit, diff, pull/push, project-level settings).\n\nTutorial: Runs interactive learnr tutorials inside the IDE.",
-    "crumbs": [
-      "R & RStudio",
-      "RStudio’s Four Panes"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-four-panes.html#output-pane-bottom-right-files-plots-packages-help-web-output-slides",
-    "href": "r-and-rstudio/rstudio-four-panes.html#output-pane-bottom-right-files-plots-packages-help-web-output-slides",
-    "title": "RStudio’s Four Panes",
-    "section": "4. Output Pane (Bottom-Right) — Files, Plots, Packages, Help, Web Output, Slides",
-    "text": "4. Output Pane (Bottom-Right) — Files, Plots, Packages, Help, Web Output, Slides\nBy default this pane includes Files, Plots, Packages, Help, Viewer, and Presentation.\n\nFiles: Browse folders, open files into Source, rename/move/delete, upload/download (when using server/cloud).\n\nPlots: Displays graphs. Navigate through plot history, pop out to a window, and export (PNG/PDF).\n\nPackages: Lists installed packages; load/unload with a click. Install/Update tools included.\n\nHelp: Documentation for functions and packages (same as R’s help, in a browser-style panel).\n\nViewer: Renders local HTML (Shiny apps, htmlwidgets, Quarto previews, etc.).\n\nPresentation: IDE panel for authoring HTML5 slides (R Presentations).",
-    "crumbs": [
-      "R & RStudio",
-      "RStudio’s Four Panes"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-four-panes.html#customizing-your-layout",
-    "href": "r-and-rstudio/rstudio-four-panes.html#customizing-your-layout",
-    "title": "RStudio’s Four Panes",
-    "section": "Customizing Your Layout",
-    "text": "Customizing Your Layout\nGo to Tools → Global Options → Pane Layout to rearrange panes and choose which tabs live where. If you ever get lost, reset to defaults.",
-    "crumbs": [
-      "R & RStudio",
-      "RStudio’s Four Panes"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/rstudio-four-panes.html#quick-mental-model",
-    "href": "r-and-rstudio/rstudio-four-panes.html#quick-mental-model",
-    "title": "RStudio’s Four Panes",
-    "section": "Quick Mental Model",
-    "text": "Quick Mental Model\n\nSource: Write your instructions.\n\nConsole: Run them (plus Terminal/Jobs for power moves).\n\nEnvironment: Keeps track of what exists (with History/Connections/Build/VCS/Tutorial beside it).\n\nOutput: Displays what you need—files, plots, packages, help, web output, and slide decks.",
-    "crumbs": [
-      "R & RStudio",
-      "RStudio’s Four Panes"
-    ]
-  },
-  {
-    "objectID": "r-and-rstudio/zotero-rstudio.html",
-    "href": "r-and-rstudio/zotero-rstudio.html",
-    "title": "Using Zotero with RStudio",
+    "objectID": "getting-started/getting-started.html",
+    "href": "getting-started/getting-started.html",
+    "title": "Getting Started",
     "section": "",
-    "text": "Zotero is a free, open-source reference manager that helps you collect, organize, cite, and share research. Integrating Zotero with RStudio can streamline your academic writing workflow, especially when using Quarto or R Markdown documents.\n\n\n\nDownload Zotero from zotero.org.\nInstall the Zotero Connector for your web browser to easily save references.\n\n\n\n\n\nUse Zotero to collect and organize references into collections.\nAttach PDFs and notes to your references for easy access.\n\n\n\n\n\nBibTeX Export:\n\nRight-click a collection or selected items in Zotero.\nChoose Export Collection... or Export Items....\nSelect BibTeX as the format and save the .bib file.\n\nBetter BibTeX Plugin:\n\nInstall the Better BibTeX plugin for advanced citation key management and automatic export.\n\n\n\n\n\n\nPlace your exported .bib file in your project directory (e.g., references.bib).\nIn your Quarto or R Markdown document YAML header, add:\n\nbibliography: references.bib\ncsl: apa.csl  # Optional: for citation style\n\nCite references in your text using @citationkey (e.g., @smith2020).\n\n\n\n\n\nKnit or render your document in RStudio. Citations and bibliography will be formatted automatically.\n\n\n\n\n\nKeep your .bib file updated as you add new references.\nUse the Better BibTeX auto-export feature to keep your bibliography in sync.\nExplore citation styles by downloading .csl files from Zotero Style Repository.\n\n\nFor more help, visit the Zotero Documentation or the Quarto Citations Guide.",
+    "text": "Welcome to mccoursepack. This guide helps you install tools, open your first project, and render your first journal.",
     "crumbs": [
-      "R & RStudio",
-      "Using Zotero with RStudio"
+      "Home",
+      "Getting Started"
     ]
   },
   {
-    "objectID": "r-and-rstudio/zotero-rstudio.html#install-zotero",
-    "href": "r-and-rstudio/zotero-rstudio.html#install-zotero",
-    "title": "Using Zotero with RStudio",
-    "section": "",
-    "text": "Download Zotero from zotero.org.\nInstall the Zotero Connector for your web browser to easily save references.",
+    "objectID": "getting-started/getting-started.html#step-1-install-or-update-the-course-package",
+    "href": "getting-started/getting-started.html#step-1-install-or-update-the-course-package",
+    "title": "Getting Started",
+    "section": "Step 1 – Install or Update the Course Package",
+    "text": "Step 1 – Install or Update the Course Package\nThe course package mccoursepack is hosted on GitHub. Use the pak package to install or update it.\n# Install pak if not already installed\ninstall.packages(\"pak\")\n\n# Install or update the course package\npak::pak(\"SIM-Lab-SIUE/mccoursepack\")\nOnce the installation is complete, load the package into your R session.\n# Load the package\nlibrary(mccoursepack)\n\nRun the pak::pak() command at the start of the semester and again weekly to check for updates.",
     "crumbs": [
-      "R & RStudio",
-      "Using Zotero with RStudio"
+      "Home",
+      "Getting Started"
     ]
   },
   {
-    "objectID": "r-and-rstudio/zotero-rstudio.html#organize-your-references",
-    "href": "r-and-rstudio/zotero-rstudio.html#organize-your-references",
-    "title": "Using Zotero with RStudio",
-    "section": "",
-    "text": "Use Zotero to collect and organize references into collections.\nAttach PDFs and notes to your references for easy access.",
+    "objectID": "getting-started/getting-started.html#step-2-create-two-rstudio-projects",
+    "href": "getting-started/getting-started.html#step-2-create-two-rstudio-projects",
+    "title": "Getting Started",
+    "section": "Step 2 – Create Two RStudio Projects",
+    "text": "Step 2 – Create Two RStudio Projects\nProjects keep everything organized. You’ll create two:\n\nA Tasks Project for weekly assignments.\nA Journal Project for your course journal.\n\n\nCreate the Tasks Project\n\nIn RStudio: File -&gt; New Project -&gt; New Directory -&gt; New Project.\nChoose a location, e.g., Documents/MC451/.\nName the folder: tasks_project.\nClick Create Project.\n\n\n\nCreate the Journal Project\n\nAgain: File -&gt; New Project -&gt; New Directory -&gt; New Project.\nSame parent folder (Documents/MC451/).\nName the folder: journal_project.\nClick Create Project.\n\nYou now have two separate projects: one for all weekly tasks, one for your running journal.",
     "crumbs": [
-      "R & RStudio",
-      "Using Zotero with RStudio"
+      "Home",
+      "Getting Started"
     ]
   },
   {
-    "objectID": "r-and-rstudio/zotero-rstudio.html#export-references-for-rstudio",
-    "href": "r-and-rstudio/zotero-rstudio.html#export-references-for-rstudio",
-    "title": "Using Zotero with RStudio",
-    "section": "",
-    "text": "BibTeX Export:\n\nRight-click a collection or selected items in Zotero.\nChoose Export Collection... or Export Items....\nSelect BibTeX as the format and save the .bib file.\n\nBetter BibTeX Plugin:\n\nInstall the Better BibTeX plugin for advanced citation key management and automatic export.",
+    "objectID": "getting-started/getting-started.html#step-3-set-up-the-journal-project",
+    "href": "getting-started/getting-started.html#step-3-set-up-the-journal-project",
+    "title": "Getting Started",
+    "section": "Step 3 – Set Up the Journal Project",
+    "text": "Step 3 – Set Up the Journal Project\n\nOpen the journal_project in RStudio.\nIn the Console, run:\n\ndownload_journal(\"mc451\")   # or \"mc501\" if in the graduate course\nThis creates the journal/ folder structure with an entries/ directory, a template, and scripts for adding new entries.",
     "crumbs": [
-      "R & RStudio",
-      "Using Zotero with RStudio"
+      "Home",
+      "Getting Started"
     ]
   },
   {
-    "objectID": "r-and-rstudio/zotero-rstudio.html#use-references-in-rstudio-quartor-markdown",
-    "href": "r-and-rstudio/zotero-rstudio.html#use-references-in-rstudio-quartor-markdown",
-    "title": "Using Zotero with RStudio",
-    "section": "",
-    "text": "Place your exported .bib file in your project directory (e.g., references.bib).\nIn your Quarto or R Markdown document YAML header, add:\n\nbibliography: references.bib\ncsl: apa.csl  # Optional: for citation style\n\nCite references in your text using @citationkey (e.g., @smith2020).",
+    "objectID": "getting-started/getting-started.html#step-4-set-up-the-tasks-project",
+    "href": "getting-started/getting-started.html#step-4-set-up-the-tasks-project",
+    "title": "Getting Started",
+    "section": "Step 4 – Set Up the Tasks Project",
+    "text": "Step 4 – Set Up the Tasks Project\n\nOpen the tasks_project in RStudio.\nUse the helper function to download the starter files for your first week:\n\ndownload_week(\"mc451\", week = 1)\n(or substitute \"mc501\" for the graduate course).\nRepeat each week: change the week number to get that week’s scaffold.",
     "crumbs": [
-      "R & RStudio",
-      "Using Zotero with RStudio"
+      "Home",
+      "Getting Started"
     ]
   },
   {
-    "objectID": "r-and-rstudio/zotero-rstudio.html#render-your-document",
-    "href": "r-and-rstudio/zotero-rstudio.html#render-your-document",
-    "title": "Using Zotero with RStudio",
-    "section": "",
-    "text": "Knit or render your document in RStudio. Citations and bibliography will be formatted automatically.",
+    "objectID": "getting-started/getting-started.html#step-5-confirm-everything-works",
+    "href": "getting-started/getting-started.html#step-5-confirm-everything-works",
+    "title": "Getting Started",
+    "section": "Step 5 – Confirm Everything Works",
+    "text": "Step 5 – Confirm Everything Works\n\nOpen the journal_project -&gt; render the index file:\nquarto render\nThis should build a unified journal book.\nOpen the tasks_project -&gt; render a week’s scaffold. Check that Quarto builds the .qmd file into HTML/PDF.\n\nIf both projects render without errors, you’re fully set up.",
     "crumbs": [
-      "R & RStudio",
-      "Using Zotero with RStudio"
+      "Home",
+      "Getting Started"
     ]
   },
   {
-    "objectID": "r-and-rstudio/zotero-rstudio.html#tips",
-    "href": "r-and-rstudio/zotero-rstudio.html#tips",
-    "title": "Using Zotero with RStudio",
-    "section": "",
-    "text": "Keep your .bib file updated as you add new references.\nUse the Better BibTeX auto-export feature to keep your bibliography in sync.\nExplore citation styles by downloading .csl files from Zotero Style Repository.\n\n\nFor more help, visit the Zotero Documentation or the Quarto Citations Guide.",
+    "objectID": "getting-started/getting-started.html#mental-model",
+    "href": "getting-started/getting-started.html#mental-model",
+    "title": "Getting Started",
+    "section": "Mental Model",
+    "text": "Mental Model\n\nJournal project: long-running notebook, one entry per week.\nTasks project: fresh scaffolds each week for assignments, labs, and exercises.\nmccoursepack package: the engine that fetches and organizes everything for you.",
     "crumbs": [
-      "R & RStudio",
-      "Using Zotero with RStudio"
+      "Home",
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "getting-started/installation-guide.html",
+    "href": "getting-started/installation-guide.html",
+    "title": "Installation Guide",
+    "section": "",
+    "text": "This guide provides detailed, OS-specific steps for installing the core software needed for this course: R, RStudio, and Git.",
+    "crumbs": [
+      "Home",
+      "Installation Guide"
+    ]
+  },
+  {
+    "objectID": "getting-started/installation-guide.html#installing-on-windows",
+    "href": "getting-started/installation-guide.html#installing-on-windows",
+    "title": "Installation Guide",
+    "section": "Installing on Windows",
+    "text": "Installing on Windows\nFollow these steps in order.\n\n1. Install R\n\nGo to the CRAN (Comprehensive R Archive Network).\nClick the large “Download R-X.X.X for Windows” link at the top of the page.\nRun the downloaded installer (.exe file).\nAccept all the default settings during installation. Click “Next” until it’s finished.\n\n\n\n2. Install RStudio\n\nGo to the Posit website.\nClick the “Download RStudio Desktop” button. The site should automatically detect you are on Windows.\nRun the downloaded installer.\nAccept all the default settings.\n\n\n\n3. Install Git\n\nGo to the official Git website.\nClick the “Windows” link to download the installer.\nRun the installer. This one has many screens, but you can safely accept all the default options. The most important thing is to ensure that Git is added to your system’s PATH, which is the default behavior.",
+    "crumbs": [
+      "Home",
+      "Installation Guide"
+    ]
+  },
+  {
+    "objectID": "getting-started/installation-guide.html#installing-on-macos",
+    "href": "getting-started/installation-guide.html#installing-on-macos",
+    "title": "Installation Guide",
+    "section": "Installing on macOS",
+    "text": "Installing on macOS\nFollow these steps in order.\n\n1. Install R\n\nGo to the CRAN (Comprehensive R Archive Network).\nLook for the “Latest release” section. Download the package (.pkg file) that matches your Mac’s processor (Apple Silicon “M1/M2/M3” or Intel). If you’re unsure, click the Apple menu → “About This Mac” to check.\nRun the downloaded installer. Accept all default settings.\n\n\n\n2. Install RStudio\n\nGo to the Posit website.\nClick the “Download RStudio Desktop” button. The site should automatically detect you are on macOS.\nThis will download a .dmg file. Open it.\nA new window will appear. Drag the RStudio icon into the Applications folder icon.\nThe first time you open RStudio, you may get a security warning. Click “Open” to proceed.\n\n\n\n3. Install Git\nmacOS comes with Git pre-installed. However, it’s often best to install a newer version using Homebrew, a package manager for macOS.\n\nInstall Homebrew (if you don’t have it): Open the Terminal app (you can find it in Applications/Utilities) and paste the following command, then press Enter: bash     /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nInstall Git: Once Homebrew is installed, run the following command in the Terminal: bash     brew install git This ensures you have an up-to-date version of Git.",
+    "crumbs": [
+      "Home",
+      "Installation Guide"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html",
+    "href": "git/github-landing-page.html",
+    "title": "Build Your GitHub Landing Page",
+    "section": "",
+    "text": "Your GitHub profile can show a custom landing page—a README.md that lives in a special repository named exactly like your username. No code needed; it’s all point-and-click in the browser.",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html#what-youll-make",
+    "href": "git/github-landing-page.html#what-youll-make",
+    "title": "Build Your GitHub Landing Page",
+    "section": "What You’ll Make",
+    "text": "What You’ll Make\n\nA public repo named your GitHub username\n\nA README.md inside it\n\nA profile page that displays that README to visitors",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html#step-1-confirm-your-username",
+    "href": "git/github-landing-page.html#step-1-confirm-your-username",
+    "title": "Build Your GitHub Landing Page",
+    "section": "Step 1 — Confirm Your Username",
+    "text": "Step 1 — Confirm Your Username\n\nSign in at GitHub.com.\n\nClick your avatar (top-right) → Your profile.\n\nNote your username (the text after github.com/ in the URL).\n\nExample: github.com/alexleith → username is alexleith.\nUse the username exactly as shown. Repo names are case-insensitive, but matching avoids confusion.",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html#step-2-create-the-special-repository",
+    "href": "git/github-landing-page.html#step-2-create-the-special-repository",
+    "title": "Build Your GitHub Landing Page",
+    "section": "Step 2 — Create the Special Repository",
+    "text": "Step 2 — Create the Special Repository\n\nClick the + (top-right) → New repository.\n\nRepository name: type your exact username (e.g., alexleith).\n\nSet visibility to Public (required).\n\nCheck Initialize this repository with a README.\n\nClick Create repository.\n\nYou now have a repo at:\n\ngithub.com/&lt;username&gt;/&lt;username&gt;\n\nThis is your profile repo.",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html#step-3-edit-your-readme",
+    "href": "git/github-landing-page.html#step-3-edit-your-readme",
+    "title": "Build Your GitHub Landing Page",
+    "section": "Step 3 — Edit Your README",
+    "text": "Step 3 — Edit Your README\n\nIn the new repo, click README.md.\n\nClick the pencil icon (Edit).\n\nReplace the placeholder text with something short and welcoming (see template below).\n\nScroll down, add a brief commit message (e.g., “Create profile README”), and click Commit changes.\n\nVisit your profile: click your avatar → Your profile. You should see your README content at the top.",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html#a-copy-paste-template-customize-freely",
+    "href": "git/github-landing-page.html#a-copy-paste-template-customize-freely",
+    "title": "Build Your GitHub Landing Page",
+    "section": "A Copy-Paste Template (Customize Freely)",
+    "text": "A Copy-Paste Template (Customize Freely)\n# Hi, I'm YOUR NAME 👋\n\nWelcome to my GitHub profile! I’m a [your major/role] at [your university/organization].\n\nThis semester I’m working on projects in R/RStudio and documenting progress in my weekly journal.\n\n## What I’m learning this term\n- R, RStudio, and Quarto for data analysis & reporting\n- Git + GitHub for version control and collaboration\n- Research methods and reproducible workflows\n\n## Find me\n- Email: [your email or university email, optional]\n- Website/Portfolio: [link, optional]\n- LinkedIn: [link, optional]\n\n## Current tools\n- **Languages:** R, Markdown\n- **Tools:** RStudio, Quarto, GitHub\n\n&gt; ⚠️ Privacy note: keep personal info minimal; use links you’re comfortable sharing publicly.\nTips:\n\nKeep it short and professional.\nUse headings (#, ##) to organize.\nAdd alt text to any images, e.g., ![Alt text](path/to/image.png).",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html#optional-polish-fast-wins",
+    "href": "git/github-landing-page.html#optional-polish-fast-wins",
+    "title": "Build Your GitHub Landing Page",
+    "section": "Optional Polish (Fast Wins)",
+    "text": "Optional Polish (Fast Wins)\n\nProfile bio & links: Avatar → Settings → Public profile. Add a display name, bio, location, pronouns, website, and choose a Public email (or keep hidden).\nPinned repositories: On your profile, click Customize your pins to feature key projects (e.g., your journal repo).\nAppearance: Avatar → Settings → Appearance to pick a theme.",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html#troubleshooting",
+    "href": "git/github-landing-page.html#troubleshooting",
+    "title": "Build Your GitHub Landing Page",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\nREADME not showing?\n\nRepo must be named exactly your username.\nRepo must be Public.\nFile name must be README.md at the root of the repo (not in a folder).\nRefresh your profile page.\n\nCan’t find “New repository”? Click the + in the top-right → New repository.\nChanges not showing? Make sure you clicked Commit changes, then refresh.",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "git/github-landing-page.html#updating-later",
+    "href": "git/github-landing-page.html#updating-later",
+    "title": "Build Your GitHub Landing Page",
+    "section": "Updating Later",
+    "text": "Updating Later\nYou can edit README.md anytime:\n\nIn the browser: open the file → pencil → edit → Commit changes.\nFrom RStudio or Git: pull → edit → commit → push (handy once you’re using Git locally).",
+    "crumbs": [
+      "Home",
+      "Build Your GitHub Landing Page"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This site is the student documentation for the mccoursepack.\nStart here:\n\nGetting Started — install tools, open your first project\nR & RStudio — what’s what\nWeekly Journal — how the journal system works\nQuarto Basics — writing with Quarto\nCourse Workflow — week-by-week rhythm\nGit & GitHub — version control & submissions\nTroubleshooting — common fixes\nReference — package functions & bibliography"
+  },
+  {
+    "objectID": "pages/grad-final-submission-checklist.html",
+    "href": "pages/grad-final-submission-checklist.html",
+    "title": "Graduate Final Submission Checklist",
+    "section": "",
+    "text": "Complete this checklist before submitting your research paper.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/grad-final-submission-checklist.html#project-requirements",
+    "href": "pages/grad-final-submission-checklist.html#project-requirements",
+    "title": "Graduate Final Submission Checklist",
+    "section": "Project Requirements",
+    "text": "Project Requirements\n\nPaper Content (6,000-8,000 words)\n\nTitle page with title, author name, and affiliation\nAbstract (150-250 words)\nIntroduction (~1,500-2,000 words)\nLiterature Review (~2,000-2,500 words)\nMethods section (~800-1,000 words)\nResults section (~500-800 words)\nDiscussion section (~1,000-1,500 words)\nReferences (APA format, auto-generated by Quarto)\n\n\n\nEmpirical Requirements\n\nOne original survey with N=100+ responses\nSurvey data exported and cleaned in R\nTwo Research Questions (RQs) and/or Hypotheses (RHs) clearly stated\nStatistical analysis performed in RStudio\nTwo APA-formatted data visualizations (tables/figures)\n\n\n\nCitation Requirements\n\n15-20 academic, peer-reviewed sources\nAll citations in APA 7th Edition format\nZotero + BibTeX setup (references.bib)\nNo uncited claims or paraphrases\n\n\n\nWriting & Formatting\n\nConsistent heading levels and formatting\nActive voice used throughout\nPast/present tense used appropriately\nNo contractions or informal language\nSpell-checked and proofread\nPage numbers on all pages\nDouble-spaced (or per your instructor’s requirements)",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/grad-final-submission-checklist.html#technical-requirements",
+    "href": "pages/grad-final-submission-checklist.html#technical-requirements",
+    "title": "Graduate Final Submission Checklist",
+    "section": "Technical Requirements",
+    "text": "Technical Requirements\n\nRStudio Project\n\nProject organized in RStudio\nresearch_paper.qmd file with proper YAML header\nreferences.bib file with all citations\napa.csl file (APA citation style)\n/data folder with cleaned survey data\n/output folder with final PDF\n\n\n\nQuarto Document\n\nYAML header includes:\n\ntitle: (your full title)\nauthor: (your name)\nbibliography: references.bib\ncsl: apa.csl\nformat: pdf\n\nAll R code chunks functional and properly documented\nNo missing dependencies or package errors\n\n\n\nRendering\n\nDocument renders to PDF without errors\nPDF is readable and properly formatted\nAll figures and tables appear correctly\nCitations and bibliography are properly formatted\nPage numbers visible in PDF",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/grad-final-submission-checklist.html#github-repository",
+    "href": "pages/grad-final-submission-checklist.html#github-repository",
+    "title": "Graduate Final Submission Checklist",
+    "section": "GitHub Repository",
+    "text": "GitHub Repository\n\nRepository Setup\n\nPrivate GitHub repository created\nRepository named descriptively (e.g., grad-research-paper-f25)\nREADME.md file explains the project\nAll team members have access (if collaborative)\n\n\n\nRepository Contents\n\nAll RStudio project files included\nresearch_paper.qmd file committed\nreferences.bib file committed\n/data folder with cleaned survey data\n/output folder with final PDF\n.gitignore configured to exclude unnecessary files\n\n\n\nGit Workflow\n\nRegular commits made throughout project\nCommit messages are clear and descriptive\nAll changes pushed to remote repository\nNo uncommitted changes at submission time",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/grad-final-submission-checklist.html#submission",
+    "href": "pages/grad-final-submission-checklist.html#submission",
+    "title": "Graduate Final Submission Checklist",
+    "section": "Submission",
+    "text": "Submission\n\nBlackboard\n\nFinal PDF uploaded to Blackboard submission link\nPDF is the most current version of your paper\nSubmission made before deadline\n\n\n\nGitHub Link\n\nGitHub repository link provided in Blackboard submission\nLink is accessible and points to correct repository\nRepository is private with appropriate access controls\n\n\n\nFinal Deliverables\n\nRepository includes a clear README.md\nNo sensitive data or personal information in the repository\nAll files properly committed and pushed\nGitHub link and PDF both submitted",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/grad-final-submission-checklist.html#before-you-hit-submit",
+    "href": "pages/grad-final-submission-checklist.html#before-you-hit-submit",
+    "title": "Graduate Final Submission Checklist",
+    "section": "Before You Hit Submit",
+    "text": "Before You Hit Submit\n\nRead your paper one last time\nCheck APA formatting (Purdue OWL can help)\nVerify all citations are correct\nEnsure all figures and tables have captions\nMake sure your PDF renders cleanly\nGet feedback from a peer (optional but recommended)\nAsk your instructor if you have questions",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/grad-final-submission-checklist.html#common-issues-to-watch-for",
+    "href": "pages/grad-final-submission-checklist.html#common-issues-to-watch-for",
+    "title": "Graduate Final Submission Checklist",
+    "section": "Common Issues to Watch For",
+    "text": "Common Issues to Watch For\n\n❌ Missing citations or incomplete references\n❌ Inconsistent APA formatting\n❌ Broken links or missing files in GitHub\n❌ Missing data visualizations\n❌ Unformatted tables or figures\n❌ Rendering errors in Quarto\n❌ Word count too short or too long",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/grad-final-submission-checklist.html#questions",
+    "href": "pages/grad-final-submission-checklist.html#questions",
+    "title": "Graduate Final Submission Checklist",
+    "section": "Questions?",
+    "text": "Questions?\nIf something doesn’t work: 1. Check the Troubleshooting Guide 2. Review the Graduate Technical Guide 3. Ask your instructor\nGood luck with your research project!",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-overview.html",
+    "href": "pages/grad-research-paper-overview.html",
+    "title": "Graduate Research Paper Overview",
+    "section": "",
+    "text": "This document outlines the assignment requirements, deliverables, and master checklist for your final project.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-overview.html#core-requirements",
+    "href": "pages/grad-research-paper-overview.html#core-requirements",
+    "title": "Graduate Research Paper Overview",
+    "section": "Core Requirements",
+    "text": "Core Requirements\n\nIndividual project\n6,000–8,000 words (excluding references, tables, appendices)\n15-20 academic, peer-reviewed citations\nOne original survey (N=100 goal) or pre-approved alternative\nTwo Research Questions (RQs) and/or Hypotheses (RHs)\nAll data analyzed in RStudio\nAt least two APA-formatted data visualizations\nAPA 7th Edition style, written in Quarto (.qmd)",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-overview.html#final-deliverables",
+    "href": "pages/grad-research-paper-overview.html#final-deliverables",
+    "title": "Graduate Research Paper Overview",
+    "section": "Final Deliverables",
+    "text": "Final Deliverables\n\nBlackboard: Final rendered research_paper.pdf\nGitHub: Private repository with all project files",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-overview.html#master-project-checklist",
+    "href": "pages/grad-research-paper-overview.html#master-project-checklist",
+    "title": "Graduate Research Paper Overview",
+    "section": "Master Project Checklist",
+    "text": "Master Project Checklist\nSee Graduate Final Submission Checklist for a full breakdown of requirements by phase.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/grad-research-paper-overview.html#related-guides",
+    "href": "pages/grad-research-paper-overview.html#related-guides",
+    "title": "Graduate Research Paper Overview",
+    "section": "Related Guides",
+    "text": "Related Guides\n\nGraduate Technical Guide – RStudio, Quarto, survey design\nGraduate GitHub Guide – Version control & submission\nGraduate Zotero Guide – Citation management\nGraduate Research Paper Writing Guide – APA formatting and structure",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Research Paper Overview"
+    ]
+  },
+  {
+    "objectID": "pages/grad-technical-guide.html",
+    "href": "pages/grad-technical-guide.html",
+    "title": "Graduate Technical Guide",
+    "section": "",
+    "text": "This guide covers technical setup for your APA-formatted research paper and survey design best practices.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-technical-guide.html#rstudio-quarto-setup",
+    "href": "pages/grad-technical-guide.html#rstudio-quarto-setup",
+    "title": "Graduate Technical Guide",
+    "section": "RStudio & Quarto Setup",
+    "text": "RStudio & Quarto Setup\n\nCreate a new RStudio Project by cloning your GitHub repository\nInstall necessary R packages:\ninstall.packages(c(\"tidyverse\", \"rmarkdown\", \"quarto\", \"apaTables\", \"readr\"))\nDownload APA 7th Edition CSL file from Zotero Style Repository\nSave as apa.csl in your project folder\nCreate your research_paper.qmd file using the template provided",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-technical-guide.html#survey-design-best-practices",
+    "href": "pages/grad-technical-guide.html#survey-design-best-practices",
+    "title": "Graduate Technical Guide",
+    "section": "Survey Design Best Practices",
+    "text": "Survey Design Best Practices\n\nUse clear, unbiased questions – avoid leading or double-barreled questions\nPilot test your survey – ask 3-5 people for feedback before full launch\nGet instructor approval – before launching to avoid IRB issues\nTrack response rate – aim for N=100 minimum\nExport data as CSV – after survey closes\nDocument your methodology – in the Methods section of your paper",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-technical-guide.html#rendering-to-pdf",
+    "href": "pages/grad-technical-guide.html#rendering-to-pdf",
+    "title": "Graduate Technical Guide",
+    "section": "Rendering to PDF",
+    "text": "Rendering to PDF\n\nIn RStudio, click the Render button or run:\nquarto render research_paper.qmd --to pdf\nPDF will appear in /output folder\nCheck for formatting errors before submission",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/grad-technical-guide.html#common-troubleshooting",
+    "href": "pages/grad-technical-guide.html#common-troubleshooting",
+    "title": "Graduate Technical Guide",
+    "section": "Common Troubleshooting",
+    "text": "Common Troubleshooting\n\nMissing packages: Run install.packages(\"package_name\")\nQuarto not found: Run mccourse_setup() from the mccoursepack package\nCitation errors: Verify references.bib and apa.csl are in the project root\n\nFor additional help, see the main troubleshooting guide.",
+    "crumbs": [
+      "Home",
+      "Graduate",
+      "Graduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html",
+    "href": "pages/undergrad-final-submission-checklist.html",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "",
+    "text": "Complete this checklist as a team before submitting your white paper.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html#project-requirements",
+    "href": "pages/undergrad-final-submission-checklist.html#project-requirements",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "Project Requirements",
+    "text": "Project Requirements\n\nPaper Content (3,000-4,000 words)\n\nTitle and abstract (100-150 words)\nIntroduction section (~800-1,000 words)\nLiterature review section (~600-800 words)\nMethods section (~400-600 words)\nResults section (~400-600 words)\nDiscussion section (~600-800 words)\nReferences section (all sources cited)\n\n\n\nResearch Requirements\n\nOne original survey with N=100+ responses\nSurvey data collected and exported as CSV\nData cleaned in R\nTwo Research Questions (RQs) and/or Hypotheses (RHs) stated clearly\nData analysis performed in RStudio\nAt least two data visualizations (tables/figures) created in R\n\n\n\nCitation Requirements\n\n10-12 academic sources cited\nAll citations formatted consistently\nReferences listed alphabetically\nAll in-text citations have corresponding references\n\n\n\nWriting & Formatting\n\nTitle is clear and descriptive\nProfessional, journalistic tone throughout\nNo jargon without explanation\nSpell-checked and proofread by all team members\nConsistent formatting and heading levels\nFigures and tables have clear labels and captions",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html#technical-requirements",
+    "href": "pages/undergrad-final-submission-checklist.html#technical-requirements",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "Technical Requirements",
+    "text": "Technical Requirements\n\nRStudio Project\n\nTeam has shared RStudio project cloned from GitHub\nwhite_paper.qmd file created with proper structure\nreferences.bib file with all citations\n/data folder with survey data (raw and cleaned)\n/output folder with final PDF\n\n\n\nQuarto Document\n\nYAML header includes:\n\ntitle: (your white paper title)\nauthor: (all team members’ names)\nbibliography: references.bib (if using citations)\nformat: pdf\n\nAll R code chunks work and include comments\nVisualizations (plots, tables) properly created and labeled\n\n\n\nRendering\n\nDocument renders to PDF without errors\nPDF is readable and properly formatted\nAll figures and tables appear correctly\nPage numbers visible in PDF\nNo broken links or missing images",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html#github-repository",
+    "href": "pages/undergrad-final-submission-checklist.html#github-repository",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "GitHub Repository",
+    "text": "GitHub Repository\n\nRepository Setup\n\nPrivate GitHub repository created\nRepository named clearly (e.g., white-paper-f25)\nREADME.md file explains the project\nAll team members invited as collaborators\nAll team members can access and edit\n\n\n\nRepository Contents\n\nRStudio project files included\nwhite_paper.qmd file committed\nreferences.bib file committed\n/data folder with cleaned survey data\n/output folder with final PDF\n.gitignore configured for the project\n\n\n\nGit Workflow (Team Collaboration)\n\nCommits made throughout the project (not just at the end)\nCommit messages are clear and descriptive\nAll team members have made commits\nBranches used for different sections (recommended)\nAll changes merged to main branch\nAll changes pushed to remote repository\nNo uncommitted changes at submission time\n\n\n\nCollaboration Checklist\n\nTeam roles assigned (who wrote what section)\nRegular commits indicate collaborative work\nEach team member made meaningful contributions\nNo one person did all the work",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html#submission",
+    "href": "pages/undergrad-final-submission-checklist.html#submission",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "Submission",
+    "text": "Submission\n\nGitHub Repository\n\nRepository is private (not public)\nAll team members have access\nREADME.md is clear and informative\nLatest version of all files committed and pushed\nNo sensitive data in repository\n\n\n\nFinal Deliverables\n\nGitHub link provided to instructor\nFinal PDF generated and saved in /output\nAll project files uploaded to GitHub\nRepository organized and clean\n\n\n\nIf Submitting to Blackboard\n\nFinal PDF uploaded to Blackboard\nGitHub link provided in submission\nBoth submitted before deadline",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html#before-you-submit",
+    "href": "pages/undergrad-final-submission-checklist.html#before-you-submit",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "Before You Submit",
+    "text": "Before You Submit\n\nQuality Check\n\nAll team members have read the final paper\nSpelling and grammar checked\nFormatting is consistent throughout\nAll figures and tables properly labeled\nAll sources cited correctly\n\n\n\nData Visualization Check\n\nAt least 2 figures/tables included\nAll visualizations have titles and labels\nAxes are clearly labeled (if applicable)\nVisualizations are readable and relevant\n\n\n\nTeam Communication\n\nAll team members agree the paper is ready\nAll concerns addressed\nAll feedback from instructor incorporated\nGitHub shows collaborative effort",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html#common-issues-to-watch-for",
+    "href": "pages/undergrad-final-submission-checklist.html#common-issues-to-watch-for",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "Common Issues to Watch For",
+    "text": "Common Issues to Watch For\n\n❌ Missing citations or unformatted references\n❌ Inconsistent formatting or heading levels\n❌ Missing data visualizations\n❌ Unreadable or poorly labeled figures/tables\n❌ GitHub repository not shared with all team members\n❌ Rendering errors in Quarto\n❌ Spelling and grammar errors\n❌ Missing sections or incomplete content\n❌ Unresolved merge conflicts in Git",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html#dividing-work-effectively",
+    "href": "pages/undergrad-final-submission-checklist.html#dividing-work-effectively",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "Dividing Work Effectively",
+    "text": "Dividing Work Effectively\nSuggested team breakdown:\n\nPerson A: Introduction & Literature Review\nPerson B: Methods & Results\nPerson C: Discussion, References & Proofing\nAll: Design visualizations, proof final copy",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-final-submission-checklist.html#questions-or-problems",
+    "href": "pages/undergrad-final-submission-checklist.html#questions-or-problems",
+    "title": "Undergraduate Final Submission Checklist",
+    "section": "Questions or Problems?",
+    "text": "Questions or Problems?\nIf something doesn’t work: 1. Check the Troubleshooting Guide 2. Review the Undergraduate Technical Guide 3. Review the GitHub Guide for collaboration tips 4. Ask your instructor\nGreat job working as a team! Good luck with your submission!",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Final Submission Checklist"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-technical-guide.html",
+    "href": "pages/undergrad-technical-guide.html",
+    "title": "Undergraduate Technical Guide",
+    "section": "",
+    "text": "This guide covers technical setup for your Quarto white paper and survey design best practices for your team project.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-technical-guide.html#rstudio-quarto-setup",
+    "href": "pages/undergrad-technical-guide.html#rstudio-quarto-setup",
+    "title": "Undergraduate Technical Guide",
+    "section": "RStudio & Quarto Setup",
+    "text": "RStudio & Quarto Setup\n\nOne team member creates the RStudio Project by cloning your GitHub repository\nAll team members: Clone the same repository to your computers\nInstall necessary R packages:\ninstall.packages(c(\"tidyverse\", \"rmarkdown\", \"quarto\", \"readr\"))\nCreate your white_paper.qmd file using the template provided\nOrganize your /data folder with:\n\nsurvey_data_raw.csv (original export)\nsurvey_data_clean.csv (after cleaning)",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-technical-guide.html#survey-design-best-practices",
+    "href": "pages/undergrad-technical-guide.html#survey-design-best-practices",
+    "title": "Undergraduate Technical Guide",
+    "section": "Survey Design Best Practices",
+    "text": "Survey Design Best Practices\n\nUse clear, unbiased questions – avoid leading or double-barreled questions\nPilot test your survey – ask 3-5 people for feedback before full launch\nGet instructor approval – before launching\nTrack response rate – aim for N=100+ responses\nExport data as CSV – from your survey platform (Qualtrics, Google Forms, etc.)\nName your file clearly – survey_data_raw.csv",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-technical-guide.html#rendering-to-pdf",
+    "href": "pages/undergrad-technical-guide.html#rendering-to-pdf",
+    "title": "Undergraduate Technical Guide",
+    "section": "Rendering to PDF",
+    "text": "Rendering to PDF\n\nIn RStudio, click the Render button or run:\nquarto render white_paper.qmd --to pdf\nPDF will appear in /output folder\nEach team member should verify formatting before final submission",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-technical-guide.html#team-collaboration-on-github",
+    "href": "pages/undergrad-technical-guide.html#team-collaboration-on-github",
+    "title": "Undergraduate Technical Guide",
+    "section": "Team Collaboration on GitHub",
+    "text": "Team Collaboration on GitHub\n\nCreate branches for different sections (e.g., intro, methods, analysis)\nCommit regularly with clear messages\nPull before pushing to avoid conflicts\nCommunicate about who is working on which section\n\nFor more details, see Undergraduate GitHub Guide.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate Technical Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html",
+    "href": "pages/undergrad-white-paper-writing-guide.html",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "",
+    "text": "This guide provides best practices for writing your white paper as a team using Quarto.",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#before-you-start",
+    "href": "pages/undergrad-white-paper-writing-guide.html#before-you-start",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Before You Start",
+    "text": "Before You Start\n\nReview the assignment: See Undergraduate White Paper Overview\nUnderstand white paper style: Professional, journalistic writing (not academic APA)\nSet up your environment: See Undergraduate Technical Guide\nPlan your team roles: Who writes intro, methods, analysis, discussion?",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#paper-structure",
+    "href": "pages/undergrad-white-paper-writing-guide.html#paper-structure",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Paper Structure",
+    "text": "Paper Structure\n\n1. Title & Abstract\nTitle: Clear, compelling, descriptive - Example: “How Social Media Shapes Political Engagement Among Young Adults”\nAbstract: 100-150 word summary - What is the issue? - What did you research? - Key findings?\n# How Social Media Shapes Political Engagement Among Young Adults\n\n## Abstract\n\n[100-150 word summary of your research]\n\n\n2. Introduction (800-1,000 words)\nHook your reader: - Start with a compelling fact or question - Explain the issue’s importance - Preview what you’ll cover - State your research questions\n\n\n3. Literature Review (600-800 words)\nShow what’s known: - Summarize existing research - Highlight gaps or debates - Lead to your research questions\n\n\n4. Methods (400-600 words)\nExplain your approach: - What you studied: Your research topic/questions - Who you surveyed: Sample size, demographics - How you collected data: Survey platform, timeframe - How you analyzed data: What statistics/visualizations you created\n\n\n5. Results (400-600 words)\nPresent your findings: - Use clear data visualizations (tables, charts) - Highlight key numbers - Include at least two figures or tables - Explain what the data shows (in plain language, not jargon)\n\n\n6. Discussion (600-800 words)\nInterpret your results: - What do your findings mean? - How do they fit with prior research? - What are the limitations? - What are the practical implications? - What questions remain?\n\n\n7. References\nList all sources cited:\n## References\n\n[Your bibliography, alphabetically sorted]",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#writing-style-for-white-papers",
+    "href": "pages/undergrad-white-paper-writing-guide.html#writing-style-for-white-papers",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Writing Style for White Papers",
+    "text": "Writing Style for White Papers\n\nKeep It Accessible\n\nUse plain language (explain jargon when necessary)\nAvoid overly academic tone\nWrite for a general, educated audience\n\n\n\nUse Active Voice\n\n❌ “It was found that…”\n✅ “Our survey found that…”\n\n\n\nTell a Story\n\nDon’t just list findings\nExplain what they mean\nHelp readers understand the “so what?”\n\n\n\nBe Concise\n\nCut unnecessary words\nGet to the point\nUse clear subheadings\n\n\n\nCite Your Sources\nResearch shows X [@smith2023].",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#team-collaboration-tips",
+    "href": "pages/undergrad-white-paper-writing-guide.html#team-collaboration-tips",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Team Collaboration Tips",
+    "text": "Team Collaboration Tips\n\nDivide and Conquer\n\nPerson A: Introduction & Literature Review\nPerson B: Methods & Results\nPerson C: Discussion & References\nAll together: Proofread and polish\n\n\n\nConsistency\n\nUse same citation style throughout\nMatch heading levels and formatting\nEnsure consistent terminology\n\n\n\nIntegration\n\nEach person should read others’ sections\nSmooth transitions between sections\nUnified voice and message",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#creating-visualizations-in-r",
+    "href": "pages/undergrad-white-paper-writing-guide.html#creating-visualizations-in-r",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Creating Visualizations in R",
+    "text": "Creating Visualizations in R\nInclude at least two figures or tables:\n# Example: Bar plot\nlibrary(ggplot2)\nggplot(data, aes(x = category, y = value)) +\n  geom_col() +\n  labs(title = \"Your Title\", x = \"X Label\", y = \"Y Label\")",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#common-mistakes-to-avoid",
+    "href": "pages/undergrad-white-paper-writing-guide.html#common-mistakes-to-avoid",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Common Mistakes to Avoid",
+    "text": "Common Mistakes to Avoid\n\n❌ No citations\n❌ Inconsistent formatting\n❌ Unclear tables/figures\n❌ Jargon without explanation\n❌ Unsupported claims\n❌ Poor grammar/spelling",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#checklist-before-submission",
+    "href": "pages/undergrad-white-paper-writing-guide.html#checklist-before-submission",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Checklist Before Submission",
+    "text": "Checklist Before Submission\n\n✓ Title is clear and descriptive\n✓ Abstract summarizes key points (100-150 words)\n✓ All sections included and flow logically\n✓ At least 10-12 citations\n✓ At least 2 data visualizations (figures/tables)\n✓ Data analysis done in R\n✓ No obvious grammar or spelling errors\n✓ All team members’ names included\n✓ GitHub repository is up-to-date\n✓ PDF renders cleanly",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#tips-for-success",
+    "href": "pages/undergrad-white-paper-writing-guide.html#tips-for-success",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Tips for Success",
+    "text": "Tips for Success\n\nStart with an outline – map out your sections first\nDraft early – don’t wait until the last minute\nRead aloud – catch awkward phrasing\nGet feedback – from your team and instructor\nVisualize your data – create clear, labeled figures\nCite as you write – don’t leave it for the end\nProofread multiple times – grammar, spelling, consistency",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "pages/undergrad-white-paper-writing-guide.html#resources",
+    "href": "pages/undergrad-white-paper-writing-guide.html#resources",
+    "title": "Undergraduate White Paper Writing Guide",
+    "section": "Resources",
+    "text": "Resources\n\nPurdue OWL - General Writing\nQuarto Guide\nData Visualization in R (ggplot2)",
+    "crumbs": [
+      "Home",
+      "Undergraduate",
+      "Undergraduate White Paper Writing Guide"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html",
+    "href": "quarto/quarto-basics.html",
+    "title": "Quarto Basics",
+    "section": "",
+    "text": "Write, cite, and render with Quarto.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#what-is-quarto",
+    "href": "quarto/quarto-basics.html#what-is-quarto",
+    "title": "Quarto Basics",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto is a publishing system for technical docs. You write a .qmd file (Markdown + optional code), and Quarto renders it to HTML, PDF, slides, and more. By default it renders to HTML unless you specify otherwise.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#install-verify",
+    "href": "quarto/quarto-basics.html#install-verify",
+    "title": "Quarto Basics",
+    "section": "Install & verify",
+    "text": "Install & verify\n\nInstall Quarto: https://quarto.org/docs/get-started/\nVerify in a terminal:\n\nquarto check\nquarto --version\nPDF note: PDF output requires a TeX engine. The easiest path is TinyTeX.\nquarto install tinytex\n(Or run mccourse_setup() in R to install prerequisites automatically.)",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#your-first-document",
+    "href": "quarto/quarto-basics.html#your-first-document",
+    "title": "Quarto Basics",
+    "section": "Your first document",
+    "text": "Your first document\nCreate report.qmd:\n---\ntitle: \"My Report\"\nformat: html   # default is html if omitted\n---\n\n# Hello, Quarto\n\nThis is **Markdown**. Add text, lists, images, and code blocks.\nRender to HTML:\nquarto render report.qmd --to html",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#course-patterns-documents-vs.-book",
+    "href": "quarto/quarto-basics.html#course-patterns-documents-vs.-book",
+    "title": "Quarto Basics",
+    "section": "Course patterns: Documents vs. Book",
+    "text": "Course patterns: Documents vs. Book\nIn this course you’ll use Quarto in two modes:\n\nWeekly documents (one file → one output)\n\n\nLives under folders like week_01/\nYou open a .qmd and render it directly\n\n\nJournal as a Quarto book (many chapters → one book)\n\n\nLives in journal/\nEach entry is a chapter in journal/entries/\nThe book’s table of contents is defined in journal/_quarto.yml\n\n\nMinimal book _quarto.yml (journal)\nproject:\n  type: book\n  output-dir: _book\n\nbook:\n  title: \"Course Journal\"\n  author: \"YOUR NAME\"\n  date: today\n  downloads: [pdf, epub]\n  chapters:\n    - index.qmd\n    # --- auto-managed: do not edit below ---\n    # BEGIN AUTO\n    # END AUTO\n    # --- end auto-managed ---\n\nformat:\n  html:\n    toc: true\n    number-sections: true\n  pdf:\n    toc: true\n    number-sections: true\n\nThe scripts/update_chapters.R script rewrites the lines between BEGIN AUTO and END AUTO to include all dated files under entries/ (sorted by filename). Don’t edit that block manually.\n\nRender the whole journal book from inside journal/:\nquarto render\nOutputs appear in journal/_book/.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#pdf-first-and-multi-format-options",
+    "href": "quarto/quarto-basics.html#pdf-first-and-multi-format-options",
+    "title": "Quarto Basics",
+    "section": "PDF-first and multi-format options",
+    "text": "PDF-first and multi-format options\nYou can request specific formats in the document YAML:\n---\ntitle: \"PDF-first example\"\nformat: pdf\n---\nOr enable multiple formats with options:\n---\ntitle: \"PDF & HTML\"\nformat:\n  pdf:\n    toc: true\n    number-sections: true\n  html:\n    toc: true\n    code-fold: true\n---",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#render-from-rstudio-or-vs-code",
+    "href": "quarto/quarto-basics.html#render-from-rstudio-or-vs-code",
+    "title": "Quarto Basics",
+    "section": "Render from RStudio or VS Code",
+    "text": "Render from RStudio or VS Code\n\nRStudio: open a .qmd and click Render.\nVS Code: install the Quarto extension; use Quarto: Render or run quarto render in the integrated terminal.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#project-basics-render-only-what-you-intend",
+    "href": "quarto/quarto-basics.html#project-basics-render-only-what-you-intend",
+    "title": "Quarto Basics",
+    "section": "Project basics (render only what you intend)",
+    "text": "Project basics (render only what you intend)\nQuarto projects let you render a folder of documents with shared settings and control which files render:\n# site/_quarto.yml (example for a website/docs project)\nproject:\n  type: website\n  output-dir: _site\n  render:\n    - index.qmd\n    - pages/**/*.qmd\nThat whitelist prevents Quarto from scanning and rendering the entire repository.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#execution-control-cache-freeze-optional",
+    "href": "quarto/quarto-basics.html#execution-control-cache-freeze-optional",
+    "title": "Quarto Basics",
+    "section": "Execution control: cache & freeze (optional)",
+    "text": "Execution control: cache & freeze (optional)\n\nCache stores chunk results so long computations aren’t re-run.\nFreeze reuses previously rendered results during project renders:\n\nexecute:\n  freeze: auto\nAdd this to the project’s _quarto.yml (site or book) to stabilize outputs until sources change.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#journal-chapter-template-prompt-only",
+    "href": "quarto/quarto-basics.html#journal-chapter-template-prompt-only",
+    "title": "Quarto Basics",
+    "section": "Journal chapter template (prompt-only)",
+    "text": "Journal chapter template (prompt-only)\nEach journal chapter is created from entry_template.qmd and contains three prompts plus a Response section. Students answer one prompt only. The template includes an automatic word count:\n\nMC 451: 250–300 words\nMC 501: 450–500 words\n\nRendering the chapter shows the current count and whether it’s in range.\n\nNew chapters are created by running source(\"scripts/new_journal_entry.R\") inside journal/. The script injects prompts and updates _quarto.yml.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#common-options",
+    "href": "quarto/quarto-basics.html#common-options",
+    "title": "Quarto Basics",
+    "section": "Common options",
+    "text": "Common options\n\nTable of contents: toc: true\nCode folding (HTML): code-fold: true\nSection numbering: number-sections: true\nPDF fine-tuning: geometry, documentclass, keep-tex, include-in-header, etc.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "quarto/quarto-basics.html#troubleshooting-quick-hits",
+    "href": "quarto/quarto-basics.html#troubleshooting-quick-hits",
+    "title": "Quarto Basics",
+    "section": "Troubleshooting quick hits",
+    "text": "Troubleshooting quick hits\n\n“No TeX installation detected” → run quarto install tinytex or mccourse_setup().\nWhole repo renders unintentionally → set project.render (see above).\nNew journal chapter not appearing → commit both the new entries/YYYY-MM-DD.qmd and journal/_quarto.yml, then re-render.\nWord count out of range → ensure only the Response section contains your text; target the correct range for your course.",
+    "crumbs": [
+      "Quarto Basics"
+    ]
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html",
+    "title": "Introduction to R and RStudio",
+    "section": "",
+    "text": "R is a free, open-source language for data manipulation, analysis, and visualization. RStudio is the IDE (workbench) that makes R friendlier and faster. Together they give you a modern workflow for reproducible research in mass communication."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-r",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-r",
+    "title": "Introduction to R and RStudio",
+    "section": "What is R?",
+    "text": "What is R?\n\nA programming language for statistics and data work (from simple summaries to machine learning).\nScript-based: you write code that documents exactly what you did—great for transparency and reuse.\nSuperpowers via packages (e.g., tidyverse for wrangling, ggplot2 for visualization).\n\nWhy it matters here: You’ll analyze surveys, scrape or analyze social media, and make publication-quality figures—repeatably."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-rstudio",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#what-is-rstudio",
+    "title": "Introduction to R and RStudio",
+    "section": "What is RStudio?",
+    "text": "What is RStudio?\nRStudio (by Posit) is the integrated development environment for R:\n\nSource editor with syntax highlighting and autocomplete\nConsole for running code\nEnvironment to inspect objects/datasets\nFiles/Plots/Packages/Help/Viewer to manage outputs and docs\nTight integration with Quarto (dynamic documents) and Git\n\nOutcome: faster iteration, cleaner organization, and easier collaboration."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#why-use-r-rstudio",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#why-use-r-rstudio",
+    "title": "Introduction to R and RStudio",
+    "section": "Why Use R + RStudio?",
+    "text": "Why Use R + RStudio?\n\nOpen Source\nFree to install and extend. A huge community keeps adding new methods without license fees.\n\n\nAnalysis & Visualization\nFrom descriptive stats to regression and beyond in one place; ggplot2 produces clear, customizable graphics.\n\n\nReproducible Research\nQuarto documents combine text + code + output in one file. Re-render to update everything automatically.\n\n\n\nReproducibility Spectrum\n\n\n\n\nFlexible & Extensible\nThousands of packages for text analysis, social media data, networks, etc. Write your own functions when needed."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#install-r-and-rstudio",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#install-r-and-rstudio",
+    "title": "Introduction to R and RStudio",
+    "section": "Install R and RStudio",
+    "text": "Install R and RStudio\n\n1) Install R\n\nGo to https://cran.r-project.org/\nChoose your OS (Windows / macOS / Linux) and install.\n\n\n\n2) Install RStudio\n\nGo to https://posit.co/download/rstudio-desktop/\nDownload RStudio Desktop (free) for your OS and install.\n\n\nInstall R first, then RStudio. RStudio detects your R installation at launch."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#meet-the-rstudio-interface-four-panes",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#meet-the-rstudio-interface-four-panes",
+    "title": "Introduction to R and RStudio",
+    "section": "Meet the RStudio Interface (Four Panes)",
+    "text": "Meet the RStudio Interface (Four Panes)\n\nSource (top-left): write/edit scripts (.R) and Quarto files (.qmd).\nConsole (bottom-left): run code interactively; see results/errors.\nEnvironment (top-right): objects in memory (data frames, models, etc.).\nOutput (bottom-right): Files, Plots, Packages, Help, Viewer (for HTML/Shiny/Quarto previews).\n\n\nFor a deeper tour, see RStudio’s Four Panes in this section."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#start-a-new-project",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#start-a-new-project",
+    "title": "Introduction to R and RStudio",
+    "section": "Start a New Project",
+    "text": "Start a New Project\nProjects keep everything for one assignment/research task in one folder.\n\nFile → New Project…\nChoose New Directory → New Project (or link an existing folder).\nName it and create.\n\nBenefits: consistent working directory, clean file paths, and fewer “where did that file go?” moments. Git can be enabled during setup for version control."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#file-management-essentials",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#file-management-essentials",
+    "title": "Introduction to R and RStudio",
+    "section": "File Management Essentials",
+    "text": "File Management Essentials\n\nR Script vs. R Markdown / Quarto\n\nR Script (.R): pure code; great for fast analysis.\nQuarto (.qmd): prose + code + output → renders to HTML/PDF/Word for reports.\n\n# R Script example\nsummary(cars)\nplot(cars)\n\n# Quarto example chunk (runs when you render the doc)\nlibrary(ggplot2)\nggplot(cars, aes(speed, dist)) + geom_point()\n\n\n\n\n\n\n\n\n\n\nCSV vs. Excel\n\nPrefer CSV for clean, durable data.\nUse Excel only when collaborators require it or you genuinely need multiple sheets.\n\n\n\nSuggested subfolders\ndata/     # raw and cleaned datasets\nscripts/  # R scripts\nreports/  # .qmd / rendered outputs\noutput/   # figures, tables, exports"
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#package-management",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#package-management",
+    "title": "Introduction to R and RStudio",
+    "section": "Package Management",
+    "text": "Package Management\n\nInstall once, load each session\ninstall.packages(\"ggplot2\")  # once\nlibrary(ggplot2)             # each new R session\n\n\nCommon packages for this course\n\ntidyverse: wrangling + plotting\nggplot2: visualization\ndplyr: data manipulation\nquanteda / tm: text analysis\nrtweet: Twitter/X data (when permitted)\n\nUpdate periodically:\nupdate.packages(ask = FALSE)"
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#basics-of-r-quick-start",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#basics-of-r-quick-start",
+    "title": "Introduction to R and RStudio",
+    "section": "Basics of R (Quick Start)",
+    "text": "Basics of R (Quick Start)\n\nArithmetic\n5 + 3     # 8\n5 - 3     # 2\n5 * 3     # 15\n5 / 3     # 1.6667\n5 ^ 3     # 125\n5 %% 3    # 2 (modulus)\n\n\nVariables\nx &lt;- 10          # preferred assignment in R\ny = 20           # also works\nname &lt;- \"Alex\"\n\n\nFunctions\nsum(1, 2, 3)            # 6\nmean(c(1, 2, 3, 4))     # 2.5\nsqrt(16)                # 4"
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#commenting-organizing-code",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#commenting-organizing-code",
+    "title": "Introduction to R and RStudio",
+    "section": "Commenting & Organizing Code",
+    "text": "Commenting & Organizing Code\n\nComments\n# This is a comment for humans\nage &lt;- c(18, 23, 21, 30)   # vector of ages\n\n\nSections\n# =========================\n# Section: Data Preparation\n# =========================\nIn Quarto, use markdown headings to structure your narrative:\n## Data Preparation\n\nHere we clean variables and handle missing values.\n\nKeep code tidy: consistent indentation, small steps, and meaningful names. Your future self (and collaborators) will thank you."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#first-run-your-hello-world",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#first-run-your-hello-world",
+    "title": "Introduction to R and RStudio",
+    "section": "First Run: Your Hello World",
+    "text": "First Run: Your Hello World\nprint(\"Hello, World!\")\nOpen a Quarto file and add a code chunk:\n\n::: {.cell}\n\n```{.r .cell-code}\nprint(\"Hello, World from Quarto!\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Hello, World from Quarto!\"\n```\n\n\n:::\n:::\n\nRender the document to see executable output embedded in your report."
+  },
+  {
+    "objectID": "r-and-rstudio/r-rstudio-intro-legacy.html#next-steps",
+    "href": "r-and-rstudio/r-rstudio-intro-legacy.html#next-steps",
+    "title": "Introduction to R and RStudio",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nInstall the course package and pull your Journal scaffold.\nRead RStudio’s Four Panes and Global Options pages to customize your workspace.\nCommit your project to GitHub and set your Profile README."
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-global-options.html",
+    "href": "r-and-rstudio/rstudio-global-options.html",
+    "title": "RStudio Global Options",
+    "section": "",
+    "text": "Think of this window as your personal cockpit. Every slider, checkbox, and dropdown lets you fine-tune RStudio’s behavior, appearance, and workflow. Below is a guide to the most-used tabs—so when you’re ready to tweak, you’re not poking around in the dark."
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-global-options.html#general",
+    "href": "r-and-rstudio/rstudio-global-options.html#general",
+    "title": "RStudio Global Options",
+    "section": "1. General",
+    "text": "1. General\n\nR Sessions: Pick which R installation runs inside RStudio (handy if you have multiple versions installed).\n\nDefault working directory: Sets where files open and save by default when you’re not inside a project.\n\nWorkspace:\n\nRestore .RData into workspace at startup: leave unchecked for a clean slate every session.\n\nSave workspace to .RData on exit: set to Never to avoid saving random objects (recommended for reproducibility).\n\n\nHistory: Options to automatically save command history—even across sessions—and to remove duplicates.\n\nOther: Miscellaneous options, like wrapping text when switching tabs or whether crash reports are auto-submitted."
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-global-options.html#code",
+    "href": "r-and-rstudio/rstudio-global-options.html#code",
+    "title": "RStudio Global Options",
+    "section": "2. Code",
+    "text": "2. Code\nControls how code is displayed and edited.\nCommon options: soft wrapping, tabs vs. spaces, auto indentation, and diagnostics for languages like C/C++ or HTML/CSS."
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-global-options.html#appearance",
+    "href": "r-and-rstudio/rstudio-global-options.html#appearance",
+    "title": "RStudio Global Options",
+    "section": "3. Appearance",
+    "text": "3. Appearance\nCustomize how RStudio looks:\n\nTheme (dark, light, solarized, etc.)\n\nZoom level for text\n\nEditor font and size\n\nSyntax highlighting themes (with a live preview)\n\nThis is where you soften glare or crank the contrast—so your code reads like a poem instead of eye strain."
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-global-options.html#pane-layout",
+    "href": "r-and-rstudio/rstudio-global-options.html#pane-layout",
+    "title": "RStudio Global Options",
+    "section": "4. Pane Layout",
+    "text": "4. Pane Layout\nYour four-pane structure can become your personal artboard:\n\nChoose which pane (Source, Console, Environment, Output) goes where.\n\nReassign tabs (Help, Files, Packages, Plots, etc.).\n\nAdd extra Source columns to work on multiple scripts side-by-side.\n\nOften adjusted just once, this can make RStudio feel like it moves with your brain, not against it."
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-global-options.html#packages",
+    "href": "r-and-rstudio/rstudio-global-options.html#packages",
+    "title": "RStudio Global Options",
+    "section": "5. Packages",
+    "text": "5. Packages\nAppears only if you’ve installed or used packages. Options include:\n\nDefault CRAN mirror\n\nWhether the Packages pane is shown\n\nIntegration with devtools\n\nBuild settings and auto-navigation when building or checking packages\n\nThis is especially useful if you start writing or maintaining your own packages."
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-global-options.html#other-tabs-power-user-settings",
+    "href": "r-and-rstudio/rstudio-global-options.html#other-tabs-power-user-settings",
+    "title": "RStudio Global Options",
+    "section": "6. Other Tabs (Power-User Settings)",
+    "text": "6. Other Tabs (Power-User Settings)\n\nR Markdown: configure editing, visual mode, citations, outline visibility.\n\nGit/SVN: set up version control, authentication, and commit preferences.\n\nTerminal: pick your shell, scrollback buffer, and startup commands.\n\nAccessibility: adjust screen reader, motion reduction, and focus control."
+  },
+  {
+    "objectID": "r-and-rstudio/rstudio-global-options.html#why-it-matters",
+    "href": "r-and-rstudio/rstudio-global-options.html#why-it-matters",
+    "title": "RStudio Global Options",
+    "section": "Why It Matters",
+    "text": "Why It Matters\n\nIf RStudio keeps reopening everything you worked on—even forgotten objects—your “Save workspace” option is probably still set to Always. Change it to Never for a fresh start every time.\n\n\nTired of tiny fonts or glaring white backgrounds at 2 a.m.? Head to Appearance and make RStudio your cozy digital notebook.\n\n\nWant RStudio to feel like an extension of your thought process? Adjust the Pane Layout—it’s surprisingly transformative.\n\n\nRStudio stops being “just another program” when you shape it to fit your workflow. Every layout tweak, every bolded code line, every choice to suppress auto-loads—they all help you think and work more clearly."
+  },
+  {
+    "objectID": "reference/final-project.html",
+    "href": "reference/final-project.html",
+    "title": "Final Project Functions & Templates",
+    "section": "",
+    "text": "The final_project() function now creates a complete folder structure and starter files for your final assignment in MC501 (graduate research paper) or MC451 (undergraduate group white paper).",
+    "crumbs": [
+      "Home",
+      "Final Project Functions & Templates"
+    ]
+  },
+  {
+    "objectID": "reference/final-project.html#quick-start",
+    "href": "reference/final-project.html#quick-start",
+    "title": "Final Project Functions & Templates",
+    "section": "Quick Start",
+    "text": "Quick Start\nRun final_project(\"mc501\") or final_project(\"mc451\") in R to generate your project folder.\nEach template includes: - A Quarto manuscript (.qmd) - Bibliography database (references.bib) - Data folder (/data) - Output folder (/output) - README and project file\nCentral guides for technical setup, writing, GitHub, and Zotero are included for both project types.",
+    "crumbs": [
+      "Home",
+      "Final Project Functions & Templates"
+    ]
+  },
+  {
+    "objectID": "reference/final-project.html#assignment-overviews",
+    "href": "reference/final-project.html#assignment-overviews",
+    "title": "Final Project Functions & Templates",
+    "section": "Assignment Overviews",
+    "text": "Assignment Overviews\n\nGraduate Research Paper Overview\nUndergraduate White Paper Overview",
+    "crumbs": [
+      "Home",
+      "Final Project Functions & Templates"
+    ]
+  },
+  {
+    "objectID": "reference/final-project.html#central-guides",
+    "href": "reference/final-project.html#central-guides",
+    "title": "Final Project Functions & Templates",
+    "section": "Central Guides",
+    "text": "Central Guides\n\nTechnical Setup\n\nGraduate Technical Guide\nUndergraduate Technical Guide\n\n\n\nGitHub & Version Control\n\nGraduate GitHub Guide\nUndergraduate GitHub Guide\n\n\n\nReference Management\n\nGraduate Zotero Guide\nUndergraduate Zotero Guide\n\n\n\nWriting & Formatting\n\nGraduate Research Paper Writing Guide\nUndergraduate White Paper Writing Guide\n\n\n\nFinal Submission\n\nGraduate Final Submission Checklist\nUndergraduate Final Submission Checklist\n\n\nFor full instructions, see the README in your template folder and the guides above.",
+    "crumbs": [
+      "Home",
+      "Final Project Functions & Templates"
     ]
   },
   {

@@ -1,0 +1,78 @@
+---
+title: "Undergraduate GitHub Guide"
+sidebar: pages
+---
+
+This guide covers all steps for using GitHub in your group white paper project, including setup, collaboration, and submission.
+
+## Why Use GitHub?
+
+- **Version control:** Save snapshots of your work, track changes
+- **Cloud backup:** Protect your team's work
+- **Collaboration:** All team members can work on the same project
+- **Submission:** Required for your final project
+
+## Steps
+
+### 1. Team Leader: Create a Repository
+
+1. Go to [GitHub.com](https://github.com/)
+2. Create a new **private** repository
+3. Name it clearly: e.g., `white-paper-f25`
+4. Add a `README.md` file
+5. Invite team members as **collaborators**
+
+### 2. All Team Members: Clone the Repository
+
+1. Copy the HTTPS URL from GitHub
+2. In RStudio: `File` → `New Project` → `Version Control` → `Git`
+3. Paste the URL and choose a local folder
+4. Click `Create Project`
+
+### 3. Collaborate Safely
+
+**Create branches** for different sections:
+```bash
+# In terminal
+git checkout -b section-name
+```
+
+Examples: `intro`, `methods`, `analysis`, `references`
+
+**Commit regularly:**
+- Stage your changes in the Git pane
+- Write clear commit messages
+- Click `Commit`
+
+**Push your work:**
+- Click `Push` in the Git pane
+- Your changes appear on GitHub
+
+**Pull before you start working:**
+- Click `Pull` to get the latest changes from your teammates
+- Prevents conflicts when merging
+
+### 4. Submit Your Project
+
+- Keep all files in your repository
+- Final submission: GitHub link (all team members should have access)
+
+## Team Tips
+
+- **Communicate** – Discuss who is working on which section
+- **Commit often** – With clear, descriptive messages
+- **Pull first, push last** – Always pull before starting and push when done
+- **Review before merging** – Use pull requests to review team members' work
+- **Keep data files clean** – Use `.gitignore` to exclude temporary files
+
+## Resolving Conflicts
+
+If two team members edit the same section, you may get a merge conflict.
+
+1. Pull the latest changes
+2. RStudio will show conflicting lines
+3. Choose which version to keep (or combine both)
+4. Commit the resolved version
+5. Push your changes
+
+For more details, see the [main Git guide](../git/git-and-github.html).

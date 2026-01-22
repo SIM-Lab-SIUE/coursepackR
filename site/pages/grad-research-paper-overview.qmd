@@ -1,0 +1,33 @@
+---
+title: "Graduate Research Paper Overview"
+sidebar: pages
+---
+
+This document outlines the assignment requirements, deliverables, and master checklist for your final project.
+
+## Core Requirements
+
+- **Individual project**
+- **6,000–8,000 words** (excluding references, tables, appendices)
+- **15-20 academic, peer-reviewed citations**
+- **One original survey** (N=100 goal) or pre-approved alternative
+- **Two Research Questions (RQs)** and/or **Hypotheses (RHs)**
+- All data analyzed in RStudio
+- At least two APA-formatted data visualizations
+- APA 7th Edition style, written in Quarto (`.qmd`)
+
+## Final Deliverables
+
+- **Blackboard:** Final rendered `research_paper.pdf`
+- **GitHub:** Private repository with all project files
+
+## Master Project Checklist
+
+See [Graduate Final Submission Checklist](grad-final-submission-checklist.html) for a full breakdown of requirements by phase.
+
+## Related Guides
+
+- [Graduate Technical Guide](grad-technical-guide.html) – RStudio, Quarto, survey design
+- [Graduate GitHub Guide](grad-github-guide.html) – Version control & submission
+- [Graduate Zotero Guide](grad-zotero-guide.html) – Citation management
+- [Graduate Research Paper Writing Guide](grad-research-paper-writing-guide.html) – APA formatting and structure

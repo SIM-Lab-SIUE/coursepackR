@@ -1,0 +1,93 @@
+---
+title: "Graduate Zotero Guide"
+sidebar: pages
+---
+
+This guide shows you how to connect Zotero to your RStudio project to create automated **APA 7th Edition** citations and bibliographies. This is essential for a graduate research paper.
+
+## Why Zotero?
+
+Zotero is a free, open-source reference manager that:
+- Saves your academic sources with one click
+- Automatically formats citations in any style
+- Syncs across devices
+- Integrates seamlessly with Quarto documents
+
+## Step 1: Install Zotero & Better BibTeX
+
+1. **Install Zotero:** Go to [zotero.org](https://www.zotero.org/) and download the desktop application
+2. **Install the Zotero Connector:** Install the browser extension for Chrome, Firefox, or Safari
+   - This lets you save sources from Google Scholar with one click
+3. **Install Better BibTeX (BBT) Plugin:** This is **essential** for creating stable citation keys
+   - Go to [Better BibTeX releases](https://github.com/retorquere/zotero-better-bibtex/releases)
+   - Download the latest `.xpi` file
+   - In Zotero, go to `Tools` → `Add-ons` → Install from file
+
+## Step 2: Create Your Zotero Library
+
+1. Open Zotero on your computer
+2. Create a folder for your project (e.g., "Research Paper F25")
+3. Start saving sources:
+   - Use the Zotero Connector from Google Scholar
+   - Manually add sources by clicking `New Item`
+
+## Step 3: Export to BibTeX
+
+1. Right-click your project folder in Zotero
+2. Select `Export Collection...`
+3. Choose **BibTeX** format
+4. Save as `references.bib` in your RStudio project root folder
+
+**Tip:** Use Better BibTeX's auto-export feature for live updates:
+- Right-click collection → `Automatic Export...` → Select `BibTeX`
+
+## Step 4: Configure Quarto
+
+In your `research_paper.qmd`, add to the YAML header:
+```yaml
+bibliography: references.bib
+csl: apa.csl
+```
+
+## Step 5: Cite in Your Document
+
+To cite a source, use the citation key from Zotero:
+```
+This research shows X [@authorYear].
+```
+
+Example:
+```
+Social media shapes political engagement [@pew2021].
+```
+
+Quarto automatically formats it as: (Pew, 2021)
+
+Full citation appears in bibliography at the end.
+
+## Rendering
+
+When you render your document:
+```r
+quarto render research_paper.qmd --to pdf
+```
+
+Quarto automatically:
+1. Inserts formatted in-text citations
+2. Creates a properly formatted bibliography
+3. Applies APA 7th Edition style
+
+## APA Style CSL File
+
+Make sure you have the APA 7th Edition CSL file:
+1. Download from [Zotero Style Repository](https://www.zotero.org/styles)
+2. Save as `apa.csl` in your project root
+
+## Tips
+
+- Keep your Zotero library organized with collections
+- Use descriptive note fields for page numbers and key quotes
+- Export references.bib frequently to stay in sync
+- Check citation formatting in your PDF before submitting
+
+For more help, see [Zotero Documentation](https://www.zotero.org/support/) and [Quarto Citations Guide](https://quarto.org/docs/authoring/footnotes-and-citations.html).

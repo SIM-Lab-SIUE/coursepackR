@@ -1,0 +1,34 @@
+---
+title: "Undergraduate White Paper Overview"
+sidebar: pages
+---
+
+This document outlines the assignment requirements, deliverables, and master checklist for your group white paper project.
+
+## Core Requirements
+
+- **Team project** (2-3 members)
+- **3,000–4,000 words**
+- **10-12 academic citations**
+- **One original survey** (N=100 goal)
+- **Two Research Questions (RQs)** and/or **Hypotheses (RHs)**
+- All data analyzed in RStudio
+- At least two data visualizations created in R
+- Written in Quarto (`.qmd`)
+- Professional journalistic style
+
+## Final Deliverables
+
+- **GitHub:** Private repository with all project files
+- **Blackboard:** Final submission link (if required by your instructor)
+
+## Master Project Checklist
+
+See [Undergraduate Final Submission Checklist](undergrad-final-submission-checklist.html) for a full breakdown of requirements by phase.
+
+## Related Guides
+
+- [Undergraduate Technical Guide](undergrad-technical-guide.html) – RStudio, Quarto, survey design
+- [Undergraduate GitHub Guide](undergrad-github-guide.html) – Version control & collaboration
+- [Undergraduate Zotero Guide](undergrad-zotero-guide.html) – Citation management
+- [Undergraduate White Paper Writing Guide](undergrad-white-paper-writing-guide.html) – Structure and style

@@ -25,6 +25,8 @@ website:
         href: troubleshooting/troubleshooting.qmd
       - text: "Reference"
         href: reference/package-reference.qmd
+      - text: "Final Projects"
+        href: reference/final-project.qmd
       - text: "Zotero"
         href: zotero/zotero-rstudio.qmd
 
@@ -89,6 +91,28 @@ website:
       contents:
         - reference/package-reference.qmd
         - reference/package-functions.qmd
+        - reference/final-project.qmd
+
+    - id: pages
+      title: "Project Guides"
+      style: docked
+      contents:
+        - text: "Graduate"
+          contents:
+            - pages/grad-research-paper-overview.qmd
+            - pages/grad-technical-guide.qmd
+            - pages/grad-github-guide.qmd
+            - pages/grad-zotero-guide.qmd
+            - pages/grad-research-paper-writing-guide.qmd
+            - pages/grad-final-submission-checklist.qmd
+        - text: "Undergraduate"
+          contents:
+            - pages/undergrad-white-paper-overview.qmd
+            - pages/undergrad-technical-guide.qmd
+            - pages/undergrad-github-guide.qmd
+            - pages/undergrad-zotero-guide.qmd
+            - pages/undergrad-white-paper-writing-guide.qmd
+            - pages/undergrad-final-submission-checklist.qmd
 
     - id: zotero
       title: "Zotero"

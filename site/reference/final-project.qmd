@@ -1,0 +1,55 @@
+---
+title: "Final Project Functions & Templates"
+subtitle: "MC451 & MC501"
+sidebar: reference
+---
+
+The `final_project()` function now creates a complete folder structure and starter files for your final assignment in **MC501** (graduate research paper) or **MC451** (undergraduate group white paper).
+
+## Quick Start
+
+Run `final_project("mc501")` or `final_project("mc451")` in R to generate your project folder.
+
+Each template includes:
+- A Quarto manuscript (`.qmd`)
+- Bibliography database (`references.bib`)
+- Data folder (`/data`)
+- Output folder (`/output`)
+- README and project file
+
+Central guides for technical setup, writing, GitHub, and Zotero are included for both project types.
+
+---
+
+## Assignment Overviews
+
+- [Graduate Research Paper Overview](../pages/grad-research-paper-overview.html)
+- [Undergraduate White Paper Overview](../pages/undergrad-white-paper-overview.html)
+
+---
+
+## Central Guides
+
+### Technical Setup
+- [Graduate Technical Guide](../pages/grad-technical-guide.html)
+- [Undergraduate Technical Guide](../pages/undergrad-technical-guide.html)
+
+### GitHub & Version Control
+- [Graduate GitHub Guide](../pages/grad-github-guide.html)
+- [Undergraduate GitHub Guide](../pages/undergrad-github-guide.html)
+
+### Reference Management
+- [Graduate Zotero Guide](../pages/grad-zotero-guide.html)
+- [Undergraduate Zotero Guide](../pages/undergrad-zotero-guide.html)
+
+### Writing & Formatting
+- [Graduate Research Paper Writing Guide](../pages/grad-research-paper-writing-guide.html)
+- [Undergraduate White Paper Writing Guide](../pages/undergrad-white-paper-writing-guide.html)
+
+### Final Submission
+- [Graduate Final Submission Checklist](../pages/grad-final-submission-checklist.html)
+- [Undergraduate Final Submission Checklist](../pages/undergrad-final-submission-checklist.html)
+
+---
+
+For full instructions, see the README in your template folder and the guides above.

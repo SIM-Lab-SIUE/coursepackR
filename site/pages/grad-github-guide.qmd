@@ -1,0 +1,56 @@
+---
+title: "Graduate GitHub Guide"
+sidebar: pages
+---
+
+This guide covers all steps for using GitHub in your research project, including setup, version control, and submission.
+
+## Why Use GitHub?
+
+- **Version control:** Save snapshots, roll back changes
+- **Cloud backup:** Protect your work
+- **Portability:** Work from any computer
+- **Submission:** Required for your final project
+
+## Steps
+
+### 1. Create a Private Repository
+
+1. Go to [GitHub.com](https://github.com/)
+2. Create a new **private** repository
+3. Name it clearly: e.g., `grad-research-paper-f25`
+4. Add a `README.md` file
+
+### 2. Clone to RStudio
+
+1. Copy the HTTPS URL from GitHub
+2. In RStudio: `File` → `New Project` → `Version Control` → `Git`
+3. Paste the URL and choose a local folder
+4. Click `Create Project`
+
+### 3. Work Locally
+
+- Edit files in RStudio
+- Commit changes regularly:
+  - `Git` pane → Check files to stage
+  - Write a clear commit message
+  - Click `Commit`
+
+### 4. Push to GitHub
+
+- Click `Push` in the Git pane
+- Your changes now appear on GitHub
+
+### 5. Submit Your Project
+
+- Keep all files in your repository
+- Final submission: GitHub link to Blackboard
+
+## Tips
+
+- **Commit often** – with clear, descriptive messages
+- **Pull before pushing** – to avoid conflicts
+- **Keep sensitive data out** – never commit API keys or personal info
+- **Use .gitignore** – to exclude files like `.Rhistory` or `data/`
+
+For more details, see the [main Git guide](../git/git-and-github.html).

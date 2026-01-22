@@ -1,0 +1,101 @@
+---
+title: "Undergraduate Zotero Guide"
+sidebar: pages
+---
+
+This guide shows you how to connect Zotero to your RStudio project to create automated citations and bibliographies for your white paper. Much easier than writing a bibliography by hand!
+
+## Why Zotero?
+
+Zotero is a free, open-source reference manager that:
+- Saves your academic sources with one click
+- Automatically formats citations in any style
+- Syncs across devices
+- Your whole team can use the same reference library
+
+## Step 1: Install Zotero & Better BibTeX
+
+1. **Install Zotero:** Go to [zotero.org](https://www.zotero.org/) and download the desktop application
+2. **Install the Zotero Connector:** Install the browser extension for Chrome, Firefox, or Safari
+   - Save sources from Google Scholar with one click
+3. **Install Better BibTeX (BBT) Plugin:** Makes citation keys stable
+   - Go to [Better BibTeX releases](https://github.com/retorquere/zotero-better-bibtex/releases)
+   - Download the latest `.xpi` file
+   - In Zotero: `Tools` → `Add-ons` → Install from file
+
+## Step 2: Create a Team Zotero Library (Optional)
+
+For team collaboration, one person can:
+1. Create a Zotero Group Library
+2. Share the group link with teammates
+3. All team members join the group
+4. References sync automatically across the team
+
+Or: One person manages Zotero, exports the `.bib` file, and shares it on GitHub.
+
+## Step 3: Collect Your Sources
+
+1. Open Zotero
+2. Create a folder for your project (e.g., "White Paper F25")
+3. Use the Zotero Connector to save from Google Scholar, JSTOR, etc.
+4. Manually add sources if needed
+
+Aim for **10-12 sources** for your white paper.
+
+## Step 4: Export to BibTeX
+
+1. Right-click your project folder in Zotero
+2. Select `Export Collection...`
+3. Choose **BibTeX** format
+4. Save as `references.bib` in your RStudio project root folder
+
+## Step 5: Configure Quarto
+
+In your `white_paper.qmd`, add to the YAML header:
+```yaml
+bibliography: references.bib
+csl: apa.csl
+```
+
+## Step 6: Cite in Your Document
+
+Use the citation key (usually author-year):
+```
+Research shows X [@smith2023].
+```
+
+Quarto formats it as: (Smith, 2023)
+
+## Rendering
+
+When you render your document:
+```r
+quarto render white_paper.qmd --to pdf
+```
+
+Quarto automatically:
+1. Inserts in-text citations
+2. Creates a formatted bibliography
+3. Applies citation style (APA, Chicago, etc.)
+
+## Citation Style
+
+We recommend **APA format** (apa.csl):
+- Download from [Zotero Style Repository](https://www.zotero.org/styles)
+- Save as `apa.csl` in your project root
+
+## Team Tips
+
+- **One person manages citations** – to avoid conflicts
+- **Share the references.bib file** on GitHub
+- **Commit changes** when adding new sources
+- **Communicate** about which sources you're using
+
+## Tips
+
+- Keep your library organized with collections
+- Use note fields to record page numbers and key quotes
+- Export references.bib frequently
+- Check citation formatting in your PDF before submission
+
+For more help, see [Zotero Documentation](https://www.zotero.org/support/) and [Quarto Citations](https://quarto.org/docs/authoring/footnotes-and-citations.html).

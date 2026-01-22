@@ -1,0 +1,43 @@
+---
+title: "Graduate Technical Guide"
+sidebar: pages
+---
+
+This guide covers technical setup for your APA-formatted research paper and survey design best practices.
+
+## RStudio & Quarto Setup
+
+1. **Create a new RStudio Project** by cloning your GitHub repository
+2. **Install necessary R packages:**
+   ```r
+   install.packages(c("tidyverse", "rmarkdown", "quarto", "apaTables", "readr"))
+   ```
+3. **Download APA 7th Edition CSL file** from [Zotero Style Repository](https://www.zotero.org/styles)
+4. **Save as `apa.csl`** in your project folder
+5. **Create your `research_paper.qmd`** file using the template provided
+
+## Survey Design Best Practices
+
+- **Use clear, unbiased questions** – avoid leading or double-barreled questions
+- **Pilot test your survey** – ask 3-5 people for feedback before full launch
+- **Get instructor approval** – before launching to avoid IRB issues
+- **Track response rate** – aim for N=100 minimum
+- **Export data as CSV** – after survey closes
+- **Document your methodology** – in the Methods section of your paper
+
+## Rendering to PDF
+
+- In RStudio, click the **Render** button or run:
+  ```r
+  quarto render research_paper.qmd --to pdf
+  ```
+- PDF will appear in `/output` folder
+- Check for formatting errors before submission
+
+## Common Troubleshooting
+
+- **Missing packages:** Run `install.packages("package_name")`
+- **Quarto not found:** Run `mccourse_setup()` from the mccoursepack package
+- **Citation errors:** Verify `references.bib` and `apa.csl` are in the project root
+
+For additional help, see the [main troubleshooting guide](../troubleshooting/troubleshooting.html).
