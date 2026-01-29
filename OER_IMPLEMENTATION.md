@@ -2,7 +2,28 @@
 
 **Open Educational Resources (OER) Implementation for coursepackR**
 
-Faculty Agreement: Creates original open licensed courseware, implements across all course sections, publishes under Creative Commons BY (or above, Level 4), and maintains for minimum 9 semesters (3 years).
+## Faculty Agreement
+
+**Creation of Original OER**
+
+Faculty member creates **original open licensed courseware**, implements it for use in **all sections of a course** eliminating the use of physical text or other paid course material, and publishes the OER under **Creative Commons BY or above level 4 IP license**. Adoption of OER materials must be in place within **two semesters** and remain in place for a minimum of **9 semesters (3 years)**.
+
+### What Constitutes "Original OER" in This Context
+
+**Original courseware created by faculty** includes:
+- ✅ Weekly assignment templates (.qmd files)
+- ✅ R code examples and starter scripts
+- ✅ Data analysis tutorials and walkthroughs
+- ✅ Reflection/journal prompts
+- ✅ Rubrics and assessment guides
+- ✅ Video tutorials or screencasts (if created)
+- ✅ Discussion prompts and activities
+- ✅ The coursepackR package framework itself
+
+**Existing OER used as foundation**:
+- 📖 "From Vibes to Variables: A Field Guide to Open Media Science" (textbook - existing OER)
+
+**IMPORTANT**: The **original work** is the coursepackR package + all weekly materials + customizations. The book serves as the conceptual framework, but the implementation, assignments, code, and scaffolding are all faculty-created original content.
 
 ---
 
@@ -10,18 +31,29 @@ Faculty Agreement: Creates original open licensed courseware, implements across 
 
 ### ✅ License & Attribution (Pre-Implementation)
 
-- [ ] **Book license verified**: "From Vibes to Variables" is published under Creative Commons BY or compatible open license
-- [ ] **Attribution plan documented**: How will students and instructors acknowledge the book?
-- [ ] **Package license confirmed**: coursepackR code under MIT license
-- [ ] **Derivative works license**: All customizations maintain CC-BY or compatible
+- [ ] **Faculty-created materials licensed**: All original courseware (assignments, code, templates) published under **Creative Commons BY 4.0 or above**
+- [ ] **Book license verified**: "From Vibes to Variables" confirms open license compatibility
+- [ ] **Attribution plan documented**: Clear attribution for book AND faculty-created materials
+- [ ] **Package code license**: coursepackR framework under MIT license (compatible with CC-BY)
+- [ ] **Derivative works compliance**: Any adaptations maintain CC-BY or compatible open license
 - [ ] **Copyright clearance**: All images, datasets, examples cleared for educational use or public domain
+- [ ] **No paid materials**: Course eliminates ALL physical textbooks and paid software requirements
+- [ ] **Free software stack**: R, RStudio, Quarto, Git - all free and open source
 
 **Attribution Template** (to appear in README and course materials):
 ```
-This course uses "From Vibes to Variables: A Field Guide to Open Media Science"
-[Author(s)] under Creative Commons [License version].
+ORIGINAL COURSEWARE (Created by Faculty)
+This course package and all weekly materials are original work created by
+[Faculty Name], [Institution]. Licensed under Creative Commons BY 4.0.
 
-coursepackR template and all original course materials are licensed under CC-BY-4.0.
+TEXTBOOK FOUNDATION
+"From Vibes to Variables: A Field Guide to Open Media Science"
+[Author(s)], Licensed under [Creative Commons License].
+
+COMBINED WORK
+The complete course implementation (coursepackR package + textbook) is 
+provided free of charge under open licenses, eliminating all paid course 
+materials.
 ```
 
 ---
@@ -129,7 +161,91 @@ coursepackR template and all original course materials are licensed under CC-BY-
 
 ---
 
-## 📊 Evidence of Adoption
+## � What Makes This "Original OER Creation"?
+
+### The Difference: Adoption vs. Creation
+
+**Just adopting existing OER** (doesn't meet agreement):
+- ❌ Using an open textbook as-is with no additional materials
+- ❌ Pointing students to free resources without custom integration
+- ❌ No original pedagogical framework or scaffolding
+
+**Creating original OER** (meets agreement):
+- ✅ **Original coursepackR implementation**: Custom R package for YOUR course
+- ✅ **Original weekly assignments**: You design .qmd templates, not just book exercises
+- ✅ **Original code scaffolding**: Starter scripts, examples, tutorials you create
+- ✅ **Original assessment design**: Rubrics, projects, reflections unique to your pedagogy
+- ✅ **Original data examples**: Datasets and analyses you curate/create for learning objectives
+- ✅ **Original integration**: How you combine book + R + projects is unique intellectual work
+
+### Examples of Original Work in coursepackR
+
+**Week 1 Assignment** (Original):
+```markdown
+# Week 1: From Vibes to Variables
+# Created by [Your Name], [Date]
+
+## Reading
+- Book Chapter 1 (existing OER)
+
+## Original Assignment (Your Creation)
+Using the concepts from Chapter 1, analyze the dataset 
+`social_media_habits.csv` (which you prepared) and:
+
+1. Identify three "vibes" (qualitative observations)
+2. Transform each into measurable variables
+3. Write R code (using starter template you created) to 
+   calculate descriptive statistics
+4. Reflect on the transformation process
+
+## Scaffolding (Your Creation)
+- `starter_code.R` with comments guiding students
+- `week_01_rubric.md` with your assessment criteria
+- Video tutorial you recorded (optional)
+```
+
+**This assignment = ORIGINAL work** even though it references the book, because:
+- The specific task design is yours
+- The data you selected/created
+- The R scaffolding you built
+- The rubric you designed
+- The pedagogical sequence you chose
+
+### Faculty Contribution Checklist
+
+For each week of your course, you are creating:
+
+**Content Layer** (Original):
+- [ ] Assignment design linking book concepts to applied tasks
+- [ ] R code examples demonstrating chapter concepts
+- [ ] Datasets curated for specific learning objectives
+- [ ] Discussion prompts extending book ideas
+- [ ] Reflection questions connecting to student interests
+
+**Scaffolding Layer** (Original):
+- [ ] Starter code templates with strategic hints
+- [ ] Step-by-step tutorials for complex analyses
+- [ ] Troubleshooting guides for common errors
+- [ ] Rubrics defining success criteria
+- [ ] Peer review protocols
+
+**Integration Layer** (Original):
+- [ ] Sequencing of topics across semester
+- [ ] Pacing and difficulty progression
+- [ ] Connection between weeks (cumulative learning)
+- [ ] Final project design synthesizing course concepts
+- [ ] Assessment alignment with institutional outcomes
+
+**Technical Layer** (Original):
+- [ ] coursepackR package customization
+- [ ] Function modifications for your course structure
+- [ ] Environment setup instructions for your institution
+- [ ] Git/GitHub workflow integration
+- [ ] Obsidian note-taking system integration (optional)
+
+---
+
+## 📊 Evidence of Original Work Creation
 
 ### Institutional Commitment
 
@@ -292,31 +408,44 @@ required textbook purchase.
 
 By implementing coursepackR with "From Vibes to Variables," faculty commits to:
 
-**Original Work**
-- [ ] Create original weekly materials aligned with the book
-- [ ] Design original assignments and projects
-- [ ] Adapt course to my institution's context
+**Original Work Creation**
+- [ ] Create **original weekly materials** (assignments, code examples, tutorials) aligned with the book
+- [ ] Design **original assessment instruments** (rubrics, projects, reflections)
+- [ ] Develop **original R/RStudio scaffolding** for novice learners
+- [ ] Adapt course implementation to institutional context (original pedagogical design)
+- [ ] Document **all original contributions** for OER community
 
 **Open Licensing**
-- [ ] All materials under Creative Commons BY or compatible
-- [ ] Attribution clearly documented
-- [ ] No proprietary barriers to student access
+- [ ] **All faculty-created materials** under Creative Commons BY 4.0 or above
+- [ ] Attribution clearly documented for book and original courseware
+- [ ] **No proprietary barriers** to student access anywhere in the course
+- [ ] Ensure **license compatibility** across all components
 
-**Widespread Implementation**
-- [ ] Use in ALL sections of this course within 2 semesters
-- [ ] Train other instructors if applicable
-- [ ] Document implementation process for others
+**Widespread Implementation (All Sections)**
+- [ ] Use in **100% of sections** of this course within 2 semesters
+- [ ] Train other instructors teaching this course (if applicable)
+- [ ] Document implementation process for institutional reporting
+- [ ] Ensure **consistent OER adoption** across all faculty teaching this course
 
-**Sustainability**
-- [ ] Commit to maintaining course for minimum 3 years (9 semesters)
-- [ ] Regular feedback collection and improvements
-- [ ] Responsive to student and peer feedback
-- [ ] Publish results/lessons learned at end of Year 1
+**Elimination of Paid Materials**
+- [ ] **Zero cost** to students for textbooks
+- [ ] **Zero cost** for required software (R, RStudio, Quarto all free)
+- [ ] **Zero cost** for course materials (all via GitHub/open web)
+- [ ] No hidden fees, access codes, or paywalled content
+- [ ] Institutional LMS/systems freely accessible to enrolled students
 
-**Assessment**
-- [ ] Track student learning outcomes
-- [ ] Document cost savings for institution
-- [ ] Share findings with OER community
+**Sustainability (Minimum 9 Semesters)**
+- [ ] Commit to maintaining course for **minimum 3 years (9 semesters)**
+- [ ] Regular feedback collection and continuous improvement
+- [ ] Responsive to student and peer feedback (<48 hour response for critical issues)
+- [ ] Annual review and updates
+- [ ] Publish implementation results/lessons learned
+
+**Assessment & Reporting**
+- [ ] Track student learning outcomes vs. prior paid-textbook versions
+- [ ] Document **cost savings** for institution and students
+- [ ] Share findings with OER community (presentations, publications, open reports)
+- [ ] Participate in institutional OER assessment activities
 
 ---
 

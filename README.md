@@ -12,7 +12,18 @@
 
 ---
 
-## 📦 About This Package
+## � Knowledge Framework: *From Vibes to Variables*
+
+This template is designed to implement **"From Vibes to Variables: A Field Guide to Open Media Science"** as the core curriculum for novice social scientists. See [CURRICULUM_FRAMEWORK.md](CURRICULUM_FRAMEWORK.md) for:
+
+- Complete book chapter mapping to course weeks
+- OER implementation guidance
+- Learning progression scaffolds
+- Instructor customization examples
+
+---
+
+## �📦 About This Package
 
 `coursepackR` is a **flexible template framework** for social science instructors to create R-based course packages. It provides a structured, extensible system for delivering weekly course materials, managing student projects, and scaffolding the R/RStudio learning experience.
 
@@ -37,7 +48,17 @@ This is a **generalized template release** extracted from a successful implement
 
 ------------------------------------------------------------------------
 
-## 🚀 Quick Start for Instructors
+## � Documentation for Instructors
+
+**Start here:**
+- [CURRICULUM_FRAMEWORK.md](CURRICULUM_FRAMEWORK.md) — Map book chapters to course weeks and learning outcomes
+- [INSTRUCTOR_GUIDE.md](INSTRUCTOR_GUIDE.md) — 5-step customization walkthrough
+- [OER_IMPLEMENTATION.md](OER_IMPLEMENTATION.md) — Open licensing compliance and 3-year sustainability plan
+- [OBSIDIAN_INTEGRATION.md](OBSIDIAN_INTEGRATION.md) — Optional research workflow integration
+
+---
+
+## �🚀 Quick Start for Instructors
 
 ### Option 1: Copy and Customize (Recommended)
 

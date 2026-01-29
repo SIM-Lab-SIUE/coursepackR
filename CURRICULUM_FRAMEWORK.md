@@ -1,17 +1,27 @@
 # Curriculum Framework: *From Vibes to Variables*
 
-**Knowledge Framework for coursepackR OER Implementations**
+**Original OER Courseware Knowledge Framework for coursepackR**
 
 ---
 
 ## 📖 About This Document
 
-This framework maps **"From Vibes to Variables: A Field Guide to Open Media Science"** as the core knowledge foundation for coursepackR-based courses. It provides:
+This framework guides faculty in **creating original open educational courseware** using "From Vibes to Variables: A Field Guide to Open Media Science" as the conceptual foundation. 
 
-- A structured approach to aligning the book with weekly course modules
-- Guidance for instructors customizing coursepackR for social science courses
-- OER compliance documentation for institutional agreements
-- Learning progressions from foundational concepts to applied research
+### What This Framework Provides
+
+- **Original courseware design**: Templates for creating YOUR unique weekly assignments
+- **Book integration strategy**: How to align faculty-created materials with book concepts
+- **OER compliance guidance**: Ensures all original work meets institutional requirements
+- **Learning scaffolds**: Progressive skill-building across weeks (your design)
+
+### Important Distinction
+
+- **The Book** = Existing OER providing conceptual foundation (reading material)
+- **Your Courseware** = Original assignments, code, rubrics, tutorials you create
+- **Combined Course** = Free alternative to paid textbook + software courses
+
+This satisfies "creation of original OER" because the weekly implementation, R scaffolding, assessment design, and pedagogical integration are all faculty-created intellectual work.
 
 ---
 
