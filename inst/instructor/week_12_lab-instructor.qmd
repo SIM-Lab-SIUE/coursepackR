@@ -1,7 +1,0 @@
----
-title: "Week 12 Instructor Lab Notes"
----
-
-*Instructor placeholder for Week 12 R Lab*
-
-Refer to the lab plan for details and add instructor notes here.
