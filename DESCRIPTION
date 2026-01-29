@@ -1,13 +1,13 @@
-Package: mccoursepack
+Package: coursepackR
 Type: Package
-Title: Course Materials and Weekly Scaffolds for MC 451 and MC 501
-Version: 01.14.10
+Title: Instructor Template for Building R-Based Course Packages
+Version: 02.00.00
 Authors@R: person("AP", "Leith", email = "aleith@siue.edu", role = c("aut", "cre"))
-Description: Provides student-facing scaffolds (Quarto templates and starter files) 
-    for weekly work in MC 451 and MC 501. Students install or update the package 
-    and use helper functions to copy the appropriate week's materials into a local 
-    working directory. Automates environment setup including Quarto CLI and TinyTeX 
-    installation.
+Description: A flexible template package for social science instructors to create 
+    R-based course packages with weekly scaffolds and structured learning materials. 
+    Provides helper functions for students to access course materials, manage 
+    projects, and integrate RStudio with research tools like Obsidian. Automates 
+    environment setup including Quarto CLI and TinyTeX installation.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
