@@ -251,7 +251,7 @@ Keep it simple, keep it focused.
 
 - **Package Issues**: GitHub Issues
 - **Maintainer**: aleith@siue.edu
-- **Documentation**: https://sim-lab-siue.github.io/mccoursepack/
+- **Documentation**: https://sim-lab-siue.github.io/coursepackR/
 
 ## Future Improvements
 

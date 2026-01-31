@@ -100,4 +100,4 @@ devtools::test()
 ### Contact
 
 Maintainer: Dr. Alex P. Leith (aleith@siue.edu)
-Repository: https://github.com/sim-lab-siue/mccoursepack/
+Repository: https://github.com/sim-lab-siue/coursepackR/

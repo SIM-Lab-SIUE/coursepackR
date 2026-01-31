@@ -18,7 +18,7 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 }
 
 # Install coursepackR
-remotes::install_github("SIM-Lab-SIUE/mccoursepack")
+remotes::install_github("SIM-Lab-SIUE/coursepackR")
 ```
 
 ## First-Time Setup

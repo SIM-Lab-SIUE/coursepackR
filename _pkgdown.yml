@@ -1,4 +1,4 @@
-url: https://sim-lab-siue.github.io/mccoursepack/
+url: https://sim-lab-siue.github.io/coursepackR/
 template:
   bootstrap: 5
   bootswatch: cosmo
@@ -30,7 +30,7 @@ navbar:
           href: articles/textbook-integration.html
     github:
       icon: fab fa-github fa-lg
-      href: https://github.com/SIM-Lab-SIUE/mccoursepack
+      href: https://github.com/SIM-Lab-SIUE/coursepackR
 
 reference:
   - title: "Setup & Configuration"

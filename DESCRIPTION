@@ -30,7 +30,7 @@ Suggests:
     testthat (>= 3.0.0),
     tibble,
     withr
-Config/Needs/website: github::SIM-Lab-SIUE/mccoursepack
+Config/Needs/website: github::SIM-Lab-SIUE/coursepackR
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 LazyData: true

@@ -64,7 +64,7 @@ Rather than being tied to specific courses, **this is a template you customize f
 
 This is a **generalized template release** extracted from a successful implementation:
 
-- ✅ **De-coupled from specific courses** - Renamed from "mccoursepack" to generic framework
+- ✅ **De-coupled from specific courses** - Renamed from "mccoursepack" to "coursepackR"
 - ✅ **Instructor-focused documentation** - Guides for customization and adaptation
 - ✅ **Template structure** - Ready-to-fill placeholder course directories
 - ✅ **Configuration system** - Easy customization without code changes
