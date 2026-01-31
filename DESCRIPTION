@@ -23,11 +23,15 @@ Imports:
     rstudioapi, 
     tinytex
 Suggests: 
+    knitr,
+    pkgdown,
     remotes,
+    rmarkdown,
     testthat (>= 3.0.0),
     tibble,
     withr
 Config/Needs/website: github::SIM-Lab-SIUE/mccoursepack
 Config/testthat/edition: 3
+VignetteBuilder: knitr
 LazyData: true
 LazyDataCompression: xz

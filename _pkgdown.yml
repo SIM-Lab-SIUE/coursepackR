@@ -1,0 +1,68 @@
+url: https://sim-lab-siue.github.io/mccoursepack/
+template:
+  bootstrap: 5
+  bootswatch: cosmo
+  bslib:
+    primary: "#0054a6"
+
+home:
+  title: coursepackR - Build R-Based Course Packages
+  description: >
+    A flexible template for social science instructors to create R-based 
+    course packages with integrated OER textbooks and weekly learning materials.
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [search, github]
+  components:
+    reference:
+      text: Function Reference
+      href: reference/index.html
+    articles:
+      text: Getting Started
+      menu:
+        - text: Installation & Setup
+          href: articles/installation.html
+        - text: Building Your Course
+          href: articles/building-course.html
+        - text: Textbook Integration
+          href: articles/textbook-integration.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/SIM-Lab-SIUE/mccoursepack
+
+reference:
+  - title: "Setup & Configuration"
+    desc: "Functions for setting up student environments"
+    contents:
+      - mccourse_setup
+      - mccourse_self_test
+      - mccourse_update
+      - check_r_min
+      - check_rstudio
+      - check_quarto
+      - check_git
+      - check_course_tree
+
+  - title: "Course Content Access"
+    desc: "Functions for downloading and opening course materials"
+    contents:
+      - download_week
+      - open_week
+      - download_journal
+      - final_project
+      
+  - title: "Course Management"
+    desc: "Functions for instructors to manage course structure"
+    contents:
+      - list_courses
+      - list_weeks
+
+articles:
+- title: Getting Started
+  navbar: ~
+  contents:
+  - installation
+  - building-course
+  - textbook-integration
