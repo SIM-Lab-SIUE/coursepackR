@@ -1,0 +1,214 @@
+---
+title: "Week 9: From Vibes to Variables"
+subtitle: "Operationalizing Your Research Concepts"
+author: "[Student Name]"
+date: last-modified
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: false
+---
+
+## 📖 This Week's Reading
+
+**Textbook**: Chapter 8 - From Vibes to Variables
+
+**Key Concepts**:
+- Operationalization: making abstract concepts measurable
+- Levels of measurement (nominal, ordinal, interval, ratio)
+- Validity: are you measuring what you think you're measuring?
+- Reliability: would different coders reach the same conclusion?
+
+## 🎯 Learning Objectives
+
+By the end of this week, you will:
+
+- Transform qualitative observations ("vibes") into quantitative variables
+- Choose appropriate levels of measurement for your research question
+- Identify potential threats to validity and reliability
+- Draft operational definitions for your project variables
+
+## 📝 Assignment: Operationalizing Your Variables
+
+This week's assignment directly advances your semester project. You'll define HOW to measure the concepts in your research question.
+
+### Part 1: Reviewing Your Research Question
+
+**From your Project Brief (Week 7)**, restate your research question:
+
+[Your research question here]
+
+**Key concepts** (the abstract ideas you need to measure):
+
+1. [Concept 1]
+2. [Concept 2]
+3. [Concept 3 - if applicable]
+
+### Part 2: Operationalizing Each Variable
+
+For EACH concept above, complete the following template:
+
+---
+
+#### Variable 1: [Name]
+
+**Conceptual Definition** (What does this mean in everyday language?):
+
+[Your definition here]
+
+**Operational Definition** (How will you measure it? Be SPECIFIC):
+
+[Your definition here]
+
+Example:
+- ❌ Bad: "Toxicity is mean behavior"
+- ✅ Good: "Toxicity is operationalized as the presence of profanity, personal attacks, hate speech, or harassment in chat messages, coded as binary (0 = absent, 1 = present)"
+
+**Level of Measurement**:
+
+- [ ] Nominal (categories with no order, e.g., game genre)
+- [ ] Ordinal (categories with order, e.g., low/medium/high engagement)
+- [ ] Interval (numeric with meaningful distances but no true zero, e.g., Likert scales)
+- [ ] Ratio (numeric with true zero, e.g., number of messages)
+
+[Explain your choice]
+
+**Example Values**:
+
+Provide 3 examples of how real data would be coded:
+
+1. Example 1: [Specific case] → Coded as [value]
+2. Example 2: [Specific case] → Coded as [value]
+3. Example 3: [Specific case] → Coded as [value]
+
+**Potential Validity Threats** (Is this measure capturing what you intend?):
+
+[Your answer here - what could go wrong?]
+
+**Potential Reliability Threats** (Would two coders agree?):
+
+[Your answer here - what's ambiguous?]
+
+---
+
+#### Variable 2: [Name]
+
+[Repeat the template above]
+
+---
+
+#### Variable 3: [Name] (if applicable)
+
+[Repeat the template above]
+
+---
+
+### Part 3: Testing Your Operationalization
+
+Now test your operational definitions by hand-coding 5 example units.
+
+**Units of Analysis** (What are you coding?):
+- [ ] Individual messages/posts
+- [ ] Entire streams/videos
+- [ ] User profiles
+- [ ] Other: ___________
+
+**Your 5 Test Cases**:
+
+Create a simple table showing how you'd code real examples:
+
+| Unit ID | Description | Variable 1 | Variable 2 | Variable 3 | Notes |
+|---------|-------------|-----------|-----------|-----------|-------|
+| 1 | [Brief description] | [Value] | [Value] | [Value] | [Any coding challenges] |
+| 2 | [Brief description] | [Value] | [Value] | [Value] | [Any coding challenges] |
+| 3 | [Brief description] | [Value] | [Value] | [Value] | [Any coding challenges] |
+| 4 | [Brief description] | [Value] | [Value] | [Value] | [Any coding challenges] |
+| 5 | [Brief description] | [Value] | [Value] | [Value] | [Any coding challenges] |
+
+**Reflection on Test Coding** (200-300 words):
+
+- What was harder to code than you expected?
+- Did you need to revise your operational definitions after trying them out?
+- What edge cases did you encounter?
+- How would you train another coder to use your definitions?
+
+[Your reflection here]
+
+### Part 4: Variable Types in R
+
+In R, variables have specific data types. Indicate how each of your variables will be stored:
+
+| Your Variable | R Data Type | Why? |
+|--------------|-------------|------|
+| [Variable 1] | `numeric` / `character` / `factor` / `logical` | [Explanation] |
+| [Variable 2] | `numeric` / `character` / `factor` / `logical` | [Explanation] |
+| [Variable 3] | `numeric` / `character` / `factor` / `logical` | [Explanation] |
+
+**Example Explanation**:
+> "Chat toxicity will be stored as `logical` (TRUE/FALSE) because it's a binary presence/absence variable. This allows easy counting with `sum()` in R."
+
+## 🧪 Hands-On: Simulating Your Variables
+
+Create a small simulated dataset in R that demonstrates your variable structure:
+
+```{r}
+#| label: simulate-data
+
+library(tidyverse)
+
+# Simulate data for your project
+my_project_data <- tibble(
+  unit_id = 1:20,  # 20 example units
+  
+  # Replace these with YOUR variables
+  variable_1 = sample(c("A", "B", "C"), 20, replace = TRUE),  # Example nominal
+  variable_2 = sample(1:10, 20, replace = TRUE),              # Example ratio
+  variable_3 = sample(c(TRUE, FALSE), 20, replace = TRUE)     # Example binary
+)
+
+# Display
+my_project_data
+```
+
+**Describe your simulated data**:
+
+- How many units (rows)?
+- How many variables (columns)?
+- Does this structure match your real project needs?
+
+[Your description here]
+
+## 💭 Discussion Questions
+
+1. Chapter 8 emphasizes that operationalization is both **science** (systematic) and **art** (interpretive). Where did you experience tension between precision and practicality in defining your variables?
+
+2. The textbook discusses "vibes" as qualitative intuition. What "vibe" sparked your research question, and how does quantifying it change (or enhance) your understanding?
+
+3. If you were hiring a second coder to help with your project, what would be the hardest variable to train them on? Why?
+
+## ✅ Submission Checklist
+
+- [ ] All three variables operationalized with complete templates
+- [ ] Test coding of 5 units included with reflection
+- [ ] R simulation code executes without errors
+- [ ] All questions answered thoroughly
+- [ ] Document renders to HTML successfully
+- [ ] File naming: `Week09_[YourLastName].qmd` and `.html`
+
+## 📚 Resources
+
+- **Textbook**: Chapter 8 (full_textbook.md, lines 2842-3314)
+- **Next Week**: Chapter 9 (The Rulebook) - you'll formalize these operational definitions into a codebook
+- **Example Codebooks**: See inst/examples/ in your course package (if provided by instructor)
+
+## 🎯 Looking Ahead
+
+Next week, you'll use these operational definitions to build a **codebook**—the complete rulebook for coding your data. Think of this week's assignment as your rough draft. If you discover problems later, you can revise. Research is iterative!
+
+---
+
+**Estimated Time**: 3-4 hours  
+**Due**: [Instructor specifies]  
+**Points**: [Instructor specifies]  
+**Milestone**: This is a KEY deliverable for your final project

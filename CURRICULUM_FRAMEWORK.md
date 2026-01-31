@@ -40,23 +40,58 @@ This satisfies "creation of original OER" because the weekly implementation, R s
 
 ---
 
-## 📚 Book Structure (To Be Completed)
+## 📚 Book Structure: "From Vibes to Variables"
 
-**Please provide the following information about the book:**
+**Complete Chapter Listing**
 
-1. **Total chapters/sections**: How many?
-2. **Chapter titles and topics**: List the main learning topics
-3. **Intended progression**: Is it linear, modular, or thematic?
-4. **Target page count per chapter**: For pacing guidance
-5. **Key learning outcomes per chapter**: What should students know after each?
+The textbook contains **14 chapters** organized in a linear, project-based progression where students build a complete research study from initial observation to publication-ready report.
 
-### Example Structure (Update as needed):
+### Chapter Overview
 
-| Chapter | Title | Key Topics | Target Week(s) |
-|---------|-------|-----------|-----------------|
-| 1 | [Ch 1 Title] | [Topics] | Week 1-2 |
-| 2 | [Ch 2 Title] | [Topics] | Week 3-4 |
-| ... | ... | ... | ... |
+| Week | Chapter | Title | Core Concepts | Research Phase |
+|------|---------|-------|---------------|----------------|
+| 1 | Ch 1 | The Science of Storytelling | Narrative framework, hypothesis testing, anecdote vs. data | Foundation |
+| 2 | Ch 2 | The Publishing Engine | R, RStudio, Quarto, Git, reproducibility | Tools Setup |
+| 3 | Case | Webcam Use & Viewer Engagement | Example study walkthrough | Model Study |
+| 4 | Ch 3 | The Scientific Approach | Ethics, epistemology, scientific method | Methodology |
+| 5 | Ch 4 | Intelligence Gathering | Literature review, archival research | Background Research |
+| 6 | Ch 5 | Theory as a Lens | Theoretical frameworks, uses & gratifications | Theory Selection |
+| 7 | Ch 6 | The Project Brief | Research prospectus, project planning | Project Design |
+| 8 | Ch 7 | Structured Listening | Ethnographic observation, community norms | Data Collection Planning |
+| 9 | Ch 8 | From Vibes to Variables | Operationalization, variable definition | Measurement |
+| 10 | Ch 9 | The Rulebook | Codebook construction, reliability | Coding System |
+| 11 | Ch 10 | The Sample | Sampling strategies, pilot testing | Data Collection |
+| 12 | Ch 11 | Wrangling the Data | Data cleaning, tidyverse, SQL | Data Preparation |
+| 13 | Ch 12 | Visualizing the Narrative | Descriptive statistics, ggplot2 | Exploratory Analysis |
+| 14 | Ch 13 | Making the Call | Inferential statistics, hypothesis testing | Statistical Testing |
+| 15 | Ch 14 | The One-Click Report | Quarto publishing, portfolio creation | Dissemination |
+
+### Pedagogical Progression
+
+**Weeks 1-3: Foundation & Orientation**
+- Students understand research as structured storytelling
+- Set up reproducible workflow tools (R/RStudio/Quarto/Git)
+- Analyze a complete example study to see the end goal
+
+**Weeks 4-7: Conceptual Framework**
+- Learn scientific method and research ethics
+- Conduct literature review and theoretical framing
+- Draft project prospectus (what they'll study all semester)
+
+**Weeks 8-11: Data Collection & Coding**
+- Operationalize "vibes" into measurable variables
+- Build codebook with reliability checks
+- Collect sample data through content analysis
+
+**Weeks 12-14: Analysis & Interpretation**
+- Clean and wrangle data into tidy format
+- Create descriptive visualizations
+- Run inferential tests to answer research questions
+
+**Week 15: Publication**
+- Assemble one-click Quarto report
+- Publish portfolio to GitHub Pages
+- Present findings to class
 
 ---
 

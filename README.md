@@ -14,12 +14,36 @@
 
 ## � Knowledge Framework: *From Vibes to Variables*
 
-This template is designed to implement **"From Vibes to Variables: A Field Guide to Open Media Science"** as the core curriculum for novice social scientists. See [CURRICULUM_FRAMEWORK.md](CURRICULUM_FRAMEWORK.md) for:
+This package implements **"From Vibes to Variables: A Field Guide to Open Media Science"** (included as `full_textbook.md`) — an original OER textbook teaching novice social scientists to:
 
-- Complete book chapter mapping to course weeks
-- OER implementation guidance
-- Learning progression scaffolds
-- Instructor customization examples
+- Transform qualitative observations ("vibes") into quantitative variables
+- Conduct reproducible content analysis research
+- Use R, RStudio, Quarto, and Git for complete research workflows
+- Combine journalism's narrative instincts with scientific rigor
+
+### Complete Textbook Structure (15 Weeks)
+
+The book contains **14 chapters** organized as a semester-long project where students build a complete research study:
+
+| Week | Chapter | Focus |
+|------|---------|-------|
+| 1 | Ch 1: Science of Storytelling | Research as narrative |
+| 2 | Ch 2: Publishing Engine | R/RStudio/Quarto/Git setup |
+| 3 | Case: Webcam Analysis | Complete study example |
+| 4 | Ch 3: Scientific Approach | Ethics & methodology |
+| 5 | Ch 4: Intelligence Gathering | Literature review |
+| 6 | Ch 5: Theory as Lens | Theoretical frameworks |
+| 7 | Ch 6: Project Brief | Research prospectus |
+| 8 | Ch 7: Structured Listening | Ethnographic observation |
+| 9 | Ch 8: Vibes to Variables | Operationalization (core!) |
+| 10 | Ch 9: The Rulebook | Codebook construction |
+| 11 | Ch 10: The Sample | Data collection |
+| 12 | Ch 11: Wrangling Data | tidyverse & data cleaning |
+| 13 | Ch 12: Visualizing Narrative | Descriptive stats/ggplot2 |
+| 14 | Ch 13: Making the Call | Inferential statistics |
+| 15 | Ch 14: One-Click Report | Quarto publication |
+
+See [CURRICULUM_FRAMEWORK.md](CURRICULUM_FRAMEWORK.md) for detailed chapter-to-week planning and [inst/textbook/README.md](inst/textbook/README.md) for textbook overview.
 
 ---
 
