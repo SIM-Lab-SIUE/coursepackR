@@ -24,7 +24,7 @@ A character vector of course names (e.g., "mc451", "mc501").
 
 ``` r
 list_courses()
-#> character(0)
+#> [1] "template_course"
 list_courses()
-#> character(0)
+#> [1] "template_course"
 ```

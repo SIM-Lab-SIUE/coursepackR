@@ -20,6 +20,7 @@ mccourse_self_test()
 ``` r
 # \donttest{
 mccourse_self_test()
-#> Error: No installed templates found under inst/courses in this package.
+#> Found courses: template_course
+#>   - template_course weeks: week_01, week_02, week_09
 # }
 ```

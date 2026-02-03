@@ -34,12 +34,12 @@ A character vector like "week_01", "week_02", ...
 
 ``` r
 list_weeks()
-#> character(0)
+#> [1] "week_01" "week_02" "week_09"
 list_weeks("mc451")
 #> character(0)
 # Aggregate across courses (safe in examples):
 list_weeks()
-#> character(0)
+#> [1] "week_01" "week_02" "week_09"
 # For a specific course (if installed):
 # \donttest{
 list_weeks("mc451")

@@ -81,12 +81,12 @@ If <code>course</code> is <code>NULL</code>, aggregates across courses and retur
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_weeks</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "week_01" "week_02" "week_09"</span>
 <span class="r-in"><span><span class="fu">list_weeks</span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
 <span class="r-in"><span><span class="co"># Aggregate across courses (safe in examples):</span></span></span>
 <span class="r-in"><span><span class="fu">list_weeks</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "week_01" "week_02" "week_09"</span>
 <span class="r-in"><span><span class="co"># For a specific course (if installed):</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">list_weeks</span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span></span>
