@@ -1,5 +1,5 @@
 test_that("download_week creates a week_XX folder and copies files when present", {
-  base <- system.file("courses", package = "mccoursepack")
+  base <- system.file("courses", package = "coursepackR")
   skip_if(identical(base, ""), "No courses installed with the package")
 
   courses <- list_courses()

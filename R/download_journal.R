@@ -7,10 +7,10 @@
 #'
 #' @param course Character scalar. e.g., "mc451" or "mc501".
 #' @param dest   Destination directory (default "." = current working dir).
-#' @param package Package name that contains the scaffolds (default "mccoursepack").
+#' @param package Package name that contains the scaffolds (default "coursepackR").
 #' @return (invisibly) a character vector of written file paths.
 #' @export
-download_journal <- function(course, dest = ".", package = "mccoursepack") {
+download_journal <- function(course, dest = ".", package = "coursepackR") {
   # ---- checks ----
   if (missing(course) || !is.character(course) || length(course) != 1L || !nzchar(course)) {
     stop('`course` must be a non-empty character scalar like "mc451".', call. = FALSE)

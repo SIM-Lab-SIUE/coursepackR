@@ -21,7 +21,7 @@
 #
 # @return Character. Full path to courses directory, or "" if not found
 # @keywords internal
-.mcp_courses_root <- function() system.file("courses", package = "mccoursepack")
+.mcp_courses_root <- function() system.file("courses", package = "coursepackR")
 
 # ------------------------------------------------------------------------------
 # Get path to a specific course's weeks directory
