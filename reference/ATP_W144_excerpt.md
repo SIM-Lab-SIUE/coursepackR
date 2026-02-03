@@ -3,12 +3,6 @@
 A teaching excerpt from Pew Research Center's American Trends Panel Wave
 144 (March 2024).
 
-## Usage
-
-``` r
-ATP_W144_excerpt
-```
-
 ## Format
 
 A data frame with 626 rows and several variables. See codebook for
