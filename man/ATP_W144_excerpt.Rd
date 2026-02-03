@@ -20,3 +20,4 @@ A teaching excerpt from Pew Research Center's American Trends Panel Wave 144 (Ma
 Pew Research Center bears no responsibility for the analyses or interpretations of the data presented here. The opinions expressed herein, including any implications for policy, are those of the author and not of Pew Research Center.
 }
 \keyword{datasets}
+\keyword{internal}
