@@ -36,7 +36,7 @@
 	# Fallback: check via the {quarto} R package
 	if (!requireNamespace("quarto", quietly = TRUE)) return(FALSE)
 	p <- .mcp_safe(quarto::quarto_path(), "")
-	nzchar(p)
+	isTRUE(nzchar(p))
 }
 
 # ------------------------------------------------------------------------------
