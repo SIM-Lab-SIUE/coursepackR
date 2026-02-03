@@ -16,7 +16,6 @@ Depends:
     R (>= 4.0)
 Imports: 
     cli, 
-    fs, 
     pkgbuild, 
     quarto, 
     rlang, 

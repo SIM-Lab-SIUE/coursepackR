@@ -10,9 +10,6 @@ A data frame with 626 rows and several variables. See codebook for details.
 \source{
 "American Trends Panel: Wave 144." Pew Research Center, Washington, D.C. (March 18-24, 2024).
 }
-\usage{
-ATP_W144_excerpt
-}
 \description{
 A teaching excerpt from Pew Research Center's American Trends Panel Wave 144 (March 2024).
 }

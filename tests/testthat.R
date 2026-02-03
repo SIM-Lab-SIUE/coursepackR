@@ -1,4 +1,4 @@
 library(testthat)
-library(mccoursepack)
+library(coursepackR)
 
-test_check('mccoursepack')
+test_check('coursepackR')
