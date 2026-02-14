@@ -1,0 +1,39 @@
+Package: coursepackR
+Type: Package
+Title: Course Tools for From Vibes to Variables
+Version: 1.0.0
+Authors@R: person("Alex P.", "Leith", email = "aleith@siue.edu", role = c("aut", "cre"))
+Description: Student-facing R package for MC-451 Research Methods at SIUE.
+    Provides helper functions to download weekly course materials, manage
+    research projects, access the bundled music dataset, and integrate
+    RStudio with Obsidian-based workflows. Includes the unified music
+    dataset and textbook chapters from "From Vibes to Variables: A Field
+    Guide to Open Media Science."
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends:
+    R (>= 4.1)
+Imports:
+    cli,
+    rlang,
+    utils
+Suggests:
+    knitr,
+    pkgbuild,
+    pkgdown,
+    quarto,
+    remotes,
+    rmarkdown,
+    rstudioapi,
+    testthat (>= 3.0.0),
+    tinytex,
+    withr
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+LazyData: true
+LazyDataCompression: xz
+URL: https://sim-lab-siue.github.io/coursepackR/,
+    https://github.com/SIM-Lab-SIUE/coursepackR
+BugReports: https://github.com/SIM-Lab-SIUE/coursepackR/issues

@@ -1,0 +1,21 @@
+---
+title: "Week 10: The Rulebook (Codebook)"
+author: "[Student Name]"
+date: "2026-02-14"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: false
+    code-tools: true
+---
+
+## Assignment
+
+Complete the activities described in Chapter 10 of the textbook.
+
+## Deliverables
+
+- [ ] Deliverable 1: [Description]
+- [ ] Deliverable 2: [Description]
+- [ ] Deliverable 3: [Description]

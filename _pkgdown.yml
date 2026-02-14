@@ -1,0 +1,66 @@
+url: https://sim-lab-siue.github.io/coursepackR/
+template:
+  bootstrap: 5
+  bootswatch: cosmo
+  bslib:
+    primary: "#2c5aa0"
+
+home:
+  title: coursepackR - Course Tools for From Vibes to Variables
+  description: >
+    Student-facing R package for MC-451 Research Methods at SIUE.
+    Download weekly materials, access the music dataset, and manage
+    your research project.
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [search, github]
+  components:
+    reference:
+      text: Function Reference
+      href: reference/index.html
+    articles:
+      text: Guides
+      menu:
+        - text: Installation & Setup
+          href: articles/installation.html
+        - text: Getting Started
+          href: articles/getting-started.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/SIM-Lab-SIUE/coursepackR
+
+reference:
+  - title: "Setup & Diagnostics"
+    desc: "Configure your environment and verify everything works"
+    contents:
+      - mccourse_setup
+      - mccourse_check
+      - mccourse_update
+
+  - title: "Course Materials"
+    desc: "Download and access weekly templates and scaffolds"
+    contents:
+      - download_week
+      - download_journal
+      - open_week
+      - final_project
+
+  - title: "Course Listings"
+    desc: "See what courses and weeks are available"
+    contents:
+      - list_courses
+      - list_weeks
+
+  - title: "Data"
+    desc: "Bundled datasets"
+    contents:
+      - unified_music
+
+articles:
+  - title: Guides
+    navbar: ~
+    contents:
+      - installation
+      - getting-started

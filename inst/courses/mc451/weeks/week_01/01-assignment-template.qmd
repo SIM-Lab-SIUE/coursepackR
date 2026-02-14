@@ -1,0 +1,92 @@
+---
+title: "Week 1 Assignment Template"
+subtitle: "Getting Started with R and RStudio"
+author: "[Your Name]"
+date: last-modified
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: false
+    code-tools: true
+---
+
+## Overview
+
+Welcome to the course! This week you'll:
+
+- Set up your RStudio environment
+- Learn basic R syntax
+- Read and explore your first dataset
+- Create your first visualization
+
+## Setup Instructions
+
+Before starting this assignment, complete `mccourse_setup()`:
+
+```r
+# Run this once
+mccourse_setup()
+
+# Then verify everything works
+mccourse_self_test()
+```
+
+## Part 1: Load and Explore Data
+
+Load the starter data:
+
+```r
+# Load required packages
+library(tidyverse)
+
+# Read the data (adjust path based on where you downloaded it)
+data <- read_csv("data.csv")
+
+# View the structure
+head(data)
+str(data)
+summary(data)
+```
+
+**Questions to explore:**
+1. How many rows and columns?
+2. What are the data types?
+3. Any missing values?
+
+## Part 2: Basic Analysis
+
+Calculate summary statistics:
+
+```r
+# Your code here
+mean_value <- mean(data$column_name)
+```
+
+## Part 3: Visualization
+
+Create a simple plot:
+
+```r
+ggplot(data, aes(x = variable1, y = variable2)) +
+  geom_point() +
+  theme_minimal()
+```
+
+## Submission
+
+Save this file as `.qmd` and **render to HTML** (click "Render" in RStudio).
+
+Upload the HTML file to [submission platform].
+
+**Due**: [DATE]
+
+---
+
+## Getting Help
+
+- **RStudio stuck?** Run `mccourse_self_test()`
+- **Package issues?** Run `mccourse_update()`
+- **Specific questions?** See "Troubleshooting" on the course website
+
+Good luck! 📊

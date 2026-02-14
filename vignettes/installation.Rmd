@@ -1,0 +1,52 @@
+---
+title: "Installation & Setup"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Installation & Setup}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Installing coursepackR
+
+Install from GitHub:
+
+```r
+# Install remotes if needed
+install.packages("remotes")
+
+# Install coursepackR
+remotes::install_github("SIM-Lab-SIUE/coursepackR")
+```
+
+## First-Time Setup
+
+After installing, run the setup function to configure your environment:
+```r
+library(coursepackR)
+mccourse_setup()
+```
+
+This will:
+
+- Check for Quarto CLI and guide you to install it if missing
+- Install TinyTeX for PDF rendering
+- Install core R packages needed for the course
+
+## Verify Your Environment
+
+Run the diagnostic check:
+
+```r
+mccourse_check()
+```
+
+This verifies: R version, RStudio, Quarto, Git, and course templates.
+
+## Updating
+
+Check for package updates:
+
+```r
+mccourse_update()
+```
