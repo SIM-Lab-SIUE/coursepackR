@@ -1,0 +1,61 @@
+# Getting Started
+
+## Weekly Workflow
+
+Each week, download the assignment template and work through it:
+
+``` r
+library(coursepackR)
+
+# See what's available
+list_weeks("mc451")
+
+# Download this week's materials
+download_week("mc451", 1)
+
+# Open the folder
+open_week(1)
+```
+
+## The Music Dataset
+
+The package includes a curated dataset of 1,792 songs with Billboard
+chart data, Spotify audio features, and metadata:
+
+``` r
+data(unified_music)
+head(unified_music)
+```
+
+Key variables include `Max_Rank`, `danceability`, `energy`, `valence`,
+`tempo`, and `playlist_genre`.
+
+## Journal Scaffold
+
+Download the reflective journal template:
+
+``` r
+download_journal("mc451")
+```
+
+## Final Project
+
+When you’re ready to start the final project:
+
+``` r
+final_project("mc451")
+```
+
+This creates a project folder with a Quarto document, bibliography file,
+data directory, and RStudio project file.
+
+## Reading the Textbook
+
+Chapters are available online at
+<https://sim-lab-siue.github.io/vibes-to-variables/> and also bundled
+with the package for offline access:
+
+``` r
+# Path to a specific chapter
+system.file("textbook", "chapter01.md", package = "coursepackR")
+```

@@ -1,19 +1,11 @@
-# List available week templates
+# List Available Weeks
 
-Lists installed week directories of the form `week01`, `week02`, … If
-you pass a course name that exists under
-`inst/templates/<course>/weekXX`, it lists the weeks for that course. If
-`course` is `NULL` (default), it looks directly under `inst/templates/`.
-
-If `course` is supplied, returns the **directory names** ("week_01",
-"week_02", ...). If `course` is `NULL`, aggregates across courses and
-returns unique week dir names.
+Returns the week identifiers available for a given course, or across all
+courses if no course is specified.
 
 ## Usage
 
 ``` r
-list_weeks(course = NULL)
-
 list_weeks(course = NULL)
 ```
 
@@ -21,28 +13,23 @@ list_weeks(course = NULL)
 
 - course:
 
-  Optional course directory name (e.g., "mc451", "mc501").
+  Character course identifier (e.g., `"mc451"`). If `NULL`, returns the
+  union of weeks across all installed courses.
 
 ## Value
 
-A character vector of available weeks like `"01"`, `"02"`, … (no
-prefix).
-
-A character vector like "week_01", "week_02", ...
+Character vector of week identifiers (e.g., `"week_01"`, `"week_02"`),
+sorted numerically.
 
 ## Examples
 
 ``` r
 list_weeks()
-#> [1] "week_01" "week_02" "week_09"
+#>  [1] "week_01" "week_02" "week_03" "week_04" "week_05" "week_06" "week_07"
+#>  [8] "week_08" "week_09" "week_10" "week_11" "week_12" "week_13" "week_14"
+#> [15] "week_15" "week_16" "week_17"
 list_weeks("mc451")
-#> character(0)
-# Aggregate across courses (safe in examples):
-list_weeks()
-#> [1] "week_01" "week_02" "week_09"
-# For a specific course (if installed):
-# \donttest{
-list_weeks("mc451")
-#> character(0)
-# }
+#>  [1] "week_01" "week_02" "week_03" "week_04" "week_05" "week_06" "week_07"
+#>  [8] "week_08" "week_09" "week_10" "week_11" "week_12" "week_13" "week_14"
+#> [15] "week_15" "week_16" "week_17"
 ```

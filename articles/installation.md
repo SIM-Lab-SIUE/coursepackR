@@ -1,14 +1,12 @@
 # Installation & Setup
 
-## Installation
+## Installing coursepackR
 
-Install coursepackR directly from GitHub:
+Install from GitHub:
 
 ``` r
 # Install remotes if needed
-if (!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages("remotes")
-}
+install.packages("remotes")
 
 # Install coursepackR
 remotes::install_github("SIM-Lab-SIUE/coursepackR")
@@ -16,7 +14,7 @@ remotes::install_github("SIM-Lab-SIUE/coursepackR")
 
 ## First-Time Setup
 
-After installation, load the package and run the setup function:
+After installing, run the setup function to configure your environment:
 
 ``` r
 library(coursepackR)
@@ -25,41 +23,24 @@ mccourse_setup()
 
 This will:
 
-- Check your R and RStudio versions
-- Install and configure Quarto CLI
+- Check for Quarto CLI and guide you to install it if missing
 - Install TinyTeX for PDF rendering
-- Verify Git installation
-- Set up your course directory structure
+- Install core R packages needed for the course
 
-## Self-Test
+## Verify Your Environment
 
-Verify your environment is ready:
+Run the diagnostic check:
 
 ``` r
-mccourse_self_test()
+mccourse_check()
 ```
 
-This checks:
+This verifies: R version, RStudio, Quarto, Git, and course templates.
 
-✓ R version (≥ 4.0)  
-✓ RStudio version  
-✓ Quarto CLI  
-✓ Git installation  
-✓ Course directory structure
+## Updating
 
-## Package Updates
-
-To update to the latest version:
+Check for package updates:
 
 ``` r
 mccourse_update()
 ```
-
-## Next Steps
-
-- [Building Your
-  Course](https://sim-lab-siue.github.io/coursepackR/articles/building-course.md) -
-  Create your course structure
-- [Textbook
-  Integration](https://sim-lab-siue.github.io/coursepackR/articles/textbook-integration.md) -
-  Integrate the OER textbook

@@ -1,8 +1,8 @@
-# One-time setup for mccoursepack
+# One-Time Environment Setup
 
-Installs Quarto CLI (via the quarto R package) and TinyTeX if missing,
-then ensures a small set of core CRAN packages are available. On
-Windows, warns if Rtools is not installed.
+Installs Quarto CLI support, TinyTeX for PDF rendering, and core R
+packages needed for the course. Safe to run multiple times; only
+installs missing components.
 
 ## Usage
 
@@ -10,6 +10,14 @@ Windows, warns if Rtools is not installed.
 mccourse_setup()
 ```
 
-## Details
+## Value
 
-Safe to re-run; it only installs what's missing.
+Invisibly, `TRUE`.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+mccourse_setup()
+} # }
+```

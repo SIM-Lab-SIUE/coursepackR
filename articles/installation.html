@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">coursepackR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">02.00.00</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,11 +31,10 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Function Reference</a></li>
 <li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-getting-started" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Getting Started</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-getting-started">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-guides" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Guides</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-guides">
 <li><a class="dropdown-item" href="../articles/installation.html">Installation &amp; Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/building-course.html">Building Your Course</a></li>
-    <li><a class="dropdown-item" href="../articles/textbook-integration.html">Textbook Integration</a></li>
+    <li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started</a></li>
   </ul>
 </li>
       </ul>
@@ -60,21 +59,19 @@
       <h1>Installation &amp; Setup</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/SIM-Lab-SIUE/coursepackR/blob/main/vignettes/installation.Rmd" class="external-link"><code>vignettes/installation.Rmd</code></a></small>
       <div class="d-none name"><code>installation.Rmd</code></div>
     </div>
 
     
     
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="installing-coursepackr">Installing coursepackR<a class="anchor" aria-label="anchor" href="#installing-coursepackr"></a>
 </h2>
-<p>Install coursepackR directly from GitHub:</p>
+<p>Install from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install remotes if needed</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Install coursepackR</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"SIM-Lab-SIUE/coursepackR"</span><span class="op">)</span></span></code></pre></div>
@@ -82,50 +79,33 @@
 <div class="section level2">
 <h2 id="first-time-setup">First-Time Setup<a class="anchor" aria-label="anchor" href="#first-time-setup"></a>
 </h2>
-<p>After installation, load the package and run the setup function:</p>
+<p>After installing, run the setup function to configure your
+environment:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">coursepackR</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sim-lab-siue.github.io/coursepackR/">coursepackR</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/mccourse_setup.html">mccourse_setup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>This will:</p>
 <ul>
-<li>Check your R and RStudio versions</li>
-<li>Install and configure Quarto CLI</li>
+<li>Check for Quarto CLI and guide you to install it if missing</li>
 <li>Install TinyTeX for PDF rendering</li>
-<li>Verify Git installation</li>
-<li>Set up your course directory structure</li>
+<li>Install core R packages needed for the course</li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="self-test">Self-Test<a class="anchor" aria-label="anchor" href="#self-test"></a>
+<h2 id="verify-your-environment">Verify Your Environment<a class="anchor" aria-label="anchor" href="#verify-your-environment"></a>
 </h2>
-<p>Verify your environment is ready:</p>
+<p>Run the diagnostic check:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/mccourse_self_test.html">mccourse_self_test</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>This checks:</p>
-<p>✓ R version (≥ 4.0)<br>
-✓ RStudio version<br>
-✓ Quarto CLI<br>
-✓ Git installation<br>
-✓ Course directory structure</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/mccourse_check.html">mccourse_check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>This verifies: R version, RStudio, Quarto, Git, and course
+templates.</p>
 </div>
 <div class="section level2">
-<h2 id="package-updates">Package Updates<a class="anchor" aria-label="anchor" href="#package-updates"></a>
+<h2 id="updating">Updating<a class="anchor" aria-label="anchor" href="#updating"></a>
 </h2>
-<p>To update to the latest version:</p>
+<p>Check for package updates:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/mccourse_update.html">mccourse_update</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="next-steps">Next Steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
-</h2>
-<ul>
-<li>
-<a href="building-course.html">Building Your Course</a> - Create
-your course structure</li>
-<li>
-<a href="textbook-integration.html">Textbook Integration</a> -
-Integrate the OER textbook</li>
-</ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -134,7 +114,7 @@ Integrate the OER textbook</li>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by AP Leith.</p>
+  <p>Developed by Alex P. Leith.</p>
 </div>
 
 <div class="pkgdown-footer-right">

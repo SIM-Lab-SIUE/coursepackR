@@ -2,16 +2,20 @@
 
 ## Authors
 
-- **AP Leith**. Author, maintainer.
+- **Alex P. Leith**. Author, maintainer.
 
 ## Citation
 
-Leith A (2026). *coursepackR: Instructor Template for Building R-Based
-Course Packages*. R package version 02.00.00.
+Source:
+[`DESCRIPTION`](https://github.com/SIM-Lab-SIUE/coursepackR/blob/main/DESCRIPTION)
+
+Leith A (2026). *coursepackR: Course Tools for From Vibes to Variables*.
+R package version 1.0.0, <https://sim-lab-siue.github.io/coursepackR/>.
 
     @Manual{,
-      title = {coursepackR: Instructor Template for Building R-Based Course Packages},
-      author = {AP Leith},
+      title = {coursepackR: Course Tools for From Vibes to Variables},
+      author = {Alex P. Leith},
       year = {2026},
-      note = {R package version 02.00.00},
+      note = {R package version 1.0.0},
+      url = {https://sim-lab-siue.github.io/coursepackR/},
     }

@@ -1,44 +1,41 @@
 # Package index
 
-## Setup & Configuration
+## Setup & Diagnostics
 
-Functions for setting up student environments
+Configure your environment and verify everything works
 
 - [`mccourse_setup()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_setup.md)
-  : One-time setup for mccoursepack
-- [`mccourse_self_test()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_self_test.md)
-  : Quick environment self-test
+  : One-Time Environment Setup
+- [`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)
+  : Check Course Environment
 - [`mccourse_update()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_update.md)
-  : Update mccoursepack to the latest version (CRAN or GitHub)
-- [`check_r_min()`](https://sim-lab-siue.github.io/coursepackR/reference/check_r_min.md)
-  : Check that R meets a minimum version
-- [`check_rstudio()`](https://sim-lab-siue.github.io/coursepackR/reference/check_rstudio.md)
-  : Check RStudio availability
-- [`check_quarto()`](https://sim-lab-siue.github.io/coursepackR/reference/check_quarto.md)
-  : Check Quarto CLI
-- [`check_git()`](https://sim-lab-siue.github.io/coursepackR/reference/check_git.md)
-  : Check Git CLI
-- [`check_course_tree()`](https://sim-lab-siue.github.io/coursepackR/reference/check_course_tree.md)
-  : Validate a course/week bundle is installed in the package
+  : Check for Package Updates
 
-## Course Content Access
+## Course Materials
 
-Functions for downloading and opening course materials
+Download and access weekly templates and scaffolds
 
 - [`download_week()`](https://sim-lab-siue.github.io/coursepackR/reference/download_week.md)
-  : Download a week's template into a destination directory
-- [`open_week()`](https://sim-lab-siue.github.io/coursepackR/reference/open_week.md)
-  : Open a downloaded week's folder in your system file browser
+  : Download Weekly Course Materials
 - [`download_journal()`](https://sim-lab-siue.github.io/coursepackR/reference/download_journal.md)
-  : Download a course's journal scaffold to a local folder
+  : Download Journal Scaffold
+- [`open_week()`](https://sim-lab-siue.github.io/coursepackR/reference/open_week.md)
+  : Open a Downloaded Week Folder
 - [`final_project()`](https://sim-lab-siue.github.io/coursepackR/reference/final_project.md)
-  : Create a final project folder structure for a given class
+  : Create Final Project Folder
 
-## Course Management
+## Course Listings
 
-Functions for instructors to manage course structure
+See what courses and weeks are available
 
 - [`list_courses()`](https://sim-lab-siue.github.io/coursepackR/reference/list_courses.md)
-  : List available courses (if present) or week templates
+  : List Available Courses
 - [`list_weeks()`](https://sim-lab-siue.github.io/coursepackR/reference/list_weeks.md)
-  : List available week templates
+  : List Available Weeks
+
+## Data
+
+Bundled datasets
+
+- [`unified_music`](https://sim-lab-siue.github.io/coursepackR/reference/unified_music.md)
+  : Unified Music Dataset

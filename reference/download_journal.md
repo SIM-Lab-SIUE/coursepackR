@@ -1,32 +1,31 @@
-# Download a course's journal scaffold to a local folder
+# Download Journal Scaffold
 
-Copies the journal scaffold for `course` into `dest`, preserving
-subfolders. Supports both package layouts:
-
-- inst/courses//journal/
-
-- inst/extdata/courses//journal/
+Copies the journal template directory for a course to a local folder.
 
 ## Usage
 
 ``` r
-download_journal(course, dest = ".", package = "mccoursepack")
+download_journal(course, dest = ".")
 ```
 
 ## Arguments
 
 - course:
 
-  Character scalar. e.g., "mc451" or "mc501".
+  Character course identifier (e.g., `"mc451"`).
 
 - dest:
 
-  Destination directory (default "." = current working dir).
-
-- package:
-
-  Package name that contains the scaffolds (default "mccoursepack").
+  Character destination directory (default: current directory).
 
 ## Value
 
-(invisibly) a character vector of written file paths.
+Invisibly, a character vector of file paths that were written.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+download_journal("mc451")
+} # }
+```

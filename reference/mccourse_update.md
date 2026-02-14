@@ -1,16 +1,14 @@
-# Update mccoursepack to the latest version (CRAN or GitHub)
+# Check for Package Updates
 
-This helper checks whether a newer version of `mccoursepack` is
-available and, if so, can prompt to update (interactive) or return
-quietly (non-interactive).
+Checks whether a newer version of coursepackR is available on GitHub and
+optionally installs it.
 
 ## Usage
 
 ``` r
 mccourse_update(
   update = c("ask", "always", "never"),
-  source = c("auto", "CRAN", "GitHub"),
-  repo = getOption("mccoursepack.repo", NULL),
+  repo = NULL,
   quiet = FALSE
 )
 ```
@@ -19,33 +17,27 @@ mccourse_update(
 
 - update:
 
-  "ask" (default), "always", or "never"
-
-- source:
-
-  "auto", "CRAN", or "GitHub"
+  Character: `"ask"` (default) prompts interactively, `"always"` updates
+  without asking, `"never"` only checks.
 
 - repo:
 
-  GitHub "owner/repo" string if using GitHub (defaults to
-  `getOption("mccoursepack.repo")`)
+  Character GitHub repository in `"owner/repo"` format. Defaults to
+  `getOption("coursepackR.repo", "SIM-Lab-SIUE/coursepackR")`.
 
 - quiet:
 
-  logical; reduce messages (useful when calling inside other helpers)
+  Logical; if `TRUE`, suppress informational messages.
 
 ## Value
 
-logical indicating whether an update was performed
+Invisibly, `TRUE` if an update was performed, `FALSE` otherwise.
 
-## Details
+## Examples
 
-Configure the source with:
-
-- `options(mccoursepack.repo = "owner/mccoursepack")` for GitHub
-
-- or install from CRAN if the package is published there.
-
-To enable auto-checks before pulls:
-`options(mccoursepack.auto_update = TRUE)` or set env var
-`MCCOURSEPACK_AUTO_UPDATE=1`.
+``` r
+if (FALSE) { # \dontrun{
+mccourse_update()
+mccourse_update(update = "always")
+} # }
+```

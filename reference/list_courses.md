@@ -1,30 +1,22 @@
-# List available courses (if present) or week templates
+# List Available Courses
 
-If your package organizes templates by course (e.g.,
-`inst/templates/mc451/week01`), this returns the list of course
-directories (e.g., `mc451`, `mc501`). If not, it returns an empty
-character vector.
+Returns a character vector of course identifiers that have installed
+weekly template materials.
 
 ## Usage
 
 ``` r
 list_courses()
-
-list_courses()
 ```
 
 ## Value
 
-A character vector of course directory names found under
-`inst/templates`.
-
-A character vector of course names (e.g., "mc451", "mc501").
+Character vector of course names (e.g., `"mc451"`), or an empty vector
+if no courses are installed.
 
 ## Examples
 
 ``` r
 list_courses()
-#> [1] "template_course"
-list_courses()
-#> [1] "template_course"
+#> [1] "mc451"
 ```

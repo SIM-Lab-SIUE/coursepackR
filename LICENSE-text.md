@@ -1,4 +1,4 @@
 # License
 
-    YEAR: 2025
-    COPYRIGHT HOLDER: AP Leith
+    YEAR: 2026
+    COPYRIGHT HOLDER: Alex P. Leith

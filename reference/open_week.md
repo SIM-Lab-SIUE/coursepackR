@@ -1,9 +1,7 @@
-# Open a downloaded week's folder in your system file browser
+# Open a Downloaded Week Folder
 
-Convenience helper: after you've used
-[`download_week()`](https://sim-lab-siue.github.io/coursepackR/reference/download_week.md)
-to create a local folder (e.g., `./week_01`), this opens that folder in
-your default file browser.
+Opens the specified week's folder in the system file browser (Finder,
+File Explorer, etc.).
 
 ## Usage
 
@@ -15,22 +13,21 @@ open_week(week, dest = ".")
 
 - week:
 
-  Integer or string like "01".
+  Integer or character week number.
 
 - dest:
 
-  Parent directory where the week folder resides. Defaults to `.`.
+  Character parent directory where week folders were downloaded
+  (default: current directory).
 
 ## Value
 
-Invisibly, the opened path.
+Invisibly, the path that was opened.
 
 ## Examples
 
 ``` r
-# \donttest{
-download_week("mc451", 1, ".")
-#> Error: Template for course 'mc451' week 01 not found in the installed package.
-open_week(1, ".")
-# }
+if (FALSE) { # \dontrun{
+open_week(1)
+} # }
 ```

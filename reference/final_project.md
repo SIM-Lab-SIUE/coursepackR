@@ -1,19 +1,32 @@
-# Create a final project folder structure for a given class
+# Create Final Project Folder
 
-Create a final project folder structure for a given class
+Scaffolds a final project directory with a Quarto document,
+bibliography, data folder, and RStudio project file.
 
 ## Usage
 
 ``` r
-final_project(class_no)
+final_project(course, dest = ".")
 ```
 
 ## Arguments
 
-- class_no:
+- course:
 
-  Character. The class number, e.g., "mc451" or "mc501".
+  Character course identifier (e.g., `"mc451"`, `"mc501"`).
+
+- dest:
+
+  Character parent directory (default: current directory).
 
 ## Value
 
-Invisibly returns the path to the created project folder.
+Invisibly, the path to the created project folder.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+final_project("mc451")
+} # }
+```

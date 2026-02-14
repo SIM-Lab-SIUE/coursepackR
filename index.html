@@ -5,15 +5,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>coursepackR - Build R-Based Course Packages • coursepackR</title>
+<title>coursepackR - Course Tools for From Vibes to Variables • coursepackR</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="coursepackR - Build R-Based Course Packages">
-<meta name="description" content="A flexible template for social science instructors to create R-based  course packages with integrated OER textbooks and weekly learning materials.
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="coursepackR - Course Tools for From Vibes to Variables">
+<meta name="description" content="Student-facing R package for MC-451 Research Methods at SIUE. Download weekly materials, access the music dataset, and manage your research project.
 ">
-<meta property="og:description" content="A flexible template for social science instructors to create R-based  course packages with integrated OER textbooks and weekly learning materials.
+<meta property="og:description" content="Student-facing R package for MC-451 Research Methods at SIUE. Download weekly materials, access the music dataset, and manage your research project.
 ">
 </head>
 <body>
@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="index.html">coursepackR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">02.00.00</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,11 +35,10 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Function Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-getting-started" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Getting Started</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-getting-started">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-guides" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Guides</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-guides">
 <li><a class="dropdown-item" href="articles/installation.html">Installation &amp; Setup</a></li>
-    <li><a class="dropdown-item" href="articles/building-course.html">Building Your Course</a></li>
-    <li><a class="dropdown-item" href="articles/textbook-integration.html">Textbook Integration</a></li>
+    <li><a class="dropdown-item" href="articles/getting-started.html">Getting Started</a></li>
   </ul>
 </li>
       </ul>
@@ -58,412 +57,78 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="coursepackr">coursepackR<a class="anchor" aria-label="anchor" href="#coursepackr"></a>
 </h1></div>
-<p><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen" alt="Lifecycle: stable"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></p>
-<p><a href="https://opensource.org/licenses/MIT" class="external-link">MIT</a></p>
-<p><strong>Template Author:</strong> Dr. Alex P. Leith (<a href="mailto:aleith@siue.edu">aleith@siue.edu</a>)<br><strong>Lab Page:</strong> <a href="https://sim-lab-siue.github.io/" class="external-link">SIM Lab</a><br><strong>Research Page:</strong> <a href="https://apleith.github.io/" class="external-link">Dr. Alex P. Leith</a></p>
-<p><strong>Version:</strong> 02.00.00 (Instructor Template)</p>
-<hr>
+<p>Student-facing R package for <strong>MC-451 Research Methods</strong> at SIUE, built around the open textbook <em>From Vibes to Variables: A Field Guide to Open Media Science</em>.</p>
 <div class="section level2">
-<h2 id="id_-knowledge-framework-from-vibes-to-variables">� Knowledge Framework: <em>From Vibes to Variables</em>
-<a class="anchor" aria-label="anchor" href="#id_-knowledge-framework-from-vibes-to-variables"></a>
+<h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
 </h2>
-<p>This package implements <strong>“From Vibes to Variables: A Field Guide to Open Media Science”</strong> (included as <code>full_textbook.md</code>) — an original OER textbook teaching novice social scientists to:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"SIM-Lab-SIUE/coursepackR"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
+</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sim-lab-siue.github.io/coursepackR/">coursepackR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># First-time setup (Quarto, TinyTeX, core packages)</span></span>
+<span><span class="fu"><a href="reference/mccourse_setup.html">mccourse_setup</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Verify your environment</span></span>
+<span><span class="fu"><a href="reference/mccourse_check.html">mccourse_check</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Download this week's materials</span></span>
+<span><span class="fu"><a href="reference/download_week.html">download_week</a></span><span class="op">(</span><span class="st">"mc451"</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Access the music dataset (1,792 songs)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="whats-included">What’s Included<a class="anchor" aria-label="anchor" href="#whats-included"></a>
+</h2>
 <ul>
-<li>Transform qualitative observations (“vibes”) into quantitative variables</li>
-<li>Conduct reproducible content analysis research</li>
-<li>Use R, RStudio, Quarto, and Git for complete research workflows</li>
-<li>Combine journalism’s narrative instincts with scientific rigor</li>
+<li>
+<strong>9 helper functions</strong> for downloading materials, checking your environment, and scaffolding projects</li>
+<li>
+<strong>Unified music dataset</strong> (1,792 songs with Billboard, Spotify, and Genius data)</li>
+<li>
+<strong>17 textbook chapters</strong> bundled for offline access</li>
+<li>
+<strong>Weekly assignment templates</strong> for MC-451</li>
 </ul>
-<div class="section level3">
-<h3 id="complete-textbook-structure-15-weeks">Complete Textbook Structure (15 Weeks)<a class="anchor" aria-label="anchor" href="#complete-textbook-structure-15-weeks"></a>
-</h3>
-<p>The book contains <strong>14 chapters</strong> organized as a semester-long project where students build a complete research study:</p>
-<table class="table">
-<thead><tr class="header">
-<th>Week</th>
-<th>Chapter</th>
-<th>Focus</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Ch 1: Science of Storytelling</td>
-<td>Research as narrative</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>Ch 2: Publishing Engine</td>
-<td>R/RStudio/Quarto/Git setup</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Case: Webcam Analysis</td>
-<td>Complete study example</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Ch 3: Scientific Approach</td>
-<td>Ethics &amp; methodology</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Ch 4: Intelligence Gathering</td>
-<td>Literature review</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Ch 5: Theory as Lens</td>
-<td>Theoretical frameworks</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Ch 6: Project Brief</td>
-<td>Research prospectus</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>Ch 7: Structured Listening</td>
-<td>Ethnographic observation</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Ch 8: Vibes to Variables</td>
-<td>Operationalization (core!)</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>Ch 9: The Rulebook</td>
-<td>Codebook construction</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>Ch 10: The Sample</td>
-<td>Data collection</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>Ch 11: Wrangling Data</td>
-<td>tidyverse &amp; data cleaning</td>
-</tr>
-<tr class="odd">
-<td>13</td>
-<td>Ch 12: Visualizing Narrative</td>
-<td>Descriptive stats/ggplot2</td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>Ch 13: Making the Call</td>
-<td>Inferential statistics</td>
-</tr>
-<tr class="odd">
-<td>15</td>
-<td>Ch 14: One-Click Report</td>
-<td>Quarto publication</td>
-</tr>
-</tbody>
-</table>
-<p>See <a href="CURRICULUM_FRAMEWORK.html">CURRICULUM_FRAMEWORK.md</a> for detailed chapter-to-week planning and <a href="inst/textbook/README.html">inst/textbook/README.md</a> for textbook overview.</p>
-<hr>
-</div>
 </div>
 <div class="section level2">
-<h2 id="id_-about-this-package">�📦 About This Package<a class="anchor" aria-label="anchor" href="#id_-about-this-package"></a>
+<h2 id="links">Links<a class="anchor" aria-label="anchor" href="#links"></a>
 </h2>
-<p><code>coursepackR</code> is a <strong>flexible template framework</strong> for social science instructors to create R-based course packages. It provides a structured, extensible system for delivering weekly course materials, managing student projects, and scaffolding the R/RStudio learning experience.</p>
-<p>Rather than being tied to specific courses, <strong>this is a template you customize for your own courses</strong>. It includes:</p>
 <ul>
-<li>✅ Automated environment setup (Quarto, TinyTeX, essential packages)</li>
-<li>✅ Scaffolded weekly materials and assignment templates</li>
-<li>✅ Student-friendly functions for accessing course content</li>
-<li>✅ Journal/reflection templates for structured learning</li>
-<li>✅ Integration hooks for Obsidian research notes and RStudio workflows</li>
-<li>✅ Self-check diagnostics to verify student environments</li>
-</ul>
-<div class="section level3">
-<h3 id="id_-whats-new-in-this-version">🎯 What’s New in This Version<a class="anchor" aria-label="anchor" href="#id_-whats-new-in-this-version"></a>
-</h3>
-<p>This is a <strong>generalized template release</strong> extracted from a successful implementation:</p>
-<ul>
-<li>✅ <strong>De-coupled from specific courses</strong> - Renamed from “mccoursepack” to “coursepackR”</li>
-<li>✅ <strong>Instructor-focused documentation</strong> - Guides for customization and adaptation</li>
-<li>✅ <strong>Template structure</strong> - Ready-to-fill placeholder course directories</li>
-<li>✅ <strong>Configuration system</strong> - Easy customization without code changes</li>
-<li>✅ <strong>Obsidian integration ready</strong> - Hooks for research note/code workflow</li>
-</ul>
-<hr>
-</div>
-</div>
-<div class="section level2">
-<h2 id="id_-documentation-for-instructors">� Documentation for Instructors<a class="anchor" aria-label="anchor" href="#id_-documentation-for-instructors"></a>
-</h2>
-<p><strong>Start here:</strong> - <a href="CURRICULUM_FRAMEWORK.html">CURRICULUM_FRAMEWORK.md</a> — Map book chapters to course weeks and learning outcomes - <a href="INSTRUCTOR_GUIDE.html">INSTRUCTOR_GUIDE.md</a> — 5-step customization walkthrough - <a href="OER_IMPLEMENTATION.html">OER_IMPLEMENTATION.md</a> — Open licensing compliance and 3-year sustainability plan - <a href="OBSIDIAN_INTEGRATION.html">OBSIDIAN_INTEGRATION.md</a> — Optional research workflow integration</p>
-<hr>
-</div>
-<div class="section level2">
-<h2 id="id_-quick-start-for-instructors">�🚀 Quick Start for Instructors<a class="anchor" aria-label="anchor" href="#id_-quick-start-for-instructors"></a>
-</h2>
-<div class="section level3">
-<h3 id="option-1-copy-and-customize-recommended">Option 1: Copy and Customize (Recommended)<a class="anchor" aria-label="anchor" href="#option-1-copy-and-customize-recommended"></a>
-</h3>
-<ol style="list-style-type: decimal">
 <li>
-<strong>Fork or clone this repository</strong> as a starting point for your course package</li>
-<li>
-<strong>Rename</strong> your package to something specific to your course/institution</li>
-<li>
-<strong>Update</strong> <code>DESCRIPTION</code>, <code>README.md</code>, and function documentation</li>
-<li>
-<strong>Customize</strong> <code>inst/courses/</code> with your course(s) and weekly materials</li>
-<li>
-<strong>Install</strong> locally and test with <code><a href="https://remotes.r-lib.org/reference/install_local.html" class="external-link">remotes::install_local()</a></code>
+<a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link">Textbook</a> — <em>From Vibes to Variables</em>
 </li>
 <li>
-<strong>Push to GitHub</strong> and your students install with <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code>
-</li>
-</ol>
-</div>
-<div class="section level3">
-<h3 id="option-2-manual-setup-from-this-template">Option 2: Manual Setup from This Template<a class="anchor" aria-label="anchor" href="#option-2-manual-setup-from-this-template"></a>
-</h3>
-<ol style="list-style-type: decimal">
-<li>Create a new R package structure in RStudio</li>
-<li>Copy the R functions from this repository into your <code>R/</code> directory</li>
-<li>Structure your course materials in <code>inst/courses/&lt;coursename&gt;/weeks/</code>
-</li>
-<li>Customize the package metadata and functions as needed</li>
-</ol>
-<hr>
-</div>
-</div>
-<div class="section level2">
-<h2 id="id_-package-structure-for-customization">📂 Package Structure for Customization<a class="anchor" aria-label="anchor" href="#id_-package-structure-for-customization"></a>
-</h2>
-<pre><code>your-coursepack/
-├── R/
-│   ├── setup.R                    # mccourse_setup() - environment setup
-│   ├── check_env.R                # mccourse_self_test() - diagnostics
-│   ├── listing.R                  # list_courses(), list_weeks()
-│   ├── download_week.R            # download_week() - student main function
-│   ├── download_journal.R         # download_journal() - reflection template
-│   ├── open_week.R                # open_week() - helper
-│   ├── update.R                   # mccourse_update() - version management
-│   ├── final_project.R            # final_project() - capstone support
-│   ├── utils-paths.R              # Internal path utilities
-│   └── zzz.R                       # Package startup message
-│
-├── inst/courses/
-│   ├── mycourse101/
-│   │   ├── weeks/
-│   │   │   ├── week_01/
-│   │   │   │   └── [.qmd files, starter code, etc.]
-│   │   │   ├── week_02/
-│   │   │   └── ...
-│   │   └── journal/
-│   │       └── journal_template.qmd
-│   │
-│   └── [add more courses here]
-│
-├── inst/guides/
-│   ├── final_submission_checklist.md
-│   └── [course guides, rubrics, etc.]
-│
-├── inst/extdata/
-│   └── [datasets for examples and assignments]
-│
-├── inst/templates/
-│   └── [reusable template files]
-│
-└── DESCRIPTION</code></pre>
-<hr>
-</div>
-<div class="section level2">
-<h2 id="id_-how-to-customize">🎯 How to Customize<a class="anchor" aria-label="anchor" href="#id_-how-to-customize"></a>
-</h2>
-<div class="section level3">
-<h3 id="id_1-rename-your-package">1. <strong>Rename Your Package</strong>
-<a class="anchor" aria-label="anchor" href="#id_1-rename-your-package"></a>
-</h3>
-<p>Edit <code>DESCRIPTION</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>Package<span class="sc">:</span> mystatcourse    <span class="co"># Change from 'coursepackR'</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>Title<span class="sc">:</span> Introduction to Statistics with R at MyUniversity</span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="id_2-add-your-courses">2. <strong>Add Your Courses</strong>
-<a class="anchor" aria-label="anchor" href="#id_2-add-your-courses"></a>
-</h3>
-<p>Create directory structure:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">inst/courses/stat101/weeks/week_01/</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">inst/courses/stat101/weeks/week_02/</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># ... etc</span></span></code></pre></div>
-<p>Place your course materials (<code>.qmd</code> files, starter code, data files) in each week folder.</p>
-</div>
-<div class="section level3">
-<h3 id="id_3-update-function-names-optional">3. <strong>Update Function Names (Optional)</strong>
-<a class="anchor" aria-label="anchor" href="#id_3-update-function-names-optional"></a>
-</h3>
-<p>If you prefer function names specific to your course, edit the R functions:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Instead of mccourse_setup(), rename to mystat_setup()</span></span>
-<span><span class="co"># Instead of download_week("stat101", 1), students call download_week(1)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="id_4-customize-documentation">4. <strong>Customize Documentation</strong>
-<a class="anchor" aria-label="anchor" href="#id_4-customize-documentation"></a>
-</h3>
-<ul>
-<li>Update <code>README.md</code> with your course context</li>
-<li>Edit function help pages (<code>R/*.R</code> @export sections)</li>
-<li>Add course-specific guidance in <code>inst/guides/</code>
-</li>
-</ul>
-<hr>
-</div>
-</div>
-<div class="section level2">
-<h2 id="id_-student-workflow-post-customization">✨ Student Workflow (Post-Customization)<a class="anchor" aria-label="anchor" href="#id_-student-workflow-post-customization"></a>
-</h2>
-<p>Once your students install your customized package:</p>
-<ol style="list-style-type: decimal">
-<li>
-<strong>Initial Setup</strong>: <code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> → Install Quarto, TinyTeX, packages</li>
-<li>
-<strong>Verify Environment</strong>: <code><a href="reference/mccourse_self_test.html">mccourse_self_test()</a></code> → Run diagnostic checks</li>
-<li>
-<strong>List Materials</strong>: <code><a href="reference/list_courses.html">list_courses()</a></code> &amp; <code><a href="reference/list_weeks.html">list_weeks()</a></code> → See what’s available</li>
-<li>
-<strong>Download Work</strong>: <code>download_week(course, week)</code> → Copy templates to computer</li>
-<li>
-<strong>Open &amp; Work</strong>: <code><a href="reference/open_week.html">open_week()</a></code> → Browse materials and start coding</li>
-<li>
-<strong>Update Package</strong>: <code><a href="reference/mccourse_update.html">mccourse_update()</a></code> → Get latest materials/fixes</li>
-</ol>
-<hr>
-</div>
-<div class="section level2">
-<h2 id="id_-functions-youll-customize">🔧 Functions You’ll Customize<a class="anchor" aria-label="anchor" href="#id_-functions-youll-customize"></a>
-</h2>
-<div class="section level3">
-<h3 id="mccourse_setup">
-<code>mccourse_setup()</code><a class="anchor" aria-label="anchor" href="#mccourse_setup"></a>
-</h3>
-<p>Installs system dependencies. Customize to add: - Domain-specific packages (e.g., tidyverse, ggplot2, brms) - Your institution’s authentication tools - Additional software (e.g., Zotero, Obsidian helpers)</p>
-</div>
-<div class="section level3">
-<h3 id="download_week--download_journal">
-<code>download_week()</code> &amp; <code>download_journal()</code>
-<a class="anchor" aria-label="anchor" href="#download_week--download_journal"></a>
-</h3>
-<p>These are the <strong>main student-facing functions</strong>. They’ll work as-is but you can: - Add custom file templates - Implement pre-download hooks (e.g., create RStudio Projects) - Add validation checks</p>
-</div>
-<div class="section level3">
-<h3 id="list_courses--list_weeks">
-<code>list_courses()</code> &amp; <code>list_weeks()</code>
-<a class="anchor" aria-label="anchor" href="#list_courses--list_weeks"></a>
-</h3>
-<p>These <strong>automatically discover</strong> your <code>inst/courses/</code> structure. No changes needed!</p>
-</div>
-<div class="section level3">
-<h3 id="final_project">
-<code>final_project()</code><a class="anchor" aria-label="anchor" href="#final_project"></a>
-</h3>
-<p>Scaffold for capstone projects. Customize with: - Your rubrics and checklists - Required files and structure - Submission guidelines</p>
-<hr>
-</div>
-</div>
-<div class="section level2">
-<h2 id="id_-for-instructors-integration-with-obsidian">🧑‍💼 For Instructors: Integration with Obsidian<a class="anchor" aria-label="anchor" href="#id_-for-instructors-integration-with-obsidian"></a>
-</h2>
-<p><code>coursepackR</code> is designed to work seamlessly with <strong>Obsidian</strong> for research-driven courses:</p>
-<div class="section level3">
-<h3 id="workflow-integration">Workflow Integration<a class="anchor" aria-label="anchor" href="#workflow-integration"></a>
-</h3>
-<ul>
-<li>Students maintain <strong>research notes in Obsidian</strong> (literature, ideas, findings)</li>
-<li>
-<strong>RStudio Project</strong> automatically linked to Obsidian vault</li>
-<li>Built-in functions to reference and cite notes from analysis code</li>
-<li>Bidirectional sync: notes inform analysis, results update notes</li>
+<a href="https://sim-lab-siue.github.io/liaison-program/" class="external-link">Course Site</a> — The Liaison Program</li>
+<li><a href="https://sim-lab-siue.github.io/coursepackR/reference/">Function Reference</a></li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
-</h3>
-<p>See <code>OBSIDIAN_INTEGRATION.md</code> for: - Setting up Obsidian vault alongside course package - Linking RStudio projects to note collections - Creating citation links from code to research notes - Example workflows (literature review → data analysis → writing)</p>
-<hr>
-</div>
-</div>
 <div class="section level2">
-<h2 id="id_-reference-implementation">📚 Reference Implementation<a class="anchor" aria-label="anchor" href="#id_-reference-implementation"></a>
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
-<p>This template was extracted from a successful implementation at Southern Illinois University Edwardsville:</p>
-<p><strong>Original Package</strong>: <code>siue-mccoursepack</code> branch<br><strong>Original Courses</strong>: MC451 (Undergraduate) &amp; MC501 (Graduate)<br><strong>Student Count</strong>: 50+ per semester<br><strong>Success Metric</strong>: 95%+ environment setup success rate</p>
-<p>See the <code>siue-mccoursepack</code> branch if you want to examine a working example before customizing your own.</p>
-<hr>
+<p>MIT</p>
 </div>
-<div class="section level2">
-<h2 id="id_-troubleshooting">❓ Troubleshooting<a class="anchor" aria-label="anchor" href="#id_-troubleshooting"></a>
-</h2>
-<p><strong>Q: Students get “pak” or “quarto” warnings</strong></p>
-<p>A: These are harmless. The package uses fully qualified calls (e.g., <code>pak::pkg_diff()</code>). As long as <code>pak</code> and <code>quarto</code> are installed, everything works. They can safely ignore the warnings.</p>
-<p><strong>Q: A student’s week folder doesn’t appear after <code><a href="reference/download_week.html">download_week()</a></code></strong></p>
-<p>A: This might mean: - The week doesn’t exist in <code>inst/courses/&lt;course&gt;/weeks/</code> - The week folder exists but is empty (this is OK—the folder is created anyway) - The course name is misspelled</p>
-<p>Use <code><a href="reference/list_courses.html">list_courses()</a></code> and <code><a href="reference/list_weeks.html">list_weeks()</a></code> to verify what’s available.</p>
-<p><strong>Q: How do students install and stay updated?</strong></p>
-<p>A: One-time installation:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"yourusername/yourcoursepack"</span><span class="op">)</span></span></code></pre></div>
-<p>Check for updates anytime:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/mccourse_update.html">mccourse_update</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># Downloads latest from GitHub</span></span></code></pre></div>
-<hr>
 </div>
-<div class="section level2">
-<h2 id="id_-core-functions-reference">✨ Core Functions Reference<a class="anchor" aria-label="anchor" href="#id_-core-functions-reference"></a>
-</h2>
-<div class="section level3">
-<h3 id="environment-setup">Environment Setup<a class="anchor" aria-label="anchor" href="#environment-setup"></a>
-</h3>
-<ul>
-<li>
-<strong><code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code></strong> - One-time system setup (Quarto, TinyTeX, R packages)</li>
-<li>
-<strong><code><a href="reference/mccourse_self_test.html">mccourse_self_test()</a></code></strong> - Diagnostic checks for student environments</li>
-<li>
-<strong><code><a href="reference/mccourse_update.html">mccourse_update()</a></code></strong> - Install latest package version from GitHub</li>
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/SIM-Lab-SIUE/coursepackR/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/SIM-Lab-SIUE/coursepackR/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="course-materials">Course Materials<a class="anchor" aria-label="anchor" href="#course-materials"></a>
-</h3>
-<ul>
-<li>
-<strong><code><a href="reference/list_courses.html">list_courses()</a></code></strong> - See available courses</li>
-<li>
-<strong><code>list_weeks(course)</code></strong> - See available weeks for a course</li>
-<li>
-<strong><code>download_week(course, week, dest)</code></strong> - Copy week template to computer</li>
-<li>
-<strong><code>download_journal(course)</code></strong> - Copy journal template</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="utilities">Utilities<a class="anchor" aria-label="anchor" href="#utilities"></a>
-</h3>
-<ul>
-<li>
-<strong><code><a href="reference/open_week.html">open_week()</a></code></strong> - Open downloaded week in file explorer</li>
-<li>
-<strong><code><a href="reference/final_project.html">final_project()</a></code></strong> - Scaffold for capstone/final projects</li>
-</ul>
-</div>
-</div>
-</div>
-  </main><aside class="col-md-3"><div class="license">
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
 
@@ -478,7 +143,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>AP Leith <br><small class="roles"> Author, maintainer </small>   </li>
+<li>Alex P. Leith <br><small class="roles"> Author, maintainer </small>   </li>
 </ul>
 </div>
 
@@ -489,7 +154,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by AP Leith.</p>
+  <p>Developed by Alex P. Leith.</p>
 </div>
 
 <div class="pkgdown-footer-right">
