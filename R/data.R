@@ -4,22 +4,44 @@
 #' features, and Genius metadata for 1,792 songs. Used throughout
 #' "From Vibes to Variables" for teaching data analysis and research methods.
 #'
-#' @format A data frame with 1,792 rows and variables including:
+#' @format A data frame with 1,792 rows and 36 variables:
 #' \describe{
+#'   \item{Song}{Song title}
+#'   \item{Artist}{Artist name}
+#'   \item{Average_Rank}{Average Billboard chart position}
 #'   \item{Max_Rank}{Highest Billboard chart position achieved (1 = top)}
+#'   \item{First_Week_on_Board}{Date of first chart appearance}
+#'   \item{First_Rank_on_Board}{Chart position on first appearance}
+#'   \item{Last_Week_on_Board}{Date of last chart appearance}
+#'   \item{Last_Rank_on_Board}{Chart position on last appearance}
 #'   \item{Weeks_on_Board}{Number of weeks on the Billboard chart}
-#'   \item{year}{Release year}
-#'   \item{playlist_genre}{Spotify genre classification}
+#'   \item{track_id}{Spotify track identifier}
+#'   \item{track_popularity}{Spotify popularity score (0-100)}
+#'   \item{track_album_id}{Spotify album identifier}
+#'   \item{track_album_name}{Album title}
+#'   \item{track_album_release_date}{Album release date}
+#'   \item{playlist_name}{Source Spotify playlist}
+#'   \item{playlist_id}{Spotify playlist identifier}
+#'   \item{playlist_genre}{Genre category}
+#'   \item{playlist_subgenre}{Subgenre category}
 #'   \item{danceability}{Spotify danceability score (0-1)}
 #'   \item{energy}{Spotify energy score (0-1)}
-#'   \item{valence}{Spotify positivity/happiness score (0-1)}
-#'   \item{tempo}{Tempo in beats per minute}
-#'   \item{loudness}{Loudness in decibels}
+#'   \item{key}{Musical key (0-11, where 0 = C)}
+#'   \item{loudness}{Overall loudness in decibels}
+#'   \item{mode}{Modality (0 = minor, 1 = major)}
 #'   \item{speechiness}{Spotify speechiness score (0-1)}
 #'   \item{acousticness}{Spotify acousticness score (0-1)}
 #'   \item{instrumentalness}{Spotify instrumentalness score (0-1)}
 #'   \item{liveness}{Spotify liveness score (0-1)}
+#'   \item{valence}{Spotify positivity/happiness score (0-1)}
+#'   \item{tempo}{Tempo in beats per minute}
 #'   \item{duration_ms}{Track duration in milliseconds}
+#'   \item{tag}{Content tag or label}
+#'   \item{year}{Release year}
+#'   \item{views}{Genius page view count}
+#'   \item{features}{Featured artists}
+#'   \item{lyrics}{Song lyrics text}
+#'   \item{id}{Genius song identifier}
 #' }
 #'
 #' @source Compiled from Billboard, Spotify Web API, and Genius API data.

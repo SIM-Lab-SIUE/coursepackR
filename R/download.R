@@ -64,17 +64,16 @@ download_week <- function(course, week = NULL, dest = ".") {
   if (!dir.exists(target)) dir.create(target, recursive = TRUE)
 
   # Copy files
-  src_files <- list.files(src, full.names = TRUE, recursive = TRUE)
+  src_files <- list.files(src, full.names = FALSE, recursive = TRUE)
   if (length(src_files) > 0L) {
-    # Preserve subdirectory structure
-    rel_paths <- sub(paste0("^", gsub("([\\[\\](){}\\\\^$.|?*+])", "\\\\\\1", src), "[\\\\/]?"), "", src_files)
-    dest_files <- file.path(target, rel_paths)
+    src_full <- file.path(src, src_files)
+    dest_files <- file.path(target, src_files)
     # Create subdirectories
     dest_dirs <- unique(dirname(dest_files))
     for (d in dest_dirs) {
       if (!dir.exists(d)) dir.create(d, recursive = TRUE)
     }
-    file.copy(src_files, dest_files, overwrite = FALSE, copy.date = TRUE)
+    file.copy(src_full, dest_files, overwrite = FALSE, copy.date = TRUE)
     n_copied <- length(src_files)
   } else {
     n_copied <- 0L
@@ -129,19 +128,19 @@ download_journal <- function(course, dest = ".") {
   journal_dest <- file.path(dest, "journal")
   if (!dir.exists(journal_dest)) dir.create(journal_dest, recursive = TRUE)
 
-  src_files <- list.files(journal_dir, full.names = TRUE, recursive = TRUE)
+  src_files <- list.files(journal_dir, full.names = FALSE, recursive = TRUE)
   if (length(src_files) == 0L) {
     cli::cli_alert_warning("Journal scaffold for {.val {course}} is empty.")
     return(invisible(character(0)))
   }
 
-  rel_paths <- sub(paste0("^", gsub("([\\[\\](){}\\\\^$.|?*+])", "\\\\\\1", journal_dir), "[\\\\/]?"), "", src_files)
-  dest_files <- file.path(journal_dest, rel_paths)
+  src_full <- file.path(journal_dir, src_files)
+  dest_files <- file.path(journal_dest, src_files)
   dest_dirs <- unique(dirname(dest_files))
   for (d in dest_dirs) {
     if (!dir.exists(d)) dir.create(d, recursive = TRUE)
   }
-  file.copy(src_files, dest_files, overwrite = FALSE, copy.date = TRUE)
+  file.copy(src_full, dest_files, overwrite = FALSE, copy.date = TRUE)
 
   cli::cli_alert_success("Downloaded journal scaffold for {.val {course}} ({length(src_files)} file{?s}) to {.path {journal_dest}}")
 
