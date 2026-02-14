@@ -54,17 +54,59 @@ features, and Genius metadata for 1,792 songs. Used throughout
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A data frame with 1,792 rows and variables including:</p><dl><dt>Max_Rank</dt>
+    <p>A data frame with 1,792 rows and 36 variables:</p><dl><dt>Song</dt>
+<dd><p>Song title</p></dd>
+
+<dt>Artist</dt>
+<dd><p>Artist name</p></dd>
+
+<dt>Average_Rank</dt>
+<dd><p>Average Billboard chart position</p></dd>
+
+<dt>Max_Rank</dt>
 <dd><p>Highest Billboard chart position achieved (1 = top)</p></dd>
+
+<dt>First_Week_on_Board</dt>
+<dd><p>Date of first chart appearance</p></dd>
+
+<dt>First_Rank_on_Board</dt>
+<dd><p>Chart position on first appearance</p></dd>
+
+<dt>Last_Week_on_Board</dt>
+<dd><p>Date of last chart appearance</p></dd>
+
+<dt>Last_Rank_on_Board</dt>
+<dd><p>Chart position on last appearance</p></dd>
 
 <dt>Weeks_on_Board</dt>
 <dd><p>Number of weeks on the Billboard chart</p></dd>
 
-<dt>year</dt>
-<dd><p>Release year</p></dd>
+<dt>track_id</dt>
+<dd><p>Spotify track identifier</p></dd>
+
+<dt>track_popularity</dt>
+<dd><p>Spotify popularity score (0-100)</p></dd>
+
+<dt>track_album_id</dt>
+<dd><p>Spotify album identifier</p></dd>
+
+<dt>track_album_name</dt>
+<dd><p>Album title</p></dd>
+
+<dt>track_album_release_date</dt>
+<dd><p>Album release date</p></dd>
+
+<dt>playlist_name</dt>
+<dd><p>Source Spotify playlist</p></dd>
+
+<dt>playlist_id</dt>
+<dd><p>Spotify playlist identifier</p></dd>
 
 <dt>playlist_genre</dt>
-<dd><p>Spotify genre classification</p></dd>
+<dd><p>Genre category</p></dd>
+
+<dt>playlist_subgenre</dt>
+<dd><p>Subgenre category</p></dd>
 
 <dt>danceability</dt>
 <dd><p>Spotify danceability score (0-1)</p></dd>
@@ -72,14 +114,14 @@ features, and Genius metadata for 1,792 songs. Used throughout
 <dt>energy</dt>
 <dd><p>Spotify energy score (0-1)</p></dd>
 
-<dt>valence</dt>
-<dd><p>Spotify positivity/happiness score (0-1)</p></dd>
-
-<dt>tempo</dt>
-<dd><p>Tempo in beats per minute</p></dd>
+<dt>key</dt>
+<dd><p>Musical key (0-11, where 0 = C)</p></dd>
 
 <dt>loudness</dt>
-<dd><p>Loudness in decibels</p></dd>
+<dd><p>Overall loudness in decibels</p></dd>
+
+<dt>mode</dt>
+<dd><p>Modality (0 = minor, 1 = major)</p></dd>
 
 <dt>speechiness</dt>
 <dd><p>Spotify speechiness score (0-1)</p></dd>
@@ -93,8 +135,32 @@ features, and Genius metadata for 1,792 songs. Used throughout
 <dt>liveness</dt>
 <dd><p>Spotify liveness score (0-1)</p></dd>
 
+<dt>valence</dt>
+<dd><p>Spotify positivity/happiness score (0-1)</p></dd>
+
+<dt>tempo</dt>
+<dd><p>Tempo in beats per minute</p></dd>
+
 <dt>duration_ms</dt>
 <dd><p>Track duration in milliseconds</p></dd>
+
+<dt>tag</dt>
+<dd><p>Content tag or label</p></dd>
+
+<dt>year</dt>
+<dd><p>Release year</p></dd>
+
+<dt>views</dt>
+<dd><p>Genius page view count</p></dd>
+
+<dt>features</dt>
+<dd><p>Featured artists</p></dd>
+
+<dt>lyrics</dt>
+<dd><p>Song lyrics text</p></dd>
+
+<dt>id</dt>
+<dd><p>Genius song identifier</p></dd>
 
 
 </dl></div>

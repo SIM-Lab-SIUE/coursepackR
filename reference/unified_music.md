@@ -12,23 +12,79 @@ unified_music
 
 ## Format
 
-A data frame with 1,792 rows and variables including:
+A data frame with 1,792 rows and 36 variables:
+
+- Song:
+
+  Song title
+
+- Artist:
+
+  Artist name
+
+- Average_Rank:
+
+  Average Billboard chart position
 
 - Max_Rank:
 
   Highest Billboard chart position achieved (1 = top)
 
+- First_Week_on_Board:
+
+  Date of first chart appearance
+
+- First_Rank_on_Board:
+
+  Chart position on first appearance
+
+- Last_Week_on_Board:
+
+  Date of last chart appearance
+
+- Last_Rank_on_Board:
+
+  Chart position on last appearance
+
 - Weeks_on_Board:
 
   Number of weeks on the Billboard chart
 
-- year:
+- track_id:
 
-  Release year
+  Spotify track identifier
+
+- track_popularity:
+
+  Spotify popularity score (0-100)
+
+- track_album_id:
+
+  Spotify album identifier
+
+- track_album_name:
+
+  Album title
+
+- track_album_release_date:
+
+  Album release date
+
+- playlist_name:
+
+  Source Spotify playlist
+
+- playlist_id:
+
+  Spotify playlist identifier
 
 - playlist_genre:
 
-  Spotify genre classification
+  Genre category
+
+- playlist_subgenre:
+
+  Subgenre category
 
 - danceability:
 
@@ -38,17 +94,17 @@ A data frame with 1,792 rows and variables including:
 
   Spotify energy score (0-1)
 
-- valence:
+- key:
 
-  Spotify positivity/happiness score (0-1)
-
-- tempo:
-
-  Tempo in beats per minute
+  Musical key (0-11, where 0 = C)
 
 - loudness:
 
-  Loudness in decibels
+  Overall loudness in decibels
+
+- mode:
+
+  Modality (0 = minor, 1 = major)
 
 - speechiness:
 
@@ -66,9 +122,41 @@ A data frame with 1,792 rows and variables including:
 
   Spotify liveness score (0-1)
 
+- valence:
+
+  Spotify positivity/happiness score (0-1)
+
+- tempo:
+
+  Tempo in beats per minute
+
 - duration_ms:
 
   Track duration in milliseconds
+
+- tag:
+
+  Content tag or label
+
+- year:
+
+  Release year
+
+- views:
+
+  Genius page view count
+
+- features:
+
+  Featured artists
+
+- lyrics:
+
+  Song lyrics text
+
+- id:
+
+  Genius song identifier
 
 ## Source
 
