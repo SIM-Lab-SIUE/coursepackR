@@ -1,260 +1,101 @@
 ---
 title: "Week 2: The Publishing Engine"
-subtitle: "Building Your Reproducible Workflow"
-author: "[Student Name]"
-date: last-modified
+subtitle: "Chapters 2 & 3 — Infrastructure of Trust & Reading Journal Protocol"
+date: "2026-01-27"
 format:
   html:
     embed-resources: true
-    toc: true
-    code-fold: false
+    code-fold: true
     code-tools: true
 ---
 
-## 📖 This Week's Reading
+## Overview
 
-**Textbook**: Chapter 2 - The Publishing Engine
+This week covers two foundational chapters. Chapter 2 introduces the publishing infrastructure that makes reproducible research possible — R, RStudio, Quarto, and Git. Chapter 3 introduces the Reading Journal Protocol, a structured approach to engaging with scholarly literature that you will use throughout the semester.
 
-**Key Concepts**:
-- The replication crisis and why reproducibility matters
-- Code as recipe: literate programming
-- The five levels of reproducibility
-- R, RStudio, Quarto, and Git as the publishing engine
+**Readings:** Chapter 2 — The Infrastructure of Trust & Chapter 3 — The Reading Journal Protocol
 
-## 🎯 Learning Objectives
+## Key Concepts
 
-By the end of this week, you will:
+- Reproducibility as the backbone of credible research
+- Literate programming: weaving code and narrative together
+- The R → RStudio → Quarto → Git stack
+- Version control as an audit trail for your research
+- Active reading strategies for scholarly articles
+- The three journal approaches: Connector, Troubleshooter, Critic
 
-- Install and configure R, RStudio, Quarto, and Git
-- Understand why code-based workflows prevent replication crises
-- Create your first reproducible Quarto document
-- Execute basic R commands and document your process
+## Learning Objectives
 
-## 🛠️ Setup: Installing the Publishing Engine
+By the end of this week, you should be able to:
 
-### Step 1: Install Required Software
+1. Install and verify R, RStudio, Quarto, and Git on your machine
+2. Create and render a basic Quarto document
+3. Explain why reproducible tools matter for research credibility
+4. Use the Reading Journal Protocol to engage with a scholarly text
+5. Understand the Syllabus Contract and course expectations
 
-If you haven't already, install:
+## Assignment: Software Installation & Syllabus Contract (25 pts)
 
-1. **R** (4.3.0 or higher): <https://cran.r-project.org/>
-2. **RStudio Desktop** (free): <https://posit.co/download/rstudio-desktop/>
-3. **Quarto** (1.3 or higher): <https://quarto.org/docs/get-started/>
-4. **Git**: <https://git-scm.com/downloads>
+### Part 1: Software Installation & Verification (10 pts)
 
-### Step 2: Install Course Package
+Install the following tools in order:
 
-```{r}
-#| eval: false
+1. **R** (v4.4+): [cloud.r-project.org](https://cloud.r-project.org)
+2. **RStudio** (latest): [posit.co/downloads](https://posit.co/download/rstudio-desktop/)
+3. **Quarto** (latest): [quarto.org/docs/get-started](https://quarto.org/docs/get-started/)
+4. **Git**: [git-scm.com/downloads](https://git-scm.com/downloads)
+5. **coursepackR**: Open RStudio and run:
 
-# Install remotes package if you don't have it
+```r
 install.packages("remotes")
-
-# Install your course package (replace with your actual repo)
-remotes::install_github("yourprof/coursepackname")
-
-# Load and run setup
-library(coursepackname)
-coursepack_setup()
+remotes::install_github("SIM-Lab-SIUE/coursepackR")
+library(coursepackR)
+mccourse_check()
 ```
 
-### Step 3: Verify Installation
+**Deliverable:** Screenshot of `mccourse_check()` output showing all green checks.
 
-```{r}
-#| eval: false
+### Part 2: First Quarto Document (10 pts)
 
-# Run self-test
-coursepack_self_test()
-```
+Create a new Quarto document (.qmd) in RStudio that includes:
 
-This will check:
-- ✅ R version (4.3.0+)
-- ✅ RStudio version
-- ✅ Quarto installation
-- ✅ Git configuration
-- ✅ Required R packages
+1. A YAML header with your name and today's date
+2. An introductory paragraph about what you hope to learn this semester
+3. An R code block that loads the coursepackR package and prints the first 6 rows of the `unified_music` dataset
+4. A brief written explanation of what the dataset contains
 
-## 📝 Assignment: Your First Reproducible Document
+**Deliverable:** Rendered HTML file uploaded to Blackboard.
 
-### Part 1: Understanding the Replication Crisis
+### Part 3: Syllabus Contract (5 pts)
 
-Answer the following in 2-3 paragraphs:
+Download and review the Syllabus Contract from the course website. Sign and return it, confirming you understand:
 
-1. According to Chapter 2, what percentage of psychology studies successfully replicated in the Open Science Collaboration's 2015 study?
+- Grading policies and late work expectations
+- Academic integrity standards
+- Course communication protocols
 
-[Your answer here]
+## Discussion Questions
 
-2. Why can't point-and-click workflows (e.g., Excel → SPSS → Word) guarantee reproducibility?
+1. What does it mean for research to be *reproducible*? Why can't you just describe your steps in a Word document?
+2. How does version control (Git) differ from saving multiple copies of a file (e.g., `paper_v2_final_FINAL.docx`)?
+3. Which of the three journal approaches (Connector, Troubleshooter, Critic) appeals to you most, and why?
 
-[Your answer here]
+## Submission Checklist
 
-3. Explain the "recipe metaphor" for literate programming. What are the ingredients, instructions, and final dish in a Quarto document?
+- [ ] R, RStudio, Quarto, and Git installed
+- [ ] `coursepackR` installed and `mccourse_check()` screenshot captured
+- [ ] Quarto document created, rendered, and uploaded
+- [ ] Syllabus Contract signed and submitted
+- [ ] Journal entry for Week 2 completed
 
-[Your answer here]
+## Resources
 
-### Part 2: Hands-On R Basics
-
-Execute the following code chunks and observe the output. Then answer the questions.
-
-#### Load Packages
-
-```{r}
-#| label: load-packages
-#| message: false
-
-library(tidyverse)  # Data wrangling and visualization
-```
-
-#### Create Sample Data
-
-Let's create a simple dataset about hypothetical Twitch streamers:
-
-```{r}
-#| label: create-data
-
-# Create a data frame
-streamers <- tibble(
-  username = c("GamerGirl", "ProSniper", "ChillVibes", "SpeedRunner", "CozyQueen"),
-  game = c("Valorant", "CS:GO", "Stardew Valley", "Mario", "Animal Crossing"),
-  avg_viewers = c(1200, 3500, 800, 2100, 650),
-  uses_webcam = c(TRUE, TRUE, TRUE, FALSE, TRUE),
-  chat_toxicity = c(6, 8, 2, 5, 1)  # Scale 1-10
-)
-
-# Display the data
-streamers
-```
-
-**Question 1**: How many rows and columns does this dataset have?
-
-[Your answer here]
-
-**Question 2**: Which streamer has the highest average viewership?
-
-[Your answer here]
-
-#### Calculate Descriptive Statistics
-
-```{r}
-#| label: descriptive-stats
-
-# Mean viewership
-mean(streamers$avg_viewers)
-
-# Median viewership
-median(streamers$avg_viewers)
-
-# Summary statistics
-summary(streamers$avg_viewers)
-```
-
-**Question 3**: Why is the mean (1650) higher than the median (1200)? What does this tell you about the distribution?
-
-[Your answer here]
-
-#### Visualize the Data
-
-```{r}
-#| label: plot-viewers
-#| fig-cap: "Average viewers by streamer"
-#| fig-width: 8
-#| fig-height: 5
-
-ggplot(streamers, aes(x = username, y = avg_viewers, fill = game)) +
-  geom_col() +
-  labs(
-    title = "Average Viewership by Streamer",
-    x = "Streamer Username",
-    y = "Average Viewers",
-    fill = "Game Played"
-  ) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
-
-**Question 4**: Does there seem to be a relationship between game type and viewership? (Note: This sample is too small for real conclusions, but practice making observations.)
-
-[Your answer here]
-
-#### Test a Hypothesis
-
-Let's test: "Streamers who use webcams have higher viewership."
-
-```{r}
-#| label: webcam-analysis
-
-# Compare means
-streamers %>%
-  group_by(uses_webcam) %>%
-  summarize(
-    mean_viewers = mean(avg_viewers),
-    n = n()
-  )
-```
-
-**Question 5**: Based on this tiny sample, do webcam users have higher average viewership? What would you need to do to test this properly? (Hint: Think about Chapter 2's discussion of replication.)
-
-[Your answer here]
-
-### Part 3: The One-Click Philosophy
-
-Now, imagine your instructor says: "Actually, we want to add 5 more streamers to the dataset."
-
-In a traditional workflow (Excel + SPSS + Word), you'd have to:
-1. Re-import data
-2. Re-click through menus
-3. Re-copy-paste tables and figures
-4. Re-format everything
-
-In this Quarto workflow, you'd:
-1. Update the `streamers` tibble in the code chunk
-2. Click "Render"
-3. Done. Everything updates automatically.
-
-**Reflection** (100-150 words): How does this "one-click" philosophy change the way you think about research? Why does it matter that others can verify your work?
-
-[Your reflection here]
-
-## 🧪 Experimentation Challenge (Optional Bonus)
-
-Modify the `streamers` dataset to add yourself as a hypothetical streamer:
-
-- Choose a username
-- Pick a game you'd stream
-- Estimate your avg_viewers (be realistic or aspirational)
-- Decide if you'd use a webcam
-- Rate your expected chat_toxicity (1-10 scale)
-
-Then re-render the document and observe how the statistics and plot update automatically.
-
-**What changed?**
-
-[Your observations here]
-
-## 💭 Discussion Questions
-
-1. Chapter 2 distinguishes five levels of reproducibility (Publication Only → Literate Executable Documents). At what level does most undergraduate coursework currently operate? Why?
-
-2. The textbook argues that "computational literacy is media literacy." Do you agree? How does learning R help you understand algorithmic media?
-
-3. If someone can't reproduce your research, does that necessarily mean it's wrong? What are the implications of non-reproducible findings for journalism, policymaking, or academic knowledge?
-
-## ✅ Submission Checklist
-
-- [ ] All code chunks execute without errors (click "Render" to test)
-- [ ] All questions answered with complete sentences
-- [ ] Figures display correctly in the rendered HTML
-- [ ] File naming: `Week02_[YourLastName].qmd` and `Week02_[YourLastName].html`
-- [ ] Submitted both source (.qmd) and output (.html)
-
-## 📚 Resources
-
-- **Textbook**: Chapter 2 (full_textbook.md, lines 240-694)
-- **R for Data Science**: <https://r4ds.hadley.nz/> (free online book)
-- **Quarto Documentation**: <https://quarto.org/docs/guide/>
-- **Cheat Sheets**: RStudio → Help → Cheat Sheets
+- [R Installation Guide](https://cloud.r-project.org)
+- [Quarto Getting Started](https://quarto.org/docs/get-started/)
+- [Git Handbook](https://guides.github.com/introduction/git-handbook/)
+- Textbook: Chapter 2 — *The Infrastructure of Trust*
+- Textbook: Chapter 3 — *The Reading Journal Protocol*
 
 ---
 
-**Estimated Time**: 3-4 hours (including software installation)  
-**Due**: [Instructor specifies]  
-**Points**: [Instructor specifies]
+*Estimated time: 3–4 hours | Total points: 25*

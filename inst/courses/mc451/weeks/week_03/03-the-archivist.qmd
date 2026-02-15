@@ -1,0 +1,86 @@
+---
+title: "Week 3: The Archivist"
+subtitle: "Chapter 4 — Intelligence Gathering"
+date: "2026-02-03"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+This week you become a research archivist — learning to scout, evaluate, and document data sources before committing to a research project. Good research begins with knowing what data exists, where to find it, and whether it can answer your questions.
+
+**Reading:** Chapter 4 — The Archivist
+
+## Key Concepts
+
+- Primary vs. secondary data sources
+- Database scouting: scope, feasibility, and access
+- Boolean search strategies for academic databases
+- Evaluating source reliability and metadata quality
+- Documenting your search process for reproducibility
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Identify potential data sources for a media research question
+2. Conduct systematic searches using Boolean operators
+3. Evaluate a data source's scope, reliability, and exportability
+4. Set up your project folder structure in Obsidian
+
+## Assignment: Project Setup (25 pts)
+
+### Part 1: Obsidian Vault Configuration (10 pts)
+
+Set up your research vault following the Liaison Vault structure:
+
+1. Download the Liaison Vault template from the course website
+2. Create the folder structure: `MC_Research_Spring26/`
+   - `01_Journal/`
+   - `02_Reading/`
+   - `03_Project/`
+   - `04_Data/`
+   - `05_Textbook/`
+3. Verify the vault opens correctly in Obsidian
+
+**Deliverable:** Screenshot of your organized vault structure.
+
+### Part 2: Database Exploration (10 pts)
+
+Visit **two** potential data sources relevant to your research interests and document:
+
+- The source name and provider
+- What types of content are available
+- Date range of available data
+- Search capabilities (Boolean, filtering, etc.)
+- Export options (CSV, PDF, etc.)
+
+### Part 3: Reflection (5 pts)
+
+In 3–4 sentences, explain which data source seems most promising for a semester-long project and why.
+
+## Discussion Questions
+
+1. Why is it important to evaluate a data source *before* starting your research project?
+2. What makes a data source "feasible" for a student research project?
+3. How do Boolean operators (AND, OR, NOT) help you refine search results?
+
+## Submission Checklist
+
+- [ ] Obsidian Vault set up with correct folder structure
+- [ ] Two data sources explored and documented
+- [ ] Reflection paragraph completed
+- [ ] Journal entry for Week 3 completed
+
+## Resources
+
+- [Lovejoy Library Databases](https://www.siue.edu/lovejoylibrary/)
+- Textbook: Chapter 4 — *The Archivist*
+
+---
+
+*Estimated time: 2–3 hours | Total points: 25*

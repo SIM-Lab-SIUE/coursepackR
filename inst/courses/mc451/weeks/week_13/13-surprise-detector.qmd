@@ -1,0 +1,100 @@
+---
+title: "Week 13: The Surprise Detector"
+subtitle: "Chapter 14 — Inferential Statistics"
+date: "2026-04-14"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+Descriptive statistics tell you what happened in your data. Inferential statistics tell you whether it *matters* — whether the patterns you see are likely real or just due to chance. This week introduces the logic of hypothesis testing and the tools for making statistical inferences.
+
+**Reading:** Chapter 14 — The Surprise Detector
+
+## Key Concepts
+
+- The logic of hypothesis testing
+- Null and alternative hypotheses
+- Statistical significance and p-values
+- Type I and Type II errors
+- Common tests: chi-square, t-test, correlation
+- The difference between statistical and practical significance
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Formulate null and alternative hypotheses
+2. Select an appropriate statistical test for your data
+3. Conduct basic inferential tests in R
+4. Interpret p-values and test statistics
+5. Distinguish between statistical significance and practical importance
+
+## Assignment: Data Wrangling in R (25 pts)
+
+### Part 1: Hypothesis Setup (5 pts)
+
+For your research project (or using the `unified_music` dataset):
+- State a null hypothesis (H0) and alternative hypothesis (H1)
+- Identify the appropriate statistical test and justify your choice
+- Identify the variables involved and their levels of measurement
+
+### Part 2: Statistical Analysis in R (15 pts)
+
+Conduct **two** of the following analyses using R:
+
+**Option A: Chi-Square Test** (for two categorical variables)
+```r
+# Example: Is genre independent of decade?
+table_data <- table(unified_music$genre, unified_music$decade)
+chisq.test(table_data)
+```
+
+**Option B: T-Test** (comparing means of two groups)
+```r
+# Example: Do two genres differ in danceability?
+t.test(danceability ~ genre, data = subset_data)
+```
+
+**Option C: Correlation** (relationship between two numeric variables)
+```r
+# Example: Is there a relationship between tempo and energy?
+cor.test(unified_music$tempo, unified_music$energy)
+```
+
+For each test, report:
+- The test statistic and p-value
+- Whether the result is statistically significant (α = .05)
+- A plain-language interpretation
+
+### Part 3: Results Write-Up (5 pts)
+
+Write a brief results paragraph in APA style reporting your findings. Include the test statistic, degrees of freedom, p-value, and interpretation.
+
+## Discussion Questions
+
+1. Why can't we "prove" a hypothesis — only fail to reject or reject the null?
+2. What does a p-value of .03 actually mean?
+3. Why might a statistically significant result not be practically important?
+
+## Submission Checklist
+
+- [ ] Hypotheses stated (null and alternative)
+- [ ] Two statistical tests conducted in R
+- [ ] Results reported with test statistics and p-values
+- [ ] APA-style results paragraph written
+- [ ] Quarto document rendered and uploaded
+- [ ] Journal entry for Week 13 completed
+
+## Resources
+
+- Textbook: Chapter 14 — *The Surprise Detector*
+- [Quick-R: Statistical Tests](https://www.statmethods.net/stats/index.html)
+
+---
+
+*Estimated time: 4–5 hours | Total points: 25*

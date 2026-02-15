@@ -1,0 +1,91 @@
+---
+title: "Week 14: Interpreting the Call"
+subtitle: "Chapter 15 — Effect Sizes & Practical Significance"
+date: "2026-04-21"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+Statistical significance tells you whether a finding is *real*. Effect sizes tell you whether it *matters*. This week moves beyond p-values to understand the magnitude and practical importance of your findings — a critical skill for responsible data interpretation.
+
+**Reading:** Chapter 15 — Interpreting the Call
+
+## Key Concepts
+
+- Effect sizes: Cohen's d, Cramér's V, correlation coefficients
+- Confidence intervals as a complement to p-values
+- Practical significance vs. statistical significance
+- The replication crisis and why effect sizes matter
+- Interpreting results in context
+- Limitations and alternative explanations
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Calculate and interpret common effect size measures
+2. Construct and interpret confidence intervals
+3. Distinguish between statistical and practical significance
+4. Write a discussion section connecting findings to your research question
+5. Acknowledge limitations honestly
+
+## Assignment: Describing Data in R (25 pts)
+
+### Part 1: Effect Size Calculations (10 pts)
+
+Return to the analyses you conducted last week and calculate effect sizes:
+
+- For t-tests: Calculate **Cohen's d**
+- For chi-square: Calculate **Cramér's V**
+- For correlations: The correlation coefficient **r** is already an effect size
+
+```r
+# Cohen's d (manual calculation)
+group1 <- subset_data$var[subset_data$group == "A"]
+group2 <- subset_data$var[subset_data$group == "B"]
+cohens_d <- (mean(group1) - mean(group2)) /
+  sqrt((sd(group1)^2 + sd(group2)^2) / 2)
+```
+
+Interpret each effect size using standard benchmarks (small, medium, large).
+
+### Part 2: Confidence Intervals (5 pts)
+
+For one of your analyses, report the 95% confidence interval and explain:
+- What does this interval represent?
+- How does it complement the p-value?
+
+### Part 3: Discussion Draft (10 pts)
+
+Write a 2-paragraph discussion section that:
+
+1. **Interprets your findings:** What do the results mean in the context of your research question? How do they connect to the theory/framework you identified earlier?
+2. **Acknowledges limitations:** What are the weaknesses of your study? What alternative explanations exist? What would you do differently?
+
+## Discussion Questions
+
+1. A study finds a statistically significant difference with Cohen's d = 0.08. Should we be impressed? Why or why not?
+2. Why has the research community increasingly called for reporting effect sizes alongside p-values?
+3. What is a confidence interval, and why is "95% confident" often misunderstood?
+
+## Submission Checklist
+
+- [ ] Effect sizes calculated and interpreted
+- [ ] Confidence interval reported and explained
+- [ ] Discussion section drafted (2 paragraphs)
+- [ ] Quarto document rendered and uploaded
+- [ ] Journal entry for Week 14 completed
+
+## Resources
+
+- Textbook: Chapter 15 — *Interpreting the Call*
+- [Effect Size Calculator](https://www.psychometrica.de/effect_size.html)
+
+---
+
+*Estimated time: 3–4 hours | Total points: 25*

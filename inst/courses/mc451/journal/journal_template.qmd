@@ -1,0 +1,82 @@
+---
+title: "Weekly Journal Entry"
+subtitle: "Week `r params$week`: `r params$title`"
+author: "Your Name"
+date: today
+params:
+  week: 1
+  title: "Untitled"
+  chapters: "1"
+  approach: "connector"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+```{r}
+#| include: false
+
+# Validate approach parameter
+valid_approaches <- c("connector", "troubleshooter", "critic")
+if (!tolower(params$approach) %in% valid_approaches) {
+  stop("approach must be one of: ", paste(valid_approaches, collapse = ", "))
+}
+approach <- tolower(params$approach)
+```
+
+## Journal Metadata
+
+| Field | Value |
+|-------|-------|
+| **Week** | `r params$week` |
+| **Chapter(s) Read** | `r params$chapters` |
+| **Approach** | `r tools::toTitleCase(params$approach)` |
+| **Date** | `r Sys.Date()` |
+
+---
+
+## Instructions
+
+Each week, reflect on course material using your chosen approach. Write 250--400 words of genuine reflection. Be honest---this is for *your* learning.
+
+**To use this template:**
+
+1. Copy this file to your `01_Journal/` folder
+2. Rename it `Week_XX_Journal.qmd` (replacing XX with the week number)
+3. Update the `params:` in the YAML header (week, title, chapters, approach)
+4. Delete the two approaches you are NOT using
+5. Write your reflection in the remaining section
+6. Render to HTML or PDF in RStudio
+
+---
+
+`r if (approach == "connector") "## The Connector\n\nLink this week's material to something bigger: your project, a previous concept, real-world journalism, or your own experience.\n"`
+
+`r if (approach == "connector") "**Connection to:**\n\n[What does this connect to? Your project? A previous concept? A real story?]\n\n**My Reflection:**\n\n[Write 250--400 words connecting this week's material to something meaningful...]\n\n**Link to my work:**\n\n- Related note, project, or earlier reflection\n"`
+
+`r if (approach == "troubleshooter") "## The Troubleshooter\n\nDocument a challenge you faced and how you overcame it---a technical issue, confusing concept, or stuck analysis.\n"`
+
+`r if (approach == "troubleshooter") "**Challenge I faced:**\n\n[What was difficult? An R error? A confusing concept? A stuck analysis?]\n\n**What I tried:**\n\n[What steps did you take to solve it?]\n\n**What worked:**\n\n[How did you overcome it? What did you learn?]\n\n**Resource that helped:**\n\n[Code snippet, chapter reference, online resource, etc.]\n"`
+
+```{r}
+#| eval: !expr approach == "troubleshooter"
+#| echo: true
+# Example code that helped:
+# [Your code here]
+```
+
+`r if (approach == "troubleshooter") "**My Reflection:**\n\n[Write 250--400 words reflecting on the struggle and learning process...]\n"`
+
+`r if (approach == "critic") "## The Critic\n\nAsk critical questions. Challenge an assumption, spot a gap in the material, or explore implications.\n"`
+
+`r if (approach == "critic") "**Question I'm asking:**\n\n[What critical question arose from this material?]\n\n**What the material presented:**\n\n[Summarize the key idea you're interrogating.]\n\n**My critical take:**\n\n[What do I question about this? What gap exists? What implication concerns me?]\n\n**My Reflection:**\n\n[Write 250--400 words exploring this critical question deeply...]\n"`
+
+---
+
+*Rendered on `r Sys.time()` | MC-451 Research Methods | coursepackR*

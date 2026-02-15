@@ -89,60 +89,69 @@ download_week <- function(course, week = NULL, dest = ".") {
   ))
 }
 
-#' Download Journal Scaffold
+#' Download Journal Entry Template
 #'
-#' Copies the journal template directory for a course to a local folder.
+#' Creates a week-specific copy of the journal template. Each call produces a
+#' uniquely named file (e.g., `Week_03_Journal.qmd`) so previous entries are
+#' never overwritten.
 #'
-#' @param course Character course identifier (e.g., `"mc451"`).
+#' @param week Integer week number (1--17).
+#' @param course Character course identifier (default: `"mc451"`).
 #' @param dest Character destination directory (default: current directory).
-#' @return Invisibly, a character vector of file paths that were written.
+#'   A `journal/` subdirectory is created automatically.
+#' @return Invisibly, the path to the created file.
 #' @export
 #' @examples
 #' \dontrun{
-#' download_journal("mc451")
+#' download_journal(3)
+#' download_journal(5, dest = "~/my-course")
 #' }
-download_journal <- function(course, dest = ".") {
-  rlang::check_required(course)
+download_journal <- function(week, course = "mc451", dest = ".") {
+  rlang::check_required(week)
 
-  if (!is.character(course) || length(course) != 1L || !nzchar(course)) {
-    cli::cli_abort("{.arg course} must be a single non-empty string.")
+  week_num <- as.integer(week)
+  if (is.na(week_num) || week_num < 1L || week_num > 17L) {
+    cli::cli_abort("{.arg week} must be a number between 1 and 17.")
   }
 
-  # Search for journal directory
+  # Find template
   root <- .courses_root()
   if (!nzchar(root)) {
     cli::cli_abort("No course materials found. Is {.pkg coursepackR} installed correctly?")
   }
 
-  journal_dir <- file.path(root, course, "journal")
-  if (!dir.exists(journal_dir)) {
-    available <- list_courses()
+  template <- file.path(root, course, "journal", "journal_template.qmd")
+  if (!file.exists(template)) {
     cli::cli_abort(c(
-      "No journal scaffold found for course {.val {course}}.",
-      "i" = "Available courses: {.val {available}}"
+      "Journal template not found for course {.val {course}}.",
+      "i" = "Expected: {.path {template}}"
     ))
   }
 
-  # Copy to destination
+  # Create destination
   dest <- normalizePath(dest, mustWork = TRUE)
   journal_dest <- file.path(dest, "journal")
   if (!dir.exists(journal_dest)) dir.create(journal_dest, recursive = TRUE)
 
-  src_files <- list.files(journal_dir, full.names = FALSE, recursive = TRUE)
-  if (length(src_files) == 0L) {
-    cli::cli_alert_warning("Journal scaffold for {.val {course}} is empty.")
-    return(invisible(character(0)))
+  # Week-specific filename
+  filename <- sprintf("Week_%02d_Journal.qmd", week_num)
+  dest_file <- file.path(journal_dest, filename)
+
+  if (file.exists(dest_file)) {
+    cli::cli_alert_warning("{.file {filename}} already exists. Skipping to protect your work.")
+    cli::cli_alert_info("Delete or rename the existing file if you want a fresh copy.")
+    return(invisible(dest_file))
   }
 
-  src_full <- file.path(journal_dir, src_files)
-  dest_files <- file.path(journal_dest, src_files)
-  dest_dirs <- unique(dirname(dest_files))
-  for (d in dest_dirs) {
-    if (!dir.exists(d)) dir.create(d, recursive = TRUE)
-  }
-  file.copy(src_full, dest_files, overwrite = FALSE, copy.date = TRUE)
+  file.copy(template, dest_file, overwrite = FALSE)
 
-  cli::cli_alert_success("Downloaded journal scaffold for {.val {course}} ({length(src_files)} file{?s}) to {.path {journal_dest}}")
+  # Update the week param in the YAML
+  lines <- readLines(dest_file, warn = FALSE)
+  lines <- sub("^(  week:) .*$", paste0("\\1 ", week_num), lines)
+  writeLines(lines, dest_file)
 
-  invisible(dest_files)
+  cli::cli_alert_success("Created {.file {filename}} in {.path {journal_dest}}")
+  cli::cli_alert_info("Open it in RStudio, update the params, and write your reflection.")
+
+  invisible(dest_file)
 }

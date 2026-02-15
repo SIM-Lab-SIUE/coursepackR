@@ -1,0 +1,62 @@
+---
+title: "Week 12: Field Work"
+subtitle: "No New Reading — Research Ethics & Data Collection"
+date: "2026-04-07"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+This week is dedicated to field work — completing your data collection and ensuring your research meets ethical standards. There is no new chapter reading this week, giving you time to focus on your CITI certification and making progress on your project.
+
+## Assignment: CITI Certification (25 pts)
+
+### CITI Human Subjects Research Training
+
+All researchers working with human subjects must complete ethical training. Even if your project uses only publicly available data, understanding research ethics is a core competency.
+
+### Instructions
+
+1. Go to [citiprogram.org](https://www.citiprogram.org/)
+2. Log in or create an account using your SIUE email
+3. Affiliate with **Southern Illinois University Edwardsville**
+4. Complete the **Social & Behavioral Research - Basic/Refresher** course
+5. Download your completion certificate
+
+### Submission
+
+Upload your CITI completion certificate (PDF) to Blackboard.
+
+## While You Work
+
+Use remaining time this week to:
+
+- [ ] Continue or complete your data collection
+- [ ] Clean and organize your data files
+- [ ] Begin entering data into your codebook structure
+- [ ] Review your codebook for any final adjustments
+- [ ] Catch up on any outstanding assignments
+
+## Discussion Questions
+
+1. Why do universities require ethics training even for projects analyzing public data?
+2. What are the key principles of ethical research (beneficence, justice, respect for persons)?
+3. How does informed consent apply (or not apply) to content analysis research?
+
+## Submission Checklist
+
+- [ ] CITI training completed
+- [ ] Completion certificate uploaded to Blackboard
+- [ ] Journal entry for Week 12 completed
+
+## Resources
+
+- [CITI Program](https://www.citiprogram.org/)
+- [SIUE IRB Office](https://www.siue.edu/compliance/human-subjects/)
+- [Belmont Report Summary](https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html)
+
+---
+
+*Estimated time: 3–4 hours | Total points: 25*

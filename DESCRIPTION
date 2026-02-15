@@ -2,7 +2,10 @@ Package: coursepackR
 Type: Package
 Title: Course Tools for From Vibes to Variables
 Version: 1.0.0
-Authors@R: person("Alex P.", "Leith", email = "aleith@siue.edu", role = c("aut", "cre"))
+Authors@R: person("Alex P.", "Leith", email = "aleith@siue.edu",
+    role = c("aut", "cre"))
+Author: Alex P. Leith [aut, cre]
+Maintainer: Alex P. Leith <aleith@siue.edu>
 Description: Student-facing R package for MC-451 Research Methods at SIUE.
     Provides helper functions to download weekly course materials, manage
     research projects, access the bundled music dataset, and integrate

@@ -1,0 +1,83 @@
+---
+title: "Week 7: Music Immersion & Vibes to Variables"
+subtitle: "Chapters 8 & 9 — From Observation to Measurement"
+date: "2026-03-03"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+This is a double-chapter week bridging the gap between qualitative observation and quantitative measurement. Chapter 8 immerses you in the ethnographic experience of listening to and observing music culture. Chapter 9 then shows how to translate those rich "vibes" into measurable variables — the fundamental act of operationalization.
+
+**Readings:** Chapter 8 — Music Immersion & Chapter 9 — Vibes to Variables
+
+## Key Concepts
+
+- Ethnographic observation in media research
+- The tension between richness and measurability
+- Operationalization: defining abstract concepts as observable indicators
+- Levels of measurement (nominal, ordinal, interval, ratio)
+- Conceptual vs. operational definitions
+- Validity and reliability in measurement
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Conduct a structured observation of a media/music phenomenon
+2. Distinguish between conceptual and operational definitions
+3. Identify the level of measurement for different variables
+4. Translate your research question's key concepts into measurable variables
+5. Write operational definitions for your project variables
+
+## Assignment: Topic Selection & Research Questions (25 pts)
+
+### Part 1: Music Immersion Exercise (10 pts)
+
+Choose a music-related media context (streaming playlist, music video channel, concert livestream, music subreddit, etc.) and spend 30 minutes in structured observation:
+
+1. Document what you observe (behaviors, patterns, themes)
+2. Note what stands out and what seems "normal"
+3. Identify 3 potential variables that could be measured from this context
+
+### Part 2: Variable Definitions (10 pts)
+
+For your own research project, provide:
+
+- **2–3 key variables** from your research question
+- For each variable:
+  - **Conceptual definition:** What does this concept mean in theory?
+  - **Operational definition:** How will you measure or observe it?
+  - **Level of measurement:** Nominal, ordinal, interval, or ratio?
+
+### Part 3: Refined Research Questions (5 pts)
+
+Based on your work this week, revisit your research question(s) from the Prospectus. Rewrite them with precise variable language. If applicable, state formal hypotheses.
+
+## Discussion Questions
+
+1. Why is it difficult to measure something like "quality" or "popularity" in media research?
+2. How does the level of measurement affect what statistical analyses you can perform later?
+3. What is the difference between a variable that is *valid* and one that is *reliable*?
+
+## Submission Checklist
+
+- [ ] Music immersion observation documented (30+ minutes)
+- [ ] 3 potential variables identified from observation
+- [ ] 2–3 project variables with conceptual and operational definitions
+- [ ] Level of measurement identified for each variable
+- [ ] Refined research questions written
+- [ ] Journal entry for Week 7 completed
+
+## Resources
+
+- Textbook: Chapter 8 — *Music Immersion*
+- Textbook: Chapter 9 — *Vibes to Variables*
+
+---
+
+*Estimated time: 3–4 hours | Total points: 25*

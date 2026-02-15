@@ -2,23 +2,29 @@
 % Please edit documentation in R/download.R
 \name{download_journal}
 \alias{download_journal}
-\title{Download Journal Scaffold}
+\title{Download Journal Entry Template}
 \usage{
-download_journal(course, dest = ".")
+download_journal(week, course = "mc451", dest = ".")
 }
 \arguments{
-\item{course}{Character course identifier (e.g., \code{"mc451"}).}
+\item{week}{Integer week number (1--17).}
 
-\item{dest}{Character destination directory (default: current directory).}
+\item{course}{Character course identifier (default: \code{"mc451"}).}
+
+\item{dest}{Character destination directory (default: current directory).
+A \verb{journal/} subdirectory is created automatically.}
 }
 \value{
-Invisibly, a character vector of file paths that were written.
+Invisibly, the path to the created file.
 }
 \description{
-Copies the journal template directory for a course to a local folder.
+Creates a week-specific copy of the journal template. Each call produces a
+uniquely named file (e.g., \code{Week_03_Journal.qmd}) so previous entries are
+never overwritten.
 }
 \examples{
 \dontrun{
-download_journal("mc451")
+download_journal(3)
+download_journal(5, dest = "~/my-course")
 }
 }

@@ -1,0 +1,19 @@
+---
+title: "Week 9: Spring Break"
+subtitle: "No Class — March 17, 2026"
+date: "2026-03-17"
+format:
+  html:
+    embed-resources: true
+---
+
+## Spring Break
+
+No readings or assignments this week. Use this time to:
+
+- Catch up on any incomplete assignments
+- Review feedback on your Prospectus and Research Questions
+- Refine your codebook based on practice coding experience
+- Rest and recharge for the second half of the semester
+
+**Next week:** Chapters 11 & 12 — The Pilot Test & Wrangling the Chaos (Codebook & Qualitative Memo due)

@@ -1,0 +1,79 @@
+---
+title: "Week 1: The Architecture of Curiosity"
+subtitle: "Chapter 1 — The Science of Storytelling"
+date: "2026-01-20"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+Welcome to *From Vibes to Variables*. This week introduces the foundational mindset of media research: structured curiosity. You will learn how everyday observations about media can be transformed into researchable questions through the lens of scientific inquiry.
+
+**Reading:** Chapter 1 — The Architecture of Curiosity
+
+## Key Concepts
+
+- The difference between casual observation and systematic inquiry
+- How media researchers move from "I wonder..." to testable claims
+- The research cycle: observation → question → theory → measurement → analysis → communication
+- Why reproducibility matters in media science
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Articulate the difference between anecdotal and empirical reasoning
+2. Identify research questions embedded in everyday media consumption
+3. Describe the stages of the research process
+4. Set up your GitHub profile as a professional research identity
+
+## Assignment: GitHub Profile Setup (25 pts)
+
+### Part 1: Create Your GitHub Account (10 pts)
+
+1. Navigate to [github.com](https://github.com) and create a free account
+2. Choose a **professional username** (this will be your public research identity)
+3. Add a profile photo and short bio
+4. Follow your instructor's GitHub account
+
+### Part 2: Profile README (10 pts)
+
+Create a profile README repository:
+
+1. Create a new repository with the **exact same name** as your GitHub username
+2. Initialize it with a README.md file
+3. Edit the README to include:
+   - Your name and academic program
+   - A brief statement of your research interests
+   - What you hope to learn in this course
+
+### Part 3: Reflection (5 pts)
+
+In 2–3 sentences, explain: **Why might a public research profile matter for your career, even if you don't plan to become a "scientist"?**
+
+## Discussion Questions
+
+1. Think about a piece of media you consumed this week (song, article, video). What observation could you make about it that might be worth investigating systematically?
+2. What is the difference between saying "I think pop songs are getting shorter" and testing whether pop songs are getting shorter?
+3. Why do researchers need transparent methods rather than just good intentions?
+
+## Submission Checklist
+
+- [ ] GitHub account created with professional username
+- [ ] Profile photo and bio added
+- [ ] Profile README repository created and populated
+- [ ] Reflection paragraph completed
+- [ ] Journal entry for Week 1 completed
+
+## Resources
+
+- [GitHub Docs: Setting up your profile](https://docs.github.com/en/account-and-profile)
+- Textbook: Chapter 1 — *The Architecture of Curiosity*
+
+---
+
+*Estimated time: 2–3 hours | Total points: 25*

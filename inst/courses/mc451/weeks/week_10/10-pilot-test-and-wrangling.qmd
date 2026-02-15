@@ -1,0 +1,97 @@
+---
+title: "Week 10: The Pilot Test & Wrangling the Chaos"
+subtitle: "Chapters 11 & 12 — Testing Your Instrument & Data Management"
+date: "2026-03-24"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+This double-chapter week covers two critical stages: testing your measurement instrument and preparing for data management. Chapter 11 guides you through the pilot test — a small-scale trial run of your codebook to identify problems before full data collection. Chapter 12 introduces data wrangling in R, preparing you for the analytical work ahead.
+
+**Readings:** Chapter 11 — The Pilot Test & Chapter 12 — Wrangling the Chaos
+
+## Key Concepts
+
+- The pilot test as quality assurance
+- Inter-coder reliability (Cohen's Kappa, percent agreement)
+- Identifying and fixing codebook problems before full collection
+- Introduction to R for data management
+- Tidy data principles
+- Data import, cleaning, and transformation with tidyverse
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Design and conduct a pilot test of your codebook
+2. Calculate basic inter-coder reliability
+3. Revise your codebook based on pilot test results
+4. Import data into R and perform basic data inspection
+5. Understand tidy data structure
+
+## Assignment: Codebook & Qualitative Memo (25 pts)
+
+### Part 1: Pilot Test (10 pts)
+
+1. Select **10 units** from your data source
+2. Code all 10 units using your finalized codebook
+3. Have a classmate (or use a second pass) code the same 10 units
+4. Calculate percent agreement for each variable
+5. Document any discrepancies and how you resolved them
+
+### Part 2: Revised Codebook (10 pts)
+
+Based on your pilot test results:
+- Revise any ambiguous coding categories
+- Add or clarify decision rules
+- Update examples where needed
+- Submit the **final version** of your codebook
+
+### Part 3: Data Wrangling Preview (5 pts)
+
+In RStudio, load the `unified_music` dataset and complete the following:
+
+```r
+library(coursepackR)
+data(unified_music)
+
+# 1. How many rows and columns?
+dim(unified_music)
+
+# 2. What are the variable names?
+names(unified_music)
+
+# 3. Show the first few rows
+head(unified_music)
+```
+
+Write 2–3 sentences describing the structure of the dataset.
+
+## Discussion Questions
+
+1. What did your pilot test reveal about your codebook that you didn't expect?
+2. Why is inter-coder reliability important even if you are the only coder?
+3. What does it mean for data to be "tidy"?
+
+## Submission Checklist
+
+- [ ] Pilot test completed with 10 coded units
+- [ ] Reliability calculations documented
+- [ ] Revised codebook submitted
+- [ ] R data exploration completed and submitted
+- [ ] Journal entry for Week 10 completed
+
+## Resources
+
+- Textbook: Chapter 11 — *The Pilot Test*
+- Textbook: Chapter 12 — *Wrangling the Chaos*
+- [R for Data Science (2e)](https://r4ds.hadley.nz/)
+
+---
+
+*Estimated time: 4–5 hours | Total points: 25*

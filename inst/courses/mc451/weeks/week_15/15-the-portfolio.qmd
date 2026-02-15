@@ -1,0 +1,93 @@
+---
+title: "Week 15: The Portfolio"
+subtitle: "Chapter 16 — Building Your Research Portfolio"
+date: "2026-04-28"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+Your research is only as impactful as your ability to communicate it. This week focuses on assembling your semester's work into a professional research portfolio — a Quarto-based website that showcases your project from question to conclusion.
+
+**Reading:** Chapter 16 — The Portfolio
+
+## Key Concepts
+
+- Research communication as a core competency
+- The Quarto website as a publication platform
+- Portfolio structure: narrative arc from question to conclusion
+- Visual design for academic communication
+- Reproducibility in the final product
+- Audience awareness: writing for non-specialists
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Structure a research portfolio with a clear narrative arc
+2. Create a multi-page Quarto website
+3. Integrate code, visualizations, and written analysis
+4. Design for clarity and professional presentation
+5. Prepare materials for the final portfolio submission
+
+## Assignment: Inferencing Data in R (25 pts)
+
+### Part 1: Portfolio Scaffold (10 pts)
+
+Using the `final_project()` function from coursepackR, create your portfolio structure:
+
+```r
+library(coursepackR)
+final_project()
+```
+
+This creates a Quarto website project with:
+- `index.qmd` — Home/introduction page
+- `method.qmd` — Your methodology
+- `results.qmd` — Findings and visualizations
+- `discussion.qmd` — Interpretation and limitations
+- `references.bib` — Your bibliography
+
+### Part 2: Content Integration (10 pts)
+
+Begin populating your portfolio pages with content from your semester's work:
+
+1. **Introduction:** Your research question, theoretical framework, and significance
+2. **Method:** Your codebook, sampling strategy, and data collection process
+3. **Results:** Your descriptive and inferential analyses with visualizations
+4. **Discussion:** Your interpretation, limitations, and future directions
+
+### Part 3: Design & Rendering (5 pts)
+
+- Choose a Quarto theme that suits your project
+- Ensure all visualizations render correctly
+- Check that the site navigation works
+- Render the site locally and verify all pages
+
+## Discussion Questions
+
+1. Why is a web-based portfolio more effective than a traditional paper for research communication?
+2. How do you adapt your writing when your audience includes both specialists and general readers?
+3. What role does visual design play in making research accessible?
+
+## Submission Checklist
+
+- [ ] Portfolio structure created using `final_project()`
+- [ ] At least 2 pages populated with content
+- [ ] Site renders locally without errors
+- [ ] Progress documented and uploaded to Blackboard
+- [ ] Journal entry for Week 15 completed
+
+## Resources
+
+- Textbook: Chapter 16 — *The Portfolio*
+- [Quarto Websites Guide](https://quarto.org/docs/websites/)
+- coursepackR `final_project()` function
+
+---
+
+*Estimated time: 4–5 hours | Total points: 25*

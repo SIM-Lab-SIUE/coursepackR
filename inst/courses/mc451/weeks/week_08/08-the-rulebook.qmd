@@ -1,0 +1,82 @@
+---
+title: "Week 8: The Rulebook"
+subtitle: "Chapter 10 — Building Your Codebook"
+date: "2026-03-10"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+The codebook (or "rulebook") is the operational manual for your research project. It translates your variables into precise coding instructions that anyone could follow to produce the same results. This week you learn to build a codebook that ensures consistency and reliability in your data collection.
+
+**Reading:** Chapter 10 — The Rulebook
+
+## Key Concepts
+
+- The codebook as the bridge between theory and data
+- Coding categories: exhaustive and mutually exclusive
+- Coding instructions and decision rules
+- Inter-coder reliability
+- Qualitative memos as a parallel documentation strategy
+- The difference between manifest and latent content
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Build a codebook with clearly defined variables and categories
+2. Write coding instructions precise enough for another person to follow
+3. Explain the importance of inter-coder reliability
+4. Draft a qualitative memo documenting your analytical thinking
+
+## Assignment: Definitions Practice (25 pts)
+
+### Part 1: Codebook Draft (15 pts)
+
+Using the template provided, create a codebook for your research project:
+
+For each variable, include:
+- **Variable name** and label
+- **Conceptual definition**
+- **Operational definition**
+- **Coding categories** (with numeric codes)
+- **Decision rules** (how to handle ambiguous cases)
+- **Examples** (at least one per category)
+
+### Part 2: Practice Coding (5 pts)
+
+Select **3 sample units** from your data source and code them using your codebook. Document any difficulties or ambiguities you encounter.
+
+### Part 3: Qualitative Memo (5 pts)
+
+Write a 1-page qualitative memo reflecting on:
+- What patterns or themes are you noticing?
+- What challenges did you encounter in coding?
+- What adjustments might your codebook need?
+
+## Discussion Questions
+
+1. Why must coding categories be both exhaustive and mutually exclusive?
+2. What happens if two coders interpret the same content differently?
+3. How does a qualitative memo complement a quantitative codebook?
+
+## Submission Checklist
+
+- [ ] Codebook draft completed with all required elements
+- [ ] 3 sample units coded using the codebook
+- [ ] Qualitative memo written (1 page)
+- [ ] All documents uploaded to Blackboard
+- [ ] Journal entry for Week 8 completed
+
+## Resources
+
+- Textbook: Chapter 10 — *The Rulebook*
+- Codebook template (via `download_week("mc451", 8)`)
+
+---
+
+*Estimated time: 3–4 hours | Total points: 25*

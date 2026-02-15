@@ -1,0 +1,86 @@
+---
+title: "Week 6: The Research Question"
+subtitle: "Chapter 7 — Structured Listening"
+date: "2026-02-24"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+The research question is the single most important sentence in your project. This week teaches you how to move from a broad interest to a focused, answerable research question — and how to formalize your project plan in a prospectus document.
+
+**Reading:** Chapter 7 — The Research Question
+
+## Key Concepts
+
+- Characteristics of a good research question (specific, measurable, feasible)
+- The difference between research questions and hypotheses
+- Operationalization: turning abstract concepts into measurable variables
+- The prospectus as a contract with yourself
+- Narrowing scope without losing ambition
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Craft a focused, answerable research question
+2. Distinguish between descriptive, relational, and causal research questions
+3. Explain how your research question connects to your theoretical framework
+4. Complete a formal project prospectus
+
+## Assignment: Project Prospectus (25 pts)
+
+The prospectus is your project blueprint. Using the template provided, complete the following sections:
+
+### Section 1: Topic and Rationale (5 pts)
+- What is your research topic?
+- Why does it matter? (academic and/or practical significance)
+- What gap in knowledge does your project address?
+
+### Section 2: Research Question(s) (10 pts)
+- State your primary research question
+- If applicable, state 1–2 secondary questions or hypotheses
+- For each, identify the key variables/concepts involved
+
+### Section 3: Proposed Method (5 pts)
+- What method will you use? (content analysis, survey, etc.)
+- What data will you analyze? (reference your Archivist Report)
+- What is your anticipated sample or dataset?
+
+### Section 4: Timeline (5 pts)
+- Map your remaining semester weeks to specific project milestones
+- Identify potential challenges and contingency plans
+
+```r
+# To get the prospectus template:
+library(coursepackR)
+download_week("mc451", 6)
+```
+
+## Discussion Questions
+
+1. What makes a research question "good" vs. "too broad" or "too narrow"?
+2. How does your theoretical framework inform the specific question you're asking?
+3. What is the difference between a research question and a hypothesis?
+
+## Submission Checklist
+
+- [ ] Prospectus template downloaded and completed
+- [ ] Research question(s) clearly stated and justified
+- [ ] Method section outlines data source and approach
+- [ ] Timeline maps remaining weeks to milestones
+- [ ] Document rendered and uploaded to Blackboard
+- [ ] Journal entry for Week 6 completed
+
+## Resources
+
+- Textbook: Chapter 7 — *The Research Question*
+- Prospectus template (via `download_week("mc451", 6)`)
+
+---
+
+*Estimated time: 3–4 hours | Total points: 25*

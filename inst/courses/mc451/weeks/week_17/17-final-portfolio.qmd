@@ -1,0 +1,87 @@
+---
+title: "Week 17: Final Web Portfolio"
+subtitle: "Finals Week — Final Submission"
+date: "2026-05-11"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+This is it — the culmination of your semester's work. Your final web portfolio demonstrates your journey from curiosity to evidence, from vibes to variables. Submit a complete, polished, reproducible research portfolio.
+
+## Final Portfolio Requirements (100 pts)
+
+### Content (60 pts)
+
+Your portfolio must include the following pages:
+
+1. **Home / Introduction (15 pts)**
+   - Research question and its significance
+   - Theoretical framework
+   - Brief literature context
+
+2. **Method (15 pts)**
+   - Data source and sampling strategy
+   - Codebook summary (or link to full codebook)
+   - Data collection process
+   - Analytical approach
+
+3. **Results (15 pts)**
+   - Descriptive statistics with visualizations
+   - Inferential statistics with effect sizes
+   - Clear, labeled tables and figures
+
+4. **Discussion (15 pts)**
+   - Interpretation of findings
+   - Connection to theory and literature
+   - Limitations and future directions
+   - Conclusion
+
+### Technical Quality (20 pts)
+
+- [ ] Site renders without errors (5 pts)
+- [ ] All R code executes correctly (5 pts)
+- [ ] Visualizations are professional and labeled (5 pts)
+- [ ] Navigation works across all pages (5 pts)
+
+### Presentation (20 pts)
+
+- [ ] Writing is clear and professional (5 pts)
+- [ ] APA formatting for citations and references (5 pts)
+- [ ] Consistent visual design throughout (5 pts)
+- [ ] Portfolio tells a coherent research story (5 pts)
+
+## Submission Instructions
+
+1. Render your complete portfolio site
+2. Verify all pages render correctly
+3. Upload the rendered site (or GitHub Pages link) to Blackboard
+4. Include a brief cover note describing your project in 2–3 sentences
+
+## Grading Rubric Summary
+
+| Component | Points |
+|-----------|--------|
+| Home / Introduction | 15 |
+| Method | 15 |
+| Results | 15 |
+| Discussion | 15 |
+| Technical Quality | 20 |
+| Presentation | 20 |
+| **Total** | **100** |
+
+## Submission Checklist
+
+- [ ] All four portfolio pages complete
+- [ ] All R code runs without errors
+- [ ] All visualizations render correctly
+- [ ] Site navigation tested
+- [ ] Writing proofread
+- [ ] Portfolio uploaded to Blackboard
+- [ ] Cover note included
+
+---
+
+*This is your final submission. There is no late submission for the final portfolio.*

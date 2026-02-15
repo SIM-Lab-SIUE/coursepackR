@@ -1,0 +1,82 @@
+---
+title: "Week 5: The Roadmap"
+subtitle: "Chapter 6 — The Project Brief"
+date: "2026-02-17"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+With a data source identified and a theoretical lens selected, it's time to build your research roadmap. This week focuses on finding and annotating a published manuscript that models the kind of research you want to conduct — learning from how professionals structure their work.
+
+**Reading:** Chapter 6 — The Roadmap
+
+## Key Concepts
+
+- The anatomy of a research article (IMRAD structure)
+- How to read a research paper strategically (not linearly)
+- Annotation as active engagement with scholarship
+- Identifying a model manuscript for your own project
+- Literature review as conversation, not checklist
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Identify the structural components of a peer-reviewed article
+2. Annotate a manuscript using the critical reading protocol
+3. Explain how a published study can serve as a template for your own work
+4. Locate a relevant peer-reviewed article through library databases
+
+## Assignment: Annotated Manuscript (25 pts)
+
+### Part 1: Find Your Model Manuscript (10 pts)
+
+Using the SIUE library databases, find **one peer-reviewed research article** that:
+
+- Studies a topic related to your research interest
+- Uses a method similar to what you plan to use (content analysis, survey, etc.)
+- Was published within the last 10 years
+- Is from a reputable communication or media journal
+
+### Part 2: Annotate the Manuscript (10 pts)
+
+Using the annotation protocol from the textbook (or the example PDF on the course website), annotate the article focusing on:
+
+- **Introduction:** What gap does the study address? What is the research question?
+- **Literature Review:** What theories or frameworks are used? How are key terms defined?
+- **Method:** What data was collected? How was it analyzed?
+- **Results:** What did they find?
+- **Discussion:** What do the findings mean? What are the limitations?
+
+### Part 3: Connection Statement (5 pts)
+
+Write a 1-paragraph statement explaining how this article relates to your planned project. What will you borrow from its approach? What will you do differently?
+
+## Discussion Questions
+
+1. Why is it useful to find a "model manuscript" before designing your own study?
+2. What surprised you about the structure of the article you read?
+3. How does the literature review section of a paper differ from a summary?
+
+## Submission Checklist
+
+- [ ] Peer-reviewed article located and downloaded
+- [ ] Article annotated using the critical reading protocol
+- [ ] Connection statement written (1 paragraph)
+- [ ] Annotated PDF and statement uploaded to Blackboard
+- [ ] Journal entry for Week 5 completed
+
+## Resources
+
+- [SIUE Library Database Search](https://www.siue.edu/lovejoylibrary/)
+- Annotation example PDF (available on course website)
+- Textbook: Chapter 6 — *The Roadmap*
+
+---
+
+*Estimated time: 3–4 hours | Total points: 25*

@@ -1,0 +1,98 @@
+---
+title: "Week 11: Seeing Patterns"
+subtitle: "Chapter 13 — Descriptive Statistics & Visualization"
+date: "2026-03-31"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+With your data collected and cleaned, it's time to see what's there. This week introduces descriptive statistics and data visualization — the tools that let you summarize, explore, and communicate patterns in your data before formal hypothesis testing.
+
+**Reading:** Chapter 13 — Seeing Patterns
+
+## Key Concepts
+
+- Descriptive vs. inferential statistics
+- Measures of central tendency (mean, median, mode)
+- Measures of spread (range, standard deviation, variance)
+- Frequency distributions and cross-tabulations
+- Data visualization principles (bar charts, histograms, scatter plots)
+- Telling a story with descriptive statistics
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Calculate and interpret basic descriptive statistics
+2. Create frequency tables and cross-tabulations
+3. Build visualizations in R using ggplot2
+4. Describe your data's distribution and key characteristics
+5. Write a descriptive results paragraph
+
+## Assignment: Sampling Plan / Pilot Report (25 pts)
+
+### Part 1: Descriptive Statistics (10 pts)
+
+Using the `unified_music` dataset (or your own project data), calculate:
+
+```r
+library(coursepackR)
+data(unified_music)
+
+# Central tendency and spread for a numeric variable
+summary(unified_music$danceability)
+sd(unified_music$danceability, na.rm = TRUE)
+
+# Frequency table for a categorical variable
+table(unified_music$genre)
+```
+
+Report the following for **2 numeric variables** and **1 categorical variable**:
+- Mean, median, standard deviation (numeric)
+- Frequency counts and percentages (categorical)
+
+### Part 2: Visualization (10 pts)
+
+Create **3 visualizations** using ggplot2:
+
+1. A histogram or density plot of a numeric variable
+2. A bar chart of a categorical variable
+3. A scatter plot or box plot showing the relationship between two variables
+
+Each visualization should have:
+- Clear title and axis labels
+- Appropriate color or theme
+- A 1–2 sentence interpretation
+
+### Part 3: Written Summary (5 pts)
+
+Write a 1-paragraph descriptive summary of your findings. What patterns emerge? What is typical vs. unusual in the data?
+
+## Discussion Questions
+
+1. Why do researchers report both central tendency and spread?
+2. When is a median more appropriate than a mean?
+3. How can a visualization reveal something that a table of numbers cannot?
+
+## Submission Checklist
+
+- [ ] Descriptive statistics calculated for 3 variables
+- [ ] 3 visualizations created with interpretations
+- [ ] Written summary paragraph completed
+- [ ] Quarto document rendered and uploaded
+- [ ] Journal entry for Week 11 completed
+
+## Resources
+
+- Textbook: Chapter 13 — *Seeing Patterns*
+- [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+- [R for Data Science: Data Visualization](https://r4ds.hadley.nz/data-visualize)
+
+---
+
+*Estimated time: 3–4 hours | Total points: 25*

@@ -1,0 +1,48 @@
+---
+title: "Week 16: Remote Assembly"
+subtitle: "Chapter 17 — Going Live"
+date: "2026-05-05"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+This is a remote work week dedicated to finalizing your research portfolio. Chapter 17 covers the principles of open science and sharing your work with the world — making your research reproducible, accessible, and impactful.
+
+**Reading:** Chapter 17 — Going Live
+
+## Key Concepts
+
+- Open science principles and practices
+- Publishing with GitHub Pages
+- Data sharing and documentation
+- The research lifecycle: from question to public scholarship
+- Reproducibility as professional standard
+
+## This Week's Focus
+
+Use this week to:
+
+- [ ] Finalize all portfolio content (introduction, method, results, discussion)
+- [ ] Polish visualizations and formatting
+- [ ] Ensure all code runs without errors
+- [ ] Proofread all written sections
+- [ ] Prepare for final submission next week
+- [ ] Review Chapter 17 for open science best practices
+
+## Office Hours
+
+Virtual office hours are available this week. Reach out if you need help with:
+
+- Quarto rendering issues
+- R code troubleshooting
+- Portfolio structure questions
+- Final submission requirements
+
+**Next week:** Final Web Portfolio due (Finals Week)
+
+---
+
+*No graded assignment this week — use this time to finalize your portfolio.*

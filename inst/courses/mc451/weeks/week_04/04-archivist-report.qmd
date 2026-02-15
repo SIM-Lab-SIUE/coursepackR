@@ -1,0 +1,89 @@
+---
+title: "Week 4: Choosing Your Lens"
+subtitle: "Chapter 5 — Theory as Lens"
+date: "2026-02-10"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+Every researcher looks at the world through a theoretical lens — a set of assumptions and frameworks that guide what questions you ask and how you interpret answers. This week introduces theory not as abstract philosophy but as a practical tool for focusing your research.
+
+**Reading:** Chapter 5 — Choosing Your Lens
+
+## Key Concepts
+
+- Theory as a focusing lens, not a straitjacket
+- Inductive vs. deductive reasoning
+- How theoretical frameworks shape research questions
+- Common frameworks in media research (framing, agenda-setting, uses & gratifications, etc.)
+- Connecting theory to your specific research interest
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Explain the role of theory in empirical research
+2. Distinguish between inductive and deductive approaches
+3. Identify at least one theoretical framework relevant to your topic
+4. Complete the Archivist Scouting Report for your primary data source
+
+## Assignment: Archivist Report (25 pts)
+
+Using the Archivist Report template (available via `coursepackR`), complete a thorough evaluation of your **primary data source**:
+
+### Archive Identification
+- Source name, provider, and access method
+
+### Scope and Parameters
+- Date range (earliest and most recent data)
+- Content types available (news, transcripts, social media, etc.)
+
+### Feasibility Analysis
+- **Research Interest Alignment:** 2–3 sentences on how this source contains material for your topic
+- **Technical Feasibility:** Searchability, exportability, and reliability assessment
+
+### Preliminary Search Findings
+- Keywords used (with Boolean operators)
+- Total results found
+- Sample record title
+
+### Rendering
+
+1. Open the template in RStudio
+2. Fill in all sections
+3. Click **Render** to produce your PDF
+4. Name the file `Lastname_ArchivistReport.pdf`
+
+```r
+# To get the template:
+library(coursepackR)
+download_week("mc451", 4)
+```
+
+## Discussion Questions
+
+1. How does choosing a theoretical lens change what you notice in your data?
+2. Why might two researchers studying the same topic arrive at different conclusions based on their theoretical framework?
+3. What theory or framework are you considering for your project, and why?
+
+## Submission Checklist
+
+- [ ] Archivist Report template downloaded and completed
+- [ ] All sections filled in with specific, detailed responses
+- [ ] Document rendered to PDF in RStudio
+- [ ] PDF named `Lastname_ArchivistReport.pdf` and uploaded to Blackboard
+- [ ] Journal entry for Week 4 completed
+
+## Resources
+
+- Textbook: Chapter 5 — *Choosing Your Lens*
+- Archivist Report template (via `download_week("mc451", 4)`)
+
+---
+
+*Estimated time: 3–4 hours | Total points: 25*
