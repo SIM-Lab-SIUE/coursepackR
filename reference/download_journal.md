@@ -1,31 +1,39 @@
-# Download Journal Scaffold
+# Download Journal Entry Template
 
-Copies the journal template directory for a course to a local folder.
+Creates a week-specific copy of the journal template. Each call produces
+a uniquely named file (e.g., `Week_03_Journal.qmd`) so previous entries
+are never overwritten.
 
 ## Usage
 
 ``` r
-download_journal(course, dest = ".")
+download_journal(week, course = "mc451", dest = ".")
 ```
 
 ## Arguments
 
+- week:
+
+  Integer week number (1–17).
+
 - course:
 
-  Character course identifier (e.g., `"mc451"`).
+  Character course identifier (default: `"mc451"`).
 
 - dest:
 
-  Character destination directory (default: current directory).
+  Character destination directory (default: current directory). A
+  `journal/` subdirectory is created automatically.
 
 ## Value
 
-Invisibly, a character vector of file paths that were written.
+Invisibly, the path to the created file.
 
 ## Examples
 
 ``` r
 if (FALSE) { # \dontrun{
-download_journal("mc451")
+download_journal(3)
+download_journal(5, dest = "~/my-course")
 } # }
 ```

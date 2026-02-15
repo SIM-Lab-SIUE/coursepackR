@@ -18,7 +18,7 @@ Download and access weekly templates and scaffolds
 - [`download_week()`](https://sim-lab-siue.github.io/coursepackR/reference/download_week.md)
   : Download Weekly Course Materials
 - [`download_journal()`](https://sim-lab-siue.github.io/coursepackR/reference/download_journal.md)
-  : Download Journal Scaffold
+  : Download Journal Entry Template
 - [`open_week()`](https://sim-lab-siue.github.io/coursepackR/reference/open_week.md)
   : Open a Downloaded Week Folder
 - [`final_project()`](https://sim-lab-siue.github.io/coursepackR/reference/final_project.md)
