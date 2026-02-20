@@ -1,0 +1,82 @@
+/* ============================================
+   coursepackR — Custom CSS Overrides
+   Okabe-Ito palette, WCAG AA verified
+   ============================================ */
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #003D66;
+}
+
+h2 {
+  border-bottom: 3px solid #007A6D;
+  padding-bottom: 0.5rem;
+}
+
+h3, h4 {
+  color: #0072B2;
+}
+
+/* Inline code */
+code {
+  color: #6A3D9A;
+  background-color: #F0F7FF;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Links */
+a:hover {
+  color: #007A6D;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid #007A6D;
+  padding-left: 1rem;
+  color: #4a4a68;
+}
+
+/* Tables */
+thead {
+  background-color: #0072B2;
+  color: #FFFFFF;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #F0F7FF;
+}
+
+tbody tr:hover {
+  background-color: #E8F4FD;
+}
+
+/* Image & figure styling — photo drop-in ready */
+figure,
+.quarto-figure {
+  margin: 2rem 0;
+}
+
+figure img,
+.quarto-figure img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption,
+.figure-caption {
+  color: #6b6b85;
+  font-size: 0.875rem;
+  font-style: italic;
+  margin-top: 0.75rem;
+  text-align: center;
+  line-height: 1.5;
+}

@@ -3,7 +3,21 @@ template:
   bootstrap: 5
   bootswatch: cosmo
   bslib:
-    primary: "#2c5aa0"
+    primary: "#0072B2"
+    secondary: "#007A6D"
+    success: "#2E7D32"
+    info: "#0072B2"
+    warning: "#946800"
+    danger: "#880E4F"
+    bg: "#FFFFFF"
+    fg: "#1a1a2e"
+    base_font: {google: "Inter"}
+    heading_font: {google: "Inter"}
+    code_font: {google: "Source Code Pro"}
+  includes:
+    in_header: |
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 home:
   title: coursepackR - Course Tools for From Vibes to Variables
