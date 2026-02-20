@@ -4,7 +4,8 @@ pkgdown_sha: ~
 articles:
   getting-started: getting-started.html
   installation: installation.html
-last_built: 2026-02-15T05:18Z
+  unified-music-codebook: unified-music-codebook.html
+last_built: 2026-02-20T06:34Z
 urls:
   reference: https://sim-lab-siue.github.io/coursepackR/reference
   article: https://sim-lab-siue.github.io/coursepackR/articles

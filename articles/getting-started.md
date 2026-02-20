@@ -1,61 +1,232 @@
 # Getting Started
 
+This guide covers the day-to-day workflow for MC-451 using coursepackR:
+downloading weekly materials, working with the music dataset, keeping a
+reflective journal, and scaffolding your final project.
+
+## Semester Overview
+
+MC-451 runs 17 weeks. Each week has a Quarto assignment template that
+aligns with a textbook chapter. The coursepackR functions map directly
+to this schedule:
+
+| Weeks | Phase         | What You Do                                                 |
+|-------|---------------|-------------------------------------------------------------|
+| 1–4   | Foundations   | Read chapters, set up tools, practice critical reading      |
+| 5–7   | Design        | Choose a theory, write a research question, plan your study |
+| 8–11  | Measurement   | Immerse in data, build a codebook, run a pilot test         |
+| 12–15 | Analysis      | Wrangle data in R, visualize, run statistics, interpret     |
+| 16–17 | Communication | Build a portfolio, present your work openly                 |
+
 ## Weekly Workflow
 
-Each week, download the assignment template and work through it:
+Each week follows the same pattern:
+
+### Step 1: Check what’s available
 
 ``` r
 library(coursepackR)
-
-# See what's available
 list_weeks("mc451")
+```
 
-# Download this week's materials
+This returns a sorted vector of week numbers (1 through 17).
+
+### Step 2: Download this week’s template
+
+``` r
 download_week("mc451", 1)
+```
 
-# Open the folder
+This copies the week’s `.qmd` assignment template into your current
+working directory under a folder named `week_01/`. The folder contains a
+single Quarto document with the week’s assignment.
+
+If the folder already exists, the function stops with a message to
+prevent overwriting your work. Delete or rename the old folder if you
+want a fresh copy.
+
+### Step 3: Open the folder
+
+``` r
 open_week(1)
 ```
 
-## The Music Dataset
+This opens the `week_01/` folder in your system file browser (Finder on
+Mac, Explorer on Windows). From there, double-click the `.qmd` file to
+open it in RStudio.
 
-The package includes a curated dataset of 1,792 songs with Billboard
-chart data, Spotify audio features, and metadata:
+### Step 4: Work through the assignment
 
-``` r
-data(unified_music)
-head(unified_music)
-```
+Open the `.qmd` file in RStudio. Each template includes:
 
-Key variables include `Max_Rank`, `danceability`, `energy`, `valence`,
-`tempo`, and `playlist_genre`.
+- A YAML header with your name, date, and the week’s title
+- Reading prompts tied to the textbook chapter
+- Code chunks for any R exercises
+- Reflection questions
 
-## Journal Scaffold
+Fill in your responses, run any code chunks, and render the document
+when you’re done (click the **Render** button or press Ctrl+Shift+K).
 
-Download the reflective journal template:
+### Step 5: Reflect in your journal
 
 ``` r
 download_journal("mc451")
 ```
 
+This downloads the reflective journal template. The file is
+automatically named with the current date (e.g.,
+`journal_2026-02-19.qmd`) so each entry gets its own file.
+
+The journal template offers three thinking paths — pick the one that
+fits your experience this week:
+
+- **The Connector** — How does this relate to what I already know?
+- **The Troubleshooter** — What problems did I solve?
+- **The Critic** — Does this match my experience?
+
+## The Music Dataset
+
+The package bundles the `unified_music` dataset — 1,792 songs with
+Billboard chart data, Spotify audio features, and Genius metadata.
+
+### Loading the data
+
+``` r
+data(unified_music)
+```
+
+The dataset is lazy-loaded, meaning it’s available as soon as you call
+[`data()`](https://rdrr.io/r/utils/data.html) without reading from disk
+each time.
+
+### Exploring the dataset
+
+``` r
+# Dimensions
+dim(unified_music)
+#> [1] 1792   36
+
+# Column names
+names(unified_music)
+
+# First few rows
+head(unified_music)
+
+# Summary of a numeric variable
+summary(unified_music$danceability)
+```
+
+### Key variable groups
+
+| Group     | Variables                                                | Description                         |
+|-----------|----------------------------------------------------------|-------------------------------------|
+| Identity  | `Song`, `Artist`                                         | Song and artist names               |
+| Billboard | `Max_Rank`, `Weeks_on_Board`, `Average_Rank`             | Chart performance                   |
+| Audio     | `danceability`, `energy`, `valence`, `tempo`, `loudness` | Spotify features (0–1 scale or raw) |
+| Genre     | `playlist_genre`, `playlist_subgenre`                    | Genre classification                |
+| Metadata  | `year`, `views`, `lyrics`                                | Release year, Genius views, lyrics  |
+
+For the complete variable reference with types, ranges, and
+descriptions, see
+[`vignette("unified-music-codebook")`](https://sim-lab-siue.github.io/coursepackR/articles/unified-music-codebook.md)
+or the [Data
+Dictionary](https://sim-lab-siue.github.io/vibes-to-variables/appendices/data-dictionary.html)
+appendix in the textbook.
+
+## Journal Workflow
+
+The reflective journal is a weekly habit. Each call to
+[`download_journal()`](https://sim-lab-siue.github.io/coursepackR/reference/download_journal.md)
+creates a new file:
+
+``` r
+# Download this week's journal
+download_journal("mc451")
+
+# The file is named with today's date
+# e.g., journal_2026-02-19.qmd
+```
+
+Journal entries accumulate in your working directory. By the end of the
+semester, you’ll have 15–17 entries documenting your growth as a
+researcher.
+
 ## Final Project
 
-When you’re ready to start the final project:
+When you reach the end of the semester, scaffold your final project:
 
 ``` r
 final_project("mc451")
 ```
 
-This creates a project folder with a Quarto document, bibliography file,
-data directory, and RStudio project file.
+This creates a folder called `mc451_final_project/` with:
+
+| File/Folder                 | Purpose                                      |
+|-----------------------------|----------------------------------------------|
+| `final_paper.qmd`           | Main Quarto document for your research paper |
+| `references.bib`            | BibTeX file for your citations               |
+| `data/`                     | Folder for your analysis data                |
+| `mc451_final_project.Rproj` | RStudio project file                         |
+
+Open the `.Rproj` file in RStudio to start working in a clean project
+environment. The Quarto document includes a structured outline for your
+paper (introduction, methods, results, discussion).
 
 ## Reading the Textbook
 
-Chapters are available online at
-<https://sim-lab-siue.github.io/vibes-to-variables/> and also bundled
-with the package for offline access:
+The 17 chapters of *From Vibes to Variables* are available in two ways:
+
+### Online (recommended)
+
+Visit <https://sim-lab-siue.github.io/vibes-to-variables/> for the full
+HTML book with search, navigation, and interactive code examples.
+
+### Offline
+
+All chapters are bundled in the package as markdown files:
 
 ``` r
+# List all chapters
+list.files(system.file("textbook", package = "coursepackR"))
+
 # Path to a specific chapter
-system.file("textbook", "chapter01.md", package = "coursepackR")
+ch1 <- system.file("textbook", "chapter01.md", package = "coursepackR")
+
+# Read in RStudio
+file.edit(ch1)
 ```
+
+## Tips
+
+### Set your working directory
+
+Before downloading materials, set your working directory to a course
+folder. In RStudio: **Session \> Set Working Directory \> Choose
+Directory**. Or in R:
+
+``` r
+setwd("~/MC-451")
+```
+
+All
+[`download_week()`](https://sim-lab-siue.github.io/coursepackR/reference/download_week.md)
+and
+[`download_journal()`](https://sim-lab-siue.github.io/coursepackR/reference/download_journal.md)
+files will go into this folder.
+
+### Use RStudio Projects
+
+Create an RStudio Project for the course (**File \> New Project \>
+Existing Directory**). This keeps your working directory consistent
+across sessions and makes it easy to find your files.
+
+### Get help on any function
+
+``` r
+?download_week
+?mccourse_check
+```
+
+Or visit the [function
+reference](https://sim-lab-siue.github.io/coursepackR/reference/) on the
+pkgdown site.

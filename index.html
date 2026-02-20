@@ -39,6 +39,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-guides">
 <li><a class="dropdown-item" href="articles/installation.html">Installation &amp; Setup</a></li>
     <li><a class="dropdown-item" href="articles/getting-started.html">Getting Started</a></li>
+    <li><a class="dropdown-item" href="articles/unified-music-codebook.html">The Unified Music Dataset</a></li>
   </ul>
 </li>
       </ul>
@@ -57,13 +58,18 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="coursepackr">coursepackR<a class="anchor" aria-label="anchor" href="#coursepackr"></a>
 </h1></div>
-<p>Student-facing R package for <strong>MC-451 Research Methods</strong> at SIUE, built around the open textbook <em>From Vibes to Variables: A Field Guide to Open Media Science</em>.</p>
+<p><a href="https://github.com/SIM-Lab-SIUE/coursepackR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/SIM-Lab-SIUE/coursepackR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://sim-lab-siue.github.io/coursepackR/"><img src="https://github.com/SIM-Lab-SIUE/coursepackR/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a> <a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
+<p>Student-facing R package for <strong>MC-451 Research Methods</strong> at SIUE, built around the open textbook <em><a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link">From Vibes to Variables: A Field Guide to Open Media Science</a></em>.</p>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<code class="sourceCode R"><span><span class="co"># Install remotes if you don't have it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Install coursepackR from GitHub</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"SIM-Lab-SIUE/coursepackR"</span><span class="op">)</span></span></code></pre></div>
+<p>Requires <strong>R &gt;= 4.1</strong>. RStudio Desktop is recommended but not required.</p>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
@@ -71,44 +77,201 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sim-lab-siue.github.io/coursepackR/">coursepackR</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># First-time setup (Quarto, TinyTeX, core packages)</span></span>
+<span><span class="co"># 1. First-time setup (installs Quarto, TinyTeX, core packages)</span></span>
 <span><span class="fu"><a href="reference/mccourse_setup.html">mccourse_setup</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Verify your environment</span></span>
+<span><span class="co"># 2. Verify your environment</span></span>
 <span><span class="fu"><a href="reference/mccourse_check.html">mccourse_check</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Download this week's materials</span></span>
+<span><span class="co"># 3. Download this week's materials</span></span>
 <span><span class="fu"><a href="reference/download_week.html">download_week</a></span><span class="op">(</span><span class="st">"mc451"</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Access the music dataset (1,792 songs)</span></span>
+<span><span class="co"># 4. Open the folder in your file browser</span></span>
+<span><span class="fu"><a href="reference/open_week.html">open_week</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 5. Access the music dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level2">
 <h2 id="whats-included">What’s Included<a class="anchor" aria-label="anchor" href="#whats-included"></a>
 </h2>
+<div class="section level3">
+<h3 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
+</h3>
+<table class="table">
+<colgroup>
+<col width="43%">
+<col width="56%">
+</colgroup>
+<thead><tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code></td>
+<td>One-time environment setup — installs Quarto CLI, TinyTeX, and core R packages</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/mccourse_check.html">mccourse_check()</a></code></td>
+<td>Diagnostic check — verifies R version, RStudio, Quarto, Git, and templates</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/mccourse_update.html">mccourse_update()</a></code></td>
+<td>Check for and install package updates from GitHub</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/download_week.html">download_week()</a></code></td>
+<td>Download a specific week’s assignment template to your working directory</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/download_journal.html">download_journal()</a></code></td>
+<td>Download the reflective journal template for a given week</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/open_week.html">open_week()</a></code></td>
+<td>Open a downloaded week’s folder in your system file browser</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/final_project.html">final_project()</a></code></td>
+<td>Scaffold a final project folder with Quarto document, bibliography, and data directory</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/list_courses.html">list_courses()</a></code></td>
+<td>List all available course IDs bundled in the package</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/list_weeks.html">list_weeks()</a></code></td>
+<td>List all available weeks for a given course</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="dataset">Dataset<a class="anchor" aria-label="anchor" href="#dataset"></a>
+</h3>
+<p>The <code>unified_music</code> dataset contains <strong>1,792 songs</strong> with <strong>36 variables</strong> from three sources:</p>
 <ul>
 <li>
-<strong>9 helper functions</strong> for downloading materials, checking your environment, and scaffolding projects</li>
+<strong>Billboard</strong> — chart rank, weeks on board, chart entry/exit dates</li>
 <li>
-<strong>Unified music dataset</strong> (1,792 songs with Billboard, Spotify, and Genius data)</li>
+<strong>Spotify</strong> — audio features (danceability, energy, valence, tempo, loudness, etc.)</li>
 <li>
-<strong>17 textbook chapters</strong> bundled for offline access</li>
-<li>
-<strong>Weekly assignment templates</strong> for MC-451</li>
+<strong>Genius</strong> — page views, lyrics, featured artists</li>
 </ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1792   36</span></span></code></pre></div>
+<p>See the <a href="https://sim-lab-siue.github.io/coursepackR/articles/unified-music-codebook.html">Unified Music Dataset vignette</a> for the full variable reference and example analyses.</p>
+</div>
+<div class="section level3">
+<h3 id="textbook-chapters">Textbook Chapters<a class="anchor" aria-label="anchor" href="#textbook-chapters"></a>
+</h3>
+<p>All 17 chapters of <em>From Vibes to Variables</em> are bundled for offline reading:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Path to chapter 1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"textbook"</span>, <span class="st">"chapter01.md"</span>, package <span class="op">=</span> <span class="st">"coursepackR"</span><span class="op">)</span></span></code></pre></div>
+<p>Read the full book online at <a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link uri">https://sim-lab-siue.github.io/vibes-to-variables/</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="weekly-templates">Weekly Templates<a class="anchor" aria-label="anchor" href="#weekly-templates"></a>
+</h3>
+<p>17 weeks of <code>.qmd</code> assignment templates for MC-451, aligned with textbook chapters:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/list_weeks.html">list_weeks</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/download_week.html">download_week</a></span><span class="op">(</span><span class="st">"mc451"</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
 </div>
 <div class="section level2">
-<h2 id="links">Links<a class="anchor" aria-label="anchor" href="#links"></a>
+<h2 id="weekly-workflow">Weekly Workflow<a class="anchor" aria-label="anchor" href="#weekly-workflow"></a>
 </h2>
-<ul>
+<p>Each week during the semester:</p>
+<ol style="list-style-type: decimal">
 <li>
-<a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link">Textbook</a> — <em>From Vibes to Variables</em>
+<p><strong>Download</strong> this week’s template:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/download_week.html">download_week</a></span><span class="op">(</span><span class="st">"mc451"</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 </li>
 <li>
-<a href="https://sim-lab-siue.github.io/liaison-program/" class="external-link">Course Site</a> — The Liaison Program</li>
-<li><a href="https://sim-lab-siue.github.io/coursepackR/reference/">Function Reference</a></li>
-</ul>
+<p><strong>Open</strong> the folder:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/open_week.html">open_week</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+</li>
+<li><p><strong>Work</strong> through the <code>.qmd</code> file in RStudio — read the chapter, answer prompts, run code</p></li>
+<li><p><strong>Render</strong> to HTML or PDF when finished (click Render in RStudio or <code>quarto render</code>)</p></li>
+<li>
+<p><strong>Reflect</strong> in your journal:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/download_journal.html">download_journal</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span></code></pre></div>
+</li>
+</ol>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
+</h2>
+<p><strong>“Error in loadNamespace: there is no package called ‘remotes’”</strong> Run <code>install.packages("remotes")</code> first, then retry the install.</p>
+<p><strong>“package ‘coursepackR’ is not available for this version of R”</strong> You need R &gt;= 4.1. Check your version with <code>R.version.string</code>. Download the latest R from <a href="https://cran.r-project.org/" class="external-link uri">https://cran.r-project.org/</a>.</p>
+<p><strong><code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> says Quarto is not found</strong> Download Quarto CLI from <a href="https://quarto.org/docs/get-started/" class="external-link uri">https://quarto.org/docs/get-started/</a>. After installing, restart RStudio.</p>
+<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> shows a failing check</strong> Run <code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> to install missing components, then re-check.</p>
+<p><strong><code><a href="reference/download_week.html">download_week()</a></code> says the folder already exists</strong> The function won’t overwrite existing files. Delete or rename the old folder if you want a fresh copy.</p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="project-structure">Project Structure<a class="anchor" aria-label="anchor" href="#project-structure"></a>
+</h2>
+<pre><code>coursepackR/
+├── R/                    # Package functions
+├── man/                  # Auto-generated help pages
+├── data/                 # unified_music.rda (lazy-loaded)
+├── data-raw/             # Source CSV and preparation script
+├── inst/
+│   ├── textbook/         # 17 markdown chapters (offline access)
+│   └── courses/mc451/
+│       ├── weeks/        # Weekly .qmd templates (week_01–week_17)
+│       └── journal/      # Journal template
+├── vignettes/            # Long-form guides
+├── tests/testthat/       # Unit tests
+└── .github/workflows/    # CI/CD (R CMD check, pkgdown)</code></pre>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="related-projects">Related Projects<a class="anchor" aria-label="anchor" href="#related-projects"></a>
+</h2>
+<table class="table">
+<colgroup>
+<col width="32%">
+<col width="46%">
+<col width="21%">
+</colgroup>
+<thead><tr class="header">
+<th>Project</th>
+<th>Description</th>
+<th>Link</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>vibes-to-variables</strong></td>
+<td>Open textbook — <em>From Vibes to Variables</em>
+</td>
+<td>
+<a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link">Read Online</a> | <a href="https://github.com/SIM-Lab-SIUE/vibes-to-variables" class="external-link">GitHub</a>
+</td>
+</tr>
+<tr class="even">
+<td><strong>liaison-program</strong></td>
+<td>Course support website with syllabus, setup guides, and resources</td>
+<td>
+<a href="https://sim-lab-siue.github.io/liaison-program/" class="external-link">Visit Site</a> | <a href="https://github.com/SIM-Lab-SIUE/liaison-program" class="external-link">GitHub</a>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -132,6 +295,12 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>

@@ -35,6 +35,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-guides">
 <li><a class="dropdown-item" href="../articles/installation.html">Installation &amp; Setup</a></li>
     <li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started</a></li>
+    <li><a class="dropdown-item" href="../articles/unified-music-codebook.html">The Unified Music Dataset</a></li>
   </ul>
 </li>
       </ul>
@@ -65,47 +66,178 @@
 
     
     
+<p>This guide walks you through installing coursepackR, configuring your
+environment, and verifying that everything is ready for MC-451.</p>
+<div class="section level2">
+<h2 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+</h2>
+<p>Before installing coursepackR, you need:</p>
+<ul>
+<li>
+<strong>R (&gt;= 4.1)</strong> — Download from <a href="https://cran.r-project.org/" class="external-link uri">https://cran.r-project.org/</a>
+</li>
+<li>
+<strong>RStudio Desktop</strong> (recommended) — Download from <a href="https://posit.co/download/rstudio-desktop/" class="external-link uri">https://posit.co/download/rstudio-desktop/</a>
+</li>
+</ul>
+<p>If you need step-by-step installation instructions for R and RStudio,
+see the <a href="https://sim-lab-siue.github.io/liaison-program/resources/install-r-rstudio.html" class="external-link">R
+&amp; RStudio Installation Guide</a> on the course website.</p>
+<p>Check your R version:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">R.version.string</span></span>
+<span><span class="co">#&gt; [1] "R version 4.5.2 (2025-10-22)"</span></span></code></pre></div>
+<p>If your version is below 4.1, download the latest R before
+proceeding.</p>
+</div>
 <div class="section level2">
 <h2 id="installing-coursepackr">Installing coursepackR<a class="anchor" aria-label="anchor" href="#installing-coursepackr"></a>
 </h2>
-<p>Install from GitHub:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install remotes if needed</span></span>
+<p>coursepackR is hosted on GitHub. Install it with the
+<code>remotes</code> package:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Install remotes if you don't have it</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Install coursepackR</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"SIM-Lab-SIUE/coursepackR"</span><span class="op">)</span></span></code></pre></div>
+<p>This downloads and installs the package along with its dependencies
+(<code>cli</code>, <code>rlang</code>, and <code>utils</code>). The
+install takes 1–2 minutes on most connections.</p>
+<div class="section level3">
+<h3 id="if-the-install-fails">If the install fails<a class="anchor" aria-label="anchor" href="#if-the-install-fails"></a>
+</h3>
+<ul>
+<li>
+<strong>“there is no package called ‘remotes’”</strong> — Run
+<code>install.packages("remotes")</code> first.</li>
+<li>
+<strong>“cannot open URL”</strong> or timeout errors — Check your
+internet connection. If you’re on a campus or corporate network, a
+firewall may be blocking GitHub. Try from a personal network or ask IT
+to allow <code>github.com</code> and <code>api.github.com</code>.</li>
+<li>
+<strong>“package ‘coursepackR’ is not available for this version of
+R”</strong> — You need R &gt;= 4.1. Update R and try again.</li>
+</ul>
+</div>
 </div>
 <div class="section level2">
 <h2 id="first-time-setup">First-Time Setup<a class="anchor" aria-label="anchor" href="#first-time-setup"></a>
 </h2>
-<p>After installing, run the setup function to configure your
-environment:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>After installing, run the one-time setup function:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sim-lab-siue.github.io/coursepackR/">coursepackR</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/mccourse_setup.html">mccourse_setup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>This will:</p>
+<p>This function walks you through several steps:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Quarto CLI</strong> — Checks whether Quarto is installed.
+If not, it opens the download page (<a href="https://quarto.org/docs/get-started/" class="external-link uri">https://quarto.org/docs/get-started/</a>) and pauses so you
+can install it. Quarto is required for rendering assignment templates to
+HTML or PDF.</p></li>
+<li><p><strong>TinyTeX</strong> — Installs TinyTeX, a lightweight LaTeX
+distribution needed for PDF output. This is the longest step (5–10
+minutes on first run). If you already have a LaTeX distribution, this
+step is skipped.</p></li>
+<li><p><strong>Core R packages</strong> — Installs packages used in
+course assignments, including <code>tidyverse</code>,
+<code>knitr</code>, <code>rmarkdown</code>, and others. Packages you
+already have are skipped.</p></li>
+</ol>
+<p>Each step prints status messages so you can see what’s happening. If
+any step fails, the function reports the error and continues with the
+remaining steps.</p>
+<div class="section level3">
+<h3 id="after-setup">After setup<a class="anchor" aria-label="anchor" href="#after-setup"></a>
+</h3>
+<p>Restart RStudio after running <code><a href="../reference/mccourse_setup.html">mccourse_setup()</a></code>. This
+ensures Quarto and any new packages are properly detected.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="verifying-your-environment">Verifying Your Environment<a class="anchor" aria-label="anchor" href="#verifying-your-environment"></a>
+</h2>
+<p>Run the diagnostic check to confirm everything is working:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/mccourse_check.html">mccourse_check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>This returns a named list with the status of each component:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Check</th>
+<th>What it verifies</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>r_version</code></td>
+<td>R &gt;= 4.1 is installed</td>
+</tr>
+<tr class="even">
+<td><code>rstudio</code></td>
+<td>Running inside RStudio (recommended, not required)</td>
+</tr>
+<tr class="odd">
+<td><code>quarto</code></td>
+<td>Quarto CLI is on your system PATH</td>
+</tr>
+<tr class="even">
+<td><code>git</code></td>
+<td>Git is installed (needed for version control)</td>
+</tr>
+<tr class="odd">
+<td><code>templates</code></td>
+<td>Course templates are bundled in the package</td>
+</tr>
+</tbody>
+</table>
+<p>A passing check shows a green checkmark. A failing check shows a red
+X with a suggested fix.</p>
+<div class="section level3">
+<h3 id="fixing-failed-checks">Fixing failed checks<a class="anchor" aria-label="anchor" href="#fixing-failed-checks"></a>
+</h3>
 <ul>
-<li>Check for Quarto CLI and guide you to install it if missing</li>
-<li>Install TinyTeX for PDF rendering</li>
-<li>Install core R packages needed for the course</li>
+<li>
+<strong>R version</strong> — Download the latest R from <a href="https://cran.r-project.org/" class="external-link uri">https://cran.r-project.org/</a> and reinstall
+coursepackR.</li>
+<li>
+<strong>RStudio</strong> — Download from <a href="https://posit.co/download/rstudio-desktop/" class="external-link uri">https://posit.co/download/rstudio-desktop/</a>. This is
+recommended but the package works without it.</li>
+<li>
+<strong>Quarto</strong> — Download from <a href="https://quarto.org/docs/get-started/" class="external-link uri">https://quarto.org/docs/get-started/</a>. After installing,
+restart RStudio and re-check.</li>
+<li>
+<strong>Git</strong> — Download from <a href="https://git-scm.com/" class="external-link uri">https://git-scm.com/</a>. After installing, restart RStudio.
+See the <a href="https://sim-lab-siue.github.io/liaison-program/resources/github-setup.html" class="external-link">GitHub
+Setup Guide</a> for configuration.</li>
+<li>
+<strong>Templates</strong> — This should always pass. If it fails,
+reinstall the package with
+<code>remotes::install_github("SIM-Lab-SIUE/coursepackR")</code>.</li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="verify-your-environment">Verify Your Environment<a class="anchor" aria-label="anchor" href="#verify-your-environment"></a>
-</h2>
-<p>Run the diagnostic check:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/mccourse_check.html">mccourse_check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>This verifies: R version, RStudio, Quarto, Git, and course
-templates.</p>
 </div>
 <div class="section level2">
-<h2 id="updating">Updating<a class="anchor" aria-label="anchor" href="#updating"></a>
+<h2 id="updating-coursepackr">Updating coursepackR<a class="anchor" aria-label="anchor" href="#updating-coursepackr"></a>
 </h2>
-<p>Check for package updates:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>Check for updates at any time:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/mccourse_update.html">mccourse_update</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>This compares your installed version against the latest release on
+GitHub. If an update is available, it will ask whether you want to
+install it.</p>
+<p>You can also force a reinstall:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"SIM-Lab-SIUE/coursepackR"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="uninstalling">Uninstalling<a class="anchor" aria-label="anchor" href="#uninstalling"></a>
+</h2>
+<p>To remove coursepackR:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html" class="external-link">remove.packages</a></span><span class="op">(</span><span class="st">"coursepackR"</span><span class="op">)</span></span></code></pre></div>
+<p>This does not remove TinyTeX or other packages installed by
+<code><a href="../reference/mccourse_setup.html">mccourse_setup()</a></code>. To remove TinyTeX separately:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html" class="external-link">uninstall_tinytex</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

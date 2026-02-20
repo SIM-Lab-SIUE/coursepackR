@@ -6,3 +6,5 @@
   Setup](https://sim-lab-siue.github.io/coursepackR/articles/installation.md):
 - [Getting
   Started](https://sim-lab-siue.github.io/coursepackR/articles/getting-started.md):
+- [The Unified Music
+  Dataset](https://sim-lab-siue.github.io/coursepackR/articles/unified-music-codebook.md):

@@ -35,6 +35,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-guides">
 <li><a class="dropdown-item" href="../articles/installation.html">Installation &amp; Setup</a></li>
     <li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started</a></li>
+    <li><a class="dropdown-item" href="../articles/unified-music-codebook.html">The Unified Music Dataset</a></li>
   </ul>
 </li>
       </ul>
@@ -65,58 +66,329 @@
 
     
     
+<p>This guide covers the day-to-day workflow for MC-451 using
+coursepackR: downloading weekly materials, working with the music
+dataset, keeping a reflective journal, and scaffolding your final
+project.</p>
+<div class="section level2">
+<h2 id="semester-overview">Semester Overview<a class="anchor" aria-label="anchor" href="#semester-overview"></a>
+</h2>
+<p>MC-451 runs 17 weeks. Each week has a Quarto assignment template that
+aligns with a textbook chapter. The coursepackR functions map directly
+to this schedule:</p>
+<table class="table">
+<colgroup>
+<col width="25%">
+<col width="25%">
+<col width="48%">
+</colgroup>
+<thead><tr class="header">
+<th>Weeks</th>
+<th>Phase</th>
+<th>What You Do</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1–4</td>
+<td>Foundations</td>
+<td>Read chapters, set up tools, practice critical reading</td>
+</tr>
+<tr class="even">
+<td>5–7</td>
+<td>Design</td>
+<td>Choose a theory, write a research question, plan your study</td>
+</tr>
+<tr class="odd">
+<td>8–11</td>
+<td>Measurement</td>
+<td>Immerse in data, build a codebook, run a pilot test</td>
+</tr>
+<tr class="even">
+<td>12–15</td>
+<td>Analysis</td>
+<td>Wrangle data in R, visualize, run statistics, interpret</td>
+</tr>
+<tr class="odd">
+<td>16–17</td>
+<td>Communication</td>
+<td>Build a portfolio, present your work openly</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section level2">
 <h2 id="weekly-workflow">Weekly Workflow<a class="anchor" aria-label="anchor" href="#weekly-workflow"></a>
 </h2>
-<p>Each week, download the assignment template and work through it:</p>
+<p>Each week follows the same pattern:</p>
+<div class="section level3">
+<h3 id="step-1-check-whats-available">Step 1: Check what’s available<a class="anchor" aria-label="anchor" href="#step-1-check-whats-available"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sim-lab-siue.github.io/coursepackR/">coursepackR</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># See what's available</span></span>
-<span><span class="fu"><a href="../reference/list_weeks.html">list_weeks</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Download this week's materials</span></span>
-<span><span class="fu"><a href="../reference/download_week.html">download_week</a></span><span class="op">(</span><span class="st">"mc451"</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Open the folder</span></span>
-<span><span class="fu"><a href="../reference/open_week.html">open_week</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/list_weeks.html">list_weeks</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span></code></pre></div>
+<p>This returns a sorted vector of week numbers (1 through 17).</p>
+</div>
+<div class="section level3">
+<h3 id="step-2-download-this-weeks-template">Step 2: Download this week’s template<a class="anchor" aria-label="anchor" href="#step-2-download-this-weeks-template"></a>
+</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_week.html">download_week</a></span><span class="op">(</span><span class="st">"mc451"</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p>This copies the week’s <code>.qmd</code> assignment template into
+your current working directory under a folder named
+<code>week_01/</code>. The folder contains a single Quarto document with
+the week’s assignment.</p>
+<p>If the folder already exists, the function stops with a message to
+prevent overwriting your work. Delete or rename the old folder if you
+want a fresh copy.</p>
+</div>
+<div class="section level3">
+<h3 id="step-3-open-the-folder">Step 3: Open the folder<a class="anchor" aria-label="anchor" href="#step-3-open-the-folder"></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/open_week.html">open_week</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p>This opens the <code>week_01/</code> folder in your system file
+browser (Finder on Mac, Explorer on Windows). From there, double-click
+the <code>.qmd</code> file to open it in RStudio.</p>
+</div>
+<div class="section level3">
+<h3 id="step-4-work-through-the-assignment">Step 4: Work through the assignment<a class="anchor" aria-label="anchor" href="#step-4-work-through-the-assignment"></a>
+</h3>
+<p>Open the <code>.qmd</code> file in RStudio. Each template
+includes:</p>
+<ul>
+<li>A YAML header with your name, date, and the week’s title</li>
+<li>Reading prompts tied to the textbook chapter</li>
+<li>Code chunks for any R exercises</li>
+<li>Reflection questions</li>
+</ul>
+<p>Fill in your responses, run any code chunks, and render the document
+when you’re done (click the <strong>Render</strong> button or press
+Ctrl+Shift+K).</p>
+</div>
+<div class="section level3">
+<h3 id="step-5-reflect-in-your-journal">Step 5: Reflect in your journal<a class="anchor" aria-label="anchor" href="#step-5-reflect-in-your-journal"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_journal.html">download_journal</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span></code></pre></div>
+<p>This downloads the reflective journal template. The file is
+automatically named with the current date (e.g.,
+<code>journal_2026-02-19.qmd</code>) so each entry gets its own
+file.</p>
+<p>The journal template offers three thinking paths — pick the one that
+fits your experience this week:</p>
+<ul>
+<li>
+<strong>The Connector</strong> — How does this relate to what I
+already know?</li>
+<li>
+<strong>The Troubleshooter</strong> — What problems did I
+solve?</li>
+<li>
+<strong>The Critic</strong> — Does this match my experience?</li>
+</ul>
+</div>
 </div>
 <div class="section level2">
 <h2 id="the-music-dataset">The Music Dataset<a class="anchor" aria-label="anchor" href="#the-music-dataset"></a>
 </h2>
-<p>The package includes a curated dataset of 1,792 songs with Billboard
-chart data, Spotify audio features, and metadata:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span></code></pre></div>
-<p>Key variables include <code>Max_Rank</code>,
-<code>danceability</code>, <code>energy</code>, <code>valence</code>,
-<code>tempo</code>, and <code>playlist_genre</code>.</p>
+<p>The package bundles the <code>unified_music</code> dataset — 1,792
+songs with Billboard chart data, Spotify audio features, and Genius
+metadata.</p>
+<div class="section level3">
+<h3 id="loading-the-data">Loading the data<a class="anchor" aria-label="anchor" href="#loading-the-data"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span></code></pre></div>
+<p>The dataset is lazy-loaded, meaning it’s available as soon as you
+call <code><a href="https://rdrr.io/r/utils/data.html" class="external-link">data()</a></code> without reading from disk each time.</p>
+</div>
+<div class="section level3">
+<h3 id="exploring-the-dataset">Exploring the dataset<a class="anchor" aria-label="anchor" href="#exploring-the-dataset"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Dimensions</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1792   36</span></span>
+<span></span>
+<span><span class="co"># Column names</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># First few rows</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Summary of a numeric variable</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">unified_music</span><span class="op">$</span><span class="va">danceability</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="key-variable-groups">Key variable groups<a class="anchor" aria-label="anchor" href="#key-variable-groups"></a>
+</h3>
+<table class="table">
+<colgroup>
+<col width="22%">
+<col width="35%">
+<col width="41%">
+</colgroup>
+<thead><tr class="header">
+<th>Group</th>
+<th>Variables</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Identity</td>
+<td>
+<code>Song</code>, <code>Artist</code>
+</td>
+<td>Song and artist names</td>
+</tr>
+<tr class="even">
+<td>Billboard</td>
+<td>
+<code>Max_Rank</code>, <code>Weeks_on_Board</code>,
+<code>Average_Rank</code>
+</td>
+<td>Chart performance</td>
+</tr>
+<tr class="odd">
+<td>Audio</td>
+<td>
+<code>danceability</code>, <code>energy</code>,
+<code>valence</code>, <code>tempo</code>, <code>loudness</code>
+</td>
+<td>Spotify features (0–1 scale or raw)</td>
+</tr>
+<tr class="even">
+<td>Genre</td>
+<td>
+<code>playlist_genre</code>, <code>playlist_subgenre</code>
+</td>
+<td>Genre classification</td>
+</tr>
+<tr class="odd">
+<td>Metadata</td>
+<td>
+<code>year</code>, <code>views</code>, <code>lyrics</code>
+</td>
+<td>Release year, Genius views, lyrics</td>
+</tr>
+</tbody>
+</table>
+<p>For the complete variable reference with types, ranges, and
+descriptions, see <code><a href="../articles/unified-music-codebook.html">vignette("unified-music-codebook")</a></code> or the
+<a href="https://sim-lab-siue.github.io/vibes-to-variables/appendices/data-dictionary.html" class="external-link">Data
+Dictionary</a> appendix in the textbook.</p>
+</div>
 </div>
 <div class="section level2">
-<h2 id="journal-scaffold">Journal Scaffold<a class="anchor" aria-label="anchor" href="#journal-scaffold"></a>
+<h2 id="journal-workflow">Journal Workflow<a class="anchor" aria-label="anchor" href="#journal-workflow"></a>
 </h2>
-<p>Download the reflective journal template:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_journal.html">download_journal</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span></code></pre></div>
+<p>The reflective journal is a weekly habit. Each call to
+<code><a href="../reference/download_journal.html">download_journal()</a></code> creates a new file:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Download this week's journal</span></span>
+<span><span class="fu"><a href="../reference/download_journal.html">download_journal</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># The file is named with today's date</span></span>
+<span><span class="co"># e.g., journal_2026-02-19.qmd</span></span></code></pre></div>
+<p>Journal entries accumulate in your working directory. By the end of
+the semester, you’ll have 15–17 entries documenting your growth as a
+researcher.</p>
 </div>
 <div class="section level2">
 <h2 id="final-project">Final Project<a class="anchor" aria-label="anchor" href="#final-project"></a>
 </h2>
-<p>When you’re ready to start the final project:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>When you reach the end of the semester, scaffold your final
+project:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/final_project.html">final_project</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span></code></pre></div>
-<p>This creates a project folder with a Quarto document, bibliography
-file, data directory, and RStudio project file.</p>
+<p>This creates a folder called <code>mc451_final_project/</code>
+with:</p>
+<table class="table">
+<thead><tr class="header">
+<th>File/Folder</th>
+<th>Purpose</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>final_paper.qmd</code></td>
+<td>Main Quarto document for your research paper</td>
+</tr>
+<tr class="even">
+<td><code>references.bib</code></td>
+<td>BibTeX file for your citations</td>
+</tr>
+<tr class="odd">
+<td><code>data/</code></td>
+<td>Folder for your analysis data</td>
+</tr>
+<tr class="even">
+<td><code>mc451_final_project.Rproj</code></td>
+<td>RStudio project file</td>
+</tr>
+</tbody>
+</table>
+<p>Open the <code>.Rproj</code> file in RStudio to start working in a
+clean project environment. The Quarto document includes a structured
+outline for your paper (introduction, methods, results, discussion).</p>
 </div>
 <div class="section level2">
 <h2 id="reading-the-textbook">Reading the Textbook<a class="anchor" aria-label="anchor" href="#reading-the-textbook"></a>
 </h2>
-<p>Chapters are available online at <a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link uri">https://sim-lab-siue.github.io/vibes-to-variables/</a> and
-also bundled with the package for offline access:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Path to a specific chapter</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"textbook"</span>, <span class="st">"chapter01.md"</span>, package <span class="op">=</span> <span class="st">"coursepackR"</span><span class="op">)</span></span></code></pre></div>
+<p>The 17 chapters of <em>From Vibes to Variables</em> are available in
+two ways:</p>
+<div class="section level3">
+<h3 id="online-recommended">Online (recommended)<a class="anchor" aria-label="anchor" href="#online-recommended"></a>
+</h3>
+<p>Visit <a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link uri">https://sim-lab-siue.github.io/vibes-to-variables/</a> for
+the full HTML book with search, navigation, and interactive code
+examples.</p>
+</div>
+<div class="section level3">
+<h3 id="offline">Offline<a class="anchor" aria-label="anchor" href="#offline"></a>
+</h3>
+<p>All chapters are bundled in the package as markdown files:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># List all chapters</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"textbook"</span>, package <span class="op">=</span> <span class="st">"coursepackR"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Path to a specific chapter</span></span>
+<span><span class="va">ch1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"textbook"</span>, <span class="st">"chapter01.md"</span>, package <span class="op">=</span> <span class="st">"coursepackR"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Read in RStudio</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/file.edit.html" class="external-link">file.edit</a></span><span class="op">(</span><span class="va">ch1</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="tips">Tips<a class="anchor" aria-label="anchor" href="#tips"></a>
+</h2>
+<div class="section level3">
+<h3 id="set-your-working-directory">Set your working directory<a class="anchor" aria-label="anchor" href="#set-your-working-directory"></a>
+</h3>
+<p>Before downloading materials, set your working directory to a course
+folder. In RStudio: <strong>Session &gt; Set Working Directory &gt;
+Choose Directory</strong>. Or in R:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="st">"~/MC-451"</span><span class="op">)</span></span></code></pre></div>
+<p>All <code><a href="../reference/download_week.html">download_week()</a></code> and <code><a href="../reference/download_journal.html">download_journal()</a></code>
+files will go into this folder.</p>
+</div>
+<div class="section level3">
+<h3 id="use-rstudio-projects">Use RStudio Projects<a class="anchor" aria-label="anchor" href="#use-rstudio-projects"></a>
+</h3>
+<p>Create an RStudio Project for the course (<strong>File &gt; New
+Project &gt; Existing Directory</strong>). This keeps your working
+directory consistent across sessions and makes it easy to find your
+files.</p>
+</div>
+<div class="section level3">
+<h3 id="get-help-on-any-function">Get help on any function<a class="anchor" aria-label="anchor" href="#get-help-on-any-function"></a>
+</h3>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">download_week</span></span>
+<span><span class="op">?</span><span class="va">mccourse_check</span></span></code></pre></div>
+<p>Or visit the <a href="https://sim-lab-siue.github.io/coursepackR/reference/">function
+reference</a> on the pkgdown site.</p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
