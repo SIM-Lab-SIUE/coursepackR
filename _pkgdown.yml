@@ -27,6 +27,8 @@ navbar:
           href: articles/installation.html
         - text: Getting Started
           href: articles/getting-started.html
+        - text: The Unified Music Dataset
+          href: articles/unified-music-codebook.html
     github:
       icon: fab fa-github fa-lg
       href: https://github.com/SIM-Lab-SIUE/coursepackR
@@ -64,3 +66,4 @@ articles:
     contents:
       - installation
       - getting-started
+      - unified-music-codebook
