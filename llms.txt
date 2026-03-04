@@ -27,10 +27,10 @@ Requires **R \>= 4.1**. RStudio Desktop is recommended but not required.
 ``` r
 library(coursepackR)
 
-# 1. First-time setup (installs Quarto, TinyTeX, core packages)
+# 1. First-time setup (installs Quarto, TinyTeX, and all course packages)
 mccourse_setup()
 
-# 2. Verify your environment
+# 2. Verify your environment — runs 8 diagnostic checks
 mccourse_check()
 
 # 3. Download this week's materials
@@ -50,17 +50,17 @@ head(unified_music)
 
 ### Functions
 
-| Function                                                                                         | Description                                                                            |
-|--------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| [`mccourse_setup()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_setup.md)     | One-time environment setup — installs Quarto CLI, TinyTeX, and core R packages         |
-| [`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)     | Diagnostic check — verifies R version, RStudio, Quarto, Git, and templates             |
-| [`mccourse_update()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_update.md)   | Check for and install package updates from GitHub                                      |
-| [`download_week()`](https://sim-lab-siue.github.io/coursepackR/reference/download_week.md)       | Download a specific week’s assignment template to your working directory               |
-| [`download_journal()`](https://sim-lab-siue.github.io/coursepackR/reference/download_journal.md) | Download the reflective journal template for a given week                              |
-| [`open_week()`](https://sim-lab-siue.github.io/coursepackR/reference/open_week.md)               | Open a downloaded week’s folder in your system file browser                            |
-| [`final_project()`](https://sim-lab-siue.github.io/coursepackR/reference/final_project.md)       | Scaffold a final project folder with Quarto document, bibliography, and data directory |
-| [`list_courses()`](https://sim-lab-siue.github.io/coursepackR/reference/list_courses.md)         | List all available course IDs bundled in the package                                   |
-| [`list_weeks()`](https://sim-lab-siue.github.io/coursepackR/reference/list_weeks.md)             | List all available weeks for a given course                                            |
+| Function                                                                                         | Description                                                                                                                                                                   |
+|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`mccourse_setup()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_setup.md)     | One-time environment setup — checks compiler toolchain (Rtools/Xcode CLT), Quarto CLI version, TinyTeX, and installs all 10 course R packages                                 |
+| [`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)     | Diagnostic check — verifies R version, RStudio, Quarto version (\>= 1.4.0), Git, compiler toolchain, all course packages, course templates, and working directory path safety |
+| [`mccourse_update()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_update.md)   | Check for and install package updates from GitHub                                                                                                                             |
+| [`download_week()`](https://sim-lab-siue.github.io/coursepackR/reference/download_week.md)       | Download a specific week’s assignment template to your working directory                                                                                                      |
+| [`download_journal()`](https://sim-lab-siue.github.io/coursepackR/reference/download_journal.md) | Download the reflective journal template for a given week                                                                                                                     |
+| [`open_week()`](https://sim-lab-siue.github.io/coursepackR/reference/open_week.md)               | Open a downloaded week’s folder in your system file browser                                                                                                                   |
+| [`final_project()`](https://sim-lab-siue.github.io/coursepackR/reference/final_project.md)       | Scaffold a final project folder with Quarto document, bibliography, and data directory                                                                                        |
+| [`list_courses()`](https://sim-lab-siue.github.io/coursepackR/reference/list_courses.md)         | List all available course IDs bundled in the package                                                                                                                          |
+| [`list_weeks()`](https://sim-lab-siue.github.io/coursepackR/reference/list_weeks.md)             | List all available weeks for a given course                                                                                                                                   |
 
 ### Dataset
 
@@ -146,13 +146,36 @@ Each week during the semester:
 need R \>= 4.1. Check your version with `R.version.string`. Download the
 latest R from <https://cran.r-project.org/>.
 
-**[`mccourse_setup()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_setup.md)
-says Quarto is not found** Download Quarto CLI from
-<https://quarto.org/docs/get-started/>. After installing, restart
-RStudio.
+**[`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)
+reports Quarto not found or version too old** Download or update Quarto
+CLI from <https://quarto.org/docs/get-started/>. After installing,
+restart RStudio and run
+[`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)
+again. Quarto \>= 1.4.0 is required.
 
 **[`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)
-shows a failing check** Run
+reports compiler toolchain missing** - *Windows:* Rtools is needed to
+install some R packages from source. Download from
+<https://cran.r-project.org/bin/windows/Rtools/>, then restart
+RStudio. - *macOS:* Run `xcode-select --install` in the Terminal, follow
+the prompts, then restart RStudio.
+
+**[`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)
+reports missing course packages** Run
+[`mccourse_setup()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_setup.md)
+to install all missing packages automatically, then re-run
+[`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md).
+
+**[`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)
+warns about working directory path** - *Cloud-sync folder (OneDrive,
+Dropbox, Google Drive):* File locking by the sync client can cause save
+failures and corrupted files. Move your project folder to `Documents/`
+or the Desktop outside the synced area. - *Spaces in path:* Some tools
+(including Quarto) cannot handle paths that contain spaces. Move the
+project to a path like `C:/courses/mc451/` that contains no spaces.
+
+**[`mccourse_check()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_check.md)
+shows any other failing check** Run
 [`mccourse_setup()`](https://sim-lab-siue.github.io/coursepackR/reference/mccourse_setup.md)
 to install missing components, then re-check.
 

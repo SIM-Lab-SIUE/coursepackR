@@ -82,10 +82,10 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sim-lab-siue.github.io/coursepackR/">coursepackR</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># 1. First-time setup (installs Quarto, TinyTeX, core packages)</span></span>
+<span><span class="co"># 1. First-time setup (installs Quarto, TinyTeX, and all course packages)</span></span>
 <span><span class="fu"><a href="reference/mccourse_setup.html">mccourse_setup</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># 2. Verify your environment</span></span>
+<span><span class="co"># 2. Verify your environment — runs 8 diagnostic checks</span></span>
 <span><span class="fu"><a href="reference/mccourse_check.html">mccourse_check</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 3. Download this week's materials</span></span>
@@ -117,11 +117,11 @@
 <tbody>
 <tr class="odd">
 <td><code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code></td>
-<td>One-time environment setup — installs Quarto CLI, TinyTeX, and core R packages</td>
+<td>One-time environment setup — checks compiler toolchain (Rtools/Xcode CLT), Quarto CLI version, TinyTeX, and installs all 10 course R packages</td>
 </tr>
 <tr class="even">
 <td><code><a href="reference/mccourse_check.html">mccourse_check()</a></code></td>
-<td>Diagnostic check — verifies R version, RStudio, Quarto, Git, and templates</td>
+<td>Diagnostic check — verifies R version, RStudio, Quarto version (&gt;= 1.4.0), Git, compiler toolchain, all course packages, course templates, and working directory path safety</td>
 </tr>
 <tr class="odd">
 <td><code><a href="reference/mccourse_update.html">mccourse_update()</a></code></td>
@@ -221,8 +221,11 @@
 </h2>
 <p><strong>“Error in loadNamespace: there is no package called ‘remotes’”</strong> Run <code>install.packages("remotes")</code> first, then retry the install.</p>
 <p><strong>“package ‘coursepackR’ is not available for this version of R”</strong> You need R &gt;= 4.1. Check your version with <code>R.version.string</code>. Download the latest R from <a href="https://cran.r-project.org/" class="external-link uri">https://cran.r-project.org/</a>.</p>
-<p><strong><code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> says Quarto is not found</strong> Download Quarto CLI from <a href="https://quarto.org/docs/get-started/" class="external-link uri">https://quarto.org/docs/get-started/</a>. After installing, restart RStudio.</p>
-<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> shows a failing check</strong> Run <code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> to install missing components, then re-check.</p>
+<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> reports Quarto not found or version too old</strong> Download or update Quarto CLI from <a href="https://quarto.org/docs/get-started/" class="external-link uri">https://quarto.org/docs/get-started/</a>. After installing, restart RStudio and run <code><a href="reference/mccourse_check.html">mccourse_check()</a></code> again. Quarto &gt;= 1.4.0 is required.</p>
+<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> reports compiler toolchain missing</strong> - <em>Windows:</em> Rtools is needed to install some R packages from source. Download from <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link uri">https://cran.r-project.org/bin/windows/Rtools/</a>, then restart RStudio. - <em>macOS:</em> Run <code>xcode-select --install</code> in the Terminal, follow the prompts, then restart RStudio.</p>
+<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> reports missing course packages</strong> Run <code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> to install all missing packages automatically, then re-run <code><a href="reference/mccourse_check.html">mccourse_check()</a></code>.</p>
+<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> warns about working directory path</strong> - <em>Cloud-sync folder (OneDrive, Dropbox, Google Drive):</em> File locking by the sync client can cause save failures and corrupted files. Move your project folder to <code>Documents/</code> or the Desktop outside the synced area. - <em>Spaces in path:</em> Some tools (including Quarto) cannot handle paths that contain spaces. Move the project to a path like <code>C:/courses/mc451/</code> that contains no spaces.</p>
+<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> shows any other failing check</strong> Run <code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> to install missing components, then re-check.</p>
 <p><strong><code><a href="reference/download_week.html">download_week()</a></code> says the folder already exists</strong> The function won’t overwrite existing files. Delete or rename the old folder if you want a fresh copy.</p>
 <hr>
 </div>
