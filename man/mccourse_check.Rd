@@ -14,16 +14,16 @@ mccourse_check(course = "mc451", min_r = "4.1.0")
 }
 \value{
 A named list with logical results for each check:
-\code{r}, \code{rstudio}, \code{quarto}, \code{git}, \code{templates}.
+\code{r}, \code{rstudio}, \code{quarto}, \code{git}, \code{templates}, \code{compiler}, \code{packages}, \code{path}.
 }
 \description{
 Runs a series of diagnostic checks to verify the student's environment
-is properly configured. Checks R version, RStudio, Quarto CLI, Git, and
-installed course templates.
+is properly configured. Checks R version, RStudio, Quarto CLI version,
+Git, compiler toolchain (Rtools on Windows / Xcode CLT on macOS), course
+R packages, installed course templates, and working directory path safety.
 }
 \examples{
 \dontrun{
 mccourse_check()
 }
-
 }
