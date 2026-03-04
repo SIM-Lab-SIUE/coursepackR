@@ -26,6 +26,7 @@ mccourse_check <- function(course = "mc451", min_r = "4.1.0") {
     cli::cli_alert_success("R {getRversion()} (>= {min_r})")
   } else {
     cli::cli_alert_danger("R {getRversion()} is below minimum {min_r}")
+    cli::cli_alert_info("Download the latest R from {.url https://cran.r-project.org/}")
   }
 
 
@@ -120,8 +121,10 @@ mccourse_check <- function(course = "mc451", min_r = "4.1.0") {
     cli::cli_alert_success("Course {.val {course}}: {length(weeks)} week{?s} available")
   } else if (length(courses) > 0L) {
     cli::cli_alert_warning("Course {.val {course}} not found. Available: {.val {courses}}")
+    cli::cli_alert_info("Reinstall the package: {.code remotes::install_github(\"SIM-Lab-SIUE/coursepackR\")}")
   } else {
     cli::cli_alert_warning("No course templates installed")
+    cli::cli_alert_info("Reinstall the package: {.code remotes::install_github(\"SIM-Lab-SIUE/coursepackR\")}")
   }
 
   # Working directory path safety
