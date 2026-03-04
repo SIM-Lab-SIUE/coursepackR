@@ -25,10 +25,10 @@ Requires **R >= 4.1**. RStudio Desktop is recommended but not required.
 ```r
 library(coursepackR)
 
-# 1. First-time setup (installs Quarto, TinyTeX, core packages)
+# 1. First-time setup (installs Quarto, TinyTeX, and all course packages)
 mccourse_setup()
 
-# 2. Verify your environment
+# 2. Verify your environment — runs 8 diagnostic checks
 mccourse_check()
 
 # 3. Download this week's materials
@@ -50,8 +50,8 @@ head(unified_music)
 
 | Function | Description |
 |----------|-------------|
-| `mccourse_setup()` | One-time environment setup — installs Quarto CLI, TinyTeX, and core R packages |
-| `mccourse_check()` | Diagnostic check — verifies R version, RStudio, Quarto, Git, and templates |
+| `mccourse_setup()` | One-time environment setup — checks compiler toolchain (Rtools/Xcode CLT), Quarto CLI version, TinyTeX, and installs all 10 course R packages |
+| `mccourse_check()` | Diagnostic check — verifies R version, RStudio, Quarto version (>= 1.4.0), Git, compiler toolchain, all course packages, course templates, and working directory path safety |
 | `mccourse_update()` | Check for and install package updates from GitHub |
 | `download_week()` | Download a specific week's assignment template to your working directory |
 | `download_journal()` | Download the reflective journal template for a given week |
@@ -127,10 +127,21 @@ Run `install.packages("remotes")` first, then retry the install.
 **"package 'coursepackR' is not available for this version of R"**
 You need R >= 4.1. Check your version with `R.version.string`. Download the latest R from <https://cran.r-project.org/>.
 
-**`mccourse_setup()` says Quarto is not found**
-Download Quarto CLI from <https://quarto.org/docs/get-started/>. After installing, restart RStudio.
+**`mccourse_check()` reports Quarto not found or version too old**
+Download or update Quarto CLI from <https://quarto.org/docs/get-started/>. After installing, restart RStudio and run `mccourse_check()` again. Quarto >= 1.4.0 is required.
 
-**`mccourse_check()` shows a failing check**
+**`mccourse_check()` reports compiler toolchain missing**
+- *Windows:* Rtools is needed to install some R packages from source. Download from <https://cran.r-project.org/bin/windows/Rtools/>, then restart RStudio.
+- *macOS:* Run `xcode-select --install` in the Terminal, follow the prompts, then restart RStudio.
+
+**`mccourse_check()` reports missing course packages**
+Run `mccourse_setup()` to install all missing packages automatically, then re-run `mccourse_check()`.
+
+**`mccourse_check()` warns about working directory path**
+- *Cloud-sync folder (OneDrive, Dropbox, Google Drive):* File locking by the sync client can cause save failures and corrupted files. Move your project folder to `Documents/` or the Desktop outside the synced area.
+- *Spaces in path:* Some tools (including Quarto) cannot handle paths that contain spaces. Move the project to a path like `C:/courses/mc451/` that contains no spaces.
+
+**`mccourse_check()` shows any other failing check**
 Run `mccourse_setup()` to install missing components, then re-check.
 
 **`download_week()` says the folder already exists**
