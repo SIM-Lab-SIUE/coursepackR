@@ -1,0 +1,35 @@
+---
+title: "Week 7: Surveys & Experiments"
+subtitle: "Chapters 11-12"
+date: "2026-10-06"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Two conceptual chapters on methods you will encounter in the literature. Chapter 11 covers survey design. Chapter 12 covers experimental design. You will not execute either method this semester, but you need to understand them.
+
+**Reading:** Chapter 11 and Chapter 12
+
+## Key Concepts
+
+- Survey types: cross-sectional, longitudinal, panel
+- Questionnaire design pitfalls
+- Probability vs. non-probability sampling
+- Three requirements for causation
+- Experimental components: IV, DV, random assignment, control group
+- Threats to internal validity (Campbell and Stanley, 1963)
+- Threats to external validity
+
+## Learning Objectives
+
+1. Identify common questionnaire design pitfalls
+2. Distinguish probability from non-probability sampling
+3. Explain why experiments are the gold standard for causal claims
+4. Identify threats to internal and external validity
+
+## Assignment: Topic Selection - Research Questions (25 pts)
+
+Submit your finalized topic, formal RQs or hypotheses, a variable preview, and justification.

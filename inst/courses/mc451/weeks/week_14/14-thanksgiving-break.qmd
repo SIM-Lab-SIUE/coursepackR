@@ -1,0 +1,12 @@
+---
+title: "Week 14: Thanksgiving Break"
+subtitle: "No Reading"
+date: "2026-11-24"
+format:
+  html:
+    embed-resources: true
+---
+
+## Thanksgiving Break
+
+No readings, assignments, or class meetings this week.

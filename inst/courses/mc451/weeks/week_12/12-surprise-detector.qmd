@@ -1,0 +1,36 @@
+---
+title: "Week 12: The Surprise Detector"
+subtitle: "Chapter 19"
+date: "2026-11-10"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Two full sessions on statistical inference: hypothesis testing, chi-square, correlation, regression, and APA reporting.
+
+**Reading:** Chapter 19
+
+## Key Concepts
+
+- Null hypothesis significance testing
+- P-values and common misinterpretations
+- Chi-square test of independence
+- Pearson correlation
+- Simple linear regression
+- Confidence intervals
+- Statistical vs. practical significance
+- APA reporting format
+
+## Learning Objectives
+
+1. Explain what a p-value does and does not tell you
+2. Conduct chi-square, correlation, and regression in R
+3. Report results in APA format with effect sizes
+4. Distinguish statistical from practical significance
+
+## Assignment: Describing Data [R] (75 pts)
+
+Frequency tables, ggplot2 visualizations, cross-tabulations, and narrative interpretation.

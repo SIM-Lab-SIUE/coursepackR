@@ -1,0 +1,46 @@
+---
+title: "Week 2: Curiosity & Trust"
+subtitle: "Chapters 1–2"
+date: "2026-09-01"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+This week introduces the foundational mindset of media research (Chapter 1) and why reproducibility is the infrastructure that makes research trustworthy (Chapter 2). You'll learn how everyday observations become researchable questions and set up the tools that document your decisions transparently.
+
+**Reading:** Chapter 1 — The Architecture of Curiosity & Chapter 2 — The Infrastructure of Trust
+
+## Key Concepts
+
+- Research as structured storytelling (Barrett, Storr)
+- Four unreliable ways of knowing: tradition, authority, common sense, intuition
+- The replication crisis (Open Science Collaboration, 2015)
+- Code as documentation (Knuth's literate programming)
+- The spectrum of reproducibility (Levels 0–4)
+- Tool stack: R, RStudio, Quarto, Git/GitHub, Obsidian
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Distinguish anecdotal observation from systematic inquiry
+2. Explain why reproducibility matters for trustworthy research
+3. Identify the tools that support reproducible workflows
+4. Confirm your software installation by rendering a document
+
+## Assignment: Syllabus Contract (25 pts)
+
+1. Open the syllabus contract template in RStudio
+2. Fill in the acknowledgment fields
+3. Render to PDF — this confirms R, RStudio, and Quarto are working
+4. Submit to Blackboard
+
+## Discussion Questions
+
+1. What is the difference between "I noticed a pattern" and "I have evidence of a pattern"?
+2. Why might a researcher who gets "correct" results still be doing unreproducible science?

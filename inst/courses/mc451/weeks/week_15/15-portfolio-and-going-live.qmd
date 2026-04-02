@@ -1,0 +1,33 @@
+---
+title: "Week 15: The Portfolio & Going Live"
+subtitle: "Chapters 21-22"
+date: "2026-12-01"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Chapter 21 teaches Quarto Book projects. Chapter 22 covers GitHub Pages and communicating research to different audiences.
+
+**Reading:** Chapter 21 and Chapter 22
+
+## Key Concepts
+
+- Quarto Book projects for dual output (HTML + PDF)
+- Code chunks, tables, figures, inline code, citations
+- GitHub Pages deployment
+- Writing for different audiences
+- Building a research portfolio
+
+## Learning Objectives
+
+1. Configure a Quarto Book for dual output
+2. Manage citations with BibTeX
+3. Deploy to GitHub Pages
+4. Adapt findings for different audiences
+
+## Assignment: CITI Ethics Certification (50 pts)
+
+Complete the CITI Social and Behavioral Research training. Submit completion certificate.

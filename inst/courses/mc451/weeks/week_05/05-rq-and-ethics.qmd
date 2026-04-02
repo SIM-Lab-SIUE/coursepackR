@@ -1,0 +1,35 @@
+---
+title: "Week 5: The Research Question & Ethics of Inquiry"
+subtitle: "Chapters 7-8"
+date: "2026-09-22"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Chapter 7 sharpens your ability to write strong, testable research questions. Chapter 8 introduces the ethical principles governing research.
+
+**Reading:** Chapter 7 and Chapter 8
+
+## Key Concepts
+
+- Five criteria for a good RQ: specific, measurable, answerable, not already answered, matters
+- Five common pitfalls: impossible comparison, unmeasurable concept, everything question, circular, false binary
+- RQs vs. hypotheses vs. null hypotheses
+- The Belmont Report: respect for persons, beneficence, justice
+- IRB review: exempt, expedited, full board
+- Ethics in content analysis: when is public content human subjects?
+- Ethical writing: fabrication, falsification, HARKing
+
+## Learning Objectives
+
+1. Write research questions meeting all five quality criteria
+2. Distinguish between RQs and hypotheses
+3. Apply the Belmont Report three principles
+4. Determine whether a content analysis requires IRB review
+
+## Assignment: Annotated Manuscript (25 pts)
+
+Find and annotate a peer-reviewed research article related to your topic. Write a connection statement to your planned project.

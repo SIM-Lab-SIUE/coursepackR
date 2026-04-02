@@ -1,0 +1,34 @@
+---
+title: "Week 11: Seeing Patterns"
+subtitle: "Chapter 18"
+date: "2026-11-03"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Two full sessions on data visualization with ggplot2 and the grammar of graphics.
+
+**Reading:** Chapter 18
+
+## Key Concepts
+
+- Grammar of graphics: data + aesthetics + geometries
+- Bar charts, histograms, boxplots, scatterplots, line charts
+- Faceting for small multiples
+- Customizing for publication
+- Choosing the right visualization
+- Reading visualizations critically
+
+## Learning Objectives
+
+1. Create publication-quality charts with ggplot2
+2. Map variables to visual aesthetics
+3. Choose appropriate visualizations for different data types
+4. Identify misleading visualization techniques
+
+## Assignment: Data Wrangling [R] (50 pts)
+
+Hand-code a variable for 30 songs, import and clean the dataset, join coded data, export as coding_data_clean.RDS.

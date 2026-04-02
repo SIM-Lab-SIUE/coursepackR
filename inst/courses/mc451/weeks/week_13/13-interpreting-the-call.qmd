@@ -1,0 +1,35 @@
+---
+title: "Week 13: Interpreting the Call"
+subtitle: "Chapter 20"
+date: "2026-11-17"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Two full sessions on interpretation: effect sizes, power, honest discussion writing, and avoiding pitfalls.
+
+**Reading:** Chapter 20
+
+## Key Concepts
+
+- Effect sizes: Cohen d, r, R-squared, eta-squared
+- Statistical power
+- Exploratory vs. confirmatory analysis
+- HARKing
+- Alternative explanations
+- Writing discussion sections
+- Common interpretation pitfalls
+
+## Learning Objectives
+
+1. Calculate and contextualize effect sizes
+2. Understand statistical power
+3. Distinguish exploratory from confirmatory analysis
+4. Write a nuanced discussion section
+
+## Assignment: Inferencing Data [R] (100 pts)
+
+State hypothesis, select appropriate test, run it, report in APA format, interpret, calculate effect size.

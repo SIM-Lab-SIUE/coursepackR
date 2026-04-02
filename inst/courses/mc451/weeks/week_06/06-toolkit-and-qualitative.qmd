@@ -1,0 +1,35 @@
+---
+title: "Week 6: Toolkit & Qualitative Methods"
+subtitle: "Chapters 9-10"
+date: "2026-09-29"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Chapter 9 introduces the four major research methods. Chapter 10 teaches qualitative methods as standalone approaches: interviews, focus groups, and thematic analysis.
+
+**Reading:** Chapter 9 and Chapter 10
+
+## Key Concepts
+
+- Four methods: content analysis, surveys, experiments, qualitative
+- Matching research questions to appropriate methods
+- Mixed methods designs
+- In-depth interviews: semi-structured design, rapport
+- Focus groups: group dynamics as data
+- Thematic analysis: Braun and Clarke six-phase process
+- Quality criteria: credibility, transferability, dependability, confirmability
+
+## Learning Objectives
+
+1. Describe what each of the four methods can and cannot tell you
+2. Distinguish qualitative methods from quantitative content analysis
+3. Describe the six phases of thematic analysis
+4. Draft a research prospectus aligning Topic, Theory, and Data
+
+## Assignment: Project Prospectus (25 pts)
+
+Write a one-page prospectus: Topic, Theory, Data source, preliminary RQs, and timeline.

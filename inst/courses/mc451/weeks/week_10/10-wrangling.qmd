@@ -1,0 +1,36 @@
+---
+title: "Week 10: Wrangling the Chaos"
+subtitle: "Chapter 17"
+date: "2026-10-27"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Two full sessions on data wrangling. Import, clean, and transform data using the tidyverse.
+
+**Reading:** Chapter 17
+
+## Key Concepts
+
+- Data wrangling pipeline: Import, Clean, Transform
+- Tidy data philosophy
+- Five core dplyr verbs: filter, select, mutate, group_by + summarize, arrange
+- The pipe operator
+- Handling missing values, inconsistent categories, duplicates
+- Working with factors
+- Saving cleaned data
+
+## Learning Objectives
+
+1. Import data into R and clean column names
+2. Use dplyr verbs to filter, transform, and summarize
+3. Chain operations with the pipe
+4. Handle common data problems
+5. Save a cleaned dataset as RDS
+
+## Assignment: Sampling Plan & Pilot (75 pts)
+
+Part 1: Sampling strategy. Part 2: Pilot test on 10-20 items with reliability and revisions.

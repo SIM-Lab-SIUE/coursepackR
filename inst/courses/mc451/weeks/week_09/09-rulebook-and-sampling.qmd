@@ -1,0 +1,34 @@
+---
+title: "Week 9: The Rulebook & Sampling Plan"
+subtitle: "Chapters 15-16"
+date: "2026-10-20"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Chapter 15 teaches codebook construction. Chapter 16 covers sampling strategies for content analysis and pilot testing.
+
+**Reading:** Chapter 15 and Chapter 16
+
+## Key Concepts
+
+- The codebook as algorithm
+- Five components: unit of analysis, variables, decision rules, examples, special cases
+- Exhaustive and mutually exclusive categories
+- Sampling strategies: census, simple random, stratified, systematic, constructed week
+- Pilot testing and inter-coder reliability
+- The iteration cycle: code, compare, discuss, revise
+
+## Learning Objectives
+
+1. Build a complete codebook with decision rules
+2. Design a sampling strategy for content analysis
+3. Calculate and interpret inter-coder reliability
+4. Finalize your codebook through pilot-informed revision
+
+## Assignment: Codebook & Qualitative Memo (50 pts)
+
+Part 1 (35 pts): Complete codebook. Part 2 (15 pts): 200-300 word memo on immersion patterns.

@@ -1,0 +1,45 @@
+---
+title: "Week 3: Reading Protocol & The Archivist"
+subtitle: "Chapters 3–4"
+date: "2026-09-08"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+Chapter 3 teaches you to read research actively rather than passively, using Zotero for citation management and Obsidian for literature notes. Chapter 4 teaches you to find and evaluate existing scholarship through systematic searching, citation chaining, and synthesis.
+
+**Reading:** Chapter 3 — The Reading Journal Protocol & Chapter 4 — The Archivist
+
+## Key Concepts
+
+- Active vs. passive reading; IMRAD structure; strategic reading order
+- Zotero for citation management; literature notes in Obsidian
+- Summary vs. synthesis
+- Three search phases: exploratory, systematic, citation chaining
+- Boolean operators and search strings
+- Recognizing saturation; four types of research gaps
+- The literature map
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Read a research article strategically rather than linearly
+2. Create a literature note in Obsidian using the course template
+3. Conduct systematic searches using library databases
+4. Distinguish between summarizing and synthesizing sources
+5. Verify your Obsidian vault structure (Liaison Vault)
+
+## Assignment: Project Setup (25 pts)
+
+Submit a screenshot showing your Liaison Vault open in Obsidian with all required folders visible: `00_Inbox/`, `01_Journal/`, `02_Literature/`, `03_Project/`, `04_Resources/`, `99_Templates/`
+
+## Discussion Questions
+
+1. When you read a research article, do you start at the beginning? What would you do differently after this week?
+2. What is the difference between a research gap and a topic that simply hasn't been studied?

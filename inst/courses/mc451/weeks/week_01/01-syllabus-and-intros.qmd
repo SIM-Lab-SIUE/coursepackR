@@ -1,0 +1,43 @@
+---
+title: "Week 1: Syllabus and Introductions"
+subtitle: "Course Overview"
+date: "2026-08-25"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+Welcome to MC 451: Research Methods in Mass Media. This week is about getting oriented — understanding the course structure, meeting your classmates, and setting up the tools you'll use all semester.
+
+**Reading:** None — review the syllabus and course website
+
+## Key Activities
+
+- Course overview and syllabus walkthrough
+- The five phases: Journalist → Architect → Builder → Analyst → Publisher
+- Tool introductions: R, RStudio, Obsidian, Quarto, Git/GitHub
+- Download and configure the Liaison Vault
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Describe the five-phase structure of the course
+2. Identify the tools you'll use and their purposes
+3. Access the course website and textbook
+4. Set up your GitHub profile as a professional research identity
+
+## Assignment: GitHub Profile Setup (25 pts)
+
+1. Create a professional GitHub account with a profile photo and bio
+2. Create a profile README repository introducing yourself
+3. In 2–3 sentences, explain why a public research profile might matter for your career
+
+## Discussion Questions
+
+1. What does "research" mean to you right now? How do you think that understanding might change?
+2. What media topic are you most curious about investigating this semester?

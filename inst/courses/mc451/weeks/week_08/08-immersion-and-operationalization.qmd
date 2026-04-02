@@ -1,0 +1,35 @@
+---
+title: "Week 8: Immersion & Operationalization"
+subtitle: "Chapters 13-14"
+date: "2026-10-13"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+The content analysis execution begins. Chapter 13 teaches immersion and memo writing. Chapter 14 bridges the gap between abstract concepts and measurable variables.
+
+**Reading:** Chapter 13 and Chapter 14
+
+## Key Concepts
+
+- Three modes of engagement: casual, focused, analytical
+- Memo writing: observational, methodological, theoretical, comparative
+- Manifest vs. latent content
+- The operationalization gap
+- Conceptual vs. operational definitions
+- NOIR levels of measurement
+- Reliability and validity
+
+## Learning Objectives
+
+1. Immerse yourself in data using stratified sampling
+2. Write observational memos documenting patterns
+3. Define variables both conceptually and operationally
+4. Identify the level of measurement for any variable
+
+## Assignment: Definitions Practice (25 pts)
+
+Define at least 4 variables with conceptual definitions, operational definitions, levels of measurement, coded values, and edge case decision rules.

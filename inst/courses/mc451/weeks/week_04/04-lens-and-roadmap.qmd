@@ -1,0 +1,34 @@
+---
+title: "Week 4: Choosing Your Lens & The Roadmap"
+subtitle: "Chapters 5-6"
+date: "2026-09-15"
+format:
+  html:
+    embed-resources: true
+---
+
+## Overview
+
+Chapter 5 introduces theory as a focusing tool. Chapter 6 teaches you to narrow a broad interest into a focused, feasible research plan using the Holy Trinity (Topic, Theory, Data).
+
+**Reading:** Chapter 5 and Chapter 6
+
+## Key Concepts
+
+- Theory as a lens; three paradigms (social scientific, interpretive, critical)
+- Six communication theories: PSI, Social Identity, Agenda Setting, Framing, Uses and Gratifications, Cultivation
+- Variables: IV, DV, mediators, moderators
+- Scope creep and the narrowing funnel
+- The Holy Trinity: Topic, Theory, Data
+- Three research goals: exploratory, descriptive, explanatory
+
+## Learning Objectives
+
+1. Explain what a theory does and why it matters for research
+2. Name communication theories and describe what each predicts
+3. Narrow a broad topic into a feasible research plan
+4. Evaluate a data archive through librarian consultation
+
+## Assignment: Archivist Report (25 pts)
+
+Meet with a SIUE librarian to identify and evaluate a data archive for your project. Document: the archive, what you learned, and a feasibility assessment. Submit as PDF.
