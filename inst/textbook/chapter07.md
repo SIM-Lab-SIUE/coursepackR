@@ -1,18 +1,18 @@
-# Chapter 7: The Research Question
-
 ## Learning Objectives
 
-- Distinguish between weak and strong research questions
-- Recognize and avoid common pitfalls in question formulation
-- Translate theoretical concepts into operational definitions
-- Write research questions that are specific, measurable, and answerable
-- Understand the relationship between research questions and project scope
+-   Distinguish between weak and strong research questions
+-   Recognize and avoid common pitfalls in question formulation
+-   Translate theoretical concepts into operational definitions
+-   Write research questions that are specific, measurable, and answerable
+-   Understand the relationship between research questions and project scope
 
----
+------------------------------------------------------------------------
 
 The hardest part of research isn't analyzing data or writing the final report. It's asking the right question.
 
-This seems counterintuitive. Students arrive to research methods courses assuming the challenge will be statistical tests or coding schemes—technical skills they haven't yet learned. But most students can learn to run a chi-square test or code qualitative data with practice. What's harder is the intellectual work that precedes analysis: formulating a question that's specific enough to answer, broad enough to matter, and grounded enough in existing knowledge to avoid reinventing the wheel.
+This seems counterintuitive. Students arrive at research methods courses assuming the challenge will be statistical tests or coding schemes, technical skills they haven't yet learned. But most students can learn to run a chi-square test or code qualitative data with practice. What's harder is the intellectual work that precedes analysis: formulating a question that's specific enough to answer, broad enough to matter, and grounded enough in existing knowledge to avoid reinventing the wheel.
+
+![*Research begins in the fog of curiosity; the goal of this chapter is to find the clear path forward.* - Photo by [Chris Barbalis](https://unsplash.com/@cbarbalis) on [Unsplash](https://unsplash.com/photos/green-trees-with-fog-during-daytime-QDPo00WyGXg)](images/ch07/forest-mist-cropped.jpg){fig-alt="A dense, atmospheric forest shrouded in thick morning mist, representing the initial ambiguity of the research process." width="100%"}
 
 A weak research question dooms the entire project. You can have perfect data, sophisticated methods, and rigorous analysis, but if the question itself is vague, unanswerable, or trivial, the study contributes nothing.
 
@@ -26,7 +26,7 @@ Question A is a career-spanning research program disguised as a single question.
 
 Question B is researchable. It specifies what will be measured (lyric sentiment, chart position), what will be compared (negative vs. positive), and what will be controlled (tempo, artist popularity). You can design a study around it. You can determine what evidence would answer it. You can know when you're done.
 
-This chapter teaches the craft of moving from Question A to Question B—from vague curiosity to precise, answerable inquiry.
+The same distinction operates in every domain. "How does news affect democracy?" is a Question A. "Does exposure to episodic framing of poverty reduce support for structural antipoverty programs compared to thematic framing among registered voters?" is a Question B. The craft of research question formulation is the craft of getting from A to B.
 
 ## What Makes a Research Question "Good"?
 
@@ -38,7 +38,7 @@ Weak questions use vague language that could mean different things to different 
 
 **Weak**: "How does social media influence politics?"
 
-What does "influence" mean? Change voting behavior? Shape discourse? Affect polarization? Mobilize activism? "Social media" is equally vague—Twitter? TikTok? All platforms? And "politics"—electoral politics? Policy debates? Political identity?
+What does "influence" mean? Change voting behavior? Shape discourse? Affect polarization? Mobilize activism? "Social media" is equally vague: Twitter? TikTok? All platforms? And "politics": electoral politics? Policy debates? Political identity?
 
 **Stronger**: "Does exposure to political content on TikTok increase political efficacy among Gen Z voters?"
 
@@ -52,7 +52,9 @@ This narrows platforms (TikTok), specifies the outcome (political efficacy), and
 
 ### 2. It's Measurable
 
-Some questions use concepts that resist operationalization—translation into concrete, observable variables.
+Some questions use concepts that resist operationalization, the translation into concrete, observable variables.
+
+![*To answer a research question, we must translate abstract concepts into measurable data points.* - Photo by [Bret Lama](https://unsplash.com/@sepiatone) on [Unsplash](https://www.google.com/search?q=https://unsplash.com/photos/a-record-player-playing-a-record-on-a-turntable-MMX9xmcGSEg).](images/ch07/record-grooves-cropped.jpg){fig-alt="An extreme close-up of a vinyl record's surface, showing the microscopic grooves that represent physical data for sound." width="100%"}
 
 **Weak**: "Do authentic artists create better music?"
 
@@ -62,9 +64,13 @@ What does "authentic" mean in a measurable way? What counts as "better"? Without
 
 Now "authentic" is operationalized as "self-written lyrics" (verifiable) and "better" is operationalized as "Pitchfork rating" (quantifiable). You can disagree with these operationalizations, but at least they're concrete.
 
+**A non-music parallel**: "Is this news article biased?" is unmeasurable as stated. "Do CNN and Fox News differ in the proportion of episodic vs. thematic frames used in coverage of immigration?" is measurable.
+
 ### 3. It's Answerable Within Your Constraints
 
 Some questions are good in principle but impossible given your resources, timeline, or skills.
+
+![*A perfect question is useless if it cannot be answered within the constraints of your timeline and resources.* - Photo by [Aron Visuals](https://unsplash.com/@aronvisuals) on [Unsplash](https://unsplash.com/photos/selective-focus-photo-of-brown-and-blue-hourglass-on-stones-BXOXnQ26B7o).](images/ch07/hourglass-cropped.jpg){fig-alt="An hourglass sitting on a bed of stones, with sand running through the middle, symbolizing time constraints in research." width="100%"}
 
 **Weak for a semester project**: "How has hip-hop evolved globally from 1973 to 2024?"
 
@@ -96,7 +102,7 @@ Even if true, so what? This is trivia, not insight. It doesn't test theory, addr
 
 **Stronger**: "Do songs released during culturally significant moments (post-tragedy, during social movements) achieve different chart longevity than songs released during neutral periods?"
 
-This has theoretical implications (cultural resonance, collective emotion) and practical value (understanding audience engagement).
+This has theoretical implications (cultural resonance, collective emotion) and practical value (understanding audience engagement). The same logic applies beyond music: "Do corporate apology statements released within 24 hours of a crisis receive more favorable media coverage than those released after 72 hours?" is a question with both theoretical and practical significance.
 
 ## Common Pitfalls in Question Formulation
 
@@ -158,47 +164,50 @@ This allows both to matter and tests whether their effects combine in non-additi
 
 ## From Theoretical Concepts to Operational Definitions
 
-Theory gives you abstract concepts. Research requires concrete variables. The bridge is **operationalization**—defining how you'll measure theoretical constructs.
+Theory gives you abstract concepts. Research requires concrete variables. The bridge is **operationalization**, defining how you'll measure theoretical constructs.
 
 ### Example: Parasocial Relationships
 
-**Theoretical concept**: Parasocial relationship—a one-sided emotional bond between a fan and a media figure.
+**Theoretical concept**: Parasocial relationship (Horton & Wohl, 1956), a one-sided emotional bond between a fan and a media figure.
 
 **How do you measure it?**
 
 **Option 1: Self-Report Scale**
 
 Ask fans to rate agreement with statements like:
+
 - "I feel like [artist] understands me."
 - "I would be devastated if [artist] retired."
 - "I think about [artist] even when not listening to their music."
 
 Sum the ratings to create a parasocial bond score.
 
-**Pros**: Captures subjective experience directly.  
+**Pros**: Captures subjective experience directly.
 **Cons**: Subject to social desirability bias. People may over- or under-report.
 
 **Option 2: Behavioral Indicators**
 
 Measure observable behaviors:
+
 - Number of concerts attended
 - Frequency of social media interactions with artist content
 - Time spent in fan communities
 
-**Pros**: Behavioral data may be more reliable than self-report.  
+**Pros**: Behavioral data may be more reliable than self-report.
 **Cons**: Behavior doesn't necessarily reflect emotional bond (you might attend concerts for social reasons, not parasocial attachment).
 
 **Option 3: Language Analysis**
 
 Code fan-created content (forum posts, comments) for parasocial language:
+
 - First-person references to the artist ("I love how Taylor...")
 - Expressions of intimacy ("She gets me")
 - Emotional disclosure ("When I'm sad, I listen to...")
 
-**Pros**: Naturalistic data, reveals how fans actually talk.  
+**Pros**: Naturalistic data, reveals how fans actually talk.
 **Cons**: Labor-intensive coding. May miss fans who feel strongly but don't post publicly.
 
-**Which is best?** Depends on your research question, data access, and resources. The point is that "parasocial relationship" isn't directly observable—you must choose a measurable proxy and defend why it's valid.
+**Which is best?** Depends on your research question, data access, and resources. The point is that "parasocial relationship" isn't directly observable; you must choose a measurable proxy and defend why it's valid. This logic applies identically to non-music concepts: "media trust," "political polarization," and "brand loyalty" all require the same translation from abstract construct to concrete measurement.
 
 ### Example: Lyric Sentiment
 
@@ -210,24 +219,25 @@ Code fan-created content (forum posts, comments) for parasocial language:
 
 Use software like Linguistic Inquiry and Word Count (LIWC) to score lyrics based on positive and negative emotion words.
 
-**Pros**: Fast, replicable, no coder training needed.  
-**Cons**: Misses context (sarcasm, irony, metaphor). "I'm bad" in Michael Jackson's song is positive, not negative.
+**Pros**: Fast, replicable, no coder training needed.
+**Cons**: Misses context (sarcasm, irony, metaphor). "I'm bad" in Michael Jackson's song is positive, not negative. Napier and Shamir (2018) used this approach across decades of Billboard lyrics but acknowledged these limitations.
 
 **Option 2: Human Coding**
 
 Train coders to read lyrics and categorize overall sentiment as positive, negative, or neutral based on holistic judgment.
 
-**Pros**: Captures context, nuance, metaphorical meaning.  
-**Cons**: Labor-intensive. Requires inter-coder reliability testing. Subjective.
+**Pros**: Captures context, nuance, metaphorical meaning.
+**Cons**: Labor-intensive. Requires inter-coder reliability testing (Lombard et al., 2002). Subjective.
 
 **Option 3: Dimensional Coding**
 
 Code for multiple dimensions:
+
 - Valence (positive/negative)
 - Arousal (high energy/low energy)
 - Dominance (powerful/submissive)
 
-**Pros**: Captures emotional complexity better than a single valence dimension.  
+**Pros**: Captures emotional complexity better than a single valence dimension. Aligns with psychological models of emotion like those proposed by Zentner, Grandjean, and Scherer (2008).
 **Cons**: More complex, requires careful codebook development.
 
 Again, no single "right" answer. You choose based on what your theory predicts and what your question requires.
@@ -240,32 +250,46 @@ Here's a template that consistently produces clear, researchable questions:
 
 ### Examples Using the Formula
 
-**Example 1 (Descriptive)**:
-"What is the **prevalence of mental health references** in **Billboard Hot 100 songs** between **2015 and 2024**?"
+**Example 1 (Descriptive, music)**: "What is the **prevalence of mental health references** in **Billboard Hot 100 songs** between **2015 and 2024**?"
 
-- Specific variable: Mental health references
-- Pattern: Prevalence
-- Context: Billboard Hot 100, 2015-2024
+-   Specific variable: Mental health references
+-   Pattern: Prevalence
+-   Context: Billboard Hot 100, 2015-2024
 
-**Example 2 (Relational)**:
-"Is there a **relationship between lyric sentiment** (positive, negative, neutral) and **chart peak position** among **pop songs in the Billboard Hot 100** (2015-2024), **controlling for tempo and artist popularity**?"
+**Example 2 (Relational, music)**: "Is there a **relationship between lyric sentiment** (positive, negative, neutral) and **chart peak position** among **pop songs in the Billboard Hot 100** (2015-2024), **controlling for tempo and artist popularity**?"
 
-- Variables: Lyric sentiment (IV), chart position (DV)
-- Relationship: Correlation or difference
-- Context: Pop songs, Billboard Hot 100, specific timeframe
-- Controls: Tempo, artist popularity
+-   Variables: Lyric sentiment (IV), chart position (DV)
+-   Relationship: Correlation or difference
+-   Context: Pop songs, Billboard Hot 100, specific timeframe
+-   Controls: Tempo, artist popularity
 
-**Example 3 (Comparative)**:
-"How does **parasocial language use** differ **between K-pop fans and country music fans** in **Reddit fan communities**, and does this difference persist when **controlling for age and gender**?"
+**Example 3 (Comparative, music)**: "How does **parasocial language use** differ **between K-pop fans and country music fans** in **Reddit fan communities**, and does this difference persist when **controlling for age and gender**?"
 
-- Variables: Parasocial language
-- Comparison: K-pop vs. country fans
-- Context: Reddit fan communities
-- Controls: Age, gender
+-   Variables: Parasocial language
+-   Comparison: K-pop vs. country fans
+-   Context: Reddit fan communities
+-   Controls: Age, gender
+
+**Example 4 (Descriptive, non-music)**: "What is the **prevalence of episodic vs. thematic framing** in **New York Times coverage of homelessness** between **2019 and 2024**?"
+
+-   Specific variable: Frame type (episodic vs. thematic)
+-   Pattern: Prevalence
+-   Context: NYT coverage, specific timeframe
+
+**Example 5 (Relational, non-music)**: "Is there a **relationship between news frame type** (episodic vs. thematic) and **reader attribution of responsibility** (individual vs. structural) among **adults exposed to news about poverty**, **controlling for political ideology**?"
+
+-   Variables: Frame type (IV), attribution (DV)
+-   Relationship: Difference
+-   Context: Adults, poverty news
+-   Controls: Political ideology
+
+The formula works regardless of domain. Swap the variables and context; the structure holds.
 
 ## The Relationship Between Questions and Hypotheses
 
 Sometimes you pose research questions. Sometimes you pose hypotheses. Understanding when to use which is crucial.
+
+![*Choosing between a research question and a hypothesis depends on whether you are exploring new territory or testing an established theory.* - Photo by [Jens Lelie](#0) on [Unsplash](#0).](images/ch07/fork-road-cropped.jpg){fig-alt="A road in a forest that splits into two distinct paths, symbolizing the decision point between exploratory and predictive research." width="100%"}
 
 ### Use Research Questions (RQs) When:
 
@@ -275,7 +299,7 @@ If no theory predicts the outcome and you're genuinely uncertain what the data w
 
 *Example*: "How do fans of electronic dance music use parasocial language differently than fans of classical music?"
 
-You don't have a theory predicting the direction of difference—you're exploring.
+You don't have a theory predicting the direction of difference; you're exploring.
 
 **2. You're describing rather than explaining**
 
@@ -287,7 +311,7 @@ Descriptive studies often use RQs because they're mapping terrain, not testing c
 
 If previous studies show inconsistent patterns, an RQ is more honest than picking a side arbitrarily.
 
-*Example*: "Is there a relationship between lyric sentiment and chart success, given that Smith et al. (2020) found negative effects while Ali & Perryman (2023) found positive effects?"
+*Example*: "Is there a relationship between lyric sentiment and chart success, given that existing studies have tracked aggregate trends in lyric negativity (Brand et al., 2019; Napier & Shamir, 2018) but have not tested whether sentiment predicts individual song performance?"
 
 ### Use Hypotheses (H) When:
 
@@ -295,13 +319,13 @@ If previous studies show inconsistent patterns, an RQ is more honest than pickin
 
 If your theoretical framework predicts a direction or pattern, state it as a hypothesis.
 
-*Example*: "H1: Songs in minor keys will be rated as sadder than songs in major keys (Appraisal Theory)."
+*Example*: "H1: Songs in minor keys will be rated as sadder than songs in major keys (derived from appraisal theory; Scherer, 2004)."
 
 **2. Previous research suggests a likely outcome**
 
 If the literature consistently finds a pattern, you can hypothesize it will replicate in your context.
 
-*Example*: "H1: Faster tempo will predict higher ratings of perceived energy (based on Davis et al., 2019; Thompson, 2021)."
+*Example*: "H1: Popular song lyrics will show increasing negative emotional expression over time, consistent with Brand et al. (2019) and Napier and Shamir (2018)."
 
 **3. You're testing a causal claim**
 
@@ -312,6 +336,8 @@ Causal research typically uses hypotheses because you're predicting that X cause
 ## Revising Questions: The Iteration Process
 
 First drafts of research questions are rarely optimal. Expect to revise multiple times.
+
+![*Strong research questions are not written; they are rewritten.* - Photo by [Steve Johnson](#0) on [Unsplash](#0).](images/ch07/crumbled-paper-cropped.jpg){fig-alt="A single piece of crumpled white paper sitting on a dark wooden table, representing the trial and error of the writing process." width="100%"}
 
 ### Iteration Example: From Vague to Precise
 
@@ -335,25 +361,25 @@ First drafts of research questions are rarely optimal. Expect to revise multiple
 
 Before finalizing your research question, run it through these diagnostics:
 
-**☐ Can I operationalize every concept?**  
+**☐ Can I operationalize every concept?**
 Every abstract term (authenticity, beauty, emotion) must translate into something measurable.
 
-**☐ Is the scope manageable?**  
+**☐ Is the scope manageable?**
 Can I answer this in one semester with available resources?
 
-**☐ Does my theory predict this pattern?**  
+**☐ Does my theory predict this pattern?**
 If using a hypothesis, does it actually follow from the theoretical framework?
 
-**☐ Would a null finding still be interesting?**  
+**☐ Would a null finding still be interesting?**
 If you find no relationship, does that tell us something valuable? Or is the question only interesting if the answer is "yes"?
 
-**☐ Can I specify what evidence would answer the question?**  
+**☐ Can I specify what evidence would answer the question?**
 If you can't envision the data and analysis that would resolve the question, it's not ready.
 
-**☐ Does the question advance beyond description to explanation?**  
+**☐ Does the question advance beyond description to explanation?**
 "What exists?" questions are fine for exploratory work, but "Why does it exist?" questions are typically more valuable.
 
----
+------------------------------------------------------------------------
 
 ## Practice: Crafting Research Questions
 
@@ -363,20 +389,25 @@ For each question below, identify what's wrong and propose a revision:
 
 **Question A**: "How does technology change communication?"
 
-**Problem(s)**: _______________  
+**Problem(s)**: _______________
 **Revision**: _______________
 
 **Question B**: "Are happy people more successful?"
 
-**Problem(s)**: _______________  
+**Problem(s)**: _______________
 **Revision**: _______________
 
 **Question C**: "What is the true meaning of rap music?"
 
-**Problem(s)**: _______________  
+**Problem(s)**: _______________
 **Revision**: _______________
 
----
+**Question D**: "Does media coverage matter?"
+
+**Problem(s)**: _______________
+**Revision**: _______________
+
+------------------------------------------------------------------------
 
 ### Exercise 7.2: Operationalizing Concepts
 
@@ -384,13 +415,21 @@ Choose one abstract concept and develop three different operational definitions:
 
 **Concept: Musical "authenticity"**
 
-**Operationalization 1** (how you'd measure it): _______________  
-**Operationalization 2**: _______________  
+**Operationalization 1** (how you'd measure it): _______________
+**Operationalization 2**: _______________
 **Operationalization 3**: _______________
 
 **Which is best for your research question, and why?**
 
----
+Now do the same for a non-music concept: **"media bias"**
+
+**Operationalization 1**: _______________
+**Operationalization 2**: _______________
+**Operationalization 3**: _______________
+
+**What do you notice about the choices involved in operationalizing an abstract concept?**
+
+------------------------------------------------------------------------
 
 ### Exercise 7.3: From Vague to Precise
 
@@ -398,83 +437,124 @@ Take this vague interest and narrow it through five iterations:
 
 **Starting point**: "I'm interested in music and mental health."
 
-**Iteration 1** (narrow the scope): _______________  
-**Iteration 2** (specify the relationship): _______________  
-**Iteration 3** (bound the population/context): _______________  
-**Iteration 4** (add measurement specificity): _______________  
+**Iteration 1** (narrow the scope): _______________
+**Iteration 2** (specify the relationship): _______________
+**Iteration 3** (bound the population/context): _______________
+**Iteration 4** (add measurement specificity): _______________
 **Iteration 5** (final researchable question): _______________
 
----
+------------------------------------------------------------------------
 
 ### Exercise 7.4: RQ or Hypothesis?
 
 For each scenario, decide whether to use an RQ or hypothesis, and write it:
 
-**Scenario A**: Social Identity Theory predicts in-group favoritism. You hypothesize fans will rate their genre higher than rival genres.
+**Scenario A**: Social Identity Theory (Tajfel & Turner, 1979) predicts in-group favoritism. You hypothesize fans will rate their preferred genre higher than rival genres.
 
-**Use**: RQ or H?  
+**Use**: RQ or H?
 **Write it**: _______________
 
 **Scenario B**: No research has examined how EDM fans talk about their favorite DJs compared to how jazz fans talk about their favorite musicians. You're exploring this.
 
-**Use**: RQ or H?  
+**Use**: RQ or H?
 **Write it**: _______________
 
-**Scenario C**: Multiple studies show tempo predicts perceived energy. You expect this to replicate in your dataset.
+**Scenario C**: Multiple studies show that popular lyrics have become more negative over time (Brand et al., 2019; Napier & Shamir, 2018). You expect this to replicate in your dataset.
 
-**Use**: RQ or H?  
+**Use**: RQ or H?
 **Write it**: _______________
 
----
+**Scenario D**: You want to know whether nonprofit fundraising emails use more emotional language than for-profit marketing emails, but no prior research has examined this comparison.
+
+**Use**: RQ or H?
+**Write it**: _______________
+
+------------------------------------------------------------------------
 
 ### Exercise 7.5: The Revision Process
 
 Take a weak research question you've written (or make one up). Revise it five times, addressing a different problem each time:
 
-**Draft 1** (original, weak): _______________  
-**Draft 2** (more specific): _______________  
-**Draft 3** (added measurement): _______________  
-**Draft 4** (bounded context): _______________  
+**Draft 1** (original, weak): _______________
+**Draft 2** (more specific): _______________
+**Draft 3** (added measurement): _______________
+**Draft 4** (bounded context): _______________
 **Draft 5** (final, strong): _______________
 
 **What improved most between Draft 1 and Draft 5?**
 
----
+------------------------------------------------------------------------
 
 ## Reflection Questions
 
-1. **The Precision-Breadth Tradeoff**: Strong research questions are narrow and specific, which means they can't address all the interesting aspects of a topic. How do you decide which aspect to focus on and which to leave for future research?
+1.  **The Precision-Breadth Tradeoff**: Strong research questions are narrow and specific, which means they can't address all the interesting aspects of a topic. How do you decide which aspect to focus on and which to leave for future research?
 
-2. **Operationalization Choices**: Every time you operationalize an abstract concept, you make choices that shape what you can discover. What gets lost when you reduce "musical beauty" to "listener ratings"? Is that loss acceptable, or does it fundamentally change the question?
+2.  **Operationalization Choices**: Every time you operationalize an abstract concept, you make choices that shape what you can discover. What gets lost when you reduce "musical beauty" to "listener ratings"? Is that loss acceptable, or does it fundamentally change the question?
 
-3. **Your Own Question**: Write your current research question for this course project. Now critique it using the five criteria from this chapter. What needs revision?
+3.  **Your Own Question**: Write your current research question for this course project. Now critique it using the five criteria from this chapter. What needs revision?
 
----
+4.  **Cross-Domain Transfer**: Take your research question from this course and rewrite it for a completely different domain (news, health, politics, advertising). What changes? What stays the same? Does the translation reveal weaknesses in the original formulation?
+
+------------------------------------------------------------------------
 
 ## Chapter Summary
 
 This chapter focused on the craft of question formulation:
 
-- **Five criteria for strong RQs**: Specific, measurable, answerable, not already resolved, significant
-- **Common pitfalls**: Impossible comparisons, unmeasurable concepts, scope too broad, circular logic, false binaries
-- **Operationalization** translates theoretical concepts into measurable variables. Multiple valid operationalizations often exist; choose based on theory and resources.
-- **Formula for strong questions**: [Action verb] + [specific variable] + [relationship/pattern] + [bounded context] + [controls if applicable]
-- **RQs vs. Hypotheses**: Use RQs when exploring or when theory doesn't predict direction. Use hypotheses when theory makes specific predictions.
-- **Iteration is essential**: First drafts are rarely optimal. Expect to revise questions multiple times.
-- **The checklist**: Can you operationalize it? Is scope manageable? Does theory predict it? Would null findings matter? Can you specify what evidence answers it?
+-   **Five criteria for strong RQs**: Specific, measurable, answerable, not already resolved, significant
+-   **Common pitfalls**: Impossible comparisons, unmeasurable concepts, scope too broad, circular logic, false binaries
+-   **Operationalization** translates theoretical concepts into measurable variables. Multiple valid operationalizations often exist; choose based on theory and resources.
+-   **Formula for strong questions**: [Action verb] + [specific variable] + [relationship/pattern] + [bounded context] + [controls if applicable]
+-   **RQs vs. Hypotheses**: Use RQs when exploring or when theory doesn't predict direction. Use hypotheses when theory makes specific predictions.
+-   **Iteration is essential**: First drafts are rarely optimal. Expect to revise questions multiple times.
+-   **The checklist**: Can you operationalize it? Is scope manageable? Does theory predict it? Would null findings matter? Can you specify what evidence answers it?
 
----
+------------------------------------------------------------------------
 
 ## Key Terms
 
-- **Hypothesis (H)**: Testable prediction derived from theory (directional statement)
-- **Null hypothesis (H₀)**: Prediction of no relationship or difference
-- **Operationalization**: Translating abstract concepts into concrete, measurable variables
-- **Research question (RQ)**: Open-ended or bounded inquiry when theory doesn't specify direction
-- **Scope**: The boundaries of what a study will examine (population, context, timeframe)
+-   **Hypothesis (H)**: Testable prediction derived from theory (directional statement)
+-   **Null hypothesis (H₀)**: Prediction of no relationship or difference
+-   **Operationalization**: Translating abstract concepts into concrete, measurable variables
+-   **Research question (RQ)**: Open-ended or bounded inquiry when theory doesn't specify direction
+-   **Scope**: The boundaries of what a study will examine (population, context, timeframe)
 
----
+------------------------------------------------------------------------
+
+## References
+
+Brand, C. O., Acerbi, A., & Mesoudi, A. (2019). Cultural evolution of emotional expression in 50 years of song lyrics. *Evolutionary Human Sciences*, *1*, e11. https://doi.org/10.1017/ehs.2019.11
+
+Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
+
+Lombard, M., Snyder-Duch, J., & Bracken, C. C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587-604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
+
+Napier, K., & Shamir, L. (2018). Quantitative sentiment analysis of lyrics in popular music. *Journal of Popular Music Studies*, *30*(4), 161-176. https://doi.org/10.1525/jpms.2018.300411
+
+Scherer, K. R. (2004). Which emotions can be induced by music? What are the underlying mechanisms? And how can we measure them? *Journal of New Music Research*, *33*(3), 239-251. https://doi.org/10.1080/0929821042000317822
+
+Tajfel, H., & Turner, J. C. (1979). An integrative theory of intergroup conflict. In W. G. Austin & S. Worchel (Eds.), *The social psychology of intergroup relations* (pp. 33-47). Brooks/Cole.
+
+Zentner, M., Grandjean, D., & Scherer, K. R. (2008). Emotions evoked by the sound of music: Characterization, classification, and measurement. *Emotion*, *8*(4), 494-521. https://doi.org/10.1037/1528-3542.8.4.494
+
+------------------------------------------------------------------------
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Task**: Locate three published empirical studies in communication journals that state explicit research questions or hypotheses. For each study:
+
+1. **Extract** the stated RQ(s) or hypothesis/hypotheses exactly as written.
+2. **Evaluate** each using the five criteria from this chapter (specific, measurable, answerable, not already resolved, significant). Assign a rating (strong, adequate, weak) for each criterion and justify your assessment in 1-2 sentences.
+3. **Identify the operational definitions** used for the key variables. Are they explicitly stated? Could another researcher replicate the measurement from the information provided?
+4. **Assess theory-question alignment**: Does the RQ or hypothesis follow logically from the theoretical framework cited? Or is there a gap between what the theory predicts and what the question actually tests?
+5. **Revise** the weakest question of the three. Rewrite it using the formula from this chapter, making it more specific, better operationalized, or more tightly connected to theory.
+
+**Why this matters for graduate students**: At the graduate level, you will not only formulate your own research questions but also evaluate others' questions as a reviewer, committee member, or collaborator. The ability to diagnose weaknesses in question formulation, and to propose constructive revisions, is a core professional skill. This exercise trains that skill on real published work rather than textbook examples.
+
+:::
+
+------------------------------------------------------------------------
 
 ## Looking Ahead
 
-Chapter 8 (Music Immersion) begins Phase III: The Translator in earnest. Having formulated precise research questions, you'll now immerse yourself in the music dataset—listening to songs, reading lyrics, developing intuitions about patterns before formal coding begins. This chapter teaches the qualitative skill of sustained attention: learning to notice details, question assumptions, and document observations that will later inform your codebook. You're moving from planning (Chapters 1-7) to doing (Chapters 8-17).
+Chapter 8 (The Ethics of Inquiry) addresses the ethical responsibilities that accompany research. Before you collect data, code content, or survey participants, you need to understand the principles that govern ethical research: respect for persons, beneficence, and justice. You'll examine landmark cases that shaped modern research ethics, navigate the institutional review process, and confront the specific ethical questions that arise in content analysis, survey research, and digital media research. Ethics isn't a bureaucratic hurdle; it's a foundational commitment that shapes every decision you make as a researcher.

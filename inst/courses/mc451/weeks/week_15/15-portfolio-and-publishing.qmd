@@ -1,0 +1,59 @@
+---
+title: "Week 15: The Portfolio & Going Live"
+subtitle: "Chapters 21–22"
+date: "2026-04-28"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+The final teaching week. Chapter 21 shows you how to assemble a professional research portfolio using Quarto — combining your writing, code, tables, and figures into a single multi-format document. Chapter 22 covers publishing your work to GitHub Pages and preparing it for different audiences.
+
+**Reading:** Chapter 21 — The Portfolio & Chapter 22 — Going Live
+
+## Key Concepts
+
+- Quarto Book projects: multi-page documents from a single source
+- YAML configuration for dual output (HTML + PDF)
+- Citations and bibliography management with BibTeX
+- Code chunk options: echo, eval, fig-cap, tbl-cap
+- GitHub Pages deployment from the docs/ folder
+- Writing for different audiences: academic, executive, general public
+- Abstract writing and conference submission
+- The research portfolio as a professional asset
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Configure a Quarto Book project for dual HTML/PDF output
+2. Embed R code, tables, and figures in a reproducible document
+3. Manage citations using BibTeX and a CSL style file
+4. Deploy a website to GitHub Pages
+5. Write an abstract and adapt research findings for different audiences
+
+## Assignment: Inferencing Data [R] (100 pts)
+
+### Task
+
+Using `coding_data_clean.RDS`, conduct an inferential statistical test:
+
+1. **State your hypothesis** in plain English before running any code
+2. **Select the appropriate test** based on your variable types:
+   - Two categorical variables → Chi-Square test
+   - One categorical (2 groups) × one continuous → Independent t-test
+   - Two continuous variables → Pearson correlation
+3. **Run the test** in R and report results in APA format
+4. **Interpret** the result in plain English — what does it mean for your RQ?
+5. **Calculate** and report the effect size
+
+Follow the assignment template for detailed instructions and pre-written code scaffolds.
+
+## Discussion Questions
+
+1. Why does publishing your code alongside your results make your research stronger?
+2. How would you explain your study's main finding to someone who has never taken a statistics course?

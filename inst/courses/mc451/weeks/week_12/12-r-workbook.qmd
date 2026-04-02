@@ -1,0 +1,48 @@
+---
+title: "Week 12: R Workbook & CITI Certification"
+subtitle: "No New Chapter — Skills Practice Week"
+date: "2026-04-07"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+This is a remote work week with no new chapter reading. You have two tasks: work through the R Workbook to build your data analysis skills, and complete your CITI ethics certification. Both prepare you for the final stretch of the semester.
+
+## R Workbook
+
+Download the workbook using coursepackR:
+
+```r
+library(coursepackR)
+download_workbook()
+```
+
+The workbook covers six sections aligned with the analysis and publishing chapters (Chapters 17–22):
+
+1. **Wrangling** — Pipes, dplyr verbs, data cleaning
+2. **Describing** — Frequency tables, ggplot2 visualization
+3. **Testing** — t-tests, chi-square, correlation, effect sizes
+4. **Interpreting** — Plain-English translation of statistical output
+5. **Portfolio** — Quarto rendering and document structure
+6. **Publishing** — Git, GitHub, GitHub Pages deployment
+
+Work through each section interactively in RStudio. Watch the corresponding instructor videos linked in the workbook.
+
+## Assignment: CITI Ethics Certification (50 pts)
+
+### Task
+
+Complete the CITI Program's *Social & Behavioral Research* training:
+
+1. Go to [citiprogram.org](https://www.citiprogram.org)
+2. Register with your SIUE email
+3. Select the **Social & Behavioral Research** course
+4. Complete all required modules
+5. Submit your completion certificate as a PDF to Blackboard
+
+This certification is required for conducting human subjects research and demonstrates your understanding of the ethical principles covered in Chapter 8.

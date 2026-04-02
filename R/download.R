@@ -89,6 +89,72 @@ download_week <- function(course, week = NULL, dest = ".") {
   ))
 }
 
+#' Download the R Workbook
+#'
+#' Copies the MC 451 R Workbook project to a local directory. The workbook
+#' is a self-contained Quarto project covering Chapters 17--22: data wrangling,
+#' visualization, statistical tests, effect sizes, Quarto reporting, and
+#' GitHub Pages publishing.
+#'
+#' @param course Character course identifier (default: `"mc451"`).
+#' @param dest Character destination directory (default: current directory).
+#'   An `mc451-r-workbook/` subdirectory is created automatically.
+#' @return Invisibly, the path to the created workbook directory.
+#' @export
+#' @examples
+#' \dontrun{
+#' download_workbook()
+#' download_workbook(dest = "~/my-course")
+#' }
+download_workbook <- function(course = "mc451", dest = ".") {
+  root <- .courses_root()
+  if (!nzchar(root)) {
+    cli::cli_abort("No course materials found. Is {.pkg coursepackR} installed correctly?")
+  }
+
+  src <- file.path(root, course, "workbook")
+  if (!dir.exists(src)) {
+    cli::cli_abort(c(
+      "Workbook not found for course {.val {course}}.",
+      "i" = "Expected: {.path {src}}"
+    ))
+  }
+
+  dest <- normalizePath(dest, mustWork = TRUE)
+  target <- file.path(dest, "mc451-r-workbook")
+
+  if (dir.exists(target)) {
+    cli::cli_alert_warning("{.path {target}} already exists. Skipping to protect your work.")
+    cli::cli_alert_info("Delete or rename the existing folder if you want a fresh copy.")
+    return(invisible(target))
+  }
+
+  dir.create(target, recursive = TRUE)
+
+  src_files <- list.files(src, full.names = FALSE, recursive = TRUE)
+  if (length(src_files) > 0L) {
+    src_full   <- file.path(src, src_files)
+    dest_files <- file.path(target, src_files)
+    dest_dirs  <- unique(dirname(dest_files))
+    for (d in dest_dirs) {
+      if (!dir.exists(d)) dir.create(d, recursive = TRUE)
+    }
+    file.copy(src_full, dest_files, overwrite = FALSE, copy.date = TRUE)
+    n_copied <- length(src_files)
+  } else {
+    n_copied <- 0L
+  }
+
+  cli::cli_alert_success(
+    "Downloaded R Workbook ({n_copied} file{?s}) to {.path {target}}"
+  )
+  cli::cli_alert_info(
+    "Open {.file mc451-r-workbook.Rproj} in RStudio to get started."
+  )
+
+  invisible(target)
+}
+
 #' Download Journal Entry Template
 #'
 #' Creates a week-specific copy of the journal template. Each call produces a

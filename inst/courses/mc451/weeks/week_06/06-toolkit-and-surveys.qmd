@@ -1,0 +1,56 @@
+---
+title: "Week 6: The Methodologist's Toolkit & Designing Surveys"
+subtitle: "Chapters 9–10"
+date: "2026-02-24"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+Before diving into content analysis execution, it's important to understand where content analysis fits in the broader landscape of research methods. Chapter 9 introduces the four major methods (content analysis, surveys, experiments, qualitative) and when each is appropriate. Chapter 10 teaches survey design — a method you'll encounter constantly in the literature even if you don't execute one this semester.
+
+**Reading:** Chapter 9 — The Methodologist's Toolkit & Chapter 10 — Designing Surveys
+
+## Key Concepts
+
+- Four methods: content analysis, surveys, experiments, qualitative
+- Matching research questions to appropriate methods
+- Mixed methods designs
+- Survey types: cross-sectional, longitudinal, panel
+- Questionnaire design: question types, wording pitfalls, response options
+- Probability vs. non-probability sampling
+- Sampling theory (applies to both surveys and content analysis)
+- Validity and reliability in survey instruments
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Describe what each of the four major research methods can and cannot tell you
+2. Match a research question to the appropriate method
+3. Identify common questionnaire design pitfalls
+4. Distinguish between probability and non-probability sampling strategies
+5. Draft a research prospectus aligning Topic, Theory, and Data
+
+## Assignment: Project Prospectus (25 pts)
+
+### Task
+
+Write a one-page prospectus for your research project:
+
+1. **Topic** — What are you studying and why does it matter?
+2. **Theory** — What theoretical framework will guide your analysis?
+3. **Data** — What archive will you use? What is your proposed method?
+4. **Research Questions** — Draft 1–2 preliminary RQs
+5. **Timeline** — A rough plan for completing the project this semester
+
+Submit as a PDF: `Lastname_Prospectus.pdf`
+
+## Discussion Questions
+
+1. If four researchers studied "music and emotion" using four different methods, what would each study look like?
+2. Why does sampling theory matter even when you're analyzing media content rather than surveying people?

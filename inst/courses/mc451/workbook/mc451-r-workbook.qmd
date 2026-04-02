@@ -1,0 +1,1469 @@
+---
+title: "MC 451 R Workbook"
+subtitle: "A guided tour of R — from wrangling to publishing"
+author: "MC 451 · Research Methods in Mass Media · Spring 2026"
+date: today
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-title: "Sections"
+    number-sections: true
+    smooth-scroll: true
+    code-fold: false
+    code-tools: true
+    code-copy: true
+    highlight-style: github
+    fig-align: center
+    cap-location: bottom
+execute:
+  echo: true
+  warning: false
+  message: false
+  eval: false
+---
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HOW TO USE THIS WORKBOOK
+
+     1. Open mc451-r-workbook.Rproj in RStudio first.
+     2. Work top to bottom. Watch each video before running that section.
+     3. Run code chunks with Ctrl+Shift+Enter (Windows) or Cmd+Shift+Enter (Mac).
+     4. "Try It" boxes are small guided challenges — do them before moving on.
+     5. Nothing here is graded. Experiment freely.
+     ═══════════════════════════════════════════════════════════════ -->
+
+::: {.callout-important}
+## Before You Begin
+
+Complete the README setup steps first:
+
+1. Open this file via `mc451-r-workbook.Rproj` (not by double-clicking the .qmd)
+2. Run the package install chunk below **once**
+3. Watch Video 1, then start Section 1
+:::
+
+---
+
+# Setup {.unnumbered}
+
+::: {.callout-tip}
+## 📹 Video 1 — Getting Started
+*Watch this before running anything. (~5 min)*
+
+[▶ Watch on YouTube](https://youtu.be/VIDEO-ID-1)
+
+*Covers: Opening an RStudio Project, running code chunks, how this workbook connects to your assignments and final portfolio.*
+:::
+
+## Install Packages (Run Once)
+
+```{r}
+#| label: install-packages
+#| eval: false
+
+# Run this chunk ONE TIME. After packages are installed, you never need to run it again.
+install.packages(c(
+  "tidyverse",   # dplyr, ggplot2, readr, and more
+  "janitor",     # clean_names() and other data cleaning tools
+  "kableExtra",  # publication-quality tables
+  "scales",      # axis formatting helpers
+  "effsize"      # effect size calculations (Cohen's d)
+))
+```
+
+## Load Packages and Data
+
+Run this chunk every time you open the workbook. It loads everything you need.
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(janitor)
+library(kableExtra)
+library(scales)
+library(effsize)
+library(coursepackR)
+
+# Load the course dataset
+data(unified_music)
+```
+
+## First Look at the Data
+
+```{r}
+#| label: first-look
+
+# How many rows and columns?
+nrow(unified_music)
+ncol(unified_music)
+
+# What are the column names?
+names(unified_music)
+
+# Quick snapshot of structure and types
+glimpse(unified_music)
+```
+
+::: {.callout-note}
+## What You Should See
+
+- **1,792 rows** — one per song
+- **36 columns** — Billboard chart data, Spotify audio features, Genius metadata
+- Mixed column name styles (`Song` vs. `danceability`) — we fix this in Section 1
+- Several `<chr>`, `<int>`, and `<dbl>` column types
+:::
+
+## How This Workbook Connects to Your Work
+
+| This workbook... | Prepares you for... |
+|---|---|
+| Section 1: Wrangling | R Assignment 01 |
+| Section 2: Describing | R Assignment 02 |
+| Section 3: Testing | R Assignment 03 |
+| Section 4: Interpreting | R Assignment 03 + Final Portfolio |
+| Section 5: Portfolio | Final Portfolio (writing + rendering) |
+| Section 6: Publishing | Final Portfolio (GitHub Pages) |
+
+The dataset used here (`unified_music`) is the clean, packaged version. Your assignments use the raw CSV (`music_data_raw.csv`) — same data, same skills.
+
+---
+
+# Chapter 17 Recap — Wrangling the Chaos {#sec-wrangling}
+
+::: {.callout-tip}
+## 📹 Video 2 — Wrangling the Chaos
+*Watch before running this section. (~8 min)*
+
+[▶ Watch on YouTube](https://youtu.be/VIDEO-ID-2)
+
+*Covers: The pipe operator, inspecting data, the five core dplyr verbs, saving clean data.*
+:::
+
+We covered Chapter 17 in class today. This section reinforces those concepts with hands-on code you can run and modify.
+
+## The Pipe Operator `|>`
+
+The pipe passes the result of one operation into the next. Instead of nesting functions:
+
+```{r}
+#| label: pipe-demo
+
+# Without the pipe — hard to read
+arrange(filter(unified_music, playlist_genre == "pop"), desc(Weeks_on_Board))
+
+# With the pipe — reads left to right, top to bottom
+unified_music |>
+  filter(playlist_genre == "pop") |>
+  arrange(desc(Weeks_on_Board))
+```
+
+::: {.callout-note}
+## The Shortcut
+
+Insert `|>` with **Ctrl+Shift+M** (Windows) or **Cmd+Shift+M** (Mac).
+
+You may also see `%>%` in older code — it works the same way. `|>` is the modern native R version.
+:::
+
+## Cleaning Column Names
+
+The `unified_music` dataset has inconsistent naming (`Song` vs. `danceability`). `clean_names()` standardizes everything to `snake_case`.
+
+```{r}
+#| label: clean-names
+
+# Before: mixed case column names
+names(unified_music)
+
+# Apply clean_names() and save as a new object
+music <- unified_music |>
+  clean_names()
+
+# After: all lowercase, underscores instead of spaces/capitals
+names(music)
+```
+
+::: {.callout-important}
+## Use `music` from Here On
+
+After running the chunk above, use `music` (not `unified_music`) for the rest of the workbook. `music` has clean column names that are much easier to type.
+:::
+
+## Inspecting Data
+
+```{r}
+#| label: inspect
+
+# Overall structure
+glimpse(music)
+
+# First 6 rows
+head(music)
+
+# Last 6 rows
+tail(music)
+
+# Summary statistics for every column
+summary(music)
+
+# Count values in a categorical column
+music |> count(playlist_genre)
+
+# Count and sort
+music |> count(playlist_genre, sort = TRUE)
+```
+
+## Selecting Columns
+
+```{r}
+#| label: select
+
+# Keep only specific columns
+music |>
+  select(song, artist, playlist_genre, danceability, energy, valence)
+
+# Keep a range of columns
+music |>
+  select(song:artist, danceability:valence)
+
+# Drop a column with -
+music |>
+  select(-track_id, -playlist_id, -track_album_id)
+```
+
+## Filtering Rows
+
+```{r}
+#| label: filter
+
+# Songs from a single genre
+music |>
+  filter(playlist_genre == "pop")
+
+# Songs that charted at #1
+music |>
+  filter(max_rank == 1)
+
+# Songs with high danceability (top quarter, roughly)
+music |>
+  filter(danceability > 0.75)
+
+# Multiple conditions: pop songs with high valence
+music |>
+  filter(playlist_genre == "pop", valence > 0.7)
+
+# Songs NOT in pop
+music |>
+  filter(playlist_genre != "pop")
+```
+
+::: {.callout-note}
+## Try It
+
+Find all songs that stayed on the Billboard chart for more than 30 weeks. How many are there? Which genre has the most?
+
+```{r}
+#| label: try-filter
+
+# Your code here
+music |>
+  filter(weeks_on_board > 30) |>
+  count(playlist_genre, sort = TRUE)
+```
+:::
+
+## Creating and Modifying Columns
+
+```{r}
+#| label: mutate
+
+# Create a new column: song duration in minutes
+music <- music |>
+  mutate(duration_min = duration_ms / 60000)
+
+# Recode a numeric column to meaningful labels
+music <- music |>
+  mutate(mode_label = case_when(
+    mode == 1 ~ "major",
+    mode == 0 ~ "minor",
+    TRUE      ~ NA_character_
+  ))
+
+# Create a decade column from year
+music <- music |>
+  mutate(decade = floor(year / 10) * 10)
+
+# Verify your new columns
+music |>
+  select(song, year, decade, mode, mode_label, duration_ms, duration_min) |>
+  head(10)
+```
+
+::: {.callout-note}
+## What `case_when()` Does
+
+`case_when()` is a flexible way to recode values. Each line is a condition `~` result pair. The last line (`TRUE ~ ...`) is the catch-all for anything that didn't match a previous condition — like an `else` statement.
+:::
+
+## Handling Missing Values
+
+```{r}
+#| label: missing
+
+# Find columns with missing values
+music |>
+  summarise(across(everything(), ~ sum(is.na(.)))) |>
+  pivot_longer(everything(), names_to = "column", values_to = "n_missing") |>
+  filter(n_missing > 0) |>
+  arrange(desc(n_missing))
+
+# Remove rows where a specific column is missing
+music_no_missing_views <- music |>
+  filter(!is.na(views))
+
+nrow(music)              # before
+nrow(music_no_missing_views)  # after
+
+# Or: drop rows missing ANY column
+music |>
+  drop_na()
+```
+
+## Summarizing Data
+
+```{r}
+#| label: summarise
+
+# Overall summary statistics
+music |>
+  summarise(
+    mean_danceability = mean(danceability, na.rm = TRUE),
+    sd_danceability   = sd(danceability, na.rm = TRUE),
+    min_danceability  = min(danceability, na.rm = TRUE),
+    max_danceability  = max(danceability, na.rm = TRUE)
+  )
+
+# Summary statistics by group
+music |>
+  group_by(playlist_genre) |>
+  summarise(
+    n             = n(),
+    mean_valence  = mean(valence, na.rm = TRUE),
+    mean_energy   = mean(energy, na.rm = TRUE),
+    mean_weeks    = mean(weeks_on_board, na.rm = TRUE)
+  ) |>
+  arrange(desc(mean_valence))
+```
+
+## Sorting and Slicing
+
+```{r}
+#| label: arrange-slice
+
+# Sort by chart performance (best rank first)
+music |>
+  arrange(max_rank) |>
+  select(song, artist, max_rank, weeks_on_board) |>
+  head(10)
+
+# Sort descending
+music |>
+  arrange(desc(weeks_on_board)) |>
+  select(song, artist, weeks_on_board) |>
+  head(10)
+
+# Grab top 5 within each genre
+music |>
+  group_by(playlist_genre) |>
+  slice_max(weeks_on_board, n = 5) |>
+  select(song, artist, playlist_genre, weeks_on_board)
+```
+
+## Saving Your Work
+
+```{r}
+#| label: save
+
+# Save as RDS (preserves R data types — use for passing between R scripts)
+saveRDS(music, "music_workbook_clean.RDS")
+
+# Save as CSV (readable in Excel — use for sharing or archiving)
+write_csv(music, "music_workbook_clean.csv")
+
+# Read back in
+music_reload <- readRDS("music_workbook_clean.RDS")
+```
+
+::: {.callout-note}
+## RDS vs CSV
+
+Use **RDS** when the file will be read back into R — it preserves factors, date types, and other R-specific structures exactly. Use **CSV** when you need to share the file with someone using Excel or another program.
+:::
+
+---
+
+# Chapter 18 — Seeing Patterns with ggplot2 {#sec-describing}
+
+::: {.callout-tip}
+## 📹 Video 3 — Seeing Patterns
+*Watch before running this section. (~10 min)*
+
+[▶ Watch on YouTube](https://youtu.be/VIDEO-ID-3)
+
+*Covers: The grammar of graphics, building bar charts and histograms, customizing with labels and themes, saving plots.*
+:::
+
+## The Grammar of Graphics
+
+Every ggplot is built from three required pieces:
+
+```{r}
+#| label: ggplot-anatomy
+
+# Template:
+# ggplot(data = YOUR_DATA, aes(x = VAR1, y = VAR2)) +
+#   geom_SOMETHING()
+
+# Minimal working example
+ggplot(data = music, aes(x = playlist_genre)) +
+  geom_bar()
+```
+
+The `+` adds layers — aesthetics, geometries, labels, themes. Think of it like building a sandwich: each `+` adds another ingredient.
+
+## Bar Chart — Categorical Variable
+
+```{r}
+#| label: bar-chart
+
+# How many songs per genre?
+music |>
+  count(playlist_genre) |>
+  ggplot(aes(x = playlist_genre, y = n, fill = playlist_genre)) +
+  geom_col(show.legend = FALSE) +
+  labs(
+    title = "Songs per Genre in the Unified Music Dataset",
+    subtitle = "Source: Billboard Hot 100 merged with Spotify & Genius data",
+    x = "Genre",
+    y = "Number of Songs"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| label: bar-chart-ordered
+
+# Same chart, ordered by count (more informative)
+music |>
+  count(playlist_genre) |>
+  mutate(playlist_genre = fct_reorder(playlist_genre, n)) |>
+  ggplot(aes(x = playlist_genre, y = n, fill = playlist_genre)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +                        # horizontal bars are easier to read
+  labs(
+    title = "Songs per Genre",
+    x = NULL,
+    y = "Number of Songs"
+  ) +
+  theme_minimal()
+```
+
+::: {.callout-note}
+## Try It
+
+Make a bar chart showing the number of songs per **decade**. Which decade has the most songs in the dataset?
+
+```{r}
+#| label: try-bar
+
+# Your code here
+music |>
+  count(decade) |>
+  ggplot(aes(x = factor(decade), y = n)) +
+  geom_col() +
+  labs(title = "Songs per Decade", x = "Decade", y = "Count") +
+  theme_minimal()
+```
+:::
+
+## Histogram — Continuous Variable
+
+```{r}
+#| label: histogram
+
+# Distribution of danceability scores
+ggplot(music, aes(x = danceability)) +
+  geom_histogram(bins = 30, fill = "#b71c1c", color = "white") +
+  labs(
+    title = "Distribution of Song Danceability",
+    x = "Danceability (0–1)",
+    y = "Number of Songs"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| label: histogram-valence
+
+# Distribution of valence (musical positivity)
+ggplot(music, aes(x = valence)) +
+  geom_histogram(bins = 30, fill = "#1565c0", color = "white") +
+  geom_vline(xintercept = mean(music$valence), linetype = "dashed", color = "black") +
+  labs(
+    title = "Distribution of Song Valence",
+    subtitle = "Dashed line = dataset mean",
+    x = "Valence (0 = sad/dark, 1 = happy/bright)",
+    y = "Number of Songs"
+  ) +
+  theme_minimal()
+```
+
+## Box Plot — Comparing Groups
+
+```{r}
+#| label: boxplot
+
+# Valence by genre — do some genres skew happier?
+ggplot(music, aes(x = playlist_genre, y = valence, fill = playlist_genre)) +
+  geom_boxplot(show.legend = FALSE, alpha = 0.8) +
+  labs(
+    title = "Song Valence by Genre",
+    x = "Genre",
+    y = "Valence (musical positivity)"
+  ) +
+  theme_minimal()
+```
+
+::: {.callout-note}
+## Reading a Box Plot
+
+- **Center line** = median
+- **Box edges** = 25th and 75th percentile (the middle 50% of data)
+- **Whiskers** = extend to 1.5× the interquartile range
+- **Dots beyond whiskers** = outliers
+:::
+
+## Scatter Plot — Two Continuous Variables
+
+```{r}
+#| label: scatter
+
+# Do energetic songs tend to be danceable?
+ggplot(music, aes(x = energy, y = danceability)) +
+  geom_point(alpha = 0.3, color = "#b71c1c", size = 1.5) +
+  geom_smooth(method = "lm", se = TRUE, color = "black", linewidth = 0.8) +
+  labs(
+    title = "Energy vs. Danceability",
+    subtitle = "Each point = one song | Line = linear trend",
+    x = "Energy (0–1)",
+    y = "Danceability (0–1)"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| label: scatter-color
+
+# Same plot, colored by genre
+ggplot(music, aes(x = energy, y = danceability, color = playlist_genre)) +
+  geom_point(alpha = 0.4, size = 1.5) +
+  labs(
+    title = "Energy vs. Danceability by Genre",
+    x = "Energy",
+    y = "Danceability",
+    color = "Genre"
+  ) +
+  theme_minimal()
+```
+
+## Faceting — Small Multiples
+
+```{r}
+#| label: facet
+
+# One histogram per genre, arranged in a grid
+ggplot(music, aes(x = valence)) +
+  geom_histogram(bins = 20, fill = "#b71c1c", color = "white") +
+  facet_wrap(~ playlist_genre, ncol = 3) +
+  labs(
+    title = "Valence Distribution by Genre",
+    x = "Valence",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| label: facet-decade
+
+# Danceability trends by decade
+music |>
+  filter(!is.na(decade)) |>
+  ggplot(aes(x = danceability)) +
+  geom_histogram(bins = 20, fill = "#1565c0", color = "white") +
+  facet_wrap(~ decade, ncol = 4) +
+  labs(
+    title = "Danceability by Decade",
+    x = "Danceability",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 10)
+```
+
+## Customizing Plots
+
+```{r}
+#| label: custom-plot
+
+# A polished, publication-ready bar chart
+music |>
+  count(playlist_genre) |>
+  mutate(
+    pct = n / sum(n),
+    playlist_genre = fct_reorder(playlist_genre, pct)
+  ) |>
+  ggplot(aes(x = playlist_genre, y = pct, fill = playlist_genre)) +
+  geom_col(show.legend = FALSE, width = 0.7) +
+  geom_text(
+    aes(label = percent(pct, accuracy = 0.1)),
+    hjust = -0.15,
+    size = 3.5
+  ) +
+  scale_y_continuous(
+    labels = percent_format(),
+    limits = c(0, 0.35)
+  ) +
+  scale_fill_manual(values = c(
+    "#b71c1c", "#e53935", "#ef9a9a",
+    "#1565c0", "#1976d2", "#64b5f6"
+  )) +
+  coord_flip() +
+  labs(
+    title = "Genre Distribution in the Unified Music Dataset",
+    subtitle = "Billboard Hot 100 songs merged with Spotify & Genius data | N = 1,792",
+    x = NULL,
+    y = "Share of Dataset"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title    = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "#666666", size = 9),
+    panel.grid.major.y = element_blank()
+  )
+```
+
+## Saving Plots
+
+```{r}
+#| label: save-plot
+
+# Save the most recent plot
+ggsave(
+  filename = "genre_distribution.png",
+  width    = 7,
+  height   = 4.5,
+  dpi      = 300
+)
+
+# Or save a specific named plot object
+my_plot <- ggplot(music, aes(x = energy, y = valence)) +
+  geom_point(alpha = 0.3)
+
+ggsave("energy_valence.png", plot = my_plot, width = 6, height = 4, dpi = 300)
+```
+
+::: {.callout-note}
+## Try It
+
+Create a scatter plot showing the relationship between `tempo` and `energy`. Add a linear trend line. Does tempo predict energy?
+
+```{r}
+#| label: try-scatter
+
+# Your code here
+ggplot(music, aes(x = tempo, y = energy)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm") +
+  labs(title = "Tempo vs. Energy", x = "Tempo (BPM)", y = "Energy") +
+  theme_minimal()
+```
+:::
+
+---
+
+# Chapter 19 — The Surprise Detector: Statistical Tests {#sec-testing}
+
+::: {.callout-tip}
+## 📹 Video 4 — The Surprise Detector
+*Watch before running this section. (~10 min)*
+
+[▶ Watch on YouTube](https://youtu.be/VIDEO-ID-4)
+
+*Covers: What a p-value actually means, the two-sample t-test, chi-square test, reading R output, APA reporting.*
+:::
+
+Statistical tests answer one question: **Could this pattern be due to chance?**
+
+If the answer is "probably not" (p < .05), we call the result statistically significant.
+
+## The Two-Sample T-Test
+
+Use a t-test when you want to compare the **means** of a **continuous variable** across **two groups**.
+
+**Research question:** Do pop songs have significantly higher valence (musical positivity) than rock songs?
+
+```{r}
+#| label: ttest-setup
+
+# Step 1: Filter to just the two groups
+pop_rock <- music |>
+  filter(playlist_genre %in% c("pop", "rock"))
+
+# Step 2: Check the group sizes
+pop_rock |> count(playlist_genre)
+
+# Step 3: Check group means visually
+pop_rock |>
+  group_by(playlist_genre) |>
+  summarise(
+    n    = n(),
+    mean = mean(valence),
+    sd   = sd(valence)
+  )
+```
+
+```{r}
+#| label: ttest-run
+
+# Step 4: Run the t-test
+t_result <- t.test(valence ~ playlist_genre, data = pop_rock)
+
+# Step 5: Read the output
+t_result
+```
+
+::: {.callout-note}
+## Reading t-test Output
+
+```
+t = 5.23, df = 498, p-value < 0.001
+95% CI: [0.08, 0.17]
+```
+
+- **t** — the test statistic (how many standard errors apart the means are)
+- **df** — degrees of freedom (related to sample size)
+- **p-value** — the probability of seeing a difference this large if there were truly no difference
+- **95% CI** — the range we're 95% confident contains the true difference in means
+
+**APA format:** *t*(498) = 5.23, *p* < .001
+:::
+
+```{r}
+#| label: ttest-extract
+
+# Extract values for inline reporting
+t_stat <- round(t_result$statistic, 2)
+t_df   <- round(t_result$parameter, 0)
+t_p    <- round(t_result$p.value, 3)
+t_ci   <- round(t_result$conf.int, 2)
+
+# Print a formatted result
+cat("t(", t_df, ") =", t_stat, ", p =", t_p)
+cat("\n95% CI: [", t_ci[1], ",", t_ci[2], "]")
+```
+
+```{r}
+#| label: ttest-viz
+
+# Visualize the comparison
+ggplot(pop_rock, aes(x = playlist_genre, y = valence, fill = playlist_genre)) +
+  geom_boxplot(show.legend = FALSE, alpha = 0.8, width = 0.5) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 4, color = "white") +
+  scale_fill_manual(values = c("#b71c1c", "#1565c0")) +
+  labs(
+    title = "Valence: Pop vs. Rock",
+    subtitle = "Diamond = group mean",
+    x = "Genre",
+    y = "Valence (musical positivity)"
+  ) +
+  theme_minimal()
+```
+
+::: {.callout-note}
+## Try It
+
+Run a t-test comparing the **danceability** of `r&b` songs vs. `rap` songs. Are they significantly different?
+
+```{r}
+#| label: try-ttest
+
+# Your code here
+rb_rap <- music |> filter(playlist_genre %in% c("r&b", "rap"))
+t.test(danceability ~ playlist_genre, data = rb_rap)
+```
+:::
+
+## The Chi-Square Test
+
+Use a chi-square test when both variables are **categorical** (e.g., genre × mode). This is the test you will use in your **final portfolio**.
+
+**Research question:** Is there a relationship between genre and mode (major vs. minor)?
+
+```{r}
+#| label: chisq-setup
+
+# Step 1: Make sure the variables are factors with meaningful labels
+music_chi <- music |>
+  mutate(
+    mode_label    = factor(mode_label, levels = c("major", "minor")),
+    playlist_genre = factor(playlist_genre)
+  ) |>
+  filter(!is.na(mode_label))
+
+# Step 2: Cross-tabulation
+cross_tab <- table(music_chi$playlist_genre, music_chi$mode_label)
+cross_tab
+
+# Step 3: Add proportions
+prop.table(cross_tab, margin = 1) |> round(3)  # row proportions
+```
+
+```{r}
+#| label: chisq-run
+
+# Step 4: Run the chi-square test
+chi_result <- chisq.test(cross_tab)
+chi_result
+
+# Step 5: Check expected cell counts (should all be ≥ 5)
+chi_result$expected
+min(chi_result$expected)
+```
+
+```{r}
+#| label: chisq-extract
+
+# Extract values
+chi_x2 <- round(chi_result$statistic, 2)
+chi_df <- chi_result$parameter
+chi_p  <- round(chi_result$p.value, 3)
+
+cat("χ²(", chi_df, ") =", chi_x2, ", p =", chi_p)
+```
+
+::: {.callout-note}
+## Reading Chi-Square Output
+
+```
+X-squared = 14.3, df = 5, p-value = 0.014
+```
+
+- **X-squared** — the chi-square statistic
+- **df** — degrees of freedom (number of rows − 1) × (number of columns − 1)
+- **p-value** — probability of this association occurring by chance alone
+
+**APA format:** χ²(5) = 14.30, *p* = .014
+
+**Assumption check:** All expected cell counts must be ≥ 5. Check `chi_result$expected`.
+:::
+
+```{r}
+#| label: chisq-viz
+
+# Stacked bar chart: proportion of major/minor by genre
+music_chi |>
+  count(playlist_genre, mode_label) |>
+  group_by(playlist_genre) |>
+  mutate(pct = n / sum(n)) |>
+  ggplot(aes(x = playlist_genre, y = pct, fill = mode_label)) +
+  geom_col(position = "fill", width = 0.7) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = c("#1565c0", "#b71c1c")) +
+  labs(
+    title = "Major vs. Minor Key by Genre",
+    x     = "Genre",
+    y     = "Proportion",
+    fill  = "Mode"
+  ) +
+  theme_minimal()
+```
+
+## Pearson Correlation
+
+Use correlation when both variables are **continuous** and you want to measure how strongly they move together.
+
+**Research question:** Is there a relationship between energy and loudness?
+
+```{r}
+#| label: correlation
+
+# Run the correlation test
+cor_result <- cor.test(music$energy, music$loudness)
+cor_result
+
+# Extract values
+r_val <- round(cor_result$estimate, 2)
+r_p   <- round(cor_result$p.value, 3)
+r_ci  <- round(cor_result$conf.int, 2)
+
+cat("r =", r_val, ", p =", r_p)
+cat("\n95% CI: [", r_ci[1], ",", r_ci[2], "]")
+```
+
+::: {.callout-note}
+## Interpreting Pearson's r
+
+| r value | Interpretation |
+|---------|---------------|
+| .00–.09 | Negligible |
+| .10–.29 | Small |
+| .30–.49 | Moderate |
+| .50–.69 | Large |
+| .70–1.0 | Very large |
+
+**Direction:** Positive r = as one variable increases, so does the other. Negative r = as one increases, the other decreases.
+
+**APA format:** *r*(1790) = .78, *p* < .001
+:::
+
+```{r}
+#| label: correlation-viz
+
+ggplot(music, aes(x = energy, y = loudness)) +
+  geom_point(alpha = 0.2, color = "#b71c1c", size = 1.2) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(
+    title    = paste0("Energy vs. Loudness (r = ", r_val, ")"),
+    subtitle = paste0("p = ", r_p, " | N = ", nrow(music)),
+    x = "Energy",
+    y = "Loudness (dB)"
+  ) +
+  theme_minimal()
+```
+
+::: {.callout-note}
+## Try It
+
+Test the correlation between `danceability` and `valence`. Is the relationship significant? How would you describe the strength?
+
+```{r}
+#| label: try-correlation
+
+# Your code here
+cor.test(music$danceability, music$valence)
+```
+:::
+
+---
+
+# Chapter 20 — Interpreting the Call: Effect Sizes {#sec-interpreting}
+
+::: {.callout-tip}
+## 📹 Video 5 — Interpreting the Call
+*Watch before running this section. (~8 min)*
+
+[▶ Watch on YouTube](https://youtu.be/VIDEO-ID-5)
+
+*Covers: Why p-values are not enough, Cohen's d, Cramér's V, writing honest interpretations.*
+:::
+
+A p-value tells you **whether** an effect exists. An effect size tells you **how big** it is. Both are required for a complete interpretation.
+
+## Cohen's d — Effect Size for T-Tests
+
+```{r}
+#| label: cohens-d
+
+# Cohen's d for the pop vs. rock valence comparison
+d_result <- cohen.d(
+  valence ~ playlist_genre,
+  data = pop_rock
+)
+
+d_result
+
+# Extract the d value
+d_val <- round(d_result$estimate, 2)
+cat("Cohen's d =", d_val)
+```
+
+::: {.callout-note}
+## Cohen's d Conventions
+
+| d value | Label |
+|---------|-------|
+| 0.2 | Small |
+| 0.5 | Medium |
+| 0.8 | Large |
+
+A significant p-value with d = 0.1 means the difference is real but tiny. A significant p-value with d = 0.8 means the difference is both real and large.
+:::
+
+## Cramér's V — Effect Size for Chi-Square
+
+```{r}
+#| label: cramers-v
+
+# Calculate Cramér's V manually from the chi-square result
+n       <- sum(cross_tab)
+k       <- min(nrow(cross_tab), ncol(cross_tab))
+cramers_v <- sqrt(chi_result$statistic / (n * (k - 1)))
+cramers_v <- round(cramers_v, 3)
+
+cat("Cramér's V =", cramers_v)
+```
+
+::: {.callout-note}
+## Cramér's V Conventions
+
+| V value | Label |
+|---------|-------|
+| .10 | Small |
+| .30 | Medium |
+| .50 | Large |
+
+Cramér's V ranges from 0 (no association) to 1 (perfect association).
+:::
+
+## Statistical vs. Practical Significance
+
+```{r}
+#| label: stat-vs-practical
+
+# With a large sample (N = 1,792), even tiny differences can be significant
+# Let's see what the actual mean difference is
+
+pop_rock |>
+  group_by(playlist_genre) |>
+  summarise(mean_valence = mean(valence))
+
+# The t-test may be significant, but is the difference meaningful?
+# This is where effect sizes come in.
+```
+
+::: {.callout-note}
+## A Key Distinction
+
+**Statistical significance** (p < .05): The pattern is unlikely to be due to chance.
+
+**Practical significance** (effect size): The pattern is large enough to matter in the real world.
+
+Large samples (like ours with N = 1,792) detect even trivial differences as "significant." Always report and interpret the effect size alongside the p-value.
+:::
+
+## Writing Results in APA Format
+
+Here are templates for each test type. Copy and adapt for your own work.
+
+**T-test result:**
+> A two-sample t-test revealed that pop songs (*M* = 0.61, *SD* = 0.19) had significantly higher valence than rock songs (*M* = 0.47, *SD* = 0.22), *t*(498) = 5.23, *p* < .001, *d* = 0.46. This represents a medium effect, suggesting that genre differences in emotional tone are practically meaningful, not merely statistically detectable.
+
+**Correlation result:**
+> Energy and loudness were strongly and positively correlated, *r*(1790) = .78, *p* < .001, 95% CI [.75, .80]. Songs rated higher in energy by Spotify's algorithm were consistently recorded at higher loudness levels, which aligns with the acoustic logic underlying both metrics.
+
+**Chi-square result:**
+> A chi-square test of independence revealed a significant association between genre and mode, χ²(5) = 14.30, *p* = .014, *V* = .09. However, the effect size is small, indicating that while the association is real, genre accounts for very little of the variation in whether songs are written in a major or minor key.
+
+```{r}
+#| label: write-results
+
+# Useful inline values for writing results
+pop_mean  <- music |> filter(playlist_genre == "pop")  |> pull(valence) |> mean() |> round(2)
+rock_mean <- music |> filter(playlist_genre == "rock") |> pull(valence) |> mean() |> round(2)
+pop_sd    <- music |> filter(playlist_genre == "pop")  |> pull(valence) |> sd()   |> round(2)
+rock_sd   <- music |> filter(playlist_genre == "rock") |> pull(valence) |> sd()   |> round(2)
+
+cat("Pop: M =", pop_mean, ", SD =", pop_sd)
+cat("\nRock: M =", rock_mean, ", SD =", rock_sd)
+```
+
+::: {.callout-note}
+## Try It
+
+For the r&b vs. rap danceability t-test you ran earlier, calculate Cohen's d and write a one-sentence APA-format interpretation that includes both the t-test result and the effect size.
+
+```{r}
+#| label: try-effect-size
+
+# Your code here
+rb_rap <- music |> filter(playlist_genre %in% c("r&b", "rap"))
+cohen.d(danceability ~ playlist_genre, data = rb_rap)
+```
+:::
+
+---
+
+# Chapter 21 — Building Your Portfolio Document {#sec-portfolio}
+
+::: {.callout-tip}
+## 📹 Video 6 — Building Your Portfolio Document
+*Watch before running this section. (~10 min)*
+
+[▶ Watch on YouTube](https://youtu.be/VIDEO-ID-6)
+
+*Covers: Quarto document anatomy, chunk options, inline R, kableExtra tables, rendering to HTML and PDF.*
+:::
+
+Your final portfolio is a Quarto Book — the same format as this workbook. This section teaches you the Quarto skills you need to write it.
+
+## Quarto Document Anatomy
+
+A Quarto document has three parts:
+
+```
+---
+title: "My Research Report"     ← YAML header (controls format/settings)
+author: "Your Name"
+format: html
+---
+
+Some text here.                 ← Markdown text (prose)
+
+```{r}                          ← Code chunk (R code)
+1 + 1
+```
+```
+
+## YAML Header Options
+
+```{r}
+#| label: yaml-demo
+#| eval: false
+
+# This is a typical YAML header for your final portfolio sections
+# (already set up in mc451-final-project/_quarto.yml)
+
+# Key options:
+# toc: true           → table of contents
+# number-sections: true → section numbering
+# code-fold: true     → collapsible code (readers can choose to see it)
+# echo: false         → hide code by default (show only output)
+# warning: false      → suppress warning messages in output
+```
+
+## Code Chunk Options
+
+Control how each chunk behaves using `#|` comments at the top:
+
+```{r}
+#| label: chunk-options-demo
+#| echo: true          # show the code in the output? (true/false)
+#| eval: true          # actually run the code? (true/false)
+#| warning: false      # suppress warnings?
+#| message: false      # suppress messages?
+#| fig-width: 7        # figure width in inches
+#| fig-height: 4       # figure height in inches
+#| fig-cap: "This caption appears below the figure in the rendered document."
+
+ggplot(music, aes(x = danceability)) +
+  geom_histogram(bins = 30, fill = "#b71c1c") +
+  theme_minimal()
+```
+
+## Inline R Code
+
+Instead of typing numbers manually, use inline R to pull values directly from your analysis:
+
+In the .qmd file, write:
+
+```
+The dataset contains `r nrow(music)` songs across `r n_distinct(music$playlist_genre)` genres.
+```
+
+This renders as:
+
+> The dataset contains 1792 songs across 6 genres.
+
+If your data changes, the numbers update automatically. **Never type statistical results by hand** — always use inline R.
+
+```{r}
+#| label: inline-examples
+
+# Values you might use inline in your final portfolio
+n_songs    <- nrow(music)
+n_genres   <- n_distinct(music$playlist_genre)
+mean_dance <- round(mean(music$danceability), 2)
+
+# In your .qmd text you would write:
+# "The sample consists of `r n_songs` songs..."
+# "Mean danceability was `r mean_dance`..."
+```
+
+## Publication Tables with kableExtra
+
+```{r}
+#| label: kable-basic
+
+# Basic frequency table
+music |>
+  count(playlist_genre, name = "n") |>
+  mutate(
+    Percent = round(n / sum(n) * 100, 1),
+    Percent = paste0(Percent, "%")
+  ) |>
+  rename(Genre = playlist_genre, N = n) |>
+  kable(caption = "Table 1. Songs by Genre", align = c("l", "c", "c")) |>
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width        = FALSE
+  )
+```
+
+```{r}
+#| label: kable-styled
+
+# A more polished table with a colored header
+music |>
+  group_by(playlist_genre) |>
+  summarise(
+    N             = n(),
+    Mean_Valence  = round(mean(valence), 2),
+    Mean_Energy   = round(mean(energy), 2),
+    Mean_Weeks    = round(mean(weeks_on_board), 1)
+  ) |>
+  rename(
+    Genre = playlist_genre,
+    `Mean Valence` = Mean_Valence,
+    `Mean Energy`  = Mean_Energy,
+    `Mean Weeks on Chart` = Mean_Weeks
+  ) |>
+  kable(caption = "Table 2. Audio Feature Averages by Genre") |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) |>
+  row_spec(0, bold = TRUE, background = "#b71c1c", color = "white")
+```
+
+## Rendering Your Document
+
+```{r}
+#| label: render-instructions
+#| eval: false
+
+# In the RStudio TERMINAL tab (not the Console), run:
+quarto render mc451-r-workbook.qmd
+
+# For your final portfolio:
+quarto render   # renders the entire book
+
+# Check the output in the docs/ folder
+# Open docs/mc451-r-workbook.html in your browser
+```
+
+::: {.callout-important}
+## Render This Workbook Now
+
+Switch to the RStudio **Terminal** tab (bottom pane, next to Console) and run:
+
+```bash
+quarto render mc451-r-workbook.qmd
+```
+
+Open `docs/mc451-r-workbook.html` in your browser. This is exactly what you will do for your final portfolio.
+:::
+
+## Common Rendering Errors
+
+| Error | Fix |
+|---|---|
+| `object 'X' not found` | You skipped a chunk that created `X`. Run all chunks in order. |
+| Package not found | Run `install.packages("PACKAGE")` in the Console |
+| `could not find function` | The package is installed but not loaded. Add `library(PACKAGE)` to setup chunk |
+| Blank output | Your `eval: false` chunk option is preventing execution. Remove it. |
+| `figure margins too large` | Increase `fig-width` or `fig-height` in the chunk options |
+
+---
+
+# Chapter 22 — Going Live: GitHub Pages {#sec-publishing}
+
+::: {.callout-tip}
+## 📹 Video 7 — Going Live
+*Watch before running this section. (~10 min)*
+
+[▶ Watch on YouTube](https://youtu.be/VIDEO-ID-7)
+
+*Covers: Git basics, setting up a GitHub repository, connecting RStudio to GitHub, enabling GitHub Pages, the render → push cycle.*
+:::
+
+Your final portfolio renders into the `docs/` folder. GitHub Pages serves that folder as a live website. This section walks you through the full workflow.
+
+## Git Basics
+
+Git tracks the history of your files. Every time you `commit`, you save a snapshot.
+
+The three commands you need:
+
+```bash
+git add .                          # Stage all changed files
+git commit -m "Brief description"  # Save a snapshot with a message
+git push                           # Upload to GitHub
+```
+
+You run these in the RStudio **Terminal** tab, not the Console.
+
+## Step 1 — Initialize Git in Your Project
+
+Do this once, in the Terminal, when you're in your project folder:
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+::: {.callout-note}
+## Are You in the Right Folder?
+
+In the Terminal, type `pwd` to see your current directory. It should end with `mc451-final-project`. If not, navigate there first or use **Session → Set Working Directory → To Project Directory** in RStudio.
+:::
+
+## Step 2 — Create a GitHub Repository
+
+1. Go to [github.com](https://github.com) and sign in
+2. Click the **+** → **New repository**
+3. Name it `mc451-portfolio` (or anything you prefer)
+4. Set to **Public**
+5. Do **not** initialize with a README
+6. Click **Create repository**
+
+GitHub will show you a page with setup instructions. You need the URL — it looks like:
+`https://github.com/YOUR-USERNAME/mc451-portfolio.git`
+
+## Step 3 — Connect Your Project to GitHub
+
+In the RStudio Terminal:
+
+```bash
+git remote add origin https://github.com/YOUR-USERNAME/mc451-portfolio.git
+git branch -M main
+git push -u origin main
+```
+
+Replace `YOUR-USERNAME` and `mc451-portfolio` with your actual GitHub username and repo name.
+
+## Step 4 — Enable GitHub Pages
+
+1. Go to your repository on GitHub
+2. Click **Settings** → **Pages** (left sidebar)
+3. Under **Source**, choose: **Deploy from a branch**
+4. Branch: `main` | Folder: `/docs`
+5. Click **Save**
+
+Wait 2–3 minutes, then visit:
+`https://YOUR-USERNAME.github.io/mc451-portfolio/`
+
+## Step 5 — The Render → Push Cycle
+
+Every time you update your portfolio, repeat these three steps:
+
+```bash
+# Step 1: Render (in Terminal)
+quarto render
+
+# Step 2: Stage and commit
+git add .
+git commit -m "Update: describe what you changed"
+
+# Step 3: Push to GitHub
+git push
+```
+
+GitHub Pages updates your live site within ~2 minutes of each push.
+
+## Step 6 — Verify Your Site
+
+Before submitting:
+
+1. Open your site URL in a **private/incognito browser window**
+2. Confirm the site is public (you can see it without being logged into GitHub)
+3. Click through every page — Introduction, Methodology, Results, Discussion, References
+4. Confirm all tables and figures load correctly
+5. Check the PDF link works
+
+::: {.callout-important}
+## Common GitHub Problems
+
+| Problem | Fix |
+|---|---|
+| `Permission denied (publickey)` | Set up SSH keys, or switch to HTTPS: `git remote set-url origin https://github.com/USERNAME/REPO.git` |
+| Pages says "not found" | Wait 5 minutes and refresh. Check that `/docs` folder exists and has `index.html` inside. |
+| Site shows old content | You forgot to `quarto render` before pushing. Re-render and push again. |
+| "Everything up to date" but site hasn't changed | You haven't committed. Run `git add .` then `git commit` before `git push`. |
+| Figures missing on live site | You have absolute file paths in your code. Use relative paths only. |
+:::
+
+## Practice Run — Using This Workbook
+
+Before your final portfolio, practice the full workflow with this workbook:
+
+```bash
+# 1. Render the workbook
+quarto render mc451-r-workbook.qmd
+
+# 2. Initialize git (if not done yet)
+git init
+git add .
+git commit -m "Add MC 451 R Workbook"
+
+# 3. Create a practice repo on GitHub called mc451-workbook-practice
+# Then connect and push:
+git remote add origin https://github.com/YOUR-USERNAME/mc451-workbook-practice.git
+git branch -M main
+git push -u origin main
+
+# 4. Enable GitHub Pages from /docs
+# 5. Visit your live workbook at https://YOUR-USERNAME.github.io/mc451-workbook-practice/
+```
+
+::: {.callout-tip}
+## You're Ready
+
+If you can see this workbook live on GitHub Pages, you have every skill you need to publish your final portfolio. The final portfolio workflow is identical — just with your own research content instead.
+:::
+
+---
+
+# Quick Reference {.unnumbered}
+
+## Packages Used in This Course
+
+| Package | Purpose | Key Functions |
+|---------|---------|---------------|
+| `tidyverse` | Data import, wrangling, visualization | `read_csv()`, `filter()`, `mutate()`, `ggplot()` |
+| `janitor` | Column name cleaning | `clean_names()`, `get_dupes()` |
+| `kableExtra` | Publication tables | `kable()`, `kable_styling()`, `row_spec()` |
+| `scales` | Axis formatting | `percent_format()`, `comma_format()` |
+| `effsize` | Effect sizes | `cohen.d()` |
+| `coursepackR` | Course data and tools | `data(unified_music)`, `download_week()` |
+
+## Statistical Test Selector
+
+| Situation | Test | R Function |
+|-----------|------|------------|
+| Compare means of 2 groups | Two-sample t-test | `t.test(y ~ group, data = df)` |
+| Compare means of 3+ groups | ANOVA | `aov(y ~ group, data = df)` |
+| Two continuous variables | Pearson correlation | `cor.test(df$x, df$y)` |
+| Two categorical variables | Chi-square | `chisq.test(table(df$x, df$y))` |
+
+## Effect Size Quick Reference
+
+| Test | Effect size | Function |
+|------|-------------|----------|
+| T-test | Cohen's d | `cohen.d(y ~ group, data = df)` |
+| Correlation | r (already from `cor.test`) | — |
+| Chi-square | Cramér's V | `sqrt(chi$statistic / (n * (k-1)))` |
+
+## The Render → Push Cycle (Always in Terminal)
+
+```bash
+quarto render
+git add .
+git commit -m "Your message here"
+git push
+```
+
+---
+
+*MC 451 — Research Methods in Mass Media | Spring 2026 | SIUE Department of Mass Communications*
+*Dr. Alex P. Leith | aleith@siue.edu*

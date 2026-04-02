@@ -1,0 +1,54 @@
+---
+title: "Week 8: Vibes to Variables & The Rulebook"
+subtitle: "Chapters 13–14"
+date: "2026-03-10"
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+---
+
+## Overview
+
+This is the heart of the course. Chapter 13 teaches you to bridge the gap between abstract concepts and measurable variables — the operationalization process. Chapter 14 shows you how to formalize those decisions into a codebook: the complete rulebook that makes your coding transparent, replicable, and defensible.
+
+**Reading:** Chapter 13 — Vibes to Variables & Chapter 14 — The Rulebook
+
+## Key Concepts
+
+- The operationalization gap
+- Conceptual vs. operational definitions
+- NOIR levels of measurement (nominal, ordinal, interval, ratio)
+- Reliability: test-retest, internal consistency, inter-coder
+- Validity: face, content, criterion-related, construct
+- Codebook structure and components
+- Decision rules for ambiguous cases
+- Edge case documentation
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+1. Define a variable both conceptually and operationally
+2. Identify the level of measurement for any variable
+3. Explain the relationship between reliability and validity
+4. Create operational definitions with clear decision rules
+5. Handle edge cases with documented, consistent rules
+
+## Assignment: Definitions Practice (25 pts)
+
+### Task
+
+Define at least 4 variables for your study:
+
+1. **Variable Definitions Table** — For each variable: name, conceptual definition, operational definition, level of measurement, coded values
+2. **Edge Cases Table** — For each variable: describe a hard case and your proposed decision rule
+3. **Reflection** — Which variable will be hardest to code reliably, and why?
+
+Submit as a Word or Markdown document to Blackboard.
+
+## Discussion Questions
+
+1. Why is it possible for a measure to be reliable but not valid? Give an example from media research.
+2. What is the difference between a conceptual definition you'd find in a textbook and an operational definition you'd put in a codebook?

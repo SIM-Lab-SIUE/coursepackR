@@ -1,6 +1,6 @@
 ---
 title: "Week 1: The Architecture of Curiosity"
-subtitle: "Chapter 1 — The Science of Storytelling"
+subtitle: "Chapter 1"
 date: "2026-01-20"
 format:
   html:
@@ -57,23 +57,5 @@ In 2–3 sentences, explain: **Why might a public research profile matter for yo
 
 ## Discussion Questions
 
-1. Think about a piece of media you consumed this week (song, article, video). What observation could you make about it that might be worth investigating systematically?
-2. What is the difference between saying "I think pop songs are getting shorter" and testing whether pop songs are getting shorter?
-3. Why do researchers need transparent methods rather than just good intentions?
-
-## Submission Checklist
-
-- [ ] GitHub account created with professional username
-- [ ] Profile photo and bio added
-- [ ] Profile README repository created and populated
-- [ ] Reflection paragraph completed
-- [ ] Journal entry for Week 1 completed
-
-## Resources
-
-- [GitHub Docs: Setting up your profile](https://docs.github.com/en/account-and-profile)
-- Textbook: Chapter 1 — *The Architecture of Curiosity*
-
----
-
-*Estimated time: 2–3 hours | Total points: 25*
+1. Think about a piece of media you consumed this week. What observation could you make about it that might be worth investigating systematically?
+2. What is the difference between "I noticed a pattern" and "I have evidence of a pattern"?

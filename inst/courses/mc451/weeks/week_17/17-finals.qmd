@@ -1,0 +1,30 @@
+---
+title: "Week 17: Finals Week"
+subtitle: "Final Web Portfolio Due"
+date: "2026-05-12"
+format:
+  html:
+    embed-resources: true
+---
+
+## Final Web Portfolio (250 pts)
+
+**Due: Friday, May 8, 2026 at 11:59 pm**
+
+### Submission Checklist
+
+- [ ] All six sections complete (Abstract, Literature Review, Methodology, Study 1, Study 2, Discussion)
+- [ ] All instruction comments deleted from .qmd files
+- [ ] `coding_data_clean.RDS` file in project folder
+- [ ] `references.bib` updated with your Zotero export
+- [ ] `apa.csl` downloaded and in project folder
+- [ ] `_quarto.yml` updated with your name, title, and repo URL
+- [ ] `quarto render` runs without errors
+- [ ] PDF renders correctly — rename to `Lastname_FinalPortfolio.pdf`
+- [ ] GitHub Pages site is live and all pages load
+- [ ] Tested live URL in private/incognito browser
+
+### Submit to Blackboard
+
+1. Upload: `Lastname_FinalPortfolio.pdf`
+2. Paste: Your GitHub Pages URL in the text box

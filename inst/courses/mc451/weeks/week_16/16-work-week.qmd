@@ -1,0 +1,30 @@
+---
+title: "Week 16: Work Week"
+subtitle: "No New Reading — Final Project Assembly"
+date: "2026-05-05"
+format:
+  html:
+    embed-resources: true
+---
+
+## Work Week
+
+No class meetings or new readings this week. Use this time to assemble and polish your final portfolio.
+
+### What You Should Be Doing
+
+1. **Writing** — Finalize all sections of your Quarto Book project
+2. **Rendering** — Run `quarto render` frequently to catch errors early
+3. **Publishing** — Push to GitHub and enable GitHub Pages
+4. **Testing** — Open your live URL in a private browser window to verify everything works
+5. **Polishing** — Delete instruction comments, check figure captions, verify citations
+
+### Getting Help
+
+- **Office hours:** MW 10:00–11:30 and 1:30–3:00, Dunham Hall 1017
+- **Discord:** APLeith
+- **Email:** aleith@siue.edu
+
+### Reminder
+
+The Final Web Portfolio is due **Friday, May 8, 2026 at 11:59 pm**. Submit both the PDF file and your live GitHub Pages URL to Blackboard.

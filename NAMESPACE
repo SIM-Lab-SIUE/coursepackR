@@ -2,6 +2,7 @@
 
 export(download_journal)
 export(download_week)
+export(download_workbook)
 export(final_project)
 export(list_courses)
 export(list_weeks)

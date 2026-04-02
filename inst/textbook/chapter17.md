@@ -1,598 +1,785 @@
-# Chapter 17: Going Live
-
 ## Learning Objectives
 
-- Archive research data and code for long-term accessibility
-- Write effective abstracts for different audiences
-- Create plain-language summaries for public engagement
-- Build an online research portfolio
-- Understand open science principles and practices
-- Navigate ethical considerations in sharing research
-- Recognize the difference between academic and public communication
-- Identify next steps for continued research development
+- Understand the data wrangling workflow: import, clean, transform
+- Apply the tidy data philosophy to structure datasets
+- Import data into R and diagnose common import problems
+- Handle messy data: missing values, inconsistent categories, duplicates
+- Use the five core dplyr verbs to manipulate data
+- Document data cleaning decisions for reproducibility
+- Recognize why scripted workflows are superior to point-and-click editing
 
 ---
 
-Your research is complete. You have a polished Quarto report with reproducible code, publication-quality figures, and honestly interpreted findings. You've learned the entire research cycle: from curiosity to conclusion, from vibes to variables, from immersion to interpretation.
+You've completed the qualitative work. You immersed in your data (Chapter 12), operationalized concepts (Chapter 13), built a codebook (Chapter 14), pilot tested it (Chapter 15), and coded your full sample of 200 songs. You have data.
 
-But research that stays on your laptop doesn't matter.
+But data, in its raw form, is rarely ready for analysis.
 
-Science is a collective enterprise. Knowledge advances when findings are shared, scrutinized, replicated, and built upon. Your contribution—even a semester-long undergraduate project—can inform someone else's thinking, provide data for a meta-analysis, or inspire a follow-up study.
+Your coding sheet probably contains typos. Some categorical labels are inconsistent ("Positive" vs. "positive" vs. "Pos"). There are missing values where a song didn't fit your scheme cleanly. A few songs got coded twice by accident. Column names have spaces that will cause problems. The sentiment variable is stored as text when it should be a factor.
 
-This final chapter teaches you to share your work responsibly: making it discoverable, accessible, and useful to others while respecting privacy, acknowledging limitations, and avoiding hype.
+This is the messy reality of real research data. And before you can run statistical tests or create visualizations, you need to clean it, systematically, transparently, and reproducibly.
 
-## Why Share Research?
+This is where R enters the picture.
 
-**For science**: Transparency enables verification. Shared data and code allow others to check your work, replicate findings, and extend analyses.
+## Why R? Why Now?
 
-**For your career**: A public portfolio demonstrates skills to graduate programs and employers. It shows you can execute projects from start to finish.
+Up to this point, you've used Obsidian for writing and organizing. You could, in theory, clean your data in Excel with point-and-click operations. Many researchers do.
 
-**For impact**: Your findings might inform policy, journalism, or other researchers. But only if people can find and access them.
+But point-and-click has fatal flaws:
 
-**For yourself**: Archiving ensures you don't lose your work. GitHub preserves code. OSF preserves data. You'll thank yourself when you need to reference this project in a grad school application.
+**Problem 1: It's not reproducible**. If you manually delete rows in Excel, there's no record of *which* rows you deleted or *why*. If your advisor asks, "How did you handle missing data?" you can't show them. You can only say, "I clicked some buttons."
 
-## Open Science Framework (OSF): Archiving Your Project
+**Problem 2: It's error-prone**. Accidentally sort one column without the others? Your data is now silently corrupted. Overwrite a cell and save? The original value is gone forever.
 
-The **Open Science Framework** ([osf.io](https://osf.io)) is a free platform for archiving research projects. It provides permanent storage, DOI assignment, and version control.
+**Problem 3: It doesn't scale**. Manually fixing 200 rows is tedious. Manually fixing 2,000 is impractical. Manually fixing 20,000 is impossible.
 
-### Setting Up an OSF Project
+R solves all three problems. Every operation is scripted. Every decision is documented. Every step can be audited, shared, and rerun. If your data changes (you find an error, add more cases), you don't start over; you just rerun the script.
 
-**1. Create an account** at osf.io (free, takes 2 minutes)
+This is the philosophy of **reproducible research**: your analysis should be transparent enough that someone else could replicate it exactly. This principle connects directly to the ethical reporting practices discussed in Chapter 8: transparency in data handling is not just good practice, it is an ethical obligation.
 
-**2. Create a new project**:
-- Click "Create new project"
-- Title: "Lyric Sentiment and Chart Performance in Popular Music"
-- Description: Brief summary of the study
-- Make public (or keep private until ready to share)
+## The Data Wrangling Pipeline
 
-**3. Upload files**:
+Think of data wrangling as a three-stage process:
 
-Create a clear folder structure:
-```
-/data
-  /raw
-    coded_songs.csv
-  /clean
-    final_unified_dataset.csv
-/code
-  01_data_cleaning.R
-  02_analysis.R
-  03_visualization.R
-/output
-  final_report.pdf
-  final_report.qmd
-/materials
-  codebook.pdf
-  coding_instructions.pdf
-/documentation
-  README.md
-  CODEBOOK.md
-```
+**Stage 1: Import** → Get data from files into R  
+**Stage 2: Clean** → Fix errors, inconsistencies, missingness  
+**Stage 3: Transform** → Reshape and create new variables for analysis  
 
-**4. Write a README**:
+Each stage builds on the previous. You can't clean data you haven't imported. You can't analyze data you haven't cleaned.
 
-```markdown
-# Lyric Sentiment and Chart Performance
+## The Tidy Data Philosophy
 
-**Author**: Your Name  
-**Date**: February 2026  
-**Contact**: your.email@university.edu
+Before you can wrangle data effectively, you need a mental model of what "clean" data looks like.
 
-## Project Description
+**Tidy data** (Wickham, 2014) has three rules:
 
-This study examined whether lyric sentiment relates to chart performance 
-using systematic content analysis of 200 Billboard Hot 100 songs from 
-2015-2024.
+1. **Each row is one observation** (one song, one coded message, one survey response)
+2. **Each column is one variable** (sentiment, tempo, genre, chart position)
+3. **Each cell contains one value** (not multiple values separated by commas)
 
-## File Structure
+Wickham's (2014) formalization of tidy data principles in the *Journal of Statistical Software* transformed how data scientists think about data structure. The insight is deceptively simple: if every dataset follows the same structural conventions, every analytical tool can be designed around those conventions. The entire tidyverse ecosystem is built on this foundation.
 
-- `data/raw/`: Original coded data
-- `data/clean/`: Analysis-ready dataset
-- `code/`: R scripts for cleaning, analysis, visualization
-- `output/`: Final report (PDF and Quarto source)
-- `materials/`: Codebook and coding instructions
+### Messy Data Example
 
-## How to Reproduce
+This is **not tidy**:
 
-1. Open `final_report.qmd` in RStudio
-2. Install required packages: `tidyverse`, `knitr`, `kableExtra`
-3. Click "Render"
+| Song | Artist | Genres |
+|------|--------|--------|
+| "Blinding Lights" | The Weeknd | Pop, R&B, Synth-pop |
+| "Levitating" | Dua Lipa | Pop, Dance |
 
-The report will regenerate all tables and figures from the cleaned data.
+**Problem**: The "Genres" column contains multiple values. You can't easily filter for "all Pop songs" or count genre frequencies.
 
-## Citation
+### Tidy Version
 
-If you use this data or code, please cite:
-[Your Name]. (2026). Lyric Sentiment and Chart Performance in Popular 
-Music. Open Science Framework. https://osf.io/xxxxx/
-```
+This **is tidy**:
 
-**5. Get a DOI** (Digital Object Identifier):
+| Song | Artist | Genre |
+|------|--------|-------|
+| "Blinding Lights" | The Weeknd | Pop |
+| "Blinding Lights" | The Weeknd | R&B |
+| "Blinding Lights" | The Weeknd | Synth-pop |
+| "Levitating" | Dua Lipa | Pop |
+| "Levitating" | Dua Lipa | Dance |
 
-OSF can mint a permanent DOI for your project. This creates a citable, unchanging link even if you update files later.
+Now each row is one song-genre pair. Each cell has one value. You can filter, count, and analyze easily.
 
-### What to Archive
+**Why this matters**: R's tidyverse tools (`dplyr`, `ggplot2`, `tidyr`) are designed for tidy data. If your data is messy, every analysis becomes complicated. If your data is tidy, most operations are straightforward.
 
-**Always archive**:
-- ✓ Cleaned data (analysis-ready CSV)
-- ✓ All code (R scripts, Quarto documents)
-- ✓ Codebook
-- ✓ Final report (PDF)
-- ✓ README explaining project
+The tidy data principle applies to any dataset, not just music. A survey dataset should have one row per respondent, one column per question. A news content analysis dataset should have one row per article, one column per coded variable. An experimental dataset should have one row per participant-condition combination. The structure is universal.
 
-**Consider archiving**:
-- Raw data (if sharing doesn't violate privacy/copyright)
-- Supplementary analyses
-- Presentation slides
-- Response to reviewer comments (if published)
+## Installing R and RStudio
 
-**Never archive**:
-- Personally identifiable information (unless consented)
-- Copyrighted material (song lyrics in full)
-- Passwords or API keys
+Before you can wrangle data, you need the tools.
 
-## GitHub: Sharing Code
+**R** is the programming language. Think of it as the engine.
 
-**GitHub** is designed for version-controlled code sharing. While OSF is better for complete project archiving, GitHub excels at code collaboration and visibility.
+**RStudio** is the interface, the cockpit that makes R easier to use. It provides:
 
-### Creating a GitHub Repository
+- A script editor (where you write code)
+- A console (where code runs)
+- An environment panel (showing what data you've loaded)
+- A plots/files panel (showing visualizations and outputs)
 
-**1. Create account** at github.com
+**Installation steps** (you only do this once):
 
-**2. Create new repository**:
-- Name: `music-sentiment-analysis`
-- Description: "Content analysis of lyric sentiment and chart performance"
-- Add README
-- Choose license (MIT or GPL for open source)
+1. Download R from [CRAN](https://cran.r-project.org/) for your operating system
+2. Download RStudio Desktop (free version) from [Posit](https://posit.co/download/rstudio-desktop/)
+3. Install R first, then RStudio
 
-**3. Upload code**:
+**After installation**, open RStudio. You'll see four panels. For now, focus on the **Console** (bottom-left). This is where you type commands and see results.
 
-```
-/scripts
-  01_data_cleaning.R
-  02_analysis.R
-  03_visualization.R
-/notebooks
-  final_report.qmd
-README.md
-LICENSE
-```
+## Your First R Commands
 
-**4. Write a technical README**:
-
-```markdown
-# Music Sentiment Analysis
-
-Analysis of 200 Billboard Hot 100 songs examining the relationship between 
-lyric sentiment and chart performance.
-
-## Requirements
-
-- R 4.0+
-- Packages: tidyverse, knitr, kableExtra, effsize
-
-## Installation
+Type these into the Console and press Enter:
 
 ```r
-install.packages(c("tidyverse", "knitr", "kableExtra", "effsize"))
+# This is a comment (R ignores it)
+2 + 2
+
+# Assign a value to a variable
+x <- 5
+x
+
+# Create a vector (list of values)
+songs <- c("Happy", "Blinding Lights", "Levitating")
+songs
+
+# Get help on a function
+?mean
 ```
 
-## Usage
+**What just happened?**
+
+- `#` creates comments (ignored by R, used for human readers)
+- `<-` assigns values to variables (read it as "gets")
+- `c()` combines values into a vector
+- `?mean` opens the help documentation for the `mean()` function
+
+This is base R. It works, but it's not the most elegant syntax. That's where the tidyverse comes in.
+
+## The Tidyverse: R for Humans
+
+The **tidyverse** is a collection of R packages designed to make data analysis more intuitive. Instead of cryptic base R syntax, tidyverse code reads almost like English.
+
+**Install the tidyverse** (you only do this once):
 
 ```r
-# Load cleaned data
+install.packages("tidyverse")
+```
+
+**Load the tidyverse** (you do this at the start of every R session):
+
+```r
+library(tidyverse)
+```
+
+This loads eight core packages:
+
+- `readr`: Import data
+- `dplyr`: Manipulate data
+- `tidyr`: Reshape data
+- `ggplot2`: Visualize data (Chapter 18)
+- `purrr`, `tibble`, `stringr`, `forcats`: Supporting tools
+
+## Importing Data with `readr`
+
+Your coded dataset is likely a CSV (comma-separated values) file exported from Excel or Google Sheets.
+
+**The unified music dataset looks like**:
+
+```
+Song,Artist,Average_Rank,Max_Rank,tempo,energy,valence,lyrics
+Happy,Pharrell Williams,45.2,1,160,0.822,0.961,"Because I'm happy..."
+Someone Like You,Adele,12.5,1,67.5,0.282,0.134,"Never mind, I'll find..."
+Good 4 U,Olivia Rodrigo,8.3,1,164,0.664,0.675,"Well, good for you..."
+```
+
+**Import it into R**:
+
+```r
+library(readr)
+
+# Import the CSV file
 music_data <- read_csv("data/final_unified_dataset.csv")
-
-# Run analysis
-source("scripts/02_analysis.R")
 ```
 
-## Results
+**What just happened?**
 
-- Negative sentiment songs achieved higher chart positions (p = .038)
-- Effect size was small-to-medium (Cramér's V = 0.21)
-- See full report: [link to PDF]
+- `read_csv()` reads the file and creates a data frame (R's version of a spreadsheet)
+- `music_data` is the name we gave the data frame (you can name it anything)
+- The file path `"data/final_unified_dataset.csv"` assumes the file is in a folder called "data" in your working directory
 
-## Citation
+**Inspect what you imported**:
 
-[Citation information]
+```r
+# View the first 6 rows
+head(music_data)
 
-## License
+# See the structure (column names and types)
+glimpse(music_data)
 
-MIT License - see LICENSE file
+# Open a spreadsheet-like view
+View(music_data)
 ```
 
-### What to Share on GitHub vs. OSF
+**Common import problems**:
 
-**GitHub**: Code-focused, good for collaboration
-- R scripts
-- Quarto documents
-- README and documentation
-- Code for figures/tables
+**Problem 1: File not found**
 
-**OSF**: Complete project archiving
-- Data (cleaned and raw)
-- Code (copied from GitHub)
-- Materials (codebook, instruments)
-- Final reports and presentations
-
-Many researchers do both: GitHub for code development, OSF for complete project archiving with DOI.
-
-## Writing for Different Audiences
-
-The same research can be communicated in multiple ways for different audiences.
-
-### Academic Abstract (200 words)
-
-**Purpose**: Summarize for scholars
-
-**Structure**: Background → Method → Results → Implications
-
-**Example**:
-
-> **Abstract**
->
-> This study examined the relationship between lyric sentiment and commercial success in popular music. Using systematic content analysis, we coded 200 Billboard Hot 100 songs (2015-2024) for lyric sentiment (positive, negative, neutral, mixed) and analyzed relationships with peak chart position. Two trained coders achieved acceptable inter-coder reliability (Krippendorff's α = 0.83). Chi-square analysis revealed a significant association between sentiment and top-10 chart status (χ²[3] = 8.42, p = .038, Cramér's V = 0.21), with negative sentiment songs more likely to reach top 10 (50%) than positive sentiment songs (30%). Effect sizes were small to medium, suggesting sentiment explains modest variance in chart performance. Results partially support Uses & Gratifications theory, indicating audiences may seek emotionally intense content over positively valenced messaging. Limitations include sampling only charting songs and coding lyrics in isolation from musical elements. Future research should examine genre-specific patterns and employ experimental designs to test causality.
-
-**Tone**: Formal, precise, technical
-
-**Audience**: Researchers, professors, peer reviewers
-
-### Plain-Language Summary (150 words)
-
-**Purpose**: Make research accessible to general public
-
-**Structure**: Question → Finding → What it means
-
-**Example**:
-
-> **Plain-Language Summary**
->
-> Do sad songs succeed commercially? We studied 200 popular songs from the past decade to find out. Two researchers analyzed song lyrics and categorized them by emotional tone: positive, negative, neutral, or mixed. We then checked whether emotional tone related to how high songs charted on the Billboard Hot 100.
->
-> We found that songs with negative emotional themes (sadness, anger, loss) were more likely to reach the top 10 than songs with positive themes (joy, love, celebration). However, the relationship was modest—many other factors also influence chart success.
->
-> This suggests that audiences might prefer emotionally intense, authentic songs over simple feel-good messages. People might use music to process difficult emotions rather than just to feel happy. More research is needed to understand why this pattern exists.
-
-**Tone**: Conversational, jargon-free, engaging
-
-**Audience**: Educated public, journalists, policymakers
-
-### Social Media Post (280 characters)
-
-**Purpose**: Drive interest to full work
-
-**Example**:
-
-> New research: Analyzed 200 pop songs and found that tracks with sad/angry lyrics were more likely to hit top 10 than happy songs. Audiences might prefer emotional authenticity over positivity. Full study: [link] #MusicResearch #PopMusic
-
-**Tone**: Casual, punchy, hook-driven
-
-**Audience**: General public, potential readers
-
-### One-Sentence Takeaway
-
-**Purpose**: Elevator pitch
-
-**Example**:
-
-> "Songs with negative lyric themes achieve higher chart positions than positive songs, suggesting audiences prefer emotional intensity over feel-good messaging."
-
-Practice distilling your work to one sentence. If you can't explain it simply, you might not understand it clearly yourself.
-
-## Building a Research Portfolio
-
-A **research portfolio** is an online space showcasing your work. It serves as a professional calling card for graduate applications and job searches.
-
-### Platform Options
-
-**GitHub Pages** (free, code-friendly):
-- Turn GitHub repository into website
-- Good for technical portfolios
-- Requires basic HTML/Markdown
-
-**Google Sites** (free, easy):
-- Drag-and-drop interface
-- No coding required
-- Clean, professional templates
-
-**Personal website** (custom domain, ~$10/year):
-- WordPress, Wix, Squarespace
-- Most professional
-- More control over design
-
-### Portfolio Structure
-
-**Homepage**:
-- Your name
-- Brief bio (2-3 sentences)
-- Research interests
-- Contact information
-
-**Projects Page**:
-
-Each project as a case study:
-
-```markdown
-## Lyric Sentiment and Chart Performance
-
-**Date**: February 2026  
-**Type**: Content Analysis  
-**Tools**: R, Quarto, ggplot2
-
-### Summary
-Analyzed 200 Billboard Hot 100 songs to examine whether lyric sentiment 
-relates to commercial success.
-
-### Key Findings
-- Negative sentiment songs achieved higher chart positions (p = .038)
-- Small-to-medium effect size (Cramér's V = 0.21)
-- Results suggest audiences prefer emotional authenticity
-
-### Materials
-- [Full Report (PDF)](link)
-- [Code (GitHub)](link)
-- [Data (OSF)](link)
-
-### Skills Demonstrated
-- Systematic content analysis
-- Inter-coder reliability assessment
-- Statistical inference (chi-square, effect sizes)
-- Data visualization (ggplot2)
-- Reproducible reporting (Quarto)
+```r
+Error: 'data/final_unified_dataset.csv' does not exist
 ```
 
-**About Page**:
-- Educational background
-- Research experience
-- Technical skills
-- Career goals
+**Solution**: Check your working directory with `getwd()`. Make sure the file path is correct. Or use `file.choose()` to interactively select the file:
 
-**CV/Resume** (optional):
-- Downloadable PDF
+```r
+music_data <- read_csv(file.choose())
+```
 
-### What to Include
+**Problem 2: Column names have spaces**
 
-**Do include**:
-- Completed projects with clear descriptions
-- Links to code, data, reports
-- Skills demonstrated
-- Honest acknowledgment of limitations
+Base R's `read.csv()` converts spaces to dots (`Lyric Sentiment` becomes `Lyric.Sentiment`).
 
-**Don't include**:
-- Unfinished projects
-- Work you can't explain confidently
-- Inflated claims
-- Projects without your actual contribution
+`readr`'s `read_csv()` preserves spaces. Use backticks to reference these columns:
 
-## Ethical Considerations in Sharing
+```r
+music_data$`Lyric Sentiment`  # With backticks
+```
 
-### Privacy and Consent
+Or rename columns to avoid spaces (better practice):
 
-**If your data includes**:
-- Survey responses → Ensure informed consent allowed sharing
-- Social media posts → Check platform terms of service
-- Interview transcripts → De-identify thoroughly
+```r
+music_data <- music_data %>%
+  rename(lyric_sentiment = `Lyric Sentiment`)
+```
 
-**Best practice**: If in doubt, share only aggregated results (summary statistics, not raw data).
+**Problem 3: Data types are wrong**
 
-### Copyright and Fair Use
+R might import numbers as text or vice versa. Check with `glimpse()`:
 
-**Music lyric coding**:
-- You can share your sentiment codes (derivative data)
-- You cannot share full lyrics (copyrighted)
-- You can share brief excerpts for illustration (fair use)
+```r
+glimpse(music_data)
 
-**Best practice**: Share your codebook and coded variables, not copyrighted source material.
+# If Tempo is character instead of numeric:
+music_data <- music_data %>%
+  mutate(Tempo = as.numeric(Tempo))
+```
 
-### Responsible Interpretation
+## The Five Core dplyr Verbs
 
-When sharing publicly, resist:
-- **Overstating findings**: "Sad songs cause chart success" → "Sad songs correlate with higher chart positions"
-- **Generalizing too broadly**: "All music" → "Billboard Hot 100 songs from 2015-2024"
-- **Ignoring limitations**: Acknowledge sample constraints, correlational design, alternative explanations
+Now comes the power: transforming data with five essential functions.
 
-**Best practice**: Share honestly. Your work's value comes from rigor, not hype.
+### 1. `filter()`: Keep Rows That Meet Conditions
 
-## Understanding Impact Beyond Grades
+**Use when**: You want to subset your data
 
-Research impact isn't just about journal publications (which are rare for undergraduate projects). Impact can look like:
+**Example**: Keep only positive sentiment songs
 
-**1. Learning**: You developed skills in systematic analysis, coding, statistics, and scientific writing. These transfer to any career requiring critical thinking and data literacy.
+```r
+positive_songs <- music_data %>%
+  filter(Lyric_Sentiment == "Positive")
+```
 
-**2. Portfolio**: Your OSF project and GitHub repository demonstrate research skills to graduate admissions committees and employers.
+**Multiple conditions** (AND logic):
 
-**3. Contribution**: Even if not published, your work contributes to the collective understanding of media and communication. Other students might replicate your study, extend it, or use your methods.
+```r
+# Songs that are positive AND have high intensity
+positive_intense <- music_data %>%
+  filter(Lyric_Sentiment == "Positive", Emotional_Intensity == "High")
+```
 
-**4. Public engagement**: A well-written plain-language summary might reach journalists, musicians, or music industry professionals interested in audience preferences.
+**OR logic**:
 
-**5. Future research**: This project might be the foundation for a thesis, a conference presentation, or a publication with further development.
+```r
+# Songs that are positive OR mixed
+pos_or_mixed <- music_data %>%
+  filter(Lyric_Sentiment == "Positive" | Lyric_Sentiment == "Mixed")
 
-Don't measure success solely by whether you publish in a journal. Measure it by:
-- Did you learn?
-- Did you produce something you're proud of?
-- Can you explain your work confidently?
-- Would you do research again?
+# Cleaner syntax using %in%:
+pos_or_mixed <- music_data %>%
+  filter(Lyric_Sentiment %in% c("Positive", "Mixed"))
+```
 
-If yes, you succeeded.
+**Numeric comparisons**:
 
-## Next Steps: Continuing the Research Journey
+```r
+# Fast songs (tempo > 140 BPM)
+fast_songs <- music_data %>%
+  filter(Tempo > 140)
 
-You've completed one research project. Here's how to continue developing:
+# Songs that charted in top 10
+top10 <- music_data %>%
+  filter(Max_Rank <= 10)
+```
 
-### Deepen Your Skills
+### 2. `select()`: Choose or Drop Columns
 
-**Statistics**: Take advanced statistics courses covering:
-- Regression and ANOVA
-- Multilevel modeling
-- Time series analysis
+**Use when**: You want to work with a subset of variables
 
-**Methods**: Explore methods you haven't used:
-- Experiments
-- Surveys
-- Network analysis
-- Computational text analysis
+**Keep specific columns**:
 
-**Tools**: Learn new software:
-- Python (data science)
-- SPSS or SAS (alternative statistics tools)
-- NVivo or Atlas.ti (qualitative software)
+```r
+minimal_data <- music_data %>%
+  select(Song_Title, Artist, Lyric_Sentiment)
+```
 
-### Seek Research Opportunities
+**Drop columns**:
 
-**Independent study**: Propose a follow-up project with a faculty mentor
+```r
+# Remove columns you don't need
+music_data %>%
+  select(-Song_ID, -Notes)
+```
 
-**Research assistantships**: Work in a professor's lab (paid or credit)
+**Select columns by pattern**:
 
-**Conferences**: Submit to undergraduate research conferences
+```r
+# All columns starting with "Lyric"
+music_data %>%
+  select(starts_with("Lyric"))
 
-**Honors thesis**: Develop this into a year-long capstone project
+# All columns containing "Sentiment"
+music_data %>%
+  select(contains("Sentiment"))
+```
 
-### Read Actively
+### 3. `mutate()`: Create or Modify Columns
 
-**Subscribe to**:
-- Journal of Computer-Mediated Communication
-- New Media & Society
-- Communication Research
-- Journal of Broadcasting & Electronic Media
+**Use when**: You need new variables or need to transform existing ones
 
-**Follow researchers** on:
-- Twitter/X (many scholars share work publicly)
-- Google Scholar alerts (get notified when topics you care about are published)
+**Create a binary variable**:
 
-### Build Your Network
+```r
+music_data <- music_data %>%
+  mutate(is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0))
+```
 
-**Connect with**:
-- Professors in your department
-- Graduate students (future colleagues)
-- Alumni working in research
+**Create categories based on conditions**:
 
-**Join**:
-- Professional associations (ICA, NCA, AEJMC offer student memberships)
-- Academic conferences (many have undergraduate paper sessions)
+```r
+music_data <- music_data %>%
+  mutate(
+    tempo_category = case_when(
+      Tempo < 100 ~ "Slow",
+      Tempo < 140 ~ "Medium",
+      Tempo >= 140 ~ "Fast"
+    )
+  )
+```
 
-## A Final Word on Research
+**Multiple new columns at once**:
 
-Research is messy. Data don't cooperate. Hypotheses fail. Coding reliability falls short. Reviewers reject papers. Progress is slower than you hope.
+```r
+music_data <- music_data %>%
+  mutate(
+    is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0),
+    is_top10 = if_else(Max_Rank <= 10, 1, 0),
+    fast_and_positive = if_else(Tempo > 140 & is_positive == 1, 1, 0)
+  )
+```
 
-But research is also discovery. It's the thrill of finding a pattern no one noticed before. It's the satisfaction of building something from scratch. It's the discipline of asking good questions and the humility of accepting uncertain answers.
+### 4. `group_by()` + `summarize()`: Aggregate Data
 
-You've learned that research isn't about confirming what you already believe. It's about testing ideas rigorously, acknowledging when you're wrong, and refining your understanding iteratively.
+**Use when**: You want summary statistics by group
 
-You've learned that good research requires:
-- **Curiosity** (asking questions worth answering)
-- **Discipline** (following systematic procedures)
-- **Honesty** (reporting what you found, not what you hoped)
-- **Humility** (acknowledging limitations)
-- **Generosity** (sharing your work so others can build on it)
+**Calculate means by sentiment category**:
 
-These values transcend methods. Whether you become a researcher, a journalist, a marketer, or a policymaker, these principles make you better at seeking truth.
+```r
+summary_stats <- music_data %>%
+  group_by(Lyric_Sentiment) %>%
+  summarize(
+    n_songs = n(),
+    avg_tempo = mean(Tempo, na.rm = TRUE),
+    avg_chart_peak = mean(Max_Rank, na.rm = TRUE)
+  )
+```
 
-**You're not done learning.** This textbook is the beginning, not the end. Every research project teaches you something new—about methods, about your topic, and about yourself.
+**What this does**:
 
-Go forward with confidence. You know how to do research. Now go make knowledge.
+- `group_by(Lyric_Sentiment)` groups songs by sentiment category
+- `n()` counts songs in each group
+- `mean(Tempo, na.rm = TRUE)` calculates average tempo (ignoring missing values)
+- Result is a new data frame with one row per sentiment category
+
+**Multiple grouping variables**:
+
+```r
+sentiment_by_intensity <- music_data %>%
+  group_by(Lyric_Sentiment, Emotional_Intensity) %>%
+  summarize(
+    n = n(),
+    avg_tempo = mean(Tempo, na.rm = TRUE)
+  )
+```
+
+### 5. `arrange()`: Sort Rows
+
+**Use when**: You want to order your data
+
+**Sort by one variable**:
+
+```r
+# Fastest to slowest
+music_data %>%
+  arrange(desc(Tempo))
+
+# Slowest to fastest
+music_data %>%
+  arrange(Tempo)
+```
+
+**Sort by multiple variables**:
+
+```r
+# First by sentiment, then by tempo within each sentiment group
+music_data %>%
+  arrange(Lyric_Sentiment, desc(Tempo))
+```
+
+## Chaining Operations: The Power of the Pipe
+
+The real magic happens when you **chain verbs together** with the pipe operator (`%>%`).
+
+**Read the pipe as "then"**:
+
+```r
+result <- music_data %>%
+  filter(Max_Rank <= 20) %>%             # Keep top 20 songs
+  mutate(is_fast = Tempo > 130) %>%      # Create fast/slow variable
+  group_by(Lyric_Sentiment, is_fast) %>% # Group by sentiment and tempo
+  summarize(
+    n = n(),
+    avg_peak = mean(Max_Rank)
+  ) %>%
+  arrange(avg_peak)                      # Sort by average peak position
+```
+
+**Read aloud**: "Take music_data, THEN filter for top 20 songs, THEN create a fast/slow variable, THEN group by sentiment and tempo, THEN calculate summaries, THEN sort by average peak."
+
+**Without pipes, this would be**:
+
+```r
+temp1 <- filter(music_data, Max_Rank <= 20)
+temp2 <- mutate(temp1, is_fast = Tempo > 130)
+temp3 <- group_by(temp2, Lyric_Sentiment, is_fast)
+temp4 <- summarize(temp3, n = n(), avg_peak = mean(Max_Rank))
+result <- arrange(temp4, avg_peak)
+```
+
+The piped version is cleaner, easier to read, and doesn't create temporary variables.
+
+## Handling Common Data Problems
+
+### Problem 1: Missing Values
+
+**Identify missing values**:
+
+```r
+# Count missing values per column
+music_data %>%
+  summarize(across(everything(), ~sum(is.na(.))))
+```
+
+**Recode specific values as missing**:
+
+```r
+# Convert "Unknown" and empty strings to NA
+music_data <- music_data %>%
+  mutate(
+    Lyric_Sentiment = na_if(Lyric_Sentiment, "Unknown"),
+    Lyric_Sentiment = na_if(Lyric_Sentiment, "")
+  )
+```
+
+**Remove rows with missing data**:
+
+```r
+# Remove rows where Lyric_Sentiment is missing
+music_data_complete <- music_data %>%
+  filter(!is.na(Lyric_Sentiment))
+```
+
+**Document your decision**: In your analysis script, comment on why:
+
+```r
+# Excluded 8 songs with missing sentiment codes (unable to determine
+# due to language barriers or instrumental content). Final n = 192.
+music_data_complete <- music_data %>%
+  filter(!is.na(Lyric_Sentiment))
+```
+
+### Problem 2: Inconsistent Categories
+
+**The problem**: Coders entered the same category multiple ways
+
+```r
+# Sentiment might include:
+# "Positive", "positive", "POSITIVE", "Pos", "pos"
+```
+
+**Solution: Standardize**:
+
+```r
+music_data <- music_data %>%
+  mutate(
+    Lyric_Sentiment = tolower(Lyric_Sentiment),  # Convert to lowercase
+    Lyric_Sentiment = case_when(
+      Lyric_Sentiment %in% c("positive", "pos") ~ "Positive",
+      Lyric_Sentiment %in% c("negative", "neg") ~ "Negative",
+      Lyric_Sentiment %in% c("neutral", "neut") ~ "Neutral",
+      Lyric_Sentiment %in% c("mixed", "mix") ~ "Mixed",
+      TRUE ~ Lyric_Sentiment  # Keep anything else as-is
+    )
+  )
+```
+
+### Problem 3: Duplicates
+
+**Identify duplicates**:
+
+```r
+# Check for duplicate rows
+duplicates <- music_data %>%
+  filter(duplicated(.) | duplicated(., fromLast = TRUE))
+
+View(duplicates)
+```
+
+**Remove duplicates**:
+
+```r
+music_data <- music_data %>%
+  distinct()  # Keeps only unique rows
+```
+
+**BUT**: If duplicates are legitimate (e.g., two coders coded the same song), don't remove them. Instead, use them for reliability analysis, then merge:
+
+```r
+# Keep only Coder A's codes for final analysis
+music_data_final <- music_data %>%
+  filter(Coder_ID == "Coder_A")
+```
+
+### Problem 4: Wrong Data Types
+
+**Check types**:
+
+```r
+glimpse(music_data)
+```
+
+**Convert types**:
+
+```r
+music_data <- music_data %>%
+  mutate(
+    Song_ID = as.character(Song_ID),             # Numeric to character
+    Tempo = as.numeric(Tempo),                    # Character to numeric
+    Max_Rank = as.integer(Max_Rank),              # Decimal to integer
+    Lyric_Sentiment = as.factor(Lyric_Sentiment)  # Character to factor
+  )
+```
+
+## Working with Factors (Categorical Data)
+
+Factors are R's way of handling categorical data with defined levels and ordering.
+
+**Convert to factor**:
+
+```r
+library(forcats)
+
+music_data <- music_data %>%
+  mutate(
+    Lyric_Sentiment = factor(Lyric_Sentiment,
+                              levels = c("Positive", "Negative", "Neutral", "Mixed"))
+  )
+```
+
+**Why this matters**: When you plot or tabulate, R will use this order instead of alphabetical.
+
+**Reorder by frequency**:
+
+```r
+music_data <- music_data %>%
+  mutate(Lyric_Sentiment = fct_infreq(Lyric_Sentiment))
+```
+
+Now "Lyric_Sentiment" is ordered from most common to least common category.
+
+## Documenting Your Cleaning Workflow
+
+Every cleaning decision is a methodological choice. Document it.
+
+**Create a cleaning script** (`01_data_cleaning.R`):
+
+```r
+# Data Cleaning Script
+# Project: Music Sentiment and Chart Performance
+# Author: Your Name
+# Date: 2026-02-10
+
+# Load packages
+library(tidyverse)
+
+# 1. Import raw data
+music_raw <- read_csv("data_raw/final_unified_dataset.csv")
+message("Imported ", nrow(music_raw), " songs")
+
+# 2. Standardize sentiment categories
+music_clean <- music_raw %>%
+  mutate(
+    Lyric_Sentiment = tolower(Lyric_Sentiment),
+    Lyric_Sentiment = case_when(
+      Lyric_Sentiment %in% c("positive", "pos") ~ "Positive",
+      Lyric_Sentiment %in% c("negative", "neg") ~ "Negative",
+      Lyric_Sentiment %in% c("neutral", "neut") ~ "Neutral",
+      Lyric_Sentiment %in% c("mixed", "mix") ~ "Mixed",
+      TRUE ~ NA_character_
+    )
+  )
+
+# 3. Remove songs with missing sentiment (n = ?)
+n_missing <- sum(is.na(music_clean$Lyric_Sentiment))
+message("Removing ", n_missing, " songs with missing sentiment codes")
+
+music_clean <- music_clean %>%
+  filter(!is.na(Lyric_Sentiment))
+
+# 4. Convert variables to appropriate types
+music_clean <- music_clean %>%
+  mutate(
+    Lyric_Sentiment = factor(Lyric_Sentiment,
+                              levels = c("Positive", "Negative", "Neutral", "Mixed")),
+    Emotional_Intensity = factor(Emotional_Intensity,
+                                  levels = c("Low", "Medium", "High")),
+    Tempo = as.numeric(Tempo),
+    Max_Rank = as.integer(Max_Rank)
+  )
+
+# 5. Create derived variables
+music_clean <- music_clean %>%
+  mutate(
+    is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0),
+    is_top10 = if_else(Max_Rank <= 10, 1, 0),
+    tempo_category = case_when(
+      Tempo < 100 ~ "Slow",
+      Tempo < 140 ~ "Medium",
+      Tempo >= 140 ~ "Fast"
+    )
+  )
+
+# 6. Final dataset summary
+message("Final dataset: ", nrow(music_clean), " songs")
+glimpse(music_clean)
+
+# 7. Save cleaned data
+write_csv(music_clean, "data_clean/music_analysis_ready.csv")
+message("Cleaned data saved to data_clean/music_analysis_ready.csv")
+```
+
+**Why this matters**: 
+
+- Anyone (including future you) can see exactly what you did
+- You can rerun the script if the raw data changes
+- You can share it with collaborators or reviewers
+- It documents your sample size at each cleaning step
 
 ---
 
-## Practice: Going Live
+## Practice: Data Wrangling
 
-### Exercise 17.1: Create an OSF Project
+### Exercise 17.1: Filtering Practice
 
-1. Create an OSF account
-2. Start a project for your music sentiment study
-3. Upload your cleaned data, code, and final report
-4. Write a comprehensive README
-5. Make the project public and get a DOI
+Using the music dataset:
 
----
-
-### Exercise 17.2: Write Multiple Summaries
-
-For your research, write:
-1. Academic abstract (200 words, technical)
-2. Plain-language summary (150 words, jargon-free)
-3. Social media post (280 characters)
-4. One-sentence takeaway
-
-Compare: How does framing change across audiences?
+1. Keep only songs with "Negative" sentiment
+2. Keep songs that charted in the top 5 (#1-5)
+3. Keep songs that are BOTH negative sentiment AND top 5
 
 ---
 
-### Exercise 17.3: Build a Portfolio Page
+### Exercise 17.2: Creating New Variables
 
-Create a portfolio entry for your project that includes:
-- Project title and date
-- 2-3 sentence summary
-- Key findings (3-5 bullet points)
-- Links to materials (report, code, data)
-- Skills demonstrated
+Create these new variables:
+
+1. `decade`: Extract decade from year (e.g., 2015 → "2010s")
+2. `extreme_tempo`: 1 if tempo is very slow (<80) or very fast (>160), 0 otherwise
+3. `sentiment_simple`: "Positive" for Positive, "Negative" for everything else
 
 ---
 
-### Exercise 17.4: Plan Next Steps
+### Exercise 17.3: Aggregation
 
-Reflect on your research journey:
-1. What did you learn about research methods?
-2. What did you learn about your topic?
-3. What would you do differently next time?
-4. What's one next step for continuing your research development?
+Calculate:
+
+1. Average tempo by sentiment category
+2. Number of songs in each sentiment × intensity combination
+3. Percentage of songs in each tempo category that reached #1
+
+---
+
+### Exercise 17.4: Your Cleaning Script
+
+Write a cleaning script for your own coded dataset that:
+
+1. Imports the raw CSV
+2. Standardizes at least one categorical variable
+3. Handles missing values with documented decisions
+4. Converts variables to appropriate types
+5. Creates at least one derived variable
+6. Saves the cleaned dataset
+7. Includes comments explaining each step
 
 ---
 
 ## Reflection Questions
 
-1. **Public vs. Private**: How much of your research should be public? What are the risks and benefits of sharing code and data openly? When might privacy or proprietary concerns outweigh transparency?
+1. **Reproducibility vs. Flexibility**: Scripted workflows are reproducible, but they require planning ahead. Point-and-click is flexible but not transparent. When might flexibility be more important than reproducibility? When is reproducibility non-negotiable?
 
-2. **Academic vs. Public Communication**: You wrote an academic abstract and a plain-language summary. Which was harder? Should researchers be required to communicate publicly, or is academic writing sufficient?
+2. **Cleaning Decisions**: Every time you remove missing data or recode categories, you're making methodological choices that affect results. How transparent should you be about these decisions? What level of detail is too much?
 
-3. **Impact and Purpose**: Why did you do this research? Was it only for a grade, or did it serve a larger purpose? How do you measure whether research "matters"? Does impact require publication, or are there other forms of contribution?
+3. **The Tidy Data Trade-off**: Tidy data is easier to analyze but sometimes creates redundancy (like repeating song names for each genre). When is this trade-off worth it? When might you prefer a different structure?
+
+4. **Generalization of Skills**: The dplyr verbs you learned in this chapter (`filter`, `select`, `mutate`, `group_by` + `summarize`, `arrange`) work on any tidy dataset, not just music data. If you were cleaning a news content analysis dataset or a survey response file, which of these operations would you use most, and for what purpose?
 
 ---
 
 ## Chapter Summary
 
-This final chapter covered research dissemination and open science:
+This chapter introduced data wrangling with R and the tidyverse:
 
-- **Open Science Framework (OSF)**: Free platform for archiving projects with permanent DOI
-- **GitHub**: Code sharing and version control, good for collaboration
-- **Archive structure**: Data (raw and clean), code, materials (codebook), output (reports), documentation (README)
-- **README files**: Explain project structure, reproduction instructions, citation information
-- **Multiple audiences**: Academic abstracts (technical), plain-language summaries (accessible), social media (engaging)
-- **Research portfolios**: Showcase completed projects with clear descriptions and links to materials
-- **Ethical sharing**: Respect privacy (de-identify), copyright (don't share full lyrics), and honesty (don't overstate)
-- **Impact beyond publication**: Learning, portfolio building, skill development, potential future research
-- **Next steps**: Deepen skills, seek opportunities, read actively, build networks
-- **Research values**: Curiosity, discipline, honesty, humility, generosity
+- **Data wrangling** is the essential work of preparing data for analysis
+- **Reproducible workflows** (scripted in R) are superior to point-and-click (Excel) because they're transparent, auditable, and rerunnable
+- **Tidy data** (Wickham, 2014) has three rules: each row = one observation, each column = one variable, each cell = one value
+- **The five core dplyr verbs**: `filter()` (keep rows), `select()` (choose columns), `mutate()` (create variables), `group_by() + summarize()` (aggregate), `arrange()` (sort)
+- **The pipe operator** (`%>%`) chains operations, making code readable
+- **Common data problems**: missing values, inconsistent categories, duplicates, wrong data types
+- **Factors** store categorical data with defined levels and ordering
+- **Documentation** of cleaning decisions is essential for transparency and ethical reporting
+- **Cleaning scripts** should be heavily commented and save cleaned data separately from raw data
 
 ---
 
 ## Key Terms
 
-- **DOI (Digital Object Identifier)**: Permanent identifier for research projects and publications
-- **Open Science Framework (OSF)**: Free platform for research archiving and sharing
-- **Plain-language summary**: Jargon-free explanation of research for general audiences
-- **README**: Documentation file explaining project structure and reproduction
-- **Repository**: Storage location for code (GitHub) or projects (OSF)
-- **Research portfolio**: Online showcase of completed research projects
+- **Data frame**: R's version of a spreadsheet (rows and columns)
+- **Data wrangling**: Importing, cleaning, and transforming data for analysis
+- **Factor**: R's data type for categorical variables with defined levels
+- **Pipe operator (`%>%`)**: Chains operations together, read as "then"
+- **Reproducible research**: Analysis transparent enough for others to replicate
+- **Tidy data**: Data structure where each row = observation, each column = variable, each cell = value (Wickham, 2014)
+- **Tidyverse**: Collection of R packages designed for intuitive data analysis
+- **Vector**: Ordered collection of values of the same type
 
 ---
 
-## Conclusion
+## References
 
-You began this textbook learning to think like a researcher—to ask questions systematically, to translate vibes into variables, to build codebooks that transform intuition into replicable measurement.
+Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23. https://doi.org/10.18637/jss.v059.i10
 
-You learned the infrastructure of research: how to organize files, manage literature, document decisions. You learned that reproducibility isn't optional—it's the foundation of credible science.
+---
 
-You learned qualitative methods: immersion, operationalization, codebook development, pilot testing, inter-coder reliability. You learned that systematic doesn't mean soulless—rigor and creativity coexist.
+::: {.callout-note title="Graduate Extension" collapse="true"}
 
-You learned quantitative methods: data wrangling, visualization, statistical inference, honest interpretation. You learned that p-values don't tell you what matters—context, effect sizes, and limitations do.
+**Required Reading**: Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23. https://doi.org/10.18637/jss.v059.i10
 
-And you learned to share: to archive, to communicate across audiences, to build your work into something others can access and extend.
+**Prompt**: Wickham's "Tidy Data" paper is one of the most cited papers in the history of statistical computing. Its influence extends far beyond R: the tidy data framework has shaped how data scientists across languages and platforms think about data structure. But the paper is also making an argument, not just describing a convention. Understanding that argument deepens your ability to make principled decisions about data organization.
 
-**This is research**. Not as a distant abstraction, but as a set of practical skills you now possess.
+1. Wickham identifies five common problems that make data "messy." In your own words, describe each problem and provide an example from communication research (not from the paper) for at least three of them.
 
-The questions you ask will evolve. The methods you use will expand. But the principles remain: curiosity guided by rigor, honesty about uncertainty, and generosity in sharing what you've learned.
+2. The paper argues that tidy data is not just a matter of preference but of efficiency: tidy datasets work better with a consistent set of tools. What is the relationship between data structure and analytical capability? Can you think of a situation where a "messy" structure would actually be more efficient than a tidy one for a specific analytical task?
 
-**Welcome to the community of researchers.** You're one of us now.
+3. Wickham draws a distinction between **variables** and **values** that seems obvious but is often violated in practice. He notes that people frequently store variable names in cell values (e.g., a column called "Metric" with values like "revenue," "profit," "cost" that are actually separate variables). Find an example of this problem in a publicly available dataset (government data portals, Kaggle, or your own coursework) and show how you would tidy it using `pivot_longer()` or `pivot_wider()`.
 
-Go make knowledge.
+4. The tidy data framework assumes that the unit of observation is clearly defined. But in communication research, the unit of observation can be ambiguous. Is the unit a song, a lyric line, a musical phrase, a chart appearance? Is the unit a news article, a paragraph, a sentence, a quoted source? How does the choice of unit affect tidy structure? Write a brief analysis (200 words) of how unit-of-analysis decisions interact with data structure decisions in your own research project.
+
+5. Wickham's framework was designed primarily for tabular data. How well does it extend to non-tabular qualitative data (interview transcripts, field notes, social media threads)? What adaptations would be needed to apply tidy principles to qualitative data management?
+
+:::
+
+---
+
+## Looking Ahead
+
+Chapter 18 (Seeing Patterns) introduces data visualization with `ggplot2`. You've wrangled your data into analysis-ready format. Now you'll learn to create publication-quality visualizations that reveal patterns: bar charts showing sentiment distribution, scatterplots examining tempo-chart performance relationships, and faceted plots comparing patterns across categories. Visualization isn't just about making pretty pictures; it's about exploring data, testing assumptions, and communicating findings effectively.

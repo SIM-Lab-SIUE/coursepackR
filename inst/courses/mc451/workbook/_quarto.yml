@@ -1,0 +1,24 @@
+project:
+  type: default
+  output-dir: docs
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-title: "Sections"
+    number-sections: true
+    smooth-scroll: true
+    code-fold: false
+    code-tools: true
+    code-copy: true
+    highlight-style: github
+    fig-align: center
+    cap-location: bottom
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  eval: false
