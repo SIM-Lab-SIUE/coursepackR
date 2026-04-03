@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">coursepackR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +64,7 @@
 <div class="page-header"><h1 id="coursepackr">coursepackR<a class="anchor" aria-label="anchor" href="#coursepackr"></a>
 </h1></div>
 <p><a href="https://github.com/SIM-Lab-SIUE/coursepackR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/SIM-Lab-SIUE/coursepackR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://sim-lab-siue.github.io/coursepackR/"><img src="https://github.com/SIM-Lab-SIUE/coursepackR/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a> <a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
-<p>Student-facing R package for <strong>MC-451 Research Methods</strong> at SIUE, built around the open textbook <em><a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link">From Vibes to Variables: A Field Guide to Open Media Science</a></em>.</p>
+<p>Student-facing R package for <strong>MC-451 Research Methods</strong> at SIUE, built around the open textbook <em><a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link">From Vibes to Variables: A Field Guide to Open Media Science</a></em> (2nd Edition).</p>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
 </h2>
@@ -117,11 +117,11 @@
 <tbody>
 <tr class="odd">
 <td><code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code></td>
-<td>One-time environment setup — checks compiler toolchain (Rtools/Xcode CLT), Quarto CLI version, TinyTeX, and installs all 10 course R packages</td>
+<td>One-time environment setup — checks compiler toolchain (Rtools/Xcode CLT), Quarto CLI version, TinyTeX, and installs all course R packages</td>
 </tr>
 <tr class="even">
 <td><code><a href="reference/mccourse_check.html">mccourse_check()</a></code></td>
-<td>Diagnostic check — verifies R version, RStudio, Quarto version (&gt;= 1.4.0), Git, compiler toolchain, all course packages, course templates, and working directory path safety</td>
+<td>Diagnostic check — verifies R version, RStudio, Quarto (&gt;= 1.4.0), Git, compiler toolchain, course packages, templates, and working directory path safety</td>
 </tr>
 <tr class="odd">
 <td><code><a href="reference/mccourse_update.html">mccourse_update()</a></code></td>
@@ -132,22 +132,26 @@
 <td>Download a specific week’s assignment template to your working directory</td>
 </tr>
 <tr class="odd">
+<td><code>download_workbook()</code></td>
+<td>Download the R Workbook — guided practice covering Chapters 17-22</td>
+</tr>
+<tr class="even">
 <td><code><a href="reference/download_journal.html">download_journal()</a></code></td>
 <td>Download the reflective journal template for a given week</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code><a href="reference/open_week.html">open_week()</a></code></td>
 <td>Open a downloaded week’s folder in your system file browser</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code><a href="reference/final_project.html">final_project()</a></code></td>
 <td>Scaffold a final project folder with Quarto document, bibliography, and data directory</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code><a href="reference/list_courses.html">list_courses()</a></code></td>
 <td>List all available course IDs bundled in the package</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code><a href="reference/list_weeks.html">list_weeks()</a></code></td>
 <td>List all available weeks for a given course</td>
 </tr>
@@ -175,7 +179,7 @@
 <div class="section level3">
 <h3 id="textbook-chapters">Textbook Chapters<a class="anchor" aria-label="anchor" href="#textbook-chapters"></a>
 </h3>
-<p>All 17 chapters of <em>From Vibes to Variables</em> are bundled for offline reading:</p>
+<p>All 22 chapters of <em>From Vibes to Variables</em> (2nd Edition) are bundled for offline reading:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Path to chapter 1</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"textbook"</span>, <span class="st">"chapter01.md"</span>, package <span class="op">=</span> <span class="st">"coursepackR"</span><span class="op">)</span></span></code></pre></div>
@@ -184,7 +188,7 @@
 <div class="section level3">
 <h3 id="weekly-templates">Weekly Templates<a class="anchor" aria-label="anchor" href="#weekly-templates"></a>
 </h3>
-<p>17 weeks of <code>.qmd</code> assignment templates for MC-451, aligned with textbook chapters:</p>
+<p>17 weeks of <code>.qmd</code> assignment templates for MC-451, aligned with the 22-chapter textbook:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/list_weeks.html">list_weeks</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/download_week.html">download_week</a></span><span class="op">(</span><span class="st">"mc451"</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
@@ -211,7 +215,7 @@
 <li>
 <p><strong>Reflect</strong> in your journal:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/download_journal.html">download_journal</a></span><span class="op">(</span><span class="st">"mc451"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/download_journal.html">download_journal</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 </li>
 </ol>
 <hr>
@@ -224,8 +228,7 @@
 <p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> reports Quarto not found or version too old</strong> Download or update Quarto CLI from <a href="https://quarto.org/docs/get-started/" class="external-link uri">https://quarto.org/docs/get-started/</a>. After installing, restart RStudio and run <code><a href="reference/mccourse_check.html">mccourse_check()</a></code> again. Quarto &gt;= 1.4.0 is required.</p>
 <p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> reports compiler toolchain missing</strong> - <em>Windows:</em> Rtools is needed to install some R packages from source. Download from <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link uri">https://cran.r-project.org/bin/windows/Rtools/</a>, then restart RStudio. - <em>macOS:</em> Run <code>xcode-select --install</code> in the Terminal, follow the prompts, then restart RStudio.</p>
 <p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> reports missing course packages</strong> Run <code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> to install all missing packages automatically, then re-run <code><a href="reference/mccourse_check.html">mccourse_check()</a></code>.</p>
-<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> warns about working directory path</strong> - <em>Cloud-sync folder (OneDrive, Dropbox, Google Drive):</em> File locking by the sync client can cause save failures and corrupted files. Move your project folder to <code>Documents/</code> or the Desktop outside the synced area. - <em>Spaces in path:</em> Some tools (including Quarto) cannot handle paths that contain spaces. Move the project to a path like <code>C:/courses/mc451/</code> that contains no spaces.</p>
-<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> shows any other failing check</strong> Run <code><a href="reference/mccourse_setup.html">mccourse_setup()</a></code> to install missing components, then re-check.</p>
+<p><strong><code><a href="reference/mccourse_check.html">mccourse_check()</a></code> warns about working directory path</strong> - <em>Cloud-sync folder (OneDrive, Dropbox, Google Drive):</em> File locking can cause failures. Move your project to <code>Documents/</code> outside the synced area. - <em>Spaces in path:</em> Some tools cannot handle spaces. Move to a path like <code>C:/courses/mc451/</code>.</p>
 <p><strong><code><a href="reference/download_week.html">download_week()</a></code> says the folder already exists</strong> The function won’t overwrite existing files. Delete or rename the old folder if you want a fresh copy.</p>
 <hr>
 </div>
@@ -238,10 +241,11 @@
 ├── data/                 # unified_music.rda (lazy-loaded)
 ├── data-raw/             # Source CSV and preparation script
 ├── inst/
-│   ├── textbook/         # 17 markdown chapters (offline access)
+│   ├── textbook/         # 22 markdown chapters (offline access)
 │   └── courses/mc451/
 │       ├── weeks/        # Weekly .qmd templates (week_01–week_17)
-│       └── journal/      # Journal template
+│       ├── journal/      # Journal template
+│       └── workbook/     # R Workbook (Chapters 17–22)
 ├── vignettes/            # Long-form guides
 ├── tests/testthat/       # Unit tests
 └── .github/workflows/    # CI/CD (R CMD check, pkgdown)</code></pre>
@@ -264,8 +268,7 @@
 <tbody>
 <tr class="odd">
 <td><strong>vibes-to-variables</strong></td>
-<td>Open textbook — <em>From Vibes to Variables</em>
-</td>
+<td>Open textbook — <em>From Vibes to Variables</em> (2nd Ed.)</td>
 <td>
 <a href="https://sim-lab-siue.github.io/vibes-to-variables/" class="external-link">Read Online</a> | <a href="https://github.com/SIM-Lab-SIUE/vibes-to-variables" class="external-link">GitHub</a>
 </td>

@@ -10,12 +10,12 @@ Source:
 [`DESCRIPTION`](https://github.com/SIM-Lab-SIUE/coursepackR/blob/main/DESCRIPTION)
 
 Leith A (2026). *coursepackR: Course Tools for From Vibes to Variables*.
-R package version 1.0.1, <https://sim-lab-siue.github.io/coursepackR/>.
+R package version 2.0.0, <https://sim-lab-siue.github.io/coursepackR/>.
 
     @Manual{,
       title = {coursepackR: Course Tools for From Vibes to Variables},
       author = {Alex P. Leith},
       year = {2026},
-      note = {R package version 1.0.1},
+      note = {R package version 2.0.0},
       url = {https://sim-lab-siue.github.io/coursepackR/},
     }

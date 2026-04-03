@@ -18,5 +18,5 @@ if no courses are installed.
 
 ``` r
 list_courses()
-#> [1] "mc451"
+#> [1] "mc451" "mc501"
 ```
