@@ -1,35 +1,118 @@
 ---
-title: "Week 6: Toolkit & Qualitative Methods"
-subtitle: "Chapters 9-10"
+title: "Week 6: The Toolkit and Qualitative Methods"
+subtitle: "MC 451 Research Methods in Mass Media"
 date: "2026-09-29"
 format:
   html:
     embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
-## Overview
+## This Week
 
-Chapter 9 introduces the four major research methods. Chapter 10 teaches qualitative methods as standalone approaches: interviews, focus groups, and thematic analysis.
+This week bridges two essential chapters. Chapter 9 surveys the full range of tools available to media researchers --- from content analysis to computational methods --- while Chapter 10 dives deep into qualitative approaches that prioritize meaning, context, and interpretation. Together, these chapters help you see the landscape of methods before you commit to your own path.
 
-**Reading:** Chapter 9 and Chapter 10
+**Reading:** Chapter 9 (The Methodologist's Toolkit) and Chapter 10 (Qualitative Methods)
 
-## Key Concepts
+---
 
-- Four methods: content analysis, surveys, experiments, qualitative
-- Matching research questions to appropriate methods
-- Mixed methods designs
-- In-depth interviews: semi-structured design, rapport
-- Focus groups: group dynamics as data
-- Thematic analysis: Braun and Clarke six-phase process
-- Quality criteria: credibility, transferability, dependability, confirmability
+## What You Need to Do This Week
 
-## Learning Objectives
+### 1. Read Chapters 9 and 10
 
-1. Describe what each of the four methods can and cannot tell you
-2. Distinguish qualitative methods from quantitative content analysis
-3. Describe the six phases of thematic analysis
-4. Draft a research prospectus aligning Topic, Theory, and Data
+Read both chapters before class. As you read, pay attention to:
+
+- The differences between quantitative, qualitative, and mixed-methods designs
+- How qualitative methods generate rich, contextual understanding of media phenomena
+- Where your own project might fall on the quantitative--qualitative spectrum
+
+### 2. Complete the Project Prospectus Assignment (below)
+
+### 3. Continue Building Your Methods Vault
+
+Use Obsidian to draft your Prospectus before rendering in RStudio. The vault is your thinking space --- the PDF is the polished product. If you have not already, create a dedicated note in your `03_Project` folder for project planning. Link it to your reading notes from earlier weeks so that your ideas are connected rather than scattered across isolated files.
+
+### 4. Reflect on Your Librarian Visit
+
+If your library visit has already happened, revisit your notes from that session. The media source you identified during that visit should be one of the three pillars of your Prospectus. If your visit has not yet occurred, use the library databases to begin exploring potential sources on your own.
+
+---
 
 ## Assignment: Project Prospectus (25 pts)
 
-Write a one-page prospectus: Topic, Theory, Data source, preliminary RQs, and timeline.
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+Time to commit. The Prospectus is a one-page roadmap that formalizes your research trajectory. Over the past five weeks you have explored curiosity, trust, literature, and ethics --- now you synthesize all of that into a focused plan. The Prospectus ensures your Topic, Theory, and Media Source are aligned before you begin building your study. Think of it as a contract with yourself: this is what I am studying, this is the lens I am using, and this is where the evidence lives.
+
+### Step 1: Drafting
+
+Create a new `.qmd` file in Obsidian or RStudio and define the three pillars of your project. Your Prospectus should be approximately one page when rendered --- concise but substantive. Write in complete sentences, not bullet fragments. Each pillar should read as a focused paragraph.
+
+- **The Topic** --- A clear statement of the phenomenon you want to investigate. What is happening in media that you want to understand? Be specific. "Social media" is not a topic; "how TikTok creators frame mental health diagnoses" is.
+- **The Theory** --- The conceptual lens from your reading that will guide your analysis. Name the theory, cite the key author(s), and explain in 2--3 sentences how it applies to your topic. If you are using framing theory, for example, explain what frames you expect to find and why framing is the right lens for this content.
+- **The Media Source** --- The archive you identified during your librarian visit. What platform, publication, or database will supply your data? Why is this the right source for this topic? What is the approximate date range and volume of content available?
+
+### Step 2: Logic Check
+
+Before you render, step back and evaluate alignment. Read through your draft as if you are someone encountering this project for the first time. Ask yourself:
+
+- Is this archive the right place to find evidence about this topic?
+- Does this theory genuinely apply to this type of media content?
+- Can you realistically access enough content from this source to conduct a study?
+
+If any pillar does not connect cleanly to the other two, revise now. Misalignment at this stage compounds into serious problems later. It is far easier to change course now than after you have built a codebook and begun collecting data.
+
+### A Note on Scope
+
+A common mistake at this stage is choosing a topic that is too broad. "How does the media cover politics" is not a viable study. "How CNN and Fox News framed the 2024 presidential debates using conflict vs. strategy frames" is. Narrow your topic to a specific media context, a specific time window, and a specific theoretical angle. The tighter your scope, the stronger your study.
+
+### Step 3: Rendering
+
+Open your `.qmd` file in RStudio (inside the `03_Project` folder of your vault). Click the "Render" button and select PDF as your output format. Review the rendered document for formatting, clarity, and completeness before submitting. Make sure all three pillars are clearly labeled with headings and that nothing was cut off during rendering.
+
+### Submission
+
+Upload your rendered Prospectus as a PDF to Blackboard.
+
+**File name:** `Lastname_ProjectProspectus.pdf`
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Topic clearly stated as a specific, researchable phenomenon | 5 |
+| Theory named, cited, and explained with relevance to topic | 5 |
+| Media source identified with rationale and access details | 5 |
+| Three pillars are logically aligned with one another | 5 |
+| Rendered as PDF and correctly named | 5 |
+| **Total** | **25** |
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapters 11 and 12 --- Designing Surveys and Designing Experiments. While our course focuses on content analysis, understanding these methods helps you see how research questions shape design choices across all approaches. You will also formalize your research questions, translating the broad interests in your Prospectus into narrow, answerable inquiries.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_06.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 250--300 words.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

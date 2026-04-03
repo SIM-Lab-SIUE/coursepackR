@@ -1,0 +1,142 @@
+---
+title: "Week 9: The Rulebook and Sampling"
+subtitle: "MC 501 Research Methods in Mass Media"
+date: "2026-10-20"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+## This Week
+
+This week you build the most important document in your entire project: the codebook. Chapter 15 teaches you how to organize variable definitions, coding values, and decision rules into a comprehensive reference manual, while Chapter 16 walks you through sampling strategy and the pilot test that stress-tests your system before full data collection begins.
+
+**Reading:** Chapter 15 (The Rulebook) and Chapter 16 (The Sampling Plan and Pilot Test)
+
+---
+
+## What You Need to Do This Week
+
+### 1. Read Chapters 15 and 16
+
+Read both chapters before class. As you read, pay attention to:
+
+- The structure of a professional codebook and why every section matters
+- How sampling decisions affect what your study can and cannot claim
+- The purpose of a pilot test and what it reveals about your codebook
+- The difference between a census, a random sample, and a convenience sample
+
+### 2. Complete the Extended Codebook and Reliability Protocol Assignment (below)
+
+MC 451 students submit a standard codebook worth 50 points. MC 501 replaces that with an Extended Codebook and Reliability Protocol worth 75 points --- the same codebook requirements plus a formal reliability section that demonstrates you understand how to plan for and evaluate intercoder agreement.
+
+### 3. Gather Your Materials
+
+You will need your Research Proposal, Research Questions, and Definitions Practice assignments open as you build your codebook. Each previous assignment feeds directly into this one.
+
+---
+
+## Assignment: Extended Codebook and Reliability Protocol (75 pts)
+
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+Build the Rulebook for your content analysis --- and then go further. A codebook is the master reference document that governs every coding decision in your study. The reliability protocol is your plan for proving that the codebook works. Together, they demonstrate that your study is designed to produce consistent, defensible data. If your codebook is ambiguous, your data will be unreliable. If your reliability plan is vague, no reviewer will trust your results.
+
+### Part 1: The Codebook
+
+Your codebook must be written as a Quarto `.qmd` file in RStudio and rendered to PDF. Structure it as follows:
+
+#### Study Overview (1 paragraph)
+
+Provide a concise summary of your study: what you are investigating, why it matters, and what research questions guide the analysis.
+
+#### Unit of Analysis
+
+Define exactly what counts as one "item" in your study. Be precise. If your unit has sub-components, explain that structure here.
+
+#### Variable Entries
+
+For each variable, provide a complete entry:
+
+- **Variable Name** --- a short, consistent label
+- **Conceptual Definition** --- the theoretical meaning, grounded in literature
+- **Operational Definition** --- the step-by-step instruction for how to code this variable
+- **Measurement Level** --- nominal, ordinal, interval, or ratio, with a written rationale for why this level is appropriate
+- **Coded Values** --- all possible values with numeric codes and plain-language labels
+- **Decision Rules** --- instructions for handling ambiguous or borderline cases
+
+#### General Coding Instructions
+
+Include rules that apply across all variables: how to handle missing content, items in multiple categories, and study-wide conventions.
+
+### Part 2: Reliability Protocol
+
+This section goes beyond what MC 451 requires. Include all of the following:
+
+#### Planned Reliability Sample Size
+
+State how many items you will include in the reliability test and what percentage of your total sample that represents. Justify the number --- why is this sample size sufficient to detect problems in your codebook? Reference methodological literature on minimum reliability sample sizes if applicable.
+
+#### Target Krippendorff Alpha Thresholds
+
+For each variable, state your target Krippendorff alpha threshold. Different variables may have different targets depending on their complexity. Explain why you chose these thresholds and what level of agreement you consider acceptable for your study.
+
+#### Revision Triggers
+
+Define explicit decision rules for what happens when reliability falls short. For example: "If any variable falls below alpha = .70, the coders will meet to discuss disagreements, revise the decision rules for that variable, and retest on a new subsample before proceeding to full coding." Be specific about the process, not just the threshold.
+
+### Part 3: Qualitative Memo (200--300 words)
+
+Write a reflective memo on how your qualitative immersion shaped the variables and categories in your codebook. Address what patterns you noticed during immersion, how those observations informed your variable selection, and whether anything in the content challenged your original theory. Cite specific examples from your immersion.
+
+### Submission
+
+Render your `.qmd` file to PDF in RStudio. Upload the PDF to Blackboard.
+
+**File name:** `Lastname_ExtendedCodebook.pdf`
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| All variables present with full definitions | 10 |
+| Decision rules for each variable | 10 |
+| Unit of analysis defined | 5 |
+| Reliability protocol: sample size justified | 10 |
+| Reliability protocol: alpha thresholds set per variable | 10 |
+| Reliability protocol: revision triggers explicit | 10 |
+| Measurement level rationale for each variable | 5 |
+| Qualitative memo reflective and grounded in examples | 10 |
+| PDF rendered and correctly named | 5 |
+| **Total** | **75** |
+
+---
+
+## Connecting Forward
+
+Next week begins the R programming phase of the course. You will read Chapter 17 (Wrangling the Chaos) and submit your Sampling Plan and Pilot Test. Your codebook is a living document --- you will revise it based on what the pilot reveals. The reliability protocol you wrote this week is your roadmap for that revision process.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_09.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 450--500 words. Your entry must engage with the graduate extension reading for this week --- surface-level summaries of the main chapters will not receive full credit.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

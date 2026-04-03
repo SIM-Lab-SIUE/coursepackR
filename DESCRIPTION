@@ -1,7 +1,7 @@
 Package: coursepackR
 Type: Package
 Title: Course Tools for From Vibes to Variables
-Version: 1.0.1
+Version: 2.0.0
 Authors@R: person("Alex P.", "Leith", email = "aleith@siue.edu",
     role = c("aut", "cre"))
 Author: Alex P. Leith [aut, cre]

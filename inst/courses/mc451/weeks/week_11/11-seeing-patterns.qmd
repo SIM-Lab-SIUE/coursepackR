@@ -1,34 +1,160 @@
 ---
 title: "Week 11: Seeing Patterns"
-subtitle: "Chapter 18"
+subtitle: "MC 451 Research Methods in Mass Media"
 date: "2026-11-03"
 format:
   html:
     embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
-## Overview
+## This Week
 
-Two full sessions on data visualization with ggplot2 and the grammar of graphics.
+This week introduces data visualization through Chapter 18. You will learn how to see the shape of a dataset before testing anything --- how distributions cluster, where outliers hide, and why a well-built chart often communicates more than a table of numbers. In the R lab, you shift from reading about wrangling to doing it: your first graded R assignment asks you to clean a raw dataset from scratch.
 
-**Reading:** Chapter 18
+**Reading:** Chapter 18 (Seeing Patterns)
 
-## Key Concepts
+---
 
-- Grammar of graphics: data + aesthetics + geometries
-- Bar charts, histograms, boxplots, scatterplots, line charts
-- Faceting for small multiples
-- Customizing for publication
-- Choosing the right visualization
-- Reading visualizations critically
+## What You Need to Do This Week
 
-## Learning Objectives
+### 1. Read Chapter 18
 
-1. Create publication-quality charts with ggplot2
-2. Map variables to visual aesthetics
-3. Choose appropriate visualizations for different data types
-4. Identify misleading visualization techniques
+Read the full chapter before Tuesday's session. As you read, pay attention to:
+
+- The difference between exploratory visualization (for you) and explanatory visualization (for your audience)
+- How frequency distributions and cross-tabulations reveal structure in categorical data
+- Why checking your data for problems before analysis is not optional --- it is the analysis
+
+### 2. Attend Both Sessions
+
+This week runs across two 75-minute class sessions:
+
+- **Session 1 (Lecture):** Patterns in data --- frequency distributions, central tendency, variability, and the logic of exploratory data analysis. We will look at real examples of how dirty data produces misleading results.
+- **Session 2 (R Lab):** Guided walkthrough of the Data Wrangling assignment. You will work through the template in class with instructor support. Bring your laptop with RStudio and coursepackR ready. Plan to get through at least Steps 1--3 during the session; Steps 4--5 can be finished on your own.
+
+### 3. Complete the Data Wrangling Assignment (below)
+
+### 4. Confirm Your R Environment
+
+Before the lab session, verify that the following packages are installed and loadable:
+
+```r
+library(tidyverse)   # includes readr, dplyr, stringr, forcats
+library(janitor)     # for clean_names() and get_dupes()
+library(coursepackR)  # for unified_music dataset
+```
+
+If any package fails to load, install it using `install.packages("janitor")` or `remotes::install_github("SIM-Lab-SIUE/coursepackR")`.
+
+### 5. Continue Your Weekly Journal
+
+Your journal entry for this week is included in your download.
+
+---
 
 ## Assignment: Data Wrangling [R] (50 pts)
 
-Hand-code a variable for 30 songs, import and clean the dataset, join coded data, export as coding_data_clean.RDS.
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (rendered document + RDS file)
+
+### The Mission
+
+Raw data is rarely clean. Column names contain spaces and inconsistent capitalization. Categories are spelled three different ways. Rows are duplicated. Values that should be missing are coded as 999 or left blank. Before you can visualize or test anything, you must diagnose these problems and fix them --- and every decision you make must be documented in your `.qmd` file so that someone else could reproduce your exact steps.
+
+This assignment teaches you the most undervalued skill in data science: cleaning. Researchers spend far more time wrangling data than running tests. The work is unglamorous but essential. If your data is not clean, your results are not trustworthy.
+
+### What You Will Do
+
+The assignment template (`assignment-01-wrangling.qmd`) walks you through each step. Here is what the full workflow looks like:
+
+**Step 1: Import and Inspect**
+
+- Load the `music_data_raw.csv` file using `read_csv()` from the readr package. This function reads comma-separated files and automatically guesses column types.
+- Clean all column names to snake_case using `clean_names()` from the janitor package. This ensures consistent, R-friendly naming (no spaces, no capital letters, no special characters).
+- Inspect the first several rows with `head()` and check the structure with `glimpse()`. Write 1--2 sentences describing what you see: how many rows and columns, what the variables appear to measure.
+
+**Step 2: Diagnose Problems**
+
+- Check for missing values across all columns using `colSums(is.na())`. Note which columns have missing data and how many values are missing.
+- Identify duplicate rows using `get_dupes()` from janitor or by comparing `nrow()` before and after `distinct()`. How many duplicates exist?
+- Look for inconsistent category labels (e.g., "Rock", "rock", "ROCK") using `count()` on each categorical column. List every variant you find.
+- Flag out-of-range values in numeric columns (e.g., negative durations, percentages above 100). Use `summary()` to spot minimum and maximum values that look suspicious.
+- Write a short paragraph summarizing what you found. Be specific: "The genre column contains 4 unique spellings of rock" is useful; "there were some problems" is not.
+
+**Step 3: Clean**
+
+- Remove duplicate rows with `distinct()`.
+- Standardize text labels using `str_to_lower()` and fix remaining inconsistencies with `case_when()` inside `mutate()`.
+- Replace out-of-range or nonsensical values with `NA` using `na_if()` or conditional logic.
+- Document each cleaning decision with a comment or written explanation in your `.qmd` file. Reproducibility means someone reading your document can understand not just what you did but why you did it.
+
+**Step 4: Convert Variable Types**
+
+- Set all categorical variables as factors using `factor()` or `as.factor()` inside `mutate()`.
+- Verify the conversion with `glimpse()` --- factor columns should display as `<fct>` rather than `<chr>`.
+
+**Step 5: Export**
+
+- Save your cleaned dataset as an RDS file using `saveRDS(your_data, "music_data_clean.RDS")`. The RDS format preserves factor levels and column types --- unlike CSV, which loses that information.
+- Confirm the file was created and can be re-loaded with `readRDS()`. Print a quick `glimpse()` of the re-loaded data to verify everything survived the round trip.
+
+::: {.callout-important}
+## Required Files
+The `music_data_raw.csv` file and the `coding_tool.html` reference are provided by your instructor on Blackboard. The assignment template (`assignment-01-wrangling.qmd`) guides you step by step. Download all three before you begin.
+:::
+
+### Submission
+
+Upload **two files** to Blackboard:
+
+1. Your rendered `.qmd` document (HTML or PDF) showing all code and written responses.
+2. Your exported `music_data_clean.RDS` file.
+
+Both files are required for full credit. A rendered document without the RDS file, or an RDS file without the document, will receive a maximum of half credit.
+
+::: {.callout-tip}
+## Render Early, Render Often
+Do not wait until you have finished all five steps to render your document. Render after each step to catch errors early. A common problem: a typo in Step 2 causes Step 4 to fail, but you do not discover it until the night it is due. Rendering incrementally prevents last-minute debugging marathons.
+:::
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Data imported and column names cleaned to snake_case | 10 |
+| Diagnosis of problems documented with written summary | 10 |
+| Cleaning steps executed and explained | 10 |
+| Categorical variables correctly set as factors | 5 |
+| Clean dataset exported as RDS | 5 |
+| Document renders without errors | 10 |
+| **Total** | **50** |
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapter 19 (The Surprise Detector) and submit Describing Data, where you build frequency tables and publication-quality visualizations from your cleaned dataset. The wrangling skills you practiced this week are prerequisite --- you cannot visualize data that has not been cleaned. If your cleaning was thorough, next week's assignment will flow naturally from the dataset you built here.
+
+A clean backup dataset will also be provided on Blackboard for Week 12, so even if your cleaning had some issues, you will not be locked out of the visualization assignment. That said, doing the cleaning yourself is the best preparation --- students who understand how the data was built always produce better charts and smarter interpretations.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_11.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 250--300 words.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

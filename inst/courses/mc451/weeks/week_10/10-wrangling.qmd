@@ -1,36 +1,150 @@
 ---
 title: "Week 10: Wrangling the Chaos"
-subtitle: "Chapter 17"
+subtitle: "MC 451 Research Methods in Mass Media"
 date: "2026-10-27"
 format:
   html:
     embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
-## Overview
+## This Week
 
-Two full sessions on data wrangling. Import, clean, and transform data using the tidyverse.
+This week introduces you to R and the tidyverse through Chapter 17. You will learn how to think about data as tidy rectangular structures, use the pipe operator to chain operations, and practice core dplyr verbs that form the backbone of every data analysis workflow. Two class sessions give you time to absorb the concepts in lecture and then immediately apply them hands-on.
 
-**Reading:** Chapter 17
+**Reading:** Chapter 17 (Wrangling the Chaos)
 
-## Key Concepts
+---
 
-- Data wrangling pipeline: Import, Clean, Transform
-- Tidy data philosophy
-- Five core dplyr verbs: filter, select, mutate, group_by + summarize, arrange
-- The pipe operator
-- Handling missing values, inconsistent categories, duplicates
-- Working with factors
-- Saving cleaned data
+## What You Need to Do This Week
 
-## Learning Objectives
+### 1. Read Chapter 17
 
-1. Import data into R and clean column names
-2. Use dplyr verbs to filter, transform, and summarize
-3. Chain operations with the pipe
-4. Handle common data problems
-5. Save a cleaned dataset as RDS
+Read the full chapter before Tuesday's session. As you read, pay attention to:
 
-## Assignment: Sampling Plan & Pilot (75 pts)
+- What makes data "tidy" and why that structure matters for analysis
+- How the pipe operator (`|>`) lets you build readable, step-by-step data transformations
+- The core dplyr verbs: `filter()`, `select()`, `mutate()`, `arrange()`, `summarize()`, and `group_by()`
 
-Part 1: Sampling strategy. Part 2: Pilot test on 10-20 items with reliability and revisions.
+### 2. Attend Both Sessions
+
+This week runs across two 75-minute class sessions:
+
+- **Session 1 (Lecture):** Tidy data principles, the tidyverse ecosystem, and the pipe operator. We will walk through how messy real-world data becomes structured, analysis-ready tables. You will see why "one observation per row, one variable per column" is not just a convention but a requirement for nearly every R function you will use.
+- **Session 2 (R Lab):** Hands-on practice with dplyr verbs using the `unified_music` dataset from coursepackR. Bring your laptop with RStudio open and coursepackR installed. We will filter rows, select columns, create new variables with `mutate()`, and summarize data by group --- all skills you will use in your R assignments over the next three weeks.
+
+### 3. Complete the Sampling Plan and Pilot Assignment (below)
+
+### 4. Install Required R Packages (if not already done)
+
+If you have not yet installed coursepackR and the tidyverse, do so before the R lab session:
+
+```r
+# Install coursepackR (one time only)
+remotes::install_github("SIM-Lab-SIUE/coursepackR")
+
+# Load the package to access unified_music
+library(coursepackR)
+library(tidyverse)
+```
+
+### 5. Continue Your Weekly Journal
+
+Your journal entry for this week is included in your download.
+
+---
+
+## Assignment: Sampling Plan and Pilot (75 pts)
+
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+Prove your method works. Before you collect hundreds of items for your final project, you need to demonstrate that your methodology is sound, your archive is viable, and your codebook functions in practice. The Sampling Plan locks down your data collection strategy. The Pilot Test puts that strategy to work on a small sample, revealing problems while they are still easy to fix.
+
+Think of this assignment as a dress rehearsal. If something breaks during a pilot on 10 items, you can adjust. If it breaks during full data collection on 200 items, you lose weeks.
+
+### Part 1: Sampling Plan (35 pts)
+
+Create a detailed plan for how you will collect your data. This section should read like a methods paragraph from a published study --- specific enough that a classmate could replicate your data collection without asking you a single question. Address each of the following:
+
+- **Data Source / Archive:** Identify the specific platform, database, or publication you will draw content from. Justify why this source is the best match for your research questions. If you are using a social media platform, specify the exact account, hashtag, or search endpoint. If you are using a news database like LexisNexis or ProQuest, name the specific database and any publication filters you will apply.
+- **Exact Search Terms:** Write out the precise queries you will use to locate content, including any Boolean operators (AND, OR, NOT). If your source does not use search terms (e.g., you are sampling from a specific YouTube channel), describe the exact navigation path instead.
+- **Date Range:** Specify the start and end dates for your sample. Provide a rationale --- why this window? Does it capture a particular event, trend, or policy period? A strong rationale ties the date range to your research question (e.g., "I selected January--March 2025 because this period covers the initial rollout of the policy").
+- **Sampling Strategy:** State whether you are using a census (all items in the frame), random sampling, or systematic sampling (e.g., every 5th item). Include your target sample size and justify why that number is sufficient for your study. If you are using random or systematic sampling, describe the exact procedure: how will you generate random numbers, or what is your skip interval?
+- **Unit of Analysis:** Confirm the unit of analysis from your codebook. What counts as one "item" in your dataset? A single tweet? A full news article? One Instagram post including caption and image? A single YouTube video including title, description, and thumbnail? This must match the unit defined in your codebook. If there is any ambiguity (e.g., a Twitter thread --- is it one item or many?), resolve it here.
+
+### Part 2: Pilot Test (40 pts)
+
+Apply your complete codebook to a sample of exactly 10 items drawn from your archive. This is a real coding exercise --- not hypothetical. You must actually locate 10 items, read or view them, and code every variable in your codebook for each item.
+
+The purpose of the pilot is not to produce findings. It is to stress-test your instrument. You are looking for places where the codebook breaks --- where the instructions are ambiguous, where categories overlap, where real content does not fit the boxes you built.
+
+- **Code 10 Items:** Use your codebook to code all variables for each of the 10 items. Present the results in a table or structured format. Each row is one item; each column is one variable from your codebook. Include the item identifier (URL, headline, or timestamp) so the instructor can verify your coding.
+- **Coding Log:** Keep a running log as you code. Note every moment of hesitation, confusion, or ambiguity. If you paused on a variable and were unsure which code to apply, write it down. If two categories seemed to overlap, document the overlap. The log should read like a honest diary of the coding process.
+- **Reliability Report:** After coding all 10 items, identify at least two variables that caused problems. For each, explain what went wrong and why. Was the category definition too vague? Were the response options missing a common case? Did you and a hypothetical second coder interpret the variable differently? If you coded with a partner, report any disagreements and how you resolved them.
+- **Revised Codebook Notes:** Based on your Reliability Report, describe the changes you have made or plan to make to your codebook. Be specific: "I added a fourth category to Variable 7 because..." is useful; "I will fix some things" is not. If no changes were needed, explain why your definitions held up and what made them robust.
+
+::: {.callout-tip}
+## Why Pilot?
+Professional researchers almost always pilot their instruments before full data collection. A pilot on 10 items typically surfaces 80% of the problems you would encounter on 200. The cost of discovering a broken variable after coding 200 items is enormous --- you either re-code everything or live with flawed data. Ten items now saves you hours later.
+:::
+
+::: {.callout-note}
+## Codebook Alignment
+Your Sampling Plan and Pilot should reference the codebook you built in previous weeks. If your codebook has changed since you last submitted it, include the updated version as an appendix to this document. The instructor needs to see the codebook you actually used during the pilot, not an earlier draft.
+:::
+
+### Submission
+
+Render your `.qmd` file as a single PDF. Your document should be approximately 2--4 pages and include both Parts 1 and 2.
+
+**File name:** `Lastname_SamplingPilot.pdf`
+
+Upload to Blackboard by Friday at 11:59 PM. Make sure your document includes both Part 1 and Part 2 in a single file --- do not submit them separately.
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Data source identified with clear justification | 5 |
+| Exact search terms (or navigation path) specified | 5 |
+| Date range stated with rationale | 5 |
+| Sampling strategy and target size justified | 5 |
+| Unit of analysis confirmed and consistent with codebook | 5 |
+| Pilot coding completed on 10 items | 10 |
+| Coding log documents moments of hesitation and confusion | 10 |
+| Reliability report identifies and explains problem variables | 10 |
+| Revised codebook notes describe specific changes | 5 |
+| Rendered as PDF and correctly named | 5 |
+| **Total** | **75** |
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapter 18 (Seeing Patterns) and submit your first R assignment: Data Wrangling. Your Sampling Plan tells you how to build your dataset. Your revised codebook tells you how to code it. The R skills you practiced this week --- filtering, selecting, and transforming data with dplyr --- are exactly the tools you will use next week to clean a raw dataset and prepare it for analysis.
+
+The three R assignments build on each other in sequence: Week 11 cleans the data, Week 12 visualizes it, and Week 13 tests it statistically. Think of them as a single pipeline broken into manageable pieces. The Sampling Plan and Pilot you submit this week runs in parallel --- it applies to your own content analysis project, while the R assignments use the shared `unified_music` dataset.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_10.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 250--300 words.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

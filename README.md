@@ -6,7 +6,7 @@
 
 Student-facing R package for **MC-451 Research Methods** at SIUE, built
 around the open textbook *[From Vibes to Variables: A Field Guide to Open
-Media Science](https://sim-lab-siue.github.io/vibes-to-variables/)*.
+Media Science](https://sim-lab-siue.github.io/vibes-to-variables/)* (2nd Edition).
 
 ## Install
 
@@ -50,10 +50,11 @@ head(unified_music)
 
 | Function | Description |
 |----------|-------------|
-| `mccourse_setup()` | One-time environment setup — checks compiler toolchain (Rtools/Xcode CLT), Quarto CLI version, TinyTeX, and installs all 10 course R packages |
-| `mccourse_check()` | Diagnostic check — verifies R version, RStudio, Quarto version (>= 1.4.0), Git, compiler toolchain, all course packages, course templates, and working directory path safety |
+| `mccourse_setup()` | One-time environment setup — checks compiler toolchain (Rtools/Xcode CLT), Quarto CLI version, TinyTeX, and installs all course R packages |
+| `mccourse_check()` | Diagnostic check — verifies R version, RStudio, Quarto (>= 1.4.0), Git, compiler toolchain, course packages, templates, and working directory path safety |
 | `mccourse_update()` | Check for and install package updates from GitHub |
 | `download_week()` | Download a specific week's assignment template to your working directory |
+| `download_workbook()` | Download the R Workbook — guided practice covering Chapters 17-22 |
 | `download_journal()` | Download the reflective journal template for a given week |
 | `open_week()` | Open a downloaded week's folder in your system file browser |
 | `final_project()` | Scaffold a final project folder with Quarto document, bibliography, and data directory |
@@ -78,7 +79,7 @@ See the [Unified Music Dataset vignette](https://sim-lab-siue.github.io/coursepa
 
 ### Textbook Chapters
 
-All 17 chapters of *From Vibes to Variables* are bundled for offline reading:
+All 22 chapters of *From Vibes to Variables* (2nd Edition) are bundled for offline reading:
 
 ```r
 # Path to chapter 1
@@ -89,7 +90,7 @@ Read the full book online at <https://sim-lab-siue.github.io/vibes-to-variables/
 
 ### Weekly Templates
 
-17 weeks of `.qmd` assignment templates for MC-451, aligned with textbook chapters:
+17 weeks of `.qmd` assignment templates for MC-451, aligned with the 22-chapter textbook:
 
 ```r
 list_weeks("mc451")
@@ -114,7 +115,7 @@ Each week during the semester:
 4. **Render** to HTML or PDF when finished (click Render in RStudio or `quarto render`)
 5. **Reflect** in your journal:
    ```r
-   download_journal("mc451")
+   download_journal(3)
    ```
 
 ---
@@ -138,11 +139,8 @@ Download or update Quarto CLI from <https://quarto.org/docs/get-started/>. After
 Run `mccourse_setup()` to install all missing packages automatically, then re-run `mccourse_check()`.
 
 **`mccourse_check()` warns about working directory path**
-- *Cloud-sync folder (OneDrive, Dropbox, Google Drive):* File locking by the sync client can cause save failures and corrupted files. Move your project folder to `Documents/` or the Desktop outside the synced area.
-- *Spaces in path:* Some tools (including Quarto) cannot handle paths that contain spaces. Move the project to a path like `C:/courses/mc451/` that contains no spaces.
-
-**`mccourse_check()` shows any other failing check**
-Run `mccourse_setup()` to install missing components, then re-check.
+- *Cloud-sync folder (OneDrive, Dropbox, Google Drive):* File locking can cause failures. Move your project to `Documents/` outside the synced area.
+- *Spaces in path:* Some tools cannot handle spaces. Move to a path like `C:/courses/mc451/`.
 
 **`download_week()` says the folder already exists**
 The function won't overwrite existing files. Delete or rename the old folder if you want a fresh copy.
@@ -158,10 +156,11 @@ coursepackR/
 ├── data/                 # unified_music.rda (lazy-loaded)
 ├── data-raw/             # Source CSV and preparation script
 ├── inst/
-│   ├── textbook/         # 17 markdown chapters (offline access)
+│   ├── textbook/         # 22 markdown chapters (offline access)
 │   └── courses/mc451/
 │       ├── weeks/        # Weekly .qmd templates (week_01–week_17)
-│       └── journal/      # Journal template
+│       ├── journal/      # Journal template
+│       └── workbook/     # R Workbook (Chapters 17–22)
 ├── vignettes/            # Long-form guides
 ├── tests/testthat/       # Unit tests
 └── .github/workflows/    # CI/CD (R CMD check, pkgdown)
@@ -173,7 +172,7 @@ coursepackR/
 
 | Project | Description | Link |
 |---------|-------------|------|
-| **vibes-to-variables** | Open textbook — *From Vibes to Variables* | [Read Online](https://sim-lab-siue.github.io/vibes-to-variables/) \| [GitHub](https://github.com/SIM-Lab-SIUE/vibes-to-variables) |
+| **vibes-to-variables** | Open textbook — *From Vibes to Variables* (2nd Ed.) | [Read Online](https://sim-lab-siue.github.io/vibes-to-variables/) \| [GitHub](https://github.com/SIM-Lab-SIUE/vibes-to-variables) |
 | **liaison-program** | Course support website with syllabus, setup guides, and resources | [Visit Site](https://sim-lab-siue.github.io/liaison-program/) \| [GitHub](https://github.com/SIM-Lab-SIUE/liaison-program) |
 
 ---

@@ -1,0 +1,118 @@
+---
+title: "Week 5: Research Questions and Ethics"
+subtitle: "MC 501 Research Methods in Mass Media"
+date: "2026-09-22"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+## This Week
+
+This week you move from broad curiosity to precise questioning. Chapter 7 teaches you how to construct research questions that are specific, measurable, and grounded in theory. Chapter 8 addresses the ethical obligations that come with studying human communication --- from informed consent to the responsibilities of working with publicly available data.
+
+**Reading:** Chapter 7 (The Research Question) and Chapter 8 (The Ethics of Inquiry)
+
+---
+
+## What You Need to Do This Week
+
+### 1. Read Chapters 7 and 8
+
+As you read, pay attention to:
+
+- The difference between a topic and a research question
+- How variables emerge naturally from well-constructed RQs
+- Why ethical considerations apply even when analyzing public social media posts
+- The distinction between exempt, expedited, and full IRB review
+
+### 2. Select Three Peer-Reviewed Articles for Annotation
+
+MC 451 students annotate one article this week. MC 501 requires three. Choose all three articles before you begin annotating. Each must be peer-reviewed, from a reputable communication or media journal, and published within the last 10 years (2016 or later). All three must be directly relevant to your proposed research topic.
+
+### 3. Complete the Annotated Manuscripts Assignment (below)
+
+---
+
+## Assignment: Annotated Manuscripts (25 pts)
+
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF uploads --- 3 files)
+
+### The Mission
+
+Reading like a researcher means looking past the story and identifying the underlying mechanics. Every published study is built on a scaffold of variables, theories, and methodological choices --- and learning to see that scaffold is a skill you will use in every assignment that follows. This week you will use Zotero to dissect three peer-reviewed articles, annotating the structural elements that will inform your own research design. The goal is not to summarize but to reverse-engineer: identify what the authors measured, what theory guided their predictions, and how their choices connect to your own project.
+
+### Step 1: Selection
+
+For each of the three articles:
+
+1. Choose a peer-reviewed journal article directly relevant to your proposed research topic
+2. Add it to your Zotero library using the browser connector or by dragging the PDF into Zotero
+3. Each article must meet all three criteria:
+   - From a reputable communication or media journal (e.g., *Journal of Communication*, *Communication Research*, *Journalism & Mass Communication Quarterly*, *New Media & Society*, *Human Communication Research*)
+   - Peer-reviewed (not a book review, editorial, or conference abstract)
+   - Published within the last 10 years (2016 or later)
+
+The three articles should represent different angles on your topic --- different methods, different theoretical lenses, or different media contexts. Avoid selecting three articles that say essentially the same thing.
+
+### Step 2: Deep Dissection (repeat for each article)
+
+Open each PDF in the Zotero built-in reader and annotate it thoroughly:
+
+1. **Highlight variables** --- use one consistent color to highlight every mention of independent and dependent variables. Look in the literature review, hypotheses, and methods sections.
+2. **Add margin notes** --- write at least 5 margin notes per article explaining how specific passages connect to your own project. These should be analytical connections, not summaries.
+3. **Identify the primary theory** --- find and tag the main theoretical framework. Add a note at the first mention explaining what the theory predicts and why the authors chose it.
+
+### Step 3: Export
+
+For each article:
+
+1. In Zotero, right-click the PDF attachment and select **Export PDF**
+2. Ensure **Include Annotations** is checked
+3. Save the exported PDF to your `02_Literature` folder in your Methods Vault
+
+### Submission
+
+Upload all three annotated PDFs to Blackboard.
+
+**File names:** `Lastname_AnnotatedManuscript_1.pdf`, `Lastname_AnnotatedManuscript_2.pdf`, `Lastname_AnnotatedManuscript_3.pdf`
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| All 3 articles are peer-reviewed and relevant to the proposed topic | 5 |
+| Variables highlighted consistently in each article | 5 |
+| At least 5 substantive margin notes per article (15 total) | 5 |
+| Primary theory identified and explained in each article | 5 |
+| Files exported with annotations and named correctly | 5 |
+| **Total** | **25** |
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapters 9 and 10 --- the methods overview and qualitative methods. You will also draft your Research Proposal, a structured sentence outline that forces the specificity a one-page prospectus cannot achieve. The variables, theories, and methods you identified across all three annotations will feed directly into that proposal.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_05.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 450--500 words. Your entry must engage with the graduate extension reading for this week --- surface-level summaries of the main chapters will not receive full credit.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

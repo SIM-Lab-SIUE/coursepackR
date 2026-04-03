@@ -1,0 +1,47 @@
+---
+title: "Weekly Journal Entry"
+subtitle: "Week 1: Course Introduction"
+author: "Your Name"
+date: today
+params:
+  week: 1
+  chapters: "None (syllabus week)"
+  approach: "connector"
+format:
+  html:
+    embed-resources: true
+    theme: cosmo
+  pdf:
+    toc: false
+    colorlinks: true
+---
+
+## Journal Metadata
+
+| Field | Value |
+|-------|-------|
+| **Week** | 1 |
+| **Reading** | Syllabus and course website |
+| **Approach** | Connector / Troubleshooter / Critic (choose one) |
+
+---
+
+## Instructions
+
+Reflect on your first week. Write 250-300 words using one of three approaches:
+
+- **The Connector**: Link something from this week to your interests, goals, or prior experience
+- **The Troubleshooter**: Document a setup challenge you faced and how you resolved it
+- **The Critic**: What assumptions does this course seem to make? Do you agree with them?
+
+Delete the two approaches you are NOT using. Write your reflection below.
+
+---
+
+## My Reflection
+
+[Write 250-300 words here]
+
+---
+
+**Push to GitHub** after writing, then submit the rendered PDF to Blackboard.

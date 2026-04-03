@@ -1,0 +1,128 @@
+---
+title: "Week 13: Interpreting the Call"
+subtitle: "MC 501 Research Methods in Mass Media"
+date: "2026-11-17"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+## This Week
+
+This week is the culmination of your R training. Chapter 20 introduces inferential statistics --- the logic of hypothesis testing, the chi-square test, and effect sizes. You have spent two weeks cleaning and describing data. Now you ask the harder question: is the pattern you observed real, or could it have happened by chance?
+
+**Reading:** Chapter 20 (Interpreting the Call)
+
+---
+
+## What You Need to Do This Week
+
+### 1. Read Chapter 20
+
+Read the full chapter before Tuesday's session. As you read, pay attention to:
+
+- The logic of null hypothesis significance testing --- what the null hypothesis claims and what it means to reject it
+- How the chi-square test works: expected versus observed frequencies in a contingency table
+- Why statistical significance alone is not enough --- effect sizes tell you whether a result matters in practice
+- The difference between reporting results for researchers (APA format) and reporting them for the public (journalist translation)
+
+### 2. Attend Both Sessions
+
+- **Session 1 (Lecture):** The logic of inference --- sampling distributions, p-values, Type I and Type II errors, and the chi-square test of independence.
+- **Session 2 (R Lab):** Running the Inferencing Data assignment in R --- contingency tables, chi-square tests, Cramer's V, and standardized residuals.
+
+### 3. Complete the Inferencing Data Assignment (below)
+
+---
+
+## Assignment: Inferencing Data [R] (100 pts)
+
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+A pattern in your data might be real or it might be random noise. Last week you described what the data looks like. This week you test whether what you see is statistically meaningful. You will state hypotheses, run a chi-square test, calculate an effect size, examine residuals, and communicate findings in two registers: formal APA reporting and plain-language journalism.
+
+MC 501 includes everything MC 451 requires (90 pts base) plus a limitations discussion (10 pts).
+
+### Base Requirements (90 pts)
+
+The assignment template guides you through each section:
+
+**Part 1: State Your Hypotheses** --- Write null and alternative hypotheses in plain English before running any code. Name the actual variables you are testing.
+
+**Part 2: Build the Contingency Table** --- Create a two-way table using `table()`. Inspect with `addmargins()` and calculate proportions with `prop.table()`. Write 1--2 sentences describing what the table shows.
+
+**Part 3: Run the Chi-Square Test** --- Execute using `chisq.test()`. Report the test statistic, degrees of freedom, and p-value. State whether the result is significant at alpha = .05 and your decision about the null hypothesis.
+
+**Part 4: Calculate and Interpret the Effect Size** --- Calculate Cramer's V. Interpret the magnitude using standard benchmarks (small ~ .10, medium ~ .30, large ~ .50). Explain what the effect size tells you that the p-value alone cannot.
+
+**Part 5: Examine the Residuals** --- Extract standardized residuals using `$stdres`. Identify cells where the absolute residual exceeds 2.0. Explain what each notable residual means in context.
+
+**Part 6: Write the Results Paragraph (APA Format)** --- Include the test used, variables tested, test statistic with degrees of freedom and p-value, effect size with interpretation, and a statement about which cells contributed most.
+
+**Part 7: Write the Journalist Translation** --- Rewrite the finding for a general audience. Zero jargon. Lead with the finding, not the method. Use concrete language. 3--5 sentences.
+
+::: {.callout-important}
+## Both Outcomes Are Valid
+The chi-square test may or may not produce a statistically significant result. Both outcomes are scientifically valid. Your grade depends on the accuracy of your interpretation, not on whether you reject the null hypothesis.
+:::
+
+### Graduate Extension: Limitations Discussion (10 pts)
+
+Write 1--2 paragraphs addressing the limitations of your chosen test. Your discussion must address all four of the following:
+
+1. **Assumptions:** What assumptions does the chi-square test make (e.g., expected cell frequencies, independence of observations)? State each assumption explicitly.
+2. **Assumption check:** Are those assumptions met in your data? Provide evidence --- for example, report the minimum expected cell frequency from your test output.
+3. **Alternative tests:** What would a different test tell you? If you had continuous data, what test might be more appropriate? If your expected frequencies were too low, what alternative would you use?
+4. **Sample size:** How does your sample size affect your confidence in the result? Would a larger sample change the practical significance even if statistical significance is unchanged?
+
+### Submission
+
+Render your `.qmd` file as a PDF. All code chunks must execute without errors. Upload the PDF to Blackboard.
+
+**File name:** `Lastname_InferencingData.pdf`
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Hypotheses stated before analysis code | 10 |
+| Contingency table correctly built with proportions | 10 |
+| Chi-square test executed correctly | 10 |
+| Test statistic, df, and p-value reported accurately | 10 |
+| Effect size (Cramer's V) calculated and interpreted | 15 |
+| Standardized residuals analyzed with contextual explanation | 10 |
+| APA results paragraph complete and correctly formatted | 15 |
+| Journalist translation clear, jargon-free, and accurate | 10 |
+| Limitations discussion (all 4 components addressed) | 10 |
+| **Total** | **100** |
+
+---
+
+## Connecting Forward
+
+After Thanksgiving break, you return for the final teaching week covering Chapters 21 and 22 (Portfolio and Going Live) and submit your CITI Ethics Certification. You will also begin assembling the White Paper using the `mc501-white-paper` template. Everything you have built this semester converges into that single deliverable.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_13.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 450--500 words. Your entry must engage with the graduate extension reading for this week --- surface-level summaries of the main chapters will not receive full credit.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

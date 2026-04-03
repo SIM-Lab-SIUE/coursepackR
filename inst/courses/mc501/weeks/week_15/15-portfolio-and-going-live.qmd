@@ -1,0 +1,113 @@
+---
+title: "Week 15: Portfolio and Going Live"
+subtitle: "MC 501 Research Methods in Mass Media"
+date: "2026-12-01"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+## This Week
+
+This is the last teaching week of the semester. Chapter 21 walks you through the structure of a research portfolio --- what goes in it, how the pieces connect, and how to present your work as a coherent whole. Chapter 22 covers the mechanics of going live: rendering your Quarto Book, pushing to GitHub, and enabling GitHub Pages so your work has a public URL.
+
+**Reading:** Chapter 21 (The Portfolio) and Chapter 22 (Going Live)
+
+---
+
+## What You Need to Do This Week
+
+### 1. Read Chapters 21 and 22
+
+Read both chapters before class. As you read, pay attention to:
+
+- How the sections of the portfolio map to the research process
+- The difference between rendering locally and publishing via GitHub Pages
+- How `_quarto.yml` controls the structure of a Quarto Book
+- What makes a portfolio look professional versus thrown together
+
+### 2. Complete the CITI Ethics Certification (below)
+
+### 3. Begin Assembling Your White Paper
+
+Download the `mc501-white-paper` template via coursepackR or Blackboard. Open the project in RStudio and start placing your writing into the pre-built `.qmd` files. The White Paper is due in Week 17, but you should have the project open, rendering, and partially populated before you leave class this week.
+
+The White Paper structure differs from the MC 451 final portfolio. Review the full requirements now so you understand the scope:
+
+- Executive summary (300--500 words)
+- Literature review (1,500--2,500 words, 15+ sources)
+- Methodology with complete reliability results
+- Study 1 (qualitative, Braun and Clarke thematic analysis)
+- Study 2 (quantitative, descriptive and inferential)
+- Discussion with structured subsections
+
+Do not wait until Week 16 to begin writing. The work week is for polishing and rendering, not for drafting from scratch.
+
+### 4. Verify Your GitHub Pages Setup
+
+If you have not already enabled GitHub Pages on your repository, do it now. Go to your repository Settings > Pages > set the source to the `gh-pages` branch (or `main` with `/docs` folder, depending on your Quarto configuration). Confirm the site loads in an incognito browser window.
+
+---
+
+## Assignment: CITI Ethics Certification (25 pts)
+
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+Before any researcher collects data involving human subjects, they must understand the ethical framework governing that work. The CITI Program is the industry-standard training for research ethics. Your certification is valid for three years and appears on your CV.
+
+### Why It Matters for Content Analysis
+
+Content analysis of public media does not typically require IRB review, but it requires ethical awareness. When does a public post become private? What obligations exist when data includes identifiable individuals? How do you handle sensitive content? The CITI training gives you a framework for answering these questions --- not just for this course, but for any research you do in the future.
+
+### Steps
+
+1. **Log in through SIUE SSO** at [citiprogram.org](https://www.citiprogram.org/). Do NOT create a separate account --- use the SIUE single sign-on.
+2. **Find your courses.** Navigate to Institutional Courses > View Courses > Southern Illinois University Edwardsville.
+3. **If no courses appear,** click Add a Course and select **Social and Behavioral Research**.
+4. **Complete all required modules.** This takes 2--3 hours across 1--2 sittings. CITI saves your progress.
+5. **Download your Certificate of Completion** as a PDF.
+
+### Already Certified?
+
+If you completed CITI within the past 3 years at SIUE or another institution, email Dr. Leith before the deadline with your existing certificate attached.
+
+### Submission
+
+Upload your certificate to Blackboard as a PDF.
+
+**File name:** `Lastname_CITICert.pdf`
+
+### Grading
+
+This assignment is graded on a completion basis. A valid CITI certificate submitted by the deadline = 25 points. No partial credit.
+
+---
+
+## Connecting Forward
+
+Week 16 is a remote work week --- no class, no reading. Use it to write, render, and publish your White Paper. Week 17 is finals --- the White Paper is due Friday, December 19 at 11:59 PM. Everything you do this week and next is in service of that final submission.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_15.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 450--500 words. Your entry must engage with the graduate extension reading for this week --- surface-level summaries of the main chapters will not receive full credit.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

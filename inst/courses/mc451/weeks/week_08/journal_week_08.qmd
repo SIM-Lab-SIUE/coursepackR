@@ -1,0 +1,47 @@
+---
+title: "Weekly Journal Entry"
+subtitle: "Week 08"
+author: "Your Name"
+date: today
+params:
+  week: 08
+  chapters: "Ch 13: Music Immersion and Ch 14: Vibes to Variables"
+  approach: "connector"
+format:
+  html:
+    embed-resources: true
+    theme: cosmo
+  pdf:
+    toc: false
+    colorlinks: true
+---
+
+## Journal Metadata
+
+| Field | Value |
+|-------|-------|
+| **Week** | 08 |
+| **Reading** | Ch 13: Music Immersion and Ch 14: Vibes to Variables |
+| **Approach** | Connector / Troubleshooter / Critic (choose one) |
+
+---
+
+## Instructions
+
+Reflect on this week's reading and coursework. Write 250-300 words using one of three approaches:
+
+- **The Connector**: Link this week's material to something bigger --- your project, a previous concept, real-world media, or your own experience
+- **The Troubleshooter**: Document a challenge you faced this week and how you worked through it
+- **The Critic**: Ask a critical question about this week's material. Challenge an assumption or explore an implication.
+
+Delete the two approaches you are NOT using. Write your reflection below.
+
+---
+
+## My Reflection
+
+[Write 250-300 words here]
+
+---
+
+**Push to GitHub** after writing, then submit the rendered PDF to Blackboard.

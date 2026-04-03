@@ -1,0 +1,126 @@
+---
+title: "Week 12: The Surprise Detector"
+subtitle: "MC 501 Research Methods in Mass Media"
+date: "2026-11-10"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+## This Week
+
+This week moves from cleaning data to describing it. Chapter 19 introduces the logic of descriptive statistics and data visualization --- how frequency tables, bar charts, and boxplots let you see the structure of your data before you test anything. In the R lab, you will build publication-quality graphics using ggplot2 and learn to translate visual patterns into written interpretation.
+
+**Reading:** Chapter 19 (The Surprise Detector)
+
+---
+
+## What You Need to Do This Week
+
+### 1. Read Chapter 19
+
+Read the full chapter before Tuesday's session. As you read, pay attention to:
+
+- How frequency tables and percentages summarize categorical variables
+- The grammar of graphics: how ggplot2 builds charts layer by layer (data, aesthetics, geometries)
+- Why interpretation matters more than the chart itself --- a beautiful graphic without explanation is just decoration
+
+### 2. Attend Both Sessions
+
+This week runs across two 75-minute class sessions:
+
+- **Session 1 (Lecture):** Descriptive statistics for categorical data --- frequency distributions, cross-tabulations, and measures of central tendency.
+- **Session 2 (R Lab):** Building visualizations in ggplot2 --- bar charts, stacked proportional charts, and boxplots. You will work through the assignment template with instructor support.
+
+### 3. Complete the Describing Data Assignment (below)
+
+---
+
+## Assignment: Describing Data [R] (100 pts)
+
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+Numbers alone do not tell stories. A table of frequencies is accurate but forgettable. A well-designed chart communicates the same information in seconds. This assignment asks you to use frequency tables and ggplot2 visualizations to describe the structure of your cleaned dataset and produce executive-summary-style graphics that a non-technical reader could understand.
+
+MC 501 includes everything MC 451 requires (75 pts base) plus two additional components: a subgroup analysis and a narrative connecting your descriptive findings to your Study 1 qualitative themes.
+
+### Base Requirements (75 pts)
+
+The assignment template guides you through each section:
+
+**Part 1: Frequency Tables** --- Use `count()` to tabulate distributions. Add percentage columns. Build a cross-tabulation with `pivot_wider()`.
+
+**Part 2: Bar Chart** --- Create a horizontal bar chart of genre frequencies. Sort bars with `fct_reorder()`, apply a colorblind-friendly palette, and add complete labels.
+
+**Part 3: Stacked Proportional Chart** --- Show the proportion of each `mode` within each `genre` using `position = "fill"`. Format the y-axis as percentages.
+
+**Part 4: Boxplot** --- Choose one numeric audio feature and create a boxplot comparing its distribution across genres. Write a title that tells the reader what to look for.
+
+**Part 5: Free-Choice Visualization** --- Create one additional chart of your choosing. Write 2--3 sentences justifying your choice and what it reveals.
+
+**Part 6: Interpretation** --- Write 2--3 paragraphs explaining what your visualizations reveal. Cite specific numbers. Synthesize across charts rather than narrating each one individually.
+
+### Graduate Extension: Subgroup Analysis (10 pts)
+
+Break down at least one variable by a meaningful subgroup and compare distributions. For example, you might compare genre distributions across decades, or examine how an audio feature varies within a specific subset of your data. The subgroup must be theoretically motivated --- explain why this comparison matters for your research questions.
+
+Include:
+
+- The subgroup comparison visualized in a chart or table
+- 1 paragraph interpreting what the subgroup breakdown reveals that the overall analysis obscured
+
+### Graduate Extension: Qualitative-Quantitative Connection (15 pts)
+
+Write 1--2 paragraphs connecting your descriptive findings to the qualitative themes from Study 1. Do the numbers confirm what your immersion suggested? Where do the quantitative patterns align with your qualitative observations, and where do they diverge? This narrative is practice for the Discussion section of your White Paper, where you will need to triangulate across both studies.
+
+### Submission
+
+Render your `.qmd` file as a PDF. All code chunks must execute without errors. Upload the PDF to Blackboard.
+
+**File name:** `Lastname_DescribingData.pdf`
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Frequency tables with counts and percentages | 10 |
+| Bar chart is publication-quality with sorted bars and labels | 10 |
+| Stacked proportional chart correctly scaled to 100% | 10 |
+| Boxplot compares numeric feature across genres | 10 |
+| Free-choice chart with written justification | 10 |
+| Interpretation paragraphs cite specific numbers and patterns | 15 |
+| Document renders without errors | 10 |
+| Subgroup analysis with motivated comparison | 10 |
+| Qualitative-quantitative connection narrative | 15 |
+| **Total** | **100** |
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapter 20 (Interpreting the Call) and submit Inferencing Data, where you test whether the patterns you described this week are statistically significant. Description tells you what is happening in the data. Inference tells you whether it is happening by chance.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_12.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 450--500 words. Your entry must engage with the graduate extension reading for this week --- surface-level summaries of the main chapters will not receive full credit.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

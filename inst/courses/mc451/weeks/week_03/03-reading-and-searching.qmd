@@ -1,45 +1,124 @@
 ---
-title: "Week 3: Reading Protocol & The Archivist"
-subtitle: "Chapters 3–4"
+title: "Week 3: Reading and Searching"
+subtitle: "MC 451 Research Methods in Mass Media"
 date: "2026-09-08"
 format:
   html:
     embed-resources: true
-    code-fold: true
-    code-tools: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
-## Overview
+## This Week
 
-Chapter 3 teaches you to read research actively rather than passively, using Zotero for citation management and Obsidian for literature notes. Chapter 4 teaches you to find and evaluate existing scholarship through systematic searching, citation chaining, and synthesis.
+This week shifts your focus from consuming information to organizing it. Chapter 3 introduces the reading journal protocol --- a structured way to engage with academic texts --- while Chapter 4 covers the archival mindset: how to search, store, and retrieve literature efficiently using tools like Zotero and your Methods Vault.
 
-**Reading:** Chapter 3 — The Reading Journal Protocol & Chapter 4 — The Archivist
+**Reading:** Chapter 3 (The Reading Journal Protocol) and Chapter 4 (The Archivist)
 
-## Key Concepts
+---
 
-- Active vs. passive reading; IMRAD structure; strategic reading order
-- Zotero for citation management; literature notes in Obsidian
-- Summary vs. synthesis
-- Three search phases: exploratory, systematic, citation chaining
-- Boolean operators and search strings
-- Recognizing saturation; four types of research gaps
-- The literature map
+## What You Need to Do This Week
 
-## Learning Objectives
+### 1. Read Chapters 3 and 4
 
-By the end of this week, you should be able to:
+As you read, think about:
 
-1. Read a research article strategically rather than linearly
-2. Create a literature note in Obsidian using the course template
-3. Conduct systematic searches using library databases
-4. Distinguish between summarizing and synthesizing sources
-5. Verify your Obsidian vault structure (Liaison Vault)
+- How the journal protocol differs from casual highlighting
+- Why systematic search strategies matter more than one lucky Google Scholar hit
+- How Zotero and Obsidian work together to build a personal research library
+
+### 2. Complete the Project Setup Assignment (below)
+
+### 3. Begin Your Weekly Journal Practice
+
+Starting this week, you will push your journal entries to GitHub. The journal template for this week is included in your download. Use Obsidian to write and GitHub Desktop to push.
+
+---
 
 ## Assignment: Project Setup (25 pts)
 
-Submit a screenshot showing your Liaison Vault open in Obsidian with all required folders visible: `00_Inbox/`, `01_Journal/`, `02_Literature/`, `03_Project/`, `04_Resources/`, `99_Templates/`
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (repository URL)
 
-## Discussion Questions
+### The Mission
 
-1. When you read a research article, do you start at the beginning? What would you do differently after this week?
-2. What is the difference between a research gap and a topic that simply hasn't been studied?
+Your Methods Vault has been living on your local machine since Week 1. This week you will connect it to GitHub so that every journal entry, literature note, and project file is backed up, versioned, and visible. Initializing the vault as a GitHub repository proves that Obsidian, GitHub Desktop, and git are all working together --- the foundation you will rely on for the rest of the semester.
+
+### Step 1: Open GitHub Desktop
+
+Launch GitHub Desktop. If you have not already signed in with your GitHub account, do so now.
+
+### Step 2: Add Your Methods Vault
+
+1. Go to **File > Add Local Repository**
+2. Navigate to and select your Methods Vault folder (the one containing `00_Inbox/`, `01_Journal/`, etc.)
+3. If GitHub Desktop says this is not a repository, click **Create Repository** when prompted
+4. Leave the default settings (initialize with a README is fine)
+
+### Step 3: Make Your First Commit
+
+1. You should see all your vault files listed as changes
+2. In the commit message field, type: `Initial vault setup`
+3. Click **Commit to main**
+
+### Step 4: Publish to GitHub
+
+1. Click the **Publish Repository** button in the top bar
+2. **Uncheck** "Keep this code private" --- your repository must be public for grading
+3. Click **Publish Repository**
+
+### Step 5: Verify
+
+1. Open a browser and navigate to `https://github.com/YOUR-USERNAME/YOUR-REPO`
+2. Confirm you can see your vault folder structure (`00_Inbox/`, `01_Journal/`, `02_Literature/`, etc.)
+3. Confirm at least one commit appears in the repository history
+4. Check that the repository is public by opening the URL in a private/incognito browser window --- if you can see it without logging in, it is public
+
+::: {.callout-tip}
+## Troubleshooting
+If GitHub Desktop does not recognize your vault folder, make sure you are pointing it to the top-level folder that contains the numbered subfolders --- not a parent folder or a subfolder inside the vault. If you accidentally created the repository inside the wrong directory, delete the hidden `.git` folder and start Step 2 again.
+:::
+
+### Submission
+
+Submit your repository URL (e.g., `https://github.com/jsmith/methods-vault`) to Blackboard.
+
+::: {.callout-note}
+## Going Forward
+From this point forward, commit and push your journal entries each week using GitHub Desktop. Get in the habit: write in Obsidian, commit in GitHub Desktop, push to GitHub. This three-step cycle is your workflow for the rest of the semester.
+:::
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Repository exists at the submitted URL and is public | 10 |
+| Vault folder structure is visible in the repository | 10 |
+| At least one commit appears in the repository history | 5 |
+| **Total** | **25** |
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapters 5 and 6 --- choosing your theoretical lens and mapping your research roadmap. You will also meet with a SIUE librarian for your Librarian Visit Report, a structured consultation that will shape your literature search strategy for the rest of the project.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_03.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 250--300 words.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

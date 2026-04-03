@@ -1,0 +1,55 @@
+---
+title: "Weekly Journal Entry (MC 501)"
+subtitle: "Week 15"
+author: "Your Name"
+date: today
+params:
+  week: 15
+  chapters: "Ch 21-22: Portfolio and Going Live"
+  approach: "connector"
+format:
+  html:
+    embed-resources: true
+    theme: cosmo
+  pdf:
+    toc: false
+    colorlinks: true
+---
+
+## Journal Metadata
+
+| Field | Value |
+|-------|-------|
+| **Week** | 15 |
+| **Reading** | Ch 21-22: Portfolio and Going Live |
+| **Graduate Extension** | [Name the assigned reading from the chapter's Graduate Extension callout] |
+| **Approach** | Connector / Troubleshooter / Critic (choose one) |
+
+---
+
+## Instructions (MC 501)
+
+Write 450-500 words reflecting on this week's material. Your entry must engage with BOTH:
+
+1. The chapter content (concepts, examples, applications)
+2. The graduate extension reading assigned at the end of the chapter
+
+Entries that address only the chapter content (without engaging the graduate extension) will receive a maximum of 7/10 points.
+
+Choose one of three approaches:
+
+- **The Connector**: Link the chapter and the graduate reading to each other, to your project, or to broader scholarly debates
+- **The Troubleshooter**: Document a challenge from the reading or your project work and how you resolved it, referencing both the chapter and the extension
+- **The Critic**: Critically examine a claim from the chapter or the graduate reading. Where does the argument break down? What would you test differently?
+
+Delete the two approaches you are NOT using. Write your reflection below.
+
+---
+
+## My Reflection
+
+[Write 450-500 words here. You must reference the graduate extension reading by name.]
+
+---
+
+**Push to GitHub** after writing, then submit the rendered PDF to Blackboard.

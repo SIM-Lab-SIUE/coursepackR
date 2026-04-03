@@ -1,0 +1,128 @@
+---
+title: "Week 17: Finals Week"
+subtitle: "MC 501 White Paper Due"
+date: "2026-12-15"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+## White Paper (200 pts)
+
+**Due:** Friday, December 19, 11:59 PM | **Submit to:** Blackboard
+
+This is it. Your White Paper is a complete, publication-ready research document that demonstrates everything you have learned this semester. It integrates your qualitative Study 1 and quantitative Study 2 into a single coherent narrative, framed by a literature review and capped by a discussion that connects your findings to theory, practice, and future research.
+
+**Target length:** 6,000--10,000 words (excluding references and appendices)
+
+---
+
+## White Paper Structure
+
+### Executive Summary (300--500 words)
+
+This is not an abstract. An executive summary is written for a decision-maker who may never read the full document. It should state the problem, summarize your approach, present key findings from both studies, and offer a practical takeaway. Write it last, after everything else is complete.
+
+### Literature Review (1,500--2,500 words, 15+ sources)
+
+Organize by theme, not by article. Each section of the review should build an argument that leads logically to your research questions. Sources should include the three annotated manuscripts from Week 5 plus at least 12 additional peer-reviewed articles. Integrate sources --- do not summarize them one by one.
+
+### Methodology
+
+Include your complete codebook (or a condensed version with all variable definitions and decision rules), your sampling strategy with justification, and your complete reliability results. Report Krippendorff alpha for each variable. If any variable required revision and retesting, document that process transparently.
+
+### Study 1: Qualitative Analysis
+
+Follow the Braun and Clarke (2006) thematic analysis structure:
+
+- Describe your familiarization process
+- Explain how initial codes were generated
+- Present the themes you identified, with evidence (direct quotes or content examples)
+- Include a reflexivity statement: how did your own position, assumptions, or expectations shape what you found?
+
+### Study 2: Descriptive Results
+
+Present frequency tables, cross-tabulations, and visualizations for all coded variables. Include the subgroup analysis from your Describing Data assignment. Every table and figure must have a title and be referenced in the text.
+
+### Study 2: Inferential Results
+
+Present all hypothesis tests with full reporting: test statistic, degrees of freedom, p-value, and effect size for every test. Format results in APA-style tables. Include the limitations discussion from your Inferencing Data assignment, expanded to cover the full set of tests in the White Paper.
+
+### Discussion
+
+Structure this section with the following subsections:
+
+- **Summary of findings:** What did each study reveal? How do the qualitative and quantitative findings relate to each other?
+- **Theoretical implications:** How do your results extend, support, or challenge the theory you identified in your proposal?
+- **Practical implications:** What do your findings mean for practitioners --- journalists, content creators, platform designers, policy makers?
+- **Limitations:** What are the boundaries of your study? Be honest and specific.
+- **Future research:** What questions remain? What would a follow-up study look like?
+
+### References
+
+APA 7th edition format. Use your `references.bib` file and Quarto's citation system for automated formatting.
+
+---
+
+## Submission Checklist
+
+Before you submit, confirm every item:
+
+- [ ] Executive summary is 300--500 words and written for a non-specialist
+- [ ] Literature review is 1,500--2,500 words with 15+ sources organized by theme
+- [ ] Methodology includes codebook, sampling strategy, and reliability results
+- [ ] Study 1 follows Braun and Clarke structure with reflexivity statement
+- [ ] Study 2 descriptive section includes tables, charts, and subgroup analysis
+- [ ] Study 2 inferential section reports effect sizes for all tests with APA tables
+- [ ] Discussion includes all five subsections (findings, theory, practice, limitations, future)
+- [ ] Total word count is 6,000--10,000 words
+- [ ] All instruction comments (`<!-- ... -->`) are deleted
+- [ ] `coding_data_clean.RDS` is in the project folder
+- [ ] `references.bib` is updated with all cited sources
+- [ ] `apa.csl` is downloaded and in the project root
+- [ ] `_quarto.yml` is updated with your name, title, and correct chapter order
+- [ ] The project renders without errors in RStudio
+- [ ] PDF is renamed to `Lastname_WhitePaper.pdf`
+- [ ] GitHub Pages is live and accessible
+- [ ] Live URL loads correctly in an incognito/private browser window
+
+---
+
+## What to Submit on Blackboard
+
+Two items:
+
+1. **Upload:** `Lastname_WhitePaper.pdf`
+2. **Text box:** Paste your GitHub Pages URL (e.g., `https://username.github.io/mc501-white-paper/`)
+
+Both items are required. Missing either one will result in an incomplete submission.
+
+---
+
+## Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Literature Review (thematic organization, 15+ sources, integrated) | 35 |
+| Methodology (codebook, sampling, reliability results) | 35 |
+| Study 1 (Braun and Clarke structure, reflexivity, evidence) | 30 |
+| Study 2 Descriptive (tables, charts, subgroup analysis) | 20 |
+| Study 2 Inferential (tests, effect sizes, APA tables, limitations) | 25 |
+| Discussion (all 5 subsections, substantive connections) | 25 |
+| PDF renders without errors and is correctly named | 15 |
+| GitHub Pages live and accessible | 15 |
+| **Total** | **200** |
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Discord:** APLeith

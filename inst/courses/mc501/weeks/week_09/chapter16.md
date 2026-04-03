@@ -1,0 +1,663 @@
+## Learning Objectives
+
+- Define the population and construct a sampling frame for content analysis
+- Select an appropriate sampling strategy for your dataset
+- Apply a codebook to a subsample of data systematically
+- Calculate and interpret inter-coder reliability statistics
+- Identify sources of disagreement between coders
+- Revise codebook rules based on pilot testing results
+- Document both the sampling and reliability testing process transparently
+
+---
+
+Before you can code your data, you need to make two critical decisions. First: *which* data will you code? This is the sampling plan. Second: *does your codebook work*? This is the pilot test.
+
+These two steps bridge the gap between design and execution. The sampling plan applies the probability theory from Chapter 11 to your specific content analysis, ensuring your selected cases represent the broader population you want to describe. The pilot test applies the codebook from Chapter 15 to a subset of that sample, verifying that your measurement instrument produces reliable results before you commit to coding the full dataset.
+
+Skip either step and you build your study on a foundation you haven't inspected.
+
+## Part I: The Sampling Plan
+
+### Defining Your Population
+
+The **population** is the complete set of content units your study aims to describe. You must define it precisely, because every subsequent sampling decision depends on this definition.
+
+**Vague**: "Popular songs"
+
+**Precise**: "All songs that appeared on the Billboard Hot 100 chart between January 1, 2015, and December 31, 2024"
+
+**Vague**: "News coverage of immigration"
+
+**Precise**: "All front-page articles about immigration published in the *New York Times*, *Washington Post*, and *Los Angeles Times* between January 1, 2020, and December 31, 2024"
+
+The definition must specify: **what content** (songs, articles, posts, advertisements), **from what source** (Billboard, specific newspapers, a particular platform), and **during what time period** (bounded dates). Ambiguity in any of these dimensions introduces coverage error, the gap between what you intend to study and what you actually study.
+
+### Constructing the Sampling Frame
+
+The **sampling frame** is the list from which you draw your sample. Ideally, it matches the population perfectly. In practice, it rarely does, and the gap requires acknowledgment.
+
+For this course, your sampling frame is the unified dataset: songs with Billboard chart data, Spotify audio features, and Genius lyrics. This frame is comprehensive for songs that appeared on the Billboard Hot 100, but it may have gaps. Some songs may lack lyrics (instrumental tracks). Some may be missing Spotify features (older songs not on Spotify). Some may have data entry errors. Documenting these gaps is part of transparent research.
+
+**For a news content analysis**, the sampling frame might be a database like Nexis Uni, which indexes newspaper articles. But Nexis Uni's coverage varies by publication and date range, and some articles may be miscategorized. The sampling frame is an approximation of the population, and the quality of that approximation matters.
+
+### Census vs. Sample
+
+Sometimes you can analyze the entire population. This is a **census**.
+
+**Census is appropriate when**:
+
+- The population is small enough to code completely (e.g., all 50 State of the Union addresses, all 12 Super Bowl ads from a single year)
+- Every case matters equally and you can afford the time
+
+**Sampling is necessary when**:
+
+- The population is too large to code entirely (e.g., 10,000 songs across a decade, 50,000 newspaper articles)
+- You need to complete the analysis within a fixed timeline
+- The population is well-defined enough that a representative subset can stand in for the whole
+
+For most semester projects involving the course dataset, you will sample rather than census. Coding 200 songs systematically is feasible; coding 10,000 is not.
+
+### Sampling Strategies for Content Analysis
+
+Chapter 11 introduced sampling theory in the context of survey research. The same probability sampling strategies apply to content analysis, but with content-specific considerations.
+
+**Simple random sampling**: Assign each unit in the sampling frame a random number and select the desired number of cases.
+
+*Application*: Randomly select 200 songs from the full dataset using a random number generator in R or Excel.
+
+*Strength*: Unbiased selection.
+*Risk*: May produce an unrepresentative sample by chance (e.g., disproportionately many songs from one year or one genre).
+
+**Stratified random sampling**: Divide the population into meaningful strata, then randomly sample within each stratum.
+
+*Application*: Divide the dataset by year (2015-2024), then randomly select 20 songs from each year, ensuring equal temporal representation.
+
+*Strength*: Guarantees representation of key subgroups. This is the most common sampling strategy for content analysis and is strongly recommended by Riffe, Lacy, Watson, and Lovejoy (2023).
+*Consideration*: Choose strata that matter for your research question. If your question is about genre differences, stratify by genre. If it's about temporal trends, stratify by time period. If both matter, cross-stratify (e.g., 5 songs per genre per year).
+
+**Systematic sampling**: Select every *n*th case from an ordered list.
+
+*Application*: Sort songs by chart entry date, then select every 15th song.
+
+*Strength*: Simple and efficient.
+*Risk*: If the list has a hidden periodic pattern (e.g., certain genres dominate particular seasons), systematic sampling could introduce bias.
+
+**Constructed week sampling**: A specialized technique developed for news content analysis (Riffe et al., 2023). Rather than selecting random days, you construct a composite "week" by randomly selecting one Monday from the entire study period, one Tuesday from the entire study period, and so on. This ensures representation of each day of the week while distributing the sample across the full time range.
+
+*Application (for news)*: To sample one year of newspaper coverage, randomly select one Monday from January-March, one Tuesday from April-June, one Wednesday from July-September, and so on, constructing a representative week from across the year.
+
+*Why it works*: News content varies systematically by day of week (Monday papers are thinner, weekend editions have different section emphasis). Constructed week sampling accounts for this cyclical variation more efficiently than simple random sampling. Riffe et al. (2023) demonstrate that two constructed weeks often provide better representation than a simple random sample of the same size.
+
+*Application (for music)*: Constructed week sampling is less applicable to music chart data, which doesn't vary by day of week in the same way. For music datasets, stratified random sampling is typically more appropriate.
+
+### Sample Size for Content Analysis
+
+How many units should you code? The answer depends on the population's variability and the precision you need.
+
+**Practical guidelines from Riffe et al. (2023)**:
+
+- For populations that are relatively homogeneous (e.g., songs from a single genre), samples of 150-200 units are often sufficient.
+- For populations with high variability (e.g., songs spanning multiple genres, decades, and chart positions), larger samples (250-400) or careful stratification are needed.
+- The critical factor is not raw sample size but the adequacy of representation across the dimensions that matter for your research question.
+
+**For this course**: A sample of 200 songs, stratified by time period and/or genre, is appropriate for most research questions. This is large enough to detect moderate statistical effects and small enough to code within a semester.
+
+**The principle from Chapter 11 bears repeating**: A representative sample of 200 is more informative than a biased sample of 10,000.
+
+### Documenting Your Sampling Plan
+
+Transparency requires documenting every sampling decision. Create a note in Obsidian:
+
+```markdown
+# Sampling Plan
+
+**Population**: All songs that appeared on the Billboard Hot 100 
+  between January 1, 2015, and December 31, 2024
+**Sampling Frame**: Unified course dataset (Billboard + Spotify + 
+  Genius), N = [total songs in frame]
+**Sample Size**: 200 songs
+**Sampling Strategy**: Stratified random sampling
+  - Strata: Year (2015-2024), 20 songs per year
+  - Within each year: simple random selection
+**Exclusions**: Songs without available lyrics on Genius; 
+  instrumental tracks (coded as N/A for lyric variables 
+  but retained for audio feature analyses)
+**Date drawn**: [date]
+**Random seed**: [seed number, for reproducibility]
+```
+
+This documentation allows anyone to replicate your sample or evaluate whether it's adequate for the claims you make.
+
+## Part II: The Pilot Test
+
+You've built a codebook (Chapter 15) and drawn a sample. The codebook looks comprehensive. The categories are exhaustive and mutually exclusive. The decision rules address every edge case you documented during immersion. On paper, it's solid.
+
+But you won't know if it actually works until you test it.
+
+This is the uncomfortable truth about codebook development: the first version is never the final version. No matter how carefully you've anticipated ambiguities, real coding reveals problems you didn't foresee. Coders interpret rules differently. Categories that seemed distinct on paper overlap in practice. Decision rules that felt clear turn out to be vague.
+
+The pilot test is where theory meets reality, and where you discover what needs fixing.
+
+### Why Pilot Testing Matters
+
+Consider two scenarios:
+
+**Scenario A (No Pilot Test)**:
+
+You code all 200 songs using your codebook. Halfway through, you realize a problem: many songs don't fit your "positive/negative/neutral" scheme cleanly. You've been making inconsistent judgment calls. But you can't go back and recode everything; you're already 100 songs in. Your data is unreliable, and you don't discover this until analysis reveals nonsensical patterns.
+
+**Scenario B (With Pilot Test)**:
+
+You code 30 songs. A second coder independently codes the same 30. You compare. Agreement is only 65%, below acceptable standards. You meet, discuss disagreements, and discover the problem: your definition of "mixed" sentiment is vague. You revise the codebook, adding clearer decision rules and examples. You test again on 20 new songs. Agreement rises to 82%. You proceed to full coding with confidence.
+
+The pilot test costs time upfront but saves far more time than it costs. It's the difference between discovering problems when they're fixable versus discovering them when they're catastrophic.
+
+### The Pilot Testing Process
+
+#### Step 1: Select a Representative Pilot Subsample
+
+Don't pilot test on your easiest cases. Choose a subsample that represents the diversity and complexity of your full sample.
+
+**For a 200-song sample**, a good pilot subsample might be:
+
+- **30-40 songs** total (15-20% of full sample)
+- Stratified to include:
+  - Different time periods (if your dataset spans years)
+  - Different chart positions (top 10, middle, lower)
+  - Different genres (if coding genre)
+  - Known edge cases from your immersion phase (Chapter 13)
+  - A few "easy" prototypical examples for each category
+  - Several ambiguous cases
+
+**Why include edge cases?** Because that's where disagreements happen. If your pilot sample contains only straightforward cases, you'll get falsely high reliability and won't identify the problems lurking in ambiguous data.
+
+**Document your pilot sampling**:
+
+```markdown
+# Pilot Test Sample Selection
+
+**Total pilot sample**: 30 songs
+
+**Sampling strategy**:
+- 10 songs randomly selected from 2015-2017
+- 10 songs randomly selected from 2018-2020
+- 10 songs randomly selected from 2021-2024
+
+**Includes**:
+- 5 songs from top 10 peak positions
+- 5 songs from #11-50
+- Known edge cases: "Good 4 U" (Rodrigo), "Pumped Up 
+  Kicks" (Foster the People)
+
+**Date selected**: Feb 20, 2026
+```
+
+#### Step 2: Independent Coding
+
+**Critical rule**: Coders must work independently. No discussion, no collaboration, no checking each other's work until coding is complete.
+
+Why? Because inter-coder reliability measures *agreement without coordination*. If coders discuss cases before coding, you're measuring their ability to remember what they agreed on, not whether the codebook is clear enough to guide independent judgment.
+
+**Workflow for two coders**:
+
+1. **Both coders** receive:
+   - The codebook (identical version)
+   - The list of 30 songs in the pilot sample
+   - A blank coding sheet
+
+2. **Independently**, each coder:
+   - Listens to each song
+   - Reads the lyrics
+   - Applies the codebook rules
+   - Records codes in their coding sheet
+
+3. **No communication** until both have finished all 30 songs
+
+**Coding sheet format** (simple spreadsheet or CSV):
+
+```
+| Song_ID | Song_Title       | Artist   | Coder_ID | Lyric_Sentiment | Emotional_Intensity | Notes                       |
+|---------|------------------|----------|----------|-----------------|---------------------|-----------------------------|
+| 001     | Happy            | Pharrell | Coder_A  | Positive        | Medium              | Clear case                  |
+| 001     | Happy            | Pharrell | Coder_B  | Positive        | Medium              |                             |
+| 002     | Someone Like You | Adele    | Coder_A  | Negative        | Medium              |                             |
+| 002     | Someone Like You | Adele    | Coder_B  | Negative        | High                | Intensity judgment difficult |
+```
+
+Notice the structure: Each song gets two rows (one per coder). This makes comparison straightforward.
+
+#### Step 3: Calculate Inter-Coder Reliability
+
+Once both coders have finished, compare their codes. How often did they agree?
+
+**Simple percent agreement** is a starting point:
+
+```
+Agreement = (Number of cases where coders agreed) / (Total cases)
+```
+
+**Example**:
+
+- 30 songs coded
+- Coders agreed on Lyric Sentiment for 24 songs
+- Agreement = 24/30 = 80%
+
+**But percent agreement is flawed**: It doesn't account for chance agreement. If you have only two categories (positive/negative), coders could agree 50% of the time by random chance alone. Lombard, Snyder-Duch, and Bracken (2002) demonstrated that relying on percent agreement alone leads to inflated and misleading reliability estimates.
+
+**Better metrics correct for chance**:
+
+**Cohen's Kappa (κ)** (Cohen, 1960)
+
+**Use when**: Two coders, nominal or ordinal data
+
+**Formula** (conceptual):
+```
+κ = (Observed agreement - Expected agreement by chance) / (1 - Expected agreement by chance)
+```
+
+**Interpretation**:
+
+- κ = 1.0: Perfect agreement
+- κ = 0.80-1.0: Excellent agreement
+- κ = 0.70-0.79: Acceptable agreement
+- κ = 0.60-0.69: Questionable; revise codebook
+- κ < 0.60: Poor; major revisions needed
+
+**Example**:
+
+For Lyric Sentiment (4 categories: Positive, Negative, Neutral, Mixed):
+
+- Observed agreement: 80%
+- Expected agreement by chance: ~28% (calculated based on marginal distributions)
+- κ = (0.80 - 0.28) / (1 - 0.28) = 0.52 / 0.72 = **0.72**
+
+**Interpretation**: Acceptable, but close to the threshold. Some revisions likely needed.
+
+**Krippendorff's Alpha (α)** (Hayes & Krippendorff, 2007)
+
+**Use when**: Any number of coders, any level of measurement, can handle missing data
+
+**Interpretation** (same benchmarks as kappa):
+
+- α ≥ 0.80: Excellent
+- α = 0.70-0.79: Acceptable
+- α < 0.70: Unreliable
+
+**Why prefer Krippendorff's α?**
+
+- Works with more than two coders
+- Handles different levels of measurement
+- Can accommodate missing data (if one coder skipped a case)
+- More conservative than Cohen's κ (stricter standard)
+
+**In practice**: Use whichever metric your field prefers. Communication research increasingly favors Krippendorff's α (Hayes & Krippendorff, 2007); psychology often uses Cohen's κ. Both serve the same purpose: quantifying agreement beyond chance.
+
+#### Step 4: Identify Disagreements
+
+Numbers tell you *if* there's a problem. To fix it, you need to know *where* disagreements occur.
+
+**Create a disagreement log**:
+
+```markdown
+# Pilot Test Disagreement Log
+
+## Variable: Lyric Sentiment
+
+### Song 1: "Good 4 U" (Olivia Rodrigo)
+- Coder A: Mixed
+- Coder B: Negative
+- **Issue**: Coder A focused on upbeat sound; Coder B 
+  focused on bitter lyrics
+- **Resolution needed**: Clarify whether to code based on 
+  lyrics alone or overall emotional impact
+
+### Song 7: "Since U Been Gone" (Kelly Clarkson)
+- Coder A: Positive (empowerment)
+- Coder B: Mixed (pain + empowerment)
+- **Issue**: Song describes breakup pain but emphasizes 
+  moving on. Balance unclear.
+- **Resolution needed**: Define threshold for "mixed" vs. 
+  dominant sentiment
+
+### Song 12: "Shake It Off" (Taylor Swift)
+- Coder A: Positive
+- Coder B: Positive
+- **Notes**: Agreement. Clear case.
+
+### Song 15: "Blinding Lights" (The Weeknd)
+- Coder A: Mixed
+- Coder B: Negative
+- **Issue**: Upbeat music but dark lyrics about addiction. 
+  Conflicting signals.
+- **Resolution needed**: Add decision rule prioritizing 
+  lyrics over musical elements
+```
+
+**Pattern recognition**: Are disagreements random or systematic?
+
+**Random disagreements**: Different songs, no pattern. Might just be noise.
+
+**Systematic disagreements**: All happen on songs with similar characteristics (e.g., all upbeat songs with dark lyrics). This signals a codebook weakness that must be addressed through revised decision rules.
+
+#### Step 5: Meet and Discuss
+
+After identifying disagreements, coders meet to discuss.
+
+**Purpose of the meeting**:
+
+- Understand *why* coders made different choices
+- Identify ambiguities in the codebook
+- Decide how to revise rules
+
+**What this is NOT**:
+
+- A negotiation to reach agreement on past codes
+- An argument about who was "right"
+- A chance to change old codes to inflate reliability
+
+**Example discussion**:
+
+**Disagreement**: "Good 4 U" (Rodrigo), Coder A said Mixed, Coder B said Negative
+
+**Coder A**: "I coded it Mixed because the music is upbeat and energetic. It doesn't sound negative."
+
+**Coder B**: "I focused on the lyrics, which are bitter and resentful. The music felt secondary to me."
+
+**Discussion outcome**: The codebook says "code based on overall emotional tone" but doesn't specify whether to prioritize lyrics or music when they conflict.
+
+**Solution**: Add a decision rule:
+
+> **Rule 6: Lyric Priority**: When lyric content and musical elements convey different emotions, code based on lyric content unless the music so strongly contradicts the lyrics that listeners would likely experience the overall tone as aligned with the music (rare cases). If genuinely uncertain, code as Mixed.
+
+#### Step 6: Revise the Codebook
+
+Based on the disagreement analysis and discussion, update your codebook.
+
+**Common revisions**:
+
+**1. Clarify vague language**
+
+**Before**: "Code as Mixed if song contains both positive and negative elements."
+
+**After**: "Code as Mixed if positive and negative elements are roughly equal in frequency (within 60/40 split) or if one is present in lyrics and the other in musical delivery with neither clearly dominant."
+
+**2. Add decision rules**
+
+**New Rule**: "For songs with empowerment themes that describe negative events (breakups, hardship), code based on the stance: growth/strength = Positive; ongoing suffering = Negative."
+
+**3. Expand examples**
+
+Add songs from the pilot test that caused disagreement to the examples section, showing how they should be coded and why.
+
+**4. Refine category definitions**
+
+If a category is being over- or under-used, redefine boundaries.
+
+#### Step 7: Test Again
+
+After revising, test again on a **new subsample** (not the original pilot songs).
+
+**Why new songs?** Because coders now know how the old songs "should" be coded. Testing on the same songs would inflate reliability.
+
+**Second pilot sample**: 20-25 songs, similarly stratified
+
+**Process**:
+
+1. Independent coding with revised codebook
+2. Calculate reliability
+3. Check for remaining disagreements
+
+**Stopping rule**:
+
+Iterate until:
+
+- Reliability reaches acceptable threshold (κ or α ≥ 0.70, ideally ≥ 0.80)
+- Disagreements are random rather than systematic
+- You've reached diminishing returns (revisions no longer improve reliability)
+
+**Realistic expectation**: 2-3 rounds of pilot testing is typical. The first version rarely works perfectly.
+
+### What "Good Enough" Looks Like
+
+**Benchmarks**:
+
+**κ or α ≥ 0.80**: Excellent. You can proceed with confidence.
+
+**κ or α = 0.70-0.79**: Acceptable. Proceed, but acknowledge this as a limitation in your methods section. Consider discussing coders to consensus on any remaining disagreements during full coding.
+
+**κ or α < 0.70**: Unreliable. Do not proceed. More revisions needed.
+
+**But**: Perfect agreement (κ = 1.0) is unrealistic for latent content coding. Human judgment is involved. Some variability is acceptable; that's why we calculate reliability and report it transparently.
+
+### Documenting the Process
+
+Research transparency requires documenting your pilot testing, just as it requires documenting your sampling plan. Both feed into the methods section of your final report.
+
+**In your methods section, report**:
+
+- Population definition and sampling frame
+- Sample size and sampling strategy (with justification)
+- Number of songs in pilot sample and pilot sampling strategy
+- Number of coders and their training
+- Reliability metric used (Cohen's κ or Krippendorff's α)
+- Reliability values for each variable
+- Major codebook revisions made after pilot testing
+- Final reliability after revisions
+
+**Example methods paragraph**:
+
+> "The population was defined as all songs appearing on the Billboard Hot 100 between 2015 and 2024. A stratified random sample of 200 songs was drawn, with 20 songs randomly selected from each year. Two coders independently coded a pilot sample of 30 songs stratified across time periods and chart positions. Initial inter-coder reliability for Lyric Sentiment was κ = 0.72, indicating acceptable agreement. Analysis of disagreements revealed ambiguity in handling songs with conflicting lyric and musical emotional cues. The codebook was revised to prioritize lyric content over musical elements (Decision Rule 6). A second pilot test of 20 new songs yielded κ = 0.83, indicating excellent agreement. The final codebook was then applied to the full sample."
+
+### Common Pilot Testing Mistakes
+
+**Mistake 1: Skipping Pilot Testing**
+
+**Why it's tempting**: "My codebook is clear. I'll just code everything."
+
+**Why it fails**: You won't discover problems until you've already coded hundreds of cases inconsistently.
+
+**Mistake 2: Using Too Few Cases**
+
+**Problem**: Piloting on 5-10 songs won't reveal the range of complications in your full dataset.
+
+**Solution**: Use at least 15-20% of your full sample, minimum 20-30 cases.
+
+**Mistake 3: Coding Together**
+
+**Problem**: If coders discuss cases before coding independently, you're not testing the codebook; you're testing memory of conversations.
+
+**Solution**: Strict independence. No discussion until both have finished.
+
+**Mistake 4: Cherry-Picking Easy Cases**
+
+**Problem**: Testing only on prototypical examples inflates reliability.
+
+**Solution**: Include edge cases and ambiguous examples from your immersion phase (Chapter 13).
+
+**Mistake 5: Changing Old Codes After Discussion**
+
+**Problem**: If you revise past codes to increase agreement, you're inflating reliability artificially.
+
+**Solution**: Accept disagreements as information. Don't retroactively "fix" them to look better.
+
+**Mistake 6: Endless Iteration**
+
+**Problem**: Trying to achieve perfect reliability (κ = 1.0) leads to paralysis.
+
+**Solution**: Once you reach κ ≥ 0.80 (or 0.70 with justification), proceed. Diminishing returns set in.
+
+---
+
+## Practice: Sampling and Pilot Testing Skills
+
+### Exercise 16.1: Designing a Sampling Plan
+
+For your research project:
+
+1. Define your **population** precisely (content type, source, time period).
+2. Describe your **sampling frame**. What gaps might exist between your frame and your population?
+3. Choose a **sampling strategy** (simple random, stratified, systematic) and justify your choice.
+4. Specify your **sample size** and explain why it's adequate.
+5. Document any **exclusion criteria** (e.g., instrumental songs, non-English content).
+
+---
+
+### Exercise 16.2: Non-Music Sampling Plan
+
+Design a sampling plan for a content analysis of newspaper coverage of climate change:
+
+1. Define the population (which newspapers, what time period, what counts as "about climate change").
+2. Would you use simple random sampling, stratified sampling, or constructed week sampling? Why?
+3. How large should your sample be?
+4. What strata would you use if stratifying?
+
+Compare your plan to the music sampling plan you designed in Exercise 16.1. What's the same? What differs?
+
+---
+
+### Exercise 16.3: Interpreting Reliability
+
+You pilot test a codebook for song genre with 2 coders and 40 songs. Results:
+
+- Coders agreed on 32 of 40 songs
+- Cohen's κ = 0.68
+
+**Questions**:
+
+1. What is the percent agreement?
+2. Is this reliability acceptable? Why or why not?
+3. What should you do next?
+
+---
+
+### Exercise 16.4: Disagreement Analysis
+
+Two coders coded 25 songs for emotional intensity (Low/Medium/High). They disagreed on 6 songs:
+
+**Disagreements**:
+
+- Song A: Coder 1 = Medium, Coder 2 = High
+- Song B: Coder 1 = Low, Coder 2 = Medium
+- Song C: Coder 1 = Medium, Coder 2 = High
+- Song D: Coder 1 = Medium, Coder 2 = High
+- Song E: Coder 1 = Low, Coder 2 = Medium
+- Song F: Coder 1 = Medium, Coder 2 = Low
+
+**Questions**:
+
+1. Is there a pattern in the disagreements?
+2. What might explain this pattern?
+3. How might you revise the codebook to address it?
+
+---
+
+### Exercise 16.5: Planning Your Pilot Test
+
+For your research project:
+
+1. Determine appropriate pilot sample size (15-20% of full sample)
+2. Describe your pilot sampling strategy (stratified? includes edge cases?)
+3. Identify what reliability metric you'll use (Cohen's κ or Krippendorff's α) and why
+4. Set your reliability threshold (0.70? 0.80?) and justify your choice
+5. Write a brief plan for what you'll do if initial reliability is below threshold
+
+---
+
+## Reflection Questions
+
+1. **Sampling and Claims**: The sample you draw constrains the claims you can make. If you sample only pop songs, you cannot generalize to hip-hop. If you sample only from 2020-2024, you cannot make claims about the full decade. How does your sampling plan limit the scope of your findings, and how will you acknowledge those limits?
+
+2. **The Reliability Threshold**: Is κ = 0.70 really "acceptable," or is it too low? What factors should determine whether you accept 0.70 or demand 0.80? How does the nature of your research question affect this decision?
+
+3. **Subjectivity vs. Systematicity**: Pilot testing reveals that even with clear rules, human coders disagree. Does this mean content coding is unreliable, or does it mean we're measuring something inherently interpretive? How do you balance acknowledging subjectivity while claiming systematic measurement?
+
+4. **Your Codebook**: Think about the codebook you developed in Chapter 15. What cases do you predict will cause disagreements? Why? What can you do now to prevent those disagreements?
+
+---
+
+## Chapter Summary
+
+This chapter combined sampling and pilot testing into a unified methodology protocol:
+
+**Sampling Plan**:
+
+- Define the **population** precisely (content type, source, time period)
+- Construct a **sampling frame** and document its gaps
+- Choose a **sampling strategy**: simple random, stratified random, systematic, or constructed week (Riffe et al., 2023)
+- Determine **sample size** based on population variability and analytical needs (typically 200-400 for content analysis)
+- **Document** every sampling decision for transparency and replicability
+
+**Pilot Test**:
+
+- **Pilot testing** reveals problems in codebooks before full-scale coding
+- Select a **representative pilot subsample** (15-20% of full sample, 20-30 cases minimum) including edge cases
+- **Independent coding** is essential; no discussion until both coders finish
+- **Inter-coder reliability** measures agreement beyond chance:
+  - **Cohen's kappa (κ)** (Cohen, 1960): Two coders, nominal/ordinal data
+  - **Krippendorff's alpha (α)** (Hayes & Krippendorff, 2007): Any number of coders, any measurement level
+- **Benchmarks**: κ or α ≥ 0.80 excellent, 0.70-0.79 acceptable, < 0.70 unreliable
+- **Disagreement analysis** identifies whether problems are random or systematic
+- **Codebook revision** addresses ambiguities revealed by disagreements
+- **Iterate** until reliability is acceptable (2-3 rounds typical)
+- **Document** both sampling and reliability in the methods section
+- Perfect reliability (κ = 1.0) is unrealistic for latent content; accept some variability
+
+---
+
+## Key Terms
+
+- **Census**: Analyzing every unit in the population rather than a sample
+- **Cohen's kappa (κ)**: Reliability statistic for two coders that corrects for chance agreement (Cohen, 1960)
+- **Constructed week sampling**: Sampling technique selecting one day per day-of-week across the study period (Riffe et al., 2023)
+- **Coverage error**: Gap between the target population and the sampling frame
+- **Disagreement log**: Systematic record of coding discrepancies and their causes
+- **Independent coding**: Coders working separately without discussion until complete
+- **Inter-coder reliability (ICR)**: Consistency of coding between independent coders
+- **Krippendorff's alpha (α)**: Reliability statistic for any number of coders and measurement levels (Hayes & Krippendorff, 2007)
+- **Percent agreement**: Simple proportion of cases where coders agreed (doesn't account for chance)
+- **Pilot test**: Trial application of codebook to subsample before full coding
+- **Population**: The complete set of content units a study aims to describe
+- **Reliability threshold**: Minimum acceptable level of agreement (typically 0.70-0.80)
+- **Sampling frame**: The list from which a sample is drawn
+- **Stratified random sampling**: Dividing the population into subgroups and sampling randomly within each
+- **Systematic disagreement**: Pattern of disagreements clustering around specific types of cases
+
+---
+
+## References
+
+Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement*, *20*(1), 37-46. https://doi.org/10.1177/001316446002000104
+
+Hayes, A. F., & Krippendorff, K. (2007). Answering the call for a standard reliability measure for coding data. *Communication Methods and Measures*, *1*(1), 77-89. https://doi.org/10.1080/19312450709336664
+
+Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). Sage. https://doi.org/10.4135/9781071878781
+
+Lombard, M., Snyder-Duch, J., & Bracken, C. C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587-604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
+
+Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messages: Using quantitative content analysis in research* (5th ed.). Routledge. https://doi.org/10.4324/9781003288428
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messages: Using quantitative content analysis in research* (5th ed.). Routledge. **Read Chapter 5: "Sampling."**
+
+**Prompt**: Riffe et al. provide the most thorough treatment of sampling for content analysis in the methods literature. Their chapter addresses issues specific to media content that general research methods textbooks overlook, including the constructed week technique, the problem of content cycling, and sample size recommendations calibrated to content analysis rather than survey research.
+
+1. Riffe et al. argue that **constructed week sampling** often outperforms simple random sampling of equal size for news content analysis. Why? Under what conditions would this advantage disappear? Is constructed week sampling applicable to music content analysis? Why or why not?
+
+2. The authors discuss the concept of **content cycling**, the idea that media content follows predictable temporal patterns (daily, weekly, seasonal). How does content cycling affect sampling strategy? Identify any cycling patterns in your own dataset (e.g., do certain genres dominate certain seasons? Do chart-topping songs cluster around particular release windows?).
+
+3. Riffe et al. recommend that content analysis samples be large enough to produce **stable estimates** of the population parameters of interest. What does "stable" mean in this context? How would you determine whether your sample of 200 songs produces stable estimates of, say, the proportion of songs with negative sentiment?
+
+4. Compare the sampling recommendations in Riffe et al. to the general survey sampling guidelines in Dillman et al. (2014), which you read for Chapter 11. Where do the recommendations converge? Where do they diverge? What explains the differences?
+
+5. Design an optimal sampling plan for a content analysis of **social media posts** about a political controversy. Your population is all public posts on a specific platform during a two-week period. How would you apply the principles from Riffe et al. to a domain they don't specifically address? What new sampling challenges does social media present that traditional media content analysis doesn't face?
+
+:::
+
+---
+
+## Looking Ahead
+
+With your sampling plan defined, your codebook tested, and your reliability established, you're ready to code your full sample. Part III is complete: you now have a conceptual understanding of four major research methods ([Chapter 10](chapter10.qmd), qualitative; [Chapter 11](chapter11.qmd), surveys; [Chapter 12](chapter12.qmd), experiments) and have built the complete content analysis infrastructure (Chapters 13-16) from immersion through pilot testing. Part IV begins with [Chapter 17: Wrangling the Chaos](chapter17.qmd), which marks the transition from qualitative to computational work, teaching you to import, clean, and transform your coded data in R for statistical analysis.

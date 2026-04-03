@@ -1,36 +1,156 @@
 ---
 title: "Week 12: The Surprise Detector"
-subtitle: "Chapter 19"
+subtitle: "MC 451 Research Methods in Mass Media"
 date: "2026-11-10"
 format:
   html:
     embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
-## Overview
+## This Week
 
-Two full sessions on statistical inference: hypothesis testing, chi-square, correlation, regression, and APA reporting.
+This week moves from cleaning data to describing it. Chapter 19 introduces the logic of descriptive statistics and data visualization --- how frequency tables, bar charts, and boxplots let you see the structure of your data before you test anything. In the R lab, you will build publication-quality graphics using ggplot2 and learn to translate visual patterns into written interpretation.
 
-**Reading:** Chapter 19
+**Reading:** Chapter 19 (The Surprise Detector)
 
-## Key Concepts
+---
 
-- Null hypothesis significance testing
-- P-values and common misinterpretations
-- Chi-square test of independence
-- Pearson correlation
-- Simple linear regression
-- Confidence intervals
-- Statistical vs. practical significance
-- APA reporting format
+## What You Need to Do This Week
 
-## Learning Objectives
+### 1. Read Chapter 19
 
-1. Explain what a p-value does and does not tell you
-2. Conduct chi-square, correlation, and regression in R
-3. Report results in APA format with effect sizes
-4. Distinguish statistical from practical significance
+Read the full chapter before Tuesday's session. As you read, pay attention to:
+
+- How frequency tables and percentages summarize categorical variables
+- The grammar of graphics: how ggplot2 builds charts layer by layer (data, aesthetics, geometries)
+- Why interpretation matters more than the chart itself --- a beautiful graphic without explanation is just decoration
+
+### 2. Attend Both Sessions
+
+This week runs across two 75-minute class sessions:
+
+- **Session 1 (Lecture):** Descriptive statistics for categorical data --- frequency distributions, cross-tabulations, and measures of central tendency. We will discuss what it means to "describe" a dataset and why description must come before inference.
+- **Session 2 (R Lab):** Building visualizations in ggplot2 --- bar charts, stacked proportional charts, and boxplots. You will work through the Describing Data assignment template with instructor support. By the end of the session, you should have at least two charts drafted; the remaining charts and interpretation paragraphs can be finished on your own.
+
+### 3. Complete the Describing Data Assignment (below)
+
+### 4. Confirm Your R Environment
+
+Before the lab session, verify that the following packages are installed and loadable:
+
+```r
+library(tidyverse)   # includes ggplot2, dplyr, forcats, scales
+library(coursepackR)  # for unified_music dataset
+```
+
+You will also use functions from the scales package (included with tidyverse) for formatting axis labels. If you plan to use additional color palettes, the RColorBrewer package is already installed as a dependency of ggplot2.
+
+### 5. Continue Your Weekly Journal
+
+Your journal entry for this week is included in your download.
+
+---
 
 ## Assignment: Describing Data [R] (75 pts)
 
-Frequency tables, ggplot2 visualizations, cross-tabulations, and narrative interpretation.
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+Numbers alone do not tell stories. A table of frequencies is accurate but forgettable. A well-designed chart communicates the same information in seconds and sticks in your audience's memory. This assignment asks you to use frequency tables and ggplot2 visualizations to describe the structure of your cleaned dataset and produce executive-summary-style graphics that a non-technical reader could understand.
+
+You will build five visualizations, each targeting a different aspect of the data, and then write an interpretation that connects the visual evidence to your research context.
+
+### What You Will Do
+
+The assignment template (`assignment-02-describing.qmd`) guides you through each section. Here is the full workflow:
+
+**Part 1: Frequency Tables**
+
+- Use `count()` to tabulate the distribution of the `genre` variable. Add a percentage column using `mutate(pct = n / sum(n) * 100)`.
+- Repeat for the `mode` variable.
+- Build a cross-tabulation of `genre x mode` using `count()` followed by `pivot_wider()` to create a readable table. Include both raw counts and row percentages. This table is the foundation for the chi-square test you will run next week --- getting comfortable with cross-tabulations now will pay off.
+
+**Part 2: Bar Chart**
+
+- Create a horizontal bar chart of genre frequencies using `ggplot()` + `geom_bar()`.
+- Sort the bars by frequency using `fct_reorder()` from the forcats package.
+- Apply a colorblind-friendly palette with `scale_fill_brewer(palette = "Set2")`.
+- Add complete labels: a descriptive title, subtitle with the sample size, and clean axis labels.
+- Use `theme_minimal()` or a similar clean theme. The goal is a chart you would not be embarrassed to put in a slide deck or a report.
+
+**Part 3: Stacked Proportional Chart**
+
+- Create a stacked bar chart showing the proportion of each `mode` within each `genre`.
+- Use `position = "fill"` inside `geom_bar()` so that all bars reach 100%.
+- Format the y-axis as percentages using `scales::percent_format()`.
+- Add a clear legend and descriptive title.
+
+**Part 4: Boxplot**
+
+- Choose one numeric audio feature (e.g., tempo, energy, danceability) and create a boxplot comparing its distribution across genres.
+- Use `geom_boxplot()` with `fill` mapped to genre.
+- Add a title that states what comparison the reader should focus on. A good title tells the reader what to look for: "Tempo Distribution Varies Widely Across Genres" is more informative than "Boxplot of Tempo."
+
+**Part 5: Free-Choice Visualization**
+
+- Create one additional chart of your choosing. It can use any geom, any variable combination, and any design approach.
+- Write 2--3 sentences justifying your choice: Why did you pick this chart type? What does it reveal that the previous four charts did not? Creativity is welcome, but the chart must be readable and labeled.
+
+**Part 6: Interpretation**
+
+- Write 2--3 paragraphs in plain English explaining what your visualizations reveal about the dataset. Cite specific numbers from your frequency tables (e.g., "Rock tracks account for 34% of the sample, while Classical tracks represent only 4%"). Discuss any surprising patterns, imbalances, or notable comparisons across groups. Connect your observations to the broader context of music data.
+- Do not simply narrate what each chart shows ("The bar chart shows genre frequencies"). Instead, synthesize across charts: what story emerges when you look at the tables and visualizations together? Are there genres that dominate? Are there mode-genre combinations that seem unusually common or rare?
+
+::: {.callout-note}
+## Clean Backup Dataset
+A clean backup dataset (`music_data_clean.RDS` and `coding_sheet.csv`) is provided on Blackboard so that your Assignment 1 grade does not affect your ability to complete Assignment 2. If your own cleaned file works, use it. If not, use the backup --- no penalty either way.
+:::
+
+### Submission
+
+Render your `.qmd` file as a PDF. All code chunks must execute without errors for full credit. Upload the PDF to Blackboard.
+
+**File name:** `Lastname_DescribingData.pdf`
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Frequency tables with counts and percentages | 10 |
+| Bar chart is publication-quality with sorted bars and labels | 10 |
+| Stacked proportional chart is correctly scaled to 100% | 10 |
+| Boxplot compares numeric feature across genres | 10 |
+| Free-choice chart with written justification | 10 |
+| Interpretation paragraphs cite specific numbers and patterns | 15 |
+| Document renders without errors | 10 |
+| **Total** | **75** |
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapter 20 (Interpreting the Call) and submit Inferencing Data, where you test whether the patterns you described this week are statistically significant. Description tells you what is happening in the data. Inference tells you whether it is happening by chance. The visualizations you built this week will reappear in your final portfolio --- they are not throwaway exercises but components of your finished research product. Save your best charts; you will embed them directly into your final project website.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_12.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 250--300 words.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

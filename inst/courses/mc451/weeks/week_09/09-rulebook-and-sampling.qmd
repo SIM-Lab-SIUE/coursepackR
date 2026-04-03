@@ -1,34 +1,150 @@
 ---
-title: "Week 9: The Rulebook & Sampling Plan"
-subtitle: "Chapters 15-16"
+title: "Week 9: The Rulebook and Sampling"
+subtitle: "MC 451 Research Methods in Mass Media"
 date: "2026-10-20"
 format:
   html:
     embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
-## Overview
+## This Week
 
-Chapter 15 teaches codebook construction. Chapter 16 covers sampling strategies for content analysis and pilot testing.
+This week you build the most important document in your entire project: the codebook. Chapter 15 teaches you how to organize variable definitions, coding values, and decision rules into a comprehensive reference manual, while Chapter 16 walks you through sampling strategy and the pilot test that stress-tests your system before full data collection begins.
 
-**Reading:** Chapter 15 and Chapter 16
+**Reading:** Chapter 15 (The Rulebook) and Chapter 16 (The Sampling Plan and Pilot Test)
 
-## Key Concepts
+---
 
-- The codebook as algorithm
-- Five components: unit of analysis, variables, decision rules, examples, special cases
-- Exhaustive and mutually exclusive categories
-- Sampling strategies: census, simple random, stratified, systematic, constructed week
-- Pilot testing and inter-coder reliability
-- The iteration cycle: code, compare, discuss, revise
+## What You Need to Do This Week
 
-## Learning Objectives
+### 1. Read Chapters 15 and 16
 
-1. Build a complete codebook with decision rules
-2. Design a sampling strategy for content analysis
-3. Calculate and interpret inter-coder reliability
-4. Finalize your codebook through pilot-informed revision
+Read both chapters before class. As you read, pay attention to:
 
-## Assignment: Codebook & Qualitative Memo (50 pts)
+- The structure of a professional codebook and why every section matters
+- How sampling decisions affect what your study can and cannot claim
+- The purpose of a pilot test and what it reveals about your codebook
+- The difference between a census, a random sample, and a convenience sample
 
-Part 1 (35 pts): Complete codebook. Part 2 (15 pts): 200-300 word memo on immersion patterns.
+### 2. Complete the Codebook and Qualitative Memo Assignment (below)
+
+### 3. Gather Your Materials
+
+You will need your Prospectus, Research Questions, and Definitions Practice assignments open as you build your codebook. Each previous assignment feeds directly into this one. If you received feedback on any of those assignments, incorporate it now.
+
+---
+
+## Assignment: Codebook and Qualitative Memo (50 pts)
+
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+Build the Rulebook for your content analysis. A codebook is the master reference document that governs every coding decision in your study. It turns the variable definitions you drafted last week into a complete operational system --- thorough enough that a second coder could pick it up and produce consistent results without asking a single question. If your codebook is ambiguous, your data will be unreliable. If your codebook is clear, your study stands on solid ground.
+
+This is the most substantial assignment before the final project, and it is worth twice the usual points because it requires you to synthesize everything you have built so far: your topic, your theory, your research questions, and your variable definitions.
+
+### Part 1: The Codebook
+
+Your codebook must be written as a Quarto `.qmd` file in RStudio and rendered to PDF. It is a professional document --- written in prose and formatted sections, not a raw table dump. Structure it as follows:
+
+#### Study Overview (1 paragraph)
+
+Provide a concise summary of your study: what you are investigating, why it matters, and what research questions guide the analysis. A reader should be able to understand the purpose of the entire codebook from this paragraph alone.
+
+#### Unit of Analysis
+
+Define exactly what counts as one "item" in your study. Is it one news article? One social media post? One video segment? One advertisement? Be precise. If your unit has sub-components (e.g., you code both the headline and the body separately), explain that structure here.
+
+#### Variable Entries
+
+For **each variable** in your study, provide a complete entry with the following components:
+
+- **Variable Name** --- A short, consistent label (e.g., `dominant_frame`, `source_type`, `article_length`)
+- **Conceptual Definition** --- The theoretical meaning of the variable, grounded in literature
+- **Operational Definition** --- The step-by-step instruction for how to code this variable
+- **Coded Values** --- All possible values the variable can take, each with a numeric code and a plain-language label. For example:
+
+  | Code | Value | Description |
+  |------|-------|-------------|
+  | 1 | Economic | Frame emphasizes financial costs, budgets, or economic impact |
+  | 2 | Conflict | Frame emphasizes disagreement between parties or groups |
+  | 3 | Human Interest | Frame emphasizes personal stories or emotional angles |
+  | 99 | Not Applicable | Frame cannot be determined from available content |
+
+- **Decision Rules** --- Instructions for handling ambiguous or borderline cases. Draw from the Hard Cases table you created last week and expand as needed. Every "what if" a coder might ask should have an answer here.
+
+Use consistent formatting for every variable entry. A reader should be able to flip to any entry and find the same structure every time.
+
+#### General Coding Instructions
+
+Include a brief section with rules that apply across all variables:
+
+- What to do when content is missing or inaccessible
+- How to handle items that appear in multiple categories
+- Whether coders should re-read/re-watch content before coding
+- Any other study-wide conventions
+
+### Part 2: Qualitative Memo (200--300 words)
+
+Write a reflective memo on how your qualitative immersion from Week 8 shaped the variables and categories in your codebook. Address the following:
+
+- What patterns did you notice during immersion that you did not expect?
+- How did those observations inform which variables made it into your codebook and which did not?
+- Did anything you saw in the content challenge or complicate your original theory?
+- How did the experience of reading/watching the actual content change the way you think about your research questions?
+
+The memo should be honest and specific. Cite particular examples from your immersion --- do not write in generalities. This is your evidence that the codebook is grounded in real engagement with the source material, not just abstract theorizing.
+
+### Rendering and Submission
+
+Render your `.qmd` file to PDF in RStudio. Review the output for:
+
+- Professional formatting (clear headings, consistent structure, readable tables)
+- Completeness (all variables present, all sections included)
+- Clarity (a stranger could use this codebook without guidance)
+
+Upload the PDF to Blackboard. Keep your `.qmd` source file --- you will revise and reuse this codebook in your final project.
+
+**File name:** `Lastname_Codebook.pdf`
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| All variables from Definitions Practice present and accounted for | 5 |
+| Each entry includes name, conceptual def., operational def., coded values, and decision rules | 15 |
+| Unit of analysis clearly and precisely defined | 5 |
+| Qualitative memo present, reflective, and grounded in specific examples | 10 |
+| Rendered as PDF with professional formatting (headings, tables, consistent structure) | 10 |
+| File correctly named (`Lastname_Codebook.pdf`) | 5 |
+| **Total** | **50** |
+
+---
+
+## Connecting Forward
+
+Next week begins the R programming phase of the course. You will read Chapter 17 (Wrangling the Chaos) across two full sessions and submit your Sampling Plan and Pilot Test. Your codebook is a living document --- you will revise it based on what the pilot reveals. Expect to update decision rules, add new edge cases, and possibly redefine variables that do not work in practice. That is not failure; that is how research works.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_09.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 250--300 words.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

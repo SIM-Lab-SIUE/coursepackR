@@ -1,0 +1,125 @@
+---
+title: "Week 6: The Toolkit and Qualitative Methods"
+subtitle: "MC 501 Research Methods in Mass Media"
+date: "2026-09-29"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+## This Week
+
+This week bridges two essential chapters. Chapter 9 surveys the full range of tools available to media researchers --- from content analysis to computational methods --- while Chapter 10 dives deep into qualitative approaches that prioritize meaning, context, and interpretation. Together, these chapters help you see the landscape of methods before you commit to your own path.
+
+**Reading:** Chapter 9 (The Methodologist's Toolkit) and Chapter 10 (Qualitative Methods)
+
+---
+
+## What You Need to Do This Week
+
+### 1. Read Chapters 9 and 10
+
+Read both chapters before class. As you read, pay attention to:
+
+- The differences between quantitative, qualitative, and mixed-methods designs
+- How qualitative methods generate rich, contextual understanding of media phenomena
+- Where your own project might fall on the quantitative--qualitative spectrum
+
+### 2. Complete the Research Proposal Assignment (below)
+
+MC 451 students submit a one-page Project Prospectus this week. MC 501 replaces that with a Research Proposal --- a structured sentence outline that could serve as the front half of a conference paper. This is not a polished paper --- it is a detailed design document forcing specificity that a one-page prospectus cannot achieve.
+
+### 3. Gather Your Materials
+
+You will need your Librarian Visit Report, all three Annotated Manuscripts, and your reading notes open as you build this proposal. Each previous assignment feeds directly into the outline.
+
+---
+
+## Assignment: Research Proposal (75 pts)
+
+**Due:** Friday 11:59 PM | **Submit to:** Blackboard (PDF upload)
+
+### The Mission
+
+Produce a structured sentence outline that could serve as the front half of a conference paper. Every line must be a complete sentence --- not a fragment, not a bullet phrase. The outline forces you to think through every component of your study design before you commit to building it. Vague intentions become visible immediately in this format. If you cannot write a complete sentence about your sampling strategy, you do not yet have a sampling strategy.
+
+### Structure
+
+#### I. Introduction
+
+- Problem statement (2--3 sentences): What media phenomenon are you investigating and why does it matter?
+- Significance (2--3 sentences): What real-world or scholarly stakes are attached to this problem?
+- Gap in literature (2--3 sentences): What has prior research failed to address? Cite at least 3 sources from your annotated manuscripts or additional reading.
+
+#### II. Theoretical Framework
+
+- Name the theory you are using and cite its originator (3--4 sentences).
+- Explain the key predictions or mechanisms the theory proposes.
+- Apply the theory to your specific topic (2--3 sentences): How does this framework shape what you expect to find in your data?
+
+#### III. Research Questions and Hypotheses
+
+- Write each RQ or hypothesis as a formal statement.
+- After each, include 1--2 sentences justifying why this question matters and how it connects to the theoretical framework.
+
+#### IV. Method
+
+- Population definition: Who or what is the universe of content you could study?
+- Sampling frame: What subset of that universe will you draw from?
+- Sampling strategy with justification: How will you select specific items, and why is this approach appropriate?
+- Coding procedures overview: What is the general process a coder will follow?
+- Reliability plan overview: How will you assess intercoder reliability?
+- Planned analyses: What statistical tests or qualitative procedures will you use to answer each RQ?
+
+#### V. Expected Contribution
+
+- What does this study add to the field (2--3 sentences)?
+- How might the findings inform practice, policy, or future research?
+
+### Submission
+
+Render your `.qmd` file as a PDF in RStudio. Upload the PDF to Blackboard.
+
+**File name:** `Lastname_ResearchProposal.pdf`
+
+### Grading Criteria
+
+| Criterion | Points |
+|-----------|--------|
+| Problem and significance articulated clearly | 10 |
+| Gap identified with citations (3+ sources) | 10 |
+| Theory explained and applied to the specific topic | 10 |
+| RQs/hypotheses formally stated with justification | 10 |
+| Method section complete (all six components addressed) | 20 |
+| Expected contribution clear and substantive | 5 |
+| Rendered PDF correctly named | 10 |
+| **Total** | **75** |
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapters 11 and 12 --- Designing Surveys and Designing Experiments. While your project uses content analysis, understanding these methods helps you see how research questions shape design choices across all approaches. You will also formalize your research questions and begin previewing variables.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_06.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 450--500 words. Your entry must engage with the graduate extension reading for this week --- surface-level summaries of the main chapters will not receive full credit.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith

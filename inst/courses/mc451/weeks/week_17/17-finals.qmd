@@ -5,8 +5,52 @@ date: "2026-12-15"
 format:
   html:
     embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
-## Final Web Portfolio (250 pts)
+## Final Portfolio (250 pts)
 
-Submit PDF (Lastname_FinalPortfolio.pdf) and live GitHub Pages URL to Blackboard.
+**Due:** Friday, December 19, 11:59 PM | **Submit to:** Blackboard
+
+This is it. Your final portfolio is a complete, published research document that demonstrates everything you have learned this semester.
+
+---
+
+## Submission Checklist
+
+Before you submit, confirm every item:
+
+- [ ] All six sections are complete (Introduction, Literature Review, Method, Results, Discussion, References)
+- [ ] All instruction comments (`<!-- ... -->`) are deleted
+- [ ] `coding_data_clean.RDS` is in the project folder
+- [ ] `references.bib` is updated with all cited sources
+- [ ] `apa.csl` is downloaded and in the project root
+- [ ] `_quarto.yml` is updated with your name, title, and correct chapter order
+- [ ] The project renders without errors in RStudio
+- [ ] PDF is renamed to `Lastname_FinalPortfolio.pdf`
+- [ ] GitHub Pages is live and accessible
+- [ ] Live URL loads correctly in an incognito/private browser window
+
+---
+
+## What to Submit on Blackboard
+
+Two items:
+
+1. **Upload:** `Lastname_FinalPortfolio.pdf`
+2. **Text box:** Paste your GitHub Pages URL (e.g., `https://username.github.io/mc451-final-project/`)
+
+Both items are required. Missing either one will result in an incomplete submission.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Discord:** APLeith

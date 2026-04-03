@@ -1,0 +1,101 @@
+---
+title: "Week 3: Reading and Searching"
+subtitle: "MC 501 Research Methods in Mass Media"
+date: "2026-09-08"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+---
+
+## This Week
+
+This week shifts your focus from consuming information to organizing it. Chapter 3 introduces the reading journal protocol --- a structured way to engage with academic texts --- while Chapter 4 covers the archival mindset: how to search, store, and retrieve literature efficiently using tools like Zotero and your Methods Vault.
+
+**Reading:** Chapter 3 (The Reading Journal Protocol) and Chapter 4 (The Archivist)
+
+---
+
+## What You Need to Do This Week
+
+### 1. Read Chapters 3 and 4
+
+As you read, think about:
+
+- How the journal protocol differs from casual highlighting
+- Why systematic search strategies matter more than one lucky Google Scholar hit
+- How Zotero and Obsidian work together to build a personal research library
+
+### 2. Begin Your Weekly Journal Practice
+
+Starting this week, you will push your journal entries to GitHub. The journal template for this week is included in your download. Use Obsidian to write and GitHub Desktop to push.
+
+### 3. Schedule Your Librarian Consultation
+
+This is the most important task of the week. MC 451 students are completing a Project Setup assignment this week --- initializing their Methods Vault as a GitHub repository. As a graduate student, you self-configured your tools during Weeks 1 and 2. That means this week is free for deeper preparation.
+
+Use it wisely. Schedule your librarian visit now so it happens during Week 4. Librarians have limited appointment slots, and waiting until Week 4 to schedule risks missing the window entirely. Visit the [SIUE Library Research Help page](https://www.siue.edu/lovejoylibrary/research/) or email the reference desk directly.
+
+### 4. Start Your Literature Search Early
+
+Before your librarian visit, conduct a preliminary search on your own. The goal is not to find every source you will ever need --- it is to arrive at the librarian consultation with enough context to ask precise questions.
+
+**Step 1: Choose your databases.** Open Communication & Mass Media Complete, PsycINFO, or another database relevant to your topic. If you are unsure which database fits your research area, that is a great question for the librarian --- but try at least one search before the meeting.
+
+**Step 2: Run multiple keyword combinations.** Try at least three different search strings related to your proposed research topic. Vary your terms --- use synonyms, broader concepts, and narrower phrases. Note which combinations return useful results and which return noise. Record your search strings so you can share them with the librarian.
+
+**Step 3: Save promising articles.** Add 5--10 articles to your Zotero library using the browser connector or by dragging PDFs directly into Zotero. You do not need to read them all this week --- skim the abstracts and flag the ones that seem most relevant to your topic, theory, or method.
+
+**Step 4: Prepare questions.** Write down 3--5 specific questions to bring to the librarian consultation. Good questions include: "Are there better databases for [your topic]?" or "How do I filter for content analysis studies specifically?" or "Is there a way to search for studies using [your theory]?" The meeting will be far more productive if you arrive with specific problems rather than a blank slate.
+
+Document your search process in a note in your `00_Inbox/` folder so you can reference it later.
+
+### 5. Organize Your Zotero Library
+
+As you add articles, create a collection in Zotero specifically for your research project. Name it something clear --- your topic or course number works fine. Within that collection, use tags to categorize sources: `theory`, `method`, `background`, `key-finding`. This organizational work feels minor now, but when you are writing your Research Proposal in Week 6 and need to cite 3+ sources for a literature gap, being able to filter by tag will save you significant time.
+
+### 6. Why 501 Skips Project Setup
+
+MC 451 students are completing a Project Setup assignment this week that walks them through initializing their Methods Vault as a GitHub repository for the first time. The assignment covers adding a local repository in GitHub Desktop, making a first commit, and publishing to GitHub --- all foundational skills that undergraduate students need explicit guidance on.
+
+As a graduate student, you self-configured your tools during Weeks 1 and 2, and your vault should already be connected to GitHub. Repeating that exercise would not advance your learning. Instead, this week redirects your effort toward the literature search groundwork that will strengthen your Librarian Visit Report, Annotated Manuscripts, and Research Proposal in the weeks ahead. If your vault is not yet on GitHub for any reason, resolve that now --- do not wait.
+
+---
+
+## No Graded Assignment This Week
+
+There is no graded assignment due this week beyond the journal. Use the time to read carefully, schedule your librarian visit, and begin building your Zotero library.
+
+This is a rare open week in the semester --- do not waste it. The work you do now pays off directly in three upcoming assignments:
+
+- **Week 4 --- Librarian Visit Report:** Your preliminary search this week makes the consultation sharper and more productive.
+- **Week 5 --- Annotated Manuscripts:** MC 501 requires three annotated articles, not one. Starting your Zotero library now gives you a head start on finding and selecting those three sources.
+- **Week 6 --- Research Proposal:** The structured sentence outline requires citations and a clear gap in the literature. The earlier you begin reading, the easier it is to identify what prior research has missed.
+
+---
+
+## Connecting Forward
+
+Next week you will read Chapters 5 and 6 --- choosing your theoretical lens and mapping your research roadmap. You will also meet with a SIUE librarian for your Librarian Visit Report, a structured consultation that will shape your literature search strategy for the rest of the project. The preliminary search work you do this week will make that consultation significantly more productive.
+
+---
+
+## Weekly Journal (10 pts)
+
+Your journal entry for this week is included in this download as `journal_week_03.qmd`. Open it in Obsidian, choose your reflection approach (Connector, Troubleshooter, or Critic), and write 450--500 words. Your entry must engage with the graduate extension reading for this week --- surface-level summaries of the main chapters will not receive full credit.
+
+**Due:** Friday 11:59 PM | **Submit:** Push to GitHub via GitHub Desktop, then submit rendered PDF to Blackboard.
+
+---
+
+## Getting Help
+
+- **Course website:** [Open Methods Hub](https://sim-lab-siue.github.io/liaison-program/) --- check here first
+- **Email:** aleith@siue.edu (allow 24 hours Mon--Fri)
+- **Office hours:** MW 10:00--11:30 AM and 1:30--3:00 PM, Dunham Hall 1017
+- **Discord:** APLeith
