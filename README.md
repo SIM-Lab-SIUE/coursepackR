@@ -172,8 +172,8 @@ coursepackR/
 
 | Project | Description | Link |
 |---------|-------------|------|
-| **vibes-to-variables** | Open textbook — *From Vibes to Variables* (2nd Ed.) | [Read Online](https://sim-lab-siue.github.io/vibes-to-variables/) \| [GitHub](https://github.com/SIM-Lab-SIUE/vibes-to-variables) |
-| **liaison-program** | Course support website with syllabus, setup guides, and resources | [Visit Site](https://sim-lab-siue.github.io/liaison-program/) \| [GitHub](https://github.com/SIM-Lab-SIUE/liaison-program) |
+| **Open Methods Hub** | Course website — syllabus, R workbook (with videos), Methods Vault, setup guides | [Visit Site](https://sim-lab-siue.github.io/liaison-program/) \| [GitHub](https://github.com/SIM-Lab-SIUE/liaison-program) |
+| **vibes-to-variables** | Open textbook — *From Vibes to Variables* (2nd Ed., 22 chapters) | [Read Online](https://sim-lab-siue.github.io/vibes-to-variables/) \| [GitHub](https://github.com/SIM-Lab-SIUE/vibes-to-variables) |
 
 ---
 
