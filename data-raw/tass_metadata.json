@@ -1,0 +1,15 @@
+{
+  "TASS Version": "1.0.0",
+  "Export Date": "2026-04-06 04:46 UTC",
+  "Text Column": "lyrics",
+  "Group Column": "playlist_genre",
+  "Entries": 500,
+  "Dictionaries": "afinn165, vader_lexicon, mfd2",
+  "Preprocessing \u2014 Lemmatize": false,
+  "Preprocessing \u2014 Stopwords": false,
+  "Preprocessing \u2014 Min Length": 1,
+  "Scoring Mode": "Dictionary default",
+  "Categories Analyzed": 13,
+  "Statistical Tests": "One-way ANOVA",
+  "Correction Method": "Bonferroni"
+}
